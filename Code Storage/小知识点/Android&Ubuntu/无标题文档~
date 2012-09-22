@@ -1,0 +1,229 @@
+在android中引入信号与槽的机制主要是进行消息的传递，比如：
+通过对象A产生了一个消息，现在想将这个消息传递到对象B，并由对象B对这个消息进行相应的处理。
+
+先写下信号与槽机制的实现:
+
+    package mythware.libj; 
+     
+    import java.lang.reflect.InvocationTargetException; 
+    import java.lang.reflect.Method; 
+    import java.util.ArrayList; 
+     
+    /* 
+     *  by Yanhui Shen under new BSD license, 2011 
+     *  Email: shen.elf@gmail.com 
+     *   
+     *  NOTE:  
+     *  1. The Signal/Slot should be public member. 
+     *  2. Be careful with Signal-Signal (without loop please). 
+     *  3. Enjoy it! 
+     * 
+     */ 
+     
+    //采用信号槽机制 
+    public final class SignalSlot { 
+         
+        //slot用来进行管理相应的响应函数 
+        public final static class Slot { 
+             
+            private final Object mReceiver;      
+            private final String mFnName; 
+            private final Class<?>[] mArgts; 
+            private final Method mFn; 
+             
+            /** 
+             * @param recver 
+             *            method receiver 
+             * @param fnName 
+             *            method name, the method should be public 
+             * @param argts 
+             *            the arguments' data type 
+             * @author shen 
+             */ 
+            //初始化slot 
+            public Slot(Object recver, String fnName, Class<?>[] argts) { 
+                mReceiver = recver; 
+                mFnName = fnName; 
+                mArgts = argts; 
+                mFn = tryGetMethod(recver, fnName, argts);           
+            } 
+             
+            /** 
+             * Call this to execute the method 
+             *  
+             * @author shen 
+             */ 
+            //进行信号的响应，即调用相应的函数 
+            public void exec(Object... args) { 
+                try { 
+                    mFn.invoke(mReceiver, args); 
+                } catch (IllegalArgumentException e) { 
+                    e.printStackTrace(); 
+                    execDiagnosis(args); 
+                } catch (IllegalAccessException e) { 
+                    e.printStackTrace(); 
+                    execDiagnosis(args); 
+                } catch (InvocationTargetException e) { 
+                    e.printStackTrace(); 
+                    execDiagnosis(args); 
+                } 
+            } 
+     
+            //获得响应的类 
+            public Object getRecviver() { 
+                return mReceiver; 
+            } 
+     
+            //获得响应的函数的名字 
+            public String getMethodName() { 
+                return mFnName; 
+            } 
+     
+            //获得响应的函数 
+            private static Method tryGetMethod(Object recver, String fnName, Class<?>[] argts) { 
+                Method fn = null; 
+                try { 
+                    fn = recver.getClass().getMethod(fnName, argts); 
+                    fn.setAccessible(true); 
+                } catch (SecurityException e) { 
+                    e.printStackTrace(); 
+                } catch (NoSuchMethodException e) { 
+                    e.printStackTrace(); 
+                } 
+                return fn; 
+            } 
+             
+            //对函数调用失败的诊断 
+            private void execDiagnosis(Object... args) { 
+                String msg = mArgts.length == 0 ? "void" : ""; 
+                for (Class<?> argt : mArgts) { 
+                    msg += argt.getName() + ", "; 
+                } 
+                System.out.println("expected args:" + msg); 
+     
+                msg = args.length == 0 ? "void" : ""; 
+                for (Object arg : args) { 
+                    msg += arg.getClass().getName() + ", "; 
+                } 
+                System.out.println("received args:" + msg); 
+     
+                System.out.println("fn:" + mFn.toString()); 
+            }    
+        } 
+     
+        //信号signal用来连接signal和slot的关系 
+        public final static class Signal { 
+            private final Class<?>[] mArgts; 
+            private final ArrayList<Slot> mSlots = new ArrayList<Slot>(); 
+            private final ArrayList<Signal> mSignals = new ArrayList<Signal>(); 
+             
+            /** 
+             * @param argts 
+             *            the arguments' data type 
+             * @author shen 
+             */ 
+            //添加相应的参数的类型 
+            public Signal(Class<?>... argts) { 
+                mArgts = new Class[argts.length]; 
+                int index = 0; 
+                for (Class<?> argt: argts) { 
+                    mArgts[index++] = argt; 
+                } 
+            } 
+     
+            //发出信号，同时让slot进行响应 
+            public void emit(Object... args) { 
+                for (int i = 0, loopCount = mSignals.size(); i < loopCount; ++i) { 
+                    mSignals.get(i).emit(args); 
+                } 
+     
+                for (int i = 0, loopCount = mSlots.size(); i < loopCount; ++i) { 
+                    mSlots.get(i).exec(args); 
+                } 
+            } 
+     
+            /** 
+             * connect to slot 
+             *  
+             * @author shen 
+             */ 
+             
+            //将信号与槽进行绑定 
+            public void connect(Slot slot) { 
+                mSlots.add(slot); 
+            } 
+     
+            /** 
+             * Provide the receiver and method name, <br/> 
+             * then auto build the slot, meanwhile connect to signal 
+             *  
+             * @author shen 
+             */ 
+            //将信号与相关的类即函数名进行绑定 
+            public Slot connect(Object recv, String fn) { 
+                Slot slot = new Slot(recv, fn, mArgts); 
+                mSlots.add(slot); 
+                return slot; 
+            } 
+     
+            /** 
+             * Disconnect with the slot 
+             *  
+             * @author shen 
+             */ 
+            public void disconnect(Slot slot) { 
+                mSlots.remove(slot); 
+            } 
+     
+            /** 
+             * Disconnect with slots by the specified receiver,<br/> 
+             * this can be helpful when you want to disconnect all signals with an 
+             * object 
+             *  
+             * @author shen 
+             */ 
+            public void disconnectReceiver(Object obj) { 
+                for (int i = 0, loopCount = mSlots.size(); i < loopCount; ++i) { 
+                    Slot slot = mSlots.get(i); 
+                    if (slot.getRecviver().equals(obj)) { 
+                        mSlots.remove(slot); 
+                        break; 
+                    } 
+                } 
+            } 
+     
+            /** 
+             * Disconnect with all slots and signals 
+             *  
+             * @author shen 
+             */ 
+            public void disconnectAll() { 
+                mSlots.clear(); 
+                mSignals.clear(); 
+            } 
+        } 
+    } 
+
+接下来解释如何来使用：
+
+    public class A { 
+        public Signal sigTest = new Signal(Boolean.class); 
+         
+        public A(){ 
+            sigTest.emit(true); 
+        } 
+    } 
+     
+    class B { 
+        public A mAobject = new A(); 
+     
+        public B() { 
+            mAobject.sigTest.connect(this, "RespondFunction"); 
+        } 
+         
+        public void RespondFunction(Boolean flag){ 
+            System.out.println("Responded!"); 
+        } 
+    } 
+
+如此便结束了。总结一下，其实也挺简单的。

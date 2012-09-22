@@ -1,0 +1,47 @@
+//通过使用SharedPreferences来对数据进行保存，主要应用于
+//保存简单的数据，比如用户名，密码之类的
+
+//下面来讲一下他的用法：
+
+
+public class DBSharedPreferences extends Activity {
+	public static final String SETTING_INFOS = "SETTING_Infos";
+	public static final String NAME = "NAME";
+	public static final String PASSWORD = "PASSWORD";
+	
+	private EditText field_name;
+	private EditText filed_pass;
+
+
+	/** Called when the activity is first created. */
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
+        //Find VIew
+        field_name = (EditText) findViewById(R.id.name);
+        filed_pass = (EditText) findViewById(R.id.password);
+        // Restore preferences
+	
+	//获取保存在shareprefrence中的数据
+	//该文件以xml的方式保存在/data/data/<package name>/shared_prefs目录下：
+        SharedPreferences settings = getSharedPreferences(SETTING_INFOS, 0);
+		String name = settings.getString(NAME, "");
+		String password = settings.getString(PASSWORD, "");
+		//Set value
+		field_name.setText(name);
+		filed_pass.setText(password);
+
+    }
+    
+    @Override
+    protected void onStop(){
+        super.onStop();
+		//结束的时候再次将数据保存起来
+		SharedPreferences settings = getSharedPreferences(SETTING_INFOS, 0);
+		settings.edit()
+			.putString(NAME, field_name.getText().toString())
+			.putString(PASSWORD, filed_pass.getText().toString())
+			.commit();
+    }
+}

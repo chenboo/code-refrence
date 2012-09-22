@@ -1,0 +1,115 @@
+//Example of using gradient bitmap to draw and the using of CreateFont method
+
+void CTestDialog::OnPaint()
+{
+	CPaintDC dc(this); // device context for painting
+
+	CRect rect;
+	GetClientRect(&rect);
+	rect.right = 27;//Change the rect Width to 27;
+
+	//Create Gradient Bitmap
+	HBITMAP hbitmap = CreateGradientBMP( dc.m_hDC,
+		RGB(205,205,205),
+		RGB(100,0,0),
+		rect.Width(),
+		rect.Height(),
+		256);
+
+	if (hbitmap)
+	{
+		CDC dcMem;
+		dcMem.CreateCompatibleDC(&dc);
+		CBitmap* pOldBm = dcMem.SelectObject(CBitmap::FromHandle(hbitmap));
+		dc.BitBlt(rect.left, rect.top, rect.Width(), rect.Height(), &dcMem, 0, 0, SRCCOPY);
+		dcMem.SelectObject(pOldBm);
+		::DeleteObject(hbitmap);
+		dcMem.DeleteDC();
+	}
+
+	//Create Vertical Font
+	CFont Vfont; 
+	Vfont.CreateFont(16, 0, 900, 0,
+		FW_BOLD, 1, 0, 0,
+		DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, 
+		CLIP_DEFAULT_PRECIS,
+		DEFAULT_QUALITY,
+		DEFAULT_PITCH, 
+		_T("Arial"));
+
+	CFont *pOldFont = dc.SelectObject(&Vfont);
+	COLORREF oldColor = dc.GetTextColor();
+	dc.SetTextColor(RGB(255, 255, 255));
+	dc.SetBkMode(TRANSPARENT);
+	CString strText=_T("TEST. HEllo WoRLD! ÄãºÃ,VCKBASE!");
+
+	dc.TextOut(rect.left + 2, rect.bottom - 10, strText);
+
+	dc.SetTextColor(oldColor);
+	dc.SelectObject(pOldFont);
+	Vfont.DeleteObject();
+}
+
+
+//Create Gradient bitmap
+HBITMAP CTestDialog::CreateGradientBMP(HDC hDC, COLORREF clrStart,
+									COLORREF clrEnd, int nWidth,
+									int nHeight,
+									int nNumColors)
+{
+	if(nNumColors > 256)
+	{
+		nNumColors = 256;
+	}
+
+	COLORREF PalVal[256];
+	memset(PalVal, 0, sizeof(COLORREF)*256);
+
+	int nIndex;
+	BYTE peRed=0,peGreen=0,peBlue=0;
+	int r1=GetRValue(clrStart);
+	int r2=GetRValue(clrEnd);
+	int g1=GetGValue(clrStart);
+	int g2=GetGValue(clrEnd);
+	int b1=GetBValue(clrStart);
+	int b2=GetBValue(clrEnd);
+
+	for (nIndex = 0; nIndex < nNumColors; nIndex++) 
+	{
+		peRed = (BYTE) (r1 + MulDiv((r2-r1),nIndex,nNumColors-1));
+		peGreen = (BYTE) (g1 + MulDiv((g2-g1),nIndex,nNumColors-1));
+		peBlue = (BYTE) (b1 + MulDiv((b2-b1),nIndex,nNumColors-1));
+
+		PalVal[nIndex]=(peRed << 16) | (peGreen << 8) | (peBlue);
+	}
+
+	int x,y,w,h;
+	w=nWidth;
+	h=nHeight;
+
+	
+	BITMAPINFO GradBitInfo;
+	memset(&GradBitInfo,0,sizeof(BITMAPINFO));
+
+	LPDWORD pGradBits;
+	pGradBits=(DWORD*)malloc(w * h * sizeof(DWORD));
+	
+	GradBitInfo.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
+	GradBitInfo.bmiHeader.biWidth = w;
+	GradBitInfo.bmiHeader.biHeight = h;
+	GradBitInfo.bmiHeader.biPlanes = 1;
+	GradBitInfo.bmiHeader.biBitCount = 32;
+	GradBitInfo.bmiHeader.biCompression = BI_RGB; 
+
+	for(y = 0; y < h; y++)
+	{
+		for(x = 0; x < w; x++)
+		{
+			*(pGradBits + ( y * w ) + x ) = PalVal[MulDiv(nNumColors,y,h)];
+		}
+	}
+
+	HBITMAP hBmp = CreateDIBitmap(hDC,&GradBitInfo.bmiHeader,CBM_INIT, pGradBits,&GradBitInfo,DIB_RGB_COLORS);
+	free(pGradBits);
+	return hBmp;
+} 

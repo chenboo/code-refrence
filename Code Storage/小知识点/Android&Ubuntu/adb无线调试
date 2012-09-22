@@ -1,0 +1,22 @@
+ubuntu 10.04上Android通过ADB连接设备的两种方法  
+1， 通过USB数据线连接
+我的adb安装目录在：~/Programs/android-sdk-linux/platform-tools
+以下是在sudo 的root权限下设置的：
+在/etc/udev/rules.d/ 建立文件51-android.rules
+VI添加其内容：SUBSYSTEM==“usb", ATTR{idVendor}=="04e8", MODE="0666"
+保存之，再修改其权限：chmod a+r 51-android.rules
+这样后，可以重启udev服务： /etc/init.d/udev   restart
+重新登录或者注销，插入android设备的数据线到电脑。
+如果adb没有开启，直接执行：adb start-server
+如果开启有可能需要停用以前的：adb kill-server ， 再重启：adb start-server
+执行：adb devices 就可以列举当前所有设备了
+ 
+2， 通过WIFI连接
+在1 中的所有步骤成功后才能完成2的连接。
+连接设备到电脑，保证在adb devices中可以枚举得到。如果不先连接设备的话，
+输入命令会显示：error: device no found 的错误信息
+打开端口5555（默认端口，或者其它）：adb tcpip 5555
+连接到android设备：adb connect 192.168.10.114
+(注意：设备通过WIFI功能连接到局域网中，要和电脑所在同一网段)
+再执行adb devices 后就能显示如：192.169.10.114：5555      device
+的信息，表示连接成功，此时可以拔除USB连接线了。

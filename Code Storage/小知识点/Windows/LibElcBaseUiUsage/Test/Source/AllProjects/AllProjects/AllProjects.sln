@@ -1,0 +1,59 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{73E2DB01-A134-450E-BF7B-A858550F6232}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibElcBaseUI", "..\..\Libraries\LibElcBaseUI\LibElcBaseUI.vcproj", "{BC373243-E86E-4222-BD2F-86031E10C324}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C406DAEC-0886-4771-8DEA-9D7329B46CC1} = {C406DAEC-0886-4771-8DEA-9D7329B46CC1}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibTinyXML_MD", "..\..\Libraries\LibTinyXML\LibTinyXML.vcproj", "{C406DAEC-0886-4771-8DEA-9D7329B46CC1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{CC41F58C-9341-45D3-A034-3360EE0C3B6B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestBaseUI", "..\..\Libraries\LibElcBaseUI\TestBaseUI\TestBaseUI.vcproj", "{7A0ECC3B-4104-48AC-BD82-9465EA729C13}"
+	ProjectSection(ProjectDependencies) = postProject
+		{BC373243-E86E-4222-BD2F-86031E10C324} = {BC373243-E86E-4222-BD2F-86031E10C324}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utils", "Utils", "{DDDB28CB-03B2-4458-8796-9565B5EB9F50}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Test", "..\..\Utils\Test\Test.vcproj", "{52E5B47C-36C3-424A-9F77-514D784EBF56}"
+	ProjectSection(ProjectDependencies) = postProject
+		{BC373243-E86E-4222-BD2F-86031E10C324} = {BC373243-E86E-4222-BD2F-86031E10C324}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BC373243-E86E-4222-BD2F-86031E10C324}.Debug|Win32.ActiveCfg = Debug|Win32
+		{BC373243-E86E-4222-BD2F-86031E10C324}.Debug|Win32.Build.0 = Debug|Win32
+		{BC373243-E86E-4222-BD2F-86031E10C324}.Release|Win32.ActiveCfg = Release|Win32
+		{BC373243-E86E-4222-BD2F-86031E10C324}.Release|Win32.Build.0 = Release|Win32
+		{C406DAEC-0886-4771-8DEA-9D7329B46CC1}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C406DAEC-0886-4771-8DEA-9D7329B46CC1}.Debug|Win32.Build.0 = Debug|Win32
+		{C406DAEC-0886-4771-8DEA-9D7329B46CC1}.Release|Win32.ActiveCfg = Release|Win32
+		{C406DAEC-0886-4771-8DEA-9D7329B46CC1}.Release|Win32.Build.0 = Release|Win32
+		{7A0ECC3B-4104-48AC-BD82-9465EA729C13}.Debug|Win32.ActiveCfg = Debug|Win32
+		{7A0ECC3B-4104-48AC-BD82-9465EA729C13}.Debug|Win32.Build.0 = Debug|Win32
+		{7A0ECC3B-4104-48AC-BD82-9465EA729C13}.Release|Win32.ActiveCfg = Release|Win32
+		{7A0ECC3B-4104-48AC-BD82-9465EA729C13}.Release|Win32.Build.0 = Release|Win32
+		{52E5B47C-36C3-424A-9F77-514D784EBF56}.Debug|Win32.ActiveCfg = Debug|Win32
+		{52E5B47C-36C3-424A-9F77-514D784EBF56}.Debug|Win32.Build.0 = Debug|Win32
+		{52E5B47C-36C3-424A-9F77-514D784EBF56}.Release|Win32.ActiveCfg = Release|Win32
+		{52E5B47C-36C3-424A-9F77-514D784EBF56}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BC373243-E86E-4222-BD2F-86031E10C324} = {73E2DB01-A134-450E-BF7B-A858550F6232}
+		{C406DAEC-0886-4771-8DEA-9D7329B46CC1} = {73E2DB01-A134-450E-BF7B-A858550F6232}
+		{7A0ECC3B-4104-48AC-BD82-9465EA729C13} = {CC41F58C-9341-45D3-A034-3360EE0C3B6B}
+		{52E5B47C-36C3-424A-9F77-514D784EBF56} = {DDDB28CB-03B2-4458-8796-9565B5EB9F50}
+	EndGlobalSection
+EndGlobal

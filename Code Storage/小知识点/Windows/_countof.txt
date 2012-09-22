@@ -1,0 +1,7 @@
+//函数_countof的作用
+//该函数用来计算静态数组的大小
+//例如：
+TCHAR arr[20];
+int nCount = _countof(arr);
+
+nCount的值将为20;

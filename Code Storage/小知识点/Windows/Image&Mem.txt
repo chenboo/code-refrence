@@ -1,0 +1,129 @@
+BOOL Mem2Hglobal(LPVOID lpBuf, HGLOBAL hGlobal, UINT nSize)
+{
+	LPVOID lpDest = GlobalLock(hGlobal);
+
+	if(lpDest == NULL)
+	{
+		return FALSE;
+	}
+
+	memcpy(lpDest, lpBuf, nSize);
+	GlobalUnlock(hGlobal);
+	return TRUE;
+}
+
+BOOL Stream2Mem(IStream* pstream, void **pOutbuf, UINT* pSize)
+{
+	ULARGE_INTEGER ulnSize;
+	LARGE_INTEGER lnOffset;
+	lnOffset.QuadPart = 0;
+
+	if(pstream->Seek(lnOffset, STREAM_SEEK_END, &ulnSize) != S_OK)
+	{
+		return FALSE;
+	}
+	if(pstream->Seek(lnOffset, STREAM_SEEK_SET, NULL) != S_OK)
+	{
+		return FALSE;
+	}
+
+	*pOutbuf = malloc((size_t)ulnSize.QuadPart);
+	*pSize = (size_t) ulnSize.QuadPart;
+
+	ULONG bytesRead;
+	if(pstream->Read(*pOutbuf, (ULONG)ulnSize.QuadPart, &bytesRead ) != S_OK )
+	{
+		free(*pOutbuf);
+		return FALSE;
+	}
+
+	return TRUE;
+}
+
+Image* ImageFromMem(LPVOID lpdata, UINT nSize)
+{
+	IStream *pstream = NULL;
+	HGLOBAL hGlobal = ::GlobalAlloc(GMEM_MOVEABLE, nSize);
+
+	if(hGlobal == NULL)
+	{
+		return NULL;
+	}
+
+	if(!Mem2Hglobal(lpdata, hGlobal, nSize))
+	{
+		::GlobalFree(hGlobal);
+		return NULL;
+	}
+
+	if(::CreateStreamOnHGlobal(hGlobal, TRUE, &pstream) != S_OK)
+	{
+		::GlobalFree(hGlobal);
+		return NULL;
+	}
+
+	Image *pImage = Image::FromStream(pstream);
+	pstream->Release();
+	return pImage;
+}
+
+LPVOID Image2Mem(Image* pImage, void** pOutbuf, UINT *pSize)
+{
+	IStream *pstream = NULL;
+	if( ::CreateStreamOnHGlobal( NULL, TRUE, &pstream ) != S_OK )
+	{
+		return NULL;
+	}
+	
+	CLSID jpgClsid;
+	GetEncoderClsid( L"image/png", &jpgClsid);
+
+	Status state = pImage->Save(pstream, &jpgClsid);
+	if( state != Gdiplus::Ok )
+	{
+		pstream->Release();
+		return NULL;
+	}
+
+	if(!Stream2Mem(pstream, pOutbuf, pSize))
+	{
+		pstream->Release();
+		return NULL;
+	}
+	
+	return *pOutbuf;
+}
+
+int GetEncoderClsid(const WCHAR* format, CLSID* pClsid)
+{
+	UINT num = 0;
+	UINT size = 0;
+	ImageCodecInfo* pImageCodecInfo = NULL;
+
+	GetImageEncodersSize(&num, &size);
+	if(size == 0)
+	{
+		return -1;
+	}
+
+	pImageCodecInfo = (ImageCodecInfo*)(malloc(size));
+	if(pImageCodecInfo == NULL)
+	{
+		return -1;
+	}
+
+	GetImageEncoders(num, size, pImageCodecInfo);
+
+	for(UINT j = 0; j < num; ++j)
+	{
+		if( wcscmp(pImageCodecInfo[j].MimeType, format) == 0 )
+		{
+			*pClsid = pImageCodecInfo[j].Clsid;
+			free(pImageCodecInfo);
+			return j;
+		}
+	}
+
+	free(pImageCodecInfo);
+	return -1;
+}

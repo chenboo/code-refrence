@@ -1,0 +1,1 @@
+﻿document.writeln("<A title=\"\" href=\"http:\/\/www.uplooking.com\/page\/linuxidc.html\" target=_blank><IMG src=\"http:\/\/www.discuz.net\/data\/attachment\/forum\/201112\/02\/155634qsg5fc5mzsams58u.jpg\" border=0><\/A>")

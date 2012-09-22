@@ -1,0 +1,23 @@
+skintool-SkinTK:中国人的开源换肤工具！-1
+2008-07-02 23:33
+sourceforge又不能访问,我都懒得骂这帮人了...
+
+不过好歹用firefox+gladder访问,svn也可以检出 (addr:https://skintool.svn.sourceforge.net/svnroot/skintool),这个项目6月10号左右刚新建人气还不是很旺,转化成VS2005工程后,编译还有些小错误,不过都比较好改,unicode编译也有点错误,把C运行库中涉及到MBCS操作的函数全改为操作TCHAR的,再把char改为TCHAR,静态字符串加上_T宏,PSTR改为PTSTR ... 注意unicode编译时,编译选项中没有/Zc:wchar_t-选项(将wchar_t视为内置类型 选项选为是),还有个问题不知道怎么回事CSubclassWndMap::RemoveAll方法中delete的实体不是从该模块的堆中分配的内存,不知道从哪个模块new的,我就注释它了,内存泄漏还可以容忍,总比崩溃强些,后来验证不用delete也不漏内存,可能是个栈对象.
+
+skintool里有5个程序
+detours :微软提供的著名的API拦截工具包
+MDI     :一个mfc-mdi例子
+Sample1 :一个mfc-dialog例子
+SkinBuilder:皮肤制作器(非常好用,虽然我做了数个钟头都没做出一个frame的皮肤)
+SkinTK :换肤器(不知道如何称呼合适)
+因为没找到作者的文档(包括代码中),但设计得非常容易看懂,所以把自己的理解写一下,不对的地方请指教:
+
+滚动条消息貌似没投递到窗口,因为作者干脆用detours把相关API截获(至于如何处理这些调用,还没看懂)
+
+1:应用程序调用skintk.dll导出的SkinLoadSkin()时,先用SetWindowsHookEx注册一个WH_CALLWNDPROC线程钩子,函数地址是SkinHookProc,当然还得初始化所有皮肤(包括图片、坐标数据等)
+2:在SkinHookProc中处理所有拦到的WM_CREATE消息(创建窗口消息),根据该窗口的类型绑定相应类型的皮肤(与 CSubclassWnd派生下来的类构建的实体绑定)并且调用SetWindowLong把该窗口的处理消息的例程换成HookWndProc,当然得把原例程(例程:procedure翻译来的,就是个有类型的函数地址)记下来,处理完后还得调用原来的消息处理例程
+3:经过上述处理后每个窗口句柄都对应着上一个皮肤了,全放在CSubclassWndMap的一个实例里(作者用了单件模式创建这个实例,还定义了个宏theHookMap来存取这个实例)
+4:以后的每个窗口消息都会被钩到HookWndProc来,这个例程中第一件事就是根据窗口句柄找到相应的皮肤,然后把除了WM_NCDESTROY以外的消息发送给皮肤的WindowProc方法,然后通过OnWndMsg方法判断消息类型,并根据类型调用实体的虚方法
+
+通过上述流程,应该知道如何添加控件的皮肤了(虽然作者已经添加了好多种控件的皮肤了),先定义一个皮肤类(从CObjectSkin派生的类),重载串行化、加载、卸载等相关方法,再从CSubclassWnd或它的派生类派生一个自定义的类用来处理消息,然后重载需要重载的方法(最少需要重载 InstallSkin方法,还要添加个LoadSkin方法),然后在CInitSKinTK::HookWindow方法中添加一个控件类型处理(enum WindowType中已经有很多了,别加重了),CInitSKinTK::GetWindowType方法中也加一个, ...(我根据原理随便说说,肯定说得不全,如果加了后不能用也正常). 
+

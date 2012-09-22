@@ -1,0 +1,40 @@
+我们在页面布局的时候，经常会设置容器的长度，但是到底该使用哪个作为长度的单位而懊恼。在Android中支持的描述大小区域的类型有以下几种:
+
+px(pixels)——像素：不同的设备显示效果相同，一般我们HVGA代表320x480像素，这个用的比较多。
+
+dip(device independent pixels)——设备独立像素：这个和设备硬件有关，一般我们为了支持WCGA、HVGA和QVGA推荐使用这个，不依赖于像素。等同于dp。
+
+sp(scaled pixels—best for text size)——带比例的像素。
+
+pt(points)——磅：1pt = 1/72英寸
+
+in(inches)——英寸
+
+mm(millimeters)——毫米
+
+到底px和dip有什么区别呢？
+
+dip != px
+
+主要是针对不同设备而言的。在Density是160的设备上，比如用AVDManager创建的默认模拟器，dip和px是一样的但是如果同样的代码，换到不同Density的设备上，比如换到一个Density是240的设备上，dip和px体现出来的大小就不一样了。px不管在什么样的设备上都是那样长，但是dip会根据设备变化；WQVGA屏density=120；QVGA屏density=120；HVGA屏density=160；WVGA屏density=240；density值表示每英寸有多少个显示点，与分辨率是两个概念。
+
+当屏幕density=240时使用hdpi标签的资源
+当屏幕density=160时，使用mdpi标签的资源
+当屏幕density=120时，使用ldpi标签的资源。
+
+不加任何标签的资源是各种分辨率情况下共用的。布局时尽量使用单位dip，少使用px。
+
+换算公式为：
+pixs =dips * (densityDpi/160).
+
+dips=(pixs*160)/densityDpi
+
+如何获得设备的屏幕分辨率和屏幕密度？
+
+例如分辨率为480*800，密度为240的设备，方法如下：
+
+    DisplayMetrics dm =getResources().getDisplayMetrics();
+    dm.densityDpi=240
+    dm.widthPixels=480
+    dm.heightPixels=800
+

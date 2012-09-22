@@ -1,0 +1,48 @@
+//在C++中通过网络发送数据时，有时我们会发送这样的数据包
+//假如为:
+ELC_PACKET
+//并且这个ELC_PACKET中包含了若干个小的包，假如为：
+ELC_UNIT_PACKET
+//这时候我们的网络包该如何构成呢，这里我们用到了一个数组的概念
+//我也是此时发现了数组的有一个，奇特的用处，众所周知，数组中的数据
+//是严格按照内存的地址顺序，依次的排列的，这正适合我们发送一个内存块数据
+//在这里我们将上面的过程用程序演示如下：
+
+typedef struct ELC_UNIT_PACKET{
+int	nReserve;
+}*PELC_UNIT_PACKET;
+
+typedef struct ELC_PACKET {
+	int	nCount;
+	ELC_UNIT_PACKET	packet[1];//看到没这里就是数组的妙用；
+}*PELC_PACKET;
+
+//发送
+void SendPacket(int nCount, PELC_UNIT_PACKET pUnitPacket)
+{
+	int nSize = sizeof(ELC_PACKET ) + nCount * sizeof(ELC_UNIT_PACKET);
+	LPVOID lpBuffer = malloc(nSize);
+
+	PELC_PACKET pPacket = (PELC_PACKET)lpBuffer;
+	pPacket->nCount = nCount;
+
+	for (int i = 0; i < nCount; i++) {
+	memcpy(&(pPacket->packet[i]), &pUnitPacket[i], sizeof(ELC_UNIT_PACKET));
+	}
+	
+
+	SendData(lpBuffer, nSize);
+	free(lpBuffer);
+}
+
+//接收
+void ReceivePacket(LPVOID lpData, int cbSize)
+{
+	PELC_PACKET pPacket = (PELC_PACKET)lpBuffer;
+	ELC_UNIT_PACKET unitpacket = { 0 }; 
+
+	for （int i = 0; i < pPacket->nCount; i++) {
+	memcpy(&unitpacket , &(pPacket->packet[i]), sizeof(ELC_UNIT_PACKET));
+	//do something here
+	}	
+}

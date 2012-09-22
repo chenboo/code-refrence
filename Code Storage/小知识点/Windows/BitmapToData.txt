@@ -1,0 +1,78 @@
+void CChildView::OnPaint()
+{
+	CPaintDC dc(this);
+	//int nBits = GetDeviceCaps(dc.GetSafeHdc(), BITSPIXEL);
+
+	CRect rcClient;
+	GetClientRect(&rcClient);
+
+	CDC dcMem;
+	dcMem.CreateCompatibleDC(&dc);
+
+	CBitmap btmp;
+	btmp.CreateCompatibleBitmap(&dc, rcClient.Width(), rcClient.Height());
+	CBitmap* pOldBmp = dcMem.SelectObject(&btmp);
+	dcMem.FillSolidRect(&rcClient, RGB(255, 255, 255));
+
+	CBitmap bmp;
+	bmp.LoadBitmap(IDB_TEST);
+
+	BITMAP bm;
+	HBITMAP hBitmap = (HBITMAP)bmp.GetSafeHandle();
+	::GetObject(hBitmap, sizeof(BITMAP), (LPSTR)&bm);
+	BITMAPINFOHEADER bmpInfo = {0};
+
+	bmpInfo.biSize = sizeof(BITMAPINFOHEADER);
+	bmpInfo.biWidth = bm.bmWidth;
+	bmpInfo.biHeight = bm.bmHeight;
+	bmpInfo.biPlanes = 1;
+	bmpInfo.biBitCount = bm.bmBitsPixel;
+	bmpInfo.biCompression = BI_RGB;
+	bmpInfo.biSizeImage = 0;
+	bmpInfo.biXPelsPerMeter = 0;
+	bmpInfo.biYPelsPerMeter = 0;
+	bmpInfo.biClrUsed = 0;
+	bmpInfo.biClrImportant = 0;
+
+	DWORD dwDstBytesScanLine = (DWORD)((bm.bmWidth * bm.bmBitsPixel) >> 3);
+	dwDstBytesScanLine = ((dwDstBytesScanLine + 3) / 4) * 4;
+
+	int nSize = ((bm.bmWidth * bm.bmBitsPixel + 31 ) / 32) * 4 * bm.bmHeight;
+
+	LPBYTE lpData = (LPBYTE)malloc(nSize);
+	int nScanLines = ::GetDIBits(dc.m_hDC,
+								(HBITMAP)(bmp.GetSafeHandle()),
+								0,
+								(UINT)bm.bmHeight,
+								lpData,
+								(LPBITMAPINFO)(&bmpInfo),
+								DIB_RGB_COLORS);
+
+	int nStride = bm.bmWidth * bm.bmBitsPixel >> 3;
+
+	DWORD dwSize = nStride * bm.bmHeight;
+	LPBYTE lpImage = (LPBYTE)malloc(dwSize);
+
+	LPBYTE lpSrc = lpData;
+	LPBYTE lpDraw = lpImage + dwSize - nStride;
+
+	for(int i = 0; i < bm.bmHeight - 1; i++)
+	{
+		memcpy(lpDraw, lpSrc, nStride);
+		lpSrc += nStride;
+		lpDraw -= nStride;
+	}
+
+	Bitmap bitmap(bm.bmWidth, bm.bmHeight, nStride, PixelFormat32bppRGB, lpImage);
+
+	Graphics graph(dcMem.m_hDC);
+	Rect rect(200, 200, bm.bmWidth, bm.bmHeight);
+	graph.DrawImage(&bitmap, rect, 0, 0, rect.Width, rect.Height, UnitPixel);
+
+	dc.BitBlt(0, 0, rcClient.Width(), rcClient.Height(), &dcMem, 0, 0, SRCCOPY);
+	dcMem.SelectObject(pOldBmp);
+	btmp.DeleteObject();
+	dcMem.DeleteDC();
+	free(lpData);
+	free(lpImage);
+}

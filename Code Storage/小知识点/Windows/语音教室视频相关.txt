@@ -1,0 +1,88 @@
+//LibVRServer这是一个创建音视频的库
+
+//通过LibVRServer的导出函数
+LIBNETREPEAT_API CWnd* CreateAVPane(PELC_AVPANE_PARAMS pParams);
+//可以创建一个带Tab工具条的AV窗口集，即CAVPane
+
+class CAVPane : public CWnd
+{
+	DECLARE_DYNAMIC(CAVPane)
+
+public:
+	CAVPane();
+	virtual ~CAVPane();
+
+	void SetParams(PELC_AVPANE_PARAMS pParams);
+
+protected:
+	void Layout();
+	void CreateBackgroundImage();
+
+	void LoadPreferences();
+	void SavePreferences();
+
+protected:
+	CElcTabCtrl			m_wndTab;	//tab工具条
+	CElcMemDC			m_dcMem;
+	CWnd *				m_pActiveView;
+
+	ELC_AVPANE_PARAMS	m_Params;
+	AVPANE_PREFERENCES	m_preferences;
+
+protected:
+	DECLARE_MESSAGE_MAP()
+
+	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
+	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
+	afx_msg void OnSize(UINT nType, int cx, int cy);
+	afx_msg void OnDestroy();
+	afx_msg void OnMove(int x, int y);
+
+	afx_msg LRESULT OnTabCtrlNotify(WPARAM wParam, LPARAM lParam);
+	afx_msg LRESULT OnElcUIDrawNotify(WPARAM wParam, LPARAM lParam);
+
+	afx_msg void OnSend();
+	afx_msg void OnSetting();
+};
+
+
+//在CAVPane中创建了四个CAVChannel，CAVChannel就是一个视频窗口的容器
+class CAVChannel : public CWnd
+{
+	DECLARE_DYNAMIC(CAVChannel)
+
+public:
+	CAVChannel();
+	virtual ~CAVChannel();
+
+	void SetParams(LPCTSTR lpszConfigSection, GUID * pGuidRenderer) {
+		ELC_AVSENDER_PARAMS params;
+		params.pWndParent = this;
+		params.guidAudioRenderer = *pGuidRenderer;
+		m_avSender.SetParams(&params, lpszConfigSection);
+	}
+
+	CAVSender * GetSender() {
+		return &m_avSender;
+	}
+	CElcToolBarEx * GetToolBar() {
+		return &m_wndBar;			//获得操作工具条
+	}
+
+	void UpdateStates();
+
+protected:
+	CElcToolBarEx			m_wndBar;	//操作工具条
+	CAVSender				m_avSender;	//视频渲染窗口
+
+protected:
+	DECLARE_MESSAGE_MAP()
+
+	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
+	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
+	afx_msg void OnSize(UINT nType, int cx, int cy);
+	afx_msg void OnMove(int x, int y);
+};
+
+
+

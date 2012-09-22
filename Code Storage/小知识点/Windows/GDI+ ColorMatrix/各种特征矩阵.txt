@@ -1,0 +1,35 @@
+(1)//»Ò¶È¾ØÕó
+ColorMatrix colorMatrix = {
+	0.3f,  0.3f,  0.3f,  0.0f, 0.0f,
+	0.59f, 0.59f, 0.59f, 0.0f, 0.0f,
+	0.11f, 0.11f, 0.11f, 0.0f, 0.0f,
+	0.0f,  0.0f,  0.0f,  1.0f, 0.0f,
+	0.0f,  0.0f,  0.0f,  0.0f, 1.0f};
+
+(2)//µ×(¸º)Æ¬¾ØÕó
+ColorMatrix colorMatrix = {
+	-1.0f, 0.0f,  0.0f,  0.0f, 0.0f,
+	0.0f,  -1.0f, 0.0f,  0.0f, 0.0f,
+	0.0f,  0.0f,  -1.0f, 0.0f, 0.0f,
+	0.0f,  0.0f,  0.0f,  1.0f, 0.0f,
+	1.0f,  1.0f,  1.0f,  0.0f, 1.0f};
+
+(3)//¶ÔºÚ°×Í¼Æ¬½øÐÐ×ÅÉ«¾ØÕó
+
+ColorMatrix colorMatrix = {
+	1.0f, 0.0f, 0.0f, 0.0f, 0.0f,
+	0.0f,  1.0f, 0.0f, 0.0f, 0.0f,
+	0.0f,  0.0f, 1.0f, 0.0f, 0.0f,
+	0.0f,  0.0f, 0.0f, 1.0f, 0.0f,
+	0.0f,  0.0f, 0.0f, 0.0f, 1.0f};
+
+
+ColorMatrix GrayMatrix = {
+	1.5f, 0.0f, 0.0f, 0.0f, 0.0f,
+	0.0f,  1.1f, 0.0f, 0.0f, 0.0f,
+	0.0f,  0.0f, 1.2f, 0.0f, 0.0f,
+	0.0f,  0.0f, 0.0f, 1.0f, 0.0f,
+	0.0f,  0.0f, 0.0f, 0.0f, 1.0f};
+
+ImageAttributes imageAtt;
+imageAtt.SetColorMatrices(&colorMatrix, &GrayMatrix, ColorMatrixFlagsAltGray);

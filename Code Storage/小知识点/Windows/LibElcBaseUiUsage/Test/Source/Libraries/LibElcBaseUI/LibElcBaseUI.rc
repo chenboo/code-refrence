@@ -1,0 +1,353 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Chinese (P.R.C.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#include ""version.rc""\r\n"
+    "\r\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_SPEAK DIALOGEX 0, 0, 364, 236
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "开始",ID_BTN_OK,306,7,50,25
+    ICON            "",IDC_SPEAK_ICON,7,7,20,20
+    LTEXT           "请从下面的列表中，选择要发言的学生。",IDC_STATIC_SPEAK,60,10,236,21
+    CONTROL         "",IDC_SPEAK_WND_POS,"Static",SS_BLACKRECT | NOT WS_VISIBLE,0,40,363,196
+END
+
+IDD_STUDENT_VOICE DIALOGEX 0, 0, 402, 281
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION "学生语音"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_POSITION,"Static",SS_BLACKRECT | NOT WS_VISIBLE,18,32,377,242
+    CONTROL         "",IDC_TAB_PAGE,"Static",SS_BLACKRECT | NOT WS_VISIBLE,7,7,388,18
+END
+
+IDD_TRANSLATE DIALOGEX 0, 0, 364, 236
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_VISIBLE | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "开始",ID_BTN_OK,306,7,50,25
+    ICON            "",IDC_TRANSLATE_ICON,7,7,20,20
+    LTEXT           "请从下面的列表中，选择要同声翻译的学生。",IDC_STATIC_TRANSLATE,60,10,236,21
+    CONTROL         "",IDC_TRANSLATE_WND_POS,"Static",SS_BLACKRECT | NOT WS_VISIBLE,0,40,363,196
+END
+
+IDD_MEMBER_AVAILABLE DIALOGEX 0, 0, 301, 241
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "范围:",IDC_STATIC,3,6,23,8
+    COMBOBOX        ID_FILTER_CLASS,31,3,67,81,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "关键字:",IDC_STATIC,112,6,36,8
+    CONTROL         "",IDC_MEMBER_LIST,"SysListView32",LVS_LIST | LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | WS_TABSTOP,22,18,279,223
+    PUSHBUTTON      "<",IDC_SET,3,62,16,13
+    PUSHBUTTON      ">",IDC_CLEAR,3,88,16,13
+    EDITTEXT        ID_FILTER_KEYWORD,155,3,83,14,ES_AUTOHSCROLL
+END
+
+IDD_MEMBER_SPEAK DIALOGEX 0, 0, 133, 194
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "发言学生",IDC_STATIC,5,5,125,8
+    CONTROL         "",IDC_SPEAKERS,"SysListView32",LVS_LIST | LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | LVS_NOSORTHEADER | WS_TABSTOP,0,18,133,175
+END
+
+IDD_MEMBER_SCENE DIALOGEX 0, 0, 133, 194
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "角色列表：",IDC_STATIC,5,5,125,8
+    CONTROL         "",IDC_SCENE_MEMBER_LIST,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_EDITLABELS | LVS_ALIGNLEFT | LVS_NOSORTHEADER | WS_TABSTOP,0,20,133,173
+END
+
+IDD_MEMBER_TRANSLATE DIALOGEX 0, 0, 133, 194
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "翻译者：",IDC_STATIC,5,5,125,8
+    CONTROL         "",IDC_TRANSLATE_MEMBER_LIST,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_EDITLABELS | LVS_ALIGNLEFT | LVS_NOSORTHEADER | WS_TABSTOP,0,20,133,173
+END
+
+IDD_SCENE DIALOGEX 0, 0, 364, 236
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_VISIBLE | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "开始",ID_BTN_OK,306,7,50,25
+    ICON            "",IDC_SCENE_ICON,7,7,21,20
+    LTEXT           "请从下面的列表中，选择要情景对话的学生。",IDC_STATIC_SCENE,60,10,237,26
+    CONTROL         "",IDC_SCENE_WND_POS,"Static",SS_BLACKRECT | NOT WS_VISIBLE,0,40,363,196
+END
+
+IDD_SELECT_MEMBER DIALOGEX 0, 0, 372, 262
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION "增加/删除学生"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "取消",ID_BTN_CANCEL,304,233,50,14
+    DEFPUSHBUTTON   "确定",ID_BTN_OK,252,233,50,14
+    ICON            "",IDC_SELECT_STUDENT_ICON,18,13,20,20
+    LTEXT           "请从下面的列表中，选择要参加教学的学生。",IDC_STATIC,60,12,298,19
+    CONTROL         "",IDC_MEMBER_LIST,"SysListView32",LVS_LIST | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,14,50,340,177
+    CONTROL         "全选",IDC_CHECK_SELECT_ALL,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,235,87,10
+    LTEXT           "选择下列学生参加教学:",IDC_STATIC,14,40,340,8
+    PUSHBUTTON      "帮助",IDC_BTN_HELP,199,233,50,14,NOT WS_VISIBLE
+    CONTROL         "",IDC_IMAGE_PANE,"Static",SS_BLACKFRAME | NOT WS_VISIBLE,5,5,360,251
+END
+
+IDD_DEMO_LIST DIALOGEX 0, 0, 284, 251
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "演示"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    ICON            "",IDC_STUDENT_DEMO_ICON,15,16,20,20
+    LTEXT           "该学生的电脑屏幕画面将被转播到以下选择的学生电脑屏幕上。",IDC_STATIC,55,17,210,22
+    LTEXT           "请选择接收演示画面的学生列表方式(&S):",IDC_STATIC,13,59,221,8
+    COMBOBOX        IDC_LIST_TYPE,13,69,258,153,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "可选学生列表:",IDC_STATIC,13,85,114,8
+    CONTROL         "",IDC_AVAILABLE_LIST,"SysListView32",LVS_LIST | LVS_ALIGNLEFT | LVS_NOCOLUMNHEADER | WS_BORDER | WS_TABSTOP,13,95,258,115
+    CONTROL         "全选(&A)",IDC_CHK_SELECT_ALL,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,214,126,10
+    PUSHBUTTON      "帮助(&H)",IDC_BTN_HELP,13,230,50,14,NOT WS_VISIBLE
+    DEFPUSHBUTTON   "确定",ID_BTN_OK,163,230,50,14
+    PUSHBUTTON      "取消",ID_BTN_CANCEL,221,230,50,14
+    CONTROL         "",IDC_IMAGE_PANE,"Static",SS_BLACKFRAME | NOT WS_VISIBLE,5,5,273,223
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_SPEAK, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 356
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 229
+    END
+
+    IDD_STUDENT_VOICE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 395
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 274
+    END
+
+    IDD_TRANSLATE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 356
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 229
+    END
+
+    IDD_MEMBER_AVAILABLE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 294
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 234
+    END
+
+    IDD_MEMBER_SPEAK, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 126
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 187
+    END
+
+    IDD_MEMBER_SCENE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 126
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 187
+    END
+
+    IDD_MEMBER_TRANSLATE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 126
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 187
+    END
+
+    IDD_SCENE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        VERTGUIDE, 356
+        TOPMARGIN, 7
+    END
+
+    IDD_SELECT_MEMBER, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 365
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 255
+    END
+
+    IDD_DEMO_LIST, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 277
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 244
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_GROUP_LIST_STATE    BITMAP                  "res\\bmp00007.bmp"
+IDB_STATE_IMAGE_LIST16  BITMAP                  "res\\StateImageList16.bmp"
+IDB_BTN_CLOSE           BITMAP                  "res\\elcbn_close.bmp"
+IDB_ELCRL_IMAGE_LIST    BITMAP                  "res\\ELCRL_image.bmp"
+IDB_BTN_DROP            BITMAP                  "res\\btn_drop.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_STUDENT_DEMO        ICON                    "res\\StudentDemo.ico"
+IDI_TRANSLATE           ICON                    "res\\Translator.ico"
+IDI_ROLES               ICON                    "res\\Role.ico"
+IDI_SELECT              ICON                    "res\\Select_students.ico"
+IDI_SPEAK               ICON                    "res\\Speak.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// RT_PNG
+//
+
+IDR_BTN_BK              RT_PNG                  "res\\btn_bk.png"
+IDR_DROPDOWN            RT_PNG                  "res\\btn_dropdown.png"
+IDR_LIST_SORT_IMAGE     RT_PNG                  "res\\ListSortImage.png"
+IDR_LIST_CHECK_BOX      RT_PNG                  "res\\ListCheckBox.png"
+IDR_LIST_HEADER_BK      RT_PNG                  "res\\ListHeaderBackgnd.png"
+IDR_LIST_HEADER_SEPARATOR RT_PNG                  "res\\ListHeaderSeparator.png"
+IDR_RT_STUDENT_DEMO     RT_PNG                  "res\\StudentDemo.png"
+IDR_RT_SCENE_ICON       RT_PNG                  "res\\scene.png"
+IDR_RT_TRANSLATE_ICON   RT_PNG                  "res\\translate.png"
+IDR_RT_SELECT_STUDENT   RT_PNG                  "res\\select_students.png"
+IDR_RT_SPEAK_ICON       RT_PNG                  "res\\speak.png"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Cursor
+//
+
+IDC_CUR_DRAG            CURSOR                  "res\\Drag.cur"
+IDC_CUR_HAND            CURSOR                  "res\\Hand.cur"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_FILTER_ALL          "全部学生"
+    IDS_FILTER_HANDUP       "举手的学生"
+    IDS_TITLE_SPEAK         "学生发言"
+    IDS_TITLE_SCENE         "情景对话"
+    IDS_TITLE_TRANSLATE     "同声翻译"
+    IDS_PROMPT_MAX_SCENE_COUNT "您最多只能添加 %d 个角色。"
+    IDS_PROMPT_MAX_TRANSLATE_COUNT "您最多只能添加 %d 个翻译者。"
+    IDS_LANGUAGE            "语言"
+    IDS_TRANSLATOR          "翻译者"
+    IDS_SCENE_ROLE          "角色名"
+    IDS_SCENE_IMPERSONATOR  "扮演者"
+    IDS_TEACHER             "老师"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_DEMO_TO_ALL         "演示给所有学生"
+    IDS_DEMO_TO_GROUP       "演示给以下分组"
+    IDS_DEMO_TO_STUDENT     "演示给以下学生"
+    IDS_SCENE_NAME_DUPLICATE "角色名重复，请重新输入。"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_SCENE_NAME_EMPTY    "角色名不能为空，请重新输入。"
+END
+
+#endif    // Chinese (P.R.C.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#include "version.rc"
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

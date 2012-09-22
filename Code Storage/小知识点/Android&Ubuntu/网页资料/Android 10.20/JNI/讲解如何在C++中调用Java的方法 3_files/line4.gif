@@ -1,0 +1,51 @@
+
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="3" marginwidth="0">
+<a name="#top"></a> 
+<div align="center">
+
+<br>
+<table bgcolor="#dddddd" ALIGN=CENTER BORDER="0" WIDTH="600" CELLSPACING="1" CELLPADDING="8">
+<tr><td align="center" height="50" bgcolor="#f7f7f7" class="content01"><b><font size=2 color="#cc0000">您所请求的页面正在处理中，请您等待。 5秒钟后本页面会自动刷新。谢谢合作。</font></b></td></tr>
+</table>
+<br>
+<table bgcolor="#dddddd" height=20 ALIGN=CENTER BORDER="0" WIDTH="500">
+<tr><td align=left >
+        <table  id=lpc bgcolor=#98CC00 height=20>
+        <tr><td ></td></tr>
+        </table>
+</td></tr>
+</table> 
+<BR>
+
+
+</body>
+
+<script language=javascript>
+	var errUrlOri = window.location.href;
+	var errUrl = window.location.href;
+	if (errUrl.indexOf("/art/") > -1) {
+		index = errUrl.indexOf("/");
+		while (index > -1) {
+			errUrl = errUrl.substring(index+1, errUrl.length);
+			index = errUrl.indexOf("/");
+		}
+		if (errUrl.indexOf("_") > -1) {
+			document.write("<iframe width=0 height=0 src='http://publisher.ccidnet.com:7001/pub/manager/RefreshArticlePage.jsp?articleID=" + errUrl.substring(0,errUrl.indexOf('_')) + "&operate=refreshByID'></iframe>");
+		}
+	}
+var pc = 0; 
+load(); 
+function load() { 
+pc+=1; 
+lpc.style.width = pc+"%"; 
+time = setTimeout("load()",50); 
+if (pc > 100) 
+{ 
+window.location.reload();
+clearTimeout(time); 
+} 
+} 
+
+</script>
+

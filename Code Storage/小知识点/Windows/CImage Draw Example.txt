@@ -1,0 +1,11 @@
+	CImage image;
+	CBitmap bm;
+	bm.LoadBitmap(IDB_BITMAP1);
+
+	image.Attach((HBITMAP)bm.m_hObject);
+
+	CDC* pDC = GetDC();
+	image.Draw(pDC->m_hDC, 100, 100);
+
+	image.Detach();
+	bm.DeleteObject();

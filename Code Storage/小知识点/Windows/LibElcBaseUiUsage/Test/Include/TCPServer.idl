@@ -1,0 +1,16 @@
+import "oaidl.idl";
+import "ocidl.idl";
+
+	[
+		object,
+		uuid(C40E8CF4-F6BD-4127-B6E8-CCB17C9F6459),
+	
+		helpstring("IELCTCPServer Interface"),
+		pointer_default(unique)
+	]
+	interface IELCTCPServer : IUnknown
+	{
+		[helpstring("method SendPacket"), local] HRESULT SendPacket(DWORD dwChannelID, LPVOID lpvPacket, DWORD cbPacket);
+		[helpstring("method GetMaxBufferUsage"), local] float GetMaxBufferUsage(void);
+	};
+

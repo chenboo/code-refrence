@@ -1,0 +1,12 @@
+//在编辑框中获取某一行的长度
+//这个实现颇费周折，也不知道微软为什么搞得如此麻烦
+
+int   nIndex = Edit.LineIndex(0); 
+int   nLength = Edit.LineLength(nIndex); 
+
+//上面是得到第一行的字符长度。 
+//理解一下：character index of the line specified(LineIndex函数的返回值)和
+//Specifies the character index of a character in the line whose length is to be retrieved(LineLength函数的nLine参数)的意思吧! 
+
+//也就是说要想获得某一行字符的长度还不是简单的传送行的索引，因为没有这样的函数，
+//只能先获得该行中某个字符的索引，然后再将这个索引传递给它。

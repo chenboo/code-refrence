@@ -1,0 +1,648 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>eclipse编译调试java与ndk&nbsp;c++的混合代码_月黑风高_新浪博客</title>
+<meta name="keywords" content="eclipse编译调试java与ndk&nbsp;c++的混合代码_月黑风高_新浪博客,月黑风高,eclipse,ndk,调试,android,ndk-build,ndk-dbg">
+<meta name="description" content="eclipse编译调试java与ndk&nbsp;c++的混合代码_月黑风高_新浪博客,月黑风高,">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+<!--–[if lte IE 6]-->
+<script type="text/javascript">
+try{
+document.execCommand("BackgroundImageCache", false, true);
+}catch(e){}
+</script>
+<!--[endif]–-->
+<script type="text/javascript">
+window.staticTime=new Date().getTime();
+
+var locInterval = setInterval(function(){
+var tc = document.getElementById('trayContainer');
+if(tc) {
+var isLogin = false;var sup = document.cookie.match(/sup=([^;]+);/gi);if(sup != null){ sup = decodeURIComponent(sup[0]);var uid = sup.match(/uid=([^&]+)/gi); isLogin = (uid != null); } if (isLogin){ tc.innerHTML = '<div class="topbar_loading"><img src="http://simg.sinajs.cn/blog7style/images/common/loading.gif" />加载中…</div>'; } else { tc.innerHTML = '<div class="topbar_menu"><span class="link"><a href="http://blog.sina.com.cn" target="_blank">博客首页</a></span><span class="line_s"></span></div><div class="topbar_login"><a href="#" class="login" id="linkTrayLogin" onclick="return false;">登录</a><a href="http://login.sina.com.cn/signup/signupmail.php?entry=blog&r=&srcuid=&src=blogicp" class="register" target="_blank" id="linkReg">注册</a></div><div class="topbar_ad" id="divPopularize"></div><div id="phprender" ></div>';}
+clearInterval(locInterval);
+locInterval = null;
+}
+},50);
+
+</script>
+<link rel="pingback" href="http://upload.move.blog.sina.com.cn/blog_rebuild/blog/xmlrpc.php">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://upload.move.blog.sina.com.cn/blog_rebuild/blog/xmlrpc.php?rsd">
+<link href="http://blog.sina.com.cn/blog_rebuild/blog/wlwmanifest.xml" type="application/wlwmanifest+xml" rel="wlwmanifest">
+<link rel="alternate" type="application/rss+xml" href="http://blog.sina.com.cn/rss/1402390892.xml" title="RSS">
+<link href="eclipse编译调试java与ndk c++的混合代码/article.css" type="text/css" rel="stylesheet"><style id="tplstyle" type="text/css">@charset "utf-8";@import url("http://simg.sinajs.cn/blog7newtpl/css/7/7_13/t.css");
+</style>
+<style id="positionstyle" type="text/css">
+.sinabloghead .blogtoparea{ left:85px;top:33%;}
+.sinabloghead .blognav{ left:60px;top:62%;}
+</style>
+<style id="bgtyle" type="text/css">
+</style>
+<style id="headtyle" type="text/css">
+</style>
+<style id="navtyle" type="text/css">
+</style>
+</head>
+<body>
+<!--$sinatopbar-->
+<div style="z-index:512;" class="sinatopbar">
+			<div class="topbar_main">
+				<a id="login_bar_logo_link_350" href="http://blog.sina.com.cn/" target="_blank"><img class="topbar_logo" src="eclipse编译调试java与ndk c++的混合代码/topbar_logo.gif" alt="新浪博客" width="100"></a>
+
+				<div id="trayContainer" style="float:left"><div class="topbar_menu"><span class="link"><a href="http://blog.sina.com.cn/" target="_blank">博客首页</a></span><span class="line_s"></span></div><div class="topbar_login"><a href="#" class="login" id="linkTrayLogin" onclick="return false;">登录</a><a href="http://login.sina.com.cn/signup/signupmail.php?entry=blog&amp;srcuid=1402390892&amp;src=blogicp" class="register" target="_blank" id="linkReg">注册</a></div><div class="topbar_ad" id="divPopularize"><a style="color: red;" href="http://sina.allyes.com/main/adfclick?db=sina&amp;bid=204720,398476,403788&amp;cid=0,0,0&amp;sid=400869&amp;advid=358&amp;camid=37389&amp;show=ignore&amp;url=http://game.weibo.com/weisanguo?f=sinablog" target="_blank">老婆不在家，快玩微三国。</a></div><div id="phprender"></div></div>
+				<div class="topbar_floatR">
+					<span class="tb_wrtBlog">
+						<a target="_blank" href="http://control.blog.sina.com.cn/admin/article/article_add.php"><img class="SG_icon SG_icon15" src="eclipse编译调试java与ndk c++的混合代码/sg_trans.gif" title="博文" height="15" width="15" align="absmiddle">	发博文</a>
+
+						<span id="arrowAddArticle" class="wrtblog_arrow"></span>
+					</span>
+					<div class="topbar_search">
+						<form action="http://uni.sina.com.cn/c.php" target="_blank" method="get" id="loginBarSearchForm">
+							<div class="topbar_input">
+								<input id="loginBarSearchInput" name="k" class="topbar_txt" type="text">
+							</div>
+							<div id="searchSelect" class="topbar_list">
+								<div id="loginBarSearchMenuLabel" class="anainp">博文</div>
+
+								<div class="arrow"></div>
+							</div>
+							<input class="topbar_searchBtn" value="搜索" type="submit">
+							<input id="ie" value="utf-8" name="ie" type="hidden">
+							<input id="loginBarSearchT" value="blog" name="t" type="hidden">
+							<input id="loginBarSearchTS" value="" name="ts" type="hidden">
+							<input id="loginBarSearchS" value="" name="s" type="hidden">
+							<input id="loginBarSearchType" value="" name="type" type="hidden">
+							<input id="loginBarSearchSType" value="title" name="stype" type="hidden">
+
+							<input id="e" value="utf-8" name="e" type="hidden">
+						</form>
+					</div>
+					
+				</div>
+			</div>
+			<div style="position:absolute;left:0;top:0;" id="trayFlashConnetion"><embed pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" src="eclipse编译调试java与ndk c++的混合代码/scache.swf" style="" id="scache" name="scache" bgcolor="#00ff00" quality="high" wmode="transparent" allowscriptaccess="always" height="1" width="1"></div>
+		</div>
+		
+<!--$end sinatopbar-->
+
+
+<div class="sinabloga" id="sinabloga">
+	<div id="sinablogb" class="sinablogb">
+
+	       
+ <div id="sinablogHead" class="sinabloghead">
+    <div style="display: none;" id="headflash" class="headflash"></div>
+   <div id="headarea" class="headarea">
+      <div id="blogTitle" class="blogtoparea">
+      <h1 id="blogname" class="blogtitle"><a href="http://blog.sina.com.cn/miragekiller"><span id="blognamespan">打劫华尔街</span></a></h1>
+      <div id="bloglink" class="bloglink"><a href="http://blog.sina.com.cn/miragekiller">http://blog.sina.com.cn/miragekiller</a>  <a onclick="return false;" class="CP_a_fuc" href="#" id="SubscribeNewRss">[<cite>订阅</cite>]</a><a class="CP_a_fuc" href="javascript:void(scope.pa_add.add('1402390892'));">[<cite>手机订阅</cite>]</a></div>
+      </div>
+      <div class="blognav" id="blognav">
+      			  <div id="blognavBg" class="blognavBg"></div> <div class="blognavInfo"> 
+		<span><a href="http://blog.sina.com.cn/miragekiller">首页</a></span>
+      <span><a class="on" href="http://blog.sina.com.cn/s/articlelist_1402390892_0_1.html">博文目录</a></span>
+      <span><a href="http://photo.blog.sina.com.cn/miragekiller">图片</a></span>
+      <span class="last"><a href="http://blog.sina.com.cn/s/profile_1402390892.html">关于我</a></span></div>
+      </div>
+      		      		 	
+      
+             <div class="autoskin" id="auto_skin">
+       </div>
+
+<div class="adsarea">
+     <a href="#"><div id="template_clone_pic" class="pic"></div></a>
+     <div id="template_clone_link" class="link wdc_HInf"></div>
+     <div id="template_clone_other" class="other"></div>        
+</div>
+    </div>
+    	    	    </div>    
+    <!--主题内容开始 -->
+    <div ismouseover="0" class="sinablogbody" id="sinablogbody">
+		
+	<!--第一列start-->
+    <div id="column_1" class="SG_colW21 SG_colFirst"><div class="SG_conn" id="module_901">
+    <div class="SG_connHead">
+            <span class="title" comp_title="个人资料">个人资料</span>
+            <span class="edit">
+                        </span>
+    </div>
+    <div class="SG_connBody">
+        <div class="info">
+            		        
+			<div class="info_img" id="comp_901_head"><img src="eclipse编译调试java与ndk c++的混合代码/180.jpeg" real_src="http://portrait5.sinaimg.cn/1402390892/blog/180" id="comp_901_head_image" alt="月黑风高" title="月黑风高" height="180" width="180"></div>
+			
+       	    <div class="info_txt">
+		      <div class="info_nm">
+		        <img id="comp_901_online_icon" style="display: none;" class="SG_icon SG_icon1" src="eclipse编译调试java与ndk c++的混合代码/sg_trans.gif" height="15" width="15" align="absmiddle">
+		        <span class="SG_txtb"><strong id="ownernick">月黑风高</strong></span>
+		        
+                <div class="clearit"></div>
+              </div>
+		      <div class="info_btn1">
+			  <!--user['qing_url'] -->
+		        <a target="_blank" href="http://qing.weibo.com/discovery.html" onclick="v7sendLog &amp;&amp; v7sendLog('79_01_01',scope.$pageid,'qingLink');" class="SG_aBtn SG_aBtn_ico"><cite><img class="SG_icon SG_icon205" src="eclipse编译调试java与ndk c++的混合代码/sg_trans.gif" height="15" width="15" align="absmiddle">Qing</cite></a>
+		        <a target="_blank" href="http://weibo.com/1402390892?source=blog" class="SG_aBtn SG_aBtn_ico"><cite><img class="SG_icon SG_icon51" src="eclipse编译调试java与ndk c++的混合代码/sg_trans.gif" height="15" width="15" align="absmiddle">微博</cite></a>
+		        <div class="clearit"></div>
+		      </div>
+	<div class="SG_j_linedot"></div>		<div class="info_locate" id="info_locate_id">
+<div class="SG_j_linedot"></div>
+<div class="info_btn2">
+	<p>
+	<a href="javascript:void(0)" class="SG_aBtn " id="comp901_btn_invite"><cite>加好友</cite></a>
+	<a href="javascript:void(0)" class="SG_aBtn" id="comp901_btn_sendpaper"><cite>发纸条</cite></a>
+	</p>
+	<p>
+	<a href="http://blog.sina.com.cn/s/profile_1402390892.html#write" class="SG_aBtn" id="comp901_btn_msninfo"><cite>写留言</cite></a>
+	<a href="#" onclick="return false;" class="SG_aBtn" id="comp901_btn_follow"><cite>加关注</cite></a>
+	</p>
+	<div class="clearit"></div>
+</div>
+<div class="SG_j_linedot"></div>
+</div>
+			      <div class="info_list">	  
+			   					<ul class="info_list1">
+					<li><span class="SG_txtc">博客等级：</span><span id="comp_901_grade"><img src="eclipse编译调试java与ndk c++的混合代码/1.gif"><img src="eclipse编译调试java与ndk c++的混合代码/2.gif"></span></li>
+					<li><span class="SG_txtc">博客积分：</span><span id="comp_901_score"><strong>760</strong></span></li>
+					</ul>
+					<ul class="info_list2">
+					<li><span class="SG_txtc">博客访问：</span><span id="comp_901_pv"><strong>18,846</strong></span></li>
+					<li><span class="SG_txtc">关注人气：</span><span id="comp_901_attention"><strong>7</strong></span></li>
+					</ul>
+		</div>
+<div class="clearit"></div>
+	</div>
+	<div class="clearit"></div>
+</div>
+            </div>       
+            <div class="SG_connFoot"></div>
+</div>
+<div id="module_903" class="SG_conn">
+    <div class="SG_connHead">
+    <span comp_title="相关博文" class="title">相关博文</span>
+    <span class="edit"> </span>
+    </div>
+    <div class="SG_connBody">
+    	<div class="atcTitList relaList"><ul>
+				            <li class="SG_j_linedot1">
+		                <p class="atcTitCell_tit SG_dot"><a href="http://sina.allyes.com/main/adfclick?db=sina&amp;bid=204720,399819,405131&amp;cid=0,0,0&amp;sid=401830&amp;advid=358&amp;camid=37389&amp;show=ignore&amp;url=http://qing.weibo.com/blog/controllers/helpcapture.php" target="_blank" title="Qing全新图片收集工具">Qing全新图片收集工具</a></p>
+		                <p class="atcTitCell_nm"><a class="SG_linkb" href="http://sina.allyes.com/main/adfclick?db=sina&amp;bid=204720,380819,386126&amp;cid=0,0,0&amp;sid=382697&amp;advid=358&amp;camid=37389&amp;show=ignore&amp;url=http://qing.weibo.com/sinaqing" target="_blank">新浪Qing</a></p>
+		            </li> 
+				            <li class="SG_j_linedot1">
+		                <p class="atcTitCell_tit SG_dot"><a href="http://sina.allyes.com/main/adfclick?db=sina&amp;bid=204720,397177,402488&amp;cid=0,0,0&amp;sid=399523&amp;advid=358&amp;camid=37389&amp;show=ignore&amp;url=http://sina.allyes.com/main/adfclick?db=sina&amp;bid=204720,399819,405131&amp;cid=0,0,0&amp;sid=401830&amp;advid=358&amp;camid=37389&amp;show=ignore&amp;url=http://qing.weibo.com/1951657750/7453ef163300093l.html" target="_blank" title="2011那些带给你幸福的画面">2011那些带给你幸福的画面</a></p>
+		                <p class="atcTitCell_nm"><a class="SG_linkb" href="http://sina.allyes.com/main/adfclick?db=sina&amp;bid=204720,397177,402488&amp;cid=0,0,0&amp;sid=399523&amp;advid=358&amp;camid=37389&amp;show=ignore&amp;url=http://qing.weibo.com/1951657750/7453ef16330007qh.html" target="_blank">新浪Qing</a></p>
+		            </li> 
+		        			<li class="SG_j_linedot1">
+					<p class="atcTitCell_tit SG_dot"><a href="http://blog.sina.com.cn/s/blog_4934a04a01010ytm.html" target="_blank" title="电脑弹出“实时调试”">电脑弹出“实时调试”</a></p>
+					<p class="atcTitCell_nm"><a class="SG_linkb" href="http://blog.sina.com.cn/u/1228185674" target="_blank">Jack</a></p>
+			</li>
+					<li class="SG_j_linedot1">
+					<p class="atcTitCell_tit SG_dot"><a href="http://blog.sina.com.cn/s/blog_629826e20100tql5.html" target="_blank" title="231期3D号码">231期3D号码</a></p>
+					<p class="atcTitCell_nm"><a class="SG_linkb" href="http://blog.sina.com.cn/u/1654138594" target="_blank">超级辉</a></p>
+			</li>
+					<li class="SG_j_linedot1">
+					<p class="atcTitCell_tit SG_dot"><a href="http://blog.sina.com.cn/s/blog_4ed1e0e40100x3lo.html" target="_blank" title="[转载]Windbg+Vmw">[转载]Windbg+Vmw</a></p>
+					<p class="atcTitCell_nm"><a class="SG_linkb" href="http://blog.sina.com.cn/u/1322377444" target="_blank">虎言乱语</a></p>
+			</li>
+					<li class="SG_j_linedot1">
+					<p class="atcTitCell_tit SG_dot"><a href="http://blog.sina.com.cn/s/blog_6d7491840100u5b9.html" target="_blank" title="新生适应不良的调试方法">新生适应不良的调试方法</a></p>
+					<p class="atcTitCell_nm"><a class="SG_linkb" href="http://blog.sina.com.cn/u/1836355972" target="_blank">幸福盒子心理工作室</a></p>
+			</li>
+					<li class="SG_j_linedot1">
+					<p class="atcTitCell_tit SG_dot"><a href="http://blog.sina.com.cn/s/blog_4cff417e0102drbb.html" target="_blank" title="关于“建筑环境与设备工程”专">关于“建筑环境与设备工程”专</a></p>
+					<p class="atcTitCell_nm"><a class="SG_linkb" href="http://blog.sina.com.cn/u/1291796862" target="_blank">腹有诗书气自华</a></p>
+			</li>
+					<li class="SG_j_linedot1">
+					<p class="atcTitCell_tit SG_dot"><a href="http://blog.sina.com.cn/s/blog_631f6b3f0100t5yq.html" target="_blank" title="Eclipse快捷键大全">Eclipse快捷键大全</a></p>
+					<p class="atcTitCell_nm"><a class="SG_linkb" href="http://blog.sina.com.cn/u/1663003455" target="_blank">JimmyLiu</a></p>
+			</li>
+					<li class="SG_j_linedot1">
+					<p class="atcTitCell_tit SG_dot"><a href="http://blog.sina.com.cn/s/blog_415ecbf80100w4hj.html" target="_blank" title="【Astrology】tra">【Astrology】tra</a></p>
+					<p class="atcTitCell_nm"><a class="SG_linkb" href="http://blog.sina.com.cn/u/1096731640" target="_blank">momersha</a></p>
+			</li>
+					<li class="SG_j_linedot1">
+					<p class="atcTitCell_tit SG_dot"><a href="http://blog.sina.com.cn/s/blog_7e4015380100r31f.html" target="_blank" title="Eclipse快捷键">Eclipse快捷键</a></p>
+					<p class="atcTitCell_nm"><a class="SG_linkb" href="http://blog.sina.com.cn/u/2118128952" target="_blank">SuRen</a></p>
+			</li>
+					<li class="SG_j_linedot1">
+					<p class="atcTitCell_tit SG_dot"><a href="http://blog.sina.com.cn/s/blog_4af8efcd0100enki.html" target="_blank" title="2009&nbsp;solar&nbsp;ecl">2009&nbsp;solar&nbsp;ecl</a></p>
+					<p class="atcTitCell_nm"><a class="SG_linkb" href="http://blog.sina.com.cn/u/1257828301" target="_blank">小鱼腥草</a></p>
+			</li>
+					<li class="SG_j_linedot1">
+					<p class="atcTitCell_tit SG_dot"><a href="http://blog.sina.com.cn/s/blog_5ee4bc000100ek9x.html" target="_blank" title="2009年07月01日">2009年07月01日</a></p>
+					<p class="atcTitCell_nm"><a class="SG_linkb" href="http://blog.sina.com.cn/u/1592048640" target="_blank">huigenb</a></p>
+			</li>
+			</ul>
+	<div class="atcTit_more"><span class="SG_more"><a href="http://uni.sina.com.cn/c.php?k=%D4%D3%CC%B8%2C%D0%DD%CF%D0&amp;ts=bpost&amp;stype=tag&amp;t=blog" target="_blank">更多&gt;&gt;</a></span></div></div>
+    </div>
+    <div class="SG_connFoot"></div>
+  </div>       <div class="SG_conn" id="module_904"><div class="SG_connHead">
+                <span class="title" comp_title="推荐博文">推荐博文</span>
+                                <span class="edit"></span>
+            </div>
+            <div class="SG_connBody">
+            	<div class="atcTitList relaList"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script language="javascript">document.domain = "sina.com.cn";</script><ul><li class="SG_j_linedot1"><p class="atcTitCell_tit SG_dot"><a href="http://blog.sina.com.cn/s/blog_7a5d078b0100w2vf.html?tj=1" target="_blank" title="cn地方域名-站长的新宠">cn地方域名-站长的新宠</a></p>
+		<p class="atcTitCell_nm"><a class="SG_linkb" href="http://blog.sina.com.cn/u/2052917131" target="_blank">百度推广放大器</a></p>
+		</li><li class="SG_j_linedot1"><p class="atcTitCell_tit SG_dot"><a href="http://blog.sina.com.cn/s/blog_593e34060102dvf7.html?tj=1" target="_blank" title="雪花形状大揭秘">雪花形状大揭秘</a></p>
+		<p class="atcTitCell_nm"><a class="SG_linkb" href="http://blog.sina.com.cn/u/1497248774" target="_blank">杨孝文</a></p>
+		</li><li class="SG_j_linedot1"><p class="atcTitCell_tit SG_dot"><a href="http://blog.sina.com.cn/s/blog_4a46c3960102eapo.html?tj=1" target="_blank" title="新知：口香糖可以预防耳部感染">新知：口香糖可以预防耳部感染</a></p>
+		<p class="atcTitCell_nm"><a class="SG_linkb" href="http://blog.sina.com.cn/u/1246151574" target="_blank">康斯坦丁</a></p>
+		</li><li class="SG_j_linedot1"><p class="atcTitCell_tit SG_dot"><a href="http://blog.sina.com.cn/s/blog_4e8581890102dxct.html?tj=1" target="_blank" title="关于惠普webOS的再思考">关于惠普webOS的再思考</a></p>
+		<p class="atcTitCell_nm"><a class="SG_linkb" href="http://blog.sina.com.cn/u/1317372297" target="_blank">袁萌</a></p>
+		</li><li class="SG_j_linedot1"><p class="atcTitCell_tit SG_dot"><a href="http://blog.sina.com.cn/s/blog_4cab48ba0102dvio.html?tj=1" target="_blank" title="清场与设槛：2011年为何仍是iPad年？">清场与设槛：2011年为何仍是iP</a></p>
+		<p class="atcTitCell_nm"><a class="SG_linkb" href="http://blog.sina.com.cn/u/1286293690" target="_blank">孙永杰</a></p>
+		</li><li class="SG_j_linedot1"><p class="atcTitCell_tit SG_dot"><a href="http://blog.sina.com.cn/s/blog_4fb7103f0102dyru.html?tj=1" target="_blank" title="限网友自制iPhone投影仪">限网友自制iPhone投影仪</a></p>
+		<p class="atcTitCell_nm"><a class="SG_linkb" href="http://blog.sina.com.cn/u/1337397311" target="_blank">李小杰</a></p>
+		</li><li class="SG_j_linedot1"><p class="atcTitCell_tit SG_dot"><a href="http://blog.sina.com.cn/s/blog_596ccc870100zw2k.html?tj=1" target="_blank" title="云里的城市">云里的城市</a></p>
+		<p class="atcTitCell_nm"><a class="SG_linkb" href="http://blog.sina.com.cn/u/1500302471" target="_blank">张亚勤</a></p>
+		</li><li class="SG_j_linedot1"><p class="atcTitCell_tit SG_dot"><a href="http://blog.sina.com.cn/s/blog_4af36ea50102dzx2.html?tj=1" target="_blank" title="“双十二”再次引爆促销热潮">“双十二”再次引爆促销热潮</a></p>
+		<p class="atcTitCell_nm"><a class="SG_linkb" href="http://blog.sina.com.cn/u/1257467557" target="_blank">小刀马</a></p>
+		</li><li class="SG_j_linedot1"><p class="atcTitCell_tit SG_dot"><a href="http://blog.sina.com.cn/s/blog_40345c100102dx9a.html?tj=1" target="_blank" title="惠普webOS既要开源也要硬件辅助">惠普webOS既要开源也要硬件辅助</a></p>
+		<p class="atcTitCell_nm"><a class="SG_linkb" href="http://blog.sina.com.cn/u/1077173264" target="_blank">于斌</a></p>
+		</li><li class="SG_j_linedot1"><p class="atcTitCell_tit SG_dot"><a href="http://blog.sina.com.cn/s/blog_4caedc7a0102dzpk.html?tj=1" target="_blank" title="自然用户界面自然在哪儿？">自然用户界面自然在哪儿？</a></p>
+		<p class="atcTitCell_nm"><a class="SG_linkb" href="http://blog.sina.com.cn/u/1286528122" target="_blank">微软亚洲研究院</a></p>
+		</li></ul><div id="atcPicList"><!--[346,152,93] published at 2012-01-16 16:58:43 from #236 by system-->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <script language="javascript">document.domain="sina.com.cn";</script>
+
+<div class="relaPic SG_j_linedot1"> 
+	<ul>
+			<li>
+		<p><a onclick="v5SendLog('v5_one','rela_pic_113');" href="http://blog.sina.com.cn/s/blog_67e535b60100qisd.html?tj=1" target="_blank"><img src="eclipse编译调试java与ndk c++的混合代码/U1637P2T276D75946F7168DT20110513232211_w80.jpg" alt="夏威夷观景屋" height="58" width="80" border="0"></a></p>
+		<p><a onclick="v5SendLog('v5_one','rela_pic_113');" href="http://blog.sina.com.cn/s/blog_67e535b60100qisd.html?tj=1" target="_blank">夏威夷观景屋</a></p>
+	</li>
+	<li>
+		<p><a onclick="v5SendLog('v5_one','rela_pic_113');" href="http://blog.sina.com.cn/s/blog_5040daca010006dy.html?tj=1" target="_blank"><img src="eclipse编译调试java与ndk c++的混合代码/U1637P2T276D75916F7168DT20110513232439_w80.jpg" alt="可检测辐射含量的餐盘" height="58" width="80" border="0"></a></p>
+		<p><a onclick="v5SendLog('v5_one','rela_pic_113');" href="http://blog.sina.com.cn/s/blog_5040daca010006dy.html?tj=1" target="_blank">可检测辐射含量的餐盘</a></p>
+	</li>
+	<li>
+		<p><a onclick="v5SendLog('v5_one','rela_pic_113');" href="http://blog.sina.com.cn/s/blog_5040daca010006dx.html?tj=1" target="_blank"><img src="eclipse编译调试java与ndk c++的混合代码/U1637P2T276D75915F7168DT20110513232624_w80.jpg" alt="可爱电子音乐盆栽" height="58" width="80" border="0"></a></p>
+		<p><a onclick="v5SendLog('v5_one','rela_pic_113');" href="http://blog.sina.com.cn/s/blog_5040daca010006dx.html?tj=1" target="_blank">可爱电子音乐盆栽</a></p>
+	</li>
+	<li>
+		<p><a onclick="v5SendLog('v5_one','rela_pic_113');" href="http://blog.sina.com.cn/s/blog_59a923a6010008t0.html?tj=1" target="_blank"><img src="eclipse编译调试java与ndk c++的混合代码/U1637P2T276D75909F7168DT20110513232823_w80.jpg" alt="疑似外星人留下的古物" height="58" width="80" border="0"></a></p>
+		<p><a onclick="v5SendLog('v5_one','rela_pic_113');" href="http://blog.sina.com.cn/s/blog_59a923a6010008t0.html?tj=1" target="_blank">疑似外星人留下的古物</a></p>
+	</li>
+
+	</ul>
+	<div class="clearfix"></div>
+</div>
+</div><div class="atcTit_more"><span class="SG_more"><a href="http://blog.sina.com.cn/lm/114/113/day.html" target="_blank">查看更多</a>&gt;&gt;</span></div></div>            </div>
+            <div class="SG_connFoot"></div>
+                  </div>        <div class="SG_conn" id="module_47"><div class="SG_connHead">
+                <span class="title" comp_title="谁看过这篇博文">谁看过这篇博文</span>
+                                <span class="edit"></span>
+            </div>
+            <div class="SG_connBody"><div class="ptList visitorList"><div class="ptCell"><p class="pt_img"><a id="linkVisited_1409180110" href="http://blog.sina.com.cn/u/1409180110" target="_blank" onmouseover="if(this.parentNode.lastChild.className=='del'){this.parentNode.lastChild.style.display='';}" onmouseout="if(this.parentNode.lastChild.className=='del'){this.parentNode.lastChild.style.display='none';}"><img src="eclipse编译调试java与ndk c++的混合代码/50_003.gif" alt="quan_puter" title="quan_puter" height="50" width="50"></a></p><p class="pt_nm"><a href="http://blog.sina.com.cn/u/1409180110" "="" target="_blank" title="quan_puter">quan_p…</a></p><p class="pt_tm SG_txtc">1月5日</p></div><div class="ptCell"><p class="pt_img"><a id="linkVisited_1213965725" href="http://blog.sina.com.cn/u/1213965725" target="_blank" onmouseover="if(this.parentNode.lastChild.className=='del'){this.parentNode.lastChild.style.display='';}" onmouseout="if(this.parentNode.lastChild.className=='del'){this.parentNode.lastChild.style.display='none';}"><img src="eclipse编译调试java与ndk c++的混合代码/50_006.gif" alt="junjie726" title="junjie726" height="50" width="50"></a></p><p class="pt_nm"><a href="http://blog.sina.com.cn/u/1213965725" "="" target="_blank" title="junjie726">junjie…</a></p><p class="pt_tm SG_txtc">12月28日</p></div><div class="ptCell"><p class="pt_img"><a id="linkVisited_1682764094" href="http://blog.sina.com.cn/u/1682764094" target="_blank" onmouseover="if(this.parentNode.lastChild.className=='del'){this.parentNode.lastChild.style.display='';}" onmouseout="if(this.parentNode.lastChild.className=='del'){this.parentNode.lastChild.style.display='none';}"><img src="eclipse编译调试java与ndk c++的混合代码/50.jpeg" alt="上弦月" title="上弦月" height="50" width="50"></a></p><p class="pt_nm"><a href="http://blog.sina.com.cn/u/1682764094" "="" target="_blank" title="上弦月">上弦月</a></p><p class="pt_tm SG_txtc">12月27日</p></div><div class="ptCell"><p class="pt_img"><a id="linkVisited_1616216707" href="http://blog.sina.com.cn/u/1616216707" target="_blank" onmouseover="if(this.parentNode.lastChild.className=='del'){this.parentNode.lastChild.style.display='';}" onmouseout="if(this.parentNode.lastChild.className=='del'){this.parentNode.lastChild.style.display='none';}"><img src="eclipse编译调试java与ndk c++的混合代码/50_005.gif" alt="ttylikl" title="ttylikl" height="50" width="50"></a></p><p class="pt_nm"><a href="http://blog.sina.com.cn/u/1616216707" "="" target="_blank" title="ttylikl">ttylikl</a></p><p class="pt_tm SG_txtc">12月26日</p></div><div class="ptCell"><p class="pt_img"><a id="linkVisited_1967470013" href="http://blog.sina.com.cn/u/1967470013" target="_blank" onmouseover="if(this.parentNode.lastChild.className=='del'){this.parentNode.lastChild.style.display='';}" onmouseout="if(this.parentNode.lastChild.className=='del'){this.parentNode.lastChild.style.display='none';}"><img src="eclipse编译调试java与ndk c++的混合代码/50_003.jpeg" alt="杉田朗" title="杉田朗" height="50" width="50"></a></p><p class="pt_nm"><a href="http://blog.sina.com.cn/u/1967470013" "="" target="_blank" title="杉田朗">杉田朗</a></p><p class="pt_tm SG_txtc">12月26日</p></div><div class="ptCell"><p class="pt_img"><a id="linkVisited_2125051145" href="http://blog.sina.com.cn/u/2125051145" target="_blank" onmouseover="if(this.parentNode.lastChild.className=='del'){this.parentNode.lastChild.style.display='';}" onmouseout="if(this.parentNode.lastChild.className=='del'){this.parentNode.lastChild.style.display='none';}"><img src="eclipse编译调试java与ndk c++的混合代码/50_004.jpeg" alt="leno45" title="leno45" height="50" width="50"></a></p><p class="pt_nm"><a href="http://blog.sina.com.cn/u/2125051145" "="" target="_blank" title="leno45">leno45</a></p><p class="pt_tm SG_txtc">12月21日</p></div><div class="ptCell"><p class="pt_img"><a id="linkVisited_1706960825" href="http://blog.sina.com.cn/u/1706960825" target="_blank" onmouseover="if(this.parentNode.lastChild.className=='del'){this.parentNode.lastChild.style.display='';}" onmouseout="if(this.parentNode.lastChild.className=='del'){this.parentNode.lastChild.style.display='none';}"><img src="eclipse编译调试java与ndk c++的混合代码/50_002.gif" alt="lixiao187" title="lixiao187" height="50" width="50"></a></p><p class="pt_nm"><a href="http://blog.sina.com.cn/u/1706960825" "="" target="_blank" title="lixiao187">lixiao…</a></p><p class="pt_tm SG_txtc">12月21日</p></div><div class="ptCell"><p class="pt_img"><a id="linkVisited_1402641503" href="http://blog.sina.com.cn/u/1402641503" target="_blank" onmouseover="if(this.parentNode.lastChild.className=='del'){this.parentNode.lastChild.style.display='';}" onmouseout="if(this.parentNode.lastChild.className=='del'){this.parentNode.lastChild.style.display='none';}"><img src="eclipse编译调试java与ndk c++的混合代码/50_007.gif" alt="大笼包" title="大笼包" height="50" width="50"></a></p><p class="pt_nm"><a href="http://blog.sina.com.cn/u/1402641503" "="" target="_blank" title="大笼包">大笼包</a></p><p class="pt_tm SG_txtc">12月15日</p></div><div class="ptCell"><p class="pt_img"><a id="linkVisited_1855869713" href="http://blog.sina.com.cn/u/1855869713" target="_blank" onmouseover="if(this.parentNode.lastChild.className=='del'){this.parentNode.lastChild.style.display='';}" onmouseout="if(this.parentNode.lastChild.className=='del'){this.parentNode.lastChild.style.display='none';}"><img src="eclipse编译调试java与ndk c++的混合代码/50_004.gif" alt="冥蓝" title="冥蓝" height="50" width="50"></a></p><p class="pt_nm"><a href="http://blog.sina.com.cn/u/1855869713" "="" target="_blank" title="冥蓝">冥蓝</a></p><p class="pt_tm SG_txtc">12月5日</p></div><div class="ptCell"><p class="pt_img"><a id="linkVisited_1439593651" href="http://blog.sina.com.cn/u/1439593651" target="_blank" onmouseover="if(this.parentNode.lastChild.className=='del'){this.parentNode.lastChild.style.display='';}" onmouseout="if(this.parentNode.lastChild.className=='del'){this.parentNode.lastChild.style.display='none';}"><img src="eclipse编译调试java与ndk c++的混合代码/50_005.jpeg" alt="fishman" title="fishman" height="50" width="50"></a></p><p class="pt_nm"><a href="http://blog.sina.com.cn/u/1439593651" "="" target="_blank" title="fishman">fishman</a></p><p class="pt_tm SG_txtc">12月1日</p></div><div class="ptCell"><p class="pt_img"><a id="linkVisited_1193039410" href="http://blog.sina.com.cn/u/1193039410" target="_blank" onmouseover="if(this.parentNode.lastChild.className=='del'){this.parentNode.lastChild.style.display='';}" onmouseout="if(this.parentNode.lastChild.className=='del'){this.parentNode.lastChild.style.display='none';}"><img src="eclipse编译调试java与ndk c++的混合代码/50_002.jpeg" alt="信仰的旅途" title="信仰的旅途" height="50" width="50"></a></p><p class="pt_nm"><a href="http://blog.sina.com.cn/u/1193039410" "="" target="_blank" title="信仰的旅途">信仰的…</a></p><p class="pt_tm SG_txtc">11月30日</p></div><div class="ptCell"><p class="pt_img"><a id="linkVisited_10430" href="http://blog.sina.com.cn/u/10430" target="_blank" onmouseover="if(this.parentNode.lastChild.className=='del'){this.parentNode.lastChild.style.display='';}" onmouseout="if(this.parentNode.lastChild.className=='del'){this.parentNode.lastChild.style.display='none';}"><img src="eclipse编译调试java与ndk c++的混合代码/50.gif" alt="helor" title="helor" height="50" width="50"></a></p><p class="pt_nm"><a href="http://blog.sina.com.cn/u/10430" "="" target="_blank" title="helor">helor</a></p><p class="pt_tm SG_txtc">11月28日</p></div></div><div class="moreLink" style="padding-top:0;"></div></div>
+            <div class="SG_connFoot"></div>
+                  </div></div>
+	<!--第一列end-->
+	
+	<!--第二列start-->
+	<div id="column_2" class="SG_colW73">	
+<div id="module_920" class="SG_conn">
+	<div class="SG_connHead">
+	    <span comp_title="正文" class="title">正文</span>
+	    <span class="edit"><span id="articleFontManage" class="fontSize">字体大小：<a href="javascript:;" onclick="changeFontSize(2);return false;">大</a> <strong>中</strong> <a href="javascript:;" onclick="changeFontSize(0);return false;">小</a></span></span>
+	</div>
+    <div id="module_920_SG_connBody" class="SG_connBody">
+<!--博文正文 begin -->
+	<div id="articlebody" class="artical" favmd5="{&quot;5396c96c0100uu4t&quot;:&quot;0132f47ac29ff73f0b3795bee0cdc39d&quot;}">
+		<div class="articalTitle"> 
+					
+			<h2 id="t_5396c96c0100uu4t" class="titName SG_txta">eclipse编译调试java与ndk&nbsp;c++的混合代码</h2>
+			
+					<span class="img2">
+				<img title="此博文包含图片" src="eclipse编译调试java与ndk c++的混合代码/sg_trans.gif" class="SG_icon SG_icon18" height="15" width="15" align="absmiddle">	
+			</span>
+					<span class="time SG_txtc">(2011-05-30 22:15:32)</span><div class="turnBoxzz"><a href="javascript:;" class="SG_aBtn SG_aBtn_ico SG_turn" action-type="reblog" action-data="{srcBlog:1, blogId:'5396c96c0100uu4t'}"><cite><img class="SG_icon SG_icon111" src="eclipse编译调试java与ndk c++的混合代码/sg_trans.gif" height="15" width="15" align="absmiddle">转载<em class="arrow">▼</em></cite></a></div>		</div>
+		<div class="articalTag" id="sina_keyword_ad_area">
+			<table>
+				<tbody><tr>
+					<td class="blog_tag">
+					<script>
+					var $tag='eclipse,ndk,调试,android,ndk-build,ndk-dbg';
+					var $tag_code='4a5c2498404821d7f5fced72a98a5733';
+					var $r_quote_bligid='5396c96c0100uu4t';
+					var $worldcup='0';
+					var $worldcupball='0';
+					</script>
+											<span class="SG_txtb">标签：</span>
+																				<h3><a href="http://uni.sina.com.cn/c.php?t=blog&amp;k=eclipse&amp;ts=bpost&amp;stype=tag" target="_blank">eclipse</a></h3>
+																				<h3><a href="http://uni.sina.com.cn/c.php?t=blog&amp;k=ndk&amp;ts=bpost&amp;stype=tag" target="_blank">ndk</a></h3>
+																				<h3><a href="http://uni.sina.com.cn/c.php?t=blog&amp;k=%B5%F7%CA%D4&amp;ts=bpost&amp;stype=tag" target="_blank">调试</a></h3>
+																				<h3><a href="http://uni.sina.com.cn/c.php?t=blog&amp;k=android&amp;ts=bpost&amp;stype=tag" target="_blank">android</a></h3>
+																				<h3><a href="http://uni.sina.com.cn/c.php?t=blog&amp;k=ndk-build&amp;ts=bpost&amp;stype=tag" target="_blank">ndk-build</a></h3>
+																				<h3><a href="http://uni.sina.com.cn/c.php?t=blog&amp;k=ndk-dbg&amp;ts=bpost&amp;stype=tag" target="_blank">ndk-dbg</a></h3>
+																</td>
+					<td class="blog_class">
+										</td>
+				</tr>
+			</tbody></table>
+		</div>
+						<!-- 正文开始 -->
+		<div id="sina_keyword_ad_area2" class="articalContent  ">
+			<p>1 用常规方法建立或导入java工程。</p>
+<p>&nbsp;<wbr></p>
+<p>2 在工程所在目录下建立jni目录，所有的c++代码和mk文件都放在这个目录下。</p>
+<p>&nbsp;<wbr></p>
+<p>3 从sample目录里拷贝Android.mk和Application.mk到jni目录下并修改相应内容。</p>
+<p>&nbsp;<wbr></p>
+<p>4 如果包含多个c++模块，那么修改Application.mk的APP_MODULES字段，例：</p>
+<p>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+APP_MODULES = freetype myapp2</p>
+<p>&nbsp;<wbr> 同时建立freetyp.mk, myapp2.mk，修改android.mk为：</p>
+<p>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>
+LOCAL_PATH&nbsp;<wbr>:= $(call my-dir)<br>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr> include
+$(LOCAL_PATH)/freetype.mk<br>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr> include
+$(LOCAL_PATH)/myapp2.mk</p>
+<p>&nbsp;<wbr> 也就是说：android.mk里可以包含多个模块的mk文件。</p>
+<p>&nbsp;<wbr></p>
+<p>5 如果要使用c++库函数，在Application.mk里加上</p>
+<p>&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr> APP_STL
+:= stlport_shared</p>
+<p>&nbsp;<wbr> 在android.mk里加上：（注意不用手工添加stlport头文件目录）</p>
+<p>&nbsp;<wbr>&nbsp;<wbr>
+&nbsp;<wbr>LOCAL_STATIC_LIBRARIES
++=&nbsp;<wbr>libstlport_shared.so</p>
+<p>&nbsp;<wbr>
+另外java代码里所有打包进apk的模块都要手工load，否则要异常：(不像windows是自动load)<br>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>System.loadLibrary("stlport_shared");<br>
+
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>System.loadLibrary("freetype");<br>
+
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr>System.loadLibrary("myapp2");</p>
+<p>&nbsp;<wbr></p>
+<p>5
+把java工程改成c++混合工程：file-&gt;new-&gt;other-&gt;c/c++-&gt;convert
+to a c/c++ project</p>
+<p><a href="http://photo.blog.sina.com.cn/showpic.html#blogid=5396c96c0100uu4t&amp;url=http://s2.sinaimg.cn/orignal/5396c96cga47f2b4a2921" target="_blank"><img name="image_operate_39781306767896031" src="eclipse编译调试java与ndk c++的混合代码/5396c96cga47f2b4a2921690.jpeg" real_src="http://s2.sinaimg.cn/middle/5396c96cga47f2b4a2921&amp;690" alt="eclipse编译调试java与ndk&nbsp;&lt;wbr&gt;c++的混合代码" title="eclipse编译调试java与ndk&nbsp;&lt;wbr&gt;c++的混合代码"></a></p>
+<p><br>
+<a href="http://photo.blog.sina.com.cn/showpic.html#blogid=5396c96c0100uu4t&amp;url=http://s5.sinaimg.cn/orignal/5396c96cga47f384437b4" target="_blank"><img name="image_operate_63301306772432609" src="eclipse编译调试java与ndk c++的混合代码/5396c96cga47f384437b4690.jpeg" real_src="http://s5.sinaimg.cn/middle/5396c96cga47f384437b4&amp;690" alt="eclipse编译调试java与ndk&nbsp;&lt;wbr&gt;c++的混合代码" title="eclipse编译调试java与ndk&nbsp;&lt;wbr&gt;c++的混合代码"></a><br>
+<br></p>
+<p>6&nbsp;<wbr>在工程上右键属性，修改如下:<a href="http://photo.blog.sina.com.cn/showpic.html#blogid=5396c96c0100uu4t&amp;url=http://s8.sinaimg.cn/orignal/5396c96cga47f99e67427" target="_blank"><img name="image_operate_23671306768603000" src="eclipse编译调试java与ndk c++的混合代码/5396c96cga47f99e67427690.png" real_src="http://s8.sinaimg.cn/middle/5396c96cga47f99e67427&amp;690" alt="eclipse编译调试java与ndk&nbsp;&lt;wbr&gt;c++的混合代码" title="eclipse编译调试java与ndk&nbsp;&lt;wbr&gt;c++的混合代码"></a><br>
+&nbsp;<wbr>
+cygwin/bin要加入系统path环境变量里。NDK_ROOT为ndk所在目录，也要加入系统环境变量。<br>
+&nbsp;<wbr></p>
+<p>7 build工程，顺利编译出所有模块。</p>
+<p>&nbsp;<wbr></p>
+<p>8 新建一个调试配置：</p>
+<p><a href="http://photo.blog.sina.com.cn/showpic.html#blogid=5396c96c0100uu4t&amp;url=http://s10.sinaimg.cn/orignal/5396c96cga47fc11ba899" target="_blank"><img name="image_operate_78501306769021281" src="eclipse编译调试java与ndk c++的混合代码/5396c96cga47fc11ba899690.png" real_src="http://s10.sinaimg.cn/middle/5396c96cga47fc11ba899&amp;690" alt="eclipse编译调试java与ndk&nbsp;&lt;wbr&gt;c++的混合代码" title="eclipse编译调试java与ndk&nbsp;&lt;wbr&gt;c++的混合代码"></a></p>
+<p>&nbsp;<wbr></p>
+<a href="http://photo.blog.sina.com.cn/showpic.html#blogid=5396c96c0100uu4t&amp;url=http://s12.sinaimg.cn/orignal/5396c96cga47fda2b5d6b" target="_blank"></a>
+<p><a href="http://photo.blog.sina.com.cn/showpic.html#blogid=5396c96c0100uu4t&amp;url=http://s13.sinaimg.cn/orignal/5396c96cga47fe078320c" target="_blank"><img name="image_operate_76351306772482125" src="eclipse编译调试java与ndk c++的混合代码/5396c96cga47fe078320c690.jpeg" real_src="http://s13.sinaimg.cn/middle/5396c96cga47fe078320c&amp;690" alt="eclipse编译调试java与ndk&nbsp;&lt;wbr&gt;c++的混合代码" title="eclipse编译调试java与ndk&nbsp;&lt;wbr&gt;c++的混合代码"></a><br>
+c/c++ application为当前工程目录的obj\local\armeabi\app_process。然后点击Select
+other...<a href="http://photo.blog.sina.com.cn/showpic.html#blogid=5396c96c0100uu4t&amp;url=http://s15.sinaimg.cn/orignal/5396c96cga47fe4da15fe" target="_blank"><img name="image_operate_67091306770820890" src="eclipse编译调试java与ndk c++的混合代码/5396c96cga47fe4da15fe690.png" real_src="http://s15.sinaimg.cn/middle/5396c96cga47fe4da15fe&amp;690" alt="eclipse编译调试java与ndk&nbsp;&lt;wbr&gt;c++的混合代码" title="eclipse编译调试java与ndk&nbsp;&lt;wbr&gt;c++的混合代码"></a><br>
+<br>
+继续修改属性：<a href="http://photo.blog.sina.com.cn/showpic.html#blogid=5396c96c0100uu4t&amp;url=http://s1.sinaimg.cn/orignal/5396c96cga4804545a8e0" target="_blank"><img name="image_operate_72541306772496718" src="eclipse编译调试java与ndk c++的混合代码/5396c96cga4804545a8e0690.png" real_src="http://s1.sinaimg.cn/middle/5396c96cga4804545a8e0&amp;690" alt="eclipse编译调试java与ndk&nbsp;&lt;wbr&gt;c++的混合代码" title="eclipse编译调试java与ndk&nbsp;&lt;wbr&gt;c++的混合代码"></a><br>
+debugger:
+F:\android-ndk-r5b\toolchains\arm-eabi-4.4.0\prebuilt\windows\bin\arm-eabi-gdb.exe</p>
+<p>file:
+F:\tj\at_utils\build\android\obj\local\armeabi\gdb.setup</p>
+<p><a href="http://photo.blog.sina.com.cn/showpic.html#blogid=5396c96c0100uu4t&amp;url=http://s5.sinaimg.cn/orignal/5396c96cga4804cb524d4" target="_blank"><img name="image_operate_56591306771470750" src="eclipse编译调试java与ndk c++的混合代码/5396c96cga4804cb524d4690.png" real_src="http://s5.sinaimg.cn/middle/5396c96cga4804cb524d4&amp;690" alt="eclipse编译调试java与ndk&nbsp;&lt;wbr&gt;c++的混合代码" title="eclipse编译调试java与ndk&nbsp;&lt;wbr&gt;c++的混合代码"></a><br>
+<br>
+9
+进入ndk目录，把ndk-gdb文件复制成ndk-gdb2。打开ndk-gdb2，屏蔽掉最后第1和最后第5句话，屏蔽的方法是句子最前面加#:</p>
+<p>#echo "target remote :$DEBUG_PORT"
+&gt;&gt; $GDBSETUP<br>
+if [ -n "$OPTION_EXEC" ] ; then<br>
+&nbsp;<wbr>&nbsp;<wbr>&nbsp;<wbr> cat
+$OPTION_EXEC &gt;&gt; $GDBSETUP<br>
+fi<br>
+#$GDBCLIENT -x `native_path $GDBSETUP`</p>
+<p>&nbsp;<wbr></p>
+<p>10 在工程的obj\local\armeabi目录下建立一个叫dbg.bat的文件，文件内容为：</p>
+<p>set ANDROID_NDK_ROOT=/cygdrive/f/android-ndk-r5b</p>
+<p>bash %NDK_ROOT%/ndk-gdb2</p>
+<p>(图是r5b版本的，不需要第一句,r5c版需要定义ANDROID_NDK_ROOT)</p>
+<p><a href="http://photo.blog.sina.com.cn/showpic.html#blogid=5396c96c0100uu4t&amp;url=http://s4.sinaimg.cn/orignal/5396c96cga48079ff4c23" target="_blank"><img name="image_operate_60441306772355203" src="eclipse编译调试java与ndk c++的混合代码/5396c96cga48079ff4c23690.png" real_src="http://s4.sinaimg.cn/middle/5396c96cga48079ff4c23&amp;690" alt="eclipse编译调试java与ndk&nbsp;&lt;wbr&gt;c++的混合代码" title="eclipse编译调试java与ndk&nbsp;&lt;wbr&gt;c++的混合代码"></a><br>
+
+<br>
+现在设置工作全部完成，可以开始调试了。</p>
+<p>调试步骤为:</p>
+<p>1 启动java程序</p>
+<p>2
+启动后双击dbg.bat，这个时候会弹出一个小dos窗口，不要关闭这个窗口，里面是gdbserver。当用户结束调试后这个窗口会自动关闭。</p>
+<p>3 再次点击调试按钮下旁边的小三角形按钮，选择调试配置，找到刚才的c++
+aplication，点击debug。(见过程8)</p>
+<p>这个时候就可以同时调试java和c++代码了。不过调试c++代码性能非常差，速度不是一般的慢。</p>
+<p><a href="http://photo.blog.sina.com.cn/showpic.html#blogid=5396c96c0100uu4t&amp;url=http://s6.sinaimg.cn/orignal/5396c96cga480a0acd0f5" target="_blank"><img name="image_operate_88981306772630390" src="eclipse编译调试java与ndk c++的混合代码/5396c96cga480a0acd0f5690.png" real_src="http://s6.sinaimg.cn/middle/5396c96cga480a0acd0f5&amp;690" alt="eclipse编译调试java与ndk&nbsp;&lt;wbr&gt;c++的混合代码" title="eclipse编译调试java与ndk&nbsp;&lt;wbr&gt;c++的混合代码"></a><br>
+<br></p>
+<p><br>
+&nbsp;<wbr></p>							
+		</div>
+						<!-- 正文结束 -->
+		<div class="shareUp">
+        	<div class="share SG_txtb">分享 <a href="javascript:void((function(s,d,e,r,l,p,t,z,c,w){var%20f='http://v.t.sina.com.cn/share/share.php?',u=z||d.location,p=['url=',e(u),'&amp;title=',e(t||d.title),'&amp;source=',e(r),'&amp;sourceUrl=',e(l),'&amp;content=',c||'gb2312','&amp;pic=',e(p||''),'&amp;ralateUid=',w].join('');function%20a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=440,height=430,left=',(s.width-440)/2,',top=',(s.height-430)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent,'%E6%96%B0%E6%B5%AA-%E5%8D%9A%E5%AE%A2','http://blog.sina.com.cn','http://s6.sinaimg.cn/bmiddle/5396c96cga455d742e595','%E5%88%86%E4%BA%AB%E6%9C%88%E9%BB%91%E9%A3%8E%E9%AB%98%E7%9A%84%E5%8D%9A%E6%96%87%EF%BC%9Aeclipse%E7%BC%96%E8%AF%91%E8%B0%83%E8%AF%95java%E4%B8%8Endk%C2%A0c++%E7%9A%84%E6%B7%B7%E5%90%88%E4%BB%A3%E7%A0%81%20%E6%8E%A8%E8%8D%90%E7%BB%99@%E5%A4%B4%E6%9D%A1%E5%8D%9A%E5%AE%A2','http://blog.sina.com.cn/s/blog_5396c96c0100uu4t.html','utf-8','1231759973'));" id="sharewb"><img class="SG_icon SG_icon110" src="eclipse编译调试java与ndk c++的混合代码/sg_trans.gif" title="" height="18" width="18" align="absmiddle"></a> <a target="_blank" href="http://profile.live.com/badge/?url=http%3A%2F%2Fblog.sina.com.cn%2Fs%2Fblog_5396c96c0100uu4t.html&amp;title=eclipse%E7%BC%96%E8%AF%91%E8%B0%83%E8%AF%95java%E4%B8%8Endk%C2%A0c%2B%2B%E7%9A%84%E6%B7%B7%E5%90%88%E4%BB%A3%E7%A0%81&amp;screenshot=http%3A%2F%2Fs6.sinaimg.cn%2Fbmiddle%2F5396c96cga455d742e595&amp;description=1%20%E7%94%A8%E5%B8%B8%E8%A7%84%E6%96%B9%E6%B3%95%E5%BB%BA%E7%AB%8B%E6%88%96%E5%AF%BC%E5%85%A5java%E5%B7%A5%E7%A8%8B%E3%80%82%C2%A02%20%E5%9C%A8%E5%B7%A5%E7%A8%8B%E6%89%80%E5%9C%A8%E7%9B%AE%E5%BD%95%E4%B8%8B%E5%BB%BA%E7%AB%8Bjni%E7%9B%AE%E5%BD%95%EF%BC%8C%E6%89%80%E6%9C%89%E7%9A%84c%2B%2B%E4%BB%A3%E7%A0%81%E5%92%8Cmk%E6%96%87%E4%BB%B6%E9%83%BD%E6%94%BE%E5%9C%A8%E8%BF%99%E4%B8%AA%E7%9B%AE%E5%BD%95%E4%B8%8B%E3%80%82%C2%A03%20%E4%BB%8Esample%E7%9B%AE%E5%BD%95%E9%87%8C%E6%8B%B7%E8%B4%9DAndroid.mk%E5%92%8CApplication.mk%E5%88%B0" id="sharemsn"><img class="SG_icon SG_icon136" src="eclipse编译调试java与ndk c++的混合代码/sg_trans.gif" title="" height="18" width="18" align="absmiddle"></a> <a href="javascript:d=document;t=d.selection?(d.selection.type!='None'?d.selection.createRange().text:''):(d.getSelection?d.getSelection():'');void(kaixin=window.open('http://www.kaixin001.com/~repaste/repaste.php?&amp;rurl='+escape(d.location.href)+'&amp;rtitle='+escape('eclipse%E7%BC%96%E8%AF%91%E8%B0%83%E8%AF%95java%E4%B8%8Endk%C2%A0c++%E7%9A%84%E6%B7%B7%E5%90%88%E4%BB%A3%E7%A0%81_%E6%9C%88%E9%BB%91%E9%A3%8E%E9%AB%98_%E6%96%B0%E6%B5%AA%E5%8D%9A%E5%AE%A2')+'&amp;rcontent='+escape('eclipse%E7%BC%96%E8%AF%91%E8%B0%83%E8%AF%95java%E4%B8%8Endk%C2%A0c++%E7%9A%84%E6%B7%B7%E5%90%88%E4%BB%A3%E7%A0%81_%E6%9C%88%E9%BB%91%E9%A3%8E%E9%AB%98_%E6%96%B0%E6%B5%AA%E5%8D%9A%E5%AE%A2'),'kaixin'));kaixin.focus();" id="sharekx"><img class="SG_icon SG_icon117" src="eclipse编译调试java与ndk c++的混合代码/sg_trans.gif" title="" height="18" width="18" align="absmiddle"></a> <a href="javascript:u='http://share.xiaonei.com/share/buttonshare.do?link='+location.href+'&amp;title='+encodeURIComponent(document.title);window.open(u,'xiaonei','toolbar=0,resizable=1,scrollbars=yes,status=1,width=626,height=436');void(0)" id="sharexn"><img class="SG_icon SG_icon113" src="eclipse编译调试java与ndk c++的混合代码/sg_trans.gif" title="" height="18" width="18" align="absmiddle"></a> <a href="http://www.douban.com/recommend/?url=http://blog.sina.com.cn/s/blog_5396c96c0100uu4t.html&amp;title=eclipse%E7%BC%96%E8%AF%91%E8%B0%83%E8%AF%95java%E4%B8%8Endk%C2%A0c%2B%2B%E7%9A%84%E6%B7%B7%E5%90%88%E4%BB%A3%E7%A0%81_%E6%9C%88%E9%BB%91%E9%A3%8E%E9%AB%98_%E6%96%B0%E6%B5%AA%E5%8D%9A%E5%AE%A2;window.open%28u,%27douban%27,%27toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330%27%29;void%280%29" id="sharedb" target="_blank"><img class="SG_icon SG_icon116" src="eclipse编译调试java与ndk c++的混合代码/sg_trans.gif" title="" height="18" width="18" align="absmiddle"></a> <a href="javascript:;" id="shareqing"><img class="SG_icon SG_icon205" src="eclipse编译调试java与ndk c++的混合代码/sg_trans.gif" title="分享到新浪Qing" height="18" width="18" align="absmiddle">分享到新浪Qing</a></div>
+            <div class="up">
+	        	<div title="顶起来让更多人看到" id="dbox_5396c96c0100uu4t" class="upBox" style="cursor: pointer;">
+	            	<p mnum="0" ti_title="eclipse编译调试java与ndk&nbsp;c++的混合代码" id="dbox2_5396c96c0100uu4t" class="count">0</p>
+	                <p class="link"><img src="eclipse编译调试java与ndk c++的混合代码/sg_trans.gif" class="SG_icon SG_icon34" height="15" width="15" align="absmiddle">顶</p>
+	            </div>
+	        </div>
+            <div class="clearit"></div>
+		</div>
+		<div class="articalInfo">
+			<!-- 分享到微博 {$t_blog} -->
+			<div class="IL">
+				阅读<span id="r_5396c96c0100uu4t" class="SG_txtb">(684)</span><em class="SG_txtb">┊</em> 
+				<a href="#comment">评论</a> <span id="c_5396c96c0100uu4t" class="SG_txtb">(3)</span><em class="SG_txtb">┊</em>				<a href="javascript:;" onclick="$articleManage('5396c96c0100uu4t',5);return false;">收藏</a><span id="f_5396c96c0100uu4t" class="SG_txtb">(2)</span>
+				<em class="SG_txtb">┊</em><a href="#" id="quote_set_sign" onclick="return false ;">转载</a><a href="#" id="z_5396c96c0100uu4t" onclick="return false ;" class="zznum">(0)</a>				<span id="fn_eclipse编译调试java与ndk&nbsp;c++的混合代码" class="SG_txtb"></span><em class="SG_txtb">┊</em>
+				<a onclick="return false;" href="javascript:;"><cite id="d1_digg_5396c96c0100uu4t">顶</cite></a><a id="d1_digg_down_5396c96c0100uu4t" href="javascript:;"><b>▼</b></a>
+									<em class="SG_txtb">┊</em><a href="http://blog.sina.com.cn/main_v5/ria/print.html?blog_id=blog_5396c96c0100uu4t" target="_blank">打印</a><em class="SG_txtb">┊</em><a id="q_5396c96c0100uu4t" onclick="report('5396c96c0100uu4t');return false;" href="#">举报</a>
+							</div>
+			<div class="IR">
+				<table>
+					<tbody><tr>
+											<th class="SG_txtb" scope="row">已投稿到：</th>
+						<td>
+							<div class="IR_list">
+								<span><img class="SG_icon SG_icon36" src="eclipse编译调试java与ndk c++的混合代码/sg_trans.gif" title="排行榜" height="15" width="15" align="absmiddle"> <a href="http://blog.sina.com.cn/lm/114/113/day.html" class="SG_linkb" target="_blank">排行榜</a></span><span><img class="SG_icon SG_icon13" src="eclipse编译调试java与ndk c++的混合代码/sg_trans.gif" title="圈子" height="15" width="15" align="absmiddle"> <a href="http://q.sina.com.cn/blog_groups.php?fid=5396c96c0100uu4t" class="SG_linkb" target="_blank">圈子</a></span>							</div>
+						</td>
+										</tr>
+									</tbody></table>
+			</div>
+		</div>
+		<div class="clearit"></div>
+		<div class="blogzz_zzlist borderc" id="blog_quote" style="display:none"><h3><a href="#" onclick="return false" title="关闭" id="ql_close5396c96c0100uu4t" class="blogzz_closepic SG_floatR"></a>转载列表：</h3>                <ul class="ul_zzlist" id="ql_content5396c96c0100uu4t">                </ul>				<ul style="display:none"><li id="ql_tip5396c96c0100uu4t"></li></ul>                <div class="SG_clearB"></div>                <div class="blogzz_btn">					<a id="btnArticleQuote5396c96c0100uu4t" href="#" onclick="scope.article_quote &amp;&amp; scope.article_quote.check('5396c96c0100uu4t');return false;" class="SG_aBtn SG_aBtn_ico SG_turn"><cite><img class="SG_icon SG_icon111" id="quoteList_quote5396c96c0100uu4t" src="eclipse编译调试java与ndk c++的混合代码/sg_trans.gif" height="15" width="15" align="absmiddle">转载</cite></a>					<p style="display: none;" id="quoteDescription5396c96c0100uu4t" class="SG_turntxt">转载是分享博文的一种常用方式...</p>				</div>				<div id="ql_page5396c96c0100uu4t" class="blogzz_paged"></div>				<div class="clearit"></div></div>
+		<div class="articalfrontback SG_j_linedot1 clearfix" id="new_nextprev_5396c96c0100uu4t">
+							<div><span class="SG_txtb">前一篇：</span><a href="http://blog.sina.com.cn/s/blog_5396c96c0100ul6h.html">不用开源库读取和显示png文件（windows）</a></div>
+										<div><span class="SG_txtb">后一篇：</span><a href="http://blog.sina.com.cn/s/blog_5396c96c0100v9z2.html">中国高铁的未来&nbsp;(转)</a></div>
+					</div>
+		<div class="clearit"></div>
+					
+				<div class="allComm">
+			<div class="allCommTit">
+				<div class="SG_floatL">
+				    <strong>评论</strong>
+				    <span id="commAd_1" style="display: inline-block;"><span style="margin-left:15px; width:220px; display:inline-block;"><a target="_blank" href="http://blog.sina.com.cn/lm/8/2009/0325/105340.html">重要提示：警惕虚假中奖信息</a></span><span style="margin:0 60px 0 20px; display:inline-block;">|</span><span style="display:inline-block;width:220px;white-space:nowrap;">[商讯]<a href="http://mall.sina.com.cn/" target="_blank">网上购物新浪商城</a></span></span>
+				</div>
+				<div class="SG_floatR"><a class="CP_a_fuc" href="#post">[<cite>发评论</cite>]</a></div>
+			</div>
+			<ul id="article_comment_list" class="SG_cmp_revert"><span name="#comment1" id="#comment1">	<li id="cmt_5537329">
+		<table class="SG_revert_Left">
+			<tbody><tr>
+				<td></td>
+			</tr>
+		</tbody></table>
+		<div class="SG_revert_Cont">
+			<p><span class="SG_revert_Tit" id="nick_cmt_5537329"><a href="http://blog.sina.com.cn/u/1213965725" target="_blank">junjie726</a></span><span class="SG_revert_Time"><em class="SG_txtc">2011-07-23 18:34:52</em>&nbsp;<a id="5396c96c0100uu4t_5537329" onclick="comment_report('5396c96c0100uu4t_5537329')" href="javascript:;">[举报]</a></span></p>
+			<div class="SG_revert_Inner SG_txtb" id="body_cmt_5537329">全部都按照上面的做了，但是dbg.bat点击玩以后&nbsp;<wbr>没有启动gdbserver。不知道是哪里错了</div>
+			
+			
+					</div>
+	</li>	<li class="SG_j_linedot1" id="cmt_5575738">
+		<table class="SG_revert_Left">
+			<tbody><tr>
+				<td></td>
+			</tr>
+		</tbody></table>
+		<div class="SG_revert_Cont">
+			<p><span class="SG_revert_Tit" id="nick_cmt_5575738"><a href="http://blog.sina.com.cn/u/1402390892" target="_blank">月黑风高</a></span><span class="SG_revert_Time"><em class="SG_txtc">2011-07-27 17:47:53</em>&nbsp;<a id="5396c96c0100uu4t_5575738" onclick="comment_report('5396c96c0100uu4t_5575738')" href="javascript:;">[举报]</a></span></p>
+			<div class="SG_revert_Inner SG_txtb" id="body_cmt_5575738">把dbg.bat里的指令拆出来单独在cmd窗口里执行，就能知道问题出在哪一句了</div>
+			
+			
+					</div>
+	</li>	<li class="SG_j_linedot1" id="cmt_5899589">
+		<table class="SG_revert_Left">
+			<tbody><tr>
+				<td></td>
+			</tr>
+		</tbody></table>
+		<div class="SG_revert_Cont">
+			<p><span class="SG_revert_Tit" id="nick_cmt_5899589"><a href="http://blog.sina.com.cn/u/1402390892" target="_blank">月黑风高</a></span><span class="SG_revert_Time"><em class="SG_txtc">2012-01-06 19:42:36</em>&nbsp;<a id="5396c96c0100uu4t_5899589" onclick="comment_report('5396c96c0100uu4t_5899589')" href="javascript:;">[举报]</a></span></p>
+			<div class="SG_revert_Inner SG_txtb" id="body_cmt_5899589"><br>junjie726：<br>gdb.setup&nbsp;<wbr>和app_process不是本来就有的，只要ndk-build顺利执行过了就有了。<br>看第7条，后面所有调试设置的前提是编译过工程。<br></div>
+			
+			
+					</div>
+	</li><div><input id="v1x" value="8e2b8168d69a7a6062d0fdc8336048ea" type="hidden"><input id="v2x" value="" type="hidden"></div></span></ul>
+			<div class="clearit"></div>
+			<div style="display: none;" class="myCommPages SG_j_linedot1">
+				<div class="SG_page" id="commentPaging" style="display:none;">
+					<ul class="SG_pages">
+					</ul>
+				</div>
+				<div class="clearit"></div>
+			</div>
+			<a name="post"></a>
+			<div class="writeComm">
+				<div class="allCommTit">
+					<div class="SG_floatL">
+					    <strong>发评论</strong>
+					    <span id="commAd_2" style="display: inline-block;"><span style="display:inline-block;width:220px;white-space:nowrap;">[商讯]<a href="http://sina.allyes.com/main/adfclick?db=sina&amp;bid=277830,334360,339653&amp;cid=0,0,0&amp;sid=334533&amp;advid=7567&amp;camid=52451&amp;show=ignore&amp;url=http://all.vic.sina.com.cn/2011citicgongyi/index.php" target="_blank">爱心签名换梦想，天天派奖</a></span><span style="margin:0 60px 0 20px; display:inline-block;">|</span><span style="display:inline-block;width:220px;white-space:nowrap;">[商讯]<a href="http://sina.allyes.com/main/adfclick?db=sina&amp;bid=204720,299859,305135&amp;cid=0,0,0&amp;sid=298939&amp;advid=358&amp;camid=37389&amp;show=ignore&amp;url=http://blog.sina.com.cn/s/blog_705463570100phtd.html?tj=1" target="_blank">提高博客人气新方法</a></span></span>
+					    <span></span>
+					</div>
+					<div class="SG_floatR"></div>
+				</div>
+				<div class="wrCommTit">
+					<div class="SG_floatL" id="commentNick" style="display:none;"></div>
+				</div>
+				<div class="formTextarea">
+					<div style="float:left;" id="commonComment">
+					<iframe id="postCommentIframe" style="border: 1px solid rgb(199, 199, 199); height: 158px; width: 448px; background-color: white;" src="eclipse编译调试java与ndk c++的混合代码/blank2.html" frameborder="0"></iframe>
+					<textarea id="commentArea" tabindex="1" style="display: none;"></textarea>
+					</div>
+					<div id="mobileComment" style="float:left;display:none;">
+						<textarea id="mbCommentTa" style="width: 438px; height: 150px; border: 1px solid rgb(199, 199, 199); line-height: 18px; padding: 5px;"></textarea>
+					</div>
+					<div class="faceblk" id="faceWrap">
+						<div id="smilesSortShow" class="faceline1">
+						<div id="recomm_1326704398187" class="facestyle"><a key="367" href="#"><img src="eclipse编译调试java与ndk c++的混合代码/367-25.gif" alt="热门表情" title="热门表情"></a><a key="302" href="#"><img src="eclipse编译调试java与ndk c++的混合代码/302-25.gif" alt="小新小浪" title="小新小浪"></a><a key="376" href="#"><img src="eclipse编译调试java与ndk c++的混合代码/376-25.gif" alt="中粮美好生活" title="中粮美好生活"></a><a key="377" href="#"><img src="eclipse编译调试java与ndk c++的混合代码/377-25.gif" alt="管不着和了不起" title="管不着和了不起"></a><a key="378" href="#"><img src="eclipse编译调试java与ndk c++的混合代码/378-25.gif" alt="奇童梦乐" title="奇童梦乐"></a><a key="356" href="#"><img src="eclipse编译调试java与ndk c++的混合代码/356-25.gif" alt="兔斯基" title="兔斯基"></a></div><span class="SG_more"><a href="#">更多&gt;&gt;</a></span><div class="clearit"></div></div>
+						<ul id="smilesRecommended" class="faceline01"><li><a href="#"><img src="eclipse编译调试java与ndk c++的混合代码/W___7516ZHPPSIGT.gif" alt="春节" title="春节" height="50" width="50"></a><div class="arr"><a href="#" onclick="window.$magicFacePlay('W___7516ZHPPSIGS.swf');return false;"><img src="eclipse编译调试java与ndk c++的混合代码/img_arrow_r.gif" title="播放表情" alt="" height="13" width="14" align="absmiddle"></a></div></li><li><a href="#"><img src="eclipse编译调试java与ndk c++的混合代码/W___7515ZH00SIGT.gif" alt="春节快乐" title="春节快乐" height="50" width="50"></a><div class="arr"><a href="#" onclick="window.$magicFacePlay('W___7515ZH00SIGS.swf');return false;"><img src="eclipse编译调试java与ndk c++的混合代码/img_arrow_r.gif" title="播放表情" alt="" height="13" width="14" align="absmiddle"></a></div></li><li><a href="#"><img src="eclipse编译调试java与ndk c++的混合代码/W___7494ZHWGSIGT.gif" alt="我爸是李刚" title="我爸是李刚" height="50" width="50"></a><div class="arr"><a href="#" onclick="window.$magicFacePlay('W___7494ZHWGSIGS.swf');return false;"><img src="eclipse编译调试java与ndk c++的混合代码/img_arrow_r.gif" title="播放表情" alt="" height="13" width="14" align="absmiddle"></a></div></li><li><a href="#"><img src="eclipse编译调试java与ndk c++的混合代码/W___7493ZHWGSIGT.gif" alt="千年极寒" title="千年极寒" height="50" width="50"></a><div class="arr"><a href="#" onclick="window.$magicFacePlay('W___7493ZHWGSIGS.swf');return false;"><img src="eclipse编译调试java与ndk c++的混合代码/img_arrow_r.gif" title="播放表情" alt="" height="13" width="14" align="absmiddle"></a></div></li><li><a href="#"><img src="eclipse编译调试java与ndk c++的混合代码/E___0177EN00SIGT.gif" alt="路过" title="路过" height="50" width="50"></a></li><li><a href="#"><img src="eclipse编译调试java与ndk c++的混合代码/E___0173EN00SIGT.gif" alt="灌水" title="灌水" height="50" width="50"></a></li><li><a href="#"><img src="eclipse编译调试java与ndk c++的混合代码/E___0085EN00SIGT.gif" alt="无语" title="无语" height="50" width="50"></a></li><li><a href="#"><img src="eclipse编译调试java与ndk c++的混合代码/E___0084EN00SIGT.gif" alt="无聊" title="无聊" height="50" width="50"></a></li></ul>
+					</div>
+					<div class="clearit"></div>
+				</div>
+				<div class="formLogin">
+					<div class="SG_floatL"> 
+					<p id="commentlogin" style="display: block;"><span>登录名：</span><input style="width: 115px;" id="login_name" tabindex="2" type="text">   <span>密码：</span><input style="width: 115px;" id="login_pass" tabindex="3" type="password">   <a href="http://login.sina.com.cn/getpass.html" target="_blank">找回密码</a>   <a href="http://login.sina.com.cn/signup/signup.php?entry=blog&amp;src=blogicp&amp;srcuid=1402390892" target="_blank">注册</a>	<input id="login_remember" type="checkbox"><label for="login_remember" style="display:inline-block;" title="建议在网吧/公用电脑上取消该选项">记住登录状态</label></p><p id="commentloginM" style="display:none;"><span>昵&nbsp;&nbsp;&nbsp;称：</span><input style="width: 115px;" id="comment_anonyous" value="新浪网友" tabindex="2" disabled="disabled" type="text"></p><p id="quote_comment_p"><input checked="checked" id="bb" type="checkbox"> <label for="bb"><img title="" src="eclipse编译调试java与ndk c++的混合代码/sg_trans.gif" class="SG_icon SG_icon110" height="18" width="18" align="absmiddle">分享到微博 <img title="新" src="eclipse编译调试java与ndk c++的混合代码/sg_trans.gif" class="SG_icon SG_icon11" height="15" width="15" align="absmiddle"></label>&nbsp;&nbsp;&nbsp;<input id="cbCommentQuote" type="checkbox"><label for="cbCommentQuote">评论并转载此博文</label><img class="SG_icon SG_icon11" src="eclipse编译调试java与ndk c++的混合代码/sg_trans.gif" title="新" height="15" width="15" align="absmiddle"></p><p><span>验证码：</span><input style="width: 46px;" id="login_check" tabindex="4" onclick="return false;" type="text">  <a class="SG_linka" id="check_show">请点击后输入验证码</a><img id="comment_check_img" style="display: none;" align="absmiddle">  <span>		<a style="margin-left: 3px;" id="comment_get_vcode" href="javascript:;" onclick="Lib.AudioCheck.callAudioCheck();return false;">收听验证码</a>		<img id="play_img" name="play_img" src="eclipse编译调试java与ndk c++的混合代码/blank.gif" style="margin-right: 2px;" height="15" align="absmiddle">		<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=5,0,0,0" id="mp3_player" height="0" width="0" align="middle">		<param name="allowScriptAccess" value="always">		<param name="movie" value="http://sjs.sinajs.cn/blog7swf/mp3.swf">		<param name="quality" value="high">		<param name="bgcolor" value="#ffffff">		<param name="FlashVars" value="mp3URL=http://icp.cws.api.sina.com.cn/login/login_audio.php?1326704400244">		<embed src="eclipse编译调试java与ndk c++的混合代码/mp3.swf" flashvars="mp3URL=http://icp.cws.api.sina.com.cn/login/login_audio.php?1326704400244" quality="high" bgcolor="#ffffff" name="mp3_player" swliveconnect="true" allowscriptaccess="always" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" height="0" width="0" align="middle">		</object>	</span></p>
+					</div>
+
+					<span style="display: none; color: rgb(153, 153, 153); margin-left: 10px;" id="login_remember_caution"></span>
+
+											<div class="SG_floatR" id="anonymity_cont"><input id="anonymity" type="checkbox"><label for="anonymity">匿名评论</label></div>
+									</div>
+				<div class="formBtn">
+					<a href="javascript:;" onclick="return false;" class="SG_aBtn" tabindex="5"><cite id="postcommentid">发评论</cite></a>
+					<p class="SG_txtc">以上网友发言只代表其个人观点，不代表新浪网的观点或立场。</p>
+				</div>
+			</div>
+		</div>
+				<div class="clearit"></div>
+		
+				<div class="articalfrontback articalfrontback2 clearfix">
+						  <div class="SG_floatL"><span class="SG_txtb">&lt;&nbsp;前一篇</span><a href="http://blog.sina.com.cn/s/blog_5396c96c0100ul6h.html">不用开源库读取和显示png文件（windows）</a></div>
+									  <div class="SG_floatR"><span class="SG_txtb">后一篇&nbsp;&gt;</span><a href="http://blog.sina.com.cn/s/blog_5396c96c0100v9z2.html">中国高铁的未来&nbsp;(转)</a></div>
+					</div>
+		<div class="clearit"></div>
+				
+	</div>
+	<!--博文正文 end -->
+		<script type="text/javascript">
+			var voteid="";
+		</script>
+
+            </div>       
+            <div class="SG_connFoot"></div>
+          </div>
+</div>
+	<!--第二列start-->
+	
+	<!--第三列start-->
+	<div id="column_3" class="SG_colWnone"><div style="width:0px;height:0.1px;margin:0px;">&nbsp;&nbsp;</div></div>
+	<!--第三列end-->
+
+	
+    </div>
+   <!--主题内容结束 -->
+  
+
+	<div id="diggerFla" style="position:absolute;left:0px;top:0px;width:0px"><embed pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" src="eclipse编译调试java与ndk c++的混合代码/digger.swf" style="" id="digger" name="digger" bgcolor="#00ff00" quality="high" wmode="transparent" allowscriptaccess="always" height="1" width="1"></div>
+    <div class="sinablogfooter" id="sinablogfooter" style="position:relative;">
+      
+      <p class="SG_linka"><a href="http://control.blog.sina.com.cn/admin/advice/advice_list.php" target="_blank">新浪BLOG意见反馈留言板</a>　<a href="javascript:;" onclick="window.open ('http://control.blog.sina.com.cn/admin/advice/impeach.php?url=http%3A//blog.sina.com.cn/s/blog_4cf7b4ec0100eudp.html%3Ftj%3D1', '','height=495, width=510, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=n o, status=no');">不良信息反馈</a>　电话：4006900000 提示音后按1键（按当地市话标准计费）　欢迎批评指正</p>
+   
+      <p class="SG_linka"><a href="http://corp.sina.com.cn/chn/" target="_blank">新浪简介</a> | <a href="http://corp.sina.com.cn/eng/" target="_blank">About Sina</a> | <a href="http://emarketing.sina.com.cn/" target="_blank">广告服务</a> | <a href="http://www.sina.com.cn/contactus.html" target="_blank">联系我们</a> | <a href="http://corp.sina.com.cn/chn/sina_job.html" target="_blank">招聘信息</a> | <a href="http://www.sina.com.cn/intro/lawfirm.shtml" target="_blank">网站律师</a> | <a href="http://english.sina.com/" target="_blank">SINA English</a> | <a href="http://members.sina.com.cn/apply/" target="_blank">会员注册</a> | <a href="http://help.sina.com.cn/" target="_blank">产品答疑</a> </p>
+      <p class="copyright SG_linka"> Copyright © 1996 - 2011 SINA Corporation,  All Rights Reserved</p>
+      <p class="SG_linka"> 新浪公司 <a href="http://www.sina.com.cn/intro/copyright.shtml" target="_blank">版权所有</a></p>
+	  <a href="http://www.bj.cyberpolice.cn/index.jsp" target="_blank" class="gab_link"></a>
+    </div>
+  </div>
+</div>
+<div id="swfbox"><embed pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" src="eclipse编译调试java与ndk c++的混合代码/voteCookie.swf" style="" id="swfId" name="swfId" bgcolor="#00ff00" quality="high" allowscriptaccess="always" flashvars="readyFun=readyFun&amp;realfull=1&amp;moz=1&quot;/" height="1" width="1"></div>
+<script id="PVCOUNTER_FORIE" type="text/javascript"></script>
+
+<script type="text/javascript">
+var scope = {
+	$setDomain : true,
+	$uid : "1402390892",
+	$PRODUCT_NAME : "blog7",		//blog7photo,blog7icp
+	$pageid : "article",
+	$key :  "44858a41e8c76bb6926018bc87552afc",
+	$uhost : "miragekiller",
+	$private: {"cms":0,"hidecms":0,"blogsize":0,"ad":0,"sms":0,"adver":0,"tj":0,"p4p":0,"spamcms":0,"topblogid":"5396c96c01009f0c","pageset":0,"invitationset":0,"top":"5396c96c01009f0c","active":"4"},
+	$is_photo_vip:0,
+		 $nClass:0,
+		 $articleid:"5396c96c0100uu4t",
+		 $sort_id:113,
+		 $isCommentAllow:0,
+		 $album_pic:"5396c96cga455d742e595",
+		 $pn_x_rank:4,
+		 $x_quote_c:"",
+		 $flag2008:"",
+		 	component_lists:{"2":{"size":730,"list":[920]},"1":{"size":210,"list":[901,903,904,47]}},
+	formatInfo:1,
+	UserPic:[{"pid":"","repeat":"repeat-x","align-h":"center","align-v":"top","apply":"0"},{"pid":"","repeat":"repeat-x","align-h":"center","align-v":"top","apply":"0"},{"pid":"","repeat":"repeat-x","align-h":"center","align-v":"top","apply":"0"}],
+	UserBabyPic:{"photoX":null,"photoY":null,"photoURL":null,"angle":null,"zoom":null,"maskX":null,"maskY":null,"maskURL":null,"frameURL":null},
+	UserColor:1,
+	backgroundcolor:"#eadebd",
+	tpl:"7_13"};
+var	$encrypt_code = "d09fd9229a0eb167de0f615d64b58471";
+</script>
+
+<script type="text/javascript" src="eclipse编译调试java与ndk c++的混合代码/boot.js"></script>
+<script type="text/javascript">__load_js();</script>
+<script type="text/javascript">__render_page();</script>
+
+
+
+
+<iframe style="border: medium none; z-index: 512; opacity: 0; position: absolute; width: 0px; height: 0px; display: none; left: 953px; top: 26px;"></iframe><div id="_8961326704397660_panel" class="wrtBlog_sub" style="z-index: 512; position: absolute; display: none; left: 953px; top: 26px;"><div class="wrtBlog_sub2"><p><img class="SG_icon SG_icon87" src="eclipse编译调试java与ndk c++的混合代码/sg_trans.gif" title="微语录" height="15" width="15" align="absmiddle"><a target="_blank" href="http://t.blog.sina.com.cn/weiyulu/weiyulu.php">微语录</a></p><div class="SG_j_linedot"></div><p><img class="SG_icon SG_icon85" src="eclipse编译调试java与ndk c++的混合代码/sg_trans.gif" title="九宫格" height="15" width="15" align="absmiddle"><a target="_blank" href="http://control.blog.sina.com.cn/admin/article/daily.php">九宫格</a></p><div class="SG_j_linedot"></div><p><img class="SG_icon SG_icon18" src="eclipse编译调试java与ndk c++的混合代码/sg_trans.gif" title="发照片" height="15" width="15" align="absmiddle"><a target="_blank" href="http://photo.blog.sina.com.cn/upload/upload.php">发照片</a></p><div class="SG_j_linedot"></div><p><img class="SG_icon SG_icon16" src="eclipse编译调试java与ndk c++的混合代码/sg_trans.gif" title="发视频" height="15" width="15" align="absmiddle"><a target="_blank" href="http://vupload.you.video.sina.com.cn/u.php?m=1">发视频</a></p></div></div><iframe style="border: medium none; z-index: 512; opacity: 0; position: absolute; width: 0px; height: 0px; display: none; left: 1127px; top: 24px;"></iframe><div id="_3641326704397677_panel" style="z-index: 512; position: absolute; display: none; left: 1127px; top: 24px;" class="tb_layerBox"><ul><li id="_3641326704397677_all" class="bottomline"><a href="javascript:;">综合</a></li><li id="_3641326704397677_blog"><a href="javascript:;">博文</a></li><li id="_3641326704397677_bauthor"><a href="javascript:;">博主</a></li><li id="_3641326704397677_song"><a href="javascript:;">音乐</a></li><li id="_3641326704397677_video"><a href="javascript:;">视频</a></li><li id="_3641326704397677_vauthor" class="bottomline"><a href="javascript:;">播主 </a></li><li id="_3641326704397677_group"><a href="javascript:;">群组</a></li></ul></div><div style="z-index: 511; position: absolute; display: none; width: 160px;" class="tb_layer_Y tb_layer_w3"><div class="tb_layer_arrow"></div><div style="width: auto;" class="tb_layer_Y_main tip_ps"><a style="margin-top: 5px;" title="关闭" class="tb_friend_inputDel" href="javascript:void(0)"></a>						<div style="text-align:left;color:#999999">最近顶了的博主：</div>						<div style="white-space: nowrap;"><div style="text-align:center;"><img src="eclipse编译调试java与ndk c++的混合代码/loading.gif">加载中…</div></div></div></div><div ismouseover="0" blogid="5396c96c0100uu4t" id="reblog_1326704397788" style="position: absolute; z-index: 20; top: 396px; left: 1115px; display: none;" class="turnList"><ul><li><a action-type="click_reblog" action-data="{action:'toQing'}" href="javascript:void(0);" title="转载到Qing博客"><img src="eclipse编译调试java与ndk c++的混合代码/sg_trans.gif" class="SG_icon SG_icon205" height="15" width="15" align="absmiddle">Qing</a></li><li><a action-type="click_reblog" action-data="{action:'toBlog'}" href="javascript:void(0);" title="转载到博客"><img src="eclipse编译调试java与ndk c++的混合代码/sg_trans.gif" class="SG_icon SG_icon51" height="15" width="15" align="absmiddle">博客</a></li><li style="display: none;"><a action-type="click_reblog" action-data="{action:'toBlog'}" href="javascript:void(0);" title="转载原文"><img src="eclipse编译调试java与ndk c++的混合代码/sg_trans.gif" class="SG_icon SG_icon51" height="15" width="15" align="absmiddle">转载原文</a></li></ul></div><div style="width: 120px; position: absolute; left: 833px; top: 4593px;" id="sharePhoto"><div class="picShareQing"><div class="share SG_txtb"><span>分享到新浪Qing</span></div></div><div class="picShareFlt"><div class="share SG_txtb" style="margin-top:5px;"><span>分享到新浪微博</span></div></div></div><iframe style="border: medium none; z-index: 512; opacity: 0; position: absolute; width: 0px; height: 0px;"></iframe><div id="_8981326704397852_panel" style="z-index: 512; width: 200px; position: absolute; display: none;" class="tb_layer_Y tb_layer_w5"><div class="tb_layer_Y_main tip_layer_main"><div class="tip_ps" style="width:auto;float:right"><a id="closeBindEmail" title="关闭提示" class="tb_friend_inputDel" href="#" onclick="return false"></a></div><div style="padding:6px">为了您的账号安全，请<a id="linkBindEmail" href="#" target="_blank">绑定邮箱</a></div></div><div class="tb_layer_arrow tip_arrow"></div></div><div style="position: absolute; cursor: pointer; left: 1016px; top: 5749px; display: none;" id="selectionShare"><img src="eclipse编译调试java与ndk c++的混合代码/share.gif" title="将选中内容分享到新浪微博"></div><div style="position: absolute; top: 30px; width: 115px; z-index: 101; left: 1390px;" id="ramdomVisitDiv"><embed pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" src="eclipse编译调试java与ndk c++的混合代码/rndView.swf" style="" id="map" name="map" bgcolor="#000" quality="high" scale="noscale" allowscriptaccess="always" wmode="transparent" flashvars="target=_self&amp;URL=&amp;realfull=1&amp;moz=1&quot;/" height="100" width="115"></div><a style="position: absolute; top: 30px; left: 1390px; width: 115px; height: 100px; z-index: 102; background-color: rgb(255, 255, 255); opacity: 0; display: none;" target="_blank" href="http://qing.weibo.com/1684927203" id="openwin"></a><script src="eclipse编译调试java与ndk c++的混合代码/blognew2011.js" charset="gb2312" type="text/javascript"></script><script src="eclipse编译调试java与ndk c++的混合代码/blognew2011.js" charset="gb2312" type="text/javascript"></script><script src="eclipse编译调试java与ndk c++的混合代码/blognew2011.js" charset="gb2312" type="text/javascript"></script><script src="eclipse编译调试java与ndk c++的混合代码/blognew2011.js" charset="gb2312" type="text/javascript"></script></body></html>

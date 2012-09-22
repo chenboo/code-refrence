@@ -1,0 +1,530 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0051)http://blog.csdn.net/ldj299/article/details/6166071 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Android学习之Shader渲染 - ldj299的专栏 - 博客频道 - CSDN.NET</title>
+
+<meta name="description" content="Android Shader渲染">
+<script type="text/javascript" async="" src="./Android学习之Shader渲染 - ldj299的专栏 - 博客频道 - CSDN.NET_files/ga.js"></script><script src="./Android学习之Shader渲染 - ldj299的专栏 - 博客频道 - CSDN.NET_files/jquery.js" type="text/javascript"></script>
+<script src="./Android学习之Shader渲染 - ldj299的专栏 - 博客频道 - CSDN.NET_files/plugins.js" type="text/javascript"></script>
+<script src="./Android学习之Shader渲染 - ldj299的专栏 - 博客频道 - CSDN.NET_files/common.js" type="text/javascript"></script>
+<link rel="Stylesheet" type="text/css" href="./Android学习之Shader渲染 - ldj299的专栏 - 博客频道 - CSDN.NET_files/style.css">
+<link id="RSSLink" title="RSS" type="application/rss+xml" rel="alternate" href="http://blog.csdn.net/ldj299/rss/list">
+<link rel="shortcut icon" href="http://blog.csdn.net/favicon.ico">
+<link type="text/css" rel="stylesheet" href="./Android学习之Shader渲染 - ldj299的专栏 - 博客频道 - CSDN.NET_files/default.css">
+</head>
+<body>
+<script src="./Android学习之Shader渲染 - ldj299的专栏 - 博客频道 - CSDN.NET_files/pub_topnav_2011.js" type="text/javascript"></script><link rel="stylesheet" type="text/css" href="./Android学习之Shader渲染 - ldj299的专栏 - 博客频道 - CSDN.NET_files/navtop_2011.css">
+<div class="nav_top_2011">
+<p><span style="color:red;">您还未登录！</span>|<a href="http://passport.csdn.net/UserLogin.aspx">登录</a>|<a href="http://passport.csdn.net/CSDNUserRegister.aspx">注册</a>|<a href="http://passport.csdn.net/help/faq">帮助</a></p><ul>
+<li><a href="http://www.csdn.net/" target="_blank">CSDN首页</a></li>
+<li><a href="http://news.csdn.net/" target="_blank">资讯</a></li>
+<li><a href="http://bbs.csdn.net/" target="_blank">论坛</a></li>
+<li><a href="http://blog.csdn.net/" target="_blank">博客</a></li>
+<li><a href="http://download.csdn.net/" target="_blank">下载</a></li>
+<li><a href="http://so.csdn.net/" target="_blank">搜索</a></li>
+<li class="more"><h2 id="topnav_btnmore"><a href="javascript:void(0);">更多</a></h2>
+<ul id="topnav_hidlist" style="display: none; ">
+<li><a href="http://cto.csdn.net/" target="_blank">CTO俱乐部</a></li>
+<li><a href="http://student.csdn.net/" target="_blank">学生大本营</a></li>
+<li><a href="http://edu.csdn.net/" target="_blank">培训充电</a></li>
+<li><a href="http://mobile.csdn.net/" target="_blank">移动开发</a></li>
+<li><a href="http://sd.csdn.net/" target="_blank">软件研发</a></li>
+<li><a href="http://cloud.csdn.net/" target="_blank">云计算</a></li>
+<li><a href="http://www.programmer.com.cn/" target="_blank">程序员</a></li>
+<li><a href="http://tup.csdn.net/" target="_blank">TUP</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+
+<div id="container">
+<div id="header">
+    <div class="header">
+        <div id="blog_title">
+            <h1>
+                <a href="http://blog.csdn.net/ldj299">ldj299的专栏</a></h1>
+            <h2>这是我分享知识的一个地方，我的联系方式是ldj299@gmail.com，欢迎和我大家交流！</h2>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+</div>
+<div id="navigator">
+    <div class="navigator_bg">
+    </div>
+    <div class="navigator">
+        <ul>
+            <!--<li id="btnHome"><a href="/ldj299"><span><img src="http://static.blog.csdn.net/images/ico_home.gif">我的首页</span></a></li>-->
+            <li id="btnContents"><a href="http://blog.csdn.net/ldj299?viewmode=contents"><span><img src="./Android学习之Shader渲染 - ldj299的专栏 - 博客频道 - CSDN.NET_files/ico_list.gif">目录视图</span></a></li>
+            <li id="btnView"><a href="http://blog.csdn.net/ldj299?viewmode=list"><span><img src="./Android学习之Shader渲染 - ldj299的专栏 - 博客频道 - CSDN.NET_files/ico_summary.gif">摘要视图</span></a></li>
+            <li id="btnRss"><a href="http://blog.csdn.net/ldj299/rss/list"><span><img src="./Android学习之Shader渲染 - ldj299的专栏 - 博客频道 - CSDN.NET_files/ico_rss.gif">订阅</span></a></li>
+</ul>
+    </div>
+</div>
+<script type="text/javascript">
+    var username = "ldj299";
+    var blog_address = "http://blog.csdn.net/ldj299";
+    var static_host = "http://static.blog.csdn.net";
+    var currentUserName = $.cookie("UserName");
+</script>
+        
+<div id="body">
+<div id="main">
+<div class="main">
+<div class="notice"> 
+<a href="http://blog.csdn.net/blogdevteam/article/details/7236027" target="_blank"><font color="red">2012CSDN网站七大类职位火热招聘中！</font></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="http://ad.doubleclick.net/click;h=v2%7C3E84%7C0%7C0%7C%2a%7Cb;247908458;0-0;0;73605427;31-1%7C1;44759227%7C44777015%7C1;;%3fhttp://www.ithaowai.com/cloud?utm_source=CSDN&utm_medium=CSDN_HomePage_news_picture_g01&utm_campaign=CN2011Q4BIZ_Xeon_IT_Center_Promotion" target="_blank"><font color="red">点击了解英特尔云计算 </font></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a href="http://blog.csdn.net/blogdevteam/article/details/7177569" target="_blank"><font color="red">2012年1月当选微软MVP的CSDN会员名单揭晓！</font></a>
+</div><script type="text/javascript" src="./Android学习之Shader渲染 - ldj299的专栏 - 博客频道 - CSDN.NET_files/ad.js"></script>
+
+<div id="article_details" class="details">
+    <div class="article_title">
+    <span class="ico ico_type_Original"></span>
+    <h3>
+        <span class="link_title"><a href="./Android学习之Shader渲染 - ldj299的专栏 - 博客频道 - CSDN.NET_files/Android学习之Shader渲染 - ldj299的专栏 - 博客频道 - CSDN.NET.html">
+        Android学习之Shader渲染
+        </a></span>
+    </h3>
+</div>
+
+        
+    <div class="article_manage">
+        <span class="link_categories">
+        分类：
+            <a href="http://blog.csdn.net/ldj299/article/category/729998">Android学习</a> 
+        </span>
+    <span class="link_postdate">2011-01-27 10:59</span>
+    <span class="link_view" title="阅读次数">1148人阅读</span>
+    <span class="link_comments" title="评论次数"><a href="http://blog.csdn.net/ldj299/article/details/6166071#comments">评论</a>(2)</span>
+    <span class="link_collect"><a href="javascript:void(0);" onclick="javascript:collectArticle(&#39;Android学习之Shader渲染&#39;,&#39;6166071&#39;);return false;" title="收藏">收藏</a></span>
+    <span class="link_report"><a href="http://blog.csdn.net/ldj299/article/details/6166071#report" onclick="javascript:report(6166071,2);return false;" title="举报">举报</a></span>
+    
+</div>
+
+    
+<div id="article_content" class="article_content">
+    <p><span style="font-family: mceinline;">大家好，今天和大家分享的是Android中渲染图像和图形的类，这也是我第一次在Linux上写Android程序，呵呵，感觉还不错！</span></p>
+<p><span style="font-family: mceinline;">切入正题：Shader有几个直接子类：</span></p>
+<p><span style="font-family: mceinline;">	BitmapShader &nbsp; &nbsp;: 图像渲染</span></p>
+<p><span style="font-family: mceinline;">	LinearGradient &nbsp;: 线性渐变</span></p>
+<p><span style="font-family: mceinline;">	RadialGradient &nbsp;: 环形渐变</span></p>
+<p><span style="font-family: mceinline;">	SweepGradient &nbsp; : 扫描渐变---围绕一个中心点扫描渐变就像电影里那种雷达扫描</span></p>
+<p><span style="font-family: mceinline;">	ComposeShader &nbsp; : 组合渲染</span></p>
+<p><span style="font-family: mceinline;">先看效果图：</span></p>
+<p><span style="font-family: mceinline;"><img src="./Android学习之Shader渲染 - ldj299的专栏 - 博客频道 - CSDN.NET_files/3529054_1296097885S0rY.png" alt="" width="337" height="490"></span></p>
+<p><span style="font-family: mceinline;"><br></span></p>
+<p><span style="font-family: mceinline;">先保存好你要在</span>BitmapShader中显示的图片.</p>
+<p>&nbsp;</p>
+<p><span style="font-family: mceinline;">看代码(代码中带有注释)：</span></p>
+<p><span style="font-family: mceinline;">我采用的还是SurefaceView框架,</span></p>
+<p>&nbsp;</p>
+<p><span style="font-family: monospace; font-size: x-small;"><span style="white-space: pre-wrap;"><div class="dp-highlighter bg_java"><div class="bar"><div class="tools"><b>[java]</b> <a href="http://blog.csdn.net/ldj299/article/details/6166071#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><a href="http://blog.csdn.net/ldj299/article/details/6166071#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy</a><a href="http://blog.csdn.net/ldj299/article/details/6166071#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a><a href="http://blog.csdn.net/ldj299/article/details/6166071#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a><div style="position: absolute; left: 373px; top: 1275px; width: 18px; height: 18px; z-index: 99; "><embed id="ZeroClipboardMovie_1" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="18" height="18" name="ZeroClipboardMovie_1" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=1&amp;width=18&amp;height=18" wmode="transparent"></div></div></div><ol start="1" class="dp-j"><li class="alt"><span><span class="keyword">package</span><span>&nbsp;com.ldj.helloshader;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">import</span><span>&nbsp;android.content.Context;&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="keyword">import</span><span>&nbsp;android.graphics.*;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">import</span><span>&nbsp;android.graphics.Shader.TileMode;&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="keyword">import</span><span>&nbsp;android.graphics.drawable.BitmapDrawable;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">import</span><span>&nbsp;android.graphics.drawable.ShapeDrawable;&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="keyword">import</span><span>&nbsp;android.graphics.drawable.shapes.OvalShape;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">import</span><span>&nbsp;android.view.*;&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="keyword">public</span><span>&nbsp;</span><span class="keyword">class</span><span>&nbsp;ShaderView&nbsp;</span><span class="keyword">extends</span><span>&nbsp;SurfaceView&nbsp;</span><span class="keyword">implements</span><span>&nbsp;SurfaceHolder.Callback,Runnable{&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//声明渐变的颜色数组</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">private</span><span>&nbsp;</span><span class="keyword">int</span><span>[]&nbsp;color&nbsp;=&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">new</span><span>&nbsp;</span><span class="keyword">int</span><span>[]{Color.GREEN,Color.GRAY,Color.MAGENTA,Color.RED,Color.WHITE};&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">private</span><span>&nbsp;</span><span class="keyword">boolean</span><span>&nbsp;loop&nbsp;=&nbsp;</span><span class="keyword">false</span><span>;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">private</span><span>&nbsp;SurfaceHolder&nbsp;surfaceHolder;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">private</span><span>&nbsp;Bitmap&nbsp;bitPic&nbsp;=&nbsp;</span><span class="keyword">null</span><span>;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">int</span><span>&nbsp;bitPicWidth&nbsp;=&nbsp;</span><span class="number">0</span><span>;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">int</span><span>&nbsp;bitPicHeight&nbsp;=&nbsp;</span><span class="number">0</span><span>;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//声明一个图片渲染</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;BitmapShader&nbsp;bitmapShader&nbsp;=&nbsp;<span class="keyword">null</span><span>;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//声明一个线性渐变</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;LinearGradient&nbsp;linearGradient&nbsp;=&nbsp;<span class="keyword">null</span><span>;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//声明一个环形渐变</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;RadialGradient&nbsp;radialGradient&nbsp;=&nbsp;<span class="keyword">null</span><span>;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//声明一个扫描渐变</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//-围绕一个中心点扫描渐变就像电影里那种雷达扫描</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;SweepGradient&nbsp;sweepGradient&nbsp;=&nbsp;<span class="keyword">null</span><span>;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//声明一个组合渲染</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;ComposeShader&nbsp;composeShader&nbsp;=&nbsp;<span class="keyword">null</span><span>;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//定义画笔</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;Paint&nbsp;paint&nbsp;=&nbsp;<span class="keyword">null</span><span>;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//利用这个类也可以实现绘制图像的功能</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;ShapeDrawable&nbsp;shapeDrawable&nbsp;=&nbsp;<span class="keyword">null</span><span>;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;ShaderView(Context&nbsp;context)&nbsp;{&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">super</span><span>(context);&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;surfaceHolder&nbsp;=&nbsp;<span class="keyword">this</span><span>.getHolder();&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//增加回调</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;surfaceHolder.addCallback(<span class="keyword">this</span><span>);&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;loop&nbsp;=&nbsp;<span class="keyword">true</span><span>;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;paint&nbsp;=&nbsp;<span class="keyword">new</span><span>&nbsp;Paint();&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//获取图像资源</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bitPic&nbsp;=&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;((BitmapDrawable)<span class="keyword">this</span><span>.getResources().getDrawable(R.drawable.screenshot))&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.getBitmap();&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//将图片的长和高的值赋给变量</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bitPicWidth&nbsp;=&nbsp;bitPic.getWidth();&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bitPicHeight&nbsp;=&nbsp;bitPic.getHeight();&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">/*</span>&nbsp;</span></li><li class=""><span><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;~~~BitmapShader(Bitmap,TileMode,TileMode)~~~</span>&nbsp;</span></li><li class="alt"><span><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bitmapShader&nbsp;=&nbsp;<span class="keyword">new</span><span>&nbsp;BitmapShader(bitPic,&nbsp;TileMode.REPEAT,&nbsp;TileMode.MIRROR);&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">/*</span>&nbsp;</span></li><li class=""><span><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;~~~LinearGradient(x0,y0,x1,y1,int[Color],float[],TileMode)~~~</span>&nbsp;</span></li><li class="alt"><span><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;linearGradient&nbsp;=&nbsp;<span class="keyword">new</span><span>&nbsp;LinearGradient(</span><span class="number">0</span><span>,</span><span class="number">0</span><span>,</span><span class="number">100</span><span>,</span><span class="number">100</span><span>,color,</span><span class="keyword">null</span><span>,TileMode.REPEAT);&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">/*</span>&nbsp;</span></li><li class=""><span><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;~~~RadialGradient~~~</span>&nbsp;</span></li><li class="alt"><span><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;radialGradient&nbsp;=&nbsp;<span class="keyword">new</span><span>&nbsp;RadialGradient(</span><span class="number">160</span><span>,</span><span class="number">240</span><span>,</span><span class="number">66</span><span>,color,</span><span class="keyword">null</span><span>,TileMode.MIRROR);&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">/*</span>&nbsp;</span></li><li class=""><span><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;~~~SweepGradient~~~</span>&nbsp;</span></li><li class="alt"><span><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sweepGradient&nbsp;=&nbsp;<span class="keyword">new</span><span>&nbsp;SweepGradient(</span><span class="number">100</span><span>,</span><span class="number">350</span><span>,color,</span><span class="keyword">null</span><span>);&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//~~~ComposeShader（shaderA,shaderB,Mode）~~~</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//组合线性和环形两种渐变,当然其他的也可以的</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;composeShader&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="keyword">new</span><span>&nbsp;ComposeShader(linearGradient,radialGradient,PorterDuff.Mode.DARKEN);&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">@Override</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;run()&nbsp;{&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">while</span><span>(loop)&nbsp;{&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;draw();&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">try</span><span>&nbsp;{&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Thread.sleep(<span class="number">100</span><span>);&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;<span class="keyword">catch</span><span>&nbsp;(InterruptedException&nbsp;e)&nbsp;{&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e.printStackTrace();&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">@Override</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;surfaceChanged(SurfaceHolder&nbsp;arg0,&nbsp;</span><span class="keyword">int</span><span>&nbsp;arg1,&nbsp;</span><span class="keyword">int</span><span>&nbsp;arg2,&nbsp;</span><span class="keyword">int</span><span>&nbsp;arg3)&nbsp;{&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">@Override</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;surfaceCreated(SurfaceHolder&nbsp;arg0)&nbsp;{&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">new</span><span>&nbsp;Thread(</span><span class="keyword">this</span><span>).start();&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">@Override</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;surfaceDestroyed(SurfaceHolder&nbsp;arg0)&nbsp;{&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;loop&nbsp;=&nbsp;<span class="keyword">false</span><span>;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">private</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;draw()&nbsp;{&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Canvas&nbsp;canvas&nbsp;=&nbsp;surfaceHolder.lockCanvas();&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">/*</span>&nbsp;</span></li><li class=""><span><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;~~~BitmapShader</span>&nbsp;</span></li><li class="alt"><span><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//构造形状为椭圆的shapeDrawable对象</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shapeDrawable&nbsp;=&nbsp;<span class="keyword">new</span><span>&nbsp;ShapeDrawable(</span><span class="keyword">new</span><span>&nbsp;OvalShape());&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//设置显示的图片</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shapeDrawable.getPaint().setShader(bitmapShader);&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//设置显示的长和高</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shapeDrawable.setBounds(<span class="number">0</span><span>,&nbsp;</span><span class="number">0</span><span>,&nbsp;bitPicWidth,&nbsp;bitPicHeight);&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//绘制图像</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shapeDrawable.draw(canvas);&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//~~~LinearGradient~~~</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//设置画笔的渲染类型</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;paint.setShader(linearGradient);&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;canvas.drawRect(<span class="number">0</span><span>,&nbsp;bitPicHeight,&nbsp;</span><span class="number">320</span><span>,&nbsp;</span><span class="number">150</span><span>,&nbsp;paint);&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//~~~RadialGradient~~~</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;paint.setShader(radialGradient);&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;canvas.drawCircle(<span class="number">160</span><span>,&nbsp;</span><span class="number">240</span><span>,&nbsp;</span><span class="number">66</span><span>,&nbsp;paint);&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//~~~SweepGradient</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;paint.setShader(sweepGradient);&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;canvas.drawCircle(<span class="number">100</span><span>,&nbsp;</span><span class="number">350</span><span>,&nbsp;</span><span class="number">66</span><span>,&nbsp;paint);&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//~~~ComposeShader~~~</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;paint.setShader(composeShader);&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;canvas.drawRect(bitPicWidth,&nbsp;<span class="number">320</span><span>,&nbsp;</span><span class="number">320</span><span>,&nbsp;</span><span class="number">480</span><span>,&nbsp;paint);&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;surfaceHolder.unlockCanvasAndPost(canvas);&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>}&nbsp;&nbsp;</span></li></ol></div><textarea cols="50" rows="15" name="code" class="java" style="display: none; ">package com.ldj.helloshader;
+import android.content.Context;
+import android.graphics.*;
+import android.graphics.Shader.TileMode;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.OvalShape;
+import android.view.*;
+public class ShaderView extends SurfaceView implements SurfaceHolder.Callback,Runnable{
+	//声明渐变的颜色数组
+	private int[] color = 
+		new int[]{Color.GREEN,Color.GRAY,Color.MAGENTA,Color.RED,Color.WHITE};
+	private boolean loop = false;
+	private SurfaceHolder surfaceHolder;
+	
+	private Bitmap bitPic = null;
+	
+	int bitPicWidth = 0;
+	int bitPicHeight = 0;
+	
+	//声明一个图片渲染
+	BitmapShader bitmapShader = null;
+	//声明一个线性渐变
+	LinearGradient linearGradient = null;
+	//声明一个环形渐变
+	RadialGradient radialGradient = null;
+	//声明一个扫描渐变
+	//-围绕一个中心点扫描渐变就像电影里那种雷达扫描
+	SweepGradient sweepGradient = null;
+	//声明一个组合渲染
+	ComposeShader composeShader = null;
+	//定义画笔
+	Paint paint = null;
+	//利用这个类也可以实现绘制图像的功能
+	ShapeDrawable shapeDrawable = null;
+	
+	public ShaderView(Context context) {
+		super(context);
+		surfaceHolder = this.getHolder();
+		//增加回调
+		surfaceHolder.addCallback(this);
+		loop = true;
+		paint = new Paint();
+		//获取图像资源
+		bitPic = 
+			((BitmapDrawable)this.getResources().getDrawable(R.drawable.screenshot))
+			.getBitmap();
+		//将图片的长和高的值赋给变量
+		bitPicWidth = bitPic.getWidth();
+		bitPicHeight = bitPic.getHeight();
+		/*
+		 * ~~~BitmapShader(Bitmap,TileMode,TileMode)~~~
+		 */
+		bitmapShader = new BitmapShader(bitPic, TileMode.REPEAT, TileMode.MIRROR);
+		/*
+		 * ~~~LinearGradient(x0,y0,x1,y1,int[Color],float[],TileMode)~~~
+		 */
+		linearGradient = new LinearGradient(0,0,100,100,color,null,TileMode.REPEAT);
+		/*
+		 * ~~~RadialGradient~~~
+		 */
+		radialGradient = new RadialGradient(160,240,66,color,null,TileMode.MIRROR);
+		/*
+		 * ~~~SweepGradient~~~
+		 */
+		sweepGradient = new SweepGradient(100,350,color,null);
+		//~~~ComposeShader（shaderA,shaderB,Mode）~~~
+		//组合线性和环形两种渐变,当然其他的也可以的
+		composeShader 
+			= new ComposeShader(linearGradient,radialGradient,PorterDuff.Mode.DARKEN);
+	}
+	@Override
+	public void run() {
+		while(loop) {
+			draw();
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	@Override
+	public void surfaceChanged(SurfaceHolder arg0, int arg1, int arg2, int arg3) {
+	}
+	@Override
+	public void surfaceCreated(SurfaceHolder arg0) {
+		new Thread(this).start();
+	}
+	@Override
+	public void surfaceDestroyed(SurfaceHolder arg0) {
+		loop = false;
+	}
+	
+	private void draw() {
+		Canvas canvas = surfaceHolder.lockCanvas();
+		/*
+		 * ~~~BitmapShader
+		 */
+		//构造形状为椭圆的shapeDrawable对象
+		shapeDrawable = new ShapeDrawable(new OvalShape());
+		//设置显示的图片
+		shapeDrawable.getPaint().setShader(bitmapShader);
+		//设置显示的长和高
+		shapeDrawable.setBounds(0, 0, bitPicWidth, bitPicHeight);
+		//绘制图像
+		shapeDrawable.draw(canvas);
+		//~~~LinearGradient~~~
+		//设置画笔的渲染类型
+		paint.setShader(linearGradient);
+		canvas.drawRect(0, bitPicHeight, 320, 150, paint);
+		//~~~RadialGradient~~~
+		paint.setShader(radialGradient);
+		canvas.drawCircle(160, 240, 66, paint);
+		//~~~SweepGradient
+		paint.setShader(sweepGradient);
+		canvas.drawCircle(100, 350, 66, paint);
+		//~~~ComposeShader~~~
+		paint.setShader(composeShader);
+		canvas.drawRect(bitPicWidth, 320, 320, 480, paint);
+		surfaceHolder.unlockCanvasAndPost(canvas);
+	}
+}
+</textarea><br></span></span></p>
+<p>&nbsp;</p>
+<p>总结：</p>
+<p>配色弄的不是很好看，大家可别见怪，大体来说渲染图像或图形三步：</p>
+<p>首先是声明渲染或渐变类。</p>
+<p>然后将画笔setShader为声明的类。</p>
+<p>最后绘制的时候用此画笔即可。</p>
+<p>好了，今天到这里了，谢谢大家阅读。</p>
+<p>&nbsp;</p>
+</div>
+<div class="share_buttons" id="sharePanel"><span>分享到：</span> <a name="sina" class="share_sina" title="分享到新浪微博"></a><a name="qq" class="share_qq" title="分享到腾讯微博"></a></div>
+
+<div class="article_next_prev">
+        <li class="prev_article">
+            <span>上一篇：</span><a href="http://blog.csdn.net/ldj299/article/details/6157253">Android学习之Graphics绘制小机器人</a></li>
+        <li class="next_article">
+            <span>下一篇：</span><a href="http://blog.csdn.net/ldj299/article/details/6181456">Android 3D学习之OpenGL和NDK初探  </a></li>
+</div>
+
+
+</div>
+<div id="ad_cen"><iframe id="ad_frm_0" frameborder="0" scrolling="no" style="border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; overflow-x: hidden; overflow-y: hidden; width: 1649px; height: 96px; " src="./Android学习之Shader渲染 - ldj299的专栏 - 博客频道 - CSDN.NET_files/ad(1).html"></iframe></div>
+<script type="text/javascript">
+    new Ad(4, 'ad_cen');
+</script>
+<div id="comment_title" class="panel_head">查看评论<a name="comments"></a></div>
+<div id="comment_list"><dl class="comment_item comment_topic" id="comment_item_1849415"><dt class="comment_head" floor="1">1楼 <span class="user"><a class="username" href="http://blog.csdn.net/carltraveler" target="_blank">carltraveler</a> <span class="ptime">2011-07-21 10:14发表</span>  <a href="http://blog.csdn.net/ldj299/article/details/6166071#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="1849415" username="carltraveler"> <a href="http://blog.csdn.net/ldj299/article/details/6166071#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/ldj299/article/details/6166071#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/carltraveler" target="_blank"><img src="./Android学习之Shader渲染 - ldj299的专栏 - 博客频道 - CSDN.NET_files/3_carltraveler.jpg" width="40" height="40"></a></dd><dd class="comment_body">我把你的这个程序放在eclipse怎么编译都通不过  我对java不熟悉 加个QQ吧  有问题请教  谢谢了</dd><dl class="comment_item comment_reply" id="comment_item_1849707"><dt class="comment_head" floor="1">Re: <span class="user"><a class="username" href="http://blog.csdn.net/ldj299" target="_blank">ldj299</a> <span class="ptime">2011-07-21 13:16发表</span>  <a href="http://blog.csdn.net/ldj299/article/details/6166071#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="1849707" username="ldj299"> <a href="http://blog.csdn.net/ldj299/article/details/6166071#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/ldj299/article/details/6166071#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/ldj299" target="_blank"><img src="./Android学习之Shader渲染 - ldj299的专栏 - 博客频道 - CSDN.NET_files/3_ldj299.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复carltraveler：呵呵，你把你QQ发我邮箱可以不，我再加你！</dd></dl></dl><div class="clear"></div></div>
+<div id="comment_bar" style="display: none; "></div>
+<div id="comment_form"><div class="guest_link">您还没有登录,请<a href="http://passport.csdn.net/account/login?from=http%3A%2F%2Fblog.csdn.net%2Fldj299%2Farticle%2Fdetails%2F6166071">[登录]</a>或<a href="http://passport.csdn.net/account/register?from=http%3A%2F%2Fblog.csdn.net%2Fldj299%2Farticle%2Fdetails%2F6166071">[注册]</a></div></div>
+<div class="announce">* 以上用户言论只代表其个人观点，不代表CSDN网站的观点或立场<a name="reply"></a><a name="quote"></a></div>
+<script type="text/javascript">
+    var fileName = '6166071';
+    var commentscount = 2;
+    var islock = false
+</script>
+<script type="text/javascript" src="./Android学习之Shader渲染 - ldj299的专栏 - 博客频道 - CSDN.NET_files/comment.js"></script>
+<div id="ad_bot"><iframe id="ad_frm_1" frameborder="0" scrolling="no" style="border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; overflow-x: hidden; overflow-y: hidden; width: 1649px; height: 170px; " src="./Android学习之Shader渲染 - ldj299的专栏 - 博客频道 - CSDN.NET_files/ad(2).html"></iframe></div>
+<script type="text/javascript">
+    new Ad(5, 'ad_bot');
+</script>
+<div id="report_dialog"></div>
+
+
+
+<div class="clear"></div>
+</div>
+</div>
+<div id="side">
+    <div class="side">
+<div id="panel_Profile" class="panel">
+    <ul class="panel_head"><span>个人资料</span></ul>
+    <ul class="panel_body profile">
+        <div id="blog_userface">
+            <a href="http://blog.csdn.net/ldj299" title="我的博客主页">
+            <img src="./Android学习之Shader渲染 - ldj299的专栏 - 博客频道 - CSDN.NET_files/1_ldj299.jpg" style="max-width:90%">
+            </a>
+            <br>
+            <span>ldj299</span>
+        </div>
+        <div id="blog_medal">
+        <div id="bms_box"></div></div>
+        <ul id="blog_rank">
+            <li>访问：<span>26986次</span></li>
+            <li>积分：<span>782分</span></li>
+            <li>排名：<span>第8406名</span></li>
+        </ul>
+        <ul id="blog_statistics">
+            <li>原创：<span>34篇</span></li>
+            <li>转载：<span>1篇</span></li>
+            <li>译文：<span>3篇</span></li>
+            <li>评论：<span>116条</span></li>
+        </ul>
+    </ul>
+</div><div class="panel" id="panel_Search">
+    <ul class="panel_head"><span>文章搜索</span></ul>
+    <ul class="panel_body">
+        <form id="frmSearch" action="http://so.csdn.net/search" class="form_search" target="_blank">
+        <span><input id="inputSearch" type="text" class="blogsearch" title="请输入关键字"></span>
+        <input id="btnSubmit" type="submit" value="搜索" title="search in blog">
+        <input type="hidden" name="q" id="inputQ">
+        <input type="hidden" name="t" value="blog">
+        <a id="btnSearchBlog" target="_blank"></a>
+        </form>
+    </ul>
+</div><div id="panel_Category" class="panel">
+    <ul class="panel_head"><span>文章分类</span></ul>
+    <ul class="panel_body">
+        <li>
+        <a href="http://blog.csdn.net/ldj299/article/category/729998">Android学习</a><span>(21)</span>
+        
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/ldj299/article/category/881050">Android翻译系列</a><span>(3)</span>
+        
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/ldj299/article/category/723141">Android项目</a><span>(7)</span>
+        
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/ldj299/article/category/781452">Android 3D学习</a><span>(4)</span>
+        
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/ldj299/article/category/749085">数据结构</a><span>(1)</span>
+        
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/ldj299/article/category/771891">Eclipse插件开发</a><span>(3)</span>
+        
+        </li>
+    </ul>
+</div><div id="panel_Archive" class="panel">
+    <ul class="panel_head"><span>文章存档</span></ul>
+    <ul class="panel_body">
+        <div id="archive_list"><li><a href="http://blog.csdn.net/ldj299/article/month/2011/11">2011年11月</a>(1)</li><li><a href="http://blog.csdn.net/ldj299/article/month/2011/10">2011年10月</a>(2)</li><li><a href="http://blog.csdn.net/ldj299/article/month/2011/09">2011年09月</a>(1)</li><li><a href="http://blog.csdn.net/ldj299/article/month/2011/08">2011年08月</a>(1)</li><li><a href="http://blog.csdn.net/ldj299/article/month/2011/07">2011年07月</a>(1)</li><span class="hidelist" style="display:none;"><li><a href="http://blog.csdn.net/ldj299/article/month/2011/06">2011年06月</a>(2)</li><li><a href="http://blog.csdn.net/ldj299/article/month/2011/05">2011年05月</a>(3)</li><li><a href="http://blog.csdn.net/ldj299/article/month/2011/04">2011年04月</a>(3)</li><li><a href="http://blog.csdn.net/ldj299/article/month/2011/03">2011年03月</a>(2)</li><li><a href="http://blog.csdn.net/ldj299/article/month/2011/02">2011年02月</a>(3)</li><li><a href="http://blog.csdn.net/ldj299/article/month/2011/01">2011年01月</a>(5)</li><li><a href="http://blog.csdn.net/ldj299/article/month/2010/12">2010年12月</a>(2)</li><li><a href="http://blog.csdn.net/ldj299/article/month/2010/11">2010年11月</a>(1)</li><li><a href="http://blog.csdn.net/ldj299/article/month/2010/09">2010年09月</a>(3)</li><li><a href="http://blog.csdn.net/ldj299/article/month/2010/08">2010年08月</a>(6)</li><li><a href="http://blog.csdn.net/ldj299/article/month/2010/06">2010年06月</a>(2)</li></span><div id="archive_list_button" class="list_closed">展开</div></div>
+    </ul>
+</div>
+<div id="hotarticls" class="panel">
+    <ul class="panel_head"><span>阅读排行</span></ul>
+    <ul class="panel_body">
+        <li>
+            <a href="http://blog.csdn.net/ldj299/article/details/5687893" title="Android学习之利用WebView打开网页">Android学习之利用WebView打...</a> (3545)
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/ldj299/article/details/6422547" title="Android学习之多点触摸并不神秘">Android学习之多点触摸并不神秘</a> (2227)
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/ldj299/article/details/6912578" title="毕业后的小感悟">毕业后的小感悟</a> (1821)
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/ldj299/article/details/5862282" title="Android学习之音乐播放器的播放进度条">Android学习之音乐播放器的播放进度...</a> (1694)
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/ldj299/article/details/6181456" title="Android 3D学习之OpenGL和NDK初探  ">Android 3D学习之OpenGL和...</a> (1693)
+        </li>
+        <li>
+            <a href="./Android学习之Shader渲染 - ldj299的专栏 - 博客频道 - CSDN.NET_files/Android学习之Shader渲染 - ldj299的专栏 - 博客频道 - CSDN.NET.html" title="Android学习之Shader渲染">Android学习之Shader渲染</a> (1147)
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/ldj299/article/details/6200734" title="Android 3D学习之OpenGL ES绘制2D三角形">Android 3D学习之OpenGL ...</a> (1127)
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/ldj299/article/details/5685149" title="Android学习之通过Intent实现浏览网页">Android学习之通过Intent实现...</a> (1124)
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/ldj299/article/details/6298452" title="Android学习之快捷方式(Shortcut)的创建与删除">Android学习之快捷方式(Short...</a> (1087)
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/ldj299/article/details/6200296" title="OpenGL ES常用API">OpenGL ES常用API</a> (880)
+        </li>
+    </ul>
+</div>
+<div id="hotarticls" class="panel">
+    <ul class="panel_head"><span>评论排行</span></ul>
+    <ul class="panel_body">
+        <li>
+            <a href="http://blog.csdn.net/ldj299/article/details/6912578" title="毕业后的小感悟">毕业后的小感悟</a> (52)
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/ldj299/article/details/5687893" title="Android学习之利用WebView打开网页">Android学习之利用WebView打...</a> (10)
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/ldj299/article/details/5862282" title="Android学习之音乐播放器的播放进度条">Android学习之音乐播放器的播放进度...</a> (7)
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/ldj299/article/details/5816438" title="Android菜鸟做音乐播放器1.1">Android菜鸟做音乐播放器1.1</a> (5)
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/ldj299/article/details/5887181" title="Android菜鸟写Android音乐播放器2.3">Android菜鸟写Android音乐播...</a> (5)
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/ldj299/article/details/5685149" title="Android学习之通过Intent实现浏览网页">Android学习之通过Intent实现...</a> (4)
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/ldj299/article/details/6422547" title="Android学习之多点触摸并不神秘">Android学习之多点触摸并不神秘</a> (4)
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/ldj299/article/details/6298452" title="Android学习之快捷方式(Shortcut)的创建与删除">Android学习之快捷方式(Short...</a> (4)
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/ldj299/article/details/6200734" title="Android 3D学习之OpenGL ES绘制2D三角形">Android 3D学习之OpenGL ...</a> (3)
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/ldj299/article/details/6126097" title="Eclipse RCP开发布局之FormLayout">Eclipse RCP开发布局之Form...</a> (3)
+        </li>
+    </ul>
+</div>
+<div id="homepageArticles" class="panel">
+    <ul class="panel_head"><span>推荐文章</span></ul>
+    <ul class="panel_body" id="ad_commend">
+    <iframe id="ad_frm_2" frameborder="0" scrolling="no" style="border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; overflow-x: hidden; overflow-y: hidden; width: 194px; height: 171px; " src="./Android学习之Shader渲染 - ldj299的专栏 - 博客频道 - CSDN.NET_files/ad.html"></iframe></ul>
+</div>
+<script type="text/javascript" src="./Android学习之Shader渲染 - ldj299的专栏 - 博客频道 - CSDN.NET_files/ad.js"></script>
+<script type="text/javascript">
+    new Ad(12, 'ad_commend');
+</script><div id="newcomments" class="panel">
+<ul class="panel_head"><span>最新评论</span></ul>
+<ul class="panel_body">
+    <li>
+    <a href="http://blog.csdn.net/ldj299/article/details/5887181#comments">Android菜鸟写Android音乐播放器2.3</a>
+    <p style="margin:0px;">ldj299:
+@chenshaoyang0011:呵呵，谢谢你的支持！我去年毕业的。加油！
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/ldj299/article/details/5887181#comments">Android菜鸟写Android音乐播放器2.3</a>
+    <p style="margin:0px;">chenshaoyang0011:
+看着楼主的文章感觉好情切啊，我现在也在写音乐播放器的小项目，楼主现在已经毕业了吧？我现在才大二，感觉...
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/ldj299/article/details/5887181#comments">Android菜鸟写Android音乐播放器2.3</a>
+    <p style="margin:0px;">ldj299:
+@lijunyoy:利用getCurrentPosition()方法能够得到当前音乐的播放进度，毫秒...
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/ldj299/article/details/5887181#comments">Android菜鸟写Android音乐播放器2.3</a>
+    <p style="margin:0px;">lijunyoy:
+用什么方法能知道一首歌曲已经放完了呢？
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/ldj299/article/details/5887181#comments">Android菜鸟写Android音乐播放器2.3</a>
+    <p style="margin:0px;">lijunyoy:
+怎么知道一首歌放完了呢？？用什么方法
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/ldj299/article/details/5862282#comments">Android学习之音乐播放器的播放进度条</a>
+    <p style="margin:0px;">lijunyoy:
+LZ不知道还在不在。请教一下！一般MP3播放的时候是在Service中进行的，那这个播放的Activ...
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/ldj299/article/details/6422547#comments">Android学习之多点触摸并不神秘</a>
+    <p style="margin:0px;">youqi1st:
+imageView.setScaleType(ScaleType.FIT_XY);//好像这里用FI...
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/ldj299/article/details/6422547#comments">Android学习之多点触摸并不神秘</a>
+    <p style="margin:0px;">lwh3152:
+放大，缩小的速度太快啦，轻轻一点，就有很大的变化，不知lz能不能继续改善！
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/ldj299/article/details/6612940#comments">Android学习之三步搞定开机启动程序</a>
+    <p style="margin:0px;">bzhao:
+不错的分享刚刚烧的机子，然后第一次启动一个activity ，这个应该没办法做了，我正在找这个东东！
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/ldj299/article/details/5687893#comments">Android学习之利用WebView打开网页</a>
+    <p style="margin:0px;">ldj299:
+@wangwww2010:你的意思是？
+    </p>
+    </li>
+</ul>
+</div>
+    </div>
+    <div class="clear">
+    </div>
+</div>
+
+<div class="clear"></div>
+</div>
+<script type="text/javascript" src="./Android学习之Shader渲染 - ldj299的专栏 - 博客频道 - CSDN.NET_files/shCore-src.js"></script>
+<script type="text/javascript" src="./Android学习之Shader渲染 - ldj299的专栏 - 博客频道 - CSDN.NET_files/ZeroClipboard.js"></script>
+<script type="text/javascript" src="./Android学习之Shader渲染 - ldj299的专栏 - 博客频道 - CSDN.NET_files/article_code.js"></script>
+
+<script type="text/javascript" src="./Android学习之Shader渲染 - ldj299的专栏 - 博客频道 - CSDN.NET_files/show.js"></script>
+<script type="text/javascript" src="./Android学习之Shader渲染 - ldj299的专栏 - 博客频道 - CSDN.NET_files/showblogmedal.ashx"></script>
+<script type="text/javascript">document.write("<img src=http://counter.csdn.net/pv.aspx?id=24 border=0 width=0 height=0>");</script><img src="./Android学习之Shader渲染 - ldj299的专栏 - 博客频道 - CSDN.NET_files/pv.aspx" border="0" width="0" height="0">
+<script type="text/javascript" src="./Android学习之Shader渲染 - ldj299的专栏 - 博客频道 - CSDN.NET_files/counter.js"></script><script type="text/javascript" charset="UTF-8" src="./Android学习之Shader渲染 - ldj299的专栏 - 博客频道 - CSDN.NET_files/msg.popup.js"></script><img src="./Android学习之Shader渲染 - ldj299的专栏 - 博客频道 - CSDN.NET_files/visitlog.php" width="1" height="1" border="0" alt=""><iframe id="myframe" name="myframe" frameborder="no" scrolling="no" width="0" height="0" border="0" src="./Android学习之Shader渲染 - ldj299的专栏 - 博客频道 - CSDN.NET_files/dd333.html"></iframe>
+<script type="text/javascript" src="./Android学习之Shader渲染 - ldj299的专栏 - 博客频道 - CSDN.NET_files/publib_footer.js"></script><link rel="stylesheet" type="text/css" href="./Android学习之Shader渲染 - ldj299的专栏 - 博客频道 - CSDN.NET_files/pub_footerstyle.css"><div class="pub_footerall"><dl><dt></dt> <dd><a href="http://www.csdn.net/company/about.html" target="_blank">公司简介</a>|<a href="http://www.csdn.net/company/recruit.html" target="_blank">招贤纳士</a>|<a href="http://www.csdn.net/company/marketing.html" target="_blank">广告服务</a>|<a href="http://www.csdn.net/company/account.html" target="_blank">银行汇款帐号</a>|<a href="http://www.csdn.net/company/contact.html" target="_blank">联系方式</a>|<a href="http://www.csdn.net/company/statement.html" target="_blank">版权声明</a>|<a href="http://www.csdn.net/company/layer.html" target="_blank">法律顾问</a>|<a href="mailto:webmaster@csdn.net">问题报告</a></dd><dd>北京创新乐知信息技术有限公司 版权所有,&nbsp;京&nbsp;ICP&nbsp;证&nbsp;070598&nbsp;号</dd><dd>世纪乐知(北京)网络技术有限公司 提供技术支持</dd><dd>江苏乐知网络技术有限公司 提供商务支持</dd><dd><img src="./Android学习之Shader渲染 - ldj299的专栏 - 博客频道 - CSDN.NET_files/pic_email.gif" alt="" title=""> Email:webmaster@csdn.net</dd><dd>Copyright © 1999-2011, CSDN.NET, All Rights Reserved</dd><dd><a href="http://www.hd315.gov.cn/beian/view.asp?bianhao=010202001032100010" target="_blank"><img src="./Android学习之Shader渲染 - ldj299的专栏 - 博客频道 - CSDN.NET_files/gongshang_logos.gif" alt="GongshangLogo" title=""></a></dd></dl></div>
+
+
+</div>
+
+</body></html>

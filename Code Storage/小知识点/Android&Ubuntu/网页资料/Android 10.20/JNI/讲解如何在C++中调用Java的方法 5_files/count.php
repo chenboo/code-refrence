@@ -1,0 +1,1 @@
+document.write('<a href=http://www.phpstat.net target="_blank" title="普艾斯(PHPStat)网站流量统计系统"><img src="http://stat.ccidnet.com//templates/ms/imagefiles/icos/countlogo8.gif" style="border:0px;" width="0" height="0" align="absmiddle"></a>');

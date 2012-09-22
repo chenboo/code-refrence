@@ -1,0 +1,35 @@
+Android开发之Java集合类性能分析
+
+    2011年7月6日10:16
+    来源：Android中文网
+    我有话说(0)
+
+　　对于Android开发者来说深入了解Java的集合类很有必要主要是从Collection和Map接口衍生出来的，目前主要提供了List、Set和 Map这三大类的集合，今天就他们的子类在标准情况和多线程下的性能做简单的分析。
+
+　　Collection接口主要有两种子类分别为List和Set，区别主要是List保存的对象可以重复，而Set不可以重复，而Map一般为key-value这样的对应关系，比如我们常用的HashMap。
+
+　　一、List 主要有ArrayList、LinkedList、Vector和Stack
+　　有关这些子类的性能，Android开发网从插入、删除、移动等方面按照元素的执行效率做一一分析，通过分析Sun 的Java源码和实际元素操作得出下面结论：
+　　ArrayList - 他的构造主要从AbstractList实现，主要是判断下初始元素的容量，ArrayList最大的特点就是提供了Add、Get操作，当然可以通过迭代器来遍历，对于元素的存在可以通过contains方法判断。
+　　LinkedList - 作为一种双向链表结构，对于元素的插入、删除效率比较高，只需要调整节点指向即可，但是对于随机查找而言性能主要看这个链表长度和运气了。 LinkedList也提供了ArrayList的get方法，但是要复杂的多，主要通过next或previous方法遍历得到。
+　　Vector - 比较简单和ArrayList差不多，主要是内部实现了synchronized关键字，实现了线程安全访问但性能有些降低，同时对于元素的扩充在算法上和ArrayList稍有不同，通过构造的容量增量系数来决定。
+　　Stack - 作为栈的操作，本次继承于Vector，提供了push，pop和peek方法，peek是不弹出根据数据大小获取最后一个元素对象。
+
+　　二、Set 主要有HashSet 和 TreeSet
+　　HashSet - 该类是从Set接口继承而来，相对于List而言就是说内部添加的元素不能重复，当然从名字的Hash来看就是通过哈希算法来实现防止冲突来获得防止重复 的，整体上从HashMap实现，存放元素方法的也是类似key- value的对应的，通过迭代器遍历，不过HashSet不是线程安全的。
+　　TreeSet - 这个相对于HashSet而言主要是提供了排序支持，TreeSet是从TreeMap类实现，也是非线程安全的。
+　　可以看到Set的两个类都和Map有关，下面就一起看下有关映射(Map)相关的使用。
+
+　　三、Map 主要有 HashMap 和 TreeMap
+　　HashMap - 提供了比较强大的功能实现，比如说loadFactor可以控制元素增长时内存分配，HashMap也是非线程安全的。
+　　TreeMap - 相对于HashMap它的排序可以通过传入包含comparator的属性来控制。
+
+　　四、单线程模式下性能测试 ，测试元素100~1000中平均成绩：
+　　添加  HashMap效率最高，ArrayList最低，其他的效高的还有Stack、HashSet和Vector，较低的有LinkedList和TreeSet和TreeMap
+　　删除 HashMap效率最高，LinkedList最低，其他的HashSet、TreeMap和TreeSet效率较高，较低的有Vector、ArrayList和Stack
+　　查找  HashMap效率最高，LinkedList最低，HashXXX和TreeXXX效率都比较高，而基于List类效率耗时是Map或Set的十倍左右。
+
+　　五、多线程模式下性能测试 ，测试元素100~1000，线程数10个中平均成绩：
+　　添加 HashSet效率最高，LinkedList最低，HashXXX和TreeXXX效率都比较高，这里ArrayList效率较低，整体相差不大。
+　　删除 HashSet效率最高，LinkedList最低，整体性能同添加相似，但HashXXX或TreeXXX性能比List系列高出3倍。
+　　查找 仍然是HashSet性能最好，LinkedList最低，性能较差的是ArrayList，其他的均表现很好。

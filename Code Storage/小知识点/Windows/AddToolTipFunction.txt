@@ -1,0 +1,59 @@
+//(先在头文件中声明m_CtlToolTip变量)
+//第一种情况：在对话框中给控件加上ToolTips的步骤：
+	//1> 在OnInitDialog函数中加入以下语句：
+		EnableToolTips(TRUE);
+		m_CtlToolTip.Create(this);
+		m_CtlToolTip.AddTool(GetDlgItem(nID[i]),str[i]);
+		m_CtlToolTip.Activate(TRUE);
+		//可选操作用于设置Tooltip的属性
+	//	m_CtlToolTip.SetTipTextColor(RGB(255,255,255));
+	//	m_CtlToolTip.SetTipBkColor(RGB(0,0,255));
+		
+	//2> 在PreTranslateMessage函数中加入以下语句：
+		switch(pMsg->message)
+		{
+			case WM_LBUTTONDOWN:
+			case WM_LBUTTONUP:
+			case WM_MOUSEMOVE:
+				m_CtlToolTip.RelayEvent(pMsg);
+				break;
+			default :
+				break;
+		}
+
+
+
+//第二种情况：给按钮自己加上Tooltip(不通过对话框来设置)的步骤：
+	//1>
+	void CToolButton::SetTooltipText(LPCTSTR lpszText, BOOL bActivate)
+	{
+		if (lpszText == NULL) 
+		{
+			return;
+		}
+
+		if (m_CtlToolTip.m_hWnd == NULL)
+		{
+			m_CtlToolTip.Create(this);
+			m_CtlToolTip.SendMessage(TTM_SETMAXTIPWIDTH, 0, 400);
+
+			if(m_CtlToolTip.GetToolCount() == 0)
+			{
+				m_CtlToolTip.AddTool(this, lpszText);
+			}
+		}
+
+		m_CtlToolTip.UpdateTipText(lpszText, this);
+		m_CtlToolTip.Activate(TRUE);
+		m_strTipText = lpszText;
+	}
+	//2>
+		BOOL CToolButton::PreTranslateMessage(MSG* pMsg)
+		{
+			if(m_CtlToolTip.m_hWnd)
+			{
+				m_CtlToolTip.RelayEvent(pMsg);
+			}
+			return CButton::PreTranslateMessage(pMsg);
+		}
+		

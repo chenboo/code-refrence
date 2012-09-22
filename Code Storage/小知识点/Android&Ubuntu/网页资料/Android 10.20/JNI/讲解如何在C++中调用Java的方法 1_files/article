@@ -1,0 +1,97 @@
+
+document.write('<meta http-equiv=\"Content-Type\" content=\"text/html; charset=gb2312\">');
+document.write('<table width=\"100%\" align=\"center\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" style=\"border:1px solid #e2e3e4\">');
+    
+document.write('          <tr> ');
+document.write('            <td width=\"100%\" height=\"20\" align=\"left\" background=\"\"> ');
+document.write('             &nbsp;&nbsp;&nbsp;&nbsp;<b><font style=\"FONT-SIZE: 12px; COLOR: #022DA9; LINE-HEIGHT: 130%; TEXT-DECORATION: none\">发表评论:</font></b>');
+document.write('             </td>');
+document.write('          </tr>       ');
+document.write('		  <tr><td>	 ');
+document.write('              <table width=\"90%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" style=\"FONT-SIZE: 12px; COLOR: #000000; LINE-HEIGHT: 16px; TEXT-DECORATION: none\" align=\"center\">');
+document.write('<form name=\"commentform\" action=\"http://comment1.ccidnet.com/comment/disp/add_comment\" method=\"post\" target=\"_blank\" onsubmit=\"return ValidateInput()\">');
+document.write('<input type =\"hidden\" name=\"articleID\" value=\"237901\"> ');
+document.write('<input type =\"hidden\" name=\"columnID\" value=\"1081\"> ');
+document.write('<input type =\"hidden\" name=\"articleTitle\" value=\"<FONT  COLOR=red>讲解如何在C/C++中调用Java的方法</FONT>\">');
+document.write('<input type =\"hidden\" name=\"articleTime\" value=\"2005-04-13\"> ');
+document.write('<input type =\"hidden\" name=\"articleURL\" value=\"http://news.ccidnet.com/art/1081/20050413/237901_1.html\"> ');
+document.write('                <tr> ');
+document.write('                  <td colspan=\"2\" >                    ');
+document.write('                    笔名<font color=red>*</font> :');
+document.write('                    <input type=\"text\" name=\"username\" style=\"FONT-SIZE: 12px; COLOR: #000000; LINE-HEIGHT: 16px; TEXT-DECORATION: none\" size=\"12\" value=\"网友\">&nbsp;&nbsp;&nbsp;&nbsp;');
+document.write('                    E-mail : ');
+document.write('                    <input type=\"text\" name=\"email\" style=\"FONT-SIZE: 12px; COLOR: #000000; LINE-HEIGHT: 16px; TEXT-DECORATION: none\" size=\"12\"> &nbsp;&nbsp;&nbsp;&nbsp;');
+document.write('                    匿名<input type=\"checkbox\" name=\"chkhide\" >');
+document.write('                  </td>');
+document.write('                  <td> <div align=\"center\"> ');
+document.write('               <input type=\"image\" border=\"0\" name=\"imageField\" src=\"http://comment1.ccidnet.com/comment/images/button_tijiao.gif\" width=\"53\" height=\"21\">');
+document.write('                    ');
+document.write('                </tr>');
+document.write('                <tr> ');
+document.write('                  <td >');
+document.write('                   <textarea name=\"content\" style=\"FONT-SIZE: 12px; COLOR: #000000; LINE-HEIGHT: 16px; TEXT-DECORATION: none\" cols=\"75\" rows=\"4\"></textarea> ');
+document.write('                   </td>');
+document.write('                    </div></td>');
+document.write('                </tr>');
+document.write('        </form>');  
+document.write('              </table>               ');
+document.write('           </td></tr>');
+document.write('         </table>            ');
+   
+	function IsEmail(str)
+	{
+		var nLen;
+		var nCnt1, nCnt2;
+
+		nCnt1=0;
+		nCnt2=0;
+		nLen = str.length;
+		for(var i=0; i<nLen; i++)
+		{
+			if(str.charAt(i)==' ')
+			{
+				return false;
+			}
+			if(str.charAt(i)=='\'' || str.charAt(i)=='\"') 
+			{
+				return false;
+			}
+			if(str.charAt(i)=='<' || str.charAt(i)=='>' )
+			{
+				return false;
+			}
+			if(str.charAt(i)=='@') 
+			{
+				nCnt1++;
+			}
+			if(str.charAt(i)=='.') 
+			{
+				nCnt2++;
+			}
+		}
+		if( nCnt1!=1 || nCnt2<1)
+		{
+			return false;
+		}
+		else
+		    return true;
+	}
+	
+function ValidateInput()
+{   
+	 if(document.commentform.username.value == '' && !document.commentform.chkhide.checked) {
+	  alert("请填写笔名");
+	  document.commentform.username.focus();  
+	  return false;
+	 }
+	 if(document.commentform.content.value == '') {
+	  alert("请填写评论内容");
+	  document.commentform.content.focus();  
+	  return false;
+	 }  		
+	 if(document.commentform.chkhide.checked) {
+		document.commentform.username.value="网友";
+		return true;
+	  }
+  	return true;  		
+}

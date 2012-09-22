@@ -1,0 +1,16 @@
+//setPathEffect函数用来向paint设置绘制路径的效果如点化线
+例子如下：
+
+Paint mpaintHotFrame = new Paint();
+mpaintHotFrame.setAntiAlias(true);
+mpaintHotFrame.setStyle(Paint.Style.STROKE);
+mpaintHotFrame.setStrokeWidth(2.0f);
+mpaintHotFrame.setColor(Color.rgb(64, 64, 225));
+mpaintHotFrame.setPathEffect(new DashPathEffect(new float[] { 5, 3, 5,
+		3 }, 1));
+
+设置了一种实线长5，空5的虚线样式，当使用这个paint画线时会出现效果。
+
+//其他的路径样式还有:
+//ComposePathEffect, CornerPathEffect, DashPathEffect, DiscretePathEffect, PathDashPathEffect, SumPathEffect
+

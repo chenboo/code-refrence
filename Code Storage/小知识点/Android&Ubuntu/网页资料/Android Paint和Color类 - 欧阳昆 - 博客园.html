@@ -1,0 +1,843 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0059)http://www.cnblogs.com/-OYK/archive/2011/10/25/2223624.html -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Android Paint和Color类 - 欧阳昆 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./Android Paint和Color类 - 欧阳昆 - 博客园_files/common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./Android Paint和Color类 - 欧阳昆 - 博客园_files/style.css">
+<link type="text/css" rel="stylesheet" href="./Android Paint和Color类 - 欧阳昆 - 博客园_files/common2.css">
+<link type="text/css" rel="stylesheet" href="./Android Paint和Color类 - 欧阳昆 - 博客园_files/shStyle.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/-OYK/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/-OYK/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/-OYK/wlwmanifest.xml"> 
+<script type="text/javascript" src="./Android Paint和Color类 - 欧阳昆 - 博客园_files/encoder.js"></script><script type="text/javascript" async="" src="./Android Paint和Color类 - 欧阳昆 - 博客园_files/ga.js"></script><script async="" type="text/javascript" src="./Android Paint和Color类 - 欧阳昆 - 博客园_files/gpt.js"></script><script src="./Android Paint和Color类 - 欧阳昆 - 博客园_files/jquery.js" type="text/javascript"></script>  
+<script src="./Android Paint和Color类 - 欧阳昆 - 博客园_files/common.js" type="text/javascript"></script>
+<script src="./Android Paint和Color类 - 欧阳昆 - 博客园_files/jquery.json-2.2.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="./Android Paint和Color类 - 欧阳昆 - 博客园_files/syntaxHighlighter.js"></script>
+<script async="" type="text/javascript" src="./Android Paint和Color类 - 欧阳昆 - 博客园_files/google_ads_gpt.js"></script></head>
+<body>
+<a name="top"></a>
+<form method="post" action="./Android Paint和Color类 - 欧阳昆 - 博客园_files/Android Paint和Color类 - 欧阳昆 - 博客园.html" id="Form1">
+<div class="aspNetHidden">
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="">
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="">
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['Form1'];
+if (!theForm) {
+    theForm = document.Form1;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+
+<script type="text/javascript">
+//<![CDATA[
+var currentBlogApp='-OYK';
+//]]>
+</script>
+
+    
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+		
+<!--done-->
+<div class="title"><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/-OYK/">OYK</a></div>
+<div class="subtitle"></div>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="MyLinks1_HomeLink" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+<li><a id="MyLinks1_MyHomeLink" class="menu" href="http://www.cnblogs.com/-OYK/">首页</a></li>
+<li><a class="menu" href="http://q.cnblogs.com/">博问</a></li>
+<li><a class="menu" href="http://home.cnblogs.com/ing/">闪存</a></li>
+<li><a id="MyLinks1_NewPostLink" class="menu" rel="nofollow" href="http://www.cnblogs.com/-OYK/admin/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="MyLinks1_ContactLink" class="menu" rel="nofollow" href="http://space.cnblogs.com/msg/send/%e6%ac%a7%e9%98%b3%e6%98%86">联系</a></li>
+<li><a id="MyLinks1_Syndication" class="menu" href="http://www.cnblogs.com/-OYK/rss">订阅</a>
+<!--<a id="MyLinks1_XMLLink" class="aHeaderXML" href="http://www.cnblogs.com/-OYK/rss"><img src="/Skins/Custom/images/rss.gif" alt="订阅" /></a>--></li>
+<li><a id="MyLinks1_Admin" class="menu" rel="nofollow" href="http://www.cnblogs.com/-OYK/admin/EditPosts.aspx">管理</a></li>
+</ul>
+
+		<div class="blogStats">
+			
+			
+<!--done-->
+随笔-51&nbsp;
+文章-0&nbsp;
+评论-14&nbsp;
+
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+				
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="./Android Paint和Color类 - 欧阳昆 - 博客园_files/Android Paint和Color类 - 欧阳昆 - 博客园.html">Android Paint和Color类</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body"><p>要绘图，首先得调整画笔，待画笔调整好之后，再将图像绘制到画布上，这样才可以显示在手机屏幕上。Android 中的画笔是 Paint类，Paint 中包含了很多方法对其属性进行设置，主要方法如下： <br> <br>&nbsp;&nbsp; setAntiAlias: 设置画笔的锯齿效果。 <br>&nbsp;&nbsp; setColor: 设置画笔颜色 <br>&nbsp;&nbsp; setARGB:&nbsp; 设置画笔的a,r,p,g值。 <br>&nbsp;&nbsp; setAlpha:&nbsp; 设置Alpha值 <br>&nbsp;&nbsp; setTextSize: 设置字体尺寸。 <br>&nbsp;&nbsp; setStyle:&nbsp; 设置画笔风格，空心或者实心。 <br>&nbsp;&nbsp; setStrokeWidth: 设置空心的边框宽度。 <br>&nbsp;&nbsp; getColor:&nbsp; 得到画笔的颜色 <br>&nbsp;&nbsp; getAlpha:&nbsp; 得到画笔的Alpha值。 <br> <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 下面是一个简单的示例 来说明这些方法的使用。先来看看运行效果吧。 <br> <br><img src="./Android Paint和Color类 - 欧阳昆 - 博客园_files/87cc658c-24f7-3a50-9db1-bb8f6c25ac31.png" alt=""> </p>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;">  1</span> <span style="color: #0000ff;">package</span> eoe.Demo;<br><span style="color: #008080;">  2</span> <br><span style="color: #008080;">  3</span> <span style="color: #0000ff;">import</span> android.content.Context;<br><span style="color: #008080;">  4</span> <span style="color: #0000ff;">import</span> android.graphics.Canvas;<br><span style="color: #008080;">  5</span> <span style="color: #0000ff;">import</span> android.graphics.Color;<br><span style="color: #008080;">  6</span> <span style="color: #0000ff;">import</span> android.graphics.Paint;<br><span style="color: #008080;">  7</span> <span style="color: #0000ff;">import</span> android.util.Log;<br><span style="color: #008080;">  8</span> <span style="color: #0000ff;">import</span> android.view.KeyEvent;<br><span style="color: #008080;">  9</span> <span style="color: #0000ff;">import</span> android.view.MotionEvent;<br><span style="color: #008080;"> 10</span> <span style="color: #0000ff;">import</span> android.view.View;<br><span style="color: #008080;"> 11</span> <br><span style="color: #008080;"> 12</span> <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span> GameView <span style="color: #0000ff;">extends</span> View <span style="color: #0000ff;">implements</span> Runnable {<br><span style="color: #008080;"> 13</span> <br><span style="color: #008080;"> 14</span> <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">final</span> <span style="color: #0000ff;">static</span> String TAG = "Example_05_03_GameView";<br><span style="color: #008080;"> 15</span> <span style="color: #008000;">//</span><span style="color: #008000;"> 声明Paint对象</span><span style="color: #008000;"><br></span><span style="color: #008080;"> 16</span> <span style="color: #0000ff;">private</span> Paint mPaint = <span style="color: #0000ff;">null</span>;<br><span style="color: #008080;"> 17</span> <br><span style="color: #008080;"> 18</span> <span style="color: #0000ff;">public</span> GameView(Context context) {<br><span style="color: #008080;"> 19</span> <span style="color: #0000ff;">super</span>(context);<br><span style="color: #008080;"> 20</span> <span style="color: #008000;">//</span><span style="color: #008000;"> 构建对象</span><span style="color: #008000;"><br></span><span style="color: #008080;"> 21</span> mPaint = <span style="color: #0000ff;">new</span> Paint();<br><span style="color: #008080;"> 22</span> <br><span style="color: #008080;"> 23</span> <span style="color: #008000;">//</span><span style="color: #008000;"> 开启线程</span><span style="color: #008000;"><br></span><span style="color: #008080;"> 24</span> <span style="color: #0000ff;">new</span> Thread(<span style="color: #0000ff;">this</span>).start();<br><span style="color: #008080;"> 25</span> }<br><span style="color: #008080;"> 26</span> <br><span style="color: #008080;"> 27</span> @Override<br><span style="color: #008080;"> 28</span> <span style="color: #0000ff;">protected</span> <span style="color: #0000ff;">void</span> onDraw(Canvas canvas) {<br><span style="color: #008080;"> 29</span> <span style="color: #0000ff;">super</span>.onDraw(canvas);<br><span style="color: #008080;"> 30</span> <br><span style="color: #008080;"> 31</span> <span style="color: #008000;">//</span><span style="color: #008000;"> 设置Paint为无锯齿</span><span style="color: #008000;"><br></span><span style="color: #008080;"> 32</span> mPaint.setAntiAlias(<span style="color: #0000ff;">true</span>);<br><span style="color: #008080;"> 33</span> <br><span style="color: #008080;"> 34</span> <span style="color: #008000;">//</span><span style="color: #008000;"> 设置Paint的颜色</span><span style="color: #008000;"><br></span><span style="color: #008080;"> 35</span> mPaint.setColor(Color.RED);<br><span style="color: #008080;"> 36</span> mPaint.setColor(Color.BLUE);<br><span style="color: #008080;"> 37</span> mPaint.setColor(Color.YELLOW);<br><span style="color: #008080;"> 38</span> mPaint.setColor(Color.GREEN);<br><span style="color: #008080;"> 39</span> <span style="color: #008000;">//</span><span style="color: #008000;"> 同样是设置颜色</span><span style="color: #008000;"><br></span><span style="color: #008080;"> 40</span> mPaint.setColor(Color.rgb(255, 0, 0));<br><span style="color: #008080;"> 41</span> <br><span style="color: #008080;"> 42</span> <span style="color: #008000;">//</span><span style="color: #008000;"> 提取颜色</span><span style="color: #008000;"><br></span><span style="color: #008080;"> 43</span> Color.red(0xcccccc);<br><span style="color: #008080;"> 44</span> Color.green(0xcccccc);<br><span style="color: #008080;"> 45</span> <br><span style="color: #008080;"> 46</span> <span style="color: #008000;">//</span><span style="color: #008000;"> 设置paint的颜色和Alpha值(a,r,g,b)</span><span style="color: #008000;"><br></span><span style="color: #008080;"> 47</span> mPaint.setAlpha(220);<br><span style="color: #008080;"> 48</span> <br><span style="color: #008080;"> 49</span> <span style="color: #008000;">//</span><span style="color: #008000;"> 这里可以设置为另外一个paint对象<br></span><span style="color: #008080;"> 50</span> <span style="color: #008000;">//</span><span style="color: #008000;"> mPaint.set(new Paint());<br></span><span style="color: #008080;"> 51</span> <span style="color: #008000;">//</span><span style="color: #008000;"> 设置字体的尺寸</span><span style="color: #008000;"><br></span><span style="color: #008080;"> 52</span> mPaint.setTextSize(14);<br><span style="color: #008080;"> 53</span> <br><span style="color: #008080;"> 54</span> <span style="color: #008000;">//</span><span style="color: #008000;"> 设置paint的风格为“空心”<br></span><span style="color: #008080;"> 55</span> <span style="color: #008000;">//</span><span style="color: #008000;"> 当然也可以设置为"实心"(Paint.Style.FILL)</span><span style="color: #008000;"><br></span><span style="color: #008080;"> 56</span> mPaint.setStyle(Paint.Style.STROKE);<br><span style="color: #008080;"> 57</span> <br><span style="color: #008080;"> 58</span> <span style="color: #008000;">//</span><span style="color: #008000;"> 设置“空心”的外框的宽度</span><span style="color: #008000;"><br></span><span style="color: #008080;"> 59</span> mPaint.setStrokeWidth(5);<br><span style="color: #008080;"> 60</span> <br><span style="color: #008080;"> 61</span> <span style="color: #008000;">//</span><span style="color: #008000;"> 得到Paint的一些属性 颜色、Alpha值、外框的宽度、字体尺寸</span><span style="color: #008000;"><br></span><span style="color: #008080;"> 62</span> Log.i("TAG", "paint Color------&gt;" + mPaint.getColor());<br><span style="color: #008080;"> 63</span> Log.i(TAG, "paint Alpha-------&gt;" + mPaint.getAlpha());<br><span style="color: #008080;"> 64</span> Log.i("TAG", "paint StrokeWidth---------&gt;" + mPaint.getStrokeWidth());<br><span style="color: #008080;"> 65</span> Log.i("TAG", "paint TextSize-----------&gt;" + mPaint.getTextSize());<br><span style="color: #008080;"> 66</span> <br><span style="color: #008080;"> 67</span> <span style="color: #008000;">//</span><span style="color: #008000;"> 绘制一空心个矩形</span><span style="color: #008000;"><br></span><span style="color: #008080;"> 68</span> canvas.drawRect((320 - 80), 20, (320 - 80) / 2 + 80, 20 + 40, mPaint);<br><span style="color: #008080;"> 69</span> <br><span style="color: #008080;"> 70</span> <span style="color: #008000;">//</span><span style="color: #008000;"> 设置风格为实心</span><span style="color: #008000;"><br></span><span style="color: #008080;"> 71</span> mPaint.setStyle(Paint.Style.FILL);<br><span style="color: #008080;"> 72</span> <br><span style="color: #008080;"> 73</span> mPaint.setColor(Color.GREEN);<br><span style="color: #008080;"> 74</span> <br><span style="color: #008080;"> 75</span> <span style="color: #008000;">//</span><span style="color: #008000;"> 绘制绿色实心矩形</span><span style="color: #008000;"><br></span><span style="color: #008080;"> 76</span> canvas.drawRect(0, 20, 40, 20 + 40, mPaint);<br><span style="color: #008080;"> 77</span> }<br><span style="color: #008080;"> 78</span> <br><span style="color: #008080;"> 79</span> <span style="color: #008000;">//</span><span style="color: #008000;"> 触笔事件</span><span style="color: #008000;"><br></span><span style="color: #008080;"> 80</span> <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">boolean</span> onTouchEvent(MotionEvent event) {<br><span style="color: #008080;"> 81</span> <span style="color: #0000ff;">return</span> <span style="color: #0000ff;">true</span>;<br><span style="color: #008080;"> 82</span> }<br><span style="color: #008080;"> 83</span> <br><span style="color: #008080;"> 84</span> <span style="color: #008000;">//</span><span style="color: #008000;"> 按键按下事件</span><span style="color: #008000;"><br></span><span style="color: #008080;"> 85</span> <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">boolean</span> onKeyDown(<span style="color: #0000ff;">int</span> keyCode, KeyEvent event) {<br><span style="color: #008080;"> 86</span> <span style="color: #0000ff;">return</span> <span style="color: #0000ff;">true</span>;<br><span style="color: #008080;"> 87</span> }<br><span style="color: #008080;"> 88</span> <br><span style="color: #008080;"> 89</span> <span style="color: #008000;">//</span><span style="color: #008000;"> 按键弹起事件</span><span style="color: #008000;"><br></span><span style="color: #008080;"> 90</span> <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">boolean</span> onKeyUp(<span style="color: #0000ff;">int</span> keyCode, KeyEvent event) {<br><span style="color: #008080;"> 91</span> <span style="color: #0000ff;">return</span> <span style="color: #0000ff;">true</span>;<br><span style="color: #008080;"> 92</span> }<br><span style="color: #008080;"> 93</span> <br><span style="color: #008080;"> 94</span> <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">boolean</span> onKeyMultiple(<span style="color: #0000ff;">int</span> KeyCode, <span style="color: #0000ff;">int</span> repeatCount, KeyEvent event) {<br><span style="color: #008080;"> 95</span> <span style="color: #0000ff;">return</span> <span style="color: #0000ff;">true</span>;<br><span style="color: #008080;"> 96</span> }<br><span style="color: #008080;"> 97</span> <br><span style="color: #008080;"> 98</span> @Override<br><span style="color: #008080;"> 99</span> <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span> run() {<br><span style="color: #008080;">100</span> <span style="color: #0000ff;">while</span> (!Thread.currentThread().isInterrupted()) {<br><span style="color: #008080;">101</span> <span style="color: #0000ff;">try</span> {<br><span style="color: #008080;">102</span> Thread.sleep(100);<br><span style="color: #008080;">103</span> } <span style="color: #0000ff;">catch</span> (Exception e) {<br><span style="color: #008080;">104</span> Thread.currentThread().interrupt();<br><span style="color: #008080;">105</span> }<br><span style="color: #008080;">106</span> <span style="color: #008000;">//</span><span style="color: #008000;"> 更新界面</span><span style="color: #008000;"><br></span><span style="color: #008080;">107</span> postInvalidate();<br><span style="color: #008080;">108</span> }<br><span style="color: #008080;">109</span> }<br><span style="color: #008080;">110</span> }<br><span style="color: #008080;">111</span> <br><span style="color: #008080;">112</span> <br><span style="color: #008080;">113</span> <span style="color: #0000ff;">package</span> eoe.Demo;<br><span style="color: #008080;">114</span> <br><span style="color: #008080;">115</span> <span style="color: #0000ff;">import</span> android.app.Activity;<br><span style="color: #008080;">116</span> <span style="color: #0000ff;">import</span> android.os.Bundle;<br><span style="color: #008080;">117</span> <br><span style="color: #008080;">118</span> <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span> Activity01 <span style="color: #0000ff;">extends</span> Activity {<br><span style="color: #008080;">119</span> <span style="color: #008000;">/**</span><span style="color: #008000;"> Called when the activity is first created. </span><span style="color: #008000;">*/</span><br><span style="color: #008080;">120</span> <span style="color: #0000ff;">private</span> GameView mGameView;<br><span style="color: #008080;">121</span> <br><span style="color: #008080;">122</span> @Override<br><span style="color: #008080;">123</span> <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span> onCreate(Bundle savedInstanceState) {<br><span style="color: #008080;">124</span> <span style="color: #0000ff;">super</span>.onCreate(savedInstanceState);<br><span style="color: #008080;">125</span> <br><span style="color: #008080;">126</span> setContentView(R.layout.main);<br><span style="color: #008080;">127</span> <br><span style="color: #008080;">128</span> mGameView = <span style="color: #0000ff;">new</span> GameView(<span style="color: #0000ff;">this</span>);<br><span style="color: #008080;">129</span> <br><span style="color: #008080;">130</span> setContentView(mGameView);<br><span style="color: #008080;">131</span> }<br><span style="color: #008080;">132</span> } </pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)">复制代码</a></span></div></div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<div id="article_content" class="article_content">
+<p><span><span class="comment"><span style="color: #008200;">/** </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Paint类介绍 </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp; </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Paint即画笔，在绘图过程中起到了极其重要的作用，画笔主要保存了颜色， </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;样式等绘制信息，指定了如何绘制文本和图形，画笔对象有很多设置方法， </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;大体上可以分为两类，一类与图形绘制相关，一类与文本绘制相关。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp; </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;1.图形绘制 </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;setARGB(int&nbsp;a,int&nbsp;r,int&nbsp;g,int&nbsp;b); </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;设置绘制的颜色，a代表透明度，r，g，b代表颜色值。 </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp; </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;setAlpha(int&nbsp;a); </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;设置绘制图形的透明度。 </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp; </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;setColor(int&nbsp;color); </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;设置绘制的颜色，使用颜色值来表示，该颜色值包括透明度和RGB颜色。 </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp; </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;setAntiAlias(boolean&nbsp;aa); </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;设置是否使用抗锯齿功能，会消耗较大资源，绘制图形速度会变慢。 </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp; </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;setDither(boolean&nbsp;dither); </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;设定是否使用图像抖动处理，会使绘制出来的图片颜色更加平滑和饱满，图像更加清晰 </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp; </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;setFilterBitmap(boolean&nbsp;filter); </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;如果该项设置为true，则图像在动画进行中会滤掉对Bitmap图像的优化操作，加快显示 </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;速度，本设置项依赖于dither和xfermode的设置 </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp; </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;setMaskFilter(MaskFilter&nbsp;maskfilter); </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;设置MaskFilter，可以用不同的MaskFilter实现滤镜的效果，如滤化，立体等&nbsp;</span></span>&nbsp;</span><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp; </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;setColorFilter(ColorFilter&nbsp;colorfilter); </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;设置颜色过滤器，可以在绘制颜色时实现不用颜色的变换效果 </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp; </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;setPathEffect(PathEffect&nbsp;effect); </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;设置绘制路径的效果，如点画线等 </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp; </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;setShader(Shader&nbsp;shader); </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;设置图像效果，使用Shader可以绘制出各种渐变效果 </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;</span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;setShadowLayer(float&nbsp;radius&nbsp;,float&nbsp;dx,float&nbsp;dy,int&nbsp;color); </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;在图形下面设置阴影层，产生阴影效果，radius为阴影的角度，dx和dy为阴影在x轴和y轴上的距离，color为阴影的颜色 </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp; </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;setStyle(Paint.Style&nbsp;style); </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;设置画笔的样式，为FILL，FILL_OR_STROKE，或STROKE </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp; </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;setStrokeCap(Paint.Cap&nbsp;cap); </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;当画笔样式为STROKE或FILL_OR_STROKE时，设置笔刷的图形样式，如圆形样式 </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Cap.ROUND,或方形样式Cap.SQUARE </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp; </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;setSrokeJoin(Paint.Join&nbsp;join); </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;设置绘制时各图形的结合方式，如平滑效果等 </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp; </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;setStrokeWidth(float&nbsp;width); </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;当画笔样式为STROKE或FILL_OR_STROKE时，设置笔刷的粗细度 </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp; </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;setXfermode(Xfermode&nbsp;xfermode); </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;设置图形重叠时的处理方式，如合并，取交集或并集，经常用来制作橡皮的擦除效果 </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp; </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;2.文本绘制 </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;setFakeBoldText(boolean&nbsp;fakeBoldText); </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;模拟实现粗体文字，设置在小字体上效果会非常差 </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp; </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;setSubpixelText(boolean&nbsp;subpixelText); </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;设置该项为true，将有助于文本在LCD屏幕上的显示效果 </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp; </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;setTextAlign(Paint.Align&nbsp;align); </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;设置绘制文字的对齐方向 </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp; </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;*&nbsp;setTextScaleX(float&nbsp;scaleX); </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;设置绘制文字x轴的缩放比例，可以实现文字的拉伸的效果 </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp; </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;setTextSize(float&nbsp;textSize); </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;设置绘制文字的字号大小 </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp; </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;setTextSkewX(float&nbsp;skewX); </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;设置斜体文字，skewX为倾斜弧度 </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp; </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;setTypeface(Typeface&nbsp;typeface); </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;设置Typeface对象，即字体风格，包括粗体，斜体以及衬线体，非衬线体等 </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp; </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;setUnderlineText(boolean&nbsp;underlineText); </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;设置带有下划线的文字效果 </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp; </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;setStrikeThruText(boolean&nbsp;strikeThruText); </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;设置带有删除线的效果 </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp; </span></span>&nbsp;</span></p>
+<p><span><span class="comment"><span style="color: #008200;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</span></span><span>&nbsp; <br></span></span></p>
+<p>&nbsp;</p>
+</div>
+<p><br>本文转自：abc20899.iteye.com/blog/1032802</p></div>
+<script type="text/javascript">
+if ($ != jQuery) {
+	$ = jQuery.noConflict();
+}
+var isLogined = false;
+var cb_blogId = 90110;
+var cb_entryId = 2223624;
+var cb_blogApp = "-OYK";
+var cb_blogUserGuid = "5841a275-9f9b-df11-ba8f-001cf0cd104b";
+var cb_entryCreatedDate = '2011/10/25 11:52:00';
+</script>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/-OYK/category/302675.html">Android</a></div>
+<div id="EntryTag"></div>
+<div id="green_channel" style="">
+绿色通道：<a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(cb_entryId,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a><a id="green_channel_follow" onclick="c_follow();" href="javascript:void(0);">关注我</a><a id="green_channel_favorite" onclick="AddToWz(2223624);return false;" href="javascript:void(0);">收藏该文</a><a id="green_channel_contact" href="http://space.cnblogs.com/msg/send/%e6%ac%a7%e9%98%b3%e6%98%86" target="_blank">与我联系</a>
+<a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./Android Paint和Color类 - 欧阳昆 - 博客园_files/icon_sina.gif" alt=""></a>
+</div>
+<div id="digg_block">
+<div id="author_profile">
+<div id="author_profile_info" class="author_profile_info">
+<div id="author_profile_detail" class="author_profile_info">
+<a href="http://home.cnblogs.com/u/-OYK/">欧阳昆</a><br><a href="http://home.cnblogs.com/u/-OYK/followees">关注 - 1</a><br><a href="http://home.cnblogs.com/u/-OYK/followers">粉丝 - 10</a></div>
+</div>
+<div class="clear"></div>
+<div id="author_profile_honor"></div>
+<div id="author_profile_follow"><a href="javascript:void(0);" onclick="c_follow();return false;">+加关注</a></div>
+</div>
+<div id="div_digg" style="">										
+	<div class="diggit" onclick="DiggIt(cb_entryId,cb_blogId,1)"> 
+		<span class="diggnum" id="digg_count">0</span>
+	</div>
+	<div class="buryit" onclick="DiggIt(cb_entryId,cb_blogId,2)"> 
+		<span class="burynum" id="bury_count">0</span>
+	</div>
+	<div class="clear"></div>	
+	<div class="diggword" id="digg_tips">(请您对文章做出评价)</div>	
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/-OYK/archive/2011/10/24/2222874.html" class="p_n_p_prefix">« </a> 博主前一篇：<a href="http://www.cnblogs.com/-OYK/archive/2011/10/24/2222874.html" title="发布于2011-10-24 17:18">Java的四种引用</a><br><a href="http://www.cnblogs.com/-OYK/archive/2011/10/30/2229620.html" class="p_n_p_prefix">» </a> 博主后一篇：<a href="http://www.cnblogs.com/-OYK/archive/2011/10/30/2229620.html" title="发布于2011-10-30 22:23">Android中View的绘制</a><br></div>
+</div>
+<script type="text/javascript">
+LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+</script>
+
+
+
+
+		</div>
+		<div class="postDesc">posted @ 2011-10-25 11:52 <a href="http://www.cnblogs.com/-OYK/">欧阳昆</a> 阅读(544) <a href="http://www.cnblogs.com/-OYK/archive/2011/10/25/2223624.html#commentform">评论(0)</a>  <a href="http://www.cnblogs.com/-OYK/archive/2011/10/25/2223624.html#" onclick="open_link(&#39;http://www.cnblogs.com/-OYK/admin/EditPosts.aspx?postid=2223624&#39;)" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/-OYK/archive/2011/10/25/2223624.html#" onclick="AddToWz(2223624);return false;">收藏</a></div>
+	</div>
+	<img src="./Android Paint和Color类 - 欧阳昆 - 博客园_files/2223624.html" width="1px" height="1px" alt="">
+	
+</div><!--end: topics 文章、评论容器-->
+
+<script type="text/javascript">
+    var commentAuthorHasChecked = false;
+    var commentAuthorIsValid = false;
+    var commentUrlIsValid = true;
+    var commentEmailIsValid = true;
+    var authenCodeHasChecked = false;
+    var authenCodeIsValid = true;
+    var hasLogined = false;
+    
+    function PostComment() {    
+        
+        var isValid = true;
+        
+        if($("#wrapAuthenCode").css("display")=="none"){
+            ShowAuthenCode();
+            $("#tip_AuthenCode").css("color","red");
+            $("#tip_AuthenCode").html("请输入验证码！");
+            isValid = false;
+        }
+        
+        if(!hasLogined && !commentAuthorHasChecked){
+            CheckAuthor();        
+        }                
+        if(!hasLogined && !commentAuthorIsValid){
+            isValid = false;
+        }
+                       
+        if(!authenCodeHasChecked){
+            CheckAuthenCode();            
+        }
+        if(!authenCodeIsValid){
+            isValid = false;
+        }
+        
+        if(!hasLogined && !commentUrlIsValid){            
+            isValid = false;
+        }        
+        if(!commentEmailIsValid){            
+            isValid = false;
+        }        
+        if(!CheckCommentContent()){
+            isValid = false;
+        }    
+        if(!isValid){
+            return;
+        }
+
+        var content = $("#tbCommentBody").val();
+        if(content.length>2000){
+            alert("评论内容过长！不允许发布！");
+            return;
+        }     
+        
+        if(content.indexOf("　Ｅ　　　　　　　　　Ｅ　　　　　　　　　　Ｅ　　　　　　")>=0){
+            alert("该内容不允许布！");
+            return;
+        }   
+        
+       if ($("#span_comment_posted").html()!='' && $("#span_comment_posted").html()==content){
+            alert("该评论已发表过!");
+            return;
+        }
+        
+        $("#tip_comment").html("评论提交中...");
+        $("#span_comment_posted").html(content);
+        //content = content.replace("'", "\\'");
+        var email = $("#tbCommentEmail").val();
+        var authenNum = $("#tbAuthenCode").val();
+        var authenId = $("#span_comment_test").html();
+        var comment = {};
+        comment.authenNum = authenNum;
+        comment.authenId= authenId;
+        comment.parentId = 0;
+        comment.blogId = 0;
+        comment.sourceUrl = '';
+        comment.author = $("#tbCommentAuthor").val();
+        comment.url = $("#tbCommentAuthorUrl").val();
+        comment.authenCode = $("#tbAuthenCode").val();
+        comment.email = email;
+        comment.title = '';
+        comment.content = content;
+        comment.parentCommentId = $("#span_parentcomment_id").html();
+        $.ajax({
+            url: '/ws/CommentService.asmx/AddAnonymousComment',
+            data: $.toJSON(comment),
+            type: "post",
+            dataType: "json",
+            contentType: "application/json; charset=utf8",
+            success: function(data) {
+               if (data.d["IsSuccess"]) {
+                    ShowCommentMsg("感谢您的回复:)");
+                    //RereshComments2(comment.parentId);
+                    $("#tbCommentBody").val('');
+                    //$("#divCommentShow").html(data.d["ReturnData"]+content.replace(/\n/g,"<br/>")+"<br/><br/>");
+                    $("#divCommentShow").html($("#divCommentShow").html()+data.d["ReturnData"]); 
+                    $("#tip_AuthenCode").html('');
+                    RefreshAuthenCode();
+                    $("#tbAuthenCode").val("");                    
+                    CommentNotify(data.d["CommentID"]);
+                }
+                else {
+                    ShowCommentMsg(data.d["ReturnData"]);//"抱歉！评论提交失败！请与管理员联系。");
+                    $("#span_comment_posted").html(''); 
+                }
+            },
+            error: function(xhr) {
+                ShowCommentMsg("抱歉！评论提交失败！请与管理员联系。");
+                $("#span_comment_posted").html('');  
+                //alert(xhr.responseText);
+            }
+        }
+        );
+    }
+    
+    function RefreshAuthenCode(){
+        AjaxPost("/ws/CommentService.asmx/RefreshAuthenCode","{}",RefreshImg); 
+        $("#lnkRereshAuthenCode").html("<span style='color:red'>刷新中...</span>");
+        return false;
+    }
+    
+    function RefreshImg(response){
+       $("#imgAuthenCode").attr("src","/Modules/CaptchaImage/ValidCodeImage.aspx?id="+encodeURIComponent(response));
+       $("#span_comment_test").html(response);
+       $("#lnkRereshAuthenCode").html("看不清，换一个");
+    }
+    
+    function ShowAuthenCode(){
+        //if($("#wrapAuthenCode").css("display")=="none"){    
+        //    AjaxPost("/ws/CommentService.asmx/RefreshAuthenCode","{}",ShowAuthenCodeOk);
+        //}
+        $("#wrapAuthenCode").show();      
+    }
+    
+    function ShowAuthenCodeOk(response){
+         UpdateAuthenCode();
+         $("#tbAuthenCode").val("");
+         $("#wrapAuthenCode").show();
+         $("#tip_AuthenCode").html('');
+    }  
+ 
+    
+    function CheckAuthor(isOnblur){
+        commentAuthorHasChecked = true;
+        var maxLength = 30;
+        if($("#tbCommentAuthor").val().length == 0){
+            $("#tip_author").html("请输入您的昵称！");
+            commentAuthorIsValid = false;
+            return false;
+        }     
+        else if($("#tbCommentAuthor").val().length > maxLength){
+            $("#tip_author").html("昵称不允许超过" + maxLength + "个字符！");
+            commentAuthorIsValid = false;
+            return false;
+        }
+        else{
+            //if(isOnblur){
+                AjaxPost("/ws/CommentService.asmx/IsAuthorExist","{author:'"+$("#tbCommentAuthor").val()+"'}" ,OnCheckAuthorExist);
+            //}
+            //else{
+            //    $("#tip_author").html("");
+            //    commentAuthorIsValid = true;
+            //}
+            return true;
+        }
+   }
+   
+    function OnCheckAuthorExist(response){        
+        if(!response){
+            $("#tip_author").html("");
+            commentAuthorIsValid = true;
+        }
+        else{
+            $("#tip_author").html("该昵称已被使用，请更换昵称");
+            commentAuthorIsValid = false;
+        }
+   }
+   
+    function CheckUrl(){
+        var maxLength = 50;
+        var url = $("#tbCommentAuthorUrl").val();
+        
+        if(url.length == 0){
+            commentUrlIsValid = true;
+            return true;
+        }
+        else if(url.length > maxLength){
+            $("#tip_url").html("主页地址不允许超过" + maxLength + "个字符！");
+            commentUrlIsValid = false;
+            return false;
+        }
+        else if(url.indexOf("http://")!=0 || url.indexOf(".") < 0){
+            $("#tip_url").html("主页地址要以“http://”开头");
+            commentUrlIsValid = false;
+            return false;
+        }
+        else{
+            $("#tip_url").html("");
+            commentUrlIsValid = true;
+            return true;
+        }
+   }
+   
+   function CheckEmail(){
+        var email = $("#tbCommentEmail").val();
+        if(email.length>0){
+            var regExp = new RegExp("\\w+@((\\w|\-)+\\.)+[a-z]{2,3}");
+            if(!regExp.test(email)){
+                $("#tip_email").html("请输入正确的邮件地址!");
+                commentEmailIsValid = false;
+            }
+            else{
+                commentEmailIsValid = true;
+                 $("#tip_email").html("");
+            }
+        }
+        else{
+            commentEmailIsValid = true;
+            $("#tip_email").html("");  
+        }
+   }
+   
+   function CheckAuthenCode(){
+        authenCodeHasChecked = true;
+        var num = $("#tbAuthenCode").val();
+        var id = $("#span_comment_test").html();
+        $("#tip_AuthenCode").css("color","red");
+        if(num.length==0){
+             authenCodeIsValid = false;
+             $("#tip_AuthenCode").html("请输入验证码！");
+             return;
+        }
+        else if(num.length!=4){
+            authenCodeIsValid = false;
+            $("#tip_AuthenCode").html("请输入四位数字！");
+             return;
+        }
+        else if(new RegExp("(\d+)").test(num)){
+            authenCodeIsValid = false;
+            $("#tip_AuthenCode").html("请输入四位数字！");
+             return;
+        }
+        else{
+            AjaxPost("/ws/CommentService.asmx/CheckAuthenCode","{number:"+num+",id:'"+id+"'}", OnCheckAuthenCode);
+        }
+   }
+   
+   function OnCheckAuthenCode(response){
+        if(response){
+            $("#tip_AuthenCode").css("color","green");
+            $("#tip_AuthenCode").html("验证码输入正确！");
+            authenCodeIsValid = true;            
+        }
+        else{
+            $("#tip_AuthenCode").css("color","red");
+            $("#tip_AuthenCode").html("验证码输错啦！");
+            RefreshAuthenCode();
+            authenCodeIsValid = false;           
+        }
+   }
+   
+   function CheckCommentContent(){
+    if($("#tbCommentBody").val().length==0){
+        alert("请输入评论内容！");
+        return false;
+    }
+    return true;
+   }
+    
+</script>
+<div id="ctl03_comment_form" class="commentform">
+
+<script type="text/javascript">
+    try {
+        SyntaxHighlighter.all();
+        isSyntaxHighlighted = true;
+    } catch (e) { }
+</script>
+
+
+<div id="ctl03_divLoginPannel">
+<div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="http://passport.cnblogs.com/login.aspx?ReturnUrl=http%3a%2f%2fwww.cnblogs.com%2f-OYK%2farchive%2f2011%2f10%2f25%2f2223624.html%3flogin%3d1%23commentform" class="underline">登录</a> 或 <a rel="nofollow" href="http://passport.cnblogs.com/register.aspx?ReturnUrl=http%3a%2f%2fwww.cnblogs.com%2f-OYK%2farchive%2f2011%2f10%2f25%2f2223624.html%23Bottom2" class="underline">注册</a>，<a href="http://www.cnblogs.com/" target="_blank">返回博客园首页</a>。</div>
+</div>
+
+<div id="clear_read_link"><a href="http://archive.cnblogs.com/a/2223624/" target="_blank">简洁阅读版式</a></div>
+<script type="text/javascript">
+    $("#clear_read_link").html('<a href="http://archive.cnblogs.com/a/' + cb_entryId + '/" target="_blank">简洁阅读版式</a>')
+</script>
+<div id="site_nav_under">
+<a href="http://www.cnblogs.com/" target="_blank" title="程序员的网上家园">首页</a><a href="http://q.cnblogs.com/" target="_blank">博问</a><a href="http://home.cnblogs.com/ing/" target="_blank">闪存</a><a href="http://news.cnblogs.com/" target="_blank" title="IT新闻">新闻</a><a href="http://home.cnblogs.com/" target="_blank">园子</a><a href="http://job.cnblogs.com/" target="_blank" title="程序员招聘">招聘</a><a href="http://kb.cnblogs.com/" target="_blank">知识库</a> 
+<div id="site_editor_opt"></div>
+<script type="text/javascript">
+    if (isLogined) {
+        showEditorOpt();
+    }
+</script>
+</div>
+
+<div class="itnews c_ad_block">
+<b>最新IT新闻</b>:<br>
+
+          ·  <a href="http://news.cnblogs.com/n/131203/" target="_blank">阿尔卡特将整合 Wi-Fi 和手机网络</a><br>
+	
+          ·  <a href="http://news.cnblogs.com/n/131202/" target="_blank">消息称苹果准备更新 Mac Pro 搭载 NVIDIA 显卡</a><br>
+	
+          ·  <a href="http://news.cnblogs.com/n/131201/" target="_blank">1699元 电信版小米手机明日起摇号发售</a><br>
+	
+          ·  <a href="http://news.cnblogs.com/n/131200/" target="_blank">黑莓遭弃 美国政府采购部门转投iPhone</a><br>
+	
+          ·  <a href="http://news.cnblogs.com/n/131199/" target="_blank">苹果CEO库克演讲实录：对工人环境相当重视</a><br>
+	
+» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a>
+</div>
+
+
+<div class="itnews c_ad_block" id="kb_block">
+<b>最新知识库文章</b>:<br>
+<div id="kb_recent">
+
+·  <a href="http://kb.cnblogs.com/page/131138/" target="_blank">进入2012 -- 回顾我走过的编程之路</a><br>
+
+·  <a href="http://kb.cnblogs.com/page/131117/" target="_blank">如何学习编程</a><br>
+
+·  <a href="http://kb.cnblogs.com/page/131105/" target="_blank">学编程关键在动手，提高在实践</a><br>
+
+·  <a href="http://kb.cnblogs.com/page/131093/" target="_blank">十年程序员</a><br>
+
+·  <a href="http://kb.cnblogs.com/page/130970/" target="_blank">HTTP 协议详解</a><br>
+
+</div>
+» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a>
+</div>
+
+<script type="text/javascript">
+    var enableGoogleAd = true;
+    enableGoogleAd = $("#cnblogs_post_body").text().length > 500;
+</script>
+<script type="text/javascript">
+    var googletag = googletag || {};
+    googletag.cmd = googletag.cmd || [];
+    (function () {
+        if(enableGoogleAd){
+            var gads = document.createElement('script');
+            gads.async = true;
+            gads.type = 'text/javascript';
+            gads.src = 'http://common.cnblogs.com/script/gpt.js';
+            var node = document.getElementsByTagName('script')[0];
+            node.parentNode.insertBefore(gads, node);
+        }
+    })();
+</script>
+
+<script type="text/javascript">
+    if (enableGoogleAd) {
+        try {
+            googletag.cmd.push(function () {
+                googletag.defineSlot('/1090369/cnblogs_blogpost_C1', [300, 250], 'div-gpt-ad-1320933818841-0').addService(googletag.pubads());
+                googletag.defineSlot('/1090369/cnblogs_blogpost_C2', [468, 60], 'div-gpt-ad-1320933818841-1').addService(googletag.pubads());
+                googletag.pubads().enableSingleRequest();
+                googletag.enableServices();
+            });
+        } catch (e) { }
+    }
+</script>
+<div id="google_ad_c1" class="c_ad_block">
+<!-- cnblogs_blogpost_C1 -->
+<div id="div-gpt-ad-1320933818841-0" style="width:300px; height:250px;">
+<script type="text/javascript">
+    if (enableGoogleAd) {
+        try {
+            googletag.cmd.push(function () { googletag.display('div-gpt-ad-1320933818841-0'); });
+        } catch (e) { }       
+    }
+</script>
+<iframe id="google_ads_iframe_/1090369/cnblogs_blogpost_C1_0" name="google_ads_iframe_/1090369/cnblogs_blogpost_C1_0" width="300" height="250" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; "></iframe><iframe id="google_ads_iframe_/1090369/cnblogs_blogpost_C1_0__hidden__" name="google_ads_iframe_/1090369/cnblogs_blogpost_C1_0__hidden__" width="0" height="0" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; visibility: hidden; display: none; "></iframe></div>
+</div>
+<div id="google_ad_c2" class="c_ad_block">
+<!-- cnblogs_blogpost_C2 -->
+<div id="div-gpt-ad-1320933818841-1" style="width:468px; height:60px;">
+<script type="text/javascript">
+    if (enableGoogleAd) {
+        try {
+            googletag.cmd.push(function () { googletag.display('div-gpt-ad-1320933818841-1'); });
+        } catch (e) { }
+        
+    }
+</script>
+<iframe id="google_ads_iframe_/1090369/cnblogs_blogpost_C2_0" name="google_ads_iframe_/1090369/cnblogs_blogpost_C2_0" width="468" height="60" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; "></iframe></div>
+</div>
+<div id="ad_under_comment2" class="c_ad_block" style="">
+<a href="http://www.china-pub.com/STATIC07/1107/2011chinapub_6810_110718/2011chinapub_6810_110718.asp" target="_blank" rel="nofollow"><img src="./Android Paint和Color类 - 欧阳昆 - 博客园_files/china-pub.jpg" alt="" style="border:0px;"></a><br>
+<a href="http://www.china-pub.com/STATIC07/1107/zh_autumntb_110725/zh_autumntb_110725.asp" target="_blank" rel="nofollow">China-pub 2011秋季教材巡展</a><br>
+<a href="http://www.china-pub.com/static07/0901/zh_jueba_090121.asp" target="_blank" rel="nofollow">China-Pub 计算机绝版图书按需印刷服务</a><br>
+</div>
+<script type="text/javascript">
+    if (enableGoogleAd) {
+        if (document.getElementById("ad_under_comment2")) {
+            $("#ad_under_comment2").show();
+        }
+    }
+    else {
+        $("#google_ad_c1").hide();
+        $("#google_ad_c2").hide();
+    }
+</script>
+<div id="HistoryToday" class="c_ad_block">
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+    });
+</script>
+
+
+
+
+</div>
+
+
+			
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/-OYK/">欧阳昆</a><br>园龄：<a href="http://home.cnblogs.com/u/-OYK/" title="入园时间：2010-07-30">1年6个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/-OYK/followers/">10</a><br>关注：<a href="http://home.cnblogs.com/u/-OYK/followees/">1</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="cnblogs.UserManager.FollowBlogger(&#39;5841a275-9f9b-df11-ba8f-001cf0cd104b&#39;)">+加关注</a></div><script type="text/javascript">cnblogs.UserManager.GetFollowStatus('5841a275-9f9b-df11-ba8f-001cf0cd104b')</script></div>
+</div>
+
+			<div id="calendar"><table id="Calendar1_entryCal" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:__doPostBack('Calendar1$entryCal','V4261')" style="color:Black" title="Go to the previous month">&lt;</a></td><td align="center">2011年10月</td><td class="CalNextPrev" align="right"><a href="javascript:__doPostBack('Calendar1$entryCal','V4322')" style="color:Black" title="Go to the next month">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">25</td><td class="CalOtherMonthDay" align="center">26</td><td class="CalOtherMonthDay" align="center">27</td><td class="CalOtherMonthDay" align="center">28</td><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td class="CalWeekendDay" align="center">1</td></tr><tr><td class="CalWeekendDay" align="center">2</td><td align="center">3</td><td align="center">4</td><td align="center">5</td><td align="center">6</td><td align="center">7</td><td class="CalWeekendDay" align="center">8</td></tr><tr><td class="CalWeekendDay" align="center">9</td><td align="center">10</td><td align="center">11</td><td align="center">12</td><td align="center">13</td><td align="center">14</td><td class="CalWeekendDay" align="center">15</td></tr><tr><td class="CalWeekendDay" align="center">16</td><td align="center">17</td><td align="center">18</td><td align="center">19</td><td align="center">20</td><td align="center">21</td><td class="CalWeekendDay" align="center">22</td></tr><tr><td class="CalWeekendDay" align="center">23</td><td align="center"><a href="http://www.cnblogs.com/-OYK/archive/2011/10/24.html"><u>24</u></a></td><td align="center"><a href="http://www.cnblogs.com/-OYK/archive/2011/10/25.html"><u>25</u></a></td><td align="center">26</td><td align="center">27</td><td align="center">28</td><td class="CalWeekendDay" align="center">29</td></tr><tr><td class="CalWeekendDay" align="center"><a href="http://www.cnblogs.com/-OYK/archive/2011/10/30.html"><u>30</u></a></td><td align="center">31</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td></tr>
+</tbody></table>
+</div>
+			
+			<div id="leftcontentcontainer">
+				
+<script type="text/javascript">
+    var blogapp = '-OYK';
+</script>
+<div class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="SingleColumn1_ctl00_widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+
+
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+
+		<li><a id="SingleColumn1_ctl01_rptMainLinks_lnkLinkItem_0" href="http://www.cnblogs.com/-OYK/MyPosts.html">我的随笔</a></li>
+	
+		<li><a id="SingleColumn1_ctl01_rptMainLinks_lnkLinkItem_1" href="http://www.cnblogs.com/-OYK/MyComments.html">我的评论</a></li>
+	
+		<li><a id="SingleColumn1_ctl01_rptMainLinks_lnkLinkItem_2" title="我发表过评论的随笔" href="http://www.cnblogs.com/-OYK/OtherPosts.html">我的参与</a></li>
+	
+		<li><a id="SingleColumn1_ctl01_rptMainLinks_lnkLinkItem_3" href="http://www.cnblogs.com/-OYK/RecentComments.html">最新评论</a></li>
+	
+		<li><a id="SingleColumn1_ctl01_rptMainLinks_lnkLinkItem_4" href="http://www.cnblogs.com/-OYK/tag/">我的标签</a></li>
+	
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div>
+<div class="catListPostCategory">
+<h3 class="catListTitle">随笔分类</h3>
+
+<ul>
+
+<li><a id="SingleColumn1_Categories_CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/-OYK/category/302675.html">Android(43)</a> <a id="SingleColumn1_Categories_CatList_LinkList_0_RssLink_0" href="http://www.cnblogs.com/-OYK/archive/2011/10/25/2223624.html#" onclick="return open_link(&#39;http://www.cnblogs.com/-OYK/category/302675.html/rss&#39;);">(rss)</a></li>
+
+<li><a id="SingleColumn1_Categories_CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/-OYK/category/302676.html">C/C++(1)</a> <a id="SingleColumn1_Categories_CatList_LinkList_0_RssLink_1" href="http://www.cnblogs.com/-OYK/archive/2011/10/25/2223624.html#" onclick="return open_link(&#39;http://www.cnblogs.com/-OYK/category/302676.html/rss&#39;);">(rss)</a></li>
+
+<li><a id="SingleColumn1_Categories_CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/-OYK/category/302677.html">Java(5)</a> <a id="SingleColumn1_Categories_CatList_LinkList_0_RssLink_2" href="http://www.cnblogs.com/-OYK/archive/2011/10/25/2223624.html#" onclick="return open_link(&#39;http://www.cnblogs.com/-OYK/category/302677.html/rss&#39;);">(rss)</a></li>
+
+</ul>
+
+</div>
+
+<div class="catListPostArchive">
+<h3 class="catListTitle">随笔档案</h3>
+
+<ul>
+
+<li><a id="SingleColumn1_Categories_CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/-OYK/archive/2012/02.html">2012年2月 (5)</a> </li>
+
+<li><a id="SingleColumn1_Categories_CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/-OYK/archive/2012/01.html">2012年1月 (1)</a> </li>
+
+<li><a id="SingleColumn1_Categories_CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/-OYK/archive/2011/12.html">2011年12月 (1)</a> </li>
+
+<li><a id="SingleColumn1_Categories_CatList_LinkList_1_Link_3" href="http://www.cnblogs.com/-OYK/archive/2011/11.html">2011年11月 (3)</a> </li>
+
+<li><a id="SingleColumn1_Categories_CatList_LinkList_1_Link_4" href="http://www.cnblogs.com/-OYK/archive/2011/10.html">2011年10月 (3)</a> </li>
+
+<li><a id="SingleColumn1_Categories_CatList_LinkList_1_Link_5" href="http://www.cnblogs.com/-OYK/archive/2011/08.html">2011年8月 (12)</a> </li>
+
+<li><a id="SingleColumn1_Categories_CatList_LinkList_1_Link_6" href="http://www.cnblogs.com/-OYK/archive/2011/07.html">2011年7月 (3)</a> </li>
+
+<li><a id="SingleColumn1_Categories_CatList_LinkList_1_Link_7" href="http://www.cnblogs.com/-OYK/archive/2011/06.html">2011年6月 (14)</a> </li>
+
+<li><a id="SingleColumn1_Categories_CatList_LinkList_1_Link_8" href="http://www.cnblogs.com/-OYK/archive/2011/05.html">2011年5月 (9)</a> </li>
+
+</ul>
+
+</div>
+
+
+
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+	<div id="RecentCommentsBlock"><ul>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/-OYK/archive/2011/06/16/2082413.html#2283208">1. Re:activity和task的设计思路和方法</a></li>
+    <li class="recent_comment_body"><a href="http://www.cnblogs.com/-OYK/archive/2011/10/25/2223624.html#2126818" title="查看所回复的评论">@</a>customevalidator<br>看看设置一下launcheMode，是否能够满足需求。</li>
+    <li class="recent_comment_author">--ベ詩・夢ン</li>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/-OYK/archive/2011/05/31/2064781.html#2271976">2. Re:ListView中getView的原理＋如何在ListView中放置多个item</a></li>
+    <li class="recent_comment_body">有个问题， 当不同的view type 要inflate的view里面格式不同 <br>比如第一个是一个textview 第2个是一个imageview 这个时候 viewholder就会出问题了</li>
+    <li class="recent_comment_author">--MudooT</li>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/-OYK/archive/2011/05/31/2064781.html#2190168">3. Re:ListView中getView的原理＋如何在ListView中放置多个item</a></li>
+    <li class="recent_comment_body">恩，好文章，正好是之前疑问的地方。后边的例子说明少了点，暂时没看懂，回头细看下。</li>
+    <li class="recent_comment_author">--敲敲大葱头</li>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/-OYK/archive/2011/05/31/2064781.html#2186811">4. Re:ListView中getView的原理＋如何在ListView中放置多个item</a></li>
+    <li class="recent_comment_body">好文啊 ！顶楼主！！最喜欢看这种深入的文了！楼主加油！</li>
+    <li class="recent_comment_author">--yyjaaa</li>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/-OYK/archive/2011/05/31/2064775.html#2186431">5. Re:android屏幕截图</a></li>
+    <li class="recent_comment_body"><a href="http://www.cnblogs.com/-OYK/archive/2011/10/25/2223624.html#2186370" title="查看所回复的评论">@</a>能想的呆子<br><br>抓取当前屏幕的截图，如果能看到壁纸的话，那也能抓，呵呵</li>
+    <li class="recent_comment_author">--欧阳昆</li>
+</ul>
+</div>
+</div>
+
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/-OYK/archive/2011/08/03/2126657.html">1. Android的消息机制，用Android线程间通信的Message机制，Android中Handler的使用方法——在子线程中更新界面，handler机制(2859)</a></li><li><a href="http://www.cnblogs.com/-OYK/archive/2011/05/31/2064797.html">2. Android创建和删除桌面快捷方式(1787)</a></li><li><a href="http://www.cnblogs.com/-OYK/archive/2011/07/31/2122981.html">3. android IPC及原理简介(1279)</a></li><li><a href="http://www.cnblogs.com/-OYK/archive/2011/06/14/2080796.html">4. Android 中支持的几种传感器(1220)</a></li><li><a href="http://www.cnblogs.com/-OYK/archive/2011/05/31/2064775.html">5. android屏幕截图(932)</a></li></ul></div>
+</div>
+
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/-OYK/archive/2011/05/31/2064781.html">1. ListView中getView的原理＋如何在ListView中放置多个item(6)</a></li><li><a href="http://www.cnblogs.com/-OYK/archive/2011/05/31/2064775.html">2. android屏幕截图(2)</a></li><li><a href="http://www.cnblogs.com/-OYK/archive/2011/06/16/2082413.html">3. activity和task的设计思路和方法(2)</a></li><li><a href="http://www.cnblogs.com/-OYK/archive/2011/06/15/2081367.html">4. ListView 滚动翻页/滚动加载(类似Android Market的列表)(2)</a></li><li><a href="http://www.cnblogs.com/-OYK/archive/2011/06/15/2081503.html">5. C++ 与 JAVA的不同点(1)</a></li></ul></div>
+</div>
+
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/-OYK/archive/2011/05/31/2064797.html">1. Android创建和删除桌面快捷方式(3)</a></li><li><a href="http://www.cnblogs.com/-OYK/archive/2011/05/31/2064802.html">2. 区分Activity的四种加载模式(2)</a></li><li><a href="http://www.cnblogs.com/-OYK/archive/2011/06/15/2081358.html">3. 使用Shape美化Android控件(1)</a></li><li><a href="http://www.cnblogs.com/-OYK/archive/2011/06/01/2067231.html">4. Drawable资源(1)</a></li><li><a href="http://www.cnblogs.com/-OYK/archive/2011/06/01/2067206.html">5. Android事件模型(1)</a></li></ul></div>
+</div>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2012 欧阳昆
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+</form> 
+<script type="text/javascript">
+    if (!isSyntaxHighlighted) {
+        try {
+            SyntaxHighlighter.all();
+        } catch (e) { }
+    }
+</script>
+<script type="text/javascript" src="./Android Paint和Color类 - 欧阳昆 - 博客园_files/ShowHidden.js"></script>
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-476124-1']);
+    _gaq.push(['_setDomainName', 'cnblogs.com']);
+    _gaq.push(['_trackPageview']);
+
+    (function () {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+
+</body></html>

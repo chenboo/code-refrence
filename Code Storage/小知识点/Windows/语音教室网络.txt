@@ -1,0 +1,32 @@
+//有关语音教室网络层；
+//1>语音教室的网络层有三个
+//第一个是groupmessage
+//第二个是可靠组播CCommandTransaction
+//第三个是comlayer，主要处理事务transaction的一些事件
+
+//1)groupmessage
+//CGroupLeader	m_groupMember;
+
+class CGroupLeader : public CGroupMember
+
+//CGroupLeader继承自CGroupMember，这是一个对使用UDP发送和接收
+//信息的sockets的一个封装，在主程序中它的用途是给学生端发送功能命令
+//在CGroupMember中有一个线程，用来不停的接收发自这个端口和地址的数据
+//通过LRESULT CTeacherDlg::OnMemberAction(WPARAM wParam, LPARAM lParam)函数
+//反馈到教师端，教师端对这些信息进行分门别类的处理。
+
+//值得一提的是通过这个CGroupMember发送的信息并不是可靠的，为了保证这个网络层的可靠性
+//在程序中使用了annouce处理，在学生端运行起来后，学生将会不断的向教室发送Annouce消息，报告自己当前所处的状态
+//教师端收到Annouce信息后，就将学生的信息与自己内部保存的关于该学生的信息的进行比对，如果不同，就向学生
+//发送相应的功能命令，使之与教师端同步
+//整个m_groupMember;就是这样，其实并不复杂，归根到底就是使用网络层加入组播，进行收发，上层再通过
+//某些措施使之可靠化。
+
+//2)可靠组播CCommandTransaction
+//它其实就是一个Transaction专门用来发送一些命令，它之所以可靠是因为它会在
+//时间到达时再次发送这个命令
+
+//3)comlayer
+//一些与事务有关的消息命令都是用它进行发送，以达到集成的目的
+//不然信息会变得杂乱无章
+

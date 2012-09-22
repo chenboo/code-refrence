@@ -1,0 +1,23 @@
+//显示和设置文本插入符
+
+//要显示插入符，要先创建插入符，创建插入符的函数有:
+1>void CreateSolidCaret(
+   int nWidth,
+   int nHeight 
+);
+
+//用于创建一个实形的插入符:
+
+2>BOOL CreateCaret(
+    HWND hWnd,
+    HBITMAP hBitmap,
+    int nWidth,
+    int nHeight
+);
+
+//用于创建一个图形插入符，当hBitmap为NULL时创建一个实形插入符
+
+//创建完成之后要进行显示，调用函数
+ShowCaret();
+显示插入符。
+

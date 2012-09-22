@@ -1,0 +1,5 @@
+LIBRARY		"TestDll"
+
+EXPORTS
+PengJia
+PengJian

@@ -1,0 +1,731 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0047)http://www.eoeandroid.com/thread-97532-1-1.html -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Andorid c++与java方法互调（六） - Android 底层开发与源码研究 -  eoe·Android开发者门户 -  Powered by Discuz!</title>
+<meta name="author" content="eoeandroid.com"> 
+<meta name="verify-v1" content="k/+8aFx6rZOlLWStA5QpNwX2wMC0ZjzwA4KA1m81tRM=">
+<link href="./Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!_files/Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!.htm" rel="canonical">
+<meta name="keywords" content="Andorid c++与java方法互调（六）">
+<meta name="description" content=" Andorid c++与java方法互调（六） ,eoe·Android开发者门户">
+<meta name="generator" content="Discuz! X2">
+<meta name="author" content="Discuz! Team and Comsenz UI Team">
+<meta name="copyright" content="2001-2011 Comsenz Inc.">
+<meta name="MSSmartTagsPreventParsing" content="True">
+<meta http-equiv="MSThemeCompatible" content="Yes">
+<!--<base href="http://www.eoeandroid.com/">--><base href="."><link rel="stylesheet" type="text/css" href="./Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!_files/style_2_common.css"><link rel="stylesheet" type="text/css" href="./Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!_files/style_2_forum_viewthread.css"><script type="text/javascript" async="" src="./Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!_files/ga.js"></script><script type="text/javascript">var STYLEID = '2', STATICURL = 'static/', IMGDIR = 'static/image/common', VERHASH = 'NYE', charset = 'utf-8', discuz_uid = '0', cookiepre = 'M9xo_2132_', cookiedomain = '', cookiepath = '/', showusercard = '1', attackevasive = '0', disallowfloat = 'tradeorder|activity|debate|usergroups', creditnotice = '1|e望|点,4|e币|元,5|e脉|条', defaultstyle = '', REPORTURL = 'aHR0cDovL3d3dy5lb2VhbmRyb2lkLmNvbS90aHJlYWQtOTc1MzItMS0xLmh0bWw=', SITEURL = 'http://www.eoeandroid.com/', JSPATH = 'static/js/';</script>
+<script src="./Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!_files/common.js" type="text/javascript"></script><meta name="application-name" content="eoe·Android开发者门户">
+<meta name="msapplication-tooltip" content="eoe·Android开发者门户">
+<meta name="msapplication-task" content="name=首页;action-uri=http://www.eoeandroid.com/portal.php;icon-uri=http://www.eoeandroid.com/static/image/common/portal.ico"><meta name="msapplication-task" content="name=开发者社区;action-uri=http://www.eoeandroid.com/forum.php;icon-uri=http://www.eoeandroid.com/static/image/common/bbs.ico">
+<meta name="msapplication-task" content="name=家园;action-uri=http://www.eoeandroid.com/home.php;icon-uri=http://www.eoeandroid.com/static/image/common/home.ico"><link rel="archives" title="eoe·Android开发者门户" href="http://www.eoeandroid.com/archiver/">
+<script src="./Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!_files/forum.js" type="text/javascript"></script>
+</head>
+
+<body id="nv_forum" class="pg_viewthread" onkeydown="if(event.keyCode==27) return false;"><link href="./Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!_files/jiathis_share.css" rel="stylesheet" type="text/css"><div id="ckepop" style="height: auto; position: fixed; z-index: 100000000; top: 150px; left: -242px; overflow-x: auto; overflow-y: auto; "><table cellpadding="0" cellspacing="0"><tbody style="background:transparent"><tr><td><div><div class="jiadiv_01"><div style="width:100%;background:#F2F2F2;border-bottom:1px solid #E5E5E5;line-height:200%;padding-left:5px;font-size:12px"><table width="100%"><tbody><tr class="jt_sharetitle"><td align="left" style="text-align:left;line-height:25px;font-size:14px;font-weight:bold;color:#000000;">分享到...</td><td align="right" style="text-align:right;"><img src="./Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!_files/img_exit.gif" border="0" style="opacity:0.5;filter:alpha(opacity=50);margin:0 10px;cursor:pointer;" onclick="$CKE.shareClose();"></td></tr></tbody></table></div><div class="jiadiv_02" style="width:100%;" id="jiathis_sers"><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;copy&#39;);return false;" class="jiatitle"><span class="jtico jtico_copy">复制网址</span></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;email&#39;);return false;" class="jiatitle"><span class="jtico jtico_email">邮件</span></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;qzone&#39;);return false;" class="jiatitle"><span class="jtico jtico_qzone">QQ空间</span></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;tsina&#39;);return false;" class="jiatitle"><span class="jtico jtico_tsina">新浪微博</span></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;msn&#39;);return false;" class="jiatitle"><span class="jtico jtico_msn">MSN</span></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;tqq&#39;);return false;" class="jiatitle"><span class="jtico jtico_tqq">腾讯微博</span></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;renren&#39;);return false;" class="jiatitle"><span class="jtico jtico_renren">人人网</span></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;kaixin001&#39;);return false;" class="jiatitle"><span class="jtico jtico_kaixin001">开心网</span></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;t163&#39;);return false;" class="jiatitle"><span class="jtico jtico_t163">网易微博</span></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;tsohu&#39;);return false;" class="jiatitle"><span class="jtico jtico_tsohu">搜狐微博</span></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;xiaoyou&#39;);return false;" class="jiatitle"><span class="jtico jtico_xiaoyou">朋友网</span></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;tieba&#39;);return false;" class="jiatitle"><span class="jtico jtico_tieba">百度贴吧</span></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;taobao&#39;);return false;" class="jiatitle"><span class="jtico jtico_taobao">淘江湖</span></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;baidu&#39;);return false;" class="jiatitle"><span class="jtico jtico_baidu">百度搜藏</span></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;douban&#39;);return false;" class="jiatitle"><span class="jtico jtico_douban">豆瓣</span></a><a href="http://www.eoeandroid.com/#" onclick="$CKE.center(this);return false;" class="jiatitle"><span class="jtico jtico_jiathis">查看更多(115)</span></a><div style="clear:both"></div></div><div class="ckepopBottom" style="width:100%;"><div style="float:left;font-size:10px"><a href="http://www.jiathis.com/help/html/what-is-jiathis" class="link_01" style="color:#333333;" target="_blank">这是什么工具?</a></div><div style="float:right;font-size:11px;margin:0 5px 0 0;"><img src="./Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!_files/img_012.gif" align="absmiddle" border="0"><a href="http://www.jiathis.com/" style="color:#333333;padding:0 3px;" class="link_01" target="_blank">JiaThis</a></div><div style="clear:both"></div></div></div></div></td><td><img src="./Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!_files/l1.gif" style="cursor:pointer;" onmouseover="$CKE.over()" onclick="$CKE.center(this)"></td></tr></tbody></table></div><iframe style="position: absolute; display: none; " frameborder="0"></iframe><div id="ckepop" style="height: auto; position: absolute; z-index: 100000000; display: none; top: 50%; left: 50%; overflow-x: auto; overflow-y: auto; "><div style="border:10px solid #7F7F7F; width:300px;"><div class="jiadiv_01" style="width:300px;"><div style="background:#F2F2F2;line-height:100%;height:30px;overflow:hidden;width:300px;"><table width="100%" style="margin:5px 0 0 0;"><tbody><tr class="jt_sharetitle" style="line-height:20px!important;"><td align="left" style="text-align:left;font-size:12px;">分享到各大网站</td><td align="right"><img src="./Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!_files/img_exit.gif" border="0" style="margin:0 4px;cursor:pointer;" onclick="$CKE.centerClose();"></td></tr></tbody></table></div><div class="searchTxtCont"><div style="background:url(http://v1.jiathis.com/code/images/img_so.gif) no-repeat center;height:30px; width:281px"><input class="searchTxt" name="" type="text" onclick="this.value=&#39;&#39;;this.style.color=&#39;#000&#39;;" value="输入网站名或拼音缩写" onkeyup="$CKE.choose(this)"></div></div><div id="ckelist" class="jiadiv_02"><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;copy&#39;);return false;" class="jiatitle"><span class="jtico jtico_copy">复制网址</span><input type="hidden" value="copy,复制网址,fzwz"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;fav&#39;);return false;" class="jiatitle"><span class="jtico jtico_fav">收藏夹</span><input type="hidden" value="fav,收藏夹,scj"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;print&#39;);return false;" class="jiatitle"><span class="jtico jtico_print">打印</span><input type="hidden" value="print,打印,dy"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;email&#39;);return false;" class="jiatitle"><span class="jtico jtico_email">邮件</span><input type="hidden" value="email,邮件,yj"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;qzone&#39;);return false;" class="jiatitle"><span class="jtico jtico_qzone">QQ空间</span><input type="hidden" value="qzone,QQ空间,qqkj"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;tsina&#39;);return false;" class="jiatitle"><span class="jtico jtico_tsina">新浪微博</span><input type="hidden" value="tsina,新浪微博,xlwb"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;tqq&#39;);return false;" class="jiatitle"><span class="jtico jtico_tqq">腾讯微博</span><input type="hidden" value="tqq,腾讯微博,txwb"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;tsohu&#39;);return false;" class="jiatitle"><span class="jtico jtico_tsohu">搜狐微博</span><input type="hidden" value="tsohu,搜狐微博,shwb"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;t163&#39;);return false;" class="jiatitle"><span class="jtico jtico_t163">网易微博</span><input type="hidden" value="t163,网易微博,wywb"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;renren&#39;);return false;" class="jiatitle"><span class="jtico jtico_renren">人人网</span><input type="hidden" value="renren,人人网,rrw"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;kaixin001&#39;);return false;" class="jiatitle"><span class="jtico jtico_kaixin001">开心网</span><input type="hidden" value="kaixin001,开心网,kxw"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;sohu&#39;);return false;" class="jiatitle"><span class="jtico jtico_sohu">搜狐白社会</span><input type="hidden" value="sohu,搜狐白社会,shbsh"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;taobao&#39;);return false;" class="jiatitle"><span class="jtico jtico_taobao">淘江湖</span><input type="hidden" value="taobao,淘江湖,tjh"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;douban&#39;);return false;" class="jiatitle"><span class="jtico jtico_douban">豆瓣</span><input type="hidden" value="douban,豆瓣,db"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;xiaoyou&#39;);return false;" class="jiatitle"><span class="jtico jtico_xiaoyou">朋友网</span><input type="hidden" value="xiaoyou,朋友网,pyw"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;mop&#39;);return false;" class="jiatitle"><span class="jtico jtico_mop">猫扑推客</span><input type="hidden" value="mop,猫扑推客,mptk"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;baidu&#39;);return false;" class="jiatitle"><span class="jtico jtico_baidu">百度搜藏</span><input type="hidden" value="baidu,百度搜藏,bdsc"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;tieba&#39;);return false;" class="jiatitle"><span class="jtico jtico_tieba">百度贴吧</span><input type="hidden" value="tieba,百度贴吧,bdtb"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;tianya&#39;);return false;" class="jiatitle"><span class="jtico jtico_tianya">天涯社区</span><input type="hidden" value="tianya,天涯社区,tysq"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;tifeng&#39;);return false;" class="jiatitle"><span class="jtico jtico_tifeng">凤凰微博</span><input type="hidden" value="tifeng,凤凰微博,fhwb"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;qu1&#39;);return false;" class="jiatitle"><span class="jtico jtico_qu1">趣一网</span><input type="hidden" value="qu1,趣一网,qyw"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;feixin&#39;);return false;" class="jiatitle"><span class="jtico jtico_feixin">飞信</span><input type="hidden" value="feixin,飞信,fx"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;youshi&#39;);return false;" class="jiatitle"><span class="jtico jtico_youshi">优士网</span><input type="hidden" value="youshi,优士网,ysw"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;fanfou&#39;);return false;" class="jiatitle"><span class="jtico jtico_fanfou">饭否</span><input type="hidden" value="fanfou,饭否,ff"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;51&#39;);return false;" class="jiatitle"><span class="jtico jtico_51">51社区</span><input type="hidden" value="51,51社区,51sq"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;google&#39;);return false;" class="jiatitle"><span class="jtico jtico_google">谷歌</span><input type="hidden" value="google,谷歌,gg"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;buzz&#39;);return false;" class="jiatitle"><span class="jtico jtico_buzz">谷歌Buzz</span><input type="hidden" value="buzz,谷歌Buzz,ggbuzz"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;youdao&#39;);return false;" class="jiatitle"><span class="jtico jtico_youdao">有道书签</span><input type="hidden" value="youdao,有道书签,ydsq"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;qq&#39;);return false;" class="jiatitle"><span class="jtico jtico_qq">QQ收藏</span><input type="hidden" value="qq,QQ收藏,qqsc"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;msn&#39;);return false;" class="jiatitle"><span class="jtico jtico_msn">MSN</span><input type="hidden" value="msn,MSN,msn"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;sina&#39;);return false;" class="jiatitle"><span class="jtico jtico_sina">新浪vivi</span><input type="hidden" value="sina,新浪vivi,xlvivi"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;hi&#39;);return false;" class="jiatitle"><span class="jtico jtico_hi">百度空间</span><input type="hidden" value="hi,百度空间,bdkj"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;ifensi&#39;);return false;" class="jiatitle"><span class="jtico jtico_ifensi">粉丝网</span><input type="hidden" value="ifensi,粉丝网,fsw"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;115&#39;);return false;" class="jiatitle"><span class="jtico jtico_115">115收藏</span><input type="hidden" value="115,115收藏,115sc"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;hexun&#39;);return false;" class="jiatitle"><span class="jtico jtico_hexun">和讯</span><input type="hidden" value="hexun,和讯,hx"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;gmail&#39;);return false;" class="jiatitle"><span class="jtico jtico_gmail">Gmail邮箱</span><input type="hidden" value="gmail,Gmail邮箱,gmailyx"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;hotmail&#39;);return false;" class="jiatitle"><span class="jtico jtico_hotmail">Hotmail邮箱</span><input type="hidden" value="hotmail,Hotmail邮箱,hotmailyx"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;ymail&#39;);return false;" class="jiatitle"><span class="jtico jtico_ymail">Yahoo! mail</span><input type="hidden" value="ymail,Yahoo! mail,yahoo! mail"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;139mail&#39;);return false;" class="jiatitle"><span class="jtico jtico_139mail">139邮箱</span><input type="hidden" value="139mail,139邮箱,139yx"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;189mail&#39;);return false;" class="jiatitle"><span class="jtico jtico_189mail">189邮箱</span><input type="hidden" value="189mail,189邮箱,189yx"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;i139&#39;);return false;" class="jiatitle"><span class="jtico jtico_i139">手机</span><input type="hidden" value="i139,手机,sj"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;189cn&#39;);return false;" class="jiatitle"><span class="jtico jtico_189cn">天翼社区</span><input type="hidden" value="189cn,天翼社区,tysq"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;139&#39;);return false;" class="jiatitle"><span class="jtico jtico_139">139说客</span><input type="hidden" value="139,139说客,139sk"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;tpeople&#39;);return false;" class="jiatitle"><span class="jtico jtico_tpeople">人民微博</span><input type="hidden" value="tpeople,人民微博,rmwb"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;cnfol&#39;);return false;" class="jiatitle"><span class="jtico jtico_cnfol">中金微博</span><input type="hidden" value="cnfol,中金微博,zjwb"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;googlereader&#39;);return false;" class="jiatitle"><span class="jtico jtico_googlereader">谷歌阅读</span><input type="hidden" value="googlereader,谷歌阅读,ggyd"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;translate&#39;);return false;" class="jiatitle"><span class="jtico jtico_translate">谷歌翻译</span><input type="hidden" value="translate,谷歌翻译,ggfy"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;tuita&#39;);return false;" class="jiatitle"><span class="jtico jtico_tuita">推他</span><input type="hidden" value="tuita,推他,tt"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;yahoo&#39;);return false;" class="jiatitle"><span class="jtico jtico_yahoo">雅虎收藏</span><input type="hidden" value="yahoo,雅虎收藏,yhsc"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;sdonote&#39;);return false;" class="jiatitle"><span class="jtico jtico_sdonote">麦库</span><input type="hidden" value="sdonote,麦库,mk"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;digu&#39;);return false;" class="jiatitle"><span class="jtico jtico_digu">嘀咕网</span><input type="hidden" value="digu,嘀咕网,dgw"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;zhuaxia&#39;);return false;" class="jiatitle"><span class="jtico jtico_zhuaxia">抓虾</span><input type="hidden" value="zhuaxia,抓虾,zx"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;xianguo&#39;);return false;" class="jiatitle"><span class="jtico jtico_xianguo">鲜果</span><input type="hidden" value="xianguo,鲜果,xg"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;zuosa&#39;);return false;" class="jiatitle"><span class="jtico jtico_zuosa">做啥</span><input type="hidden" value="zuosa,做啥,zs"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;ganniu&#39;);return false;" class="jiatitle"><span class="jtico jtico_ganniu">赶牛网</span><input type="hidden" value="ganniu,赶牛网,gnw"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;woshao&#39;);return false;" class="jiatitle"><span class="jtico jtico_woshao">我烧网</span><input type="hidden" value="woshao,我烧网,wsw"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;renjian&#39;);return false;" class="jiatitle"><span class="jtico jtico_renjian">人间网</span><input type="hidden" value="renjian,人间网,rjw"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;leihou&#39;);return false;" class="jiatitle"><span class="jtico jtico_leihou">雷猴网</span><input type="hidden" value="leihou,雷猴网,lhw"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;follow5&#39;);return false;" class="jiatitle"><span class="jtico jtico_follow5">Follow5</span><input type="hidden" value="follow5,Follow5,follow5"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;thexun&#39;);return false;" class="jiatitle"><span class="jtico jtico_thexun">和讯微博</span><input type="hidden" value="thexun,和讯微博,hxwb"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;dream163&#39;);return false;" class="jiatitle"><span class="jtico jtico_dream163">梦幻人生</span><input type="hidden" value="dream163,梦幻人生,mhrs"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;masar&#39;);return false;" class="jiatitle"><span class="jtico jtico_masar">玛撒网</span><input type="hidden" value="masar,玛撒网,msw"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;renmaiku&#39;);return false;" class="jiatitle"><span class="jtico jtico_renmaiku">人脉库</span><input type="hidden" value="renmaiku,人脉库,rmk"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;fb&#39;);return false;" class="jiatitle"><span class="jtico jtico_fb">Facebook</span><input type="hidden" value="fb,Facebook,facebook"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;twitter&#39;);return false;" class="jiatitle"><span class="jtico jtico_twitter">Twitter</span><input type="hidden" value="twitter,Twitter,twitter"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;tumblr&#39;);return false;" class="jiatitle"><span class="jtico jtico_tumblr">Tumblr</span><input type="hidden" value="tumblr,Tumblr,tumblr"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;reddit&#39;);return false;" class="jiatitle"><span class="jtico jtico_reddit">Reddit</span><input type="hidden" value="reddit,Reddit,reddit"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;instapaper&#39;);return false;" class="jiatitle"><span class="jtico jtico_instapaper">Instapaper</span><input type="hidden" value="instapaper,Instapaper,instapaper"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;readitlater&#39;);return false;" class="jiatitle"><span class="jtico jtico_readitlater">Read It Later</span><input type="hidden" value="readitlater,Read It Later,readitlater"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;diglog&#39;);return false;" class="jiatitle"><span class="jtico jtico_diglog">奇客发现</span><input type="hidden" value="diglog,奇客发现,qkfx"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;wealink&#39;);return false;" class="jiatitle"><span class="jtico jtico_wealink">若邻网</span><input type="hidden" value="wealink,若邻网,rlw"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;bietiao&#39;);return false;" class="jiatitle"><span class="jtico jtico_bietiao">别挑</span><input type="hidden" value="bietiao,别挑,bt"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;leshou&#39;);return false;" class="jiatitle"><span class="jtico jtico_leshou">乐收</span><input type="hidden" value="leshou,乐收,ls"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;myspacecn&#39;);return false;" class="jiatitle"><span class="jtico jtico_myspacecn">聚友网</span><input type="hidden" value="myspacecn,聚友网,jyw"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;tongxue&#39;);return false;" class="jiatitle"><span class="jtico jtico_tongxue">同学网</span><input type="hidden" value="tongxue,同学网,txw"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;waakee&#39;);return false;" class="jiatitle"><span class="jtico jtico_waakee">挖客网</span><input type="hidden" value="waakee,挖客网,wkw"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;cyzone&#39;);return false;" class="jiatitle"><span class="jtico jtico_cyzone">创业邦</span><input type="hidden" value="cyzone,创业邦,cyb"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;114la&#39;);return false;" class="jiatitle"><span class="jtico jtico_114la">114啦</span><input type="hidden" value="114la,114啦,114l"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;99earth&#39;);return false;" class="jiatitle"><span class="jtico jtico_99earth">救救地球</span><input type="hidden" value="99earth,救救地球,jjdq"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;chouti&#39;);return false;" class="jiatitle"><span class="jtico jtico_chouti">抽屉网</span><input type="hidden" value="chouti,抽屉网,ctw"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;dig24&#39;);return false;" class="jiatitle"><span class="jtico jtico_dig24">递客网</span><input type="hidden" value="dig24,递客网,dkw"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;douban9dian&#39;);return false;" class="jiatitle"><span class="jtico jtico_douban9dian">豆瓣9点</span><input type="hidden" value="douban9dian,豆瓣9点,db9d"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;hemidemi&#39;);return false;" class="jiatitle"><span class="jtico jtico_hemidemi">黑米书签</span><input type="hidden" value="hemidemi,黑米书签,hmsq"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;blogsina&#39;);return false;" class="jiatitle"><span class="jtico jtico_blogsina">新浪博客</span><input type="hidden" value="blogsina,新浪博客,xlbk"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;meilishuo&#39;);return false;" class="jiatitle"><span class="jtico jtico_meilishuo">美丽说</span><input type="hidden" value="meilishuo,美丽说,mls"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;mogujie&#39;);return false;" class="jiatitle"><span class="jtico jtico_mogujie">蘑菇街</span><input type="hidden" value="mogujie,蘑菇街,mgj"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;yobrand&#39;);return false;" class="jiatitle"><span class="jtico jtico_yobrand">摩登圈</span><input type="hidden" value="yobrand,摩登圈,mdq"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;tianji&#39;);return false;" class="jiatitle"><span class="jtico jtico_tianji">天际网</span><input type="hidden" value="tianji,天际网,tjw"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;poco&#39;);return false;" class="jiatitle"><span class="jtico jtico_poco">Poco网</span><input type="hidden" value="poco,Poco网,pocow"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;baohe&#39;);return false;" class="jiatitle"><span class="jtico jtico_baohe">宝盒网</span><input type="hidden" value="baohe,宝盒网,bhw"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;yijee&#39;);return false;" class="jiatitle"><span class="jtico jtico_yijee">易集网</span><input type="hidden" value="yijee,易集网,yjw"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;pdfonline&#39;);return false;" class="jiatitle"><span class="jtico jtico_pdfonline">Pdf在线转换</span><input type="hidden" value="pdfonline,Pdf在线转换,pdfzxzh"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;printfriendly&#39;);return false;" class="jiatitle"><span class="jtico jtico_printfriendly">友好打印</span><input type="hidden" value="printfriendly,友好打印,yhdy"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;w3c&#39;);return false;" class="jiatitle"><span class="jtico jtico_w3c">W3c验证</span><input type="hidden" value="w3c,W3c验证,w3cyz"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;bitly&#39;);return false;" class="jiatitle"><span class="jtico jtico_bitly">Bit.ly</span><input type="hidden" value="bitly,Bit.ly,bitly"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;digg&#39;);return false;" class="jiatitle"><span class="jtico jtico_digg">Digg</span><input type="hidden" value="digg,Digg,digg"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;mailru&#39;);return false;" class="jiatitle"><span class="jtico jtico_mailru">Mail.ru</span><input type="hidden" value="mailru,Mail.ru,mail.ru"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;diigo&#39;);return false;" class="jiatitle"><span class="jtico jtico_diigo">Diigo</span><input type="hidden" value="diigo,Diigo,diigo"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;evernote&#39;);return false;" class="jiatitle"><span class="jtico jtico_evernote">EverNote</span><input type="hidden" value="evernote,EverNote,evernote"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;friendfeed&#39;);return false;" class="jiatitle"><span class="jtico jtico_friendfeed">FriendFeed</span><input type="hidden" value="friendfeed,FriendFeed,friendfeed"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;myspace&#39;);return false;" class="jiatitle"><span class="jtico jtico_myspace">Myspace</span><input type="hidden" value="myspace,Myspace,myspace"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;linkedin&#39;);return false;" class="jiatitle"><span class="jtico jtico_linkedin">LinkedIn</span><input type="hidden" value="linkedin,LinkedIn,linkedin"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;mixx&#39;);return false;" class="jiatitle"><span class="jtico jtico_mixx">Mixx</span><input type="hidden" value="mixx,Mixx,mixx"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;netlog&#39;);return false;" class="jiatitle"><span class="jtico jtico_netlog">NetLog</span><input type="hidden" value="netlog,NetLog,netlog"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;netvibes&#39;);return false;" class="jiatitle"><span class="jtico jtico_netvibes">Netvibes</span><input type="hidden" value="netvibes,Netvibes,netvibes"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;phonefavs&#39;);return false;" class="jiatitle"><span class="jtico jtico_phonefavs">Phonefavs</span><input type="hidden" value="phonefavs,Phonefavs,phonefavs"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;pingfm&#39;);return false;" class="jiatitle"><span class="jtico jtico_pingfm">Ping.fm</span><input type="hidden" value="pingfm,Ping.fm,ping.fm"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;plaxo&#39;);return false;" class="jiatitle"><span class="jtico jtico_plaxo">Plaxo</span><input type="hidden" value="plaxo,Plaxo,plaxo"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;delicious&#39;);return false;" class="jiatitle"><span class="jtico jtico_delicious">Delicious</span><input type="hidden" value="delicious,Delicious,delicious"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;wong&#39;);return false;" class="jiatitle"><span class="jtico jtico_wong">Mister Wong</span><input type="hidden" value="wong,Mister Wong,misterwong"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;stumbleupon&#39;);return false;" class="jiatitle"><span class="jtico jtico_stumbleupon">Stumbleupon</span><input type="hidden" value="stumbleupon,Stumbleupon,stumbleupon"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;plurk&#39;);return false;" class="jiatitle"><span class="jtico jtico_plurk">Plurk</span><input type="hidden" value="plurk,Plurk,plurk"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;funp&#39;);return false;" class="jiatitle"><span class="jtico jtico_funp">Funp</span><input type="hidden" value="funp,Funp,funp"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;myshare&#39;);return false;" class="jiatitle"><span class="jtico jtico_myshare">Myshare</span><input type="hidden" value="myshare,Myshare,myshare"></a><a href="http://www.eoeandroid.com/#" onclick="jiathis_sendto(&#39;fwisp&#39;);return false;" class="jiatitle"><span class="jtico jtico_fwisp">Fwisp</span><input type="hidden" value="fwisp,Fwisp,fwisp"></a><div style="clear:both"></div></div><div class="centerBottom"><div style="float:left;font-size:10px;"><a href="http://www.jiathis.com/help/html/what-is-jiathis" class="link_01" style="color:#333333;" target="_blank">这是什么工具?</a></div><div style="float:right;font-size:11px;margin:0 10px 0 0;"><img src="./Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!_files/img_012.gif" align="absmiddle" border="none">&nbsp;<a href="http://www.jiathis.com/" style="color:#333333;" class="link_01" target="_blank">JiaThis</a></div><div style="clear:both"></div></div></div></div></div><iframe style="display: none; " frameborder="0" src="./Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!_files/jiathis_utility.htm"></iframe>
+<div id="append_parent"><div id="ls_fastloginfield_ctrl_menu" class="sltm" style="display: none; width: 40px; "><ul><li class="current">用户名</li><li>UID</li><li>Email</li></ul></div></div><div id="ajaxwaitid"></div>
+
+<div id="toptb" class="cl">
+<div class="wp">
+<div class="z"><script type="text/javascript">var _speedMark = new Date();</script></div>
+<div class="y">
+</div>
+</div>
+</div>
+
+
+<div id="qmenu_menu" class="p_pop blk" style="display: none;">
+<div class="ptm pbw hm">
+请 <a href="javascript:;" class="xi2" onclick="lsSubmit()"><strong>登录</strong></a> 后使用快捷导航<br>没有帐号？<a href="http://www.eoeandroid.com/member.php?mod=register" class="xi2 xw1">免费加入</a>
+</div>
+</div>
+<div id="hd">
+<div class="wp">
+<div class="hdc cl"><h2><a href="http://www.eoeandroid.com/" title="eoe·Android开发者门户"><img src="./Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!_files/logo.png" alt="eoe·Android开发者门户" border="0"></a></h2>
+
+<script src="./Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!_files/logging.js" type="text/javascript"></script>
+<form method="post" autocomplete="off" id="lsform" action="http://www.eoeandroid.com/member.php?mod=logging&action=login&loginsubmit=yes&infloat=yes&lssubmit=yes" onsubmit="return lsSubmit()">
+<div class="fastlg cl">
+<span id="return_ls" style="display:none"></span>
+<div class="y pns">
+<table cellspacing="0" cellpadding="0">
+<tbody><tr>
+<td>
+<span class="ftid">
+<select name="fastloginfield" id="ls_fastloginfield" width="40" tabindex="900" selecti="0" style="display: none; ">
+
+
+
+<option value="username"></option></select><a href="javascript:;" id="ls_fastloginfield_ctrl" style="width:40px" tabindex="900">用户名</a>
+</span>
+<script type="text/javascript">simulateSelect('ls_fastloginfield')</script>
+</td>
+<td><input type="text" name="username" id="ls_username" autocomplete="off" class="px vm" tabindex="901"></td>
+<td class="fastlg_l xi2 xw1"><label for="ls_cookietime"><input type="checkbox" name="cookietime" id="ls_cookietime" class="pc" value="2592000" tabindex="903">自动登录</label></td>
+<td>&nbsp;<a href="javascript:;" onclick="showWindow(&#39;login&#39;, &#39;member.php?mod=logging&amp;action=login&amp;viewlostpw=1&#39;)" class="xi2 xw1">找回密码</a></td>
+</tr>
+<tr>
+<td><label for="ls_password" class="z psw_w">密码</label></td>
+<td><input type="password" name="password" id="ls_password" class="px vm" autocomplete="off" tabindex="902"></td>
+<td class="fastlg_l"><button type="submit" class="pn vm" tabindex="904" style="width: 75px;"><em>登录</em></button></td>
+<td>&nbsp;<a href="http://www.eoeandroid.com/member.php?mod=register" class="xi2 xw1">免费加入</a></td>
+</tr>
+</tbody></table>
+<input type="hidden" name="quickforward" value="yes">
+<input type="hidden" name="handlekey" value="ls">
+</div>
+
+<div class="fastlg_fm y" style="margin-right: 10px; padding-right: 10px">
+<p><a href="http://www.eoeandroid.com/connect.php?mod=login&op=init&referer=forum.php%3Fmod%3Dviewthread%26tid%3D97532%26extra%3Dpage%253D1%26page%3D1&statfrom=login_simple"><img src="./Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!_files/qq_login.gif" class="vm" alt="QQ登录"></a></p>
+<p class="hm xg1" style="padding-top: 2px;">只需一步，快速开始</p>
+</div>
+</div>
+</form>
+
+</div>
+
+<div id="nv">
+<a href="javascript:;" id="qmenu" onmouseover="showMenu({&#39;ctrlid&#39;:&#39;qmenu&#39;,&#39;pos&#39;:&#39;34!&#39;,&#39;ctrlclass&#39;:&#39;a&#39;,&#39;duration&#39;:2});">快捷导航</a>
+<ul><li id="mn_portal"><a href="http://www.eoeandroid.com/portal.php" hidefocus="true" title="Portal">首页<span>Portal</span></a></li><li id="mn_P1"><a href="http://www.eoeandroid.com/portal.php?mod=list&catid=1" hidefocus="true">android技术</a></li><li id="mn_Nd01a"><a href="http://www.eoemarket.com/" hidefocus="true" title="eoeMarket软件商店" target="_blank" style="font-weight: bold;">优亿市场<span>eoeMarket软件商店</span></a></li><li id="mn_P2"><a href="http://www.eoeandroid.com/portal.php?mod=list&catid=2" hidefocus="true">android问答</a></li><li id="mn_P3"><a href="http://www.eoeandroid.com/portal.php?mod=list&catid=3" hidefocus="true">优亿专题</a></li><li id="mn_P4"><a href="http://www.eoeandroid.com/portal.php?mod=list&catid=4" hidefocus="true">优亿人才</a></li><li id="mn_N959b"><a href="http://weibo.eoeandroid.com/" hidefocus="true" target="_blank">优亿微博</a></li><li class="a" id="mn_forum"><a href="http://www.eoeandroid.com/forum.php" hidefocus="true" title="BBS">开发者社区<span>BBS</span></a></li></ul>
+</div>
+<div id="mu" class="cl">
+</div><div id="scbar" class="cl">
+<form id="scbar_form" method="post" autocomplete="off" onsubmit="searchFocus($(&#39;scbar_txt&#39;))" action="http://www.eoeandroid.com/search.php?searchsubmit=yes" target="_blank">
+<input type="hidden" name="mod" id="scbar_mod" value="curforum">
+<input type="hidden" name="formhash" value="4f52900c">
+<input type="hidden" name="srchtype" value="title">
+<input type="hidden" name="srhfid" value="48">
+<input type="hidden" name="srhlocality" value="forum::viewthread">
+<table cellspacing="0" cellpadding="0">
+<tbody><tr>
+<td class="scbar_icon_td"></td>
+<td class="scbar_txt_td"><input type="text" name="srchtxt" id="scbar_txt" value="请输入搜索内容" autocomplete="off" class=" xg1"></td>
+<td class="scbar_type_td"><a href="javascript:;" id="scbar_type" class="showmenu xg1 xs2" onclick="showMenu(this.id)" hidefocus="true">本版</a></td>
+<td class="scbar_btn_td"><button type="submit" name="searchsubmit" id="scbar_btn" class="pn pnc" value="true"><strong class="xi2 xs2">搜索</strong></button></td>
+<td class="scbar_hot_td">
+<div id="scbar_hot">
+</div>
+</td>
+                <td class="scbar_shoucang"><a href="http://www.eoeandroid.com/home.php?mod=space&do=favorite">我收藏的帖子</a></td>
+</tr>
+</tbody></table>
+</form>
+</div>
+<ul id="scbar_type_menu" class="p_pop" style="display: none;"><li><a href="javascript:;" rel="curforum" class="curtype">本版</a></li><li><a href="javascript:;" rel="forum">帖子</a></li><li><a href="javascript:;" rel="user">用户</a></li></ul>
+<script type="text/javascript">
+initSearchmenu('scbar');
+</script>
+</div>
+</div>
+
+
+<div id="wp" class="wp"><script type="text/javascript">var fid = parseInt('48'), tid = parseInt('97532');</script>
+
+<script src="./Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!_files/forum_viewthread.js" type="text/javascript"></script>
+<script type="text/javascript">zoomstatus = parseInt(1);var imagemaxwidth = '600';var aimgcount = new Array();</script>
+
+<style id="diy_style" type="text/css"></style>
+<!--[diy=diynavtop]--><div id="diynavtop" class="area"></div><!--[/diy]-->
+<div id="pt" class="bm cl">
+<div class="z">
+<a href="http://www.eoeandroid.com/" class="nvhm" title="首页">eoe·Android开发者门户</a> <em>›</em> <a href="http://www.eoeandroid.com/forum.php">首页</a> <em>›</em> <a href="http://www.eoeandroid.com/forum.php?gid=46">eoe·Android 高级研究院</a> <em>›</em> <a href="http://www.eoeandroid.com/forum.php?mod=forumdisplay&fid=48&page=1">Android 底层开发与源码研究</a> <em>›</em> <!--<a href="thread-97532-1-1.html">Andorid c++与java方法互调（六）</a>-->
+</div>
+</div>
+
+<style id="diy_style" type="text/css"></style>
+<div class="wp">
+<!--[diy=diy1]--><div id="diy1" class="area"></div><!--[/diy]-->
+</div>
+
+<div id="ct" class="wp cl">
+<div id="pgt" class="pgs mbm cl ">
+<div class="pgt"></div>
+<span class="y pgb"><a href="http://www.eoeandroid.com/forum.php?mod=forumdisplay&fid=48&page=1">返回列表</a></span>
+<a id="newspecial" onmouseover="$(&#39;newspecial&#39;).id = &#39;newspecialtmp&#39;;this.id = &#39;newspecial&#39;;showMenu({&#39;ctrlid&#39;:this.id})" onclick="showWindow(&#39;newthread&#39;, &#39;forum.php?mod=post&amp;action=newthread&amp;fid=48&#39;)" href="javascript:;" title="发新帖"><img src="./Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!_files/pn_post.png" alt="发新帖"></a></div>
+
+
+
+<div id="postlist" class="pl bm">
+<table cellspacing="0" cellpadding="0">
+<tbody><tr>
+<td class="pls ptm pbm">
+<div class="hm">
+<span class="xg1">查看:</span> <span class="xi1">135</span><span class="pipe">|</span><span class="xg1">回复:</span> <span class="xi1">0</span>
+</div>
+</td>
+<td class="plc ptm pbn">
+<div class="y">
+<a href="http://www.eoeandroid.com/forum.php?mod=viewthread&action=printable&tid=97532" title="打印" target="_blank"><img src="./Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!_files/print.png" alt="打印" class="vm"></a>
+<a href="http://www.eoeandroid.com/forum.php?mod=redirect&goto=nextoldset&tid=97532" title="上一主题"><img src="./Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!_files/thread-prev.png" alt="上一主题" class="vm"></a>
+<a href="http://www.eoeandroid.com/forum.php?mod=redirect&goto=nextnewset&tid=97532" title="下一主题"><img src="./Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!_files/thread-next.png" alt="下一主题" class="vm"></a>
+</div>
+<h1 class="ts">
+<a href="./Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!_files/Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!.htm" id="thread_subject">Andorid c++与java方法互调（六）</a>
+<span class="xw0 xs1 xg1">
+<a href="./Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!_files/Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!.htm" onclick="return copyThreadUrl(this)" title="您的朋友访问此链接后，您将获得相应的积分奖励">[复制链接]</a>
+</span>
+</h1>
+</td>
+</tr>
+</tbody></table>
+
+
+<table cellspacing="0" cellpadding="0" class="ad"><tbody><tr><td class="pls"></td><td class="plc"></td></tr></tbody></table><div id="post_1007573"><table id="pid1007573" summary="pid1007573" cellspacing="0" cellpadding="0">
+<tbody><tr>
+<td class="pls" rowspan="2">
+<a name="newpost"></a> <a name="lastpost"></a><div class="pi">
+<div class="authi"><a href="http://www.eoeandroid.com/space-uid-498939.html" target="_blank" class="xw1">4546</a>
+
+</div>
+</div>
+<div class="p_pop blk bui" id="userinfo1007573" style="display: none; margin-top: -11px;">
+<div class="m z">
+<div id="userinfo1007573_ma"></div>
+</div>
+<div class="i y">
+<div>
+<strong><a href="http://www.eoeandroid.com/space-uid-498939.html" target="_blank" class="xi2">4546</a></strong>
+<em>当前离线</em>
+</div>
+<dl class="cl"><dt>最后登录</dt><dd>2011-10-20</dd><dt>注册时间</dt><dd>2011-5-11</dd><dt>阅读权限</dt><dd>40</dd><dt>在线时间</dt><dd>1 小时</dd></dl>
+<div class="imicn">
+<a href="http://www.eoeandroid.com/home.php?mod=space&uid=498939&do=profile" target="_blank" title="查看详细资料"><img src="./Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!_files/userinfo.gif" alt="查看详细资料"></a>
+<a href="http://www.eoeandroid.com/home.php?mod=magic&mid=showip&idtype=user&id=4546" id="a_showip_li_1007573" class="xi2" onclick="showWindow(this.id, this.href)"><img src="./Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!_files/showip.small.gif" alt=""> IP卡</a>
+<a href="http://www.eoeandroid.com/home.php?mod=magic&mid=checkonline&idtype=user&id=4546" id="a_repent_1007573" class="xi2" onclick="showWindow(this.id, this.href)"><img src="./Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!_files/checkonline.small.gif" alt=""> 狗仔卡</a>
+</div>
+<div id="avatarfeed"><span id="threadsortswait"></span></div>
+</div>
+</div>
+<div>
+<div class="avatar" onmouseover="showauthor(this, &#39;userinfo1007573&#39;)"><a href="http://www.eoeandroid.com/space-uid-498939.html" target="_blank"><img src="./Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!_files/avatar.php"></a></div>
+<p><em><a href="http://www.eoeandroid.com/home.php?mod=spacecp&ac=usergroup&gid=13" target="_blank">略有小成 Ⅴ</a></em></p>
+</div>
+<p id="g_up1007573" onmouseover="showMenu({&#39;ctrlid&#39;:this.id, &#39;pos&#39;:&#39;12!&#39;});"><img src="./Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!_files/star_level3.gif" alt="Rank: 4"></p>
+<div id="g_up1007573_menu" class="tip tip_4" style="display: none;">
+<div class="tip_horn"></div>
+<div class="tip_c">略有小成 Ⅴ, 积分 760, 距离下一级还需 740 积分</div>
+</div>
+<dl class="pil cl"><dt>UID</dt><dd>498939</dd><dt>精华</dt><dd>0</dd><dt>帖子</dt><dd><a href="http://www.eoeandroid.com/home.php?mod=space&uid=498939&do=thread&type=reply&view=me&from=space" target="_blank" class="xi2">291</a></dd><dt>e望</dt><dd>0 点</dd><dt>e币</dt><dd>468 元</dd></dl><ul class="xl xl2 o cl">
+<li class="callon"><a href="http://www.eoeandroid.com/space-uid-498939.html" target="_blank" title="串个门" class="xi2">串个门</a></li>
+<li class="buddy"><a href="http://www.eoeandroid.com/home.php?mod=spacecp&ac=friend&op=add&uid=498939&handlekey=addfriendhk_498939" id="a_friend_li_1007573" onclick="showWindow(this.id, this.href, &#39;get&#39;, 1, {&#39;ctrlid&#39;:this.id,&#39;pos&#39;:&#39;00&#39;});" title="加好友" class="xi2">加好友</a></li>
+<li class="poke2"><a href="http://www.eoeandroid.com/home.php?mod=spacecp&ac=poke&op=send&uid=498939" id="a_poke_li_1007573" onclick="showWindow(this.id, this.href, &#39;get&#39;, 0);" title="打招呼" class="xi2">打招呼</a></li>
+<li class="pm2"><a href="http://www.eoeandroid.com/home.php?mod=spacecp&ac=pm&op=showmsg&handlekey=showmsg_498939&touid=498939&pmid=0&daterange=2&pid=1007573&tid=97532" onclick="showWindow(&#39;sendpm&#39;, this.href);" title="发消息" class="xi2">发消息</a></li>
+</ul>
+</td>
+<td class="plc">
+<div class="pi">
+<div id="fj" class="y">
+<label class="z">电梯直达</label>
+<input type="text" class="px p_fre z" size="2" onkeyup="$(&#39;fj_btn&#39;).href=&#39;forum.php?mod=redirect&amp;ptid=97532&amp;authorid=0&amp;postno=&#39;+this.value" onkeydown="if(event.keyCode==13) {window.location=$(&#39;fj_btn&#39;).href;return false;}" title="跳转到指定楼层">
+<a href="javascript:;" id="fj_btn" class="z" title="跳转到指定楼层"><img src="./Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!_files/fj_btn.png" alt="跳转到指定楼层" class="vm"></a>
+</div>
+<strong>
+<a href="./Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!_files/Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!.htm" title="您的朋友访问此链接后，您将获得相应的积分奖励" id="postnum1007573" onclick="setCopy(this.href, &#39;帖子地址复制成功&#39;);return false;"><em>1</em><sup>#</sup></a>
+</strong>
+<div class="pti">
+<div class="pdbt">
+</div>
+<div class="authi">
+<img class="authicn vm" id="authicon1007573" src="./Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!_files/online_member.gif">
+<em id="authorposton1007573">发表于 2011-8-31 15:56:39</em>
+<span class="pipe">|</span><a href="http://www.eoeandroid.com/forum.php?mod=viewthread&tid=97532&page=1&authorid=498939" rel="nofollow">只看该作者</a>
+<span class="pipe">|</span><a href="http://www.eoeandroid.com/forum.php?mod=viewthread&tid=97532&extra=page%3D1&ordertype=1">倒序浏览</a>
+</div>
+</div>
+</div><div class="pct"><div class="a_pt"><a href="http://www.eoeandroid.com/thread-102976-1-1.html" target="_blank"><img src="./Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!_files/184255z1infkuv3ivuwi90.jpg" height="30" width="580" border="0"></a></div><style type="text/css">.pcb{margin-right:0}</style><div class="pcb">
+<div class="t_fsz">
+<table cellspacing="0" cellpadding="0"><tbody><tr><td class="t_f" id="postmessage_1007573">
+<div class="a_pr" style="margin-left:10px;width:130px"><a href="http://www.eoemarket.com/apps/30970?channel_id=115" target="_blank"><img src="./Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!_files/162123hjffkevapath8ap9.jpg" height="80" width="130" border="0"></a></div><br>
+&nbsp; &nbsp;&nbsp; &nbsp; 4).编译.c文件生存动态库。<br>
+<br>
+<strong>java代码：</strong><br>
+<div class="blockcode"><div id="code_Ed4"><ol><li>arm-none-linux-gnueabi-gcc -I/home/a/work/android/jdk1.6.0_17/include -I/home/a/work/android/jdk1.6.0_17/include/linux -fpic -c com_hello_jnitest_Nadd.c<br>
+</li><li>arm-none-linux-gnueabi-ld -T/home/a/CodeSourcery/Sourcery_G++_Lite/arm-none-linux-gnueabi/lib/ldscripts/armelf_linux_eabi.xsc -share -o libNadd.so com_hello_jnitest_Nadd.o</li></ol></div><em onclick="copycode($(&#39;code_Ed4&#39;));">复制代码</em></div><br>
+&nbsp; &nbsp;&nbsp; &nbsp; 得到libNadd.so文件。<br>
+&nbsp; &nbsp;&nbsp; &nbsp; 以上在ubuntu中完成。<br>
+<br>
+&nbsp; &nbsp;&nbsp; &nbsp; 5).将相应的动态库文件push到avd的system/lib中:adb push libNadd.so /system/lib。若提示Read-only file system错误，运行adb remount命令，即可。<br>
+Adb push libNadd.so /system/lib<br>
+<br>
+&nbsp; &nbsp;&nbsp; &nbsp; 6).在eclipsh中运行原应用程序即可。<br>
+&nbsp; &nbsp;&nbsp; &nbsp; 以上在windows中完成。<br>
+对于一中生成的so文件也可采用二中的方法编译进apk包中。只需在工程文件夹中建libs\armeabi文件夹（其他文件夹名无效，只建立libs文件夹也无效），然后将so文件拷入，编译工程即可。<br>
+<br>
+&nbsp; &nbsp;&nbsp; &nbsp; <strong>(2).使用NDK生成本地方法（ubuntu and windows）</strong><br>
+<br>
+&nbsp; &nbsp;&nbsp; &nbsp; 1).安装NDK：解压，然后进入NDK解压后的目录，运行build/host-setup.sh（需要Make 3.81和awk）。若有错，修改host-setup.sh文件：将#!/bin/sh修改为#!/bin/bash，再次运行即可。<br>
+&nbsp; &nbsp;&nbsp; &nbsp; 2).在apps文件夹下建立自己的工程文件夹，然后在该文件夹下建一文件Application.mk和项project文件夹。<br>
+&nbsp; &nbsp;&nbsp; &nbsp; Application.mk文件：<br>
+&nbsp; &nbsp;&nbsp; &nbsp; APP_PROJECT_PATH := $(call my-dir)/project<br>
+&nbsp; &nbsp;&nbsp; &nbsp; APP_MODULES := myjni<br>
+<br>
+&nbsp; &nbsp;&nbsp; &nbsp; 3).在project文件夹下建一jni文件夹，然后新建Android.mk和myjni.c。这里不需要用javah生成相应的.h文件，但函数名要包含相应的完整的包、类名。<br>
+<br>
+&nbsp; &nbsp;&nbsp; &nbsp; 4).编辑相应文件内容。<br>
+<br>
+&nbsp; &nbsp;&nbsp; &nbsp; <strong>Android.mk文件：<br>
+</strong><br>
+<strong>java代码：</strong><div class="blockcode"><div id="code_b10"><ol><li># Copyright (C) 2009 The Android Open Source Project<br>
+</li><li>#<br>
+</li><li># Licensed under the Apache License, Version 2.0 (the “License”);<br>
+</li><li># you may not use this file except in compliance with the License.<br>
+</li><li># You may obtain a copy of the License at<br>
+</li><li>#<br>
+</li><li># http://www.apache.org/licenses/LICENSE-2.0<br>
+</li><li>#<br>
+</li><li># Unless required by applicable law or agreed to in writing, software<br>
+</li><li># distributed under the License is distributed on an “AS IS” BASIS,<br>
+</li><li># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.<br>
+</li><li># See the License for the specific language governing permissions and<br>
+</li><li># limitations under the License.<br>
+</li><li>#<br>
+</li><li>LOCAL_PATH := $(call my-dir)<br>
+</li><li>include $(CLEAR_VARS)<br>
+</li><li>LOCAL_MODULE := myjni<br>
+</li><li>LOCAL_SRC_FILES := myjni.c<br>
+</li><li>include $(BUILD_SHARED_LIBRARY)<br>
+</li><li>myjni.c文件：<br>
+</li><li>#include <br>
+</li><li>#include <br>
+</li><li>jstring<br>
+</li><li>Java_com_hello_NdkTest_NdkTest_stringFromJNI( JNIEnv* env,<br>
+</li><li>jobject thiz )<br>
+</li><li>{<br>
+</li><li>return (*env)-&gt;NewStringUTF(env, “Hello from My-JNI !”);<br>
+</li><li>}</li></ol></div><em onclick="copycode($(&#39;code_b10&#39;));">复制代码</em></div><br>
+系列之Andorid c++与java方法互调（一）的帖子链接<a href="http://www.eoeandroid.com/thread-96463-1-1.html" target="_blank">http://www.eoeandroid.com/thread-96463-1-1.html</a><br>
+系列之Andorid c++与java方法互调（二）的帖子链接<a href="http://www.eoeandroid.com/thread-96466-1-1.html" target="_blank">http://www.eoeandroid.com/thread-96466-1-1.html</a><br>
+系列之Andorid c++与java方法互调（三）的帖子链接<a href="http://www.eoeandroid.com/thread-96468-1-1.html" target="_blank">http://www.eoeandroid.com/thread-96468-1-1.html</a><br>
+系列之Andorid c++与java方法互调（四）的帖子链接<a href="http://www.eoeandroid.com/thread-97529-1-1.html" target="_blank">http://www.eoeandroid.com/thread-97529-1-1.html</a><br>
+系列之Andorid c++与java方法互调（五）的帖子链接<a href="http://www.eoeandroid.com/thread-97530-1-1.html" target="_blank">http://www.eoeandroid.com/thread-97530-1-1.html</a><br>
+<br>
+</td></tr></tbody></table>
+</div>
+<div id="comment_1007573" class="cm">
+</div>
+<div id="post_rate_div_1007573"></div>
+</div>
+</div>
+
+</td></tr>
+<tr><td class="plc plm">
+<div class="modact"><a href="http://www.eoeandroid.com/forum.php?mod=misc&action=viewthreadmod&tid=97532" title="帖子模式" onclick="showWindow(&#39;viewthreadmod&#39;, this.href)">本主题由 社区管理员 于 2011-8-31 16:00:44 审核通过</a></div><div id="p_btn" class="mtw mbm cl">
+<div class="tshare cl">
+<strong>分享到:</strong>
+
+
+<a href="javascript:void(0);" id="k_qqshare" onclick="window.open(&#39;http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=&#39;+encodeURIComponent(document.location.href));return false;" title="QQ空间"><i><img src="./Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!_files/qzone.gif" alt="QQ空间">QQ空间</i></a>
+<a href="javascript:void(0)" onclick="postToWb();" id="k_weiboshare" title="腾讯微博"><i><img src="./Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!_files/weibo.png" alt="腾讯微博">腾讯微博</i></a>
+<a href="javascript:void(0);" onclick="window.open(&#39;http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?to=pengyou&amp;url=&#39;+encodeURIComponent(document.location.href));return false;" id="k_pengyoushare" title="腾讯朋友"><i><img src="./Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!_files/pengyou.png" alt="腾讯朋友">腾讯朋友</i></a>
+<script type="text/javascript">
+function postToWb(){
+var _t = encodeURI(document.title);
+var _url = encodeURIComponent(document.location);
+var _appkey = encodeURI("ce7fb946290e4109bdc9175108b6db3a");
+var _pic = "";
+var _site = '';
+var _u = 'http://v.t.qq.com/share/share.php?url='+_url+'&appkey='+_appkey+'&site='+_site+'&pic='+_pic+'&title='+_t;
+window.open( _u,'', 'width=700, height=680, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, location=yes, resizable=no, status=no' );
+}
+</script>
+
+</div>
+<a href="http://www.eoeandroid.com/home.php?mod=spacecp&ac=share&type=thread&id=97532" id="k_share" onclick="showWindow(this.id, this.href, &#39;get&#39;, 0);" onmouseover="this.title = $(&#39;sharenumber&#39;).innerHTML + &#39; 人分享&#39;"><i><img src="./Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!_files/oshr.png" alt="分享">分享<span id="sharenumber">0</span></i></a>
+<a href="http://www.eoeandroid.com/home.php?mod=spacecp&ac=favorite&type=thread&id=97532" id="k_favorite" onclick="showWindow(this.id, this.href, &#39;get&#39;, 0);" onmouseover="this.title = $(&#39;favoritenumber&#39;).innerHTML + &#39; 人收藏&#39;"><i><img src="./Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!_files/fav.gif" alt="收藏">收藏<span id="favoritenumber">0</span></i></a>
+<a id="recommend_add" href="http://www.eoeandroid.com/forum.php?mod=misc&action=recommend&do=add&tid=97532" onclick="showWindow(&#39;login&#39;, this.href)" onmouseover="this.title = $(&#39;recommendv_add&#39;).innerHTML + &#39; 人好评&#39;"><i><img src="./Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!_files/rec_add.gif" alt="好评">好评<span id="recommendv_add">0</span></i></a>
+<a id="recommend_subtract" href="http://www.eoeandroid.com/forum.php?mod=misc&action=recommend&do=subtract&tid=97532" onclick="showWindow(&#39;login&#39;, this.href)" onmouseover="this.title = $(&#39;recommendv_subtract&#39;).innerHTML + &#39; 人差评&#39;"><i><img src="./Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!_files/rec_subtract.gif" alt="差评">差评<span id="recommendv_subtract">0</span></i></a>
+</div>
+</td>
+</tr>
+<tr>
+<td class="pls"></td>
+<td class="plc">
+<div class="po">
+<div class="pob cl">
+<em>
+</em>
+
+<p>
+<a href="javascript:;" id="mgc_post_1007573" onmouseover="showMenu(this.id)" class="showmenu">使用道具</a>
+<a href="javascript:;" onclick="showWindow(&#39;miscreport1007573&#39;, &#39;misc.php?mod=report&amp;rtype=post&amp;rid=1007573&amp;tid=97532&amp;fid=48&#39;, &#39;get&#39;, -1);return false;">举报</a>
+</p>
+
+<ul id="mgc_post_1007573_menu" class="p_pop mgcmn" style="display: none;">
+<li><a href="http://www.eoeandroid.com/home.php?mod=magic&mid=bump&idtype=tid&id=97532" id="a_bump" onclick="showWindow(this.id, this.href)"><img src="./Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!_files/bump.small.gif">提升卡</a></li>
+<li><a href="http://www.eoeandroid.com/home.php?mod=magic&mid=stick&idtype=tid&id=97532" id="a_stick" onclick="showWindow(this.id, this.href)"><img src="./Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!_files/stick.small.gif">置顶卡</a></li>
+<li><a href="http://www.eoeandroid.com/home.php?mod=magic&mid=close&idtype=tid&id=97532" id="a_stick" onclick="showWindow(this.id, this.href)"><img src="./Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!_files/close.small.gif">沉默卡</a></li>
+<li><a href="http://www.eoeandroid.com/home.php?mod=magic&mid=open&idtype=tid&id=97532" id="a_stick" onclick="showWindow(this.id, this.href)"><img src="./Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!_files/open.small.gif">喧嚣卡</a></li>
+<li><a href="http://www.eoeandroid.com/home.php?mod=magic&mid=highlight&idtype=tid&id=97532" id="a_stick" onclick="showWindow(this.id, this.href)"><img src="./Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!_files/highlight.small.gif">变色卡</a></li>
+<li><a href="http://www.eoeandroid.com/home.php?mod=magic&mid=namepost&idtype=pid&id=1007573:97532" id="a_namepost_1007573" onclick="showWindow(this.id, this.href)"><img src="./Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!_files/namepost.small.gif">显身卡</a></li><li>
+</li></ul>
+<script type="text/javascript" reload="1">checkmgcmn('post_1007573')</script>
+</div>
+</div>
+
+</td>
+</tr>
+<tr class="ad">
+<td class="pls"></td>
+<td class="plc">
+</td>
+</tr>
+</tbody></table>
+</div>
+<div id="postlistreply" class="pl"><div id="post_new" class="viewthread_table" style="display: none"></div></div>
+</div>
+
+
+<form method="post" autocomplete="off" name="modactions" id="modactions">
+<input type="hidden" name="formhash" value="4f52900c">
+<input type="hidden" name="optgroup">
+<input type="hidden" name="operation">
+<input type="hidden" name="listextra" value="page%3D1">
+<input type="hidden" name="page" value="1">
+</form>
+
+
+<div class="pgs mtm mbm cl">
+<span class="pgb y"><a href="http://www.eoeandroid.com/forum.php?mod=forumdisplay&fid=48&page=1">返回列表</a></span>
+<a id="newspecialtmp" onmouseover="$(&#39;newspecial&#39;).id = &#39;newspecialtmp&#39;;this.id = &#39;newspecial&#39;;showMenu({&#39;ctrlid&#39;:this.id})" onclick="showWindow(&#39;newthread&#39;, &#39;forum.php?mod=post&amp;action=newthread&amp;fid=48&#39;)" href="javascript:;" title="发新帖"><img src="./Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!_files/pn_post.png" alt="发新帖"></a>
+</div>
+
+<!--[diy=diyfastposttop]--><div id="diyfastposttop" class="area"></div><!--[/diy]-->
+<script type="text/javascript">
+var postminchars = parseInt('4');
+var postmaxchars = parseInt('20000');
+var disablepostctrl = parseInt('0');
+</script>
+
+<div id="f_pst" class="pl bm bmw">
+<form method="post" autocomplete="off" id="fastpostform" action="http://www.eoeandroid.com/forum.php?mod=post&action=reply&fid=48&tid=97532&extra=page%3D1&replysubmit=yes&infloat=yes&handlekey=fastpost" onsubmit="return fastpostvalidate(this)">
+<table cellspacing="0" cellpadding="0">
+<tbody><tr>
+<td class="pls">
+</td>
+<td class="plc">
+
+<span id="fastpostreturn"></span>
+
+
+<div class="cl">
+<div id="fastsmiliesdiv" class="y"><div id="fastsmiliesdiv_data"><div id="fastsmilies"></div></div></div><div class="hasfsl" id="fastposteditor">
+<div class="tedt mtn">
+<div class="bar">
+<span class="y">
+<a href="http://www.eoeandroid.com/forum.php?mod=post&action=reply&fid=48&tid=97532" onclick="return switchAdvanceMode(this.href)">高级模式</a>
+</span><script src="./Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!_files/seditor.js" type="text/javascript"></script>
+<div class="fpd">
+<a href="javascript:;" title="文字加粗" class="fbld">B</a>
+<a href="javascript:;" title="设置文字颜色" class="fclr" id="fastpostforecolor">Color</a>
+<a id="fastpostimg" href="javascript:;" title="图片" class="fmg">Image</a>
+<a id="fastposturl" href="javascript:;" title="添加链接" class="flnk">Link</a>
+<a id="fastpostquote" href="javascript:;" title="引用" class="fqt">Quote</a>
+<a id="fastpostcode" href="javascript:;" title="代码" class="fcd">Code</a>
+<a href="javascript:;" class="fsml" id="fastpostsml">Smilies</a>
+</div>
+</div>
+<div class="area">
+<div class="pt hm">您需要登录后才可以回帖 <a href="http://www.eoeandroid.com/member.php?mod=logging&action=login" onclick="showWindow(&#39;login&#39;, this.href)" class="xi2">登录</a> | <a href="http://www.eoeandroid.com/member.php?mod=register" class="xi2">免费加入</a> 
+<a href="http://www.eoeandroid.com/connect.php?mod=login&op=init&referer=forum.php%3Fmod%3Dviewthread%26tid%3D97532%26extra%3Dpage%253D1%26page%3D1&statfrom=login" target="_top" rel="nofollow"><img src="./Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!_files/qq_login.gif" class="vm"></a>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<input type="hidden" name="formhash" value="4f52900c">
+<input type="hidden" name="subject" value="">
+<p class="ptm pnpost">
+<button type="button" onclick="showWindow(&#39;login&#39;, &#39;member.php?mod=logging&amp;action=login&amp;guestmessage=yes&#39;)" name="replysubmit" id="fastpostsubmit" class="pn pnc vm" value="replysubmit" tabindex="5"><strong>发表回复</strong></button>
+<label for="fastpostrefresh"><input id="fastpostrefresh" type="checkbox" class="pc">回帖后跳转到最后一页</label>
+<script type="text/javascript">if(getcookie('fastpostrefresh') == 1) {$('fastpostrefresh').checked=true;}</script>
+</p>
+</td>
+</tr>
+</tbody></table>
+</form>
+</div>
+
+
+<script type="text/javascript">
+var connect_qzone_share_url = 'http://www.eoeandroid.com/home.php?mod=spacecp&ac=plugin&id=qqconnect:spacecp&pluginop=share&sh_type=1&thread_id=97532';
+var connect_weibo_share_url = 'http://www.eoeandroid.com/home.php?mod=spacecp&ac=plugin&id=qqconnect:spacecp&pluginop=share&sh_type=2&thread_id=97532';
+var connect_thread_info = {
+thread_url: 'http://www.eoeandroid.com/thread-97532-1-1.html',
+thread_id: '97532',
+post_id: '1007573',
+forum_id: '48',
+author_id: '498939',
+author: '4546'
+};
+
+connect_autoshare = '0';
+connect_isbind = '';
+if(connect_autoshare == 1 && connect_isbind) {
+_attachEvent(window, 'load', function(){
+connect_share(connect_weibo_share_url, connect_openid);
+});
+}
+</script>
+
+
+<script type="text/javascript">document.onkeyup = function(e){keyPageScroll(e, 0, 0, 'forum.php?mod=viewthread&tid=97532', 1);}</script>
+</div>
+
+<div class="wp mtn">
+<!--[diy=diy3]--><div id="diy3" class="area"></div><!--[/diy]-->
+</div>
+
+	</div>
+    <script type="text/javascript">
+    (function(){
+//用于控制导航条的样式			  
+function gDom(str){
+return document.getElementById(str)
+}
+ 	
+function doIt(){
+   var uls=gDom('nv_ul');
+   var lis=uls.getElementsByTagName('li');
+   for(var i=0;i<lis.length;i++){
+   if(lis[i].className!='a'){
+   lis[i].onmouseover=function(){
+var that=this;
+
+var mya=that.getElementsByTagName('a')[0]	
+//var myem=that.getElementsByTagName('em')[0]
+mya.className="cur"
+//myem.className="cur"
+
+}
+   
+    lis[i].onmouseout=function(){
+var that=this;
+var mya=that.getElementsByTagName('a')[0]
+//	var myem=that.getElementsByTagName('em')[0]
+mya.className=""
+//	myem.className=""
+}
+   }
+   
+   	else{
+//var myem=lis[i].getElementsByTagName('em')[0]
+//myem.className='cur'
+}		   
+   }
+   
+
+
+}
+
+/*给测试服务器的*/
+function doIt2(){
+var index=document.getElementById('mn_portal');
+if(index.className=='a'){
+//index.style.backgroundPosition="0 -90px"
+var a1=index.getElementsByTagName('a')[0];
+a1.style.backgroundPosition="0 -90px"
+}
+    var index2=document.getElementById('mn_forum');
+if(index2.className=='a'){
+var a2=index2.getElementsByTagName('a')[0];
+a2.style.backgroundPosition="0 -302px"
+}		
+}
+
+
+
+function doIt3(){
+var pt=	document.getElementById('pt');
+var divs=pt.getElementsByTagName('div');
+    for(var i=0;i<divs.length;i++){
+if(divs[i].className=='z'){
+var odiv=divs[i];
+odiv.getElementsByTagName('a')[1].innerHTML='首页'
+
+}
+}
+
+}	
+    /*本地*/
+function doIt4(){
+var index=document.getElementById('mn_portal');
+if(index.className=='a'){
+//index.style.backgroundPosition="0 -133px"
+var a1=index.getElementsByTagName('a')[0];
+a1.style.backgroundPosition="0 -90px"
+}
+    var index2=document.getElementById('mn_N9ec7');
+if(index2.className=='a'){
+var a2=index2.getElementsByTagName('a')[0];
+a2.style.backgroundPosition="0 -302px"
+}		
+}
+
+
+doIt();	
+doIt2();
+//doIt4();
+//doIt6();
+})()
+</script>   
+<script type="text/javascript">
+(function(){
+function  ctSwap(){
+ var href=location.href;
+ var reg1=/portal-portalcp/;
+ var reg2=/home-space/;
+ var reg3=/home-task/;
+ var reg4=/misc/
+ var reg5=/spacecp/
+ var reg6=/space/
+ if(href.match(reg1)||href.match(reg2)||href.match(reg3)||href.match(reg4)||href.match(reg5)||href.match(reg6)){
+ var ct=document.getElementById("ct");
+ ct.style.display='block';
+ ct.style.height='auto';
+ ct.style.minHeight='auto'
+ }			 
+ 
+ }
+})()
+</script>
+    <script type="text/javascript">
+function doIt3(){
+var pt=	document.getElementById('pt');
+var divs=pt.getElementsByTagName('div');
+    for(var i=0;i<divs.length;i++){
+if(divs[i].className=='z'){
+var odiv=divs[i];
+odiv.getElementsByTagName('a')[1].innerHTML='首页'
+
+}
+}
+
+}
+
+function doIt4(){
+var ct=	document.getElementById('ct');
+var divs=ct.getElementsByTagName('div');
+    for(var i=0;i<divs.length;i++){
+if(divs[i].className=='tbmu'){
+var odiv=divs[i];
+var oas=odiv.getElementsByTagName('a');
+for(var j=0;j<oas.length;j++)
+  { var oa=oas[j];
+    if(oa.innerHTML=='在线成员'){
+oa.style.display='none';
+oa.nextSibling.style.display='none'
+}
+  }
+}
+}
+
+}	
+function doIt5(){
+var href=location.href;
+var reg1=/portalcp/;
+ if(href.match(reg1)){
+  var ct=document.getElementById("ct");
+ ct.style.display='block';
+ ct.style.height='auto';
+ ct.style.minHeight='auto'
+ }
+}
+function doIt6(){
+var href=location.href;
+var reg1=/misc-stat/;
+ if(href.match(reg1)){
+  var ct=document.getElementById("ct");
+ ct.style.display='block';
+ ct.style.height='auto';
+ ct.style.minHeight='auto'
+ }
+}	
+   
+   
+  function doit7(){
+  //用于去除margin-left
+  var arr=['framev96t1n'/*'frameFZ4kpU','frameG57j4B','framev96t1n','framehM9U77','frame81Tlhz','framefi2UBr','frameF44EBw'*/]
+  for(var i=0;i<arr.length;i++){
+  var str=arr[i];
+  if(document.getElementById(str)){
+  //document.getElementById(str).style.marginLeft='3px'+" !important";
+  //document.getElementById(str).style.marginRight='3px'+" !important";
+  //alert(document.getElementById(str).style.marginLeft)
+  }
+  
+  }
+  
+  }	
+
+    
+        window.onload=function(){
+
+if(document.getElementById('pt')&&!document.getElementById('nv_misc'))doIt3();
+if(document.getElementById('ct'))doIt4();
+doIt5();
+doIt6();
+doit7()
+}
+</script>
+<div class="myth_yj_footer"></div>
+<div id="comiis_footer">
+<div class="comiis_footer"><a href="http://www.eoemobile.com/">关于我们</a><span class="pipe">|</span><a href="http://www.eoemobile.com/hr">招贤纳士</a><span class="pipe">|</span><a href="http://www.eoemobile.com/profile/contact.html">联系我们</a><span class="pipe">|</span><a href="http://www.eoeandroid.com/topic-sitemap.html">论坛新帖</a><span class="pipe">|</span><a href="http://www.eoeandroid.com/archiver/">Archiver</a><span class="pipe">|</span>&nbsp;&nbsp;<a href="http://stats.discuz.qq.com/?ADTAG=FROUM.FOOTER.CLICK.ICON" title="腾讯分析" target="_blank">腾讯分析</a><script type="text/javascript" src="./Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!_files/ping.js" charset="utf-8"></script><script type="text/javascript" reload="1">pgvMain({"discuzParams":{"r2":"7379687","ui":0,"rt":"forum","md":"viewthread","fi":"48","ti":"97532","pn":1,"logo":9},"virtualDomain":"www.eoeandroid.com","extraParams":""});</script></div>
+
+<div style="display:none;">
+<script src="./Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!_files/stat.php" type="text/javascript" language="JavaScript"></script><a href="http://www.cnzz.com/stat/website.php?web_id=3473994" target="_blank" title="站长统计">站长统计</a><img src="./Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!_files/stat.htm" border="0" width="0" height="0">
+</div>
+<div class="comiis_copyright">
+Copyright 2009 - 2010 eoeAndroid All Rights Reserved  京ICP备09111574号
+<p style="display:none;">
+GMT+8, 2011-10-20 16:55<span id="debuginfo">
+, Processed in 0.013407 second(s), 11 queries
+.
+</span>
+</p>
+
+<!--tongji-->
+<div style="display:none;">
+<script src="./Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!_files/tongji.js" type="text/javascript"></script><img src="./Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!_files/tongji.do" border="0" width="1" height="1"><noscript>&lt;a href=" http://www.linezing.com"&gt;&lt;img src=" http://img.tongji.linezing.com/1854084/tongji.gif"/&gt;&lt;/a&gt;</noscript>
+<script type="text/javascript">
+
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-8242804-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+</script>
+</div>
+<!--tongji end-->
+  </div>
+</div>
+<script language="javascript">
+function killErrors() {
+    return true;
+}
+window.onerror = killErrors;
+</script><ul id="usersetup_menu" class="p_pop" style="display:none;">
+<li><a href="http://www.eoeandroid.com/home.php?mod=spacecp&ac=avatar">!modify_avatar!</a></li>
+<li><a href="http://www.eoeandroid.com/home.php?mod=spacecp&ac=profile">!personal_profile!</a></li>
+<li><a href="http://www.eoeandroid.com/home.php?mod=spacecp&ac=credit">积分</a></li>
+<li><a href="http://www.eoeandroid.com/home.php?mod=spacecp&ac=usergroup">用户组</a></li>
+<li><a href="http://www.eoeandroid.com/home.php?mod=spacecp&ac=privacy">!privacy_filter!</a></li>
+<li><a href="http://www.eoeandroid.com/home.php?mod=spacecp&ac=profile&op=password">密码安全</a></li>
+<li><a href="http://www.eoeandroid.com/home.php?mod=spacecp&ac=plugin&id=qqconnect:spacecp">QQ绑定</a></li></ul>
+<div id="g_upmine_menu" class="g_up" style="display:none;">
+<div class="crly">
+积分 0, 距离下一级还需  积分
+</div>
+<div class="mncr"></div>
+</div>
+<!-- JiaThis Button BEGIN -->
+<script src="./Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!_files/jiathis_r.js" type="text/javascript" charset="utf-8"></script><script src="./Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!_files/ckepop.js" charset="utf-8"></script><script src="./Andorid c++与java方法互调（六） - Android 底层开发与源码研究 - eoe·Android开发者门户 - Powered by Discuz!_files/ckecenterpop.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+
+
+</body></html>

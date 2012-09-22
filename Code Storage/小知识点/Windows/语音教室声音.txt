@@ -1,0 +1,86 @@
+//搞清楚声音这一块的功能原理
+
+//教师端：有个CTeacherVoice				m_TeacherVoice;
+//这个类用来对声音进行操作，这个类的定义如下
+
+class CTeacherVoice
+{
+public:
+	CTeacherVoice(void);
+	~CTeacherVoice(void);
+
+public:
+	BOOL InitVoice(
+		GUID& guidPlayback,
+		GUID& guidMic,
+		GUID& guidMixer,
+		GUID& guidLineIn1,
+		GUID& guidLineIn2,
+		int nFormat, 
+		BOOL bEnableDenoise,
+	    HWND hWndMeter = NULL,
+	    DWORD dwMsgMeter = 0);
+
+	void DoneVoice();
+	BOOL IsInited();
+
+	BOOL BeginSendGlobalVoice(DWORD dwDestIpAddress, WORD wPort, DWORD dwLocalIpAddress, WORD wLocalPort);
+	void StopSendGlobalVoice();
+	BOOL IsSendingGlobalVoice();
+
+	BOOL BeginSendVoiceMic();
+	void StopSendVoiceMic();
+	BOOL IsSendingVoiceMic();
+	void MonitorMic(BOOL bMonitor);
+
+	BOOL BeginSendVoiceMixer();
+	void StopSendVoiceMixer();
+	BOOL IsSendingVoiceMixer();
+
+	BOOL BeginSendVoiceLineIn1();
+	void StopSendVoiceLineIn1();
+	BOOL IsSendingVoiceLineIn1();
+	void MonitorLineIn1(BOOL bMonitor);
+	BOOL IsLineIn1Available();
+
+	BOOL BeginSendVoiceLineIn2();
+	void StopSendVoiceLineIn2();
+	BOOL IsSendingVoiceLineIn2();
+	void MonitorLineIn2(BOOL bMonitor);
+	BOOL IsLineIn2Available();
+
+	BOOL BeginRecvGlobalVoice(DWORD dwDestIpAddress, WORD wPort, DWORD dwLocalIpAddress, WORD wLocalPort);
+	void StopRecvGlobalVoice();
+	BOOL IsRecvingGlobalVoice();
+
+	LONG GetVoiceMeter(DWORD dwType); // teacher mic VU meter
+	LONG GetStudentVoiceMeter(DWORD dwSSRC); // student voice VU meter in CRTPStream
+
+	BOOL StartSpeaker(GUID& guid);
+	void StopSpeaker();
+	BOOL IsSpeakerStart();
+
+protected:
+	GUID						m_guidPlayback;
+	GUID						m_guidMic;
+	GUID						m_guidMixer;
+	GUID						m_guidLineIn1;
+	GUID						m_guidLineIn2;
+
+	HWND						m_hWndMeter;
+	DWORD						m_dwMsgMeter;
+
+	ITeacherVoice*				m_pTeacherVoice;	//这是一个比较重要的类，其实就是LibVoice中的CTeacherVoice
+	IExternalVoice*				m_pVoiceMixter;
+	IExternalVoice*				m_pVoiceLineIn1;
+	IExternalVoice*				m_pVoiceLineIn2;
+
+	BOOL						m_bSendMixer;
+	BOOL						m_bSendLineIn1;
+	BOOL						m_bSendLineIn2;
+
+	IDSoundCaptureModule *		m_pDSoundCapture;	//声音捕获模块
+	IDSoundRendererModule *		m_pDSoundRenderer;	//声音渲染模块，用来播放声音
+	IAudioJitterBufferModule *	m_pAudioBuffer;
+	BOOL						m_bStartSpeaker;
+};

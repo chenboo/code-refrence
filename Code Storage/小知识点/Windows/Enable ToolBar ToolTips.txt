@@ -1,0 +1,72 @@
+//在对话框中加入工具条并让工具条上的按钮出现提示文本的方法
+
+//1>先用资源编辑器创建一个toolbar，设置按钮，并在按钮的属性
+//prompt中输入要提示的文本，格式为："\n文本"
+
+//2>在对话框中添加一个CToolBar成员变量m_Toolbar
+	CToolBar	m_Toolbar;
+	
+//3>在OnInitDialog加入如下代码：
+
+	//Create the Toolbar
+	if(!m_Toolbar.CreateEx(this,TBSTYLE_FLAT, WS_CHILD | WS_VISIBLE | CBRS_TOP
+		| CBRS_TOOLTIPS | CBRS_FLYBY | CBRS_SIZE_DYNAMIC)
+		|| !m_Toolbar.LoadToolBar(IDR_TOOLBAR1))
+	{
+		return FALSE;
+	}
+
+	//必不可少，用来给工具条安排位置
+	RepositionBars(AFX_IDW_CONTROLBAR_FIRST, AFX_IDW_CONTROLBAR_LAST, 0);
+	
+//4>关键步骤，使提示功能生效
+	BEGIN_MESSAGE_MAP(CDialogDlg, CDialog)
+	//.......
+	//.......
+		ON_NOTIFY_EX(TTN_NEEDTEXT, 0, OnToolTipText)
+	//.......
+	//.......
+	END_MESSAGE_MAP()
+	
+//	OnToolTipText函数的声明和定义
+
+//声明：
+	afx_msg BOOL OnToolTipText(UINT, NMHDR* pNMHDR, LRESULT* pResult);
+	
+	
+//定义：(考虑了字符不同的情况)
+BOOL CDrawerDlg::OnToolTipText(UINT, NMHDR* pNMHDR, LRESULT* pResult)
+{
+	ASSERT(pNMHDR->code == TTN_NEEDTEXTA || pNMHDR->code == TTN_NEEDTEXTW);
+
+	TOOLTIPTEXTA* pTTTA = (TOOLTIPTEXTA*)pNMHDR;
+	TOOLTIPTEXTW* pTTTW = (TOOLTIPTEXTW*)pNMHDR;
+	CString strTipText;
+	UINT_PTR nID = pNMHDR->idFrom;
+
+	if (pNMHDR->code == TTN_NEEDTEXTA && (pTTTA->uFlags & TTF_IDISHWND) ||
+		pNMHDR->code == TTN_NEEDTEXTW && (pTTTW->uFlags & TTF_IDISHWND))
+	{
+		nID = ::GetDlgCtrlID((HWND)nID);
+	}
+
+	if (nID != 0) 
+	{
+		strTipText.LoadString((UINT)nID);
+		strTipText = strTipText.Mid(strTipText.Find(_T("\n"),0)+1);
+
+		if (pNMHDR->code == TTN_NEEDTEXTA)
+		{
+			_wcstombsz(pTTTA->szText, strTipText,sizeof(pTTTA->szText));
+		}
+		else
+		{
+			lstrcpyn(pTTTW->szText, strTipText, sizeof(pTTTW->szText));
+		}
+		
+		*pResult = 0;
+		return TRUE;
+	}
+	
+	return FALSE;
+}

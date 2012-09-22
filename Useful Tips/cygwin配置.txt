@@ -1,0 +1,36 @@
+我的配置如下：（你如还需要其他配置请自行添加，不过最好别减） 
+Archive 
+unzip (5.52-2) 
+zip (2.32-2) 
+Devel 
+autoconf (4-1 2.13-3 2.61-1) 
+automake (2-1 1.10-1 1.4p6-4 1.5-2 1.63-3 1.7.9-3 1.8.5-3 1.9.6-2) 
+binutils (20080624) 
+cvs (1.11.22-1) 
+gcc (3.4.4-3) 
+gcc-core (3.4.4-3) 
+gcc-g++ (3.4.4-3) 
+gcc-mingw (20040810-1) 
+gcc-mingw-core (20050522-1) 
+gcc-mingw-g++ (20050522-1) 
+gdb (6.8-2) 
+gettext (0.15-1) 
+gettext-devel (0.15-1) 
+git (1.6.0.2-1) 
+libiconv (1.11-1) 
+libgcrypt-devel (1.41-4) 
+libtool (1.5.27a-1) 
+make (3.81-2) 
+mingw-runtime (3.15.1-1) 
+nasm (2.02-1) 
+patchutils (0.2.31-2) 
+pkg-config (0.23a-2) 
+subversion (1.5.2-1) 
+Editor 
+vim (7.2-3) 
+Libs 
+expat (2.0.1-1) 
+libgcrypt (1.4.1-4) 
+Web 
+curl (optional: for building extras/contrib) (7.16.3-1) 
+wget (optional: for building extras/contrib) (1.11.3-1) 

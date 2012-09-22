@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:mux="http://schemas.android.com/apk/res/com.njtd.shareboard"
+    android:layout_width="600dp"
+    android:layout_height="370dp"
+    android:background="@color/dlgBg"
+    android:orientation="vertical" >
+
+    <com.njtd.shareboard.uicontrols.ImageBar
+        android:id="@+id/filedlg_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dlgBorderHeight"
+        mux:barBgImage="@drawable/dialog_border"
+        mux:barTitleText="@string/file_dialog_title" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <ListView
+            android:id="@+id/list_file_info"
+            android:layout_width="350dp"
+            android:layout_height="250dp" >
+        </ListView>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp" >
+
+            <com.njtd.shareboard.controls.ShowPictureView
+                android:id="@+id/pic_preview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center" >
+            </com.njtd.shareboard.controls.ShowPictureView>
+        </FrameLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal" >
+
+        <com.njtd.shareboard.uicontrols.ImageTextButton
+            android:id="@+id/filedlg_btnDone"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/btnMargin"
+            android:layout_toLeftOf="@+id/filedlg_btnCancel"
+            mux:bkImage="@drawable/normalbtnbk"
+            android:text="@string/btn_done"
+            android:textColor="@color/btnText"
+            android:textSize="@dimen/btnText" />
+
+        <com.njtd.shareboard.uicontrols.ImageTextButton
+            android:id="@+id/filedlg_btnCancel"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/btnMargin"
+            mux:bkImage="@drawable/cell_bkgnd"
+            mux:buttonstate="2"
+            android:text="@string/btn_cancel"
+            android:textColor="@color/btnText"
+            android:textSize="@dimen/btnText" />
+
+        <com.njtd.shareboard.uicontrols.ImageTextButton
+            android:id="@+id/filedlg_btnBack"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="@dimen/btnMargin"
+            mux:bkImage="@drawable/normalbtnbk"
+            android:text="@string/btn_back"
+            android:textColor="@color/btnText"
+            android:textSize="@dimen/btnText" />
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,98 @@
+Handler的定义:
+主要接受子线程发送的数据, 并用此数据配合主线程更新UI.
+解释: 当应用程序启动时，Android首先会开启一个主线程 (也就是UI线程) , 主线程为管理界面中的UI控件，进行事件分发, 比如说, 你要是点击一个 Button, Android会分发事件到Button上，来响应你的操作。  如果此时需要一个耗时的操作，例如: 联网读取数据，或者读取本地较大的一个文件的时候，你不能把这些操作放在主线程中，如果你放在主线程中的话，界面会出现假死现象, 如果5秒钟还没有完成的话，会收到Android系统的一个错误提示  "强制关闭".  这个时候我们需要把这些耗时的操作，放在一个子线程中,因为子线程涉及到UI更新，Android主线程是线程不安全的，也就是说，更新UI只能在主线程中更新，子线程中操作是危险的. 这个时候，Handler就出现了来解决这个复杂的问题，由于Handler运行在主线程中(UI线程中)，它与子线程可以通过Message对象来传递数据，这个时候，Handler就承担着接受子线程传过来的(子线程用sedMessage()方法传弟)Message对象，(里面包含数据)  , 把这些消息放入主线程队列中，配合主线程进行更新UI。
+
+
+使用举例：
+使用handler来更新进度条，这里也就是另开一个线程，当线程执行完时利用sendmessage给handler处理，此时已回到主线程来了，可以在此时更新主界面，示例如下：
+package mars.barhandler;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.ProgressBar;
+
+public class TestBarHandler extends Activity {
+	ProgressBar bar = null;
+	Button startButton = null;
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
+        bar = (ProgressBar)findViewById(R.id.bar);
+        startButton = (Button)findViewById(R.id.startButton);
+        startButton.setOnClickListener(new ButtonListener());
+    }
+    class ButtonListener implements OnClickListener{
+
+		@Override
+		public void onClick(View v) {
+			bar.setVisibility(View.VISIBLE);
+			//post一个runnable到主线程的消息队列中去
+			updateBarHandler.post(updateThread);
+		}
+    	
+    }
+    Handler updateBarHandler = new Handler(){
+
+		@Override
+		public void handleMessage(Message msg) {
+			//响应消息更新滚动条
+			bar.setProgress(msg.arg1);
+			Bundle bundle = msg.getData();
+			updateBarHandler.post(updateThread);
+			System.out.println("test---->" + bundle.getString("test"));
+		}
+    	
+    };
+    Runnable updateThread = new Runnable(){
+    	int i = 0 ;
+		@Override
+		public void run() {
+
+			//运行runnable
+			System.out.println("Begin Thread" + i);
+			i = i + 10 ;
+			Message msg = updateBarHandler.obtainMessage();
+			
+			msg.arg1 = i ;
+			Bundle bundle = new Bundle();
+			bundle.putString("test", "test bundle");
+			msg.setData(bundle);
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			if( i > 100){
+				updateBarHandler.removeCallbacks(updateThread);
+				System.out.println(">>>>>>");
+			}else{
+				updateBarHandler.sendMessage(msg);
+				System.out.println("<<<<<<");
+			}
+		}
+    };
+    class MyThread extends Thread{
+    	public void run(){
+    		
+    	}
+    }
+}
+
+//此处只有一个消息，如果要对消息进行判断，可以使用Message的what成员变量，如下(发送时给what赋上相应的标识就好了)
+           public void handleMessage(Message msg) {   
+                switch (msg.what) {   
+                     case TestHandler.GUIUPDATEIDENTIFIER: 
+			//Do something  here
+                          break; 
+                     case TestHandler.GUIUPDATEIDENTIFIER: 
+			//Do something  here
+                          break; 
+                     case TestHandler.GUIUPDATEIDENTIFIER:   
+                          break; 
+                }  

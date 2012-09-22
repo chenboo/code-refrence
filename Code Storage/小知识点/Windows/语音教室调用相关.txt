@@ -1,0 +1,302 @@
+//在语音教室中有很多的功能。这里理清一下，记录下来，方便
+//以后查看
+
+//1>学生发言功能
+//学生发言按钮是处在CMajorFuncPane这个窗口中的
+//这个窗口中放置了若干个功能按钮，他们的命令窗口
+//都指向TeacherDlg，当点击学生发言按钮时，TeacherDlg中会掉用如下函数
+
+ON_COMMAND(ID_VOICE_SPEAK, OnStudentSpeak)
+
+void CTeacherDlg::OnStudentSpeak()
+{
+}
+
+//还有一个值得注意的函数是
+ON_COMMAND(ID_VOICE_SPEAK_SWITCH, OnStudentSpeakSwitch)
+
+void CTeacherDlg::OnStudentSpeakSwitch()
+{
+}
+//这个函数是响应菜单命令的，暂时还未用到，因此不要弄混淆
+
+
+//语音教室，有关声音的调用函数
+
+
+//初始化声音功能
+virtual BOOL InitVoice();
+//结束所有的声音功能
+virtual void DoneVoice();
+//开始发送声音，对于教师端来说，是向学生端发送声音
+//对于学生端来说，是对教师端和其他学生端发送声音
+virtual BOOL BeginSendVoice(DWORD dwVoiceSrcMask, DWORD dwIpAddressAudio, WORD wPortAudio);
+//停止发送声音
+virtual void StopSendVoice();
+//开始接收声音
+virtual BOOL BeginRecvVoice(DWORD dwIpAddressAudio, WORD wPortAudio);
+//停止接收声音
+virtual void StopRecvVoice();
+
+
+
+//1》开启声音广播
+//教师端：
+void CTeacherDlg::OnVoiceTeach()
+//在这个函数里会调用 StartVoiceTeachLocal()这个函数启动语音广播功能，该函数实现如下：
+BOOL CTeacherDlg::StartVoiceTeachLocal(PVOICETEACHPARAMS pVoiceTeachParams, DWORD dwVoiceSrcMask, BOOL bStartRecv)
+{
+	if (waveOutGetNumDevs() <= 0) {
+		ElcMessageBox(IDS_NO_AUDIO_DEVICE, MB_OK | MB_ICONSTOP, GetSafeHwnd());
+		return FALSE;
+	}
+
+//开始向学生发送声音
+	BeginSendVoice(dwVoiceSrcMask, pVoiceTeachParams->dwIpAddressAudio, pVoiceTeachParams->wPortAudio);
+
+	return TRUE;
+}
+
+//学生端：
+//在收到 CMD_VOICE_TEACH:命令后,在函数void  CStudentDlg::OnMemberActionProc(LPVOID pvAction)
+//中执行如下语句
+case CMD_VOICE_TEACH:
+	if (pCommandPacket->dwCommand & CMD_STOP_FUNCTION) {
+		if (m_memberInfo.dwState & CMD_VOICE_TEACH) {
+			m_memberInfo.dwState &= ~CMD_VOICE_TEACH;
+			StopVoiceTeachPassive();
+		}
+	}
+	else {
+		if (!(m_memberInfo.dwState & CMD_VOICE_TEACH)) {
+			PVOICETEACHPARAMS pVoiceTeach = (PVOICETEACHPARAMS)pCommandPacket->abParams;
+			StartVoiceTeachPassive(pVoiceTeach);
+			m_memberInfo.dwState |= CMD_VOICE_TEACH;
+		}
+	}
+	break;
+
+//void StartVoiceTeachPassive(PVOICETEACHPARAMS pVoiceTeachParams); void StopVoiceTeachPassive();
+//函数的实现如下
+
+void CStudentDlg::StartVoiceTeachPassive(PVOICETEACHPARAMS pVoiceTeachParams)
+{
+	if (InitVoice(pVoiceTeachParams->dwCompressWay)) {
+		BeginRecvVoice(pVoiceTeachParams->dwIpAddressAudio, pVoiceTeachParams->wPortAudio);
+	}
+
+	if ((!m_bLocked) && pVoiceTeachParams->bLockInputDevice) {
+		m_InputLock.Lock(GetSafeHwnd(), WM_CTL99_HOTKEY, m_dwLocalInterface);
+		m_bLocked = TRUE;
+	}
+
+	if (pVoiceTeachParams->bShowBlackScreen) {
+		m_wndBlackDesktop.SetText(_T(""));
+		m_wndBlackDesktop.LoadImage(_T("voice_broadcast"));
+		m_wndBlackDesktop.ShowPromptMessge(TRUE);
+		m_wndBlackDesktop.Create();
+	}
+}
+
+void CStudentDlg::StopVoiceTeachPassive()
+{
+	if (m_bLocked) {
+		m_InputLock.Unlock();
+		m_bLocked = FALSE;
+	}
+
+	if (m_wndBlackDesktop.GetSafeHwnd()) {
+		m_wndBlackDesktop.Destroy();
+	}
+
+	DoneVoice();
+}
+
+
+//由于存在个别通话这个功能，个别通话时，只允许教师和部分的学生之间进行语音对话
+//如果按照之前的处理方法，比如在进行个别通话时，只打开部分学生的语音接收功能
+//而这样会导致语音的不停的关闭和打开，因为还有其他的功能也需要打开语音功能，这样会
+//导致冲突，不好处理。为了解决这个问题，采用了另外的一种方法，先说明如下：
+
+//1》开辟两个语音接受和发送的地址，即全局地址和个别通话地址
+//2》学生端在一连接教师端时，教师端就向学生端，发送全局通话的地址和端口号
+//3》学生端在接收到全局地址和端口号后，就打开全局语音的接受过程，调用BeginRecvVoice(m_dwBaseVoiceIP, m_wBaseVoicePort);
+//即一开始就打开语音接受功能，只要有人往这个地址发送语音，该学生就能听到。
+//4》开启个别通话时，教师端会用到m_SimpleVoice。它对个别通话的部分进行管理，负责对个别通话端口上的语音进行发送和接收
+//同时教师端将会停止将麦克风的声音通过全局端口发送出去，而只会发送电脑声音
+//5》个别通话时，学生端会调用BeginTalking(DWORD dwIpAddressAudio, WORD wPortAudio)，通过传进来的个别通话
+//地址和端口进行发送语音，同时添加了一个CRTPUDPVoiceRender	m_VoiceTalkRender;
+//负责从个别通话地址接收语音信息。
+
+
+//在语音教室中，为了达到教师端与学生端的同步采取了很多的措施
+//比如功能的同步：教师端保存了很多比较重要的功能的命令，使向不同步的学生
+//发送相同的命令成为可能，命令保存在数组
+PCOMMANDPACKET m_apCommandPacket[ELC_MAX_COMMAND_COUNT];
+//中，通过相应的索引便能找到对应的功能命令
+
+//在学生端运行起来后，学生将会不断的向教室发送Annouce消息，报告自己当前所处的状态
+//教师端收到Annouce信息后，就将学生的信息与自己内部保存的关于该学生的信息的进行比对，如果不同，就向学生
+//发送相应的功能命令，使之与教师端同步
+
+//教师端Annouce的处理如下：
+
+case CGroupMember::ACTION_ANNOUNCE:
+{
+	if (pMemberAction->cbData <= 0)
+		break;
+
+	PMEMBERANNOUNCE pMemberAnnounce = (PMEMBERANNOUNCE)(pMemberAction + 1);
+	if ((pMemberAnnounce->bActive) && m_bTheOnlyOne && g_features.bEnable_SelectTeacherLogin) {
+		m_bTheOnlyOne = FALSE;
+		ElcMessageBox(IDS_OTHER_TEACHER, MB_OK | MB_ICONSTOP, GetSafeHwnd());
+		PostMessage(WM_COMMAND, ID_APP_EXIT);
+		break;
+	}
+
+	if ((m_nAnnounce >= 5) && m_bTheOnlyOne) 
+	{
+		PMEMBERINFO pMemberInfo = FindMember(pMemberAction->dwIpAddress);
+
+		if ((pMemberInfo == NULL) || (!pMemberInfo->bLoggedIn)) {
+			m_pCommandPacket->dwCommand = CMD_RELOGIN;
+			m_pCommandPacket->cbCommand = sizeof(COMMANDPACKET);
+
+			m_groupMember.SendUnicastMessage(&pMemberAction->dwIpAddress, 1, m_pCommandPacket, m_pCommandPacket->cbCommand);
+			break;
+		}
+
+		//int nItem = FindItem(pMemberInfo->dwIpAddress);
+
+		// Update battery info
+		if (pMemberAnnounce->dwBattery) {
+			if ((HIWORD(pMemberInfo->dwBattery) >= 10 && HIWORD(pMemberAnnounce->dwBattery) < 10) ||
+				(HIWORD(pMemberInfo->dwBattery) == 0 && HIWORD(pMemberAnnounce->dwBattery) < 10))
+			{
+				CString strLowBattery;
+				strLowBattery.LoadString(IDS_LOW_BATTERY);
+				LogTextEv(pMemberInfo->szDefaultName, strLowBattery, m_clrMessageHigh);
+			}
+		}
+
+		if (pMemberInfo->dwBattery != pMemberAnnounce->dwBattery) {
+			int nOldImage = GetPowerImageIndex(pMemberInfo->dwBattery);
+			pMemberInfo->dwBattery = pMemberAnnounce->dwBattery;
+			int nNewImage = GetPowerImageIndex(pMemberInfo->dwBattery);
+			if (nOldImage != nNewImage) {
+				OnMemberBatteryChanged(pMemberInfo);
+			}
+		}
+
+		if (pMemberInfo->dwAudioPlug != pMemberAnnounce->dwAudioPlug) {
+			pMemberInfo->dwAudioPlug = pMemberAnnounce->dwAudioPlug;
+			OnMemberAudioPlugChanged(pMemberInfo);
+		}
+
+		pMemberInfo->bInDestop = ((pMemberAnnounce->dwFlags & FLG_NODESKTOP) == 0) ? TRUE : FALSE;
+		pMemberInfo->dwVersion = pMemberAnnounce->dwVersion;
+
+		if ((pMemberAnnounce->dwState & CMD_LOWRESOURCE) && (!(pMemberInfo->dwState & CMD_LOWRESOURCE))) {
+			OnMemberLowResource(pMemberInfo);
+		}
+
+		// Sync Policy(Web, App and Usb)
+		if ((pMemberAnnounce->dwAppPolicy != pMemberInfo->dwAppPolicy) ||
+			(pMemberAnnounce->dwWebPolicy != pMemberInfo->dwWebPolicy) ||
+			(pMemberAnnounce->dwUsbPolicy != pMemberInfo->dwUsbPolicy))
+		{
+			m_pCommandPacket->dwCommand = CMD_REMOTE_COMMAND | CMD_START_FUNCTION;
+			m_pCommandPacket->cbCommand = sizeof(REMOTECOMMANDPARAMS) + sizeof(COMMANDPACKET);
+
+			PREMOTECOMMANDPARAMS pRemoteCommandParams = (PREMOTECOMMANDPARAMS)m_pCommandPacket->abParams;
+			pRemoteCommandParams->dwCommandType = RCT_SYNC_POLICY;
+			PSYNCPOLICYPARAM pPolicyParam = (PSYNCPOLICYPARAM)&pRemoteCommandParams->command;
+			pPolicyParam->dwAppPolicy = pMemberInfo->dwAppPolicy;
+			pPolicyParam->dwWebPolicy = pMemberInfo->dwWebPolicy;
+			pPolicyParam->dwUsbPolicy = pMemberInfo->dwUsbPolicy;
+
+			SendReliableCommand(&pMemberInfo, 1, m_pCommandPacket);
+		}
+
+
+		if ((!(pMemberAnnounce->dwState & CMD_LOWRESOURCE)) && (pMemberInfo->dwState & CMD_LOWRESOURCE)) {
+			CString strLowResource;
+			strLowResource.LoadString(IDS_RESTORE_RESOURCE);
+			LogTextEv(pMemberInfo->szDefaultName, strLowResource, m_clrMessageHigh);
+		}
+
+		DWORD dwGroup = pMemberInfo->dwGroupId | (pMemberInfo->bGroupLeader ? 0x80000000 : 0x00000000);
+		if (pMemberAnnounce->dwGroup != dwGroup) {
+			m_pCommandPacket->dwCommand = CMD_REMOTE_COMMAND | CMD_START_FUNCTION;
+			m_pCommandPacket->cbCommand = sizeof(REMOTECOMMANDPARAMS) + sizeof(COMMANDPACKET);
+
+			PREMOTECOMMANDPARAMS pRemoteCommandParams = (PREMOTECOMMANDPARAMS)m_pCommandPacket->abParams;
+			pRemoteCommandParams->dwCommandType = RCT_SET_GROUP;
+			*(DWORD *)&pRemoteCommandParams->command = dwGroup;
+
+			SendReliableCommand(&pMemberInfo, 1, m_pCommandPacket);
+		}
+
+		UINT64 dwOldState = pMemberInfo->dwState;
+
+		//教师端，关于学生PMEMBERINFO的dwstate状态的修改在这里，找到这很是一番周折
+		//开始没想到在这，教室在开启一个功能时不会马上改变PMEMBERINFO的状态，必须通过学生
+		//的反馈才能改变，因此在这里进行改变
+		BOOL bModified = ModifyMemberState(pMemberInfo, pMemberAnnounce->dwState);
+
+		//注意这个同步的函数，这很重要！
+		//对于再次登录上来的学生通过这个函数进行状态的同步
+		//对于已经登录的学生，这个函数几乎没有作用
+		SyncMemberState(pMemberInfo);
+		if (bModified) {
+			OnMemberStateChanged(pMemberInfo, dwOldState, pMemberAnnounce->dwState);
+		}
+	}
+}
+break;
+
+//SyncMemberState函数的实现如下
+void CTeacherDlg::SyncMemberState(PMEMBERINFO pMemberInfo)
+{
+	if ((m_nAnnounce < 5) || (!m_bTheOnlyOne)) {
+		return;
+	}
+
+	UINT64 dwCommand = pMemberInfo->dwCommand & (CMD_ACTIVE_MASK | CMD_PASSIVE_MASK);
+	UINT64 dwState = pMemberInfo->dwState & (CMD_ACTIVE_MASK | CMD_PASSIVE_MASK);
+
+	UINT64 dwMask = 1;
+	while (dwMask <= CMD_ACTIVE_MASK) {
+		BOOL bStart = ((dwCommand & dwMask) != 0) && ((dwState & dwMask) == 0);
+		BOOL bStop = ((dwCommand & dwMask) == 0) && ((dwState & dwMask) != 0);
+
+		if (bStart) {
+			if (CMD_MONITOR == dwMask) {
+				// do it by libDeskMonitor
+			}
+			else {
+				int i = GetCommandIndex(dwMask);
+				m_groupMember.SendUnicastMessage(&pMemberInfo->dwIpAddress, 1, m_apCommandPacket[i], m_apCommandPacket[i]->cbCommand);
+
+				if (CMD_BROADCAST == dwMask) {
+					if (m_uFunctionState & FUNCTION_BROADCAST) {
+						m_nFullScreen = 1;
+					}
+					else if (m_uFunctionState & FUNCTION_DEMO) {
+						if (m_pLastVoiceTalkMember) {
+							m_pCommandPacket->dwCommand = CMD_REFRESH_SCREEN;
+							m_pCommandPacket->cbCommand = sizeof(COMMANDPACKET);
+							SendCommand2Item(m_pLastVoiceTalkMember, m_pCommandPacket);	
+						}
+					}
+				}
+			}
+		}
+		else if (bStop) {
+			m_pCommandPacket->dwCommand = dwMask | CMD_MODIFY_STATUS | CMD_STOP_FUNCTION;
+			m_groupMember.SendUnicastMessage(&pMemberInfo->dwIpAddress, 1, m_pCommandPacket, sizeof(COMMANDPACKET));
+		}
+
+		dwMask <<= 1;
+	}
+}

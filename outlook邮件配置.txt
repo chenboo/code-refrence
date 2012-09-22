@@ -1,0 +1,10 @@
+电子邮件地址: Shuiming.Peng@mythware.net
+
+接收邮件服务器: www.topdomain.com.cn
+发送邮件服务器: www.topdomain.com.cn
+
+用户名: Shuiming.Peng@mythware.net
+密码: pengwaer
+
+不选择使用安全密码验证(SAP)进行登录
+在服务器上保留副本

@@ -1,0 +1,11 @@
+//判断SD卡是否存在
+if (android.os.Environment.getExternalStorageState().equals(
+		android.os.Environment.MEDIA_MOUNTED)) {
+	System.out.println("SDCard Exist");
+}
+else{
+	System.out.println("SDCard not Exist");
+}
+
+//获得SD卡的路径
+File sdcarddir = android.os.Environment.getExternalStorageDirectory();

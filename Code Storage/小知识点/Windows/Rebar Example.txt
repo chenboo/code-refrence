@@ -1,0 +1,59 @@
+	//example of use rebar
+	
+	//create rebar
+	if (!m_wndReBar.Create(this))
+	{
+		TRACE0("Failed to create rebar\n");
+		return -1;      // fail to create
+	}
+	
+	//create toolbar
+	if (!m_wndToolBar.CreateEx(this))
+	{
+		TRACE0("Failed to create toolbar\n");
+		return -1;      // fail to create
+	}
+	//set toolbar parameter
+	m_wndToolBar.GetToolBarCtrl().SetButtonWidth(50, 150);
+	m_wndToolBar.GetToolBarCtrl().SetExtendedStyle(TBSTYLE_EX_DRAWDDARROWS);
+	
+	CBitmap bm;
+	bm.LoadBitmap(IDB_BITMAP1);
+
+	//create imagelist and set
+	//img parameter
+	CImageList img;
+	img.Create(IDB_HOTTOOLBAR,22, 0, RGB(255,0,255));
+	m_wndToolBar.GetToolBarCtrl().SetImageList(&img);
+	img.Detach();
+
+	//set toolbar parameter
+	m_wndToolBar.SetButtons(NULL,9);
+
+	m_wndToolBar.SetButtonInfo(0, ID_BTN2, TBSTYLE_BUTTON, 0);
+	m_wndToolBar.SetButtonInfo(1, ID_BTN2, TBSTYLE_BUTTON, 1);
+	m_wndToolBar.SetButtonInfo(2, ID_BTN3, TBSTYLE_BUTTON, 2);
+	m_wndToolBar.SetButtonInfo(3, ID_BTN4, TBSTYLE_BUTTON, 3);
+	m_wndToolBar.SetButtonInfo(4, ID_BTN5, TBSTYLE_BUTTON, 4);
+	m_wndToolBar.SetButtonInfo(5, ID_BTN6, TBSTYLE_BUTTON, 5);
+	m_wndToolBar.SetButtonInfo(6, ID_BTN7, TBSTYLE_BUTTON, 6);
+	m_wndToolBar.SetButtonInfo(7, ID_BTN8, TBSTYLE_BUTTON, 7);
+	m_wndToolBar.SetButtonInfo(8, ID_BTN9, TBSTYLE_BUTTON, 8);
+
+	m_wndToolBar.SetBarStyle(m_wndToolBar.GetBarStyle() | CBRS_TOOLTIPS | CBRS_FLYBY | CBRS_SIZE_FIXED);
+	
+	//add the toolbar to the rebar
+	m_wndReBar.AddBar(&m_wndToolBar,NULL, NULL, RBBS_GRIPPERALWAYS|RBBS_FIXEDBMP|RBBS_USECHEVRON);
+
+	CRect rectToolBar;
+	m_wndToolBar.GetItemRect(0, &rectToolBar);
+	
+	//set the parameter of toolbar when in
+	//rebar
+	REBARBANDINFO rbbi;
+	rbbi.cbSize = sizeof(rbbi);
+	rbbi.fMask = RBBIM_CHILDSIZE | RBBIM_IDEALSIZE | RBBIM_SIZE;
+	rbbi.cxMinChild = rectToolBar.Width();
+	rbbi.cyMinChild = rectToolBar.Height();
+	rbbi.cx = rbbi.cxIdeal = rectToolBar.Width() * 9;
+	m_wndReBar.GetReBarCtrl().SetBandInfo(0, &rbbi);

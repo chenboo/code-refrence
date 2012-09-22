@@ -1,0 +1,20 @@
+//CString 的其他用法
+//由于CString类重载了"=="号运算符,所以可以直接拿它来使用
+//比较两个字符串是否相等。该比较区分大小写。
+
+//举例如下:
+
+	CString str = _T("peng");
+	CString str1 = _T("ming");
+	CString str2 = _T("peng");
+
+	if(str == str1)
+	{
+		int ko = 0;
+	}
+	if(str == str2)
+	{
+		int ok = 0;
+	}
+	
+	

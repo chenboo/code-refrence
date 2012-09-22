@@ -1,0 +1,6 @@
+VC程序图标详解
+1>应用程序图标(即程序保存在磁盘时看到的图标)修改:
+应用程序图标使用的是在资源中具有最小ID号的图标资源，即如果想改变应用程序图标，可以将要修改
+成的图标加入工程中，并给该图标标识为当前最小的ID号。
+这个道理在rc文件中可以看到:
+Icon with lowest ID value placed first to ensure application icon

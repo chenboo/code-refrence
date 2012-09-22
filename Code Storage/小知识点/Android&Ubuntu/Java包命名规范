@@ -1,0 +1,21 @@
+我自己总结的规范：
+包的话，例如我现在的项目中就有这几个包，这是经过很多湾路，精心设计的：
+  com.XXX.plays.junit
+  com.XXX.plays
+  com.XXX.plays.activitys
+  com.XXX.plays.base
+  com.XXX.plays.eventListener
+  com.XXX.plays.services
+  com.XXX.plays.views
+  com.XXX.utils
+我到目前为止，再也没有推敲出一个更完善的架构，欢迎指正。
+
+其它规范：
+ layout 中的控件的 id 一定不能马虎。android 中这种资源统一管理的方式，好是好，但是缺点就是当你 控件定义得很多时，你在 IDE 里写 R.id. 最后一点出来，蒙了，铺天盖地的 ID 。不好区分。现在我遵循的一个规则是， layoutName_viewType_name, 例如，main_btn_addPoint
+
+编码规范：将生命周期方法写在一起。内部类写在一起。其它方法写在一起。否则像 Activity 这种代码很容易膨胀起来的类，你会很难阅读和管理。
+
+
+我们都是
+com.公司名.项目名.功能名
+这样来命名各个packagename的。

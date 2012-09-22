@@ -1,0 +1,26 @@
+
+CString str = _T("hjasdhgha");
+CRect rect(0,0,200,200);
+
+pDC->DrawText(str,rect,DT_LEFT|DT_EDITCONTROL|DT_WORDBREAK);
+
+/* virtual int DrawText(
+   LPCTSTR lpszString,
+   int nCount,
+   LPRECT lpRect,
+   UINT nFormat 
+);
+int DrawText(
+   const CString& str,
+   LPRECT lpRect,
+   UINT nFormat 
+);  
+
+主要是参数nFormat的使用：为了使drawtext能自动换行，要选中“DT_EDITCONTROL”属性
+*/
+
+
+	
+
+
+

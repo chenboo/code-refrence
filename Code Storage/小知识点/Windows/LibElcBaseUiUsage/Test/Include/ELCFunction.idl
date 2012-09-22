@@ -1,0 +1,78 @@
+// ELCFunction.idl : IDL source for ELCFunction.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (ELCFunction.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+	enum FUNCTIONCAPS {
+		FCAPS_1_0 = 1,
+		FCAPS_1_1 = 2,
+		FCAPS_1_N = 4,
+		FCAPS_PANEL = 8,
+		FCAPS_MUTEX = 0x10,
+		FCAPS_PROPERTY = 0x20,
+		FCAPS_AS_MANAGER = 0x40
+	};
+
+	[
+		object,
+		uuid(56588044-6C35-479D-8318-F9988644865E),
+	
+		helpstring("IActiveFunction Interface"),
+		pointer_default(unique)
+	]
+	interface IActiveFunction : IUnknown
+	{
+		[helpstring("method GetInfo"), local] HRESULT GetInfo(DWORD *pdwCaps, LPSTR pszName, DWORD cbName, LPSTR pszDesc, DWORD cbDesc);
+
+		[helpstring("method Initialize"), local] HRESULT Initialize(void *pFunctionManager);
+		[helpstring("method Uninitialize"), local] HRESULT Uninitialize();
+
+		[helpstring("method Run"), local] HRESULT Run();
+		[helpstring("method RunEx"), local] HRESULT RunEx(DWORD dwFocused, DWORD *pdwSelected, DWORD dwCount);
+
+		[helpstring("method RunGroup"), local] HRESULT RunGroup(DWORD dwGroupId, DWORD dwActive, DWORD *pdwPassive, DWORD dwCount);
+		[helpstring("method StopGroup"), local] HRESULT StopGroup(DWORD dwGroupId);
+
+		[helpstring("method Stop"), local] HRESULT Stop();
+
+		[helpstring("method IsRunning"), local] HRESULT IsRunning();
+
+		[helpstring("method CalcState"), local] HRESULT CalcState(BYTE *lpbParameters, DWORD cbSize, DWORD *pdwState);
+		[helpstring("method GetStateIcon"), local] HRESULT GetStateIcon(DWORD dwState, HICON *phiconState);
+		[helpstring("method GetParameters"), local] HRESULT GetParameters(DWORD dwIpAddress, DWORD dwState, BYTE *lpbParameters, DWORD *pcbParameters);
+
+		[helpstring("method SetPanelBkgnd"), local] HRESULT SetPanelBkgnd(HBITMAP hBmpBkgnd);
+		[helpstring("method GetPanelHandle"), local] HRESULT GetPanelHandle(HWND *phwndPanel);
+		[helpstring("method GetPropPageHandle"), local] HRESULT GetPropPageHandle(HWND *phwndPropPage, DWORD *pdwCount);
+
+		[helpstring("method PumpPreTranslateMessage"), local] HRESULT PumpPreTranslateMessage(MSG *pMsg);
+		[helpstring("method PumpIdle"), local] HRESULT PumpIdle(LONG lCount);
+	};
+	[
+		object,
+		uuid(391E507E-B99E-4540-BA8A-CA81BCBD44FD),
+	
+		helpstring("IPassiveFunction Interface"),
+		pointer_default(unique)
+	]
+	interface IPassiveFunction : IUnknown
+	{
+		[helpstring("method GetInfo"), local] HRESULT GetInfo(DWORD *pdwCaps, LPSTR pszName, DWORD cbName, LPSTR pszDesc, DWORD cbDesc);
+
+		[helpstring("method Initialize"), local] HRESULT Initialize(void *pFunctionManager);
+		[helpstring("method Uninitialize"), local] HRESULT Uninitialize();
+
+		[helpstring("method Run"), local] HRESULT Run(BYTE *lpbParameters, DWORD cbSize);
+		[helpstring("method SetParameters"), local] HRESULT SetParameters(BYTE *lpbParameters, DWORD cbSize);
+		[helpstring("method Stop"), local] HRESULT Stop();
+
+		[helpstring("method IsRunning"), local] HRESULT IsRunning();
+		[helpstring("method CalcState"), local] HRESULT CalcState(BYTE *lpbParameters, DWORD cbSize, DWORD *pdwState);
+		[helpstring("method GetCurrentState"), local] HRESULT GetCurrentState(DWORD *pdwState);
+
+		[helpstring("method PumpPreTranslateMessage"), local] HRESULT PumpPreTranslateMessage(MSG *pMsg);
+		[helpstring("method PumpIdle"), local] HRESULT PumpIdle(LONG lCount);
+	};

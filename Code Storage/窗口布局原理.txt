@@ -1,0 +1,59 @@
+MFC控制条窗口布局原理
+——by Koote Bi@fudan cse
+一、框架窗口
+框架窗口在其大小被改变的时候会收到WM_SIZE消息，这个消息的处理函数是CFrameWnd::OnSize，此函数接着调用RecalcLayout来重新安置各子窗口，它的主体代码如下：
+if(GetStyle() & FWS_SNAPTOBARS)
+{
+CRect rect(0, 0, 32767, 32767);
+RepositionBars(0, 0xffff, AFX_IDW_PANE_FIRST, reposQuery, &rect, &rect, FALSE);
+RepositionBars(0, 0xffff, AFX_IDW_PANE_FIRST, reposExtra, &m_rectBorder, &rect, TRUE);
+CalcWindowRect(&rect);
+SetWindowPos(NULL,0,0,rect.Width(),rect.Height(),SWP_NOACTIVATE|SWP_NOMOVE|SWP_NOZORDER);
+}
+else
+{
+        RepositionBars(0, 0xffff, AFX_IDW_PANE_FIRST, reposExtra, &m_rectBorder);
+}
+这里有两个小的地方要注意，第一是FWS_SNAPTOBARS风格。一般来说，都是框架窗口主动改变大小，子窗口随之要修改自己来适应框架窗口的改变，但是这个FWS_SNAPTOBARS风格却相反，是让框架窗口改变大小来适应它的子窗口，但我一路跟踪下来没有发现有哪个框架窗口有这个风格，都是走else分支的（事实上这个风格是为CMiniDockFrameWnd准备的，这个框架窗口的大小是根据它内部的控制条来定的）；第二是要注意RecalcLayout是不可重入的，MFC防止重入的方法虽然非常的简单有效，但是它的方法要不能防止多线程的重入——话说回来MFC本身就不是一个线程安全的库J
+好了现在我们进入了整个重布局动作的主体函数RepositionBars，让我们仔细分析一下它都干了些啥见不得人的“勾当”（这个函数在MSDN里有文档记载，关于它的几个参数的含义就不在这里赘述了）：
+首先，它创建一个AFX_SIZEPARENTPARAMS结构，并填写好它的成员变量，最主要的就是两个：bStretch和rect，前一个是BOOL型变量，表明子窗口是否需要拉伸（拉伸到和客户区同宽或同高），后一个是当前客户区大小。
+接着，框架窗口按照Z-order，从最上面的子窗口开始，依次向它的所有子窗口发送WM_SIZEPARENT消息（ID为nIDLeftOver的子窗口除外），以通知它们，按照新的客户区，重新计算自己的大小和位置，并从AFX_SIZEPARENTPARAMS::rect中将自己所占的那一块rectangle扣除，这样所有的子窗口计算完毕后框架窗口就可以知道剩余客户区的大小（PS：到底都发送给了谁？又是按照什么次序？以MDIDemo为例，该例子创建了一个CToolBar、一个CThumbnailListCtrlBar，在都是Dock状态下，跟踪记录下的所发送的窗口的ID，依次是0xE801à0xE81Bà0xE81Eà0xE81Cà0xE81D，察看各子窗口ID的定义得知次序是状态栏à上方的Dock Barà下方的Dock Barà左边的Dock Barà右边的Dock Bar，这里要注意的是，所找到的第一个子窗口的ID是0xE900（0xE900被定义成AFX_IDW_PANE_FIRST，在这个例子里它是View的窗口ID，与这个ID对应的还有另一个ID叫AFX_IDW_PANE_LAST，SDI的View窗口，MDI的MDIClient窗口，分隔条窗口等的ID都要介于上面两个ID值之间），等于nIDLeftOver，所以WM_SIZEPARENT消息是不发给它的。那么为什么Tool bar和Thumbnail bar也收不到消息呢？因为Dock Bar是它的父窗口，消息发给Dock Bar了，Dock bar会计算它内部停靠的全部子窗口的大小，就不需要框架窗口操心了，除此之外，浮动的控制条也是不接受WM_SIZEPARENT消息的，原因很简单，浮动的控制条不会跟随主框架窗口的大小改变而改变）。
+发送完毕之后（这里有个细节，框架窗口发送WM_SIZEPARENT消息用的是SendMessage，这意味着只有子窗口处理完该消息后，SendMessage才返回，框架窗口才会接着发送消息给下一个子窗口，全部发送完毕也就意味了所有的子窗口都已经从AFX_SIZEPARENTPARAMS::rect中把自己要的那一块rectangle给拿掉了），剩下的就是最后可用的客户区了，根据nFlags的值，执行不同的返回动作。其中reposQuery表示只查询，不做实际的重布局动作，把最后剩下的客户区，拷贝到lpRectParam就返回了，如果不是reposQuery那就要做重布局了，对reposDefault，我们要把ID为nIDLeftOver的子窗口的大小和位置调整到被其他子窗口切剩后剩下的可用客户区内，使这个子窗口正好完全覆盖最后的可用区域（也就是说所有的子窗口把客户区全部挤满了）。而当nFlag等于reposExtra时，在调整 nIDLeftOver子窗口的大小和位置前，用 lpRectParam来对最后剩下的可用区域做修正，具体来说就是把AFX_SIZEPARENTPARAMS::rect向里缩，缩的距离由lpRectParam指定，这样就使最后剩下的客户区不被nIDLeftOver子窗口占满，而是空出一些地方。修正完毕后最后一次性重布局所有的子窗口。
+至此，框架窗口所做的动作全部完成。
+ 
+二、控制条子窗口
+分析完了框架窗口，接着分析控制条这边所要做的响应动作。根据前面的跟踪我们知道除了CStatusBar和CDockBar，从CControlBar继承下来的控制条诸如CToolBar、CDialogBar等，是收不到WM_SIZEPARENT消息的，它们的父窗口CDockBar代替它们接收这个消息。因此整个重布局过程的起点是CDockBar对WM_SIZEPARENT消息的处理函数CDockBar::OnSizeParent（对CStatusBar而言，其起点是CControlBar::OnSizeParent，这里不打算对它作进一步分析，有兴趣可以自己完成）。第一步让我们来分析这个函数所做的动作，这个函数不长，把完整代码列出：
+LRESULT CDockBar::OnSizeParent(WPARAM wParam, LPARAM lParam)
+{
+AFX_SIZEPARENTPARAMS* lpLayout = (AFX_SIZEPARENTPARAMS*)lParam;
+ 
+// set m_bLayoutQuery to TRUE if lpLayout->hDWP == NULL
+BOOL bLayoutQuery = m_bLayoutQuery;
+CRect rectLayout = m_rectLayout;
+ 
+m_bLayoutQuery = (lpLayout->hDWP == NULL);
+m_rectLayout = lpLayout->rect;
+LRESULT lResult = CControlBar::OnSizeParent(wParam, lParam);
+ 
+// restore m_bLayoutQuery
+m_bLayoutQuery = bLayoutQuery;
+m_rectLayout = rectLayout;
+ 
+return lResult;
+}
+如前所述，WM_SIZEPARENT消息传递一个AFX_SIZEPARENTPARAMS结构体的指针作为参数，在这里我们先取出这个结构体，然后判断AFX_SIZEPARENTPARAMS::hDWP是否为空，是的话说明父窗口仅仅是想查询，并不要真的进行重布局动作（回到RepositionBars，当nFlags为reposQuery时，并不调用BeginDeferWindowPos，故而AFX_SIZEPARENTPARAMS::hDWP就一定是NULL），完成必要的变量保护后，进入父类CControlBar的OnSizeParent，在此，根据控制条窗口的风格，决定如何计算控制条的尺寸，具体是这样的；
+        DWORD dwMode = lpLayout->bStretch ? LM_STRETCH : 0; //拉伸否?
+        if((m_dwStyle & CBRS_SIZE_DYNAMIC) && m_dwStyle & CBRS_FLOATING) //浮动,形状可变
+        {
+               dwMode |= LM_HORZ | LM_MRUWIDTH;//计算水平状态常用尺寸
+        }
+        else if(dwStyle & CBRS_ORIENT_HORZ) //水平停靠
+        {
+               dwMode |= LM_HORZ | LM_HORZDOCK;//计算水平停靠状态尺寸
+        }
+        else
+        {
+               dwMode |= LM_VERTDOCK; //计算垂直停靠状态尺寸
+        }
+        CSize size = CalcDynamicLayout(-1, dwMode);
+要注意的是最后一行调用，CalcDynamicLayout，这个函数是一个虚函数，先被调用的是CControlBar:: CalcDynamicLayout，这个函数调用了CalcFixedLayout（也是一个虚函数），注意到CDockBar对此函数进行了重载，所以转了一圈我们又回到了CDockBar中。

@@ -1,0 +1,1 @@
+This program is based on winsock, and have used the multithread to receive messages.

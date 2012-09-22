@@ -1,0 +1,14 @@
+这个一个实现真彩工具条的类，主要是用一个真彩的位图，将系统自带的位图替换掉，
+主要是利用了CImageList这个类。另外该类还添加了一个下拉按钮的功能。使用这些功能
+很简单，在CMainFrm中将m_wndToolBar的定义类型改为:CTrueColorToolBar,
+即在MainFrm.h文件中:
+CTrueColorToolBar		m_wndToolBar;
+
+其次在MainFrm.cpp文件中，在m_wndToolBar创建之后，添加如下语句：
+	m_wndToolBar.LoadTrueColorToolBar(48, IDB_BITMAP1, IDB_BITMAP1, IDB_BITMAP2);
+	//如果想添加下拉按钮可以添加下面这句
+	//m_wndToolBar.AddDropDownButton(this, ID_FILE_SAVE, IDR_MENU1);
+
+//IDB_BITMAP1，IDB_BITMAP2为已载入到程序中的真彩位图，分别代表Hot和disable状态。
+
+完成。

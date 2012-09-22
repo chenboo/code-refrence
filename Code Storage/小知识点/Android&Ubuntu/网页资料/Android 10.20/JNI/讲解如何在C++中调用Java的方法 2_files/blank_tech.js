@@ -1,0 +1,1 @@
+document.writeln("<iframe width=0 height=0 resizable=no scrolling=no frameborder=\"0\" marginheight=0 marginwidth=0 src=\"http:\/\/image6.ccidnet.com:8081\/ad_files\/image\/tech\/art\/blank.gif\"><\/iframe>");

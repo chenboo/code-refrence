@@ -1,0 +1,30 @@
+//判断点是否在直线周围
+
+//ptLT : 直线的第一点
+//ptRB : 直线的第二点
+//point: 要判断的点
+
+BOOL CCanvasView::bInLine(CPoint ptLT,CPoint ptRB,CPoint point)
+{
+	if(point.x > m_nCanvasWidth || point.y > m_nCanvasHeight)
+	{
+		return FALSE;
+	}
+	double a = sqrt((double)(point.x - ptLT.x)*(point.x - ptLT.x) + (point.y - ptLT.y)*(point.y - ptLT.y));
+	double b = sqrt((double)(point.x - ptRB.x)*(point.x - ptRB.x) + (point.y - ptRB.y)*(point.y - ptRB.y));
+	double c = sqrt((double)(ptLT.x - ptRB.x)*(ptLT.x - ptRB.x) + (ptLT.y - ptRB.y)*(ptLT.y - ptRB.y));
+	double z = sqrt(a*a - (a*a + c*c -b*b)*(a*a + c*c - b*b)/(4 * c * c));
+
+	NormalizeThePoints(ptLT,ptRB);
+	CRect rect(ptLT,ptRB);
+	rect.InflateRect(5,5);
+
+	if(z < LINEGAP && rect.PtInRect(point))
+	{
+		return TRUE;
+	}
+	else
+	{
+		return FALSE;
+	}
+}

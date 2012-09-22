@@ -1,0 +1,15 @@
+在android中使用SQLite创建的数据库默认是存在于内存的/data/data/<package name/databases>目录中
+如果你想使用已经存在的数据库文件也就是说数据库会和程序一起发布，就得通过使用SQLiteDabase的静态方法OpenOrCreateDatabase()方法来得到SQLiteDabase对象，下面是一个具体操作类：
+
+if (android.os.Environment.getExternalStorageState().equals(
+		android.os.Environment.MEDIA_MOUNTED)) {
+	File file = new File(DATABASE_PATH);
+
+	if (!file.exists()) {
+		file.mkdirs();
+	}
+	
+	mDataBase = SQLiteDatabase.openOrCreateDatabase(DATABASE, null);
+}
+
+这个数据库创建之后就可以对这个数据库进行相关的增、删、改、查操作了。

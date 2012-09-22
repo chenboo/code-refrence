@@ -1,0 +1,147 @@
+* Add SCRMFT for Windows Vista.
+* Fix MiniMediaClient call RequestComplete twice problem.
+* Add audio support in DirectShowCapture
+* Fix lost update bug when notify buffer full.
+* Add deinterlance module in LibVoIP.
+* Fix memory leak problem in LibVoIP.
+
+2007-11-29 1.5.10 BASELINE RELEASE_CLASS_BETA-1 (Build:272)
+===========================================================
+* CDD capture engine improvement:
+  - Shared & Private kernel mode framebuffer support.
+  - Sync for Frame Buffer Reader & Writer.
+  - Hardware Cursor Enable/Disable Support. (Enable is not work for all display adapters)
+  - Intel layered window support in kernel mode frame buffer.
+* MPEG-1/2 Video Decoder support for 32 pixels aligned MPEG-2 files.
+* Add external screen capture support for Screen Capture Filter.
+* Modified 'wrong time stamp' suppor in MPA Framer.
+* Add motion, modified region calculation to LibDisplay.
+* Modified DispPresent in LibDispCap for non-open capture driver detection.
+
+2007-11-20 1.5.10 BASELINE RELEASE_CLASS_BETA-1 (Build:271)
+===========================================================
+* CDD capture engine support for Windows 2000/XP/Vista.
+* LibDispCap support for new CDD capture engine.
+* LibDisplay display capture interface.
+* CDD capture engine notes:
+  Features:
+  - Support for Windows 2000 to Windows Vista with same driver.
+  - Support multiple client app in same/different process.
+  - Support multiple display card (select card via GDI display name, eg. \\.\DISPLAY1, use EnumDisplayDevice to get the list).
+  - Support session screen capture (eg. 1 - n Host or Windows Termial Services)
+  - Support DirectDraw/Direct3D.
+  - Better display adapter compatibility.
+  - Motion block support.
+  - Kernel mode frame buffer, support Vista UAC desktop & Ctrl-Alt-Del screen.
+  Limits:
+  - Windows Vista Aero mode.
+  - Windows Vista Media Center full screen mode.
+  - Some legacy games with primary surface lock/unlock. 
+  ToDo:
+  - Bitmap display driver (Intel series) layered window kernel mode frame buffer capture.
+  - Exclude/Include Software Cursor for all cursor types & primary surface type.
+  - Sync for Frame Buffer Reader & Writer (to remove tears).
+* LibMPEG2, LibIMG support for VIA 800MHz CPU.
+
+2007-10-31 1.5.10 BASELINE RELEASE_CLASS_BETA-1 (Build:269)
+===========================================================
+* LibMiniMedia support directory creation, deletion & file upload now.
+* TDVideo support for multiple applications in same session. (In progress)
+* New capture engine support block motion detection, alpha cursor & universal API for Windows Vista & Windows 2000/XP. (In progress)
+* New screen codec support better compression ratio & h.264 video standard compatibility. (In progress)
+
+2007-10-16 1.5.10 BASELINE RELEASE_CLASS_BETA-1 (Build:268)
+===========================================================
+* Add Screen Capture to LibVoIP.
+* Add MPEG4 Video Encoder & Decoder to LibVoIP.
+* Add ASFMuxer to LibVoIP.
+
+2007-9-14 1.5.10 BASELINE RELEASE_CLASS_BETA-1 (Build:266)
+===========================================================
+* Support streaming of MPEG-1 file with wrong bitrate or wrong timestamp.
+* Motion Detector optimization.
+* Add Sync Point support to Realible Multicast.
+
+2007-9-6 1.5.9 BASELINE RELEASE_CLASS_ALPHA-6 (Build:263)
+===========================================================
+* Fix DSoundCapture incorrect sound stream after stop/run.
+* Add new speex library (1.2beta2)
+* Fix TDVideo destkop icon capture in Windows XP.
+* Fix mixer problem in Windows Vista.
+* Fix Real video dim mismatch problem.
+* Video IO modules added to LibVoIP.
+* Add dynamic link / unicode dynamic link configuration.
+* Add Reliable Multicast Interface.
+
+2007-04-29 1.5.8 BASELINE RELEASE_CLASS_ALPHA-5 (Build:262)
+===========================================================
+* Add end frame support to MP3FileContainerModule in LibVOIP.
+* Fix DSoundCapture GPF for C-Media USB headphone.
+
+2007-04-26 1.5.7 BASELINE RELEASE_CLASS_ALPHA-4 (Build:261)
+===========================================================
+* LibNET refactor.
+* LibRTP & LibMiniMedia code change for new LibNET interface.
+* MPEG-2 video subpicture display routine updated.
+* Text subtitle font size bug fix.
+* New playback interface subpicture support bug fix.
+* Add download/on demand path translate mechanism to LibMiniMedia.
+* PushMediaPlayer.
+* ConnectEx added to LibNET.
+
+* MPEG-2 audio/subpicture stream selection interface.
+* Avoid GPF on W2K OS with buggy devenum.dll.
+* Fix 'header process' problem of RTP AC3 handler & generic audio handler.
+* Fix UMSP reader ping packet send problem.
+* Add error report function to all the readers.
+* Add error check and report function to all the splitters.
+* Fix seek slowly problem on Dual-Core system.
+* Add OSD support to MediaPlayer(Ex), MediaReceiver(Ex).
+* Fix MPEG-2 playback abnormal end for some files.
+* Fix RTP seek problem.
+* Overlay mixer filter. (AADC done, picture blend in progress)
+* Update colorspace convertion routine. (In progress)
+* LibVOIP - next generation voice/generic audio communication framework.
+
+2006-11-28 1.5.6 BASELINE RELEASE_CLASS_ALPHA-3 (Build:256)
+===========================================================
+* Multi-stream support added to ASF Splitter.
+* Cutting edge Rich-Media-Streaming support.
+  + Multi-stream in one file.
+  + Accuracy seeking.
+  + Accuracy cut/join support.
+  + Marker support.
+  + Metadata support.
+* MediaPlayerEx support multi-stream renderer.
+* MediaReceiverEx & ChannelReceiverEx.
+* LibRMS auto preroll support.
+* SONY DV video preview bug fix.
+* Multi-select audio input device support.
+* MPEG-4 video encoder VBR option bug fix.
+* Simple seek support for ASF files without index.
+* MPEG-2 bitrate calculation bug fix.
+* MPEG-2 TS stream playback bug fix.
+
+2006-11-15 1.5.5 BASELINE RELEASE_CLASS_ALPHA-2 (Build:254)
+===========================================================
+* Add 'pause' support to LiveMediaSender.
+* New UMSP reader with SmartCache! technology.
+* Improved SmartCache! strategy.
+* Color convert problem fixed.
+
+2006-11-09 1.5.4 BASELINE RELEASE_CLASS_ALPHA-1 (Build:248)
+===========================================================
+* New MPEG-1/2 stream splitter.
+* Fix VC-40x capture card GPF problem.
+* New Splitter connection code in IMediaSender & IMediaPlayer.
+* Improved DVD audio decoder with DTS support.
+
+2006-11-07 1.5.4 BASELINE RELEASE_CLASS_ALPHA-1 (Build:247)
+===========================================================
+* New File Reader with SmartCache! technology.
+* New Http Reader with SmartCache! technology.
+* Rewritten ASF Splitter for ranged playback support and improved error cancellation.
+* Rewritten Real Splitter for ranged playback support.
+* Rewritten RTP Splitter with new splitter architecture.
+* Screen Renderer can render in pause mode now.
+

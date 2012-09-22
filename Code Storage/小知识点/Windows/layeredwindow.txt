@@ -1,0 +1,86 @@
+void Repaint()
+{
+	HDC hdc = ::GetDC(m_hWnd); 
+	if (!hdc)
+		return;
+
+	GetWindowRect(m_rcWindow);
+
+	//create the dib bitmap
+	BITMAPINFO bmInfo;
+	bmInfo.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
+	bmInfo.bmiHeader.biBitCount = 32;
+	bmInfo.bmiHeader.biCompression = BI_RGB;
+	bmInfo.bmiHeader.biPlanes = 1;
+	bmInfo.bmiHeader.biWidth = m_rcWindow.Width();
+	bmInfo.bmiHeader.biHeight = m_rcWindow.Height();
+	void* pBits = NULL;
+	HBITMAP hBitmap = ::CreateDIBSection(hdc, &bmInfo, DIB_RGB_COLORS, &pBits, NULL, 0);
+
+	//create and init the hdcmem
+	HDC hdcMem = ::CreateCompatibleDC(hdc);
+	HGDIOBJ hOldBitmap = ::SelectObject(hdcMem, hBitmap);
+
+	//create the GDI+ graphics from hdcmem
+	Graphics grph(hdcMem);
+	
+	//draw the pictures on the graphics
+	DrawBar(&grph);
+	DrawItems(&grph);
+	DrawTip(&grph);
+
+	//set the BLENDFUNCTION parameters
+	BLENDFUNCTION blendFunc;
+	blendFunc.AlphaFormat = AC_SRC_ALPHA;
+	blendFunc.BlendFlags = 0;
+	blendFunc.SourceConstantAlpha = 255;
+	blendFunc.BlendOp = AC_SRC_OVER;
+
+	//update layer window
+	::UpdateLayeredWindow(m_hWnd,
+		hdc,
+		&m_rcWindow.TopLeft(),
+		&m_rcWindow.Size(),
+		hdcMem,
+		&CPoint(0,0),
+		RGB(0,0,0),
+		&blendFunc,
+		ULW_ALPHA);
+
+	::SelectObject(hdcMem, hOldBitmap);
+	::DeleteObject(hBitmap);
+	::DeleteDC(hdcMem);
+	::ReleaseDC(m_hWnd, hdc);
+}
+
+BOOL Create(CWnd* pParent)
+{
+	CalcWindowSize();
+
+	if(GetSafeHwnd())
+	{
+		SetWindowPos(NULL, 0, 0, m_nWidth, m_nHeight, SWP_NOMOVE | SWP_NOACTIVATE);
+		return TRUE;
+	}
+
+	LPCTSTR pClassName = AfxRegisterWndClass(CS_HREDRAW|CS_VREDRAW|CS_DBLCLKS);
+
+	//set the window's style WS_EX_LAYERED is a very important style
+	DWORD dwStyle = WS_POPUP;
+	DWORD dwExStyle = WS_EX_TOOLWINDOW | WS_EX_TOPMOST | WS_EX_LAYERED;
+	CRect rc(0, 0, m_nWidth, m_nHeight);
+
+	if (CreateEx(dwExStyle, pClassName, _T(""), dwStyle, rc, this,0)) {
+
+		LONG lStyle = ::GetWindowLong(m_hWnd, GWL_EXSTYLE);
+		lStyle &= ~WS_EX_LAYOUTRTL;
+		SetWindowLong(m_hWnd, GWL_EXSTYLE, lStyle);
+		return TRUE;
+	}
+
+	return FALSE;
+}
+
+//使用了layered这个窗口风格后
+//窗口将会忽视掉WM_PAINT消息
+//因此不必当心窗口会因重绘导致，背景消失

@@ -1,0 +1,7 @@
+计算机名称更改：
+计算机名：
+u_psm
+完整的计算机名称：
+u_psm.njtd.local
+隶属于：
+域：njtd.local

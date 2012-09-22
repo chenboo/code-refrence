@@ -1,0 +1,49 @@
+在终端里
+安装软件 apt-get install softname1 softname2 softname3……
+卸载软件 apt-get remove softname1 softname2 softname3……
+卸载并清除配置 apt-get remove --purge softname1
+更新软件信息数据库 apt-get update
+进行系统升级 apt-get upgrade
+搜索软件包 apt-cache search softname1 softname2 softname3……
+
+
+Ubuntu中root用户和user用户的相互切换
+Ubuntu是最近很流行的一款Linux系统，因为Ubuntu默认是不启动root用户，现在介绍如何进入root的方法。
+ 
+（1）从user用户切换到root用户
+ 
+不管是用图形模式登录Ubuntu，还是命令行模式登录，我们会发现缺省的用户是user
+但是当我们需要执行一些具有root权限的操作（如修还系统文件）时，经常需要用sudo授权，感觉很麻烦
+ 
+此时我们可以切换到root用户，只需要简单的执行sudo su 即可
+ 
+注意： 出于安全考虑，默认时Ubuntu的root用户时没有固定密码的，它的密码是随机产生并且动态改变
+ 
+的，貌似是每5分钟改变一次，所以用su（switch user）是不可以的，因为我们不知道root的密码
+ 
+（2）从root用户切回user用户
+想从root用户切回user用户只需执行命令：su user (user是你自己安装时候的用户名)，或是直接输入exit，也可Ctrl+D组合键推出
+ 
+ 
+（3）给root设定一个密码
+ 
+默认root用户是无固定密码的，并且是被锁定的，如果想给root设置一个密码
+ 
+只需执行命令：sudo passwd root 然后根据提示一步一步来
+ 
+这样皆可以向（1）里面提到的那样su root ，输入root密码切换到root用户
+ 
+注意：给root设定密码后，仍可以sudo su 切换到root用户
+ 
+附：在图形模式下 系统->系统管理->用户和组 也可以给root设置密码
+ 
+ 
+（4）禁用和启用root登录
+执行sudo passwd -l root 即可（只是禁用root，但是root密码还保存着），再执行su root发现认证失败，
+要再次启动root登录，执行sudo passwd -u root 即可
+ 
+（5）让Ubuntu自动登录
+ 
+图形模式下 系统->系统管理->登录窗口 授权解锁后选择
+ 
+作为user自动登录 即可。

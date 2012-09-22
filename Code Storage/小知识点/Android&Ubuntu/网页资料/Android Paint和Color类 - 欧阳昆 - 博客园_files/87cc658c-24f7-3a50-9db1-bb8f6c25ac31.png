@@ -1,0 +1,500 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" dir="ltr">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>ITeye Java编程 Spring框架 AJAX技术 Agile敏捷软件开发 ruby on rails实践 - ITeye做最棒的软件开发交流社区</title>
+    <meta name="description" content="Java编程,Spring Struts Webwork框架深入,XMLHTTP AJAX开发,Java Web开发,Java企业应用,Java设计模式,Java开源框架,Java应用服务器,Rich Client讨论,Ruby编程,Ruby DSL开发,Ruby on rails实践,JavaScript编程,敏捷软件开发XP TDD,软件配置管理,软件测试,项目管理UML,数据库,C#/.net C/C++ Erlang/FP PHP/Linux平台,精通Hibernate" />
+    <meta name="keywords"  content="Java编程 Spring框架 AJAX技术 Agile敏捷软件开发 ruby on rails实践 ITeye深度技术社区" />
+    <meta name="baidu_union_verify" content="7b2a15d73dd1b1b6a67d7a4ddcfffa33" />
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+    <link rel="search" type="application/opensearchdescription+xml" href="/open_search.xml" title="ITeye" />
+    <link href="/rss" rel="alternate" title="ITeye技术网站RSS频道订阅" type="application/rss+xml" />
+    <link href="http://www.iteye.com/stylesheets/homepage.css?1329200844" media="screen" rel="stylesheet" type="text/css" />
+    
+    <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-535605-1']);
+  _gaq.push(['_setDomainName', 'iteye.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+  </head>
+  <body>
+    <div id="recommended_a0">
+      <a href='/clicks/739' target='_blank'><img src="http://info-database.csdn.net/Upload/2012-02-10/zhaopincsdn-950-60.gif" width="950" height="60" /></a>
+    </div>
+    <div id="page">
+      <div id="header">
+        <div class="clearfix"><div id="user_nav">
+      <a href="/login" class="welcome" title="登录">您还未登录 !</a>
+    <a href="/login">登录</a>
+    <a href="/signup" class="nobg">注册</a>
+  </div>
+</div>
+        <div class="clearfix">
+          <div id="branding">
+            <a href="http://www.iteye.com"><img alt="ITeye3.0" src="http://www.iteye.com/images/logo.gif?1324994303" title="ITeye-最棒的软件开发交流社区" /></a>
+          </div>
+          <div id="gg">
+            <a href='/clicks/733' target='_blank'><img src="http://info-database.csdn.net/Upload/2012-01-31/ccb-728-90.gif" width="728" height="90" alt="chrome" /></a>
+          </div>
+        </div>
+      </div>
+      <div id="content" class="clearfix">
+                  <div id="main">
+            <div class="left">
+              <div id="recommended_a5l"></div>
+
+              <div id="recommend" class="box">
+                <h3>精华文章</h3>
+                <ul>
+                  
+                    <li><a href='/magazines/62-html5-local-storage' title="HTML5本地存储不完全指南" target='_blank'>HTML5本地存储不完全指南</a></li>
+                  
+                    <li><a href='/magazines/53' title="谈谈ActionScript垃圾回收" target='_blank'>谈谈ActionScript垃圾回收</a></li>
+                  
+                    <li><a href='/magazines/58' title="关于Google收购MOTO移动事件的社区专家访谈" target='_blank'>关于Google收购MOTO移动事件的社区专家访谈</a></li>
+                  
+                    <li><a href='/magazines/65-csdn-iteye-recruitment' title="CSDN&amp;ITeye招贤榜" target='_blank'>CSDN&amp;ITeye招贤榜</a></li>
+                  
+                    <li><a href='/magazines/64-google-buy-moto-analytics' title="CSDN董事长蒋涛分析Google收购Moto以及对移动产业带来的影响" target='_blank'>CSDN董事长蒋涛分析Google收购Moto以及对移动产业带来的影响</a></li>
+                  
+                    <li><a href='/magazines/54' title="10个必需的iOS开发工具和资源" target='_blank'>10个必需的iOS开发工具和资源</a></li>
+                  
+                </ul>
+              </div>
+
+              <div id="recommended_a4l"></div>
+
+              <div id="blogs" class="box">
+                <h3>热门博客文章</h3>
+                <ul>
+                  
+                    <li><a href='http://yzd.iteye.com/blog/1405107' title='HTTP协议详解,你所不知道的' target='_blank'>HTTP协议详解,你所不知道的</a></li>
+                  
+                    <li><a href='http://javababy1.iteye.com/blog/1404091' title='http协议和web本质 ' target='_blank'>http协议和web本质 </a></li>
+                  
+                    <li><a href='http://yangshen998.iteye.com/blog/1405105' title='程序员第一定律：关于技能与收入' target='_blank'>程序员第一定律：关于技能与收入</a></li>
+                  
+                    <li><a href='http://javasee.iteye.com/blog/1405109' title='Fiddler 宝典' target='_blank'>Fiddler 宝典</a></li>
+                  
+                    <li><a href='http://webcenterol.iteye.com/blog/1406930' title='写在2-14，程序员才看得懂的情书 ' target='_blank'>写在2-14，程序员才看得懂的情书 </a></li>
+                  
+                    <li><a href='http://haibuo1981.iteye.com/blog/1406038' title='情人节' target='_blank'>情人节</a></li>
+                  
+                    <li><a href='http://yangshen998.iteye.com/blog/1404110' title='为情人节编程' target='_blank'>为情人节编程</a></li>
+                  
+                    <li><a href='http://tjuking.iteye.com/blog/1405532' title='Java中的参数传递类型只有值传递' target='_blank'>Java中的参数传递类型只有值传递</a></li>
+                  
+                    <li><a href='http://tianyaxiang.iteye.com/blog/1405959' title='网页设计运用紫色的案例' target='_blank'>网页设计运用紫色的案例</a></li>
+                  
+                    <li><a href='http://xp9802.iteye.com/blog/1405899' title='将指定文件夹下所有文件复制另一个文件夹中' target='_blank'>将指定文件夹下所有文件复制另一个文件夹中</a></li>
+                  
+                    <li><a href='http://dylankeepmoving.iteye.com/blog/1405941' title='java.net.URL类详解' target='_blank'>java.net.URL类详解</a></li>
+                  
+                    <li><a href='http://langyu.iteye.com/blog/1407041' title='把买硬盘的钱省下来吧... ' target='_blank'>把买硬盘的钱省下来吧... </a></li>
+                  
+                    <li><a href='http://bookjovi.iteye.com/blog/1407032' title='Haskell版冒泡排序' target='_blank'>Haskell版冒泡排序</a></li>
+                  
+                    <li><a href='http://xn792474.iteye.com/blog/1407012' title='xmpp协议   笔记' target='_blank'>xmpp协议   笔记</a></li>
+                  
+                    <li><a href='http://chenwq.iteye.com/blog/1406972' title='Standford's online courses in 2012' target='_blank'>Standford's online courses in 2012</a></li>
+                  
+                </ul>
+                <a href="/blogs" class="more">&nbsp;</a>
+              </div>
+
+              <div id="recommended_a7l"></div>
+
+              <div id="wiki" class="box">
+                <h3>知识库和专栏</h3>
+                <ul>
+                  
+                    <li><a href="http://javaeye-admin.group.iteye.com/group/wiki/1499-javaeye-api-help-ITeye" target="_blank">ITeye的API使用帮助</a></li>
+                  
+                    <li><a href="http://interview.group.iteye.com/group/wiki/1931-data-access-layer" target="_blank">采访分布式数据访问层(Data Access Layer)作者许超前</a></li>
+                  
+                    <li><a href="http://digest.group.iteye.com/group/wiki/2017-javaeye-forum-10" target="_blank">JavaEye论坛热点推荐－2009年10月</a></li>
+                  
+                    <li><a href="http://interview.group.iteye.com/group/wiki/1825-xmemcached-java-memcached-client-api" target="_blank">xmemcached - 开源项目介绍（九）</a></li>
+                  
+                    <li><a href="http://Celebrity.group.iteye.com/group/wiki/291-ruby-on-rails-founder-david-heinemeier-hansson" target="_blank">Ruby on Rails创始人David Heinemeier Hansson</a></li>
+                  
+                    <li><a href="http://rails-deployment.group.iteye.com/group/wiki/1299-lighttpd-and-ror-installation-configuration-troubleshooting" target="_blank">Lighttpd和RoR安装配置的疑难解答</a></li>
+                  
+                </ul>
+                <a href="/wiki" class="more">&nbsp;</a>
+              </div>
+
+              <div id="recommended_a10l"></div>
+
+            </div>
+            <div id="content1">
+              <div class="clearfix">
+                <div id="recommended_a2">
+                  <a href='/clicks/730' target='_blank'><img src="http://info-database.csdn.net/Upload/2012-01-13/4thyjs-240-168.jpg" width="240" height="168" alt="Javaeye" title="Javaeye"/></a>
+                  <ul><li><a href='/clicks/296' target='_blank'><span style="color: blue; font-weight: bold;">别让页面上的表单浪费程序员的时间!</span></a></li><li><a href='/clicks/571' target='_blank'><span style="color:green; font-weight: bold;">加入android顶尖人才库，10万年薪起！</span></a></li><li><a href='/clicks/348' target='_blank'><span style="font-weight:bold;color:red">【软件人才免语言成绩，低担保赴美，年薪40-60万！】</span></a></li></ul>
+                </div>
+                <div id="news">
+                  <h3><span>焦点新闻</span> <a href="/news">更多</a></h3>
+                  <ul>
+                                          <li><a href='/news/24229' title="zTree v3.1 正式版发布，优秀的JQuery Tree插件" target='_blank'>zTree v3.1 正式版发布，优秀的JQuery ...</a></li>
+                                          <li><a href='/news/24213' title="开源J2EE框架bbossgroups 3.5 发布" target='_blank'>开源J2EE框架bbossgroups 3.5 发布</a></li>
+                                          <li><a href='/news/24222' title="Python对软件开发人员很重要？" target='_blank'>Python对软件开发人员很重要？</a></li>
+                                          <li><a href='/news/24235' title="18 个最佳代码编辑器/IDE推荐" target='_blank'>18 个最佳代码编辑器/IDE推荐</a></li>
+                                          <li><a href='/news/24227-Rexsee-Android-UI-WebApp' title="Rexsee新版发布，开源的Android开发平台" target='_blank'>Rexsee新版发布，开源的Android开发平 ...</a></li>
+                                          <li><a href='/news/24232' title="Mozilla公布2012年战略，将推Metro版Firefox" target='_blank'>Mozilla公布2012年战略，将推Metro版 ...</a></li>
+                                          <li><a href='/news/24247' title="HTML5群组正式上线——新春活动重磅归来！招募群组管理员！" target='_blank'>HTML5群组正式上线——新春活动重磅归 ...</a></li>
+                                          <li><a href='/news/24230' title="Nokia 地图开放第三方接口" target='_blank'>Nokia 地图开放第三方接口</a></li>
+                                          <li><a href='/news/24246' title="phpMyAdmin 3.4.10 正式版发布" target='_blank'>phpMyAdmin 3.4.10 正式版发布</a></li>
+                                      </ul>
+                </div>
+              </div>
+              <div id="recommended_a3"></div>
+              <div class="clearfix">
+                <div class="forum left">
+                  <h3><span>Java企业应用热点</span> <a href="/forums/board/Java">Java论坛</a></h3>
+                  <ul><li><a href="/topic/1120464" target="_blank" title="Spring MVC 多 ViewResolver的疑惑">Spring MVC 多 ViewResolver的疑惑</a></li><li><a href="/topic/1120451" target="_blank" title="关于Java泛型 与 类型推断">关于Java泛型 与 类型推断</a></li><li><a href="/topic/1120419" target="_blank" title="（原创）加权双历树（和谐树）在微型商业智能系统中的应用">（原创）加权双历树（和谐树）在微型商</a></li><li><a href="/topic/1120415" target="_blank" title="Spring 事务不回滚的解决办法">Spring 事务不回滚的解决办法</a></li><li><a href="/topic/1120406" target="_blank" title="SSH框架中普通的Java程序如何通过Action读取数据。">SSH框架中普通的Java程序如何通过Acti</a></li><li><a href="/topic/1120405" target="_blank" title="大型项目伤不起">大型项目伤不起</a></li><li><a href="/topic/1120403" target="_blank" title="如何让系统支持多种数据库">如何让系统支持多种数据库</a></li><li><a href="/topic/1120379" target="_blank" title="简单实用的实体Validation组件">简单实用的实体Validation组件</a></li><li><a href="/topic/1120374" target="_blank" title="Tomcat 源代码分析之Socket通讯">Tomcat 源代码分析之Socket通讯</a></li></ul>
+                </div>
+                <div class="forum right">
+                  <h3><span>Web前端技术热点</span> <a href="/forums/board/web">Web技术论坛</a></h3>
+                  <ul><li><a href="/topic/1120476" target="_blank" title="去年做的一个web仿操作系统程序。">去年做的一个web仿操作系统程序。</a></li><li><a href="/topic/1120430" target="_blank" title="JavaScript内核系列 第15章 服务器端的JavaScript">JavaScript内核系列 第15章 服务器端</a></li><li><a href="/topic/1120424" target="_blank" title="请人家将至,话一朵玫瑰送您的女朋">请人家将至,话一朵玫瑰送您的女朋</a></li><li><a href="/topic/1120371" target="_blank" title="2012情人节献礼：1kb的玫瑰生成脚本">2012情人节献礼：1kb的玫瑰生成脚本</a></li><li><a href="/topic/1120344" target="_blank" title="也发个js的闭包,请多指教">也发个js的闭包,请多指教</a></li><li><a href="/topic/1120332" target="_blank" title="JavaScript内核系列 第14章 Java应用中的JavaScript">JavaScript内核系列 第14章 Java应用</a></li><li><a href="/topic/1120263" target="_blank" title="（原创）在基于Ext JS的应用系统中实现智能树形菜单--利用加权双历树实现（初稿）">（原创）在基于Ext JS的应用系统中实现</a></li><li><a href="/topic/1120223" target="_blank" title="javascript mvc框架backbone.js 初探">javascript mvc框架backbone.js 初探</a></li><li><a href="/topic/1120192" target="_blank" title="做了个Web App框架，Bad Framework">做了个Web App框架，Bad Framework</a></li></ul>
+                </div>
+              </div>
+              <div id="recommended_a4"></div>
+              <div class="clearfix">
+                <div class="forum left">
+                  <h3 style="background-color:#E0ECDB;"><span>编程语言技术热点</span> <a href="/forums/tag/Ruby">Ruby论坛</a></h3>
+                  <ul><li><a href="/topic/1120269" target="_blank" title="我用PHP做的一个网站，自己写的CMS">我用PHP做的一个网站，自己写的CMS</a></li><li><a href="/topic/1120199" target="_blank" title="关于python的学习">关于python的学习</a></li><li><a href="/topic/1120159" target="_blank" title="秀一个django写的网站:  搜索引擎优化综合评估系统">秀一个django写的网站:  搜索引擎优化</a></li><li><a href="/topic/1120086" target="_blank" title="Timer的混乱行为">Timer的混乱行为</a></li><li><a href="/topic/1120022" target="_blank" title="开发rails时都用的什么服务器">开发rails时都用的什么服务器</a></li><li><a href="/topic/1119992" target="_blank" title="目前ruby适合非web的enterprise开发否">目前ruby适合非web的enterprise开发否</a></li><li><a href="/topic/1119974" target="_blank" title="SPS-Discuz7.2 超强给力修改版 update 2012.02.14">SPS-Discuz7.2 超强给力修改版 update </a></li><li><a href="/topic/1119953" target="_blank" title="ruby在windows下真那么不好用吗">ruby在windows下真那么不好用吗</a></li><li><a href="/topic/1119824" target="_blank" title="python 获得方法的doc">python 获得方法的doc</a></li></ul>
+                </div>
+                <div class="forum right">
+                  <h3 style="background-color:#E0ECDB;"><span>移动开发技术热点</span> <a href="/forums/board/mobile">移动开发论坛</a></h3>
+                  <ul><li><a href="/topic/1120438" target="_blank" title="百度 奇艺影视 主界面">百度 奇艺影视 主界面</a></li><li><a href="/topic/1120414" target="_blank" title="两个activity之间的Intent 传值">两个activity之间的Intent 传值</a></li><li><a href="/topic/1120404" target="_blank" title="有java基础怎么快速学习Android求指教">有java基础怎么快速学习Android求指教</a></li><li><a href="/topic/1120327" target="_blank" title="通讯录添加新纪录">通讯录添加新纪录</a></li><li><a href="/topic/1120210" target="_blank" title="写了个小框架，大家帮忙提提意见">写了个小框架，大家帮忙提提意见</a></li><li><a href="/topic/1120204" target="_blank" title="Android日记之2012/02/06——浅谈在Layout中动态添加控件并为控件添加动画效果">Android日记之2012/02/06——浅谈在La</a></li><li><a href="/topic/1120165" target="_blank" title="Android日记之2012/02/05——ActivityGroup控制Activity中的方法">Android日记之2012/02/05——Activity</a></li><li><a href="/topic/1120154" target="_blank" title="Android日记之2012/02/04——ActivityGroup和Activity的生命周期关系">Android日记之2012/02/04——Activity</a></li><li><a href="/topic/1120144" target="_blank" title="stanford的2011版开发ios课程下载地址">stanford的2011版开发ios课程下载地址</a></li></ul>
+                </div>
+              </div>
+              <div id="recommended_a6"></div>
+              <div class="clearfix">
+                <div class="forum left">
+                  <h3><span>综合技术热点</span> <a href="/forums/board/Tech">综合技术论坛</a></h3>
+                  <ul><li><a href="/topic/1120214" target="_blank" title="讨论下关于谷歌地图（GoogleMapAPI）的两个使用问题！！！！">讨论下关于谷歌地图（GoogleMapAPI）的</a></li><li><a href="/topic/1120169" target="_blank" title="项目管理那些事儿一">项目管理那些事儿一</a></li><li><a href="/topic/1120146" target="_blank" title="一个简单的java hashMap实现">一个简单的java hashMap实现</a></li><li><a href="/topic/1120138" target="_blank" title="信息系统项目管理师 求挂靠。">信息系统项目管理师 求挂靠。</a></li><li><a href="/topic/1120063" target="_blank" title="【阿里感悟】如何带好新员工">【阿里感悟】如何带好新员工</a></li><li><a href="/topic/1120051" target="_blank" title="给大家出道题，算法的">给大家出道题，算法的</a></li><li><a href="/topic/1120042" target="_blank" title="腾讯SOSO出BUG了，有图有真相！">腾讯SOSO出BUG了，有图有真相！</a></li><li><a href="/topic/1119928" target="_blank" title="windows下oracle完全卸载">windows下oracle完全卸载</a></li><li><a href="/topic/1119865" target="_blank" title="海量事务高速处理系统">海量事务高速处理系统</a></li></ul>
+                </div>
+                <div class="forum right">
+                  <h3><span>项目管理热点</span> <a href="/forums/tag/项目管理">项目管理论坛</a></h3>
+                  <ul><li><a href="/topic/1120169" target="_blank" title="项目管理那些事儿一">项目管理那些事儿一</a></li><li><a href="/topic/1120138" target="_blank" title="信息系统项目管理师 求挂靠。">信息系统项目管理师 求挂靠。</a></li><li><a href="/topic/1120063" target="_blank" title="【阿里感悟】如何带好新员工">【阿里感悟】如何带好新员工</a></li><li><a href="/topic/1119832" target="_blank" title="我们应当怎样做需求分析">我们应当怎样做需求分析</a></li><li><a href="/topic/1119408" target="_blank" title="某些小公司开发者奇怪论调">某些小公司开发者奇怪论调</a></li><li><a href="/topic/1119312" target="_blank" title="优秀程序员的性格">优秀程序员的性格</a></li><li><a href="/topic/1118857" target="_blank" title="关于延迟项目增加人手问题探讨">关于延迟项目增加人手问题探讨</a></li><li><a href="/topic/1118817" target="_blank" title="估算那点事">估算那点事</a></li><li><a href="/topic/1118816" target="_blank" title="怎么把报告做得更好">怎么把报告做得更好</a></li></ul>
+                </div>
+              </div>
+              <div class="clearfix">
+                <div class="forum left">
+                  <h3><span>招聘和求职热点</span> <a href="/forums/board/Job">招聘求职</a></h3>
+                  <ul><li><a href="/topic/1120505" target="_blank" title="最近面试与被面试的感悟">最近面试与被面试的感悟</a></li><li><a href="/topic/1120498" target="_blank" title="收到成都三零盛安offer。。朋友们 给点建议 不胜感激。">收到成都三零盛安offer。。朋友们 给</a></li><li><a href="/topic/1120496" target="_blank" title="作为程序猿，一条龙服务的有没有">作为程序猿，一条龙服务的有没有</a></li><li><a href="/topic/1120493" target="_blank" title="浅显的道理，国内企业却没几个能考虑到">浅显的道理，国内企业却没几个能考虑到</a></li><li><a href="/topic/1120492" target="_blank" title="阿里巴巴的一些疑难解析">阿里巴巴的一些疑难解析</a></li><li><a href="/topic/1120491" target="_blank" title="土豆网太垃圾了">土豆网太垃圾了</a></li><li><a href="/topic/1120490" target="_blank" title="现在的猎头,hr怎么都那么的不靠谱">现在的猎头,hr怎么都那么的不靠谱</a></li><li><a href="/topic/1120489" target="_blank" title="北京书生公司怎么样">北京书生公司怎么样</a></li><li><a href="/topic/1120475" target="_blank" title="大家来说说深圳软件行业不错的公司有哪些？">大家来说说深圳软件行业不错的公司有哪</a></li></ul>
+                </div>
+                <div class="forum right">
+                  <h3><span>群组交流热点</span> <a href="/groups">群组频道</a></h3>
+                  <ul>
+                    
+                      <li><a href='http://IT80.group.iteye.com/group/topic/27238' title='IT 钱难挣，美女难泡' target='_blank'>IT 钱难挣，美女难泡</a></li>
+                    
+                      <li><a href='http://english.group.iteye.com/group/topic/24950' title='外语学习的真实方法及误区（转）' target='_blank'>外语学习的真实方法及误区（转）</a></li>
+                    
+                      <li><a href='http://tales.group.iteye.com/group/topic/25237' title='各位大叔、大妈们。。弱弱的问问，拿到RHCE+OCP，一个月能拿多少米米？求解。。。' target='_blank'>各位大叔、大妈们。。弱弱的问问，拿到 ...</a></li>
+                    
+                      <li><a href='http://sa.group.iteye.com/group/topic/24787' title='门店-中心分布式系统的问题解答' target='_blank'>门店-中心分布式系统的问题解答</a></li>
+                    
+                      <li><a href='http://heart.group.iteye.com/group/topic/25428' title='生活要用心去体会' target='_blank'>生活要用心去体会</a></li>
+                    
+                      <li><a href='http://HTML5.group.iteye.com/group/topic/27553' title='HTML5 Canvas开发框架：CasualJS Framework' target='_blank'>HTML5 Canvas开发框架：CasualJS Frame ...</a></li>
+                    
+                      <li><a href='http://EXT.group.iteye.com/group/topic/25038' title='关于PivotGrid的问题' target='_blank'>关于PivotGrid的问题</a></li>
+                    
+                      <li><a href='http://JavaEyeTianJin.group.iteye.com/group/topic/25376' title='北京安华金和天津研发中心 有知道的嘛？具体待遇怎么样？ ' target='_blank'>北京安华金和天津研发中心 有知道的嘛 ...</a></li>
+                    
+                      <li><a href='http://wuhan.group.iteye.com/group/topic/24798' title='最近有没有哪位仁兄所在单位招人的啊？' target='_blank'>最近有没有哪位仁兄所在单位招人的啊？</a></li>
+                    
+                      <li><a href='http://pcdiy.group.iteye.com/group/topic/24776' title='冰神，给个配置单吧……' target='_blank'>冰神，给个配置单吧……</a></li>
+                    
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="local">
+            <form action="/search" style="margin-bottom: 10px;" method="get">
+              <input type="hidden" name="type" value="all" />
+              <input type="text" name="query" class="text" id="query"  style="width: 128px;"/>
+              <input type="submit" value="搜索" class="submit"/>
+            </form>
+            <div id="recommended_a5r"></div>
+            <div id="recommended_a9" class="box" onmousemove="marqueeing = false;" onmouseout="marqueeing = true;">
+              <h3>热门招聘职位</h3>
+              <ul>
+                
+                  <li><a href="/jobs/2067" target="_blank" title="重庆:用友汽车软件诚聘Java程序员">重庆:用友汽车软件诚聘Java程序员</a></li>
+                
+                  <li><a href="/jobs/1439" target="_blank" title="上海:上海广播电视台网络新闻台诚聘网站架构师">上海:上海广播电视台网络新闻台诚聘网站架构师</a></li>
+                
+                  <li><a href="/jobs/1537" target="_blank" title="上海:大众点评诚聘运维资深工程师（上海）">上海:大众点评诚聘运维资深工程师（上海）</a></li>
+                
+                  <li><a href="/jobs/1540" target="_blank" title="上海:大众点评诚聘网站平台架构与性能优化（上海）">上海:大众点评诚聘网站平台架构与性能优化（上海）</a></li>
+                
+                  <li><a href="/jobs/2098" target="_blank" title="北京:北大软件诚聘开发工程师（军工）">北京:北大软件诚聘开发工程师（军工）</a></li>
+                
+                  <li><a href="/jobs/1628" target="_blank" title="浙江:阿里巴巴诚聘高级Java工程师">浙江:阿里巴巴诚聘高级Java工程师</a></li>
+                
+                  <li><a href="/jobs/2082" target="_blank" title="北京:胡莱游戏诚聘年薪15w-20wHadoop数据仓库管理工程师">北京:胡莱游戏诚聘年薪15w-20wHadoop数据仓库管理</a></li>
+                
+                  <li><a href="/jobs/1444" target="_blank" title="上海:上海广播电视台网络新闻台诚聘高级网站前端开发工程师">上海:上海广播电视台网络新闻台诚聘高级网站前端开</a></li>
+                
+                  <li><a href="/jobs/1891" target="_blank" title="北京:北大软件诚聘Java软件开发工程师（技术研发部110809）">北京:北大软件诚聘Java软件开发工程师（技术研发部</a></li>
+                
+                  <li><a href="/jobs/1562" target="_blank" title="北京:美团诚聘资深研发工程师（数据仓库）">北京:美团诚聘资深研发工程师（数据仓库）</a></li>
+                
+                  <li><a href="/jobs/1565" target="_blank" title="北京:美团诚聘资深运维开发工程师">北京:美团诚聘资深运维开发工程师</a></li>
+                
+                  <li><a href="/jobs/1563" target="_blank" title="北京:美团诚聘资深研发工程师（数据挖掘）">北京:美团诚聘资深研发工程师（数据挖掘）</a></li>
+                
+                  <li><a href="/jobs/1970" target="_blank" title="北京:杰嘉迪诚聘 Android程序员">北京:杰嘉迪诚聘 Android程序员</a></li>
+                
+                  <li><a href="/jobs/1144" target="_blank" title="陕西:ThoughtWorks诚聘西安Senior Java Application Developer">陕西:ThoughtWorks诚聘西安Senior Java Applicatio</a></li>
+                
+                  <li><a href="/jobs/2065" target="_blank" title="安徽:用友汽车软件诚聘Java程序员">安徽:用友汽车软件诚聘Java程序员</a></li>
+                
+                  <li><a href="/jobs/1231" target="_blank" title="北京:胡莱游戏诚聘年薪8-16万高级Java程序员">北京:胡莱游戏诚聘年薪8-16万高级Java程序员</a></li>
+                
+                  <li><a href="/jobs/1541" target="_blank" title="上海:大众点评诚聘Java高级开发工程师（上海）">上海:大众点评诚聘Java高级开发工程师（上海）</a></li>
+                
+                  <li><a href="/jobs/1135" target="_blank" title="北京:ThoughtWorks诚聘北京Senior .Net Application Developer">北京:ThoughtWorks诚聘北京Senior .Net Applicatio</a></li>
+                
+                  <li><a href="/jobs/1847" target="_blank" title="北京:ITeye官方招聘和猎头诚聘ITeye网站诚聘产品交互设计">北京:ITeye官方招聘和猎头诚聘ITeye网站诚聘产品交</a></li>
+                
+                  <li><a href="/jobs/2100" target="_blank" title="北京:北大软件诚聘开发工程师（重大）">北京:北大软件诚聘开发工程师（重大）</a></li>
+                
+                  <li><a href="/jobs/1445" target="_blank" title="上海:上海广播电视台网络新闻台诚聘网站前端开发工程师">上海:上海广播电视台网络新闻台诚聘网站前端开发工</a></li>
+                
+                  <li><a href="/jobs/2102" target="_blank" title="北京:北大软件诚聘测试工程师">北京:北大软件诚聘测试工程师</a></li>
+                
+                  <li><a href="/jobs/1515" target="_blank" title="上海:上海广播电视台网络新闻台诚聘网站系统工程师">上海:上海广播电视台网络新闻台诚聘网站系统工程师</a></li>
+                
+                  <li><a href="/jobs/2064" target="_blank" title="上海:用友汽车软件诚聘高级Java程序员">上海:用友汽车软件诚聘高级Java程序员</a></li>
+                
+                  <li><a href="/jobs/1564" target="_blank" title="北京:美团诚聘资深系统运维工程师">北京:美团诚聘资深系统运维工程师</a></li>
+                
+                  <li><a href="/jobs/1846" target="_blank" title="北京:ITeye官方招聘和猎头诚聘ITeye网站诚聘网站产品UED主管">北京:ITeye官方招聘和猎头诚聘ITeye网站诚聘网站产</a></li>
+                
+                  <li><a href="/jobs/1443" target="_blank" title="上海:上海广播电视台网络新闻台诚聘PHP开发工程师">上海:上海广播电视台网络新闻台诚聘PHP开发工程师</a></li>
+                
+                  <li><a href="/jobs/1533" target="_blank" title="上海:大众点评诚聘软件测试资深工程师（上海）">上海:大众点评诚聘软件测试资深工程师（上海）</a></li>
+                
+                  <li><a href="/jobs/714" target="_blank" title="北京:ITeye官方招聘和猎头诚聘ITeye网站诚聘Ruby工程师">北京:ITeye官方招聘和猎头诚聘ITeye网站诚聘Ruby工</a></li>
+                
+                  <li><a href="/jobs/1849" target="_blank" title="浙江:阿里巴巴诚聘C++开发工程师(搜索引擎和广告引擎方向，偏底层)">浙江:阿里巴巴诚聘C++开发工程师(搜索引擎和广告</a></li>
+                
+                  <li><a href="/jobs/1823" target="_blank" title="北京:胡莱游戏诚聘web开发工程师">北京:胡莱游戏诚聘web开发工程师</a></li>
+                
+                  <li><a href="/jobs/2093" target="_blank" title="北京:北大软件诚聘开发工程师（电子政务研发）">北京:北大软件诚聘开发工程师（电子政务研发）</a></li>
+                
+                  <li><a href="/jobs/2095" target="_blank" title="北京:北大软件诚聘初级售前咨询师（信息管理、计算机等专业应届毕业生）">北京:北大软件诚聘初级售前咨询师（信息管理、计算</a></li>
+                
+                  <li><a href="/jobs/2068" target="_blank" title="吉林:用友汽车软件诚聘Java程序员">吉林:用友汽车软件诚聘Java程序员</a></li>
+                
+                  <li><a href="/jobs/2078" target="_blank" title="上海:用友汽车软件诚聘项目经理">上海:用友汽车软件诚聘项目经理</a></li>
+                
+                  <li><a href="/jobs/2070" target="_blank" title="北京:竞业达集团诚聘JAVA软件开发工程师">北京:竞业达集团诚聘JAVA软件开发工程师</a></li>
+                
+                  <li><a href="/jobs/1442" target="_blank" title="上海:上海广播电视台网络新闻台诚聘高级PHP开发工程师">上海:上海广播电视台网络新闻台诚聘高级PHP开发工</a></li>
+                
+                  <li><a href="/jobs/1284" target="_blank" title="北京:胡莱游戏诚聘flash  AS3开发工程师">北京:胡莱游戏诚聘flash  AS3开发工程师</a></li>
+                
+                  <li><a href="/jobs/1848" target="_blank" title="北京:ITeye官方招聘和猎头诚聘ITeye网站诚聘网站编辑">北京:ITeye官方招聘和猎头诚聘ITeye网站诚聘网站编</a></li>
+                
+                  <li><a href="/jobs/2101" target="_blank" title="北京:北大软件诚聘实施工程师（重大）">北京:北大软件诚聘实施工程师（重大）</a></li>
+                
+                  <li><a href="/jobs/1539" target="_blank" title="上海:大众点评诚聘数据挖掘及个性化技术（上海）">上海:大众点评诚聘数据挖掘及个性化技术（上海）</a></li>
+                
+                  <li><a href="/jobs/750" target="_blank" title="北京:杰嘉迪诚聘高级Java程序员">北京:杰嘉迪诚聘高级Java程序员</a></li>
+                
+                  <li><a href="/jobs/1153" target="_blank" title="北京:ThoughtWorks诚聘Business Analyst Principal">北京:ThoughtWorks诚聘Business Analyst Principal</a></li>
+                
+                  <li><a href="/jobs/1447" target="_blank" title="上海:上海广播电视台网络新闻台诚聘DBA">上海:上海广播电视台网络新闻台诚聘DBA</a></li>
+                
+                  <li><a href="/jobs/712" target="_blank" title="北京:ITeye官方招聘和猎头诚聘ITeye网站诚聘Java高级搜索工程师">北京:ITeye官方招聘和猎头诚聘ITeye网站诚聘Java高</a></li>
+                
+                  <li><a href="/jobs/2081" target="_blank" title="北京:胡莱游戏诚聘年薪15w-20w数据仓库开发工程师">北京:胡莱游戏诚聘年薪15w-20w数据仓库开发工程师</a></li>
+                
+                  <li><a href="/jobs/1561" target="_blank" title="北京:美团诚聘研发工程师（数据可视化）">北京:美团诚聘研发工程师（数据可视化）</a></li>
+                
+                  <li><a href="/jobs/1393" target="_blank" title="上海:ele.me诚聘年薪15万资深web开发工程师">上海:ele.me诚聘年薪15万资深web开发工程师</a></li>
+                
+                  <li><a href="/jobs/2080" target="_blank" title="上海:用友汽车软件诚聘软件研发工程师（实习岗位）">上海:用友汽车软件诚聘软件研发工程师（实习岗位）</a></li>
+                
+                  <li><a href="/jobs/1139" target="_blank" title="北京:ThoughtWorks诚聘北京Architect">北京:ThoughtWorks诚聘北京Architect</a></li>
+                
+                  <li><a href="/jobs/2085" target="_blank" title="四川:每经网 (NBD)诚聘Ruby on Rails 工程师">四川:每经网 (NBD)诚聘Ruby on Rails 工程师</a></li>
+                
+                  <li><a href="/jobs/1535" target="_blank" title="上海:大众点评诚聘数据库资深工程师（上海）">上海:大众点评诚聘数据库资深工程师（上海）</a></li>
+                
+                  <li><a href="/jobs/1560" target="_blank" title="北京:美团诚聘资深前端工程师">北京:美团诚聘资深前端工程师</a></li>
+                
+                  <li><a href="/jobs/1534" target="_blank" title="上海:大众点评诚聘财务系统资深开发工程师（上海）">上海:大众点评诚聘财务系统资深开发工程师（上海）</a></li>
+                
+                  <li><a href="/jobs/1543" target="_blank" title="上海:大众点评诚聘开发经理（搜索团队）">上海:大众点评诚聘开发经理（搜索团队）</a></li>
+                
+                  <li><a href="/jobs/2092" target="_blank" title="上海:Factual Inc.诚聘Data Specialist">上海:Factual Inc.诚聘Data Specialist</a></li>
+                
+                  <li><a href="/jobs/755" target="_blank" title="北京:杰嘉迪诚聘Java程序员">北京:杰嘉迪诚聘Java程序员</a></li>
+                
+                  <li><a href="/jobs/2066" target="_blank" title="湖北:用友汽车软件诚聘Java程序员">湖北:用友汽车软件诚聘Java程序员</a></li>
+                
+                  <li><a href="/jobs/1559" target="_blank" title="北京:美团诚聘资深研发工程师（PHP）">北京:美团诚聘资深研发工程师（PHP）</a></li>
+                
+                  <li><a href="/jobs/2099" target="_blank" title="北京:北大软件诚聘销售（军工）	">北京:北大软件诚聘销售（军工）	</a></li>
+                
+                  <li><a href="/jobs/1566" target="_blank" title="北京:美团诚聘手机研发工程师（Android，iOS，Symbian）">北京:美团诚聘手机研发工程师（Android，iOS，Sy</a></li>
+                
+                  <li><a href="/jobs/1555" target="_blank" title="北京:美团诚聘资深研发工程师（Java）">北京:美团诚聘资深研发工程师（Java）</a></li>
+                
+                  <li><a href="/jobs/1446" target="_blank" title="上海:上海广播电视台网络新闻台诚聘高级Flash开发工程师">上海:上海广播电视台网络新闻台诚聘高级Flash开发</a></li>
+                
+                  <li><a href="/jobs/1558" target="_blank" title="北京:美团诚聘研发工程师（PHP）">北京:美团诚聘研发工程师（PHP）</a></li>
+                
+                  <li><a href="/jobs/2097" target="_blank" title="北京:北大软件诚聘项目经理(军工)">北京:北大软件诚聘项目经理(军工)</a></li>
+                
+                  <li><a href="/jobs/2083" target="_blank" title="北京:胡莱游戏诚聘年薪15w数据分析师">北京:胡莱游戏诚聘年薪15w数据分析师</a></li>
+                
+                  <li><a href="/jobs/1542" target="_blank" title="上海:大众点评诚聘CRM/ERP系统架构师（上海） ">上海:大众点评诚聘CRM/ERP系统架构师（上海） </a></li>
+                
+                  <li><a href="/jobs/1554" target="_blank" title="北京:美团诚聘研发工程师（Java）">北京:美团诚聘研发工程师（Java）</a></li>
+                
+                  <li><a href="/jobs/2079" target="_blank" title="北京:美团诚聘移动客户端产品经理">北京:美团诚聘移动客户端产品经理</a></li>
+                
+              </ul>
+              <script type="text/javascript">
+                var marqueeing = true;
+                function marquee(){
+                  if(marqueeing) {
+                    var container=document.getElementById("recommended_a9").getElementsByTagName("ul")[0]
+                    container.appendChild(container.firstChild);
+                  }
+                }
+                setInterval("marquee()", 4000);
+              </script>
+              <a href="/job" class="more">&nbsp;</a>
+            </div>
+            <div id="recommended_a7r"></div>
+            <div id="hot_asks" class="box">
+              <h3>热门问答</h3>
+              <ul>
+                
+                  <li><a href="/problems/78748" target="_blank">Java 语言可不可以关闭垃圾回收</a></li>
+                
+                  <li><a href="/problems/78508" target="_blank">mysql 如何设置级联删除</a></li>
+                
+                  <li><a href="/problems/78404" target="_blank">项目中是使用数据库生成pojo类还是使用pojo类生成数据库???</a></li>
+                
+                  <li><a href="/problems/78422" target="_blank">IE8以下JS引入失败问题</a></li>
+                
+                  <li><a href="/problems/78611" target="_blank">关于读取文件内容的新问题！</a></li>
+                
+                  <li><a href="/problems/78618" target="_blank">请问MYSQL数据库如何把查询后得到的结果随机排序</a></li>
+                
+                  <li><a href="/problems/78429" target="_blank">jquery 焦點圖問題</a></li>
+                
+              </ul>
+            </div>
+            <div id="recommended_a10r"></div>
+            <div id="groups" class="box">
+              <h3>热门群组</h3>
+              
+                <div class="group">
+                  <div class='logo'><a href='http://jbpmside.group.iteye.com' target='_blank'><img src='/upload/logo/group/68197/aedcc7dd-e532-34e7-b9f6-a57e50c1301d.gif' alt='jbpmside群组' title='jbpmside: jbpmside是一个围绕jbpm的开源工作流系统，加入符合中国国情的开发套件，目前以jbpm作为系统的引擎，包括了基于flex的流程设计器和管理器。目标是做国内最好的开源工作流。' height='48' width='48' /></a></div>
+                  <span>
+                    <a href="http://jbpmside.group.iteye.com" target="_blank" title="jbpmside"><strong>jbpmside</strong></a><br/>
+                    jbpmside是一个围绕jbpm的开源工作 ...
+                  </span>
+                </div>
+              
+                <div class="group">
+                  <div class='logo'><a href='http://sakai.group.iteye.com' target='_blank'><img src='/upload/logo/group/228757/80a1879e-e405-3598-988f-ac66d4339ec3.png' alt='sakai群组' title='sakai: sakai,一个由美国多所知名大学设计开发的LMS（内容管理系统），采用java技术开发（主要包括JSF、HIBERNATE、SPRING等），希望大家可以共同进步，只该系统应用于中国。' height='48' width='48' /></a></div>
+                  <span>
+                    <a href="http://sakai.group.iteye.com" target="_blank" title="sakai"><strong>sakai</strong></a><br/>
+                    sakai,一个由美国多所知名大学设计 ...
+                  </span>
+                </div>
+              
+                <div class="group">
+                  <div class='logo'><a href='http://solr.group.iteye.com' target='_blank'><img src='/upload/logo/group/60504/3b46fcc6-1fd5-37a7-8106-1e4faab088fb.jpg' alt='solr交流圈群组' title='solr交流圈: solr 是基于lucene搜索库的一个搜索引擎框架，本圈子旨在聚集对solr感兴趣的朋友一起讨论，互相学习，共同进步。' height='48' width='48' /></a></div>
+                  <span>
+                    <a href="http://solr.group.iteye.com" target="_blank" title="solr交流圈"><strong>solr交流圈</strong></a><br/>
+                    solr 是基于lucene搜索库的一个搜 ...
+                  </span>
+                </div>
+              
+                <div class="group">
+                  <div class='logo'><a href='http://e3.group.iteye.com' target='_blank'><img src='/upload/logo/group/51042/973252bc-b05c-396f-a98b-749e3656ae9d.bmp' alt='E 3群组' title='E 3:   E3新功能请求和应用经验分享,交流' height='48' width='48' /></a></div>
+                  <span>
+                    <a href="http://e3.group.iteye.com" target="_blank" title="E 3"><strong>E 3</strong></a><br/>
+                      E3新功能请求和应用经验分享,交 ...
+                  </span>
+                </div>
+              
+                <div class="group">
+                  <div class='logo'><a href='http://dorado.group.iteye.com' target='_blank'><img src='/upload/logo/group/39405/cd16d96c-9679-312b-8057-fe3b98894ab5.jpg' alt='DORADO群组' title='DORADO:  dorado 展现中间件是一款 商用AJAX平台软件，由BSTEK研发。作为Web表现层的运行平台与开发平台，dorado能够提升用户体验、开发规范性与开发效率，并增强项目的可管理度。' height='48' width='48' /></a></div>
+                  <span>
+                    <a href="http://dorado.group.iteye.com" target="_blank" title="DORADO"><strong>DORADO</strong></a><br/>
+                     dorado 展现中间件是一款 商用AJ ...
+                  </span>
+                </div>
+              
+              <a href="/groups" class="more">&nbsp;</a>
+            </div>
+          </div>
+                <div id="nav">
+  <div class="wrapper">
+    <ul>
+            <li><a href="http://www.iteye.com/" class='selected'>首页</a></li>
+      <li><a href="http://www.iteye.com/news">资讯</a></li>
+      <li><a href="http://www.iteye.com/magazines">精华</a></li>
+      <li><a href="http://www.iteye.com/forums">论坛</a></li>
+      <li><a href="http://www.iteye.com/ask">问答</a></li>
+      <li><a href="http://www.iteye.com/blogs">博客</a></li>
+      <li><a href="http://www.iteye.com/blogs/subjects">专栏</a></li>
+      <li><a href="http://www.iteye.com/groups">群组</a></li>
+      <li><a href="http://www.iteye.com/job">招聘</a></li>
+      <li class="last"><a href="http://www.iteye.com/search">搜索</a></li>
+      <li class="last" style="float: right"><a href="http://www.ciecloud.org/2012/index.html" target="_blank">云计算大会</a></li>
+    </ul>
+  </div>
+</div>
+
+      </div>
+      <div id="footer">
+  <div id="site_nav">
+    <ul>
+      <li><a href="/index/service">广告服务</a></li>
+      <li><a href="http://webmaster.iteye.com">ITeye黑板报</a></li>
+      <li><a href="/index/contactus">联系我们</a></li>
+      <li class="last"><a href="/index/friend_links">友情链接</a></li>
+    </ul>
+  </div>
+  <div id="copyright">
+    &copy; 2003-2011 ITeye.com.    [ <a href="http://www.miibeian.gov.cn">京ICP证110151号</a>  京公网安备110105010620 ]<br/>
+    百联优力(北京)投资有限公司  版权所有<br />
+    上海炯耐计算机软件有限公司  提供商务支持<br />
+  </div>
+</div>
+
+    </div>
+    <script type="text/javascript">
+  document.write("<img src='http://stat.iteye.com/?url="+ encodeURIComponent(document.location.href) + "&referrer=" + encodeURIComponent(document.referrer) + "&user_id=' width='0' height='0' />");
+</script>
+
+  </body>
+</html>

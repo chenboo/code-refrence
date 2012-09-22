@@ -1,0 +1,34 @@
+// a good way to show full screen
+void CMainFrame::SetFullScreenMode(BOOL bFullMode)
+{
+	m_bFullScreen = bFullMode;
+	m_wndStatusBar.ShowWindow(!bFullMode);
+	m_wndToolBar.ShowWindow(!bFullMode);
+
+	DWORD dwstyle = ::GetWindowLong(m_hWnd,GWL_STYLE);
+	if(m_bFullScreen)
+	{
+		//save the org menu and set the wnd menu to null
+		ASSERT(m_OrgMenu.GetSafeHmenu() == NULL);
+		CMenu *pOldMenu = GetMenu();
+		m_OrgMenu.Attach(pOldMenu->Detach());
+		SetMenu((CMenu*)NULL);
+
+		dwstyle &= ~(WS_DLGFRAME | WS_THICKFRAME);
+		SetWindowLong(m_hWnd,GWL_STYLE, dwstyle);
+		ShowWindow(SW_SHOWMAXIMIZED);
+		CRect rect;
+		GetWindowRect(&rect);
+		::SetWindowPos(m_hWnd,HWND_NOTOPMOST,rect.left-1, rect.top-1, rect.right-rect.left + 3, rect.bottom-rect.top + 3, SWP_FRAMECHANGED);
+	}
+	else
+	{
+		ASSERT(m_OrgMenu.GetSafeHmenu() != NULL);
+		SetMenu(&m_OrgMenu);
+		m_OrgMenu.Detach();
+
+		dwstyle |= WS_DLGFRAME | WS_THICKFRAME;
+		SetWindowLong(m_hWnd, GWL_STYLE, dwstyle);
+		ShowWindow(SW_NORMAL);
+	}
+}

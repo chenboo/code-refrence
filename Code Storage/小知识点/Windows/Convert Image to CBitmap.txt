@@ -1,0 +1,82 @@
+//Convert the Image to CBitmap
+
+//--------------------------------------------------------------------------------------------
+//The first method
+//Draw the image in a memory device context in which the CBitmap object is selected.
+//Like in next example:
+
+//Code:
+using namespace Gdiplus;
+Image* pImage = Image::FromFile(L"c:\\test.gif");
+Status status = pImage->GetLastStatus();
+if(Ok == status)
+{
+   CDC dc;
+   dc.CreateCompatibleDC(NULL);
+   CBitmap bitmap;
+   bitmap.CreateCompatibleBitmap(&dc, pImage->GetWidth(), pImage->GetHeight());
+   CBitmap* pbmpOld = dc.SelectObject(&bitmap);
+
+   Graphics graphics(dc.m_hDC);
+   status = graphics.GetLastStatus();
+   if(Ok == status)
+   {
+      graphics.DrawImage(pImage, 0, 0);
+      // enjoy of bitmap;
+   }
+   dc.SelectObject(pbmpOld);
+}
+
+//-------------------------------------------------------------------------------------------------
+//The second method
+//Much more easier is if you have Bitmap (Bitmap is derived from Image) that has GetHBITMAP method:
+//Code:
+using namespace Gdiplus;
+Bitmap* pBitmap = Bitmap::FromFile(L"c:\\test.gif");
+Status status = pBitmap->GetLastStatus();
+if(Ok == status)
+{
+   HBITMAP hBitmap = NULL;
+   status = pBitmap->GetHBITMAP(Color(0,0,0), &hBitmap);
+   if(Ok == status)
+   {
+      CBitmap bitmap;
+      bitmap.Attach(hBitmap);
+      // enjoy of bitmap;
+   }
+}
+
+
+
+//GDI+实例教程之: 转换Image(BMP,JPG,GIF,PNG等) 到MetaFile(EMF等) 格式
+//当然我们可以去造一个EMF图像文件格式的生成器，但没有一堆class 是不行的，
+//如果你现在开始这样做，估计需要一个星期来完成。以后有空，我会讲一下如何写EMF图像文件格式的生成器。
+
+//现在我这里讲一个最简单实用的方法，只要几行代码就可以。
+//原理：
+//1. Metafile 构造一个图像文件。
+//2. 强大的Graphics 从Metafile生成，并画上原Image 的图。
+//就是这么简单。
+
+//Code:
+public void ConvertToEmf( string imageFile, string emfFile )
+  {
+   // The existing bitmap.
+   Bitmap bmp = new Bitmap( imageFile );
+
+   // new metafile
+   Metafile metaFile = new Metafile( emfFile, 
+    Graphics.FromHwnd( this.Handle ).GetHdc(),  // Get HDC
+    EmfType.EmfPlusDual, 
+    "A test" );
+   
+   // draw image to metafile
+   Graphics g = Graphics.FromImage( metaFile );   
+   g.DrawImage( bmp, 0, 0, bmp.Width, bmp.Height );
+ 
+
+   // Clear object clearly
+   g.Dispose();
+   metaFile.Dispose();
+   bmp.Dispose();
+  }

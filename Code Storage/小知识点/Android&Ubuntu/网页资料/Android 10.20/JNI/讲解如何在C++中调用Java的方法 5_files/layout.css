@@ -1,0 +1,491 @@
+/* 通类对象 */
+body {
+	font-family: "宋体", arial;
+	width:950px;
+	padding: 0 auto;
+	margin:0px auto;
+	background: #fff;
+	font-size: 12px;
+	color: #42495b;
+}
+
+
+div,form,img,ul,ol,li,dl,dt,dd {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+h1,h2,h3,h4,h5,h6 {
+	font-weight: normal;
+	font-size: value;
+	margin: 0;
+	padding: 0;
+}
+
+table,td,tr,th{
+	font-size: 12px;
+}
+
+img {
+	border: 0;
+}
+
+img a{
+	border: 0;
+}
+
+a:hover{color:#f07936 !important;}
+
+
+ul,ol,dd,li{
+	list-style-type: none;
+	margin-left: 0;
+	padding-left: 0;
+	list-style:none;
+}
+
+select,input{
+	vertical-align: middle;
+	padding: 0;
+	margin: 0;
+}
+
+/* 链接颜色 */
+a{
+	text-decoration: none;
+}
+
+
+
+/* 其他属性 */
+.nleft{
+	float: left;
+}
+
+.nright{
+	float: right;
+}
+
+.clear{
+	clear: both;
+}
+
+.hidden {
+	display: none;
+}
+
+.unLine ,.unLine a{
+	text-decoration: none;
+}
+
+.noBorder{
+	border: none;
+}
+
+/* CSS Document */
+.blank5{
+	height: 5px;
+	clear: both;
+	font-size: 1px;
+	overflow: hidden;
+}
+
+.blank10{
+	height: 10px;
+	clear: both;
+	font-size: 1px;
+	overflow: hidden;
+}
+
+.blank13{
+	height: 13px;
+	clear: both;
+	font-size: 1px;
+	overflow: hidden;
+}
+
+.blank6{
+	height: 6px;
+	_height: 14px;
+	clear: both;
+	font-size: 1px;
+	overflow: hidden;
+}
+
+.blank20{
+	height: 20px;
+	clear: both;
+	font-size: 1px;
+	overflow: hidden;
+}
+
+.lineH{
+	margin: 12px auto 10px;
+	width: 100%;
+	font-size: 1px;
+	min-height: 1px;
+	background: url(http://www.ccidnet.com/images/ccid_art/line.gif) repeat-x;
+}
+
+.lineH2{
+	width: 99%;
+	margin: 0 auto;
+	padding: 0 auto;
+	font-size: 1px;
+	min-height: 1px;
+	background: url(http://www.ccidnet.com/images/ccid_art/line.gif) repeat-x;
+}
+
+.lineH3{
+	width: 100%;
+	margin: 0 auto;
+	padding: 0 auto;
+	font-size: 1px;
+	min-height: 1px;
+	border-bottom: 1px solid #ccc;
+}
+
+.lineH4{
+	margin: 0px auto 0px;
+	_margin: 3px auto 3px;
+	width: 97%;
+	font-size: 1px;
+	min-height: 1px;
+	background: url(http://www.ccidnet.com/images/ccid_art/line2.gif) repeat-x;
+}
+
+.lineH5{
+	margin: 2px auto 4px;
+	_margin: 0px auto 2px;
+	width: 92%;
+	font-size: 1px;
+	min-height: 1px;
+	background: url(http://www.ccidnet.com/images/ccid_art/line.gif) repeat-x;
+}
+
+/*布局属性*/
+#wrapper {
+	width: 900px;
+	margin: 0 auto;
+	padding: 0 auto;
+	overflow: hidden;
+	 
+}
+
+#subrav01 {
+	float: left;
+	width: 282px;
+	height: 190px;
+}
+
+#subrav02 {
+	float: left;
+	width: 320px;
+	height: 190px;
+	margin-left: 8px;
+}
+
+#subrav03 {
+	float: left;
+	width: 282px;
+	height: 190px;
+	margin-left: 8px;
+}
+
+#subrav04 {
+	float: left;
+	width: 900px;
+	margin: 0 auto;
+	padding: 0 auto;
+}
+
+.subrav05 {
+	width: 210px;
+	float: left;
+	margin: 0 auto;
+	padding: 0 auto;
+}
+
+#subrav06 {
+	width: 682px;
+	float: left;
+	margin: 0px 0px 0px 8px;
+	padding: 0;
+}
+
+.subrav07 {
+	width: 337px;
+	float: left;
+	margin: 0px 0px 0px 8px;
+	padding: 0;
+}
+
+#subrav08 {
+	width: 446px;
+	float: left;
+	margin: 0;
+	padding: 0;
+}
+
+#subrav09 {
+	width: 446px;
+	float: left;
+	margin: 0px 0px 0px 8px;
+	padding: 0;
+}
+
+#subrav10 {
+	width: 295px;
+	float: left;
+	margin: 0px 0px 0px 0px;
+	padding: 0;
+}
+#subrav11 {
+	width: 597px;
+	float: right;
+	margin: 0px 0px 0px 0px;
+	padding: 0;
+}
+#subrav12 {
+	width: 300px;
+	float: left;
+	margin: 0px 0px 0px 0px;
+	padding: 0;
+}
+#subrav13 {
+	width: 590px;
+	float: right;
+	margin: 0px 0px 0px 0px;
+	padding: 0;
+}
+
+#subrav14 {
+	width: 743px;
+	float: left;
+	margin: 0px 0px 0px 0px;
+	padding: 0;
+	height:521px;
+}
+#subrav15 {
+	width: 260px;
+	float: right;
+	margin: 0px 0px 0px 0px;
+	padding: 0;
+	height:521px;
+	 background:url(http://www.ccidnet.com/images/ccid_art/2008right.jpg) top left no-repeat;
+}
+#subrav16 {
+	width: 743px;
+	height:211px;
+	margin: 0px 0px 0px 0px;
+	padding: 0;
+	 background:url(http://www.ccidnet.com/images/ccid_art/search-dt1.jpg) top left no-repeat
+}
+
+#subrav17 {
+	width: 900px;
+	height:224px;
+	margin: 0px auto;
+	padding: 0;
+	background-color:#fb5d1a;
+	margin-top:-1px;
+}
+*+html #subrav17 {margin-top:0px;height:187px;}
+*html #subrav17 {margin-top:0px;height:187px;}
+#subrav18 {
+	width: 896px;
+	height:183px;
+	margin: 1px;
+	padding: 0;
+	border:1px #ff9b46 solid;
+	background-color:#fb5d1a;
+}
+#subrav19 {
+	width: 900px;
+	margin: 0px auto;;
+	padding: 0;
+	margin-top:9px;
+}
+#subrav20 {
+	width: 217px;
+	margin: 0px;
+	padding: 0;
+}
+#subrav21 {
+	width: 675px;
+	margin: 0px;
+	padding: 0;
+}
+/*----------新增--------*/
+#subrav22 {
+	width: 950px;
+	height:54px;
+	margin: 0px auto;
+	padding: 0;
+	margin-top:15px;
+	margin-bottom:5px;
+}
+#subrav23 {
+
+	clear:both;
+	width: 950px;
+	height:23px;
+	margin: 0px auto;
+	padding: 0;
+	margin-bottom:5px;
+	 background:url(http://www.ccidnet.com/images/ccid_art/bg3.jpg) top left repeat-x;
+	  text-align:center;
+	  padding-top:5px;
+	   color:#fff;
+	    font-weight:bold;
+		 font-family:Arial, Helvetica, sans-serif;
+}
+#subrav24 {
+	width: 650px !important;
+
+}
+#subrav25 {
+	height:64px;
+	width: 650px !important;
+	margin:0 auto;
+	margin-top:15px;
+}
+#subrav26 {
+	width: 648px !important;
+	margin:0 auto;
+	border:1px #c1cfdc solid;
+	margin-top:5px;
+}
+#subrav27 {
+	width: 648px !important;
+	margin:5px auto;
+	 text-align:center;
+}
+/*----------------------*/
+#menuTop{
+	width: 900px;
+	height: 71px;
+	background: url(http://www.ccidnet.com/images/ccid_art/menu_bg.jpg) no-repeat;
+	margin: 2px auto 0px;
+	padding: 0;
+}
+
+#columuMain {
+	width: 900px;
+	margin: 0 auto;
+	padding: 0 auto;
+}
+
+ 
+#leftcolumu {
+	width: 210px;
+	float: left;
+	margin: 0 auto;
+	padding: 0 auto;
+}
+
+#rightcolumu {
+	width: 682px;
+	float: right;
+	margin: 0 auto;
+	padding: 0 auto;
+}
+
+#leftcolumu02{
+	width: 682px;
+	float: left;
+	margin: 0 auto;
+	padding: 0 auto;
+}
+
+#rightcolumu02 {
+	width: 210px;
+	float: right;
+	margin: 0 auto;
+	padding: 0 auto;
+}
+
+/*----------新增--------*/
+#leftcolumu03{
+	width: 357px;
+	float: left;
+	margin: 0 auto;
+	padding: 0 auto;
+	 background:url(http://www.ccidnet.com/images/ccid_art/2008left.jpg) top left no-repeat;
+	 height:310px;
+}
+
+#rightcolumu03 {
+	width: 386px;
+	float: right;
+	margin: 0 auto;
+	padding: 0 auto;
+	height:310px;
+}
+#ay2008 {
+	width: 1003px;
+	margin: 0 auto;
+	padding: 0 auto;
+	height:600px;
+	text-align:left;
+}
+/*----------------------*/
+
+
+
+#gameSubrav01 {
+	float: left;
+	width: 210px;
+	overflow: hidden;
+}
+
+#gameSubrav02 {
+	float: left;
+	width: 504px;
+	margin: 0px 0px 0px 8px;
+	overflow: hidden;
+}
+
+#gameSubrav03 {
+	float: left;
+	width: 722px;
+	margin:0;
+}
+
+#gameSubrav04 {
+	float: left;
+	width: 170px;
+	margin:0px 0px 0px 8px;
+}
+.b {
+	FONT-SIZE: 12px; COLOR: #30569d; LINE-HEIGHT: 130%; FONT-FAMILY: Arial; TEXT-DECORATION: none
+}
+.a14c {
+	FONT-SIZE: 14px; COLOR: #585661; LINE-HEIGHT: 22px; TEXT-DECORATION: none
+}
+.titel {
+	FONT-WEIGHT: bold; FONT-SIZE: 26px; COLOR: #000000; LINE-HEIGHT: 130%; TEXT-DECORATION: none
+}
+a {color: #42495b;} 
+.nav{ background-color:#666666;margin-top:5px;}
+.nav li{ float:left; background:url(http://www.ccidnet.com/images/ccid_art/tiao1.jpg) top right no-repeat;height:15px;padding:5px 6px;}
+.pic1{margin-top:0px;}
+.pic2{margin-top:5px;}
+.nav-logo{}
+.input1{width:100px;margin:0 5px;}
+.input2{height:20px;margin-top:2px;}
+.btngo{margin:0 3px;margin-top:2px;}
+.nr{width:950px;margin-top:5px;}
+.nleft{ float:left;}
+.nright{ float:right;}
+.nr-p{ line-height:200%; font-size:14px;}
+.font30569d{ font-size:12px; color:#30569d;}
+.fontfff{ font-size:12px; color:#fff;}
+.fontfff a{ font-size:12px; color:#fff;}
+.list-nr{ line-height:180%; color:#373737;}
+.d-bottom{ text-align:center;width:950px; border-top:2px  #CCCCCC solid;margin-top:10px;padding-top:5px;}
+.d-bottom p{ text-align:center; line-height:180%;}
+.a10_1{
+	FONT-SIZE: 13px; COLOR: #F66300; LINE-HEIGHT: 200%; TEXT-DECORATION: none
+}

@@ -1,0 +1,127 @@
+//关于shareboard的类
+
+//1》ShareBoardJNIBinder
+//在C++和java两端都有ShareBoardJNIBinder、
+
+//（一）C++这边的ShareBoardJNIBinder定义如下：
+#pragma once
+
+#include <jni.h>
+#include "CodeSnippets/Protocol.h"
+
+struct LIB_SHAREBOARD_PARAMS
+{
+	JavaVM* pJVM;
+	jobject objectShareBoardJNIBinder;
+
+	DWORD			dwTeacherIp;
+	UTF16			szName[32 + 1];
+	DWORD			dwLocalInterface;
+	SHAREBOARDPARAMS	params;
+};
+
+BOOL ShareBoard_CreateClient(const LIB_SHAREBOARD_PARAMS& params);
+BOOL ShareBoard_DestroyClient();
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+JNIEXPORT void JNICALL Java_mythware_nt_ShareBoardJNIBinder_JNIJTCPostMessageFeedback
+  (JNIEnv *, jclass, jint, jint, jint);
+
+JNIEXPORT void JNICALL Java_mythware_nt_ShareBoardJNIBinder_JNIJTCMainTimeFeedback
+  (JNIEnv *, jclass, jint);
+
+#ifdef __cplusplus
+}
+#endif
+
+//主要就是创建和销毁shareboard
+
+
+//（二）java这边的ShareboardJNIBinder定义如下（省去了函数的实现部分)：
+
+public class ShareBoardJNIBinder {
+	public final Signal sigShareBoardStart = new Signal();
+	public final Signal sigShareBoardStop = new Signal();
+
+	private final NetworkService mService;
+
+	enum NATIVE_EVENT {
+		NEV_FUNCTION_SHAREBOARD_START, NEV_FUNCTION_SHAREBOARD_STOP,
+	};
+
+	static {
+		System.loadLibrary("ShareBoard");
+	}
+
+	private native static void JNIJTCPostMessageFeedback(int uMsg, int wParam,
+			int lParam);
+
+	private native static void JNIJTCMainTimeFeedback(int nTimeID);
+
+	private HashMap<Integer, MainTimerTask> mMainTimerMap = new HashMap<Integer, MainTimerTask>();
+	private Timer mMainTimer = new Timer();
+	private Handler mMainTimerHandler = new Handler();
+
+	public ShareBoardJNIBinder(NetworkService service) {
+		mService = service;
+	}
+
+	public void JNICTJNativeNotify(int type, byte[] data) {}//响应从C++那的shareboard网络传送过来的数据
+
+	public void JNICTJPostMessage(int uMsg, int wParam, int lParam) {}//响应从C++那的shareboard网络传送过来的消息
+
+	public boolean JNICTJCreateTimer(int nTimeID, int nPeriod) {
+	}
+
+	public void JNICTJReleaseTimer(int nTimeID) {
+	}
+
+	private Handler mPostMsgHandler = new Handler(new Handler.Callback() {
+		@Override
+		public boolean handleMessage(Message msg) {
+			// TODO Auto-generated method stub
+			JNIJTCPostMessageFeedback(msg.what, msg.arg1, msg.arg2);
+			return true;
+		}
+	});
+
+	private final class MainTimerTask extends TimerTask {
+		protected int m_nTimeID = 0;
+
+		public MainTimerTask(int nTimeID) {
+			m_nTimeID = nTimeID;
+		}
+
+		@Override
+		public void run() {
+			mMainTimerHandler.post(new Runnable() {
+
+				@Override
+				public void run() {
+					// TODO Auto-generated method stub
+					JNIJTCMainTimeFeedback(m_nTimeID);
+				}
+			});
+		}
+	}
+}
+
+
+//studentJNIBinder包含了ShareboardJNIBinder，有一个变量：
+//public final ShareBoardJNIBinder mShareBoardJNIBinder;
+//而NetworkService又包含了studentJNIBinder
+//NetworkService是一个很重要的service，在它里面，ShareboardJNIBinder与函数slotShareBoardStart以及slotShareBoardStop
+//联系在了一起;如下所示：
+//mStudentJNIBinder.mShareBoardJNIBinder
+mStudentJNIBinder.mShareBoardJNIBinder.sigShareBoardStart.connect(this, "slotShareBoardStart");
+mStudentJNIBinder.mShareBoardJNIBinder.sigShareBoardStop.connect(this, "slotShareBoardStop");
+
+
+
+//2》C++ ShareBoardMainWork类 ： 创建的时候会new一个ShareBoardMainWork类，
+//这个类就是用来和网络打交道的，
+//它会创建一个comlayer以及相关的网络传输类，用于接收和发送网络数据
+

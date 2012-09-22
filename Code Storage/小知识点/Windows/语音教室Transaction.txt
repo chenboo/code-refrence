@@ -1,0 +1,53 @@
+//在语音教室中使用Transaction
+
+//1>首先要生成一个表示该Transaction的GUID，在TrancsGuids.h文件中添加
+//2>其次须在libbasetrans中创建相应的transaction类
+//3>在ComlayerEvent.h中添加相应的事件，如
+//#define EV_COMPETITION_ARRIVED	(EV_STUDENT_START + 32)
+//4>创建完成后在studentdlg或者teacherdlg中要实例化这个transaction有
+//如下的步骤：（以CCompetitionTransaction*	m_pTrancsCompetition;这个transaction说明为例）
+
+//开始transaction
+BOOL CTeacherDlg::StartCompetitionTransc()
+{
+	ASSERT(NULL == m_pTrancsCompetition);
+
+	//传入comlayer的指针以及transaction的guid
+	//comlayer会把这个transaction加入到它当中，并以GUID标识，以与其他的transaction进行区分
+	m_pTrancsCompetition = new CCompetitionTransaction(m_pComLayer, &g_guidCompetition);
+	if (NULL == m_pTrancsCompetition)
+	{
+		return FALSE;
+	}
+
+	//创建answercmptgroupID Transaction
+	m_pTrancsAnswerCmptGroupID = new CAnswerCmptGroupIdTransaction(m_pComLayer, &g_guidCmptGroupID);
+	if (NULL == m_pTrancsAnswerCmptGroupID)
+	{
+		return FALSE;
+	}
+
+	return TRUE;
+}
+
+//结束transaction
+void CTeacherDlg::StopCompetitionTransc()
+{
+	if (m_pTrancsCompetition ) {
+		ITransactionManager* pTransMgr = m_pComLayer->GetTransactionManager();
+		pTransMgr->DeleteTransaction(m_pTrancsCompetition->GetTransactionID());
+		pTransMgr->Release();
+
+		m_pTrancsCompetition->Release();
+		m_pTrancsCompetition = NULL;
+	}
+
+	if(m_pTrancsAnswerCmptGroupID) {
+		ITransactionManager* pTransMgr = m_pComLayer->GetTransactionManager();
+		pTransMgr->DeleteTransaction(m_pTrancsAnswerCmptGroupID->GetTransactionID());
+		pTransMgr->Release();
+
+		m_pTrancsAnswerCmptGroupID->Release();
+		m_pTrancsAnswerCmptGroupID = NULL;
+	}
+}

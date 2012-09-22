@@ -1,0 +1,37 @@
+1>首先得在Github上创建一个账户，这个已经OK了，用户名为lilingshui
+2>其次要在Github上创建一个Repository
+3>创建完成之后就可以向里面添加代码了
+
+4>使用Git工具的时候先配置一下用户信息，如下：
+git config --global user.name "PengWater"
+git config --global user.email lilingshui@126.com
+
+5>在本地磁盘中进行工程的创建
+git mkdir Test
+git cd Test
+git init
+git touch README	//生成README文件
+vi README //可以对README文件进行编辑(esc :q! 退出, :wq 保存后退出)
+git add .	//添加所有的文件到提交列表中
+git commit -m "填上提交的一些信息注释"
+git remote add origin git@github.com:lilingshui/Test.git
+git push origin master
+//这样这个工程就提交上去了
+
+
+6>在其他的地方get这个工程的代码
+git clone https://github.com/lilingshui/Test.git
+
+
+7>更新代码
+git pull	//这样就OK了
+
+8>回溯到某个版本的代码
+git clone下载下来的就是完整的版本库, 默认checkout出HEAD分支,
+如果要checkout出之前的版本, 
+可以通过git log获取之前的提交信息, 然后找到想要checkout的部分
+"git checkout <SHA1 ID的前8位(如76bd774c)>"就可以吧之前时间提交的版本checkout出来,
+如果要checkout到仓库其他的分支, 先用git branch -a查看分支, 
+再用命令: "git checkout -b <new_branch_name> <remote_branch_name>" 
+checkout出remote_branch_name这个分支出来.
+

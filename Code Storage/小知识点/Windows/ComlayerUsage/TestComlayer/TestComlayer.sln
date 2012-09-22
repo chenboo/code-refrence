@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DLG", "DLG\DLG.vcproj", "{E1D253F6-CE51-46AA-B65B-2CB838AB1518}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4C2DE41A-6C6D-4451-B853-EACE164A628C} = {4C2DE41A-6C6D-4451-B853-EACE164A628C}
+		{20BF4345-1892-4972-AB7C-5CE1AA40B29E} = {20BF4345-1892-4972-AB7C-5CE1AA40B29E}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibBaseTrans", "libraries\LibBaseTrans\LibBaseTrans.vcproj", "{4C2DE41A-6C6D-4451-B853-EACE164A628C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{20BF4345-1892-4972-AB7C-5CE1AA40B29E} = {20BF4345-1892-4972-AB7C-5CE1AA40B29E}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibComLayer", "libraries\LibComLayer\LibComLayer.vcproj", "{20BF4345-1892-4972-AB7C-5CE1AA40B29E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E1D253F6-CE51-46AA-B65B-2CB838AB1518}.Debug|Win32.ActiveCfg = Debug|Win32
+		{E1D253F6-CE51-46AA-B65B-2CB838AB1518}.Debug|Win32.Build.0 = Debug|Win32
+		{E1D253F6-CE51-46AA-B65B-2CB838AB1518}.Release|Win32.ActiveCfg = Release|Win32
+		{E1D253F6-CE51-46AA-B65B-2CB838AB1518}.Release|Win32.Build.0 = Release|Win32
+		{4C2DE41A-6C6D-4451-B853-EACE164A628C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{4C2DE41A-6C6D-4451-B853-EACE164A628C}.Debug|Win32.Build.0 = Debug|Win32
+		{4C2DE41A-6C6D-4451-B853-EACE164A628C}.Release|Win32.ActiveCfg = Release|Win32
+		{4C2DE41A-6C6D-4451-B853-EACE164A628C}.Release|Win32.Build.0 = Release|Win32
+		{20BF4345-1892-4972-AB7C-5CE1AA40B29E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{20BF4345-1892-4972-AB7C-5CE1AA40B29E}.Debug|Win32.Build.0 = Debug|Win32
+		{20BF4345-1892-4972-AB7C-5CE1AA40B29E}.Release|Win32.ActiveCfg = Release|Win32
+		{20BF4345-1892-4972-AB7C-5CE1AA40B29E}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

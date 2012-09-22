@@ -1,0 +1,64 @@
+//Android版电子教室的网络
+
+在电子教室中网络部分是用C++来实现的，所有关于网络上消息的接受和发送都是
+通过这个网络库来实现的，为了方便java程序的调用，在这里使用了JNI技术，
+C++网络库导出了函数，供java程序调用，在头文件StudentJNIBinder内容如下：
+
+#ifndef MYTHWARE_STUDENT_JNIBINDER
+#define MYTHWARE_STUDENT_JNIBINDER
+
+#include <jni.h>
+
+extern "C"
+{
+JNIEXPORT void JNICALL Java_mythware_nt_StudentJNIBinder_JNIJTCStart(JNIEnv* env, jclass clazz,
+		jstring internalFilesPath, jint nSystemVersion, jint nAppVersion, jint localIpAddr, jbyteArray macAddr, jobject objStudentJNIBinder);
+JNIEXPORT void JNICALL Java_mythware_nt_StudentJNIBinder_JNIJTCStop(JNIEnv* env, jclass clazz);
+
+JNIEXPORT void JNICALL Java_mythware_nt_StudentJNIBinder_JNIJTCConnect(JNIEnv* env, jclass clazz,
+		jint nChannelId, jbyteArray jstrConnectName, jbyteArray jstrTeacherName);
+JNIEXPORT void JNICALL Java_mythware_nt_StudentJNIBinder_JNIJTCCancelConnect(JNIEnv* env, jclass clazz);
+JNIEXPORT void JNICALL Java_mythware_nt_StudentJNIBinder_JNIJTCDisconnect(JNIEnv* env, jclass clazz);
+
+JNIEXPORT jboolean JNICALL Java_mythware_nt_StudentJNIBinder_JNIJTCIsEnableDisconnect(JNIEnv* env, jclass clazz);
+JNIEXPORT jboolean JNICALL Java_mythware_nt_StudentJNIBinder_JNIJTCIsEnableSubmit(JNIEnv* env, jclass clazz);
+
+
+JNIEXPORT void JNICALL Java_mythware_nt_StudentJNIBinder_JNIJTCTrySetName(JNIEnv* env, jclass clazz,
+		jstring newName);
+
+JNIEXPORT void JNICALL Java_mythware_nt_StudentJNIBinder_JNIJTCSwitchHandup(JNIEnv* env, jclass clazz);
+JNIEXPORT jboolean JNICALL Java_mythware_nt_StudentJNIBinder_JNIJTCIsHandup(JNIEnv* env, jclass clazz);
+JNIEXPORT jboolean JNICALL Java_mythware_nt_StudentJNIBinder_JNIJTCIsBlockMsg(JNIEnv* env, jclass clazz);
+
+JNIEXPORT void JNICALL Java_mythware_nt_StudentJNIBinder_JNIJTCUpdateThumbnail(JNIEnv* env, jclass clazz,
+		int size, jbyteArray thumbnailData);
+
+JNIEXPORT void JNICALL Java_mythware_nt_StudentJNIBinder_JNIJTCSendChatMessage(JNIEnv* env, jclass clazz,
+		jbyteArray text);
+JNIEXPORT void JNICALL Java_mythware_nt_StudentJNIBinder_JNIJTCSendReportData(JNIEnv* env, jclass clazz,
+		jbyteArray data);
+
+JNIEXPORT void JNICALL Java_mythware_nt_StudentJNIBinder_JNIJTCSetBatteryInfo(JNIEnv* env, jclass clazz,
+		jint nInfo);
+
+JNIEXPORT void JNICALL Java_mythware_nt_StudentJNIBinder_JNIJTCPostMessageFeedback
+  (JNIEnv *, jclass, jint uMsg, jint wParam, jint lParam);
+
+JNIEXPORT void JNICALL Java_mythware_nt_StudentJNIBinder_JNIJTCMainTimeFeedback
+  (JNIEnv *, jclass, jint nTimeID);
+}
+
+#endif
+
+
+C++中通过相应的技术获得android中各个界面的对象引用，可以理解为指针，
+当C++网络库收到相应的消息要更新界面时，由于UI界面是单线程保护的，C++会把这个消息传给Android中
+的线程，android再传回来，这样线程就变成android中的线程了，此时可以通过接收到的信息
+进行相应的操作。
+
+关于androi界面的更新。
+
+
+
+

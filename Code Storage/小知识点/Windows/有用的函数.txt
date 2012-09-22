@@ -1,0 +1,4 @@
+//OpenIcon
+//The OpenIcon function restores a minimized (iconic) window to its previous size and position; it then activates the window. 
+
+BOOL OpenIcon(HWND hWnd);

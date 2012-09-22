@@ -1,0 +1,35 @@
+Java中线程的现实有两中方法：
+1>创建一个从Thread派生的类并改写run方法
+2>实现Runnable接口(其实就是写run方法)
+
+下面来一一进行介绍:
+1>派生Thread的方式，
+(1)创建一个新的线程类,继承 Thread 类并覆盖 Thread 类的 run()方法
+class ThreadType extends Thread{
+public void run(){
+......
+}
+}
+(2)创建一个线程类的对象。
+ThreadType tt = new ThreadType();
+(3)启动新线程对象,调用 start()方法。
+tt.start();//此后线程会自动调用自己的run方法
+
+
+
+2>实现Runnable接口的方式
+(1)创建一个实现 Runnable 接口的类,并且在这个类中重写 run 方法。
+class ThreadType implements Runnable{
+public void run(){
+......
+}
+}
+(2)使用关键字 new 新建一个 ThreadType 的实例。
+Runnable rb = new ThreadType ();
+
+(3)通过 Runnable 的实例创建一个线程对象,在创建线程对象时,调用的构造函数是
+new Thread(ThreadType),它用 ThreadType 中实现的 run()方法作为新线程对象的 run()方法。如下：
+Thread td = new Thread(rb);
+
+(4)通过调用 ThreadType 对象的 start()方法启动线程运行。
+td.start();
