@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>CSDN Ad</title>
+    <style type="text/css">
+    body { margin:0px; padding:0px;}
+    </style>
+</head>
+<body>
+<div id="div1"><style type="text/css">
+ul { margin:0px; padding:0 4px 0 0; }
+ul, x:-moz-any-link, x:default { width:90%; }
+ul li { padding:3px 0px;}
+a { font-size:12px; text-decoration:none; color:#006699; }
+a:hover { color:#000; }
+</style>
+
+<ul>
+
+<li><a href="http://blog.csdn.net/blogdevteam/article/details/8012469" target="_blank">* 开源 Android 开发平台 Rexsee 开发团队专访   </a></li>
+
+<li><a href="http://blog.csdn.net/iukey/article/details/8011200" target="_blank">* IOS中策略模式初运用   </a></li>
+
+
+<li><a href="http://blog.csdn.net/johnsuna/article/details/8007958" target="_blank">* 关于QRCODE二维码使用彩色进行扩容的思考 </a></li>
+
+<li><a href="http://blog.csdn.net/mylxiaoyi/article/details/8007261" target="_blank">* 基本文本组件（二）    </a></li>
+
+
+<li><a href="http://blog.csdn.net/totogo2010/article/details/8010231" target="_blank">* IOS多线程编程之NSThread的使用  </a></li>
+
+
+<li><a href="http://blog.csdn.net/tianxiaode/article/details/8010003" target="_blank">* 使用Ext JS MVC与Asp.Net MVC 3开发CMS后台创建Viewport    </a></li>
+
+
+
+</ul></div>
+<script type="text/javascript">
+    window.onload = function () {
+
+        //这种给广告区域赋值的方式，对于有些JS广告不能完美的显示
+        //top.document.getElementById('ad_commend').innerHTML = document.getElementById('div1').innerHTML;
+
+        var h = document.body.offsetHeight + 2;
+        setTimeout(function () {
+            if (h > 800) h = document.getElementById('div1').offsetHeight + 4;
+            top.document.getElementById('ad_frm_2').style.height = h + 'px';
+        }, 100);        
+    };
+</script>
+
+
+</body></html>

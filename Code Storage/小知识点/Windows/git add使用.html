@@ -1,0 +1,602 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<title>git add - shuhuai007的专栏 - 博客频道 - CSDN.NET</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="description" content="一、前言git add命令主要用于把我们要提交的文件的信息添加到索引库中。当我们使用git commit时，git将依据索引库中的内容来进行文件的提交。二、基本git add&nbsp;表示 add to index only files created or modified and not those deleted&nbsp;我通常是通过git add&nbsp;的形式把我们添加到索引库中，可以是文件也可">
+<script src="git%20add%E4%BD%BF%E7%94%A8_files/ga.js" async="" type="text/javascript"></script><script src="git%20add%E4%BD%BF%E7%94%A8_files/jquery.js" type="text/javascript"></script>
+<script src="git%20add%E4%BD%BF%E7%94%A8_files/plugins.js" type="text/javascript"></script>
+<script src="git%20add%E4%BD%BF%E7%94%A8_files/common.js" type="text/javascript"></script>
+<link rel="Stylesheet" type="text/css" href="git%20add%E4%BD%BF%E7%94%A8_files/style.css">
+<link id="RSSLink" title="RSS" type="application/rss+xml" rel="alternate" href="http://blog.csdn.net/shuhuai007/rss/list">
+<link rel="shortcut icon" href="http://blog.csdn.net/favicon.ico">
+<link type="text/css" rel="stylesheet" href="git%20add%E4%BD%BF%E7%94%A8_files/default.css">
+</head>
+<body>
+<script src="git%20add%E4%BD%BF%E7%94%A8_files/pub_topnav_2011.js" type="text/javascript"></script><link rel="stylesheet" type="text/css" href="git%20add%E4%BD%BF%E7%94%A8_files/navtop_2012.css">
+<div class="nav_top_2011">
+<p><span style="color:red;">您还未登录！</span>|<a href="https://passport.csdn.net/account/login" target="_top">登录</a>|<a href="https://passport.csdn.net/account/register" target="_top">注册</a>|<a href="https://passport.csdn.net/help/faq" target="_blank">帮助</a></p><ul>
+<li><a href="http://www.csdn.net/" target="_blank">首页</a></li>
+<li><a href="http://news.csdn.net/" target="_blank">业界</a></li>
+<li><a href="http://mobile.csdn.net/" target="_blank">移动</a></li>
+<li><a href="http://cloud.csdn.net/" target="_blank">云计算</a></li>
+<li><a href="http://sd.csdn.net/" target="_blank">研发</a></li>
+<li><a href="http://bbs.csdn.net/" target="_blank">论坛</a></li>
+<li><a href="http://blog.csdn.net/" target="_blank">博客</a></li>
+<li><a href="http://download.csdn.net/" target="_blank">下载</a></li>
+<li class="more"><h2 id="topnav_btnmore" onclick="showNavMore(this)"><a href="javascript:void(0);">更多</a></h2>
+<div id="topnav_hidlist">
+<iframe name="nav_frm" src="git%20add%E4%BD%BF%E7%94%A8_files/a.html" frameborder="no" height="178" scrolling="no" width="92"></iframe>
+</div>
+</li>
+</ul>
+</div>
+
+
+<div id="container">
+<div id="header">
+    <div class="header">
+        <div id="blog_title">
+            <h1><a href="http://blog.csdn.net/shuhuai007">shuhuai007的专栏</a></h1>
+            <h2></h2>
+            <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<div id="navigator">
+    <div class="navigator_bg"></div>
+    <div class="navigator">
+        <ul>
+            <li id="btnContents"><a href="http://blog.csdn.net/shuhuai007?viewmode=contents"><span><img src="git%20add%E4%BD%BF%E7%94%A8_files/ico_list.gif">目录视图</span></a></li>
+            <li id="btnView"><a href="http://blog.csdn.net/shuhuai007?viewmode=list"><span><img src="git%20add%E4%BD%BF%E7%94%A8_files/ico_summary.gif">摘要视图</span></a></li>
+            <li id="btnRss"><a href="http://blog.csdn.net/shuhuai007/rss/list"><span><img src="git%20add%E4%BD%BF%E7%94%A8_files/ico_rss.gif">订阅</span></a></li>
+</ul>
+    </div>
+</div>
+<script type="text/javascript">
+    var username = "shuhuai007";
+    var blog_address = "http://blog.csdn.net/shuhuai007";
+    var static_host = "http://static.blog.csdn.net";
+    var currentUserName = "";
+</script>
+        
+<div id="body">
+<div id="main">
+<div class="main">
+<div class="notice"> 
+
+<a href="http://blog.csdn.net/sq_zhuyi/article/details/7924776" target="_blank">
+<font color="red">
+公告：CSDN博客频道推出博客导出工具（开源） </font></a>
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+<a href="http://blog.csdn.net/csdnproduct/article/details/7987178" target="_blank">
+<font color="red"> 公告：CSDN博客频道推出文章目录功能</font></a>
+
+&nbsp;&nbsp;&nbsp;
+
+
+<a href="http://blog.csdn.net/csdnproduct/article/details/7964475" target="_blank">
+<font color="red">CSDN产品客服新浪微博正式上线 </font></a>
+
+<br>
+
+<a href="http://mdcc.csdn.net/" target="_blank">
+<font color="blue">移动开发者大会最新议题发布，八折抢票！
+ </font></a>
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a href="http://blog.csdn.net/blogdevteam/article/details/7988576" target="_blank">
+<font color="red">2013年1月微软MVP申请开始啦！
+ </font></a>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a href="http://blog.csdn.net/blogdevteam/article/details/7954317" target="_blank">
+<font color="blue">“第一次亲密接触”—有奖征文活动  </font></a>
+
+</div><script type="text/javascript" src="git%20add%E4%BD%BF%E7%94%A8_files/ad.js"></script>
+
+<div id="article_details" class="details">
+    <div class="article_title">
+    <span class="ico ico_type_Repost"></span>
+    <h3>
+        <span class="link_title"><a href="http://blog.csdn.net/shuhuai007/article/details/7889173">
+        git add
+        </a></span>
+    </h3>
+</div>
+
+        
+    <div class="article_manage">
+        <span class="link_categories">
+        分类：
+            <a href="http://blog.csdn.net/shuhuai007/article/category/1081509">git</a> 
+        </span>
+    <span class="link_postdate">2012-08-21 09:41</span>
+    <span class="link_view" title="阅读次数">45人阅读</span>
+    <span class="link_comments" title="评论次数"><a href="#comments">评论</a>(0)</span>
+    <span class="link_collect"><a href="javascript:void(0);" onclick="javascript:collectArticle('git add','7889173');return false;" title="收藏">收藏</a></span>
+    <span class="link_report"><a href="#report" onclick="javascript:report(7889173,2);return false;" title="举报">举报</a></span>
+    
+</div>
+
+    
+<div id="article_content" class="article_content">
+
+<span style="color:#000000; line-height:25px; font-family:Arial,Helvetica,simsun,u5b8bu4f53; font-size:14px; text-align:left; background-color:rgb(245,245,245)"><strong><span style="font-size:14px; line-height:28px">一、前言</span></strong><br>
+<span style="color:#993300">git add</span>命令主要用于把我们要提交的文件的信息添加到索引库中。当我们使用git commit时，git将依据索引库中的内容来进行文件的提交。<br>
+<span style="font-size:14px; line-height:28px"><strong>二、基本</strong></span><br>
+<span style="color:#ff6600">git add&nbsp;<span style="color:#808000">&lt;path&gt;</span></span>表示 add to index only files created or modified and not those deleted&nbsp;<br>
+我通常是通过<span style="color:#ff6600">git add&nbsp;<span style="color:#808000">&lt;path&gt;</span></span>的形式把我们&lt;path&gt;添加到索引库中，&lt;path&gt;可以是文件也可以是目录。<br>
+git不仅能判断出&lt;path&gt;中，修改（不包括已删除）的文件，还能判断出新添的文件，并把它们的信息添加到索引库中。<br>
+<strong><span style="font-size:14px; line-height:28px">三、git add -u</span></strong><br>
+<span style="color:#ff6600">git add&nbsp;<span style="color:#ff00ff">-u&nbsp;</span></span>表示 add to index only files modified or deleted and not those created&nbsp;<br>
+<span style="color:#ff6600">git add&nbsp;<span style="color:#ff00ff">-u</span>&nbsp;<span style="color:#808000">[&lt;path&gt;]</span></span>: 把&lt;path&gt;中所有tracked文件中被修改过或已删除文件的信息添加到索引库。它不会处理untracted的文件。<br>
+省略<span style="color:#808000">&lt;path&gt;</span>表示.,即当前目录。<br>
+<span style="font-size:14px; line-height:28px"><strong>四、git add -A</strong></span><br>
+<span style="color:#ff6600">git add&nbsp;<span style="color:#ff00ff">-A</span>:&nbsp;<span style="color:#808000">[&lt;path&gt;]</span></span>表示把&lt;path&gt;中所有tracked文件中被修改过或已删除文件和所有untracted的文件信息添加到索引库。<br>
+省略<span style="color:#808080">&lt;path&gt;</span>表示.,即当前目录。<br>
+<span style="font-size:14px; line-height:28px"><strong>五、git add -i</strong></span><br>
+我们可以通过<span style="color:#ff6600">git add -i&nbsp;<span style="color:#808000">[&lt;path&gt;]</span></span>命令查看<span style="color:#808000">&lt;path&gt;</span>中被所有修改过或已删除文件但没有提交的文件，<br>
+并通过其<span style="color:#993300">revert子命令</span>可以查看<span style="color:#808000">&lt;path&gt;</span>中所有<span style="color:#0000ff">untracted</span>的文件，同时进入一个子命令系统。<br>
+比如：<br>
+<span style="color:#993300">&nbsp;git add -i</span><br>
+<span style="color:#3366ff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; staged&nbsp;&nbsp;&nbsp;&nbsp; unstaged path<br>
+&nbsp; 1:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; +0/-0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; nothing branch/<span style="color:#008080">t.txt</span><br>
+&nbsp; 2:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; +0/-0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; nothing branch/<span style="color:#008080">t2.txt</span><br>
+&nbsp; 3:&nbsp;&nbsp;&nbsp; unchanged&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; +1/-0&nbsp;<span style="color:#008080">readme.txt</span><br>
+<br>
+*** Commands ***<br>
+<span style="color:#0000ff">&nbsp; 1: [s]tatus&nbsp;&nbsp;&nbsp;&nbsp; 
+2: [u]pdate&nbsp;&nbsp;&nbsp;&nbsp; 3: [r]evert&nbsp;&nbsp;&nbsp;&nbsp; 
+4: [a]dd untracked<br>
+&nbsp; 5: [p]atch&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 6: 
+[d]iff&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 7: 
+[q]uit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8: [h]elp</span></span><br>
+<span style="color:#3366ff">What now&gt;</span><br>
+这里的<span style="color:#008080">t.txt</span>和<span style="color:#008080">t2.txt</span>表示已经被执行了git add，待提交。即已经添加到索引库中。<br>
+<span style="color:#008080">readme.txt</span>表示已经处于tracked下，它被修改了，但是还没有被执行了git add。即还没添加到索引库中。<br>
+<strong>5.1、revert子命令</strong><br>
+可以通过<span style="color:#ff6600">git add -i</span>的<span style="color:#993300">revert</span>子命令（<span style="color:#0000ff">3: [r]evert</span>）把已经添加到索引库中的文件从索引库中剔除。<br>
+（<span style="color:#0000ff">3: [r]evert</span>）表示通过<span style="color:#0000ff">3</span>或<span style="color:#0000ff">r</span>或<span style="color:#0000ff">revert</span>加回车执行该命令。执行该命令后，git会例出索引库中的文件列表.<br>
+然后通过数字来选择。输入"<span style="color:#0000ff">1</span>"表示git会例出索引库中的文件列表中的第<span style="color:#0000ff">1</span>个文件。<br>
+"<span style="color:#0000ff"><span style="color:#339966">1</span>-<span style="color:#008000">15</span></span>"表示git会例出索引库中的文件列表中的第<span style="color:#339966">1</span>个文件到第<span style="color:#008000">15</span>个文件.回车将执行。<br>
+如果我们不输入任何东西，直接回车，将结束revert子命令，返回git add -i的主命令行。<br>
+<strong>5.2、update子命令</strong><br>
+可以通过<span style="color:#800000">update子命令</span>（<span style="color:#0000ff">2: [u]pdate</span>）把已经<span style="color:#ff6600">tracked</span>的文件添加到索引库中。其操作和revert子命令类似。<br>
+<strong>5.3、add untracked子命令</strong><br>
+通过<span style="color:#800000">add untracked</span>子命令（</span><span style="color:#0000ff; line-height:25px; font-family:Arial,Helvetica,simsun,u5b8bu4f53; font-size:14px; text-align:left; background-color:rgb(245,245,245)">4: [a]dd untracked</span><span style="color:#000000; line-height:25px; font-family:Arial,Helvetica,simsun,u5b8bu4f53; font-size:14px; text-align:left; background-color:rgb(245,245,245)">）可以把还没被git管理的文件添加到索引库中。其操作和revert子命令类似。<br>
+<strong>5.4、diff子命令</strong><br>
+可以通过<span style="color:#993300">diff</span>子命令（<span style="color:#0000ff">6: [d]iff</span>）可以比较索引库中文件和原版本的差异。其操作和revert子命令类似。<br>
+<strong>5.5、status子命令</strong><br>
+<span style="color:#800000">status</span>子命令(<span style="color:#0000ff">1: [s]tatus</span>)功能上和git add -i相似<br>
+<strong>5.6、quit子命令</strong><br>
+<span style="color:#800000">quit</span>子命令（<span style="color:#0000ff">7: [q]uit</span>）用于退出git add -i命令系统<br>
+</span><span style="line-height:25px; font-family:Arial,Helvetica,simsun,u5b8bu4f53; font-size:14px; text-align:left; background-color:rgb(245,245,245)">六、帮助</span><br style="line-height:25px; font-family:Arial,Helvetica,simsun,u5b8bu4f53; font-size:14px; text-align:left; background-color:rgb(245,245,245)">
+<span style="font-family:Arial,Helvetica,simsun,u5b8bu4f53; font-size:14px; line-height:25px; text-align:left; background-color:rgb(245,245,245)">我们可以通过</span><span style="color:#993300; line-height:25px; font-family:Arial,Helvetica,simsun,u5b8bu4f53; font-size:14px; text-align:left; background-color:rgb(245,245,245)">git
+ add -h</span><span style="font-family:Arial,Helvetica,simsun,u5b8bu4f53; font-size:14px; line-height:25px; text-align:left; background-color:rgb(245,245,245)">命令来看</span><span style="color:#993300; line-height:25px; font-family:Arial,Helvetica,simsun,u5b8bu4f53; font-size:14px; text-align:left; background-color:rgb(245,245,245)">git
+ add</span><span style="font-family:Arial,Helvetica,simsun,u5b8bu4f53; font-size:14px; line-height:25px; text-align:left; background-color:rgb(245,245,245)">命令的帮助文档。</span><br style="line-height:25px; font-family:Arial,Helvetica,simsun,u5b8bu4f53; font-size:14px; text-align:left; background-color:rgb(245,245,245)">
+<span style="color:#993300; line-height:25px; font-family:Arial,Helvetica,simsun,u5b8bu4f53; font-size:14px; text-align:left; background-color:rgb(245,245,245)">&nbsp;</span><span style="color:#3366ff; line-height:25px; font-family:Arial,Helvetica,simsun,u5b8bu4f53; font-size:14px; text-align:left; background-color:rgb(245,245,245)"><span style="color:#993300">git
+ add -h</span><br>
+usage: git add [options] [--] &lt;filepattern&gt;...<br>
+<br>
+&nbsp;&nbsp;&nbsp; -n, --dry-run&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dry run<br>
+&nbsp;&nbsp;&nbsp; -v, --verbose&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; be verbose<br>
+<br>
+&nbsp;&nbsp;&nbsp; -i, --interactive&nbsp;&nbsp;&nbsp;&nbsp; interactive picking<br>
+&nbsp;&nbsp;&nbsp; -p, --patch&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; select hunks interactively<br>
+&nbsp;&nbsp;&nbsp; -e, --edit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; edit current diff and apply<br>
+&nbsp;&nbsp;&nbsp; -f, --force&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; allow adding otherwise ignored files<br>
+&nbsp;&nbsp;&nbsp; -u, --update&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; update tracked files<br>
+&nbsp;&nbsp;&nbsp; -N, --intent-to-add&nbsp;&nbsp; record only the fact that the path will be added later<br>
+&nbsp;&nbsp;&nbsp; -A, 
+--all&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ add changes from all tracked and untracked files<br>
+&nbsp;&nbsp;&nbsp; 
+--refresh&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ don't add, only refresh the index<br>
+&nbsp;&nbsp;&nbsp; --ignore-errors&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; just skip files which cannot be added because of errors<br>
+&nbsp;&nbsp;&nbsp; --ignore-missing&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; check if - even missing - files are ignored in dry run<br>
+</span>
+
+</div>
+<div class="share_buttons" id="sharePanel"><span>分享到：</span> <a name="sina" class="share_sina" title="分享到新浪微博"></a><a name="qq" class="share_qq" title="分享到腾讯微博"></a></div>
+<!--192.168.1.236-->
+<div class="article_next_prev">
+    <li class="prev_article"><span>上一篇：</span><a href="http://blog.csdn.net/shuhuai007/article/details/7875266">linux shell 终端快捷键</a></li>
+    <li class="next_article"><span>下一篇：</span><a href="http://blog.csdn.net/shuhuai007/article/details/7900172">grep 用法--查找哪个文件中包含某行字符串</a></li>
+</div>
+
+
+    
+</div>
+<div id="ad_cen"><iframe src="git%20add%E4%BD%BF%E7%94%A8_files/ad.html" style="border-width: 0px; overflow: hidden; width: 1172px; height: 97px;" id="ad_frm_0" frameborder="0" scrolling="no"></iframe></div>
+<script type="text/javascript">
+    new Ad(4, 'ad_cen');
+</script>
+<div id="comment_title" class="panel_head">查看评论<a name="comments"></a></div>
+<div id="comment_list"><br>&nbsp;&nbsp;暂无评论<br><br><div class="clear"></div></div>
+<div id="comment_bar"></div>
+<div id="comment_form"><div class="guest_link">您还没有登录,请<a href="http://passport.csdn.net/account/login?from=http%3A%2F%2Fblog.csdn.net%2Fshuhuai007%2Farticle%2Fdetails%2F7889173">[登录]</a>或<a href="http://passport.csdn.net/account/register?from=http%3A%2F%2Fblog.csdn.net%2Fshuhuai007%2Farticle%2Fdetails%2F7889173">[注册]</a></div></div>
+<div class="announce">* 以上用户言论只代表其个人观点，不代表CSDN网站的观点或立场<a name="reply"></a><a name="quote"></a></div>
+<script type="text/javascript">
+    var fileName = '7889173';
+    var commentscount = 0;
+    var islock = false
+</script>
+<script type="text/javascript" src="git%20add%E4%BD%BF%E7%94%A8_files/comment.js"></script>
+<div id="ad_bot"><iframe src="git%20add%E4%BD%BF%E7%94%A8_files/ad_002.html" style="border-width: 0px; overflow: hidden; width: 1172px; height: 170px;" id="ad_frm_1" frameborder="0" scrolling="no"></iframe></div>
+<script type="text/javascript">
+    new Ad(5, 'ad_bot');
+</script>
+<div id="report_dialog"></div>
+
+<div id="d-top">
+<a href="#" onclick="javascript:document.body.scrollTop=0;document.documentElement.scrollTop=0;this.blur();return false;" title="回到顶部">
+<img src="git%20add%E4%BD%BF%E7%94%A8_files/top.png" alt="TOP"></a>
+</div>
+
+
+
+<div class="clear"></div>
+</div>
+</div>
+
+<div id="side">
+<div class="side">
+<div id="panel_Profile" class="panel">
+    <ul class="panel_head"><span>个人资料</span></ul>
+    <ul class="panel_body profile">
+        <div id="blog_userface">
+            <a href="http://my.csdn.net/shuhuai007" target="_blank">
+            <img src="git%20add%E4%BD%BF%E7%94%A8_files/1_shuhuai007.jpg" title="访问我的空间" style="max-width:90%">
+            </a>
+            <br>
+            <span><a href="http://my.csdn.net/shuhuai007" target="_blank">shuhuai007</a></span>
+        </div>
+<div class="interact">
+<!--<a href="#" class="attented" title="已关注"></a>-->
+<a href="#" class="attent" id="span_add_follow" title="[加关注]"></a>
+<a href="http://my.csdn.net/my/letter/send/shuhuai007" class="letter" title="[发私信]"></a>
+</div>
+        <div id="blog_medal">
+        <div id="bms_box"><a href="http://medal.blog.csdn.net/allmedal.aspx" target="_blank"><img src="git%20add%E4%BD%BF%E7%94%A8_files/holdon_s.gif" onmouseover="m_over_m(this,0)" onmouseout="m_out_m()" alt=""></a></div></div>
+        <ul id="blog_rank">
+            <li>访问：<span>66957次</span></li>
+            <li>积分：<span>2695分</span></li>
+            <li>排名：<span>第1848名</span></li>
+        </ul>
+        <ul id="blog_statistics">
+            <li>原创：<span>180篇</span></li>
+            <li>转载：<span>217篇</span></li>
+            <li>译文：<span>1篇</span></li>
+            <li>评论：<span>17条</span></li>
+        </ul>
+    </ul>
+</div>
+<script type="text/javascript">
+    var _blogger = 'shuhuai007';
+</script>
+<script type="text/javascript">
+$(document).ready(function () {
+    var un = getUN().toLowerCase();
+    if (un == _blogger.toLowerCase()) {
+        $('.interact').hide();
+    } else if(un) {
+        var url = "http://my.csdn.net/index.php/follow/check_is_followed/" + encodeURIComponent(un) + "/" + encodeURIComponent(_blogger) + "?jsonpcallback=?";
+        $.getJSON(url, {}, function (data) {
+            if (data.succ == 1 && data.info == 1) {
+                $('#span_add_follow').attr('class', 'attented');
+            } else {
+                $('#span_add_follow').click(guanzhu);
+            }
+        }, 'json');
+    }
+});
+function guanzhu() {
+    var url = "http://my.csdn.net/index.php/follow/do_follow?jsonpcallback=?";
+    $.getJSON(url, { "username": _blogger }, function (data) {
+        if (data.succ == 1) {
+            alert('关注成功！');
+            $('#span_add_follow').attr('class', 'attented').click(function () { return false; });
+        } else {
+            alert(data.msg);
+        }
+    });
+    return false;
+}
+function getUN() {
+    var m = document.cookie.match(new RegExp("(^| )UserName=([^;]*)(;|$)"));
+    if (m) return m[2];
+    else return '';
+}
+</script>
+
+<div class="panel" id="panel_Search">
+    <ul class="panel_head"><span>文章搜索</span></ul>
+    <ul class="panel_body">
+        <form id="frmSearch" action="http://so.csdn.net/search" class="form_search" target="_blank">
+        <span><input id="inputSearch" class="blogsearch" title="请输入关键字" type="text"></span>
+        <input id="btnSubmit" value="搜索" title="search in blog" type="submit">
+        <input name="q" id="inputQ" type="hidden">
+        <input name="t" value="blog" type="hidden">
+        <a id="btnSearchBlog" target="_blank"></a>
+        </form>
+    </ul>
+</div><div id="panel_Category" class="panel">
+    <ul class="panel_head"><span>文章分类</span></ul>
+    <ul class="panel_body">
+        <li>
+        <a href="http://blog.csdn.net/shuhuai007/article/category/790282">android</a><span>(23)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/shuhuai007/article/category/869459">工作日记</a><span>(25)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/shuhuai007/article/category/872801">hadoop</a><span>(65)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/shuhuai007/article/category/876577">linux</a><span>(50)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/shuhuai007/article/category/877443">java</a><span>(42)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/shuhuai007/article/category/879047">nosql</a><span>(1)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/shuhuai007/article/category/879986">python</a><span>(12)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/shuhuai007/article/category/886561">tomcat</a><span>(26)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/shuhuai007/article/category/891819">资料或经验</a><span>(102)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/shuhuai007/article/category/894910">week plan</a><span>(3)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/shuhuai007/article/category/901926">疑惑</a><span>(8)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/shuhuai007/article/category/904201">网络</a><span>(6)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/shuhuai007/article/category/904333">design pattern</a><span>(1)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/shuhuai007/article/category/906222">J2EE</a><span>(68)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/shuhuai007/article/category/906754">DB</a><span>(11)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/shuhuai007/article/category/955928">spring webservice</a><span>(4)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/shuhuai007/article/category/1065229">roller weblogger</a><span>(1)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/shuhuai007/article/category/1066542">行业杂文</a><span>(3)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/shuhuai007/article/category/1081509">git</a><span>(9)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/shuhuai007/article/category/1081527">eclipse</a><span>(2)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/shuhuai007/article/category/1081669">快捷键</a><span>(9)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/shuhuai007/article/category/1091394">vim</a><span>(12)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/shuhuai007/article/category/1104098">shell</a><span>(2)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/shuhuai007/article/category/1104099">python</a><span>(0)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/shuhuai007/article/category/1104209">html5</a><span>(1)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/shuhuai007/article/category/1127366">protocol buffer</a><span>(0)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/shuhuai007/article/category/1131690">广告行业知识</a><span>(5)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/shuhuai007/article/category/1146820">数据传输</a><span>(3)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/shuhuai007/article/category/1170804">c/c++</a><span>(2)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/shuhuai007/article/category/1178555">scheme</a><span>(1)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/shuhuai007/article/category/1209239">ant</a><span>(3)</span>
+        </li>
+    </ul>
+</div><div id="panel_Archive" class="panel">
+    <ul class="panel_head"><span>文章存档</span></ul>
+    <ul class="panel_body">
+        <div id="archive_list"><li><a href="http://blog.csdn.net/shuhuai007/article/month/2012/09">2012年09月</a><span>(14)</span></li><li><a href="http://blog.csdn.net/shuhuai007/article/month/2012/08">2012年08月</a><span>(22)</span></li><li><a href="http://blog.csdn.net/shuhuai007/article/month/2012/07">2012年07月</a><span>(25)</span></li><li><a href="http://blog.csdn.net/shuhuai007/article/month/2012/06">2012年06月</a><span>(12)</span></li><li><a href="http://blog.csdn.net/shuhuai007/article/month/2012/05">2012年05月</a><span>(10)</span></li><span class="hidelist" style="display:none;"><li><a href="http://blog.csdn.net/shuhuai007/article/month/2012/04">2012年04月</a><span>(15)</span></li><li><a href="http://blog.csdn.net/shuhuai007/article/month/2012/03">2012年03月</a><span>(22)</span></li><li><a href="http://blog.csdn.net/shuhuai007/article/month/2012/02">2012年02月</a><span>(31)</span></li><li><a href="http://blog.csdn.net/shuhuai007/article/month/2012/01">2012年01月</a><span>(18)</span></li><li><a href="http://blog.csdn.net/shuhuai007/article/month/2011/12">2011年12月</a><span>(34)</span></li><li><a href="http://blog.csdn.net/shuhuai007/article/month/2011/11">2011年11月</a><span>(31)</span></li><li><a href="http://blog.csdn.net/shuhuai007/article/month/2011/10">2011年10月</a><span>(21)</span></li><li><a href="http://blog.csdn.net/shuhuai007/article/month/2011/09">2011年09月</a><span>(70)</span></li><li><a href="http://blog.csdn.net/shuhuai007/article/month/2011/08">2011年08月</a><span>(57)</span></li><li><a href="http://blog.csdn.net/shuhuai007/article/month/2011/07">2011年07月</a><span>(8)</span></li><li><a href="http://blog.csdn.net/shuhuai007/article/month/2011/06">2011年06月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/shuhuai007/article/month/2011/03">2011年03月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/shuhuai007/article/month/2011/02">2011年02月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/shuhuai007/article/month/2011/01">2011年01月</a><span>(5)</span></li></span><div id="archive_list_button" class="list_closed">展开</div></div>
+    </ul>
+</div>
+<div id="hotarticls" class="panel">
+    <ul class="panel_head"><span>阅读排行</span></ul>
+    <ul class="panel_body itemlist">
+        <li>
+            <a href="http://blog.csdn.net/shuhuai007/article/details/7489673" title="RTB实时竞价， 重塑网络媒体交易规则">RTB实时竞价， 重塑网络媒体交易规则</a><span>(2518)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/shuhuai007/article/details/6926605" title="Git代码管理之——git revert与git reset .">Git代码管理之——git revert与git reset .</a><span>(2499)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/shuhuai007/article/details/6957499" title="git reset">git reset</a><span>(1251)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/shuhuai007/article/details/7276195" title="git config配置文件">git config配置文件</a><span>(1217)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/shuhuai007/article/details/6744355" title="GL/glx.h: No such file or directory  compilation terminated.">GL/glx.h: No such file or directory  compilation terminated.</a><span>(1154)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/shuhuai007/article/details/6739847" title="hadoop 源码编译">hadoop 源码编译</a><span>(1125)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/shuhuai007/article/details/7049325" title="git format-patch">git format-patch</a><span>(933)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/shuhuai007/article/details/6759122" title="HDFS------hadoop fs -ls命令的执行过程">HDFS------hadoop fs -ls命令的执行过程</a><span>(930)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/shuhuai007/article/details/7210661" title="移动互联：不再制造马化腾">移动互联：不再制造马化腾</a><span>(856)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/shuhuai007/article/details/7801913" title="python的神奇方法指南">python的神奇方法指南</a><span>(820)</span>
+        </li>
+    </ul>
+</div>
+<div id="hotarticls2" class="panel">
+    <ul class="panel_head"><span>评论排行</span></ul>
+    <ul class="panel_body itemlist">
+        <li>
+            <a href="http://blog.csdn.net/shuhuai007/article/details/6748778" title="（未解决）hadoop问题描述---输入命令无反应">（未解决）hadoop问题描述---输入命令无反应</a><span>(3)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/shuhuai007/article/details/6834259" title="hadoop example---异常记录（待解决）">hadoop example---异常记录（待解决）</a><span>(2)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/shuhuai007/article/details/6903645" title="2011.10.25">2011.10.25</a><span>(2)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/shuhuai007/article/details/6957108" title="git diff用法解释">git diff用法解释</a><span>(1)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/shuhuai007/article/details/6742714" title="HDFS------hadoop namenode -format">HDFS------hadoop namenode -format</a><span>(1)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/shuhuai007/article/details/7300926" title="java中将路径中的反斜杠改为斜杠">java中将路径中的反斜杠改为斜杠</a><span>(1)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/shuhuai007/article/details/6804899" title="hadoop源码编译错误">hadoop源码编译错误</a><span>(1)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/shuhuai007/article/details/7238655" title="单独开发launcher时碰到的问题">单独开发launcher时碰到的问题</a><span>(1)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/shuhuai007/article/details/6876770" title="mysql命令集锦">mysql命令集锦</a><span>(1)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/shuhuai007/article/details/6796372" title="JavaEE程序员必读图书大推荐">JavaEE程序员必读图书大推荐</a><span>(1)</span>
+        </li>
+    </ul>
+</div>
+<div id="homepageArticles" class="panel">
+    <ul class="panel_head"><span>推荐文章</span></ul>
+    <ul class="panel_body" id="ad_commend">
+    <iframe src="git%20add%E4%BD%BF%E7%94%A8_files/ad_003.html" style="border-width: 0px; overflow: hidden; width: 194px; height: 269px;" id="ad_frm_2" frameborder="0" scrolling="no"></iframe></ul>
+</div>
+<script type="text/javascript" src="git%20add%E4%BD%BF%E7%94%A8_files/ad.js"></script>
+<script type="text/javascript">
+    new Ad(12, 'ad_commend');
+</script><div id="newcomments" class="panel">
+<ul class="panel_head"><span>最新评论</span></ul>
+<ul class="panel_body itemlist">
+    <li>
+    <a href="http://blog.csdn.net/shuhuai007/article/details/7387263#comments">python 的os.fork()</a>
+    <p style="margin:0px;">heybob:
+什么都没看懂，就看到了loli和lolita*_*
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/shuhuai007/article/details/6759122#comments">HDFS------hadoop fs -ls命令的执行过程</a>
+    <p style="margin:0px;">happytjn:
+很给力 对我帮助很大!
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/shuhuai007/article/details/7432561#comments">android SecurityException：android.permission.BIND_APPWIDGET(adb push与adb install的区别)</a>
+    <p style="margin:0px;">zsc_android:
+一看就别网上其他人的靠谱！ 赞一个！
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/shuhuai007/article/details/7300926#comments">java中将路径中的反斜杠改为斜杠</a>
+    <p style="margin:0px;">zxt5105515:
+惭愧，基础不够
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/shuhuai007/article/details/7238655#comments">单独开发launcher时碰到的问题</a>
+    <p style="margin:0px;">lgyliguoyong:
+我也遇到这样的错误。解决不了
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/shuhuai007/article/details/6957108#comments">git diff用法解释</a>
+    <p style="margin:0px;">a324539017:
+讲的很通俗易懂，学习了！顶一个！
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/shuhuai007/article/details/6804899#comments">hadoop源码编译错误</a>
+    <p style="margin:0px;">gongweijiao:
+我是个超级菜鸟，我看不懂这些英文说明，博主能明示吗？万分感谢。
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/shuhuai007/article/details/6742714#comments">HDFS------hadoop namenode -format</a>
+    <p style="margin:0px;">q669513304:
+那个，我hadoop源码不会导，能不能发我一份源码呀，谢谢了669513304@qq.com
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/shuhuai007/article/details/6834259#comments">hadoop example---异常记录（待解决）</a>
+    <p style="margin:0px;">ZTMAQY:
+我是在调nutch1.3的时候出现了相同的问题，不晓得怎么解决！？
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/shuhuai007/article/details/6748778#comments">（未解决）hadoop问题描述---输入命令无反应</a>
+    <p style="margin:0px;">shachundaiben:
+问题解决后应该把解决过程贴出来啊。。。
+    </p>
+    </li>
+</ul>
+</div>
+</div>
+<div class="clear"></div>
+</div>
+
+<div class="clear"></div>
+</div>
+<script type="text/javascript" src="git%20add%E4%BD%BF%E7%94%A8_files/shCore-src.js"></script>
+<script type="text/javascript" src="git%20add%E4%BD%BF%E7%94%A8_files/ZeroClipboard.js"></script>
+<script type="text/javascript" src="git%20add%E4%BD%BF%E7%94%A8_files/article_code.js"></script>
+
+<script type="text/javascript" src="git%20add%E4%BD%BF%E7%94%A8_files/show.js"></script>
+<script type="text/javascript" src="git%20add%E4%BD%BF%E7%94%A8_files/showblogmedal.js"></script>
+<script type="text/javascript">document.write("<img src=http://counter.csdn.net/pv.aspx?id=24 border=0 width=0 height=0>");</script><img src="git%20add%E4%BD%BF%E7%94%A8_files/pv.asc" border="0" height="0" width="0">
+
+<script type="text/javascript" src="git%20add%E4%BD%BF%E7%94%A8_files/publib_footer.js"></script><link rel="stylesheet" type="text/css" href="git%20add%E4%BD%BF%E7%94%A8_files/pub_footer_2012.css"><div class="pub_footerall"><dl><dt></dt> <dd><a href="http://www.csdn.net/company/about.html" target="_blank">公司简介</a>|<a href="http://www.csdn.net/company/recruit.html" target="_blank">招贤纳士</a>|<a href="http://www.csdn.net/company/marketing.html" target="_blank">广告服务</a>|<a href="http://www.csdn.net/company/account.html" target="_blank">银行汇款帐号</a>|<a href="http://www.csdn.net/company/contact.html" target="_blank">联系方式</a>|<a href="http://www.csdn.net/company/statement.html" target="_blank">版权声明</a>|<a href="http://www.csdn.net/company/layer.html" target="_blank">法律顾问</a>|<a href="mailto:webmaster@csdn.net">问题报告</a></dd><dd>京&nbsp;ICP&nbsp;证&nbsp;070598&nbsp;号</dd><dd>北京创新乐知信息技术有限公司 版权所有</dd><dd><img src="git%20add%E4%BD%BF%E7%94%A8_files/ico_email.gif" alt="" title=""> 联系邮箱：webmaster@csdn.net</dd><dd>Copyright © 1999-2012, CSDN.NET, All Rights Reserved&nbsp;<a href="http://www.hd315.gov.cn/beian/view.asp?bianhao=010202001032100010" target="_blank"><img src="git%20add%E4%BD%BF%E7%94%A8_files/gongshang_logos.gif" alt="GongshangLogo" title=""></a></dd></dl></div>
+
+<script type="text/javascript" src="git%20add%E4%BD%BF%E7%94%A8_files/counter.js"></script><script type="text/javascript" charset="UTF-8" src="git%20add%E4%BD%BF%E7%94%A8_files/msg.js"></script>
+
+<!--ad.csdn.net-->
+<script type="text/javascript" src="git%20add%E4%BD%BF%E7%94%A8_files/ad-blog.js"></script><script type="text/javascript" src="git%20add%E4%BD%BF%E7%94%A8_files/ad-ibm27.js"></script>
+
+
+
+
+</div>
+
+<iframe src="git%20add%E4%BD%BF%E7%94%A8_files/log.swf" style="width: 1px; height: 1px; position: absolute; visibility: hidden;"></iframe></body></html>
