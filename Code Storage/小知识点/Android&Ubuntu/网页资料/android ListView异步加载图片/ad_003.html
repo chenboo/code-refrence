@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>CSDN Ad</title>
+    <style type="text/css">
+    body { margin:0px; padding:0px;}
+    </style>
+</head>
+<body>
+<div id="div1"><style type="text/css">
+ul { margin:0px; padding:0 4px 0 0; }
+ul, x:-moz-any-link, x:default { width:90%; }
+ul li { padding:3px 0px;}
+a { font-size:12px; text-decoration:none; color:#006699; }
+a:hover { color:#000; }
+</style>
+<ul>
+<li><a href="http://blog.csdn.net/shiningxyy/article/details/7717035" target="_blank">* IOS DevCamp &amp; Android DevCamp课程集锦</a></li>
+<li><a href="http://blog.csdn.net/blogdevteam/article/details/7750513" target="_blank">* 专家访谈：阿里巴巴开源项目Druid负责人温少</a></li>
+<li><a href="http://blog.csdn.net/lee576/article/details/7736234" target="_blank">* 初学Android,Activity的生命周期</a></li>
+<li><a href="http://blog.csdn.net/wdaming1986/article/details/7748738" target="_blank">* Android中ICS4.0Launcher中Fold的功能详解</a></li>
+<li><a href="http://blog.csdn.net/xiaojianpitt/article/details/7747230" target="_blank">* Lisp Quote 和Backquote分析</a></li>
+<li><a href="http://blog.csdn.net/xiaominghimi/article/details/7750914" target="_blank">* Cocos2dx(v2.x)与(v1.x)的一些常用函数区别讲解！</a></li>
+<li><a href="http://blog.csdn.net/wingeek/article/details/7746493" target="_blank">* Javascirpt的strict模式</a></li>
+
+
+
+</ul></div>
+<script type="text/javascript">
+    window.onload = function () {
+
+        var old_domain = document.domain;
+        //document.domain = "csdn.net";
+
+        //这种给广告区域赋值的方式，对于有些JS广告不能完美的显示
+        //top.document.getElementById('ad_commend').innerHTML = document.getElementById('div1').innerHTML;
+
+        var h = document.body.offsetHeight + 2;
+        setTimeout(function () {
+            if (h > 800) h = document.getElementById('div1').offsetHeight + 4;
+            top.document.getElementById('ad_frm_2').style.height = h + 'px';
+        }, 100);        
+    };
+</script>
+
+
+</body></html>

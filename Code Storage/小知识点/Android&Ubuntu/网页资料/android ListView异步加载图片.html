@@ -1,0 +1,772 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<title>android ListView异步加载图片（双缓存） - oneRain88的专栏 - 博客频道 - CSDN.NET</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="description" content="首先声明，参考博客地址：http://www.iteye.com/topic/685986对于ListView，相信很多人都很熟悉，因为确实太常见了，所以，做的用户体验更好，就成了我们的追求。。。常见的ListView中很少全是文字的，一般都是图文共存的，而图片的来源是服务器端（很少有写在客户端的吧。。。考虑客户端的大小和更新的问题），所以，网络问题就成了图片是否能顺利加载">
+<script src="android ListView异步加载图片/ga.js" async="" type="text/javascript"></script><script src="android ListView异步加载图片/jquery.js" type="text/javascript"></script>
+<script src="android ListView异步加载图片/plugins.js" type="text/javascript"></script>
+<script src="android ListView异步加载图片/common.js" type="text/javascript"></script>
+<link rel="Stylesheet" type="text/css" href="android ListView异步加载图片/style.css">
+<link id="RSSLink" title="RSS" type="application/rss+xml" rel="alternate" href="http://blog.csdn.net/oneRain88/rss/list">
+<link rel="shortcut icon" href="http://blog.csdn.net/favicon.ico">
+<link type="text/css" rel="stylesheet" href="android ListView异步加载图片/default.css">
+</head>
+<body>
+<script src="android ListView异步加载图片/pub_topnav_2011.js" type="text/javascript"></script><link rel="stylesheet" type="text/css" href="android ListView异步加载图片/navtop_2012.css">
+<div class="nav_top_2011">
+<p><span style="color:red;">您还未登录！</span>|<a href="http://passport.csdn.net/account/login">登录</a>|<a href="http://passport.csdn.net/account/register">注册</a>|<a href="http://passport.csdn.net/help/faq">帮助</a></p><ul>
+<li><a href="http://www.csdn.net/" target="_blank">CSDN首页</a></li>
+<li><a href="http://news.csdn.net/" target="_blank">资讯</a></li>
+<li><a href="http://bbs.csdn.net/" target="_blank">论坛</a></li>
+<li><a href="http://blog.csdn.net/" target="_blank">博客</a></li>
+<li><a href="http://download.csdn.net/" target="_blank">下载</a></li>
+<li><a href="http://so.csdn.net/" target="_blank">搜索</a></li>
+<li class="more"><h2 id="topnav_btnmore" onclick="showNavMore(this)"><a href="javascript:void(0);">更多</a></h2>
+<div id="topnav_hidlist">
+<iframe name="nav_frm" src="android ListView异步加载图片/a.html" frameborder="no" height="262" scrolling="no" width="92"></iframe>
+</div>
+</li>
+</ul>
+</div>
+
+
+<div id="container">
+<div id="header">
+    <div class="header">
+        <div id="blog_title">
+            <h1><a href="http://blog.csdn.net/oneRain88">oneRain88的专栏</a></h1>
+            <h2></h2>
+            <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<div id="navigator">
+    <div class="navigator_bg"></div>
+    <div class="navigator">
+        <ul>
+            <li id="btnContents"><a href="http://blog.csdn.net/oneRain88?viewmode=contents"><span><img src="android ListView异步加载图片/ico_list.gif">目录视图</span></a></li>
+            <li id="btnView"><a href="http://blog.csdn.net/oneRain88?viewmode=list"><span><img src="android ListView异步加载图片/ico_summary.gif">摘要视图</span></a></li>
+            <li id="btnRss"><a href="http://blog.csdn.net/oneRain88/rss/list"><span><img src="android ListView异步加载图片/ico_rss.gif">订阅</span></a></li>
+</ul>
+    </div>
+</div>
+<script type="text/javascript">
+    var username = "oneRain88";
+    var blog_address = "http://blog.csdn.net/onerain88";
+    var static_host = "http://static.blog.csdn.net";
+    var currentUserName = "";
+</script>
+        
+<div id="body">
+<div id="main">
+<div class="main">
+<div class="notice"> 
+
+
+<a href="http://cloud.csdn.net/a/20120620/2806805.html" target="_blank"><font color="red">用开源IaaS构建自己的云——OpenStack征稿启事
+</font></a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="http://topic.csdn.net/u/20120709/15/2e6511e3-e34f-41d7-9f71-a47bb4f8c9fa.html" target="_blank"><font color="red">CSDN社区7月"畅谈加班 赢程序员杂志"活动火爆上线！！</font></a>
+<br>
+<a href="http://blog.csdn.net/shiningxyy/article/details/7717035" target="_blank"><font color="blue">
+iOS &amp; Android DevCamp社区会员特惠限时抢票！</font></a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="http://topic.csdn.net/u/20120704/14/c98b3641-359f-4bea-b111-21c409db8819.html" target="_blank"><font color="red">CSDN账号全站整合公告
+</font></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="http://adclk.thinkmedia.cn/clk/pid=2000/media=CSDN.CN/place=1Clt1/size=760x90" target="_blank"><font color="blue">不用买彩票，就有408万！</font></a>
+
+
+</div><script type="text/javascript" src="android ListView异步加载图片/ad.js"></script>
+
+<div id="article_details" class="details">
+    <div class="article_title">
+    <span class="ico ico_type_Original"></span>
+    <h3>
+        <span class="link_title"><a href="http://blog.csdn.net/onerain88/article/details/7008409">
+        android ListView异步加载图片（双缓存）
+        </a></span>
+    </h3>
+</div>
+
+        
+    <div class="article_manage">
+        <span class="link_categories">
+        分类：
+            <a href="http://blog.csdn.net/oneRain88/article/category/738739">Android学习</a> 
+        </span>
+    <span class="link_postdate">2011-11-24 16:23</span>
+    <span class="link_view" title="阅读次数">4386人阅读</span>
+    <span class="link_comments" title="评论次数"><a href="#comments">评论</a>(35)</span>
+    <span class="link_collect"><a href="javascript:void(0);" onclick="javascript:collectArticle('android ListView异步加载图片（双缓存）','7008409');return false;" title="收藏">收藏</a></span>
+    <span class="link_report"><a href="#report" onclick="javascript:report(7008409,2);return false;" title="举报">举报</a></span>
+    
+</div>
+
+    
+<div id="article_content" class="article_content">
+    
+<p><span style="font-size:18px"><br>
+首先声明，参考博客地址：http://www.iteye.com/topic/685986</span></p>
+<p><span style="font-size:18px"><br>
+</span></p>
+<p><span style="font-size:18px">对于ListView，相信很多人都很熟悉，因为确实太常见了，所以，做的用户体验更好，就成了我们的追求。。。</span></p>
+<p><span style="font-size:18px"><br>
+</span></p>
+<p><span style="font-size:18px">常见的ListView中很少全是文字的，一般都是图文共存的，而图片的来源是服务器
+端（很少有写在客户端的吧。。。考虑客户端的大小和更新的问题），所以，网络问题就成了图片是否能顺利加载成功的决定性因素了。大家都知道每次启动一个
+Android应用，都会启动一个UI主线程，主要是响应用户的交互，如果我们把不确定的获取网络图片的操作放在UI主线程，结果也就不确定了。。。当
+然，如果你网络足够好的话，应该问题不大，但是，网络谁能保证呢？所以就出现了“异步加载”的方法！</span></p>
+<p><span style="font-size:18px"><br>
+</span></p>
+<p><span style="font-size:18px">我先叙述一下异步加载的原理，说的通俗一点就是UI主线程继续做与用户交互的响应监听和操作，而加载图片的任务交到其他线程中去做，当图片加载完成之后，再跟据某种机制（比如回调）绘制到要显示的控件中。</span></p>
+<p><span style="font-size:18px"><br>
+</span></p>
+<p><span style="font-size:18px">首先，贴出AsyncBitmapLoader.java，这个类是关键，主要做的就是当加载图片的时候，去缓冲区查找，如果有的话，则立刻返回Bitmap对象，省掉再去网络服务器下载的时间和流量。</span></p>
+<p><span style="font-size:18px"><br>
+</span></p>
+<div class="dp-highlighter bg_java"><div class="bar"><div class="tools"><b>[java]</b> <a href="#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command('ViewSource',this);return false;">view plain</a><a href="#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command('CopyToClipboard',this);return false;">copy</a><a href="#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command('PrintSource',this);return false;">print</a><a href="#" class="About" title="?" onclick="dp.sh.Toolbar.Command('About',this);return false;">?</a><div style="position: absolute; left: 792px; top: 1054px; width: 18px; height: 18px; z-index: 99;"><embed id="ZeroClipboardMovie_1" src="android ListView异步加载图片/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" name="ZeroClipboardMovie_1" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=1&amp;width=18&amp;height=18" wmode="transparent" height="18" align="middle" width="18"></div></div></div><ol class="dp-j" start="1"><li class="alt"><span><span>&lt;span&nbsp;style=</span><span class="string">"font-size:18px;"</span><span>&gt;</span><span class="keyword">package</span><span>&nbsp;onerain.ald.async;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span><span class="keyword">import</span><span>&nbsp;java.io.File;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">import</span><span>&nbsp;java.io.FileNotFoundException;&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="keyword">import</span><span>&nbsp;java.io.FileOutputStream;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">import</span><span>&nbsp;java.io.IOException;&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="keyword">import</span><span>&nbsp;java.io.InputStream;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">import</span><span>&nbsp;java.lang.ref.SoftReference;&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="keyword">import</span><span>&nbsp;java.util.HashMap;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span><span class="keyword">import</span><span>&nbsp;onerain.ald.common.HttpUtils;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">import</span><span>&nbsp;android.graphics.Bitmap;&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="keyword">import</span><span>&nbsp;android.graphics.BitmapFactory;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">import</span><span>&nbsp;android.os.Handler;&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="keyword">import</span><span>&nbsp;android.os.Message;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">import</span><span>&nbsp;android.widget.ImageView;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;</span></li><li class=""><span><span class="comment">/**</span>&nbsp;</span></li><li class="alt"><span><span class="comment">&nbsp;*&nbsp;@author&nbsp;oneRain</span>&nbsp;</span></li><li class=""><span><span class="comment">&nbsp;**/</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="keyword">public</span><span>&nbsp;</span><span class="keyword">class</span><span>&nbsp;AsyncBitmapLoader&nbsp;&nbsp;</span></span></li><li class=""><span>{&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">/**</span>&nbsp;</span></li><li class=""><span><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;内存图片软引用缓冲</span>&nbsp;</span></li><li class="alt"><span><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">private</span><span>&nbsp;HashMap&lt;String,&nbsp;SoftReference&lt;Bitmap&gt;&gt;&nbsp;imageCache&nbsp;=&nbsp;</span><span class="keyword">null</span><span>;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;AsyncBitmapLoader()&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;imageCache&nbsp;=&nbsp;<span class="keyword">new</span><span>&nbsp;HashMap&lt;String,&nbsp;SoftReference&lt;Bitmap&gt;&gt;();&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;Bitmap&nbsp;loadBitmap(</span><span class="keyword">final</span><span>&nbsp;ImageView&nbsp;imageView,&nbsp;</span><span class="keyword">final</span><span>&nbsp;String&nbsp;imageURL,&nbsp;</span><span class="keyword">final</span><span>&nbsp;ImageCallBack&nbsp;imageCallBack)&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//在内存缓存中，则返回Bitmap对象</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span><span>(imageCache.containsKey(imageURL))&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SoftReference&lt;Bitmap&gt;&nbsp;reference&nbsp;=&nbsp;imageCache.get(imageURL);&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bitmap&nbsp;bitmap&nbsp;=&nbsp;reference.get();&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span><span>(bitmap&nbsp;!=&nbsp;</span><span class="keyword">null</span><span>)&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;bitmap;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">else</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">/**</span>&nbsp;</span></li><li class=""><span><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;加上一个对本地缓存的查找</span>&nbsp;</span></li><li class="alt"><span><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;String&nbsp;bitmapName&nbsp;=&nbsp;imageURL.substring(imageURL.lastIndexOf(<span class="string">"/"</span><span>)&nbsp;+&nbsp;</span><span class="number">1</span><span>);&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File&nbsp;cacheDir&nbsp;=&nbsp;<span class="keyword">new</span><span>&nbsp;File(</span><span class="string">"/mnt/sdcard/test/"</span><span>);&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File[]&nbsp;cacheFiles&nbsp;=&nbsp;cacheDir.listFiles();&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">int</span><span>&nbsp;i&nbsp;=&nbsp;</span><span class="number">0</span><span>;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">for</span><span>(;&nbsp;i&lt;cacheFiles.length;&nbsp;i++)&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span><span>(bitmapName.equals(cacheFiles[i].getName()))&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">break</span><span>;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span><span>(i&nbsp;&lt;&nbsp;cacheFiles.length)&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;BitmapFactory.decodeFile(</span><span class="string">"/mnt/sdcard/test/"</span><span>&nbsp;+&nbsp;bitmapName);&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">final</span><span>&nbsp;Handler&nbsp;handler&nbsp;=&nbsp;</span><span class="keyword">new</span><span>&nbsp;Handler()&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">/*&nbsp;(non-Javadoc)</span>&nbsp;</span></li><li class="alt"><span><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@see&nbsp;android.os.Handler#handleMessage(android.os.Message)</span>&nbsp;</span></li><li class=""><span><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">@Override</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;handleMessage(Message&nbsp;msg)&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;TODO&nbsp;Auto-generated&nbsp;method&nbsp;stub</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;imageCallBack.imageLoad(imageView,&nbsp;(Bitmap)msg.obj);&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//如果不在内存缓存中，也不在本地（被jvm回收掉），则开启线程下载图片</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">new</span><span>&nbsp;Thread()&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">/*&nbsp;(non-Javadoc)</span>&nbsp;</span></li><li class="alt"><span><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@see&nbsp;java.lang.Thread#run()</span>&nbsp;</span></li><li class=""><span><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">@Override</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;run()&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;TODO&nbsp;Auto-generated&nbsp;method&nbsp;stub</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;InputStream&nbsp;bitmapIs&nbsp;=&nbsp;HttpUtils.getStreamFromURL(imageURL);&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bitmap&nbsp;bitmap&nbsp;=&nbsp;BitmapFactory.decodeStream(bitmapIs);&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;imageCache.put(imageURL,&nbsp;<span class="keyword">new</span><span>&nbsp;SoftReference&lt;Bitmap&gt;(bitmap));&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Message&nbsp;msg&nbsp;=&nbsp;handler.obtainMessage(<span class="number">0</span><span>,&nbsp;bitmap);&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;handler.sendMessage(msg);&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File&nbsp;dir&nbsp;=&nbsp;<span class="keyword">new</span><span>&nbsp;File(</span><span class="string">"/mnt/sdcard/test/"</span><span>);&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span><span>(!dir.exists())&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dir.mkdirs();&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File&nbsp;bitmapFile&nbsp;=&nbsp;<span class="keyword">new</span><span>&nbsp;File(</span><span class="string">"/mnt/sdcard/test/"</span><span>&nbsp;+&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;imageURL.substring(imageURL.lastIndexOf(<span class="string">"/"</span><span>)&nbsp;+&nbsp;</span><span class="number">1</span><span>));&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span><span>(!bitmapFile.exists())&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">try</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bitmapFile.createNewFile();&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">catch</span><span>&nbsp;(IOException&nbsp;e)&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;TODO&nbsp;Auto-generated&nbsp;catch&nbsp;block</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e.printStackTrace();&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FileOutputStream&nbsp;fos;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">try</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fos&nbsp;=&nbsp;<span class="keyword">new</span><span>&nbsp;FileOutputStream(bitmapFile);&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bitmap.compress(Bitmap.CompressFormat.JPEG,&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="number">100</span><span>,&nbsp;fos);&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fos.close();&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">catch</span><span>&nbsp;(FileNotFoundException&nbsp;e)&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;TODO&nbsp;Auto-generated&nbsp;catch&nbsp;block</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e.printStackTrace();&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">catch</span><span>&nbsp;(IOException&nbsp;e)&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;TODO&nbsp;Auto-generated&nbsp;catch&nbsp;block</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e.printStackTrace();&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}.start();&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;</span><span class="keyword">null</span><span>;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">/**</span>&nbsp;</span></li><li class="alt"><span><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;回调接口</span>&nbsp;</span></li><li class=""><span><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@author&nbsp;onerain</span>&nbsp;</span></li><li class="alt"><span><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*</span>&nbsp;</span></li><li class=""><span><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">interface</span><span>&nbsp;ImageCallBack&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;imageLoad(ImageView&nbsp;imageView,&nbsp;Bitmap&nbsp;bitmap);&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>}&nbsp;&nbsp;</span></li><li class=""><span>&lt;/span&gt;&nbsp;&nbsp;</span></li></ol></div><pre style="display: none;" name="code" class="java"><span style="font-size:18px;">package onerain.ald.async;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.lang.ref.SoftReference;
+import java.util.HashMap;
+
+import onerain.ald.common.HttpUtils;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Handler;
+import android.os.Message;
+import android.widget.ImageView;
+
+/**
+ * @author oneRain
+ **/
+public class AsyncBitmapLoader
+{
+	/**
+	 * 内存图片软引用缓冲
+	 */
+	private HashMap&lt;String, SoftReference&lt;Bitmap&gt;&gt; imageCache = null;
+	
+	public AsyncBitmapLoader()
+	{
+		imageCache = new HashMap&lt;String, SoftReference&lt;Bitmap&gt;&gt;();
+	}
+	
+	public Bitmap loadBitmap(final ImageView imageView, final String imageURL, final ImageCallBack imageCallBack)
+	{
+		//在内存缓存中，则返回Bitmap对象
+		if(imageCache.containsKey(imageURL))
+		{
+			SoftReference&lt;Bitmap&gt; reference = imageCache.get(imageURL);
+			Bitmap bitmap = reference.get();
+			if(bitmap != null)
+			{
+				return bitmap;
+			}
+		}
+		else
+		{
+			/**
+			 * 加上一个对本地缓存的查找
+			 */
+			String bitmapName = imageURL.substring(imageURL.lastIndexOf("/") + 1);
+			File cacheDir = new File("/mnt/sdcard/test/");
+			File[] cacheFiles = cacheDir.listFiles();
+			int i = 0;
+			for(; i&lt;cacheFiles.length; i++)
+			{
+				if(bitmapName.equals(cacheFiles[i].getName()))
+				{
+					break;
+				}
+			}
+			
+			if(i &lt; cacheFiles.length)
+			{
+				return BitmapFactory.decodeFile("/mnt/sdcard/test/" + bitmapName);
+			}
+		}
+		
+		final Handler handler = new Handler()
+		{
+			/* (non-Javadoc)
+			 * @see android.os.Handler#handleMessage(android.os.Message)
+			 */
+			@Override
+			public void handleMessage(Message msg)
+			{
+				// TODO Auto-generated method stub
+				imageCallBack.imageLoad(imageView, (Bitmap)msg.obj);
+			}
+		};
+		
+		//如果不在内存缓存中，也不在本地（被jvm回收掉），则开启线程下载图片
+		new Thread()
+		{
+			/* (non-Javadoc)
+			 * @see java.lang.Thread#run()
+			 */
+			@Override
+			public void run()
+			{
+				// TODO Auto-generated method stub
+				InputStream bitmapIs = HttpUtils.getStreamFromURL(imageURL);
+				
+				Bitmap bitmap = BitmapFactory.decodeStream(bitmapIs);
+				imageCache.put(imageURL, new SoftReference&lt;Bitmap&gt;(bitmap));
+				Message msg = handler.obtainMessage(0, bitmap);
+				handler.sendMessage(msg);
+				
+				File dir = new File("/mnt/sdcard/test/");
+				if(!dir.exists())
+				{
+					dir.mkdirs();
+				}
+				
+				File bitmapFile = new File("/mnt/sdcard/test/" + 
+						imageURL.substring(imageURL.lastIndexOf("/") + 1));
+				if(!bitmapFile.exists())
+				{
+					try
+					{
+						bitmapFile.createNewFile();
+					}
+					catch (IOException e)
+					{
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				FileOutputStream fos;
+				try
+				{
+					fos = new FileOutputStream(bitmapFile);
+					bitmap.compress(Bitmap.CompressFormat.JPEG, 
+							100, fos);
+					fos.close();
+				}
+				catch (FileNotFoundException e)
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				catch (IOException e)
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}.start();
+		
+		return null;
+	}
+	
+	/**
+	 * 回调接口
+	 * @author onerain
+	 *
+	 */
+	public interface ImageCallBack
+	{
+		public void imageLoad(ImageView imageView, Bitmap bitmap);
+	}
+}
+</span></pre>
+<p></p>
+<p><span style="font-size:18px"><br>
+</span></p>
+<p><span style="font-size:18px">PS：我这里用到了两个缓冲，一是内存缓存，一个是本地缓存（即SD卡缓存），其中用
+到了SoftReference，这个类的主要作用是生成一个“软引用”，你可以认为是一种随时会由于JVM垃圾回收机制回收掉的Map对象（而平时我们
+所用到的引用不释放的话不会被JVM回收），之所以用到软引用，就是考虑到android对图片的缓存是有大小限制的，当超过这个大小时，就一定要释放，
+如果你用引用，保持不释放的话，那么FC(Force 
+close)就离你不远了。。。我这里还用到了一个本地缓存的机制，是和参考博客不太一样的地方，只是提供一种思路，方法还没有完善（主要因为和服务器还
+没约定好关于图片的命名规则），主要作用是在用户浏览过大量图片之后（超过内存缓存容量之后），保留在本地，一是为了提高读取速度，二是可以减少流量消
+耗！</span></p>
+<p><span style="font-size:18px"><br>
+</span></p>
+<p><span style="font-size:18px">这个类设计好之后，在自定义的Adapter当中比之前会有些不同，先上代码再解释</span></p>
+<p><span style="font-size:18px"><br>
+</span></p>
+<div class="dp-highlighter bg_java"><div class="bar"><div class="tools"><b>[java]</b> <a href="#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command('ViewSource',this);return false;">view plain</a><a href="#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command('CopyToClipboard',this);return false;">copy</a><a href="#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command('PrintSource',this);return false;">print</a><a href="#" class="About" title="?" onclick="dp.sh.Toolbar.Command('About',this);return false;">?</a><div style="position: absolute; left: 792px; top: 4266px; width: 18px; height: 18px; z-index: 99;"><embed id="ZeroClipboardMovie_2" src="android ListView异步加载图片/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" name="ZeroClipboardMovie_2" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=2&amp;width=18&amp;height=18" wmode="transparent" height="18" align="middle" width="18"></div></div></div><ol class="dp-j" start="1"><li class="alt"><span><span>&lt;span&nbsp;style=</span><span class="string">"font-size:18px;"</span><span>&gt;</span><span class="keyword">package</span><span>&nbsp;onerain.ald.adapter;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span><span class="keyword">import</span><span>&nbsp;java.util.List;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span><span class="keyword">import</span><span>&nbsp;onerain.ald.R;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">import</span><span>&nbsp;onerain.ald.async.AsyncBitmapLoader;&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="keyword">import</span><span>&nbsp;onerain.ald.async.AsyncBitmapLoader.ImageCallBack;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">import</span><span>&nbsp;onerain.ald.entity.BaseBookEntity;&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="keyword">import</span><span>&nbsp;onerain.ald.holder.ViewHolder;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">import</span><span>&nbsp;android.content.Context;&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="keyword">import</span><span>&nbsp;android.graphics.Bitmap;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">import</span><span>&nbsp;android.view.LayoutInflater;&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="keyword">import</span><span>&nbsp;android.view.View;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">import</span><span>&nbsp;android.view.ViewGroup;&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="keyword">import</span><span>&nbsp;android.widget.BaseAdapter;&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">import</span><span>&nbsp;android.widget.ImageView;&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="keyword">import</span><span>&nbsp;android.widget.TextView;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span><span class="comment">/**</span>&nbsp;</span></li><li class=""><span><span class="comment">&nbsp;*&nbsp;@author&nbsp;oneRain</span>&nbsp;</span></li><li class="alt"><span><span class="comment">&nbsp;**/</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">public</span><span>&nbsp;</span><span class="keyword">class</span><span>&nbsp;ListAdapter&nbsp;</span><span class="keyword">extends</span><span>&nbsp;BaseAdapter&nbsp;&nbsp;</span></span></li><li class="alt"><span>{&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">private</span><span>&nbsp;Context&nbsp;context&nbsp;=&nbsp;</span><span class="keyword">null</span><span>;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">private</span><span>&nbsp;List&lt;BaseBookEntity&gt;&nbsp;bookList&nbsp;=&nbsp;</span><span class="keyword">null</span><span>;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">private</span><span>&nbsp;AsyncBitmapLoader&nbsp;asyncLoader&nbsp;=&nbsp;</span><span class="keyword">null</span><span>;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;ListAdapter(Context&nbsp;context,&nbsp;List&lt;BaseBookEntity&gt;&nbsp;bookList)&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">this</span><span>.context&nbsp;=&nbsp;context;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">this</span><span>.bookList&nbsp;=&nbsp;bookList;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">this</span><span>.asyncLoader&nbsp;=&nbsp;</span><span class="keyword">new</span><span>&nbsp;AsyncBitmapLoader();&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">@Override</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">int</span><span>&nbsp;getCount()&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;TODO&nbsp;Auto-generated&nbsp;method&nbsp;stub</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;bookList.size();&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">@Override</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;Object&nbsp;getItem(</span><span class="keyword">int</span><span>&nbsp;position)&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;TODO&nbsp;Auto-generated&nbsp;method&nbsp;stub</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;bookList.get(position);&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">@Override</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">long</span><span>&nbsp;getItemId(</span><span class="keyword">int</span><span>&nbsp;position)&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;TODO&nbsp;Auto-generated&nbsp;method&nbsp;stub</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;position;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">@Override</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;View&nbsp;getView(</span><span class="keyword">int</span><span>&nbsp;position,&nbsp;View&nbsp;convertView,&nbsp;ViewGroup&nbsp;parent)&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;TODO&nbsp;Auto-generated&nbsp;method&nbsp;stub</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ViewHolder&nbsp;holder&nbsp;=&nbsp;<span class="keyword">null</span><span>;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span><span>(convertView&nbsp;==&nbsp;</span><span class="keyword">null</span><span>)&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LayoutInflater&nbsp;inflater&nbsp;=&nbsp;LayoutInflater.from(context);&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;convertView&nbsp;=&nbsp;inflater.inflate(R.layout.item,&nbsp;<span class="keyword">null</span><span>);&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;holder&nbsp;=&nbsp;<span class="keyword">new</span><span>&nbsp;ViewHolder((ImageView)convertView.findViewById(R.id.imageView),&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(TextView)convertView.findViewById(R.id.textView));&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;convertView.setTag(holder);&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">else</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;holder&nbsp;=&nbsp;(ViewHolder)&nbsp;convertView.getTag();&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ImageView&nbsp;imageView&nbsp;=&nbsp;holder.getImageView();&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;style=<span class="string">"color:#FF0000;"</span><span>&gt;imageView.setImageBitmap(</span><span class="keyword">null</span><span>);&lt;/span&gt;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//根据图片URL去查找内存缓存有没有对应的Bitmap对象，并传递回调方法，如果没有，则等下载完毕回调</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bitmap&nbsp;bitmap&nbsp;=&nbsp;asyncLoader.loadBitmap(imageView,&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bookList.get(position).getBook_pic(),&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">new</span><span>&nbsp;ImageCallBack()&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">@Override</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;imageLoad(ImageView&nbsp;imageView,&nbsp;Bitmap&nbsp;bitmap)&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;TODO&nbsp;Auto-generated&nbsp;method&nbsp;stub</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;imageView.setImageBitmap(bitmap);&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;});&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span><span>(bitmap&nbsp;==&nbsp;</span><span class="keyword">null</span><span>)&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;imageView.setImageResource(R.drawable.ic_launcher);&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">else</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;imageView.setImageBitmap(bitmap);&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;holder.getTextView().setText(bookList.get(position).getTitle());&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;convertView;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>}&nbsp;&nbsp;</span></li><li class=""><span>&lt;/span&gt;&nbsp;&nbsp;</span></li></ol></div><pre style="display: none;" name="code" class="java"><span style="font-size:18px;">package onerain.ald.adapter;
+
+import java.util.List;
+
+import onerain.ald.R;
+import onerain.ald.async.AsyncBitmapLoader;
+import onerain.ald.async.AsyncBitmapLoader.ImageCallBack;
+import onerain.ald.entity.BaseBookEntity;
+import onerain.ald.holder.ViewHolder;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+/**
+ * @author oneRain
+ **/
+public class ListAdapter extends BaseAdapter
+{
+	private Context context = null;
+	private List&lt;BaseBookEntity&gt; bookList = null;
+	
+	private AsyncBitmapLoader asyncLoader = null;
+	
+	public ListAdapter(Context context, List&lt;BaseBookEntity&gt; bookList)
+	{
+		this.context = context;
+		this.bookList = bookList;
+		this.asyncLoader = new AsyncBitmapLoader();
+	}
+	
+	@Override
+	public int getCount()
+	{
+		// TODO Auto-generated method stub
+		return bookList.size();
+	}
+
+	@Override
+	public Object getItem(int position)
+	{
+		// TODO Auto-generated method stub
+		return bookList.get(position);
+	}
+
+	@Override
+	public long getItemId(int position)
+	{
+		// TODO Auto-generated method stub
+		return position;
+	}
+
+	@Override
+	public View getView(int position, View convertView, ViewGroup parent)
+	{
+		// TODO Auto-generated method stub
+		ViewHolder holder = null;
+		
+		if(convertView == null)
+		{
+			LayoutInflater inflater = LayoutInflater.from(context);
+			convertView = inflater.inflate(R.layout.item, null);
+			
+			holder = new ViewHolder((ImageView)convertView.findViewById(R.id.imageView),
+					(TextView)convertView.findViewById(R.id.textView));
+			convertView.setTag(holder);
+		}
+		else
+		{
+			holder = (ViewHolder) convertView.getTag();
+		}
+		
+		ImageView imageView = holder.getImageView();
+
+                <span style="color:#FF0000;">imageView.setImageBitmap(null);</span>
+
+&nbsp;               //根据图片URL去查找内存缓存有没有对应的Bitmap对象，并传递回调方法，如果没有，则等下载完毕回调
+		Bitmap bitmap = asyncLoader.loadBitmap(imageView, 
+				bookList.get(position).getBook_pic(),
+				new ImageCallBack()
+				{
+					@Override
+					public void imageLoad(ImageView imageView, Bitmap bitmap)
+					{
+						// TODO Auto-generated method stub
+						imageView.setImageBitmap(bitmap);
+					}
+				});
+		
+		if(bitmap == null)
+		{
+			imageView.setImageResource(R.drawable.ic_launcher);
+		}
+		else
+		{
+			imageView.setImageBitmap(bitmap);
+		}
+		
+		holder.getTextView().setText(bookList.get(position).getTitle());
+		
+		return convertView;
+	}
+}
+</span></pre>
+<p><span style="font-size:18px"><br>
+</span></p>
+<p><span style="font-size:18px">在Adapter中，主要不同表现在<br>
+</span></p>
+<p><span style="font-size:18px">public View getView(int position, View convertView, ViewGroup parent)方法中（我这里用到了一些优化方面的处理，会在其他时间再与大家分享，今天先不解释），和异步加载最相关的是这一段</span></p>
+<div class="dp-highlighter bg_java"><div class="bar"><div class="tools"><b>[java]</b> <a href="#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command('ViewSource',this);return false;">view plain</a><a href="#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command('CopyToClipboard',this);return false;">copy</a><a href="#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command('PrintSource',this);return false;">print</a><a href="#" class="About" title="?" onclick="dp.sh.Toolbar.Command('About',this);return false;">?</a><div style="position: absolute; left: 792px; top: 6455px; width: 18px; height: 18px; z-index: 99;"><embed id="ZeroClipboardMovie_3" src="android ListView异步加载图片/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" name="ZeroClipboardMovie_3" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=3&amp;width=18&amp;height=18" wmode="transparent" height="18" align="middle" width="18"></div></div></div><ol class="dp-j" start="1"><li class="alt"><span><span>&lt;span&nbsp;style=</span><span class="string">"font-size:18px;"</span><span>&gt;ImageView&nbsp;imageView&nbsp;=&nbsp;holder.getImageView();&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//根据图片URL去查找内存缓存有没有对应的Bitmap对象，并传递回调方法，如果没有，则等下载完毕回调</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;Bitmap&nbsp;bitmap&nbsp;=&nbsp;asyncLoader.loadBitmap(imageView,&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bookList.get(position).getBook_pic(),&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">new</span><span>&nbsp;ImageCallBack()&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">@Override</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;</span><span class="keyword">void</span><span>&nbsp;imageLoad(ImageView&nbsp;imageView,&nbsp;Bitmap&nbsp;bitmap)&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;TODO&nbsp;Auto-generated&nbsp;method&nbsp;stub</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;imageView.setImageBitmap(bitmap);&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;});&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span><span>(bitmap&nbsp;==&nbsp;</span><span class="keyword">null</span><span>)&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;imageView.setImageResource(R.drawable.ic_launcher);&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">else</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;imageView.setImageBitmap(bitmap);&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;}&lt;/span&gt;&nbsp;&nbsp;</span></li></ol></div><pre style="display: none;" name="code" class="java"><span style="font-size:18px;">ImageView imageView = holder.getImageView();
+		//根据图片URL去查找内存缓存有没有对应的Bitmap对象，并传递回调方法，如果没有，则等下载完毕回调
+	Bitmap bitmap = asyncLoader.loadBitmap(imageView, 
+			bookList.get(position).getBook_pic(),
+			new ImageCallBack()
+			{
+				@Override
+				public void imageLoad(ImageView imageView, Bitmap bitmap)
+				{
+					// TODO Auto-generated method stub
+					imageView.setImageBitmap(bitmap);
+				}
+			});
+		
+	if(bitmap == null)
+	{
+		imageView.setImageResource(R.drawable.ic_launcher);
+	}
+	else
+	{
+		imageView.setImageBitmap(bitmap);
+	}</span></pre>
+<p><span style="font-size:18px">asyncLoader是我们定义的异步加载类的对象，通过这个类的</span></p>
+<p><span style="font-size:18px">public Bitmap loadBitmap(final ImageView imageView, final String imageURL, final ImageCallBack imageCallBack)</span></p>
+<p><span style="font-size:18px">加载图片，传递参数也与参考博客有些不同，我觉得这样更好理解一下，就是要显示图片的
+URL链接，和图片要显示对应的控件，当然最重要的还有这个接口实现的回调对象，是在线程中下载完图片之后，用以加载图片的回调对象。而这个回调对象在传
+递的时候已经实现了接口方法，即将下载好的图片绘制在对应的控件之中</span></p>
+<div class="dp-highlighter bg_java"><div class="bar"><div class="tools"><b>[java]</b> <a href="#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command('ViewSource',this);return false;">view plain</a><a href="#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command('CopyToClipboard',this);return false;">copy</a><a href="#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command('PrintSource',this);return false;">print</a><a href="#" class="About" title="?" onclick="dp.sh.Toolbar.Command('About',this);return false;">?</a><div style="position: absolute; left: 792px; top: 7148px; width: 18px; height: 18px; z-index: 99;"><embed id="ZeroClipboardMovie_4" src="android ListView异步加载图片/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" name="ZeroClipboardMovie_4" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=4&amp;width=18&amp;height=18" wmode="transparent" height="18" align="middle" width="18"></div></div></div><ol class="dp-j" start="1"><li class="alt"><span><span>&lt;span&nbsp;style=</span><span class="string">"font-size:18px;"</span><span>&gt;imageView.setImageBitmap(bitmap);&lt;/span&gt;&nbsp;&nbsp;</span></span></li></ol></div><pre style="display: none;" name="code" class="java"><span style="font-size:18px;">imageView.setImageBitmap(bitmap);</span></pre>
+<p></p>
+<p><span style="font-size:18px">好了，今天就分享到这里，有言辞不清楚的地方欢迎留言！<br>
+</span></p>
+<p></p>
+
+</div>
+<div class="share_buttons" id="sharePanel"><span>分享到：</span> <a name="sina" class="share_sina" title="分享到新浪微博"></a><a name="qq" class="share_qq" title="分享到腾讯微博"></a></div>
+<!--192.168.1.237 2012-7-17 12:01:41-->
+<div class="article_next_prev">
+        <li class="prev_article">
+            <span>上一篇：</span><a href="http://blog.csdn.net/onerain88/article/details/6980328">ubuntu 对rar文件解压步骤</a></li>
+        <li class="next_article">
+            <span>下一篇：</span><a href="http://blog.csdn.net/onerain88/article/details/7029591">android 短信管理（获取接受到短信的消息）</a></li>
+</div>
+
+
+        <div id="digg" articleid="7008409">
+            <dl id="btnDigg" class="digg digg_disable">
+                <dt>顶</dt>
+                <dd>3</dd>
+            </dl>
+            <dl id="btnBury" class="digg digg_disable">
+                <dt>踩</dt>
+                <dd>0</dd>
+            </dl>
+        </div>
+</div>
+<div id="ad_cen"><iframe src="android ListView异步加载图片/ad.html" style="border-width: 0px; overflow: hidden; width: 732px; height: 92px;" id="ad_frm_0" frameborder="0" scrolling="no"></iframe></div>
+<script type="text/javascript">
+    new Ad(4, 'ad_cen');
+</script>
+<div id="comment_title" class="panel_head">查看评论<a name="comments"></a></div>
+<div id="comment_list"><dl class="comment_item comment_topic" id="comment_item_2285672"><dt class="comment_head" floor="17">17楼 <span class="user"><a class="username" href="http://blog.csdn.net/wangyuetingtao" target="_blank">wangyuetingtao</a> <span class="ptime">昨天 15:08发表</span>  <a href="#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2285672" username="wangyuetingtao"> <a href="#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/wangyuetingtao" target="_blank"><img src="android ListView异步加载图片/3_wangyuetingtao.jpg" height="40" width="40"></a></dd><dd class="comment_body">这个我实际测试过，在缓存方面有些问题。当缓存的图片被释放掉以后，那个Hashmap中的key值没有被清除掉。所以在内存中找到该图片时，该图片会由于被回收而显示不出来，楼主可以试试……</dd></dl><dl class="comment_item comment_topic" id="comment_item_2268001"><dt class="comment_head" floor="16">16楼 <span class="user"><a class="username" href="http://blog.csdn.net/oqqAmy12" target="_blank">oqqAmy12</a> <span class="ptime">2012-06-29 11:02发表</span>  <a href="#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2268001" username="oqqAmy12"> <a href="#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/oqqAmy12" target="_blank"><img src="android ListView异步加载图片/3_oqqamy12.gif" height="40" width="40"></a></dd><dd class="comment_body">HttpUtils.getStreamFromURL(imageURL)  这个方法可以贴出来么，就完整了</dd></dl><dl class="comment_item comment_topic" id="comment_item_2266717"><dt class="comment_head" floor="15">15楼 <span class="user"><a class="username" href="http://blog.csdn.net/davidleen29" target="_blank">davidleen29</a> <span class="ptime">2012-06-28 09:58发表</span>  <a href="#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2266717" username="davidleen29"> <a href="#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/davidleen29" target="_blank"><img src="android ListView异步加载图片/3_davidleen29.jpg" height="40" width="40"></a></dd><dd class="comment_body">做
+过类似的功能，当异步加载较慢，而缓存中未有图片（即全都需要远程加载）。而listView gridView 
+滚动时候，会出现组件重用，而此时对于同一个ImageView 可能申请了多个不同的URL加载，so 
+当这些加载完成后，图片一一到达，会出现图片不断改变，最后才落到最后到达的图片（而且不一定是最后请求的那个地址）。</dd></dl><dl class="comment_item comment_topic" id="comment_item_2264046"><dt class="comment_head" floor="14">14楼 <span class="user"><a class="username" href="http://blog.csdn.net/Aslanchen" target="_blank">Aslanchen</a> <span class="ptime">2012-06-25 16:57发表</span>  <a href="#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2264046" username="Aslanchen"> <a href="#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/Aslanchen" target="_blank"><img src="android ListView异步加载图片/3_aslanchen.jpg" height="40" width="40"></a></dd><dd class="comment_body">你好，能告诉我您的联系方式吗？我运行了你的代码，有点问题，不知道怎么处理~谢谢了。</dd><dl class="comment_item comment_reply" id="comment_item_2264436"><dt class="comment_head" floor="14">Re: <span class="user"><a class="username" href="http://blog.csdn.net/Aslanchen" target="_blank">Aslanchen</a> <span class="ptime">2012-06-26 09:05发表</span>  <a href="#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2264436" username="Aslanchen"> <a href="#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/Aslanchen" target="_blank"><img src="android ListView异步加载图片/3_aslanchen.jpg" height="40" width="40"></a></dd><dd class="comment_body">回复Aslanchen：你好，我想问下getImageView是自己写的一个方法吗？</dd></dl></dl><dl class="comment_item comment_topic" id="comment_item_2253318"><dt class="comment_head" floor="13">13楼 <span class="user"><a class="username" href="http://blog.csdn.net/Rain_Hum" target="_blank">Rain_Hum</a> <span class="ptime">2012-06-13 12:02发表</span>  <a href="#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2253318" username="Rain_Hum"> <a href="#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/Rain_Hum" target="_blank"><img src="android ListView异步加载图片/3_rain_hum.gif" height="40" width="40"></a></dd><dd class="comment_body">先看评论再看代码，说明楼主人很好，很耐心！呵呵……</dd><dl class="comment_item comment_reply" id="comment_item_2253414"><dt class="comment_head" floor="13">Re: <span class="user"><a class="username" href="http://blog.csdn.net/oneRain88" target="_blank">oneRain88</a> <span class="ptime">2012-06-13 13:39发表</span>  <a href="#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2253414" username="oneRain88"> <a href="#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/oneRain88" target="_blank"><img src="android ListView异步加载图片/3_onerain88.jpg" height="40" width="40"></a></dd><dd class="comment_body">回复Rain_Hum：谢谢，希望对你有帮助！</dd></dl></dl><dl class="comment_item comment_topic" id="comment_item_2244867"><dt class="comment_head" floor="12">12楼 <span class="user"><a class="username" href="http://blog.csdn.net/coffee0317" target="_blank">coffee0317</a> <span class="ptime">2012-06-06 14:21发表</span>  <a href="#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2244867" username="coffee0317"> <a href="#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/coffee0317" target="_blank"><img src="android ListView异步加载图片/3_coffee0317.gif" height="40" width="40"></a></dd><dd class="comment_body">如果加载多张图片的话，滑动listview会不会很卡啊？</dd><dl class="comment_item comment_reply" id="comment_item_2244961"><dt class="comment_head" floor="12">Re: <span class="user"><a class="username" href="http://blog.csdn.net/oneRain88" target="_blank">oneRain88</a> <span class="ptime">2012-06-06 15:01发表</span>  <a href="#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2244961" username="oneRain88"> <a href="#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/oneRain88" target="_blank"><img src="android ListView异步加载图片/3_onerain88.jpg" height="40" width="40"></a></dd><dd class="comment_body">回复coffee0317：这个很难讲，卡不卡应该和机器性能和网络环境有关系，这只是一种思路，希望你能够多尝试一下，然后比较一下！</dd></dl></dl><dl class="comment_item comment_topic" id="comment_item_2244804"><dt class="comment_head" floor="11">11楼 <span class="user"><a class="username" href="http://blog.csdn.net/yyyandroid" target="_blank">yyyandroid</a> <span class="ptime">2012-06-06 13:41发表</span>  <a href="#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2244804" username="yyyandroid"> <a href="#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/yyyandroid" target="_blank"><img src="android ListView异步加载图片/3_yyyandroid.gif" height="40" width="40"></a></dd><dd class="comment_body">楼主 在吗？请教一个问题<br><br>我的加载图片的时候 出现图片错乱的情况，<br>比如我有 a; b ;c ;d四个图片结果可能会显示 <br>a; ab ; c ; ad<br>图片重复出现<br>这个情况你出现过吗？</dd></dl><dl class="comment_item comment_topic" id="comment_item_2243757"><dt class="comment_head" floor="10">10楼 <span class="user"><a class="username" href="http://blog.csdn.net/yyyandroid" target="_blank">yyyandroid</a> <span class="ptime">2012-06-05 18:01发表</span>  <a href="#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2243757" username="yyyandroid"> <a href="#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/yyyandroid" target="_blank"><img src="android ListView异步加载图片/3_yyyandroid.gif" height="40" width="40"></a></dd><dd class="comment_body">感谢楼主分享 (*^__^*) 嘻嘻 很受用 <br>我可不可以转到我的博客呢？</dd><dl class="comment_item comment_reply" id="comment_item_2244796"><dt class="comment_head" floor="10">Re: <span class="user"><a class="username" href="http://blog.csdn.net/yyyandroid" target="_blank">yyyandroid</a> <span class="ptime">2012-06-06 13:35发表</span>  <a href="#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2244796" username="yyyandroid"> <a href="#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/yyyandroid" target="_blank"><img src="android ListView异步加载图片/3_yyyandroid.gif" height="40" width="40"></a></dd><dd class="comment_body">我的加载图片的时候 出现图片错乱的情况，<br>比如我有 a; b ;c ;d四个图片结果可能会显示 <br>a; ab ; c ; ad<br>图片重复出现</dd></dl><dl class="comment_item comment_reply" id="comment_item_2243950"><dt class="comment_head" floor="10">Re: <span class="user"><a class="username" href="http://blog.csdn.net/oneRain88" target="_blank">oneRain88</a> <span class="ptime">2012-06-05 21:15发表</span>  <a href="#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2243950" username="oneRain88"> <a href="#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/oneRain88" target="_blank"><img src="android ListView异步加载图片/3_onerain88.jpg" height="40" width="40"></a></dd><dd class="comment_body">回复yyyandroid：不客气！<br>当然可以转载！<br>希望可以帮到更多人！</dd></dl></dl><dl class="comment_item comment_topic" id="comment_item_2228526"><dt class="comment_head" floor="9">9楼 <span class="user"><a class="username" href="http://blog.csdn.net/wpz62686900" target="_blank">wpz62686900</a> <span class="ptime">2012-05-22 13:56发表</span>  <a href="#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2228526" username="wpz62686900"> <a href="#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/wpz62686900" target="_blank"><img src="android ListView异步加载图片/3_wpz62686900.gif" height="40" width="40"></a></dd><dd class="comment_body">楼主，HttpUtils 这个类是否可以共享参考下，谢谢    985172615@qq.com</dd></dl><dl class="comment_item comment_topic" id="comment_item_2227216"><dt class="comment_head" floor="8">8楼 <span class="user"><a class="username" href="http://blog.csdn.net/wulingbo2005" target="_blank">wulingbo2005</a> <span class="ptime">2012-05-21 10:59发表</span>  <a href="#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2227216" username="wulingbo2005"> <a href="#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/wulingbo2005" target="_blank"><img src="android ListView异步加载图片/3_wulingbo2005.gif" height="40" width="40"></a></dd><dd class="comment_body">楼主，如果两item中有同样的图片，加载的时候，如果第一张加载到一半，第二张图片一看我要的图片文件存在，它就会获取这个加载到一半的图片，这个怎么处理呢？</dd></dl><dl class="comment_item comment_topic" id="comment_item_2211097"><dt class="comment_head" floor="7">7楼 <span class="user"><a class="username" href="http://blog.csdn.net/newguitars" target="_blank">newguitars</a> <span class="ptime">2012-05-10 11:32发表</span>  <a href="#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2211097" username="newguitars"> <a href="#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/newguitars" target="_blank"><img src="android ListView异步加载图片/3_newguitars.gif" height="40" width="40"></a></dd><dd class="comment_body">请问这个类是自己定义的吗onerain.ald.common.HttpUtils</dd><dl class="comment_item comment_reply" id="comment_item_2211215"><dt class="comment_head" floor="7">Re: <span class="user"><a class="username" href="http://blog.csdn.net/oneRain88" target="_blank">oneRain88</a> <span class="ptime">2012-05-10 13:05发表</span>  <a href="#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2211215" username="oneRain88"> <a href="#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/oneRain88" target="_blank"><img src="android ListView异步加载图片/3_onerain88.jpg" height="40" width="40"></a></dd><dd class="comment_body">回复newguitars：恩，是的！</dd><dl class="comment_item comment_reply" id="comment_item_2234310"><dt class="comment_head" floor="1">Re: <span class="user"><a class="username" href="http://blog.csdn.net/newguitars" target="_blank">newguitars</a> <span class="ptime">2012-05-27 22:14发表</span>  <a href="#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2234310" username="newguitars"> <a href="#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/newguitars" target="_blank"><img src="android ListView异步加载图片/3_newguitars.gif" height="40" width="40"></a></dd><dd class="comment_body">嗯，谢谢。回复oneRain88：</dd></dl></dl></dl><dl class="comment_item comment_topic" id="comment_item_2122825"><dt class="comment_head" floor="6">6楼 <span class="user"><a class="username" href="http://blog.csdn.net/xiaoyi5214" target="_blank">xiaoyi5214</a> <span class="ptime">2012-03-08 10:34发表</span>  <a href="#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2122825" username="xiaoyi5214"> <a href="#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/xiaoyi5214" target="_blank"><img src="android ListView异步加载图片/3_xiaoyi5214.gif" height="40" width="40"></a></dd><dd class="comment_body">感觉楼主分享，但我发现好多人要Demo的，一碗饭摆在面前，还让楼主喂你吃？现在好多新手都不愿动手写了</dd><dl class="comment_item comment_reply" id="comment_item_2123005"><dt class="comment_head" floor="6">Re: <span class="user"><a class="username" href="http://blog.csdn.net/oneRain88" target="_blank">oneRain88</a> <span class="ptime">2012-03-08 12:23发表</span>  <a href="#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2123005" username="oneRain88"> <a href="#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/oneRain88" target="_blank"><img src="android ListView异步加载图片/3_onerain88.jpg" height="40" width="40"></a></dd><dd class="comment_body">回复xiaoyi5214：谢谢理解！<br>不过demo工程确实找不到了！不论要不要demo，只要对一些人能有些帮助就足够了！<br>Regards!</dd></dl></dl><dl class="comment_item comment_topic" id="comment_item_2115075"><dt class="comment_head" floor="5">5楼 <span class="user"><a class="username" href="http://blog.csdn.net/lucky_tom" target="_blank">lucky_tom</a> <span class="ptime">2012-03-01 11:16发表</span>  <a href="#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2115075" username="lucky_tom"> <a href="#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/lucky_tom" target="_blank"><img src="android ListView异步加载图片/3_lucky_tom.jpg" height="40" width="40"></a></dd><dd class="comment_body">楼主，最近正在研究这个问题，这个思路很好，希望你能发一份代码给我，谢谢,814668064@qq.com</dd><dl class="comment_item comment_reply" id="comment_item_2267904"><dt class="comment_head" floor="5">Re: <span class="user"><a class="username" href="http://blog.csdn.net/qimeng140911" target="_blank">qimeng140911</a> <span class="ptime">2012-06-29 10:11发表</span>  <a href="#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2267904" username="qimeng140911"> <a href="#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/qimeng140911" target="_blank"><img src="android ListView异步加载图片/3_qimeng140911.jpg" height="40" width="40"></a></dd><dd class="comment_body">回复lucky_tom：wdd  吗？</dd></dl><dl class="comment_item comment_reply" id="comment_item_2115242"><dt class="comment_head" floor="5">Re: <span class="user"><a class="username" href="http://blog.csdn.net/oneRain88" target="_blank">oneRain88</a> <span class="ptime">2012-03-01 13:48发表</span>  <a href="#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2115242" username="oneRain88"> <a href="#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/oneRain88" target="_blank"><img src="android ListView异步加载图片/3_onerain88.jpg" height="40" width="40"></a></dd><dd class="comment_body">回复lucky_tom：不好意思，Demo没有了。。。<br>基本上代码都在了，多动手尝试下吧！<br>有问题可以留言交流！</dd><dl class="comment_item comment_reply" id="comment_item_2120993"><dt class="comment_head" floor="2">Re: <span class="user"><a class="username" href="http://blog.csdn.net/lucky_tom" target="_blank">lucky_tom</a> <span class="ptime">2012-03-06 20:19发表</span>  <a href="#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2120993" username="lucky_tom"> <a href="#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/lucky_tom" target="_blank"><img src="android ListView异步加载图片/3_lucky_tom.jpg" height="40" width="40"></a></dd><dd class="comment_body">我
+用缓存可以加载，但是部分item会出现混乱，举一个例子，我加了10个不同的网络图片到listview，第一次正常，应用程序到后台，再返回来，上下
+滚动，图片确实是从缓存里读的，但是第8张会和第一张重复，具体哪几个会重复，不定。请问楼主遇到过没？是不是异步加载，和ui线程不同步的结果呢？另外
+从缓存里取是按照url，都是唯一的，目前没找到原因。</dd><dl class="comment_item comment_reply" id="comment_item_2121268"><dt class="comment_head" floor="1">Re: <span class="user"><a class="username" href="http://blog.csdn.net/oneRain88" target="_blank">oneRain88</a> <span class="ptime">2012-03-07 08:02发表</span>  <a href="#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2121268" username="oneRain88"> <a href="#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/oneRain88" target="_blank"><img src="android ListView异步加载图片/3_onerain88.jpg" height="40" width="40"></a></dd><dd class="comment_body">回复lucky_tom：看我写的ListAdapter类的第79行！加上了！</dd></dl><dl class="comment_item comment_reply" id="comment_item_2121267"><dt class="comment_head" floor="1">Re: <span class="user"><a class="username" href="http://blog.csdn.net/oneRain88" target="_blank">oneRain88</a> <span class="ptime">2012-03-07 07:59发表</span>  <a href="#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2121267" username="oneRain88"> <a href="#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/oneRain88" target="_blank"><img src="android ListView异步加载图片/3_onerain88.jpg" height="40" width="40"></a></dd><dd class="comment_body">回复lucky_tom：对，是可能会出现这种问题！<br>你需要在每次使用时将其图片资源设为空，即在你自定义的继承于BaseAdapter的适配器的getView(...)方法中先将imageView的资源设置为空，即<br>imageView.setImageBitmap(null)，然后再加载！</dd><dl class="comment_item comment_reply" id="comment_item_2128976"><dt class="comment_head" floor="2">Re: <span class="user"><a class="username" href="http://blog.csdn.net/lucky_tom" target="_blank">lucky_tom</a> <span class="ptime">2012-03-13 12:54发表</span>  <a href="#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2128976" username="lucky_tom"> <a href="#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/lucky_tom" target="_blank"><img src="android ListView异步加载图片/3_lucky_tom.jpg" height="40" width="40"></a></dd><dd class="comment_body">感谢楼主的无私奉献和耐心解答。</dd></dl></dl></dl></dl></dl><dl class="comment_item comment_topic" id="comment_item_2105665"><dt class="comment_head" floor="4">4楼 <span class="user"><a class="username" href="http://blog.csdn.net/yl721yl" target="_blank">yl721yl</a> <span class="ptime">2012-02-21 22:10发表</span>  <a href="#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2105665" username="yl721yl"> <a href="#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/yl721yl" target="_blank"><img src="android ListView异步加载图片/3_yl721yl.gif" height="40" width="40"></a></dd><dd class="comment_body">楼主，求助啊，我把你的代码完全整合到我的代码里面，运行， Bitmap bitmap = asyncLoader.loadBitmap(imageView,   <br>                bookList.get(position).getBook_pic(),  <br>                new ImageCallBack()  ……这个地方报空指针异常，求解？本人菜鸟，谢谢啊</dd><dl class="comment_item comment_reply" id="comment_item_2105875"><dt class="comment_head" floor="4">Re: <span class="user"><a class="username" href="http://blog.csdn.net/oneRain88" target="_blank">oneRain88</a> <span class="ptime">2012-02-22 08:22发表</span>  <a href="#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2105875" username="oneRain88"> <a href="#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/oneRain88" target="_blank"><img src="android ListView异步加载图片/3_onerain88.jpg" height="40" width="40"></a></dd><dd class="comment_body">回复yl721yl：初始化异步加载类了吗？</dd><dl class="comment_item comment_reply" id="comment_item_2106232"><dt class="comment_head" floor="1">Re: <span class="user"><a class="username" href="http://blog.csdn.net/yl721yl" target="_blank">yl721yl</a> <span class="ptime">2012-02-22 12:12发表</span>  <a href="#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2106232" username="yl721yl"> <a href="#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/yl721yl" target="_blank"><img src="android ListView异步加载图片/3_yl721yl.gif" height="40" width="40"></a></dd><dd class="comment_body">回复oneRain88：呵呵被您说中了，不好意思，新问题我运行后没有错误，但是发现图片没有下载下来？</dd><dl class="comment_item comment_reply" id="comment_item_2106280"><dt class="comment_head" floor="1">Re: <span class="user"><a class="username" href="http://blog.csdn.net/oneRain88" target="_blank">oneRain88</a> <span class="ptime">2012-02-22 12:59发表</span>  <a href="#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2106280" username="oneRain88"> <a href="#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/oneRain88" target="_blank"><img src="android ListView异步加载图片/3_onerain88.jpg" height="40" width="40"></a></dd><dd class="comment_body">回复yl721yl：图片下载不下载来应该是你那边的问题，本地缓存好像还有些问题，项目里已经改了！这边还没更新！请注意！不好意思！</dd><dl class="comment_item comment_reply" id="comment_item_2106452"><dt class="comment_head" floor="1">Re: <span class="user"><a class="username" href="http://blog.csdn.net/yl721yl" target="_blank">yl721yl</a> <span class="ptime">2012-02-22 14:27发表</span>  <a href="#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2106452" username="yl721yl"> <a href="#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/yl721yl" target="_blank"><img src="android ListView异步加载图片/3_yl721yl.gif" height="40" width="40"></a></dd><dd class="comment_body">回复oneRain88：嗯，的确是我的问题，我正在找问题的解决办法，呵呵，尽快更新啊楼主，等着学习呢</dd></dl></dl></dl></dl></dl><dl class="comment_item comment_topic" id="comment_item_2066445"><dt class="comment_head" floor="3">3楼 <span class="user"><a class="username" href="http://blog.csdn.net/liuming6210" target="_blank">liuming6210</a> <span class="ptime">2011-12-29 12:41发表</span>  <a href="#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2066445" username="liuming6210"> <a href="#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/liuming6210" target="_blank"><img src="android ListView异步加载图片/3_liuming6210.gif" height="40" width="40"></a></dd><dd class="comment_body">正在找这方面的资料，希望楼主发一份代码给我参考一下，谢谢。liuming0621@hotmail.com</dd></dl><dl class="comment_item comment_topic" id="comment_item_2042852"><dt class="comment_head" floor="2">2楼 <span class="user"><a class="username" href="http://blog.csdn.net/bgm_science" target="_blank">bgm_science</a> <span class="ptime">2011-12-07 12:29发表</span>  <a href="#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2042852" username="bgm_science"> <a href="#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/bgm_science" target="_blank"><img src="android ListView异步加载图片/3_bgm_science.gif" height="40" width="40"></a></dd><dd class="comment_body">不错，麻烦发一份xlrei@163.com，学习了！！！</dd></dl><dl class="comment_item comment_topic" id="comment_item_2031252"><dt class="comment_head" floor="1">1楼 <span class="user"><a class="username" href="http://blog.csdn.net/asparation" target="_blank">asparation</a> <span class="ptime">2011-11-25 10:33发表</span>  <a href="#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2031252" username="asparation"> <a href="#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/asparation" target="_blank"><img src="android ListView异步加载图片/3_asparation.jpg" height="40" width="40"></a></dd><dd class="comment_body">写的不错。可不可以发一份代码给我，869526088@qq.com<br>谢谢</dd></dl><div class="clear"></div></div>
+<div style="display: none;" id="comment_bar"></div>
+<div id="comment_form"><div class="guest_link">您还没有登录,请<a href="http://passport.csdn.net/account/login?from=http%3A%2F%2Fblog.csdn.net%2Fonerain88%2Farticle%2Fdetails%2F7008409">[登录]</a>或<a href="http://passport.csdn.net/account/register?from=http%3A%2F%2Fblog.csdn.net%2Fonerain88%2Farticle%2Fdetails%2F7008409">[注册]</a></div></div>
+<div class="announce">* 以上用户言论只代表其个人观点，不代表CSDN网站的观点或立场<a name="reply"></a><a name="quote"></a></div>
+<script type="text/javascript">
+    var fileName = '7008409';
+    var commentscount = 35;
+    var islock = false
+</script>
+<script type="text/javascript" src="android ListView异步加载图片/comment.js"></script>
+<div id="ad_bot"><iframe src="android ListView异步加载图片/ad_002.html" style="border-width: 0px; overflow: hidden; width: 732px; height: 170px;" id="ad_frm_1" frameborder="0" scrolling="no"></iframe></div>
+<script type="text/javascript">
+    new Ad(5, 'ad_bot');
+</script>
+<div id="report_dialog"></div>
+
+
+<div class="clear"></div>
+</div>
+</div>
+
+<div id="side">
+    <div class="side">
+<div id="panel_Profile" class="panel">
+    <ul class="panel_head"><span>个人资料</span></ul>
+    <ul class="panel_body profile">
+        <div id="blog_userface">
+            <a href="http://my.csdn.net/oneRain88" target="_blank">
+            <img src="android ListView异步加载图片/1_onerain88.jpg" title="访问我的空间" style="max-width: 90%;">
+            </a>
+            <br>
+            <span><a href="http://my.csdn.net/oneRain88" target="_blank">oneRain88</a></span>
+        </div>
+<div class="interact">
+<!--<a href="#" class="attented" title="已关注"></a>-->
+<a href="#" class="attent" id="span_add_follow" title="[加关注]"></a>
+<a href="http://my.csdn.net/my/letter/send/oneRain88" class="letter" title="[发私信]"></a>
+</div>
+        <div id="blog_medal">
+        <div id="bms_box"><a href="http://medal.blog.csdn.net/allmedal.aspx" target="_blank"><img src="android ListView异步加载图片/holdon_s.gif" onmouseover="m_over_m(this,0)" onmouseout="m_out_m()" alt=""></a></div></div>
+        <ul id="blog_rank">
+            <li>访问：<span>35457次</span></li>
+            <li>积分：<span>977分</span></li>
+            <li>排名：<span>第7503名</span></li>
+        </ul>
+        <ul id="blog_statistics">
+            <li>原创：<span>55篇</span></li>
+            <li>转载：<span>14篇</span></li>
+            <li>译文：<span>0篇</span></li>
+            <li>评论：<span>104条</span></li>
+        </ul>
+    </ul>
+</div>
+<script type="text/javascript">
+    var _blogger = 'oneRain88';
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var un = getUN().toLowerCase();
+        if (un == _blogger.toLowerCase()) {
+            $('.interact').hide();
+        } else if(un) {
+            var url = "http://my.csdn.net/index.php/follow/check_is_followed/" + encodeURIComponent(un) + "/" + encodeURIComponent(_blogger) + "?jsonpcallback=?";
+            $.getJSON(url, {}, function (data) {
+                if (data.succ == 1 && data.info == 1) {
+                    $('#span_add_follow').attr('class', 'attented');
+                } else {
+                    $('#span_add_follow').click(guanzhu);
+                }
+            }, 'json');
+        }
+    });
+function guanzhu() {
+    var url = "http://my.csdn.net/index.php/follow/do_follow?jsonpcallback=?";
+    $.getJSON(url, { "username": _blogger }, function (data) {
+        if (data.succ == 1) {
+            alert('关注成功！');
+            $('#span_add_follow').attr('class', 'attented').click(function () { return false; });
+        } else {
+            alert(data.msg);
+        }
+    });
+    return false;
+}
+function getUN() {
+    var m = document.cookie.match(new RegExp("(^| )UserName=([^;]*)(;|$)"));
+    if (m) return m[2];
+    else return '';
+}
+</script>
+
+<div class="panel" id="panel_Search">
+    <ul class="panel_head"><span>文章搜索</span></ul>
+    <ul class="panel_body">
+        <form id="frmSearch" action="http://so.csdn.net/search" class="form_search" target="_blank">
+        <span><input id="inputSearch" class="blogsearch" title="请输入关键字" type="text"></span>
+        <input id="btnSubmit" value="搜索" title="search in blog" type="submit">
+        <input name="q" id="inputQ" type="hidden">
+        <input name="t" value="blog" type="hidden">
+        <a id="btnSearchBlog" target="_blank"></a>
+        </form>
+    </ul>
+</div><div id="panel_Category" class="panel">
+    <ul class="panel_head"><span>文章分类</span></ul>
+    <ul class="panel_body">
+        <li>
+        <a href="http://blog.csdn.net/onerain88/article/category/738739">Android学习</a><span>(19)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/onerain88/article/category/894019">Linux学习</a><span>(8)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/onerain88/article/category/738479">转载的知识</a><span>(10)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/onerain88/article/category/894023">C语言学习</a><span>(11)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/onerain88/article/category/1077490">AndEngine学习</a><span>(10)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/onerain88/article/category/1114369">Cocos2d-iphone学习</a><span>(1)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/onerain88/article/category/1116401">Cocos2d-X学习</a><span>(10)</span>
+        </li>
+    </ul>
+</div><div id="panel_Archive" class="panel">
+    <ul class="panel_head"><span>文章存档</span></ul>
+    <ul class="panel_body">
+        <div id="archive_list"><li><a href="http://blog.csdn.net/onerain88/article/month/2012/07">2012年07月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/onerain88/article/month/2012/06">2012年06月</a><span>(4)</span></li><li><a href="http://blog.csdn.net/onerain88/article/month/2012/05">2012年05月</a><span>(5)</span></li><li><a href="http://blog.csdn.net/onerain88/article/month/2012/04">2012年04月</a><span>(5)</span></li><li><a href="http://blog.csdn.net/onerain88/article/month/2012/03">2012年03月</a><span>(6)</span></li><span class="hidelist" style="display:none;"><li><a href="http://blog.csdn.net/onerain88/article/month/2012/02">2012年02月</a><span>(4)</span></li><li><a href="http://blog.csdn.net/onerain88/article/month/2011/12">2011年12月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/onerain88/article/month/2011/11">2011年11月</a><span>(8)</span></li><li><a href="http://blog.csdn.net/onerain88/article/month/2011/09">2011年09月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/onerain88/article/month/2011/08">2011年08月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/onerain88/article/month/2011/07">2011年07月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/onerain88/article/month/2011/06">2011年06月</a><span>(3)</span></li><li><a href="http://blog.csdn.net/onerain88/article/month/2011/05">2011年05月</a><span>(6)</span></li><li><a href="http://blog.csdn.net/onerain88/article/month/2011/04">2011年04月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/onerain88/article/month/2011/02">2011年02月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/onerain88/article/month/2011/01">2011年01月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/onerain88/article/month/2010/10">2010年10月</a><span>(13)</span></li><li><a href="http://blog.csdn.net/onerain88/article/month/2010/09">2010年09月</a><span>(3)</span></li></span><div id="archive_list_button" class="list_closed">展开</div></div>
+    </ul>
+</div>
+<div id="hotarticls" class="panel">
+    <ul class="panel_head"><span>阅读排行</span></ul>
+    <ul class="panel_body itemlist">
+        <li>
+            <a href="http://blog.csdn.net/onerain88/article/details/7008409" title="android ListView异步加载图片（双缓存）">android ListView异步加载图片（双缓存）</a><span>(4386)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/onerain88/article/details/6399117" title="android WebView 控件加载本地sdcard中html文件图片的问题">android WebView 控件加载本地sdcard中html文件图片的问题</a><span>(2692)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/onerain88/article/details/6959987" title="下载Android ADT时找不到org.eclipse.wst.sse.core 0.0.0的解决方法">下载Android ADT时找不到org.eclipse.wst.sse.core 0.0.0的解决方法</a><span>(2165)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/onerain88/article/details/6562464" title="android Intent 传递 List 利用Serializable">android Intent 传递 List 利用Serializable</a><span>(1536)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/onerain88/article/details/7257659" title="游戏引擎Andengine总结（一）：AndEngine环境配置及extension，AndEngineExamples导入">游戏引擎Andengine总结（一）：AndEngine环境配置及extension，AndEngineExamples导入</a><span>(1393)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/onerain88/article/details/6423608" title="android 多任务同时下载并且显示">android 多任务同时下载并且显示</a><span>(1383)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/onerain88/article/details/7309831" title="游戏引擎Andengine总结（五）：TexturePacker的使用">游戏引擎Andengine总结（五）：TexturePacker的使用</a><span>(1151)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/onerain88/article/details/6434208" title="android 遮罩层效果">android 遮罩层效果</a><span>(987)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/onerain88/article/details/7641126" title="cocos2d-x学习（八）：cocos2d-x 2.0 中CCListView的用法">cocos2d-x学习（八）：cocos2d-x 2.0 中CCListView的用法</a><span>(894)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/onerain88/article/details/7608496" title="Cocos2d-x学习（六）：cocos2d-x中的模态对话框简单实现">Cocos2d-x学习（六）：cocos2d-x中的模态对话框简单实现</a><span>(838)</span>
+        </li>
+    </ul>
+</div>
+<div id="hotarticls2" class="panel">
+    <ul class="panel_head"><span>评论排行</span></ul>
+    <ul class="panel_body itemlist">
+        <li>
+            <a href="http://blog.csdn.net/onerain88/article/details/7008409" title="android ListView异步加载图片（双缓存）">android ListView异步加载图片（双缓存）</a><span>(35)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/onerain88/article/details/6423608" title="android 多任务同时下载并且显示">android 多任务同时下载并且显示</a><span>(9)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/onerain88/article/details/7257659" title="游戏引擎Andengine总结（一）：AndEngine环境配置及extension，AndEngineExamples导入">游戏引擎Andengine总结（一）：AndEngine环境配置及extension，AndEngineExamples导入</a><span>(7)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/onerain88/article/details/7409649" title="游戏引擎AndEngine总结（九）：三种加载图片资源的方法">游戏引擎AndEngine总结（九）：三种加载图片资源的方法</a><span>(7)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/onerain88/article/details/7328894" title="游戏引擎Andengine总结（六）：滑动关卡选择的实现">游戏引擎Andengine总结（六）：滑动关卡选择的实现</a><span>(6)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/onerain88/article/details/7631294" title="cocos2d-x学习（七）：cocos2d-x中ScrollView的简单实现">cocos2d-x学习（七）：cocos2d-x中ScrollView的简单实现</a><span>(6)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/onerain88/article/details/6323387" title="关于android多任务同时下载的一点心得">关于android多任务同时下载的一点心得</a><span>(6)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/onerain88/article/details/6399117" title="android WebView 控件加载本地sdcard中html文件图片的问题">android WebView 控件加载本地sdcard中html文件图片的问题</a><span>(5)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/onerain88/article/details/7364299" title="游戏引擎AndEngine总结（八）：自定义Button">游戏引擎AndEngine总结（八）：自定义Button</a><span>(4)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/onerain88/article/details/7608496" title="Cocos2d-x学习（六）：cocos2d-x中的模态对话框简单实现">Cocos2d-x学习（六）：cocos2d-x中的模态对话框简单实现</a><span>(4)</span>
+        </li>
+    </ul>
+</div>
+<div id="homepageArticles" class="panel">
+    <ul class="panel_head"><span>推荐文章</span></ul>
+    <ul class="panel_body" id="ad_commend">
+    <iframe src="android ListView异步加载图片/ad_003.html" style="border-width: 0px; overflow: hidden; width: 182px; height: 296px;" id="ad_frm_2" frameborder="0" scrolling="no"></iframe></ul>
+</div>
+<script type="text/javascript" src="android ListView异步加载图片/ad.js"></script>
+<script type="text/javascript">
+    new Ad(12, 'ad_commend');
+</script><div id="newcomments" class="panel">
+<ul class="panel_head"><span>最新评论</span></ul>
+<ul class="panel_body itemlist">
+    <li>
+    <a href="http://blog.csdn.net/oneRain88/article/details/7608496#comments">Cocos2d-x学习（六）：cocos2d-x中的模态对话框简单实现</a>
+    <p style="margin:0px;">oneRain88:
+@qq634416025:肯定不能调用pause啊，调用了pause还怎么做动态变化，我觉得应该在主...
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/oneRain88/article/details/7608496#comments">Cocos2d-x学习（六）：cocos2d-x中的模态对话框简单实现</a>
+    <p style="margin:0px;">qq634416025:
+你好 LZ 我再想问一下 我游戏结束的时候要弹出一个对话框  你有有一个Label 根据最后得的分数...
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/oneRain88/article/details/7008409#comments">android ListView异步加载图片（双缓存）</a>
+    <p style="margin:0px;">wangyuetingtao:
+这个我实际测试过，在缓存方面有些问题。当缓存的图片被释放掉以后，那个Hashmap中的key值没有被...
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/oneRain88/article/details/7608496#comments">Cocos2d-x学习（六）：cocos2d-x中的模态对话框简单实现</a>
+    <p style="margin:0px;">oneRain88:
+@qq634416025:不客气，good luck!
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/oneRain88/article/details/7608496#comments">Cocos2d-x学习（六）：cocos2d-x中的模态对话框简单实现</a>
+    <p style="margin:0px;">qq634416025:
+谢谢LZ。。。。。灰常感谢 我游戏当中真好要用这个思路。。好人
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/oneRain88/article/details/7550009#comments">Cocos2d-x学习（三）：触屏事件（单点触屏）</a>
+    <p style="margin:0px;">oneRain88:
+@lzp1233210:应该是在onBegin()中记录当前时间，然后在onEnd()获取时间差！
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/oneRain88/article/details/7550009#comments">Cocos2d-x学习（三）：触屏事件（单点触屏）</a>
+    <p style="margin:0px;">lzp1233210:
+请问触屏延续的时间怎么获取
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/oneRain88/article/details/7595563#comments">Cocos2d-x学习（五）：cocos2d-x解析json（使用libjson库）</a>
+    <p style="margin:0px;">oneRain88:
+@friendlytkyj:要自己遍历做判断吧！
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/oneRain88/article/details/7595563#comments">Cocos2d-x学习（五）：cocos2d-x解析json（使用libjson库）</a>
+    <p style="margin:0px;">friendlytkyj:
+能直接获取到某个节点的值么。
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/oneRain88/article/details/7008409#comments">android ListView异步加载图片（双缓存）</a>
+    <p style="margin:0px;">oqqAmy12:
+HttpUtils.getStreamFromURL(imageURL)  这个方法可以贴出来么，就...
+    </p>
+    </li>
+</ul>
+</div>
+    </div>
+    <div class="clear"></div>
+</div>
+
+<div class="clear"></div>
+</div>
+<script type="text/javascript" src="android ListView异步加载图片/shCore-src.js"></script>
+<script type="text/javascript" src="android ListView异步加载图片/ZeroClipboard.js"></script>
+<script type="text/javascript" src="android ListView异步加载图片/article_code.js"></script>
+
+<script type="text/javascript" src="android ListView异步加载图片/show.js"></script>
+<script type="text/javascript" src="android ListView异步加载图片/showblogmedal.js"></script>
+<script type="text/javascript">document.write("<img src=http://counter.csdn.net/pv.aspx?id=24 border=0 width=0 height=0>");</script><img src="android ListView异步加载图片/pv.asc" height="0" border="0" width="0">
+
+<script type="text/javascript" src="android ListView异步加载图片/publib_footer.js"></script><link rel="stylesheet" type="text/css" href="android ListView异步加载图片/pub_footer_2012.css"><div class="pub_footerall"><dl><dt></dt> <dd><a href="http://www.csdn.net/company/about.html" target="_blank">公司简介</a>|<a href="http://www.csdn.net/company/recruit.html" target="_blank">招贤纳士</a>|<a href="http://www.csdn.net/company/marketing.html" target="_blank">广告服务</a>|<a href="http://www.csdn.net/company/account.html" target="_blank">银行汇款帐号</a>|<a href="http://www.csdn.net/company/contact.html" target="_blank">联系方式</a>|<a href="http://www.csdn.net/company/statement.html" target="_blank">版权声明</a>|<a href="http://www.csdn.net/company/layer.html" target="_blank">法律顾问</a>|<a href="mailto:webmaster@csdn.net">问题报告</a></dd><dd>京&nbsp;ICP&nbsp;证&nbsp;070598&nbsp;号</dd><dd>北京创新乐知信息技术有限公司 版权所有</dd><dd><img src="android ListView异步加载图片/ico_email.gif" alt="" title=""> 联系邮箱：webmaster@csdn.net</dd><dd>Copyright © 1999-2012, CSDN.NET, All Rights Reserved&nbsp;<a href="http://www.hd315.gov.cn/beian/view.asp?bianhao=010202001032100010" target="_blank"><img src="android ListView异步加载图片/gongshang_logos.gif" alt="GongshangLogo" title=""></a></dd></dl></div>
+
+<script type="text/javascript" src="android ListView异步加载图片/counter.js"></script><script type="text/javascript" charset="UTF-8" src="android ListView异步加载图片/msg.js"></script>
+<script type="text/javascript" src="android ListView异步加载图片/ad-ibm1.js"></script>
+
+
+</div>
+
+<img src="android ListView异步加载图片/log.swf" style="width: 1px; height: 1px; position: absolute; visibility: hidden;"></body></html>
