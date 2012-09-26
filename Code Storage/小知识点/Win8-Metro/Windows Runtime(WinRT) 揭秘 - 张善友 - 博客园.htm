@@ -1,0 +1,1459 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0060)http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" style="position: static; "><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" src="./Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园_files/saved_resource"></script><iframe src="./Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园_files/sga.htm" id="snap_com_shot_sga" scrolling="no" style="visibility: hidden; position: absolute; "></iframe><script type="text/javascript" src="./Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园_files/auto_shot.js"></script>
+
+<title>Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园_files/common.css">
+<link type="text/css" rel="stylesheet" href="./Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园_files/common2.css">
+<link type="text/css" rel="stylesheet" href="./Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园_files/shStyle.css">
+<link type="text/css" rel="stylesheet" href="./Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园_files/customcss.aspx">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/shanyou/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/shanyou/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/shanyou/wlwmanifest.xml">
+<script async="" type="text/javascript" src="./Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园_files/gpt.js"></script><script type="text/javascript" async="" src="./Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园_files/ga.js"></script><script src="./Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园_files/jquery.js" type="text/javascript"></script>  
+<script type="text/javascript">
+var currentBlogApp = 'shanyou';
+</script>
+<script src="./Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园_files/common.js" type="text/javascript"></script> 
+<script src="./Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园_files/json2.js" type="text/javascript"></script>
+<script type="text/javascript" src="./Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园_files/syntaxHighlighter.js"></script>
+<link type="text/css" rel="stylesheet" href="chrome-extension://cpngackimfmofbokmjmljamhdncknpmg/style.css"><script type="text/javascript" charset="utf-8" src="chrome-extension://cpngackimfmofbokmjmljamhdncknpmg/page_context.js"></script><script async="" type="text/javascript" src="./Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园_files/google_ads_gpt.js"></script><script type="text/javascript" src="./Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园_files/osd.js"></script></head>
+<body screen_capture_injected="true"><div id="snap_com_shot_main" style="max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; line-height: normal; background-image: url(http://www.previewshots.com/images/v1.3/t.gif); background-color: transparent; z-index: 99999; position: absolute; left: 0px; top: 0px; width: 328px; height: 267px; visibility: hidden; " class="snap_noengage snap_noshots"><img id="snap_com_shot_link_icon" class="snap_preview_icon" style="margin-top: 0px !important; margin-right: 0px !important; margin-bottom: 0px !important; margin-left: 0px !important; max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; left: auto; top: auto; line-height: normal; z-index: 99999; background-color: transparent; background-image: url(http://www.previewshots.com/images/v1.3/theme/silver/palette.gif); width: 14px; height: 12px; padding-top: 1px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; text-decoration: none; position: static; visibility: hidden; background-position: -1128px 0px; background-repeat: no-repeat no-repeat; " src="./Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园_files/t.gif">
+<div id="snap_com_shot_bg_div_tl" style="max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; line-height: normal; background-image: url(http://www.previewshots.com/images/v1.3/t.gif); background-color: transparent; visibility: inherit; z-index: 99999; position: absolute; left: 0px; top: 0px; height: 50px; width: 50px; overflow-x: hidden; overflow-y: hidden; "><img id="snap_com_shot_bg_img_tl" src="./Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园_files/palette.png" style="max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; line-height: normal; background-image: url(http://www.previewshots.com/images/v1.3/t.gif); background-color: transparent; visibility: inherit; z-index: 99999; position: absolute; left: -50px; top: 0px; "></div>
+<div id="snap_com_shot_bg_div_tr" style="max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; left: auto; line-height: normal; background-image: url(http://www.previewshots.com/images/v1.3/t.gif); background-color: transparent; visibility: inherit; z-index: 99999; position: absolute; right: 0px; top: 0px; height: 50px; width: 50px; overflow-x: hidden; overflow-y: hidden; "><img id="snap_com_shot_bg_img_tr" src="./Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园_files/palette.png" style="max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; line-height: normal; background-image: url(http://www.previewshots.com/images/v1.3/t.gif); background-color: transparent; visibility: inherit; z-index: 99999; position: absolute; left: -100px; top: 0px; "></div>
+<div id="snap_com_shot_bg_div_bl" style="max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; top: auto; line-height: normal; background-image: url(http://www.previewshots.com/images/v1.3/t.gif); background-color: transparent; visibility: inherit; z-index: 99999; position: absolute; left: 0px; bottom: 1px; height: 50px; width: 50px; overflow-x: hidden; overflow-y: hidden; "><img id="snap_com_shot_bg_img_bl" src="./Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园_files/palette.png" style="max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; line-height: normal; background-image: url(http://www.previewshots.com/images/v1.3/t.gif); background-color: transparent; visibility: inherit; z-index: 99999; position: absolute; left: -150px; top: 0px; "></div>
+<div id="snap_com_shot_bg_div_br" style="max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; left: auto; top: auto; line-height: normal; background-image: url(http://www.previewshots.com/images/v1.3/t.gif); background-color: transparent; visibility: inherit; z-index: 99999; position: absolute; right: 0px; bottom: 1px; height: 50px; width: 50px; overflow-x: hidden; overflow-y: hidden; "><img id="snap_com_shot_bg_img_br" src="./Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园_files/palette.png" style="max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; line-height: normal; background-image: url(http://www.previewshots.com/images/v1.3/t.gif); background-color: transparent; visibility: inherit; z-index: 99999; position: absolute; left: 0px; top: 0px; "></div>
+<img id="snap_com_shot_bg_img_l" src="./Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园_files/bg_lr.png" style="max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; line-height: normal; background-image: url(http://www.previewshots.com/images/v1.3/t.gif); background-color: transparent; visibility: inherit; z-index: 99999; position: absolute; left: 0px; top: 50px; width: 100px; height: 167px; ">
+<img id="snap_com_shot_bg_img_r" src="./Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园_files/bg_lr.png" style="max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; left: auto; line-height: normal; background-image: url(http://www.previewshots.com/images/v1.3/t.gif); background-color: transparent; visibility: inherit; z-index: 99999; position: absolute; right: 0px; top: 50px; width: 100px; height: 167px; ">
+<img id="snap_com_shot_bg_img_t" src="./Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园_files/bg_tb.png" style="max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; line-height: normal; background-image: url(http://www.previewshots.com/images/v1.3/t.gif); background-color: transparent; visibility: inherit; z-index: 99999; position: absolute; left: 50px; top: 0px; height: 100px; width: 228px; ">
+<img id="snap_com_shot_bg_img_b" src="./Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园_files/bg_tb.png" style="max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; top: auto; line-height: normal; background-image: url(http://www.previewshots.com/images/v1.3/t.gif); background-color: transparent; visibility: inherit; z-index: 99999; position: absolute; left: 50px; bottom: 1px; height: 100px; width: 228px; ">
+<div id="snap_com_shot_bg_div_point" style="max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; line-height: normal; background-image: url(http://www.previewshots.com/images/v1.3/t.gif); background-color: transparent; z-index: 100000; position: absolute; height: 29px; width: 28px; overflow-x: hidden; overflow-y: hidden; top: auto; right: auto; visibility: inherit; bottom: -21px; left: 7px; "><img id="snap_com_shot_bg_img_point" src="./Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园_files/palette.png" style="max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; line-height: normal; background-image: url(http://www.previewshots.com/images/v1.3/t.gif); background-color: transparent; visibility: inherit; z-index: 99999; position: absolute; left: -276px; top: 0px; "></div>
+<div id="snap_com_shot_bg_body" style="max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; top: auto; line-height: normal; background-image: url(http://www.previewshots.com/images/v1.3/t.gif); visibility: inherit; z-index: 99999; position: absolute; left: 2px; bottom: 37px; width: 320px; height: 82px; background-color: rgb(216, 216, 217); "></div>
+
+<img style="max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; line-height: normal; background-image: url(http://www.previewshots.com/images/v1.3/t.gif); background-color: transparent; z-index: 100001; position: absolute; right: auto; top: auto; visibility: inherit; width: 200px; height: 5px; bottom: 3px; left: 5px; " id="snap_com_shot_pointer0" src="./Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园_files/t.gif">
+<img style="max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; line-height: normal; background-image: url(http://www.previewshots.com/images/v1.3/t.gif); background-color: transparent; z-index: 100001; position: absolute; right: auto; top: auto; visibility: inherit; width: 164px; height: 5px; bottom: -1px; left: 5px; " id="snap_com_shot_pointer1" src="./Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园_files/t.gif">
+<img style="max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; line-height: normal; background-image: url(http://www.previewshots.com/images/v1.3/t.gif); background-color: transparent; z-index: 100001; position: absolute; right: auto; top: auto; visibility: inherit; width: 128px; height: 5px; bottom: -6px; left: 5px; " id="snap_com_shot_pointer2" src="./Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园_files/t.gif">
+<img style="max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; line-height: normal; background-image: url(http://www.previewshots.com/images/v1.3/t.gif); background-color: transparent; z-index: 100001; position: absolute; right: auto; top: auto; visibility: inherit; width: 92px; height: 5px; bottom: -11px; left: 5px; " id="snap_com_shot_pointer3" src="./Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园_files/t.gif">
+<img style="max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; line-height: normal; background-image: url(http://www.previewshots.com/images/v1.3/t.gif); background-color: transparent; z-index: 100001; position: absolute; right: auto; top: auto; visibility: inherit; width: 56px; height: 5px; bottom: -16px; left: 5px; " id="snap_com_shot_pointer4" src="./Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园_files/t.gif">
+<img style="max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; line-height: normal; background-image: url(http://www.previewshots.com/images/v1.3/t.gif); background-color: transparent; z-index: 100001; position: absolute; right: auto; top: auto; visibility: inherit; width: 20px; height: 5px; bottom: -21px; left: 5px; " id="snap_com_shot_pointer5" src="./Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园_files/t.gif">
+<div id="snap_com_shot_bubble" style="max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; line-height: normal; background-image: url(http://www.previewshots.com/images/v1.3/t.gif); background-color: transparent; visibility: inherit; z-index: 99999; position: absolute; left: 1px; top: 1px; width: 322px; height: 259px; ">
+<img id="snap_com_shot_bubble_img" src="./Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园_files/t.gif" style="max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; line-height: normal; background-image: url(http://www.previewshots.com/images/v1.3/t.gif); background-color: transparent; visibility: inherit; z-index: 99999; position: absolute; left: 0px; top: 0px; width: 322px; height: 218px; ">
+<div id="snap_com_shot_body" style="max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; line-height: normal; background-image: url(http://www.previewshots.com/images/v1.3/t.gif); background-color: transparent; visibility: inherit; z-index: 99999; position: absolute; left: 0px; top: 0px; width: 322px; text-align: left; height: 259px; ">
+ <table id="snap_com_shot_drag_overlay" title="drag to move" style="display: none; cursor: move !important; max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; line-height: normal; background-image: url(http://www.previewshots.com/images/v1.3/t.gif); visibility: inherit; z-index: 100008; position: absolute; left: 0px; top: 0px; width: 322px; height: 20px; background-color: transparent; "><tbody><tr><td style="background-color:transparent;border:0;">&nbsp;</td></tr></tbody></table>
+ <div id="snap_com_shot_top_left_menu" style="max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; line-height: normal; background-image: url(http://www.previewshots.com/images/v1.3/t.gif); background-color: transparent; z-index: 100009; position: absolute; left: 1px; top: 1px; visibility: hidden; "><img id="snap_com_shot_preview_toggle" src="./Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园_files/t.gif" style="cursor: pointer !important; max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; position: static; left: auto; top: auto; line-height: normal; visibility: inherit; z-index: 99999; background-color: transparent; background-image: url(http://www.previewshots.com/images/v1.3/theme/silver/palette.gif); width: 25px; height: 18px; display: inline; background-position: -319px 0px; background-repeat: no-repeat no-repeat; "><img id="snap_com_shot_rss_toggle" src="./Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园_files/t.gif" align="top" style="cursor: pointer !important; max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; position: static; left: auto; top: auto; line-height: normal; visibility: inherit; z-index: 99999; background-color: transparent; background-image: url(http://www.previewshots.com/images/v1.3/theme/silver/palette.gif); width: 25px; height: 18px; display: inline; background-position: -475px 0px; background-repeat: no-repeat no-repeat; "></div>
+ <div id="snap_com_shot_top_right_menu" style="max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; left: auto; line-height: normal; background-image: url(http://www.previewshots.com/images/v1.3/t.gif); background-color: transparent; visibility: inherit; z-index: 100009; position: absolute; right: 1px; top: 1px; "><img id="snap_com_shot_share_button" src="./Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园_files/t.gif" align="top" style="cursor: pointer !important; max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; position: static; left: auto; top: auto; line-height: normal; visibility: inherit; z-index: 99999; background-color: transparent; background-image: url(http://www.previewshots.com/images/v1.3/theme/silver/palette.gif); width: 50px; height: 17px; display: none; background-position: -807px 0px; background-repeat: no-repeat no-repeat; "><img id="snap_com_shot_option_button" src="./Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园_files/t.gif" style="cursor: pointer !important; max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; position: static; left: auto; top: auto; line-height: normal; visibility: inherit; z-index: 99999; background-color: transparent; background-image: url(http://www.previewshots.com/images/v1.3/theme/silver/palette.gif); width: 27px; height: 18px; display: inline; background-position: -421px 0px; background-repeat: no-repeat no-repeat; " alt="Snap Shots Options" title="Snap Shots Options"><img id="snap_com_shot_zoom_img" src="./Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园_files/t.gif" align="top" style="cursor: pointer !important; max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; position: static; left: auto; top: auto; line-height: normal; visibility: inherit; z-index: 99999; background-color: transparent; background-image: url(http://www.previewshots.com/images/v1.3/theme/silver/palette.gif); width: 23px; height: 18px; display: inline; background-position: -523px 0px; background-repeat: no-repeat no-repeat; " title="Make this Shot larger"><img id="snap_com_shot_pin_close_img" title="Close" src="./Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园_files/t.gif" align="top" style="cursor: pointer !important; max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; position: static; left: auto; top: auto; line-height: normal; visibility: inherit; z-index: 99999; background-color: transparent; background-image: url(http://www.previewshots.com/images/v1.3/theme/silver/palette.gif); width: 23px; height: 18px; display: none; background-position: -711px 0px; background-repeat: no-repeat no-repeat; "></div>
+ <div id="snap_com_shot_option_menu" style="max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-style: initial; border-color: initial; font-style: normal; font-weight: normal; float: none; left: auto; line-height: normal; background-image: url(http://www.previewshots.com/images/v1.3/t.gif); z-index: 100009; position: absolute; right: 20px; top: 18px; font-size: 10px; font-family: Trebuchet; color: rgb(51, 51, 51); background-color: white; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-top-color: rgb(139, 138, 138); border-right-color: rgb(139, 138, 138); border-bottom-color: rgb(139, 138, 138); border-left-color: rgb(139, 138, 138); border-image: initial; visibility: hidden; ">
+  <div id="snap_com_shot_option_a" style="cursor: pointer !important; max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; position: static; left: auto; top: auto; line-height: normal; background-image: url(http://www.previewshots.com/images/v1.3/t.gif); background-color: transparent; visibility: inherit; z-index: 99999; white-space: nowrap; height: 17px; padding-left: 5px; padding-right: 5px; " title="Snap Shots Options">Options</div>
+  <div id="snap_com_shot_disable_a" style="cursor: pointer !important; max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-bottom: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; position: static; left: auto; top: auto; line-height: normal; background-image: url(http://www.previewshots.com/images/v1.3/t.gif); background-color: transparent; visibility: inherit; z-index: 99999; white-space: nowrap; height: 17px; padding-left: 5px; padding-right: 5px; border-top-width: 1px; border-top-style: solid; border-top-color: rgb(192, 192, 192); ">Disable</div>
+ </div>
+ <div id="snap_com_shot_search" style="margin-top: 0px !important; margin-right: 0px !important; margin-bottom: 0px !important; margin-left: 0px !important; padding-top: 0px !important; padding-right: 0px !important; padding-bottom: 0px !important; padding-left: 0px !important; max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; top: auto; line-height: normal; background-image: url(http://www.previewshots.com/images/v1.3/t.gif); z-index: 99999; position: absolute; left: 1px; bottom: 31px; width: 320px; height: 78px; background-color: rgb(238, 238, 238); visibility: hidden; ">
+  <div id="snap_com_shot_search_form" style="margin-top: 0px !important; margin-right: 0px !important; margin-bottom: 0px !important; margin-left: 0px !important; padding-top: 0px !important; padding-right: 0px !important; padding-bottom: 0px !important; padding-left: 0px !important; max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; position: static; left: auto; top: auto; line-height: normal; background-image: url(http://www.previewshots.com/images/v1.3/t.gif); background-color: transparent; visibility: inherit; z-index: 99999; " action="#" method="GET" accept-charset="UTF8" target="_blank">
+   <input id="snap_com_shot_box" type="text" name="snap_com_shot_box_name" autocomplete="off" style="visibility: inherit !important; max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; border-style: initial; border-color: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; line-height: normal; background-image: url(http://www.previewshots.com/images/v1.3/t.gif); z-index: 99999; position: absolute; left: 12px; top: 24px; height: 20px; width: 232px; padding-right: 0px; padding-bottom: 0px; padding-left: 6px; padding-top: 5px; font-size: 12px; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-top-color: rgb(153, 153, 153); border-right-color: rgb(153, 153, 153); border-bottom-color: rgb(153, 153, 153); border-left-color: rgb(153, 153, 153); border-image: initial; color: rgb(51, 51, 51); direction: ltr; display: none; ">
+   <button type="submit" name="snap_com_shot_submit" id="snap_com_shot_submit" style="max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; left: auto; line-height: normal; visibility: inherit; z-index: 99999; position: absolute; right: 7px; top: 23px; background-color: transparent; background-image: url(http://www.previewshots.com/images/v1.3/theme/silver/palette.gif); width: 55px; height: 29px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 5px; padding-right: 2px; padding-left: 2px; padding-top: 1px; padding-bottom: 2px; cursor: pointer; font-size: 11px; color: rgb(68, 68, 68); text-align: center; background-position: -164px 0px; background-repeat: no-repeat no-repeat; "></button>
+   <a href="about:blank" id="snap_com_shot_hidden_link" style="max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; position: static; left: auto; top: auto; line-height: normal; background-image: url(http://www.previewshots.com/images/v1.3/t.gif); background-color: transparent; visibility: inherit; z-index: 99999; "></a>
+  </div>
+ </div>
+ <div id="snap_com_shot_promo" style="max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; top: auto; line-height: normal; background-image: url(http://www.previewshots.com/images/v1.3/t.gif); background-color: transparent; visibility: inherit; z-index: 99999; position: absolute; left: 10px; bottom: 8px; height: 15px; direction: ltr; "><a class="snap_nopreview" id="snap_com_shot_promo_a" style="max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; position: static; left: auto; top: auto; line-height: normal; background-image: url(http://www.previewshots.com/images/v1.3/t.gif); background-color: transparent; visibility: inherit; z-index: 99999; font-size: 11px; color: rgb(51, 51, 51); text-decoration: none; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgb(116, 114, 116); " title="Sign Up and add Free Snap Shots to your site in less than 5 min!" href="https://www.previewshots.com/accounts/signup.php?source=www.cnblogs.com&campaign=viral-foot">Get Free Shots</a><img id="snap_com_shot_promo_icon" src="./Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园_files/t.gif" style="border-bottom-style: none !important; border-bottom-width: initial !important; border-bottom-color: initial !important; cursor: pointer !important; max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; position: static; left: auto; top: auto; line-height: normal; visibility: inherit; z-index: 99999; background-color: transparent; background-image: url(http://www.previewshots.com/images/v1.3/theme/silver/palette.gif); width: 14px; height: 12px; display: inline; background-position: -1128px 0px; background-repeat: no-repeat no-repeat; "></div>
+ <div id="snap_com_shot_preview_div" style="max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-style: initial; border-color: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; line-height: normal; background-image: url(http://www.previewshots.com/images/v1.3/t.gif); visibility: inherit; z-index: 99999; position: absolute; left: 0px; top: 20px; width: 320px; height: 207px; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-top-color: rgb(196, 196, 196); border-right-color: rgb(196, 196, 196); border-bottom-color: rgb(196, 196, 196); border-left-color: rgb(196, 196, 196); border-image: initial; overflow-x: hidden; overflow-y: hidden; background-color: rgb(255, 255, 255); ">
+  <div style="white-space: nowrap !important; max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; line-height: normal; background-image: url(http://www.previewshots.com/images/v1.3/t.gif); background-color: transparent; visibility: inherit; z-index: 99999; position: absolute; left: 6px; top: 5px; " id="snap_com_shot_url_wrapper"><a class="snap_nopreview" id="snap_com_shot_url_favicon" href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#" style="max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; position: static; left: auto; top: auto; line-height: normal; background-image: url(http://www.previewshots.com/images/v1.3/t.gif); visibility: inherit; z-index: 99999; background-color: white; "><img id="snap_com_shot_favicon" src="./Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园_files/t.gif" style="max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; left: auto; top: auto; line-height: normal; visibility: inherit; z-index: 99999; background-color: transparent; background-image: url(http://www.previewshots.com/images/v1.3/theme/silver/palette.gif); width: 16px; height: 16px; position: static; display: inline; background-position: -889px 0px; background-repeat: no-repeat no-repeat; "></a>&nbsp;<a class="snap_nopreview" id="snap_com_shot_url_a" href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#" style="max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; position: static; left: auto; top: auto; line-height: normal; background-image: url(http://www.previewshots.com/images/v1.3/t.gif); visibility: inherit; z-index: 99999; font-size: 13px; font-weight: bold; text-decoration: underline; color: rgb(0, 0, 238); background-color: white; text-align: left; "><span id="snap_com_shot_url" style="max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; left: auto; top: auto; line-height: normal; background-image: url(http://www.previewshots.com/images/v1.3/t.gif); background-color: transparent; visibility: inherit; z-index: 99999; position: static; display: inline; font-size: 13px; font-weight: bold; text-align: left; "></span></a>&nbsp;<a class="snap_nopreview" id="snap_com_shot_url_arrow" href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#" style="max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; position: static; left: auto; top: auto; line-height: normal; background-image: url(http://www.previewshots.com/images/v1.3/t.gif); visibility: inherit; z-index: 99999; background-color: white; "><img id="snap_com_shot_arrow" src="./Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园_files/t.gif" style="max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; left: auto; top: auto; line-height: normal; visibility: inherit; z-index: 99999; background-color: transparent; background-image: url(http://www.previewshots.com/images/v1.3/theme/silver/palette.gif); width: 7px; height: 7px; position: static; display: inline; background-position: -1165px 0px; background-repeat: no-repeat no-repeat; "></a></div>
+  <a class="snap_nopreview" id="snap_com_shot_img_a" href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#" style="max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-style: initial; border-color: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; top: auto; line-height: normal; background-image: url(http://www.previewshots.com/images/v1.3/t.gif); visibility: inherit; z-index: 99999; position: absolute; left: 23px; bottom: 12px; width: 270px; height: 161px; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-top-color: rgb(153, 153, 153); border-right-color: rgb(153, 153, 153); border-bottom-color: rgb(153, 153, 153); border-left-color: rgb(153, 153, 153); border-image: initial; overflow-x: hidden; overflow-y: hidden; background-color: rgb(255, 255, 255); "><img id="snap_com_shot_preview_img" src="./Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园_files/t.gif" style="max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; line-height: normal; background-image: url(http://www.previewshots.com/images/v1.3/t.gif); background-color: transparent; visibility: inherit; z-index: 99999; position: absolute; left: 0px; top: 0px; "></a>
+  <iframe name="snap_com_shot_preview" id="snap_com_shot_preview" scrolling="no" frameborder="no" src="about:blank" style="max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; line-height: normal; background-image: url(http://www.previewshots.com/images/v1.3/t.gif); visibility: inherit; z-index: 99999; position: absolute; left: 0px; top: 0px; width: 320px; height: 207px; background-color: rgb(255, 255, 255); "></iframe><img id="snap_com_shot_loading_img" src="./Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园_files/loading.gif" style="max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; line-height: normal; background-image: url(http://www.previewshots.com/images/v1.3/t.gif); background-color: transparent; visibility: inherit; position: absolute; left: 0px; top: 0px; z-index: 99989; display: none; ">
+ </div>
+ <div id="snap_com_shot_marea" style="max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; top: auto; line-height: normal; background-image: url(http://www.previewshots.com/images/v1.3/t.gif); z-index: 99999; position: absolute; left: 1px; bottom: 30px; width: 320px; height: 79px; overflow-x: hidden; overflow-y: hidden; background-color: rgb(238, 238, 238); visibility: hidden; "><div style="max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; line-height: normal; background-image: url(http://www.previewshots.com/images/v1.3/t.gif); position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; background-color: rgb(238, 238, 238); overflow-x: hidden; overflow-y: hidden; display: none; "></div><div style="max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; line-height: normal; background-image: url(http://www.previewshots.com/images/v1.3/t.gif); position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; background-color: rgb(238, 238, 238); overflow-x: hidden; overflow-y: hidden; display: none; "></div></div>
+ <img id="snap_com_shot_cobrand_img" src="./Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园_files/t.gif" style="max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; top: auto; line-height: normal; background-image: url(http://www.previewshots.com/images/v1.3/t.gif); background-color: transparent; visibility: inherit; z-index: 99999; position: absolute; left: 9px; bottom: 6px; ">
+  <table id="snap_com_shot_flash_overlay" title="Click to play" style="display: none; cursor: pointer !important; max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; line-height: normal; background-image: url(http://www.previewshots.com/images/v1.3/t.gif); visibility: inherit; z-index: 100010; position: absolute; left: 0px; top: 50px; width: 322px; height: 180px; background-color: transparent; "><tbody><tr><td>&nbsp;</td></tr></tbody></table>
+</div><div id="snap_com_shot_options" style="max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; line-height: normal; background-image: url(http://www.previewshots.com/images/v1.3/t.gif); background-color: transparent; visibility: inherit; z-index: 99999; position: absolute; left: 0px; top: 0px; width: 322px; ">
+ <iframe id="snap_com_shot_option_iframe" width="265" height="190" frameborder="0" scrolling="no" src="about:blank" style="max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; line-height: normal; background-image: url(http://www.previewshots.com/images/v1.3/t.gif); visibility: inherit; z-index: 99999; position: absolute; left: 0px; top: 20px; width: 321px; height: 207px; background-color: rgb(255, 255, 255); "></iframe>
+ <div id="snap_com_shot_option_menu_bar" style="max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; left: auto; line-height: normal; background-image: url(http://www.previewshots.com/images/v1.3/t.gif); background-color: transparent; visibility: inherit; z-index: 99999; position: absolute; right: 1px; top: 1px; "><img class="snap_nopreview" id="snap_com_shot_option_button_disabled" src="./Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园_files/t.gif" style="max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; position: static; left: auto; top: auto; line-height: normal; visibility: inherit; z-index: 99999; background-color: transparent; background-image: url(http://www.previewshots.com/images/v1.3/theme/silver/palette.gif); width: 27px; height: 18px; display: inline; background-position: -394px 0px; background-repeat: no-repeat no-repeat; "><img class="snap_nopreview" id="snap_com_shot_option_close_a" src="./Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园_files/t.gif" style="cursor: pointer !important; max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; position: static; left: auto; top: auto; line-height: normal; visibility: inherit; z-index: 99999; background-color: transparent; background-image: url(http://www.previewshots.com/images/v1.3/theme/silver/palette.gif); width: 23px; height: 18px; font-size: 10px; font-weight: normal; color: rgb(133, 122, 122); text-decoration: none; background-position: -711px 0px; background-repeat: no-repeat no-repeat; " alt="Close" title="Close"></div>
+<input id="snap_com_shot_option_cancel" style="visibility: inherit; max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-style: initial; border-color: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; left: auto; line-height: normal; z-index: 99999; position: absolute; right: 54px; top: 170px; width: 50px; height: 21px; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-top-color: rgb(153, 153, 153); border-right-color: rgb(153, 153, 153); border-bottom-color: rgb(153, 153, 153); border-left-color: rgb(153, 153, 153); border-image: initial; font-size: 11px; color: rgb(51, 51, 51); background-image: url(http://www.previewshots.com/images/btn-bkgd.gif); background-attachment: initial; background-origin: initial; background-clip: initial; background-color: initial; display: none; background-position: initial initial; background-repeat: initial initial; " name="snap_com_shot_option_cancel_name" type="button" value="Cancel" title="Close">
+</div>
+ <a class="snap_nopreview" id="snap_com_shot_cobrand_a" href="http://www.previewshots.com/explore/34146/?key=9be01e8157b346b71510a6a96bb7aa47&src=www.cnblogs.com&cp=pub-logo&tol=pub-logo&url=http%3A%2F%2Fwww.previewshots.com%2Fabout%2Fshots.php" target="_blank" style="max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; top: auto; line-height: normal; background-image: url(http://www.previewshots.com/images/v1.3/t.gif); background-color: transparent; visibility: inherit; z-index: 99999; position: absolute; left: 10px; bottom: 8px; height: 15px; "><div style="display:none"></div></a>
+ <a class="snap_nopreview" id="snap_com_shot_logo_a" href="http://www.previewshots.com/?source=shanyou.cnblogs.com&campaign=snap-shots-logo" style="max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; left: auto; top: auto; line-height: normal; visibility: inherit; z-index: 99999; position: absolute; right: 7px; bottom: 8px; background-color: transparent; background-image: url(http://www.previewshots.com/images/v1.3/theme/silver/palette.gif); width: 81px; height: 15px; background-position: -950px 0px; background-repeat: no-repeat no-repeat; " target="_blank" title="Powered by Snap"><div style="display:none"></div></a>
+ <a class="snap_nopreview" id="snap_com_shot_ribbon_a" href="http://www.previewshots.com/snapshots.php?source=www.cnblogs.com&campaign=charity-ribbon#shares" style="max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; position: static; left: auto; top: auto; line-height: normal; background-image: url(http://www.previewshots.com/images/v1.3/t.gif); background-color: transparent; z-index: 99999; visibility: hidden; "><img id="snap_com_shot_ribbon" src="./Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园_files/ribbon.png" style="max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; left: auto; top: auto; line-height: normal; background-image: url(http://www.previewshots.com/images/v1.3/t.gif); background-color: transparent; z-index: 99999; position: absolute; right: 98px; bottom: 5px; width: 17px; height: 20px; visibility: hidden; " alt="Snap Shares for charity" title="Portions of Snap Shares Ad Impressions on this site are donated to Charity"></a>
+ <img id="snap_com_shot_lg" src="./Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园_files/t.gif" style="max-height: 2000px; max-width: 2000px; min-width: 0px; min-height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; font-style: normal; font-weight: normal; font-family: &#39;trebuchet ms&#39;, arial, helvetica, sans-serif; float: none; position: static; left: auto; top: auto; line-height: normal; background-image: url(http://www.previewshots.com/images/v1.3/t.gif); background-color: transparent; z-index: 99999; visibility: hidden; ">
+</div>
+</div>
+<a name="top"></a>
+<!--PageBeginHtml Block Begin-->
+<style type="text/css">     
+    .First
+    {
+        margin: 10px 0;
+        font-family: 'Microsoft Yahei';
+        text-align: left;
+        padding: 6px 20px;
+        color:#fff;
+        background: #888888;
+        font-size: 20px;
+        border-radius: 4px;
+        clear: both;
+    }
+   .Second
+    {
+        margin: 10px 0;
+        font-family: 'Microsoft Yahei';
+        padding: 6px 20px;
+        background: #999999;
+        color: #fff;
+        font-size: 18px;
+        border-radius: 4px;
+        clear: both;
+    }
+        
+        
+    .Third
+    {
+        margin: 10px 0;
+        padding: 6px 20px;
+        font-family: 'Microsoft Yahei';
+        margin: 15px 0;
+        font-size: 16px;
+        color: fff;
+        background: #CCCCCC;
+        border-radius: 4px;
+        clear: both;
+    }
+    .note
+    {
+        margin: 10px 0;
+        padding: 15px 20px 15px 60px;
+        font-size: 15px;
+        font-family: 'Microsoft Yahei';
+        box-shadow: 0 0 8px #aaa;
+        clear: both;
+    }
+</style>
+<!--PageBeginHtml Block End-->
+
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+		
+<!--done-->
+<div class="title"><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/shanyou/"> 自由、创新、研究、探索</a></div>
+<div class="subtitle">Linux/Windows Mono/DotNet
+             [ Open Source .NET Development/
+使用开源工具进行DotNet软件开发]</div>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="MyLinks1_HomeLink" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+<li><a id="MyLinks1_MyHomeLink" class="menu" href="http://www.cnblogs.com/shanyou/">首页</a></li>
+<li><a class="menu" href="http://q.cnblogs.com/">博问</a></li>
+<li><a class="menu" href="http://home.cnblogs.com/ing/">闪存</a></li>
+<li><a id="MyLinks1_NewPostLink" class="menu" rel="nofollow" href="http://www.cnblogs.com/shanyou/admin/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="MyLinks1_ContactLink" class="menu" rel="nofollow" href="http://space.cnblogs.com/msg/send/%e5%bc%a0%e5%96%84%e5%8f%8b">联系</a></li>
+<li><a id="MyLinks1_Syndication" class="menu" href="http://www.cnblogs.com/shanyou/rss">订阅</a>
+<!--<a id="MyLinks1_XMLLink" class="aHeaderXML" href="http://www.cnblogs.com/shanyou/rss"><img src="/Skins/Custom/images/rss.gif" alt="订阅" /></a>--></li>
+<li><a id="MyLinks1_Admin" class="menu" rel="nofollow" href="http://www.cnblogs.com/shanyou/admin/EditPosts.aspx">管理</a></li>
+</ul>
+
+		<div class="blogStats">
+			
+			
+<!--done-->
+随笔-1156&nbsp;
+文章-57&nbsp;
+评论-4006&nbsp;
+
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+	
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="./Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园_files/Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园.htm">Windows Runtime(WinRT) 揭秘</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body"><p>看了个BUILD的PPT，Windows Runtime (RT)并不是一些新闻网站说的那样微软自废.NET武功，而是恰恰相反，WinRT是Win32API的现代版，其中有很深的.NET的基因，是Metro UI的.NET基础，如果考察Metadata的变化，WinRT的API定义的元数据是基于标准ECMA 335，也就是.NET的标准 ，WinRT也是一个沙箱的环境，针对AppStore环境设计的。</p>
+<p><video width="960" height="544" controls="controls" poster="http://video.ch9.ms/build/2011/thumbs/874_LG.jpg" src="http://video.ch9.ms/build/2011/mp4/874.mp4"><object width="960" height="544" data="http://www.cnblogs.com/editor/tiny_mce/plugins/media/moxieplayer.swf" type="application/x-shockwave-flash"><param name="minRuntimeVersion" value="4.0.50401.0"><param name="source" value="http://channel9.msdn.com/scripts/Channel9.xap?v=1.8"><param name="initParams" value="mediaurl=http://video.ch9.ms/build/2011/wmv/874.wmv,thumbnail=http://video.ch9.ms/build/2011/thumbs/874_LG.jpg,deliverymethod=progressivedownload,autoplay=false,entryid=7f84ab3cf837490295e49f5d00bc73a6"><param name="src" value="http://www.cnblogs.com/editor/tiny_mce/plugins/media/moxieplayer.swf"><param name="flashvars" value="url=http%3A//video.ch9.ms/build/2011/mp4/874.mp4&amp;poster=http%3A//video.ch9.ms/build/2011/thumbs/874_LG.jpg"><param name="allowfullscreen" value="true"><param name="allowscriptaccess" value="true"></object></video></p>
+<p><strong>基础知识</strong></p>
+<p>微软以推出Windows 8为契机，以解决Windows长期存在的问题，并带来了新的用户界面，使得Windows更加安全和AppStore的商业模式。微软在Windows 8 里打造了第三个 XAML-based UI 系统， WPF只是一个供 .NET 这个圈子使用的XAML UI系统 Silverlight只是给浏览器使用的XAML UI系统，Windows Phone7将Silverlight到了手机，现在将XAML带到了涵盖PC、Pad、Phone的所有系统（虽然微软认为平板也是PC，我还是想叫他Pad，用过iPad的都知道苹果所定义的Pad和PC有很大区别）。</p>
+<p>.NET开发人员都对.NET 的P / Invoke和COM Interop 很熟悉了，这两种技术使得.NET人员可以使用Win32 API和COM组件，Mono也是使用P/Invoke技术创建原生的库，例如Gtk# 绑定到 Gtk+ API, MonoMac 绑定到Cocoa API, Qyoto 绑定到Qt API，Mono出现了MonoTouch，MonoDroid和MonoMac等等很有创新性的产品。 COM Interop 还可以使得C/C++ 从 C#导入Com类型库。</p>
+<p>创建原生库的方法很多，但是这些工作都得是手工去做，很乏味而且容易出错，从这点来说WinRT也是一个很有创新的，可以让所有的开发者用同一个模型创建Metro UI的应用。</p>
+<p><strong>WinRT</strong></p>
+<p>WinRT是一个新的API 集合，具有以下特性：</p>
+<ul>
+<li>它实现了Metro UI规范的UI库</li>
+<li>为Windows开发人员提供一个简单的UI编程模型，你不需要学习Win32API的那些复杂的API了</li>
+<li>它使用XAML-base的UI系统</li>
+<li>API都设计成了异步的</li>
+<li>它和.NET一样是个沙箱的API，自成体系，用于创建AppStore上的应用程序。</li>
+<li>API的元数据格式是ECMA335，和.NET一样的标准。这是不是意味着以后Mono也可以在xUnit上去实现这样的API呢？</li>
+</ul>
+<p>WinRT包装的新的用户界面系统，和Win32API一样是Com的上层。</p>
+<p><strong>WinRT Projections</strong></p>
+<p>我们所说的“Binding”，微软现在叫做“Projections”，又是一个新名词。Projections就是向三个环境 Native (C and C++), HTML/Javascript 和.NET 暴露接口的过程。所以在Win8上各类开发者依然可以用着不同的工具，但是却是使用着统一的模型。</p>
+<p>如果开发者使用.NET或者C++ 写的组件，它的API被存储在一个WinMD文件里，你可以在三种环境（原生、javascript和.NET）。即使你的组件是用C++ 写的，也不需要通过COM向外暴露，使用起来更像是一个面向对象的C++ API。</p>
+<p>WinRT的底层定义了一套基本的类型和各种环境的映射，这是不是很像.NET环境里面对不同语言的支持哈。</p>
+<p><strong>异步API</strong></p>
+<p>微软认为，当给开发者一个使用同步和异步的API的选择的时候，开发者会选择简单的同步API，这在我们的.NET 编程实践中得到证明，.NET有很成熟的异步编程模型，还有特意为并行和异步处理而设计的F#，结果是什么呢，各位同学心里有数。</p>
+<p>在WinRT中，微软一直遵循一个简单的规则：如果一个API预计耗时超过50毫秒，那么API就是异步的，也就是说API是异步的哦，这样就能确保Metro UI上的操作体验是最好的。</p>
+<p>异步编程历来是一个繁琐的过程，回调和状态，还有异常处理等。为了简化这个过程，C#和VB也扩展了支持 F#-inspired await/async 模型，异步编程变成了欢乐之旅。</p>
+<p><strong>.NET的首要地位不见了吗？</strong></p>
+<p>之前的新闻中一直在质疑.NET 被微软抛弃了，当然不是了。也不是所有的.NET API 都集成到了WinRT中，只是一个子集。</p>
+<p>当你使用C#和VB，你使用的是完整的.NET框架。但是他们只暴露了一个较小的子集API给Windows 8的开发者。你可能会想，我可以通过一些技巧使用到整个.NET，如果你的程序不需要提交AppStore上接受微软的审核，这是可以的。这种策略明显是跟苹果学的。</p>
+<p>借此机会.NET团队也对.NET做了一次清理，mscorlib.dll和System.dll中已被分割在不同的库里头了，随着Win8发布的.NET版本是4.5了，也就是说.NET 4.5不是.NET 4的简单补丁包，里头加了不少东西，ASP.NET的版本号也是4.5，不像.NET 2.0 ~3.5 SP1，ASP.net的版本还是2。0。为了在Win8里开发，开始学习.NET 4.5又是必须的了，这里关注的集中在客户端开发，同样的在服务器端开发方面.NET 4.5也加入大量的干货。</p>
+<p><strong>创建WinRT 组件</strong></p>
+<p>虽然WinRT支持很多的语言，但是微软只是用C++和.NET演示了如何开发一个WinRT组件，使用.NET来开发WinRT组件会比C++简单得多。也不是所有的.NET特性都能用上哦，比如组件类就不能使用private 字段，在异步的API里不能使用Task&lt;T&gt; ，要用IAsyncOperation 代替。</p>
+<div id="codeSnippetWrapper" class="csharpcode-wrapper">
+<pre class="csharpcode"><span class="kwrd">public</span> <span class="kwrd">sealed</span> <span class="kwrd">class</span> AddTwo<br>{<br>       <span class="kwrd">public</span> <span class="kwrd">int</span> Add (<span class="kwrd">int</span> a, <span class="kwrd">int</span> b)<br>       {<br>           <span class="kwrd">return</span> a + b;<br>       }<br><br>       <span class="kwrd">public</span> async IAsyncOperation SubAsync (<span class="kwrd">int</span> a, <span class="kwrd">int</span> b)<br>       {<br>           <span class="kwrd">return</span> a - await (CountEveryBitByHand (b));<br>       }<br>   }</pre>
+</div>
+<p>你会发现上述代码没有任何形式的COM声明，唯一限制的是，类必须是个密封的（除非你是在创建一个XAML UI组件，这种情形下这种限制是接触的）</p>
+<p><strong>UI编程</strong></p>
+<p>当涉及到用户界面的开发的时候，你你可以使用HTML与CSS样式或使用XAML的你的应用程序的用户界面。当你回到界面层，就可以用HTML &amp; CSS或者是XAML UI，用HTML&amp; Css做出来的界面就是Web了，而是一个Windows应用，早在Vista开始就有了类似的应用，Windows7上做了改进，叫做Gadgets ，Windows 8就进化到了Metero UI，和C++、.NET并驾齐驱了。</p>
+<p>Windows8的开发框架并没有基于HTML5和JavaScript，开发者完全可以用原生C++、C#和Silverlight去开发对平板和触控友好的应用，HTML5和JavaScript只是提供了一种选择。</p></div><div id="MySignature"><div style="height: 120px; background-color: #fffeee; text-align: center">
+<div style="margin-top: 15px; float: left; text-align: left">作者: <a href="http://shanyou.cnblogs.com/" target="_blank">自由、创新、研究、探索……</a><br>
+出处：<a href="http://shanyou.cnblogs.com/" target="_blank">http://shanyou.cnblogs.com/</a><br>
+版权：本文版权归作者和博客园共有<br>
+转载：欢迎转载，为了保存作者的创作热情，请按要求【转载】，谢谢<br>
+要求：未经作者同意，必须保留此段声明；必须在文章中给出原文连接；否则必究法律责任 
+<br>
+</div>
+</div></div>
+<script type="text/javascript">
+var isLogined = false;
+var cb_blogId = 782;
+var cb_entryId = 2179699;
+var cb_blogApp = currentBlogApp;
+var cb_blogUserGuid = "007f310b-63cf-dd11-9e4d-001cf0cd104b";
+var cb_entryCreatedDate = '2011/9/17 16:21:00';
+var enableGoogleAd = true;
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+</script>
+<div id="blog_post_info_block">
+<div id="blog_post_info"><div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/shanyou/category/40892.html">.net framework</a>, <a href="http://www.cnblogs.com/shanyou/category/323246.html">Windows 8</a>, <a href="http://www.cnblogs.com/shanyou/category/369052.html">WinRT</a></div>
+<div id="EntryTag"></div>
+<div id="green_channel">
+绿色通道：
+<a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(cb_entryId,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+<a id="green_channel_follow" onclick="c_follow();" href="javascript:void(0);">关注我</a>
+<a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a><a id="green_channel_contact" href="http://space.cnblogs.com/msg/send/%e5%bc%a0%e5%96%84%e5%8f%8b" target="_blank">与我联系</a>
+<a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园_files/icon_weibo_24.png" alt=""></a>
+</div>
+<div id="digg_block">
+<div id="author_profile">
+<div id="author_profile_info" class="author_profile_info">
+<a href="http://home.cnblogs.com/u/shanyou/" target="_blank"><img src="./Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园_files/u510.jpg" class="author_avatar" alt=""></a>
+<div id="author_profile_detail" class="author_profile_info">
+<a href="http://home.cnblogs.com/u/shanyou/">张善友</a><br>
+<a href="http://home.cnblogs.com/u/shanyou/followees">关注 - 204</a><br>
+<a href="http://home.cnblogs.com/u/shanyou/followers">粉丝 - 838</a>
+</div>
+</div>
+<div class="clear"></div>
+<div id="author_profile_honor">荣誉：<a href="http://www.cnblogs.com/expert/" target="_blank">推荐博客</a></div>
+<div id="author_profile_follow">
+<a href="javascript:void(0);" onclick="c_follow();return false;">+加关注</a>
+</div>
+</div>
+<div id="div_digg">										
+	<div class="diggit" onclick="votePost(cb_entryId,&#39;Digg&#39;)"> 
+		<span class="diggnum" id="digg_count">20</span>
+	</div>
+	<div class="buryit" onclick="votePost(cb_entryId,&#39;Bury&#39;)"> 
+		<span class="burynum" id="bury_count">0</span>
+	</div>
+	<div class="clear"></div>	
+	<div class="diggword" id="digg_tips">
+    (请您对文章做出评价)
+    </div>	
+</div>
+</div></div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/shanyou/archive/2011/09/10/2173322.html" class="p_n_p_prefix">« </a> 博主前一篇：<a href="http://www.cnblogs.com/shanyou/archive/2011/09/10/2173322.html" title="发布于2011-09-10 20:30">私有代码存放仓库 BitBucket</a><br><a href="http://www.cnblogs.com/shanyou/archive/2011/10/02/2197986.html" class="p_n_p_prefix">» </a> 博主后一篇：<a href="http://www.cnblogs.com/shanyou/archive/2011/10/02/2197986.html" title="发布于2011-10-02 14:02">使用 MDT 2010 进行可伸缩部署</a><br></div>
+</div>
+<script type="text/javascript">
+    //SyntaxHighlighter.config.strings.expandSource = '<span><img src="http://static.cnblogs.com/images/expand-code.gif" alt="" class="expand-code-icon"/>View Code</span>';
+    $(function () {             
+        fixPostBodyFormat();
+        loadAdUnderPost();
+        loadBlogSignature();
+        LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+        GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);        
+        GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);        
+    });
+</script>
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2011-09-17 16:21</span> <a href="http://www.cnblogs.com/shanyou/">张善友</a> 阅读(25225) 评论(<span id="post-comment-count">47</span>)  <a href="http://www.cnblogs.com/shanyou/admin/EditPosts.aspx?postid=2179699" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#" onclick="AddToWz(2179699);return false;">收藏</a></div>
+	</div>
+	<img src="./Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园_files/2179699.html" width="1" height="1" alt="">
+	
+</div><!--end: topics 文章、评论容器-->
+<div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<!--done-->
+<div class="feedback_area_title">评论列表</div>
+<div class="feedbackNoItems"></div>
+	
+
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2201540" class="layer">#1楼</a><a name="2201540" id="comment_anchor_2201540"></a>  <span class="comment_date">2011-09-17 16:54</span> <a id="a_comment_author_2201540" href="http://home.cnblogs.com/u/109469/" target="_blank">诺贝尔</a> <a href="http://space.cnblogs.com/msg/send/%e8%af%ba%e8%b4%9d%e5%b0%94" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2201540" class="blog_comment_body">html 比 xaml 好多了。xaml 看了那么多次，还是看不进去。<br>html + c# 才是王道，可惜html 只能+javascript.</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2201540,&#39;Digg&#39;,this)">支持(1)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2201540,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2201542" class="layer">#2楼</a><a name="2201542" id="comment_anchor_2201542"></a>  <span class="comment_date">2011-09-17 16:56</span> <a id="a_comment_author_2201542" href="http://home.cnblogs.com/u/109469/" target="_blank">诺贝尔</a> <a href="http://space.cnblogs.com/msg/send/%e8%af%ba%e8%b4%9d%e5%b0%94" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2201542" class="blog_comment_body">你这个页面的视频我用metro ie能看哦，是什么格式的？</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2201542,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2201542,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2201551" class="layer">#3楼</a><a name="2201551" id="comment_anchor_2201551"></a>  <span class="comment_date">2011-09-17 17:14</span> <a id="a_comment_author_2201551" href="http://home.cnblogs.com/u/84522/" target="_blank">feilng</a> <a href="http://space.cnblogs.com/msg/send/feilng" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2201551" class="blog_comment_body">WinRT本身是native的，是一个native的.net<br>com—〉.net—〉高级com，WinRT就是com的成熟与回归<br>吸收了.net思想，只是去掉了虚拟机<br><br>这才是WIN32 API的现代版</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2201551,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2201551,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2201555" class="layer">#4楼</a><a name="2201555" id="comment_anchor_2201555"></a>  <span class="comment_date">2011-09-17 17:17</span> <a id="a_comment_author_2201555" href="http://home.cnblogs.com/u/296767/" target="_blank">_Mgen</a> <a href="http://space.cnblogs.com/msg/send/_Mgen" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2201555" class="blog_comment_body"><a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2201551" title="查看所回复的评论">@</a>feilng<br>但是注意，使用C#编写的Metrol程序还是会加载CLR的，C++不需要。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2201555,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2201555,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2201558" class="layer">#5楼</a><a name="2201558" id="comment_anchor_2201558"></a>  <span class="comment_date">2011-09-17 17:33</span> <a id="a_comment_author_2201558" href="http://home.cnblogs.com/u/84522/" target="_blank">feilng</a> <a href="http://space.cnblogs.com/msg/send/feilng" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2201558" class="blog_comment_body">因为目前MS没提供C#直接编译到native的方式，不像mono<br>所以编写C#程序的时候生成的代码就是MSIL，这样的APP不加载CLR能用吗<br><br>WinRT关键是提供了一套组件机制，这样的库比C风格的Win32API现代<br>也比以前的com形式的库完善，<br>这样未来Windows API可以分为两层，<br>1、核心C API面向系统级，2、WinRT面向应用层<br>现有的.net可以看作第3层，傻瓜层</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2201558,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2201558,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2201559" class="layer">#6楼</a><a name="2201559" id="comment_anchor_2201559"></a>  <span class="comment_date">2011-09-17 17:36</span> <a id="a_comment_author_2201559" href="http://home.cnblogs.com/u/84522/" target="_blank">feilng</a> <a href="http://space.cnblogs.com/msg/send/feilng" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2201559" class="blog_comment_body">强烈期待C#直接编译到native，享受C#语言，同时享受性能<br>这个时候C#程序才可以谈用户体验</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2201559,&#39;Digg&#39;,this)">支持(1)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2201559,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2201567" class="layer">#7楼</a><a name="2201567" id="comment_anchor_2201567"></a>  <span class="comment_date">2011-09-17 17:59</span> <a id="a_comment_author_2201567" href="http://home.cnblogs.com/u/294879/" target="_blank">小烟</a> <a href="http://space.cnblogs.com/msg/send/%e5%b0%8f%e7%83%9f" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2201567" class="blog_comment_body">老师，有人说WinRT会取代WPF 和 WCF，你认为呢？</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2201567,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2201567,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2201576" class="layer">#8楼</a><a name="2201576" id="comment_anchor_2201576"></a>  <span class="comment_date">2011-09-17 18:26</span> <a id="a_comment_author_2201576" href="http://home.cnblogs.com/u/159376/" target="_blank">0x0qwe</a> <a href="http://space.cnblogs.com/msg/send/0x0qwe" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2201576" class="blog_comment_body">.net4.5有神吗新的东东啊</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2201576,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2201576,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2201591" class="layer">#9楼</a><a name="2201591" id="comment_anchor_2201591"></a>  <span class="comment_date">2011-09-17 19:23</span> <a id="a_comment_author_2201591" href="http://home.cnblogs.com/u/3141/" target="_blank">瑞雪年</a> <a href="http://space.cnblogs.com/msg/send/%e7%91%9e%e9%9b%aa%e5%b9%b4" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2201591" class="blog_comment_body">楼主分析的真好！<br>“•API的元数据格式是ECMA335，和.NET一样的标准。这是不是意味着以后Mono也可以在xUnit上去实现这样的API呢？”<br>当我第一眼看到Metro UI时，我就感觉这个东西早晚会被移植到Linux上，因为我看它本质上就是一个重构了的Silverlight，就开源界现有的代码来看，实现它可以说不费力气，就像当年Miguel de lcaza领导团队21天就实现Silverlight的基本功能。<br>MonoGame, Moonlight都有这方面的潜质，或许就是它们的合集。<br>这个“早晚”取决于微软的态度，不在于技术上，象微软对Mono是支持的，至少是不反对的，如果对Metro UI保持这种态度，那就会“很早”出现！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2201591,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2201591,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2201597" class="layer">#10楼</a><a name="2201597" id="comment_anchor_2201597"></a>  <span class="comment_date">2011-09-17 19:36</span> <a id="a_comment_author_2201597" href="http://home.cnblogs.com/u/112805/" target="_blank">天行健 自强不息</a> <a href="http://space.cnblogs.com/msg/send/%e5%a4%a9%e8%a1%8c%e5%81%a5+%e8%87%aa%e5%bc%ba%e4%b8%8d%e6%81%af" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2201597" class="blog_comment_body">分析的不错</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2201597,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2201597,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2201611" class="layer">#11楼</a><a name="2201611" id="comment_anchor_2201611"></a>  <span class="comment_date">2011-09-17 20:34</span> <a id="a_comment_author_2201611" href="http://home.cnblogs.com/u/84123/" target="_blank">toEverybody</a> <a href="http://space.cnblogs.com/msg/send/toEverybody" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2201611" class="blog_comment_body">很不喜欢微软让大家不断地投资学新东西,.NET发展了10多年了,感觉还是一个不成熟的小孩..<br>还是让微软消失吧,免得大家累死累活的,,,</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2201611,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2201611,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2201667" class="layer">#12楼</a><a name="2201667" id="comment_anchor_2201667"></a>  <span class="comment_date">2011-09-17 23:12</span> <a id="a_comment_author_2201667" href="http://home.cnblogs.com/u/21088/" target="_blank">周行天下</a> <a href="http://space.cnblogs.com/msg/send/%e5%91%a8%e8%a1%8c%e5%a4%a9%e4%b8%8b" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2201667" class="blog_comment_body"><a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2201611" title="查看所回复的评论">@</a>toEverybody<br>傻逼，又是你</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2201667,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2201667,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2201676" class="layer">#13楼</a><a name="2201676" id="comment_anchor_2201676"></a>  <span class="comment_date">2011-09-17 23:37</span> <a id="a_comment_author_2201676" href="http://home.cnblogs.com/u/142719/" target="_blank">slice</a> <a href="http://space.cnblogs.com/msg/send/slice" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2201676" class="blog_comment_body">我不认为是微软在让大家学习这些东西，而是需求的存在创造了这些东西。<br>例如WinRT，照顾了所有开发者，C++的，HTML+Javascript的，C#的，都可以利用自己已有的经验，而且解决了跨X86和ARM的问题，而且也让他们开发和运行都更有效率。<br>如果Win8没有这个东西，那才是灾难，而你拥抱这些东西，好处是多多的。<br>很多东西我会了解，根据自己的需求看是否需要深入，往往深入后带来的都是收获和更高的效率，但使用什么技术主要以需求为主导，我从来不认为自己的任何学习是没有价值的，这也是我认为活着的技术都有存在的价值的原因，没价值的自然死掉。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2201676,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2201676,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2201715" class="layer">#14楼</a><a name="2201715" id="comment_anchor_2201715"></a>  <span class="comment_date">2011-09-18 05:59</span> <a id="a_comment_author_2201715" href="http://home.cnblogs.com/u/59691/" target="_blank">dotNetDR_</a> <a href="http://space.cnblogs.com/msg/send/dotNetDR_" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2201715" class="blog_comment_body"><a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2201540" title="查看所回复的评论">@</a>诺贝尔<br>能具体说说呢?都是XML(HTML部分近似XML)啊~<br>我自己掌握起来很容易啊!</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2201715,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2201715,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2201727" class="layer">#15楼</a><a name="2201727" id="comment_anchor_2201727"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2011-09-18 08:21</span> <a id="a_comment_author_2201727" href="http://home.cnblogs.com/u/510/" target="_blank">shanyou</a> <a href="http://space.cnblogs.com/msg/send/shanyou" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2201727" class="blog_comment_body"><fieldset class="comment_quote"><legend><a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2201567" title="查看引用原文">引用</a></legend>小烟：老师，有人说WinRT会取代WPF 和 WCF，你认为呢？</fieldset><br>WinRT只是现代版的Win32API，.NET和WinRT不同，那里有取代的可能呢。Win8的.net 版本号4.5，更好地支持WinRT，同时在ASP.NET,WCF,BCL等方面加强很多</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2201727,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2201727,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2201845" class="layer">#16楼</a><a name="2201845" id="comment_anchor_2201845"></a>  <span class="comment_date">2011-09-18 13:00</span> <a id="a_comment_author_2201845" href="http://home.cnblogs.com/u/66374/" target="_blank">DiggingDeeply</a> <a href="http://space.cnblogs.com/msg/send/DiggingDeeply" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2201845" class="blog_comment_body">越新越傻</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2201845,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2201845,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2201901" class="layer">#17楼</a><a name="2201901" id="comment_anchor_2201901"></a>  <span class="comment_date">2011-09-18 16:10</span> <a id="a_comment_author_2201901" href="http://home.cnblogs.com/u/17392/" target="_blank">YaoTong</a> <a href="http://space.cnblogs.com/msg/send/YaoTong" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2201901" class="blog_comment_body"><a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2201667" title="查看所回复的评论">@</a>周行天下<br>他老婆一定是跟一个搞.net的跑了.</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2201901,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2201901,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2202191" class="layer">#18楼</a><a name="2202191" id="comment_anchor_2202191"></a>  <span class="comment_date">2011-09-19 09:36</span> <a id="a_comment_author_2202191" href="http://home.cnblogs.com/u/9419/" target="_blank">Jeffrey Zhao</a> <a href="http://space.cnblogs.com/msg/send/Jeffrey+Zhao" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2202191" class="blog_comment_body"><fieldset class="comment_quote"><legend><a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2201611" title="查看引用原文">引用</a></legend>toEverybody：<br>很不喜欢微软让大家不断地投资学新东西,.NET发展了10多年了,感觉还是一个不成熟的小孩..<br>还是让微软消失吧,免得大家累死累活的,,,</fieldset><br>how old are you，怎么老是你？<br>.NET如果还是个小孩，那么你就是个精子了。话说你爸当年怎么没把你射墙上啊。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2202191,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2202191,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2202208" class="layer">#19楼</a><a name="2202208" id="comment_anchor_2202208"></a>  <span class="comment_date">2011-09-19 09:47</span> <a id="a_comment_author_2202208" href="http://home.cnblogs.com/u/35763/" target="_blank">土豆烤肉</a> <a href="http://space.cnblogs.com/msg/send/%e5%9c%9f%e8%b1%86%e7%83%a4%e8%82%89" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2202208" class="blog_comment_body"><fieldset class="comment_quote"><legend><a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2202191" title="查看引用原文">引用</a></legend>Jeffrey Zhao：<br><fieldset class="comment_quote"><legend>引用</legend>toEverybody：<br>很不喜欢微软让大家不断地投资学新东西,.NET发展了10多年了,感觉还是一个不成熟的小孩..<br>还是让微软消失吧,免得大家累死累活的,,,</fieldset><br>how old are you，怎么老是你？<br>.NET如果还是个小孩，那么你就是个精子了。话说你爸当年怎么没把你射墙上啊。</fieldset><br><br>赵哥，淡定！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2202208,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2202208,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2202226" class="layer">#20楼</a><a name="2202226" id="comment_anchor_2202226"></a>  <span class="comment_date">2011-09-19 09:53</span> <a id="a_comment_author_2202226" href="http://home.cnblogs.com/u/88876/" target="_blank">Zachary.XiaoZhen</a> <a href="http://space.cnblogs.com/msg/send/Zachary.XiaoZhen" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2202226" class="blog_comment_body"><fieldset class="comment_quote"><legend><a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2202208" title="查看引用原文">引用</a></legend>土豆烤肉：<br><fieldset class="comment_quote"><legend>引用</legend>Jeffrey Zhao：<br><fieldset class="comment_quote"><legend>引用</legend>toEverybody：<br>很不喜欢微软让大家不断地投资学新东西,.NET发展了10多年了,感觉还是一个不成熟的小孩..<br>还是让微软消失吧,免得大家累死累活的,,,</fieldset><br>how old are you，怎么老是你？<br>.NET如果还是个小孩，那么你就是个精子了。话说你爸当年怎么没把你射墙上啊。</fieldset><br><br>赵哥，淡定！</fieldset><br>赵哥，淡定！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2202226,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2202226,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2202321" class="layer">#21楼</a><a name="2202321" id="comment_anchor_2202321"></a>  <span class="comment_date">2011-09-19 11:37</span> <a id="a_comment_author_2202321" href="http://home.cnblogs.com/u/108647/" target="_blank">zzfff</a> <a href="http://space.cnblogs.com/msg/send/zzfff" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2202321" class="blog_comment_body"><fieldset class="comment_quote"><legend><a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2202226" title="查看引用原文">引用</a></legend>Zachary.XiaoZhen：<br><fieldset class="comment_quote"><legend>引用</legend>土豆烤肉：<br><fieldset class="comment_quote"><legend>引用</legend>Jeffrey Zhao：<br><fieldset class="comment_quote"><legend>引用</legend>toEverybody：<br>很不喜欢微软让大家不断地投资学新东西,.NET发展了10多年了,感觉还是一个不成熟的小孩..<br>还是让微软消失吧,免得大家累死累活的,,,</fieldset><br>how old are you，怎么老是你？<br>.NET如果还是个小孩，那么你就是个精子了。话说你爸当年怎么没把你射墙上啊。</fieldset><br><br>赵哥，淡定！</fieldset><br>赵哥，淡定！</fieldset><br>赵哥，小宇宙爆发吧！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2202321,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2202321,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2202345" class="layer">#22楼</a><a name="2202345" id="comment_anchor_2202345"></a>  <span class="comment_date">2011-09-19 11:59</span> <a id="a_comment_author_2202345" href="http://home.cnblogs.com/u/84522/" target="_blank">feilng</a> <a href="http://space.cnblogs.com/msg/send/feilng" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2202345" class="blog_comment_body">DOS，WIN32，WINRT MS的三个里程碑<br>本质是MS终于开始Win32以来第一次大的平台变更<br>com以及.net是一种探索，其最终成果就是winRT<br><br>一直以来开发者需要的是一个API体系<br>以前它是Win32，这意味着开发什么都是C API函数<br>后来的com以及.net在组件系统方面有了较大发展，才有了OLE，ActiveX等等，这样Window平台的开发才步入组件时代,有点象样的零件了<br>最后.net的发展有了大一统的面向对象的现代API集，但是由于其非native无法支撑各种重量级应用例如ps，cad等，例如这些年微软推出了direct2D而不是用wpf统一UI开发，最后再加上移动平板设备等的发展，需要最大限度榨取硬件效能，所以结果就是：<br><br>我们需要现代API，我们需要组件，我们需要同时支持x86，ARM<br>没有问题，windows为你提供统一的现代API，一整套native组件库，没有com那些破事（主要是利用了.net成果），只要你基于这套库写的代码，那么各自编译一下就可以支持x86或ARM了，的，性能用户体验可以保证，上层我可以支持各种语言。<br>当然win8里的winrt还不完善，但是迟早要全的。<br><br>.net是提供了更高级特性的一个东西，并且也能直接使用WinRT的库，本质上多一个虚拟机，多一个gc，这2个东西并不是重点，快速开发企业应用之类的还是可以用的，但是开发一些重量级应用可以考虑winRT了，这样Win32开发会逐步向WinRT迁移，以前.net下开发的不太爽的一些应用向WinRT迁移，.net本身的重要性会下降</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2202345,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2202345,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2202347" class="layer">#23楼</a><a name="2202347" id="comment_anchor_2202347"></a>  <span class="comment_date">2011-09-19 12:00</span> <a id="a_comment_author_2202347" href="http://home.cnblogs.com/u/84522/" target="_blank">feilng</a> <a href="http://space.cnblogs.com/msg/send/feilng" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2202347" class="blog_comment_body">重点是现代的库，现代的语言，而不是虚拟机、gc</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2202347,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2202347,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2202348" class="layer">#24楼</a><a name="2202348" id="comment_anchor_2202348"></a>  <span class="comment_date">2011-09-19 12:01</span> <a id="a_comment_author_2202348" href="http://home.cnblogs.com/u/84522/" target="_blank">feilng</a> <a href="http://space.cnblogs.com/msg/send/feilng" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2202348" class="blog_comment_body">千万不要说没有虚拟机、gc就没有现代语言</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2202348,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2202348,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2202374" class="layer">#25楼</a><a name="2202374" id="comment_anchor_2202374"></a>  <span class="comment_date">2011-09-19 12:32</span> <a id="a_comment_author_2202374" href="http://home.cnblogs.com/u/27612/" target="_blank">菩提树下的杨过</a> <a href="http://space.cnblogs.com/msg/send/%e8%8f%a9%e6%8f%90%e6%a0%91%e4%b8%8b%e7%9a%84%e6%9d%a8%e8%bf%87" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2202374" class="blog_comment_body">当年盖子要用.net重写windows核心的思想，总算在windows8上得到体现了，.net与windows合体了！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2202374,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2202374,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2202376" class="layer">#26楼</a><a name="2202376" id="comment_anchor_2202376"></a>  <span class="comment_date">2011-09-19 12:38</span> <a id="a_comment_author_2202376" href="http://home.cnblogs.com/u/84522/" target="_blank">feilng</a> <a href="http://space.cnblogs.com/msg/send/feilng" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2202376" class="blog_comment_body">是在去掉clr之后实现的，托管实在难堪大用</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2202376,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2202376,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2202498" class="layer">#27楼</a><a name="2202498" id="comment_anchor_2202498"></a>  <span class="comment_date">2011-09-19 14:31</span> <a id="a_comment_author_2202498" href="http://home.cnblogs.com/u/46653/" target="_blank">iTech</a> <a href="http://space.cnblogs.com/msg/send/iTech" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2202498" class="blog_comment_body">以后的mfc和wpf还可以用吗？<br><br>还是在mfc和wpf的底层被换成了winrt？</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2202498,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2202498,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2202502" class="layer">#28楼</a><a name="2202502" id="comment_anchor_2202502"></a>  <span class="comment_date">2011-09-19 14:35</span> <a id="a_comment_author_2202502" href="http://home.cnblogs.com/u/865/" target="_blank">技术,趋势</a> <a href="http://space.cnblogs.com/msg/send/%e6%8a%80%e6%9c%af%2c%e8%b6%8b%e5%8a%bf" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2202502" class="blog_comment_body"><fieldset class="comment_quote"><legend><a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2202374" title="查看引用原文">引用</a></legend>菩提树下的杨过：当年盖子要用.net重写windows核心的思想，总算在windows8上得到体现了，.net与windows合体了！</fieldset><br><br>精辟！这个WinRT给人感觉上还是真不错，如果C#能作为一级语言，那简直就是天下太平了。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2202502,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2202502,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2202512" class="layer">#29楼</a><a name="2202512" id="comment_anchor_2202512"></a>  <span class="comment_date">2011-09-19 14:50</span> <a id="a_comment_author_2202512" href="http://home.cnblogs.com/u/230596/" target="_blank">布丁儿</a> <a href="http://space.cnblogs.com/msg/send/%e5%b8%83%e4%b8%81%e5%84%bf" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2202512" class="blog_comment_body">.NET雄起 了<br><br>这是一个神奇的Q Q群：7 3 5 7 9 0 4<br>这里有腾讯、新浪、雨林木风等等的大牛们<br>这里有专业的技术团队，有前沿的技术思想......<br>亲，俺们等你（.NET）<br>-----------------------------</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2202512,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2202512,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2202753" class="layer">#30楼</a><a name="2202753" id="comment_anchor_2202753"></a>  <span class="comment_date">2011-09-19 18:14</span> <a id="a_comment_author_2202753" href="http://home.cnblogs.com/u/21088/" target="_blank">周行天下</a> <a href="http://space.cnblogs.com/msg/send/%e5%91%a8%e8%a1%8c%e5%a4%a9%e4%b8%8b" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2202753" class="blog_comment_body">坐等everybody,和猫之两瓶等傻逼<br>猫之两瓶你这个二货怎么还不来</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2202753,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2202753,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2202812" class="layer">#31楼</a><a name="2202812" id="comment_anchor_2202812"></a>  <span class="comment_date">2011-09-19 20:29</span> <a id="a_comment_author_2202812" href="http://home.cnblogs.com/u/3141/" target="_blank">瑞雪年</a> <a href="http://space.cnblogs.com/msg/send/%e7%91%9e%e9%9b%aa%e5%b9%b4" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2202812" class="blog_comment_body">Metro UI原来早有人在搞了，WinRT API我相信一定也会有人搞的。<br><a href="http://mosaicproject.codeplex.com/" target="_blank">http://mosaicproject.codeplex.com/</a><br><a href="http://newgen.codeplex.com/" target="_blank">http://newgen.codeplex.com/</a></div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2202812,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2202812,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2202874" class="layer">#32楼</a><a name="2202874" id="comment_anchor_2202874"></a>  <span class="comment_date">2011-09-19 22:01</span> <a id="a_comment_author_2202874" href="http://home.cnblogs.com/u/134886/" target="_blank">Joe Wulf</a> <a href="http://space.cnblogs.com/msg/send/Joe+Wulf" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2202874" class="blog_comment_body">WinFS的出现才是王道啊<br><br>微软的大统一快要实现了。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2202874,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2202874,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2202875" class="layer">#33楼</a><a name="2202875" id="comment_anchor_2202875"></a>  <span class="comment_date">2011-09-19 22:01</span> <a id="a_comment_author_2202875" href="http://home.cnblogs.com/u/137106/" target="_blank">testzhangsan</a> <a href="http://space.cnblogs.com/msg/send/testzhangsan" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2202875" class="blog_comment_body">mark</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2202875,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2202875,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2202932" class="layer">#34楼</a><a name="2202932" id="comment_anchor_2202932"></a>  <span class="comment_date">2011-09-19 23:26</span> <a id="a_comment_author_2202932" href="http://home.cnblogs.com/u/15440/" target="_blank">超我专注</a> <a href="http://space.cnblogs.com/msg/send/%e8%b6%85%e6%88%91%e4%b8%93%e6%b3%a8" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2202932" class="blog_comment_body"><a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2202345" title="查看所回复的评论">@</a>feilng<br>学习了！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2202932,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2202932,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2203258" class="layer">#35楼</a><a name="2203258" id="comment_anchor_2203258"></a>  <span class="comment_date">2011-09-20 12:18</span> <a id="a_comment_author_2203258" href="http://home.cnblogs.com/u/84123/" target="_blank">toEverybody</a> <a href="http://space.cnblogs.com/msg/send/toEverybody" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2203258" class="blog_comment_body"><a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2201901" title="查看所回复的评论">@</a>YaoTong<br><fieldset class="comment_quote"><legend><a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2201901" title="查看引用原文">引用</a></legend>YaoTong：<br>@周行天下<br>他老婆一定是跟一个搞.net的跑了.</fieldset><br>周行天下 他老婆或以后的老婆是C#之父Anders的情人,外国人的那个就是猛..</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2203258,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2203258,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2203261" class="layer">#36楼</a><a name="2203261" id="comment_anchor_2203261"></a>  <span class="comment_date">2011-09-20 12:21</span> <a id="a_comment_author_2203261" href="http://home.cnblogs.com/u/84123/" target="_blank">toEverybody</a> <a href="http://space.cnblogs.com/msg/send/toEverybody" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2203261" class="blog_comment_body"><fieldset class="comment_quote"><legend><a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2202191" title="查看引用原文">引用</a></legend>Jeffrey Zhao：<br><fieldset class="comment_quote"><legend>引用</legend>toEverybody：<br>很不喜欢微软让大家不断地投资学新东西,.NET发展了10多年了,感觉还是一个不成熟的小孩..<br>还是让微软消失吧,免得大家累死累活的,,,</fieldset><br>how old are you，怎么老是你？<br>.NET如果还是个小孩，那么你就是个精子了。话说你爸当年怎么没把你射墙上啊。</fieldset><br>NET太让人纠心了,你爸对你妈说...唉..都怪我插的太深了,喷出个NET来</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2203261,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2203261,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2203324" class="layer">#37楼</a><a name="2203324" id="comment_anchor_2203324"></a>  <span class="comment_date">2011-09-20 13:49</span> <a id="a_comment_author_2203324" href="http://home.cnblogs.com/u/167710/" target="_blank">月黑杀人夜</a> <a href="http://space.cnblogs.com/msg/send/%e6%9c%88%e9%bb%91%e6%9d%80%e4%ba%ba%e5%a4%9c" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2203324" class="blog_comment_body">翻译得不错<br>可是为何不在标题注明？不附上原文链接呢？<br>这样似乎是对原作者的不尊重吧<br><a href="http://tirania.org/blog/archive/2011/Sep-15.html" target="_blank">http://tirania.org/blog/archive/2011/Sep-15.html</a></div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2203324,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2203324,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2203406" class="layer">#38楼</a><a name="2203406" id="comment_anchor_2203406"></a>  <span class="comment_date">2011-09-20 14:56</span> <a id="a_comment_author_2203406" href="http://home.cnblogs.com/u/133551/" target="_blank">waninlezu</a> <a href="http://space.cnblogs.com/msg/send/waninlezu" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2203406" class="blog_comment_body">windows RT 。下载，<br><a href="http://www.cnblogs.com/waninlezu/archive/2011/09/20/win8MetaData.html" target="_blank">http://www.cnblogs.com/waninlezu/archive/2011/09/20/win8MetaData.html</a></div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2203406,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2203406,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2203618" class="layer">#39楼</a><a name="2203618" id="comment_anchor_2203618"></a>  <span class="comment_date">2011-09-20 18:09</span> <a id="a_comment_author_2203618" href="http://home.cnblogs.com/u/21088/" target="_blank">我想我是青蛙</a> <a href="http://space.cnblogs.com/msg/send/%e6%88%91%e6%83%b3%e6%88%91%e6%98%af%e9%9d%92%e8%9b%99" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2203618" class="blog_comment_body"><a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2203261" title="查看所回复的评论">@</a>toEverybody<br>傻逼玩意，天天泡到这里被人打脸。。。你是受虐狂啊。。<br>哥有皮鞭。。。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2203618,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2203618,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2203761" class="layer">#40楼</a><a name="2203761" id="comment_anchor_2203761"></a>  <span class="comment_date">2011-09-20 22:00</span> <a id="a_comment_author_2203761" href="http://home.cnblogs.com/u/17392/" target="_blank">YaoTong</a> <a href="http://space.cnblogs.com/msg/send/YaoTong" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2203761" class="blog_comment_body"><fieldset class="comment_quote"><legend><a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2203258" title="查看引用原文">引用</a></legend>toEverybody：<br>@YaoTong<br><fieldset class="comment_quote"><legend>引用</legend>YaoTong：<br>@周行天下<br>他老婆一定是跟一个搞.net的跑了.</fieldset><br>周行天下 他老婆或以后的老婆是C#之父Anders的情人,外国人的那个就是猛..</fieldset><br>我说的"他"不是指周行天下.</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2203761,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2203761,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2205177" class="layer">#41楼</a><a name="2205177" id="comment_anchor_2205177"></a>  <span class="comment_date">2011-09-22 13:27</span> <a id="a_comment_author_2205177" href="http://home.cnblogs.com/u/53290/" target="_blank">cnlcg</a> <a href="http://space.cnblogs.com/msg/send/cnlcg" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2205177" class="blog_comment_body">哎，话说着说着就开始ko了</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2205177,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2205177,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2215887" class="layer">#42楼</a><a name="2215887" id="comment_anchor_2215887"></a>  <span class="comment_date">2011-10-10 00:17</span> <a id="a_comment_author_2215887" href="http://home.cnblogs.com/u/118887/" target="_blank">xidao</a> <a href="http://space.cnblogs.com/msg/send/xidao" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2215887" class="blog_comment_body">winRT我觉得这个东西很有问题，按说他主要是用来做Metro UI界面编程的，说穿了就像IOS或android应用程序商店上的前端小程序的，而不是做后端服务编程的，也不是做系统软件之类的东东，但是按照ms在Win8上的思路，Win8的前端Metro UI的程序，主要是用来跑平板的，主要是为了跨平台的，理想情况下应该是写完后可以直接在Arm上和X64两个系统上跑的。<br>按说.net的程序就像JAVA一般（或Android)，应该是最好的跨平台开发语言的，哪怕是为了兼容Javascripts,也完全可以在.net上进行扩展的，现在ms搞一个核心级别的WinRT，这个有什么意义呢？为了照顾C++?哪怕是C++可以直接使用或操作WinRT，但c++最终还是要编译为机器码才执行的，编译后根本不能垮x64和arm两个平台的，而且就算退一步说，c++在源代码级上兼容X64和arm两个系统，但是x64是64位的系统，arm是32位的系统，对于c++这种系统级别的语言来讲要同一套代码实现64位和32位也没有很好的效率啊。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2215887,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2215887,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2215915" class="layer">#43楼</a><a name="2215915" id="comment_anchor_2215915"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2011-10-10 07:25</span> <a id="a_comment_author_2215915" href="http://home.cnblogs.com/u/510/" target="_blank">shanyou</a> <a href="http://space.cnblogs.com/msg/send/shanyou" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2215915" class="blog_comment_body"><a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2215887" title="查看所回复的评论">@</a>xidao<br>WinRT就是去掉.NET虚拟机的win32 API,也许是为了性能考虑，ios不允许开发者使用解释语言和第三方运行环境一样，服务器的开发上不是WinRT的市场，主要还是.NET，win8服务器软件的界面也是Metro</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2215915,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2215915,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2217359" class="layer">#44楼</a><a name="2217359" id="comment_anchor_2217359"></a>  <span class="comment_date">2011-10-11 16:28</span> <a id="a_comment_author_2217359" href="http://home.cnblogs.com/u/38093/" target="_blank">崔鹏飞</a> <a href="http://space.cnblogs.com/msg/send/%e5%b4%94%e9%b9%8f%e9%a3%9e" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2217359" class="blog_comment_body"><fieldset class="comment_quote"><legend><a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2203324" title="查看引用原文">引用</a></legend>月黑杀人夜：<br>翻译得不错<br>可是为何不在标题注明？不附上原文链接呢？<br>这样似乎是对原作者的不尊重吧<br><a href="http://tirania.org/blog/archive/2011/Sep-15.html" target="_blank">http://tirania.org/blog/archive/2011/Sep-15.html</a></fieldset><br>我还没看出来，楼主翻译的很自然，不像是经过语言转换的。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2217359,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2217359,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2349734" class="layer">#45楼</a><a name="2349734" id="comment_anchor_2349734"></a>  <span class="comment_date">2012-04-08 10:40</span> <a id="a_comment_author_2349734" href="http://home.cnblogs.com/u/32040/" target="_blank">landylee</a> <a href="http://space.cnblogs.com/msg/send/landylee" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2349734" class="blog_comment_body"><a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2202191" title="查看所回复的评论">@</a>Jeffrey Zhao<br>不知道尊重别人的人，自己也不值得别人尊重……</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2349734,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2349734,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2405902" class="layer">#46楼</a><a name="2405902" id="comment_anchor_2405902"></a>  <span class="comment_date">2012-06-21 16:50</span> <a id="a_comment_author_2405902" href="http://home.cnblogs.com/u/87435/" target="_blank">巡月</a> <a href="http://space.cnblogs.com/msg/send/%e5%b7%a1%e6%9c%88" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2405902" class="blog_comment_body"><div><div id="highlighter_332162" class="syntaxhighlighter  csharp"><div class="toolbar"><span><a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="csharp keyword">public</code> <code class="csharp plain">async IAsyncOperation&lt;</code><code class="csharp keyword">string</code><code class="csharp plain">&gt; GetSomeThingAsync()</code></div><div class="line number2 index1 alt1"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp plain">{</code></div><div class="line number3 index2 alt2"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp keyword">return</code> <code class="csharp keyword">string</code><code class="csharp plain">.Empty;</code></div><div class="line number4 index3 alt1"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp plain">} </code></div></div></td></tr></tbody></table></div></div><br>这样的代码在WinRT组件（WinMD File）里面是编译不通过的。提示需要使用Task&lt;string&gt;，但是当我使用Task&lt;string&gt;的时候，又提示错误。  请问这个怎么处理？</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2405902,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2405902,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2406062" class="layer">#47楼</a><a name="2406062" id="comment_anchor_2406062"></a>[<span class="louzhu">楼主</span>]<span id="comment-maxId" style="display:none;">2406062</span><span id="comment-maxDate" style="display:none;">2012/6/21 20:42:01</span>  <span class="comment_date">2012-06-21 20:42</span> <a id="a_comment_author_2406062" href="http://home.cnblogs.com/u/510/" target="_blank">张善友</a> <a href="http://space.cnblogs.com/msg/send/%e5%bc%a0%e5%96%84%e5%8f%8b" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2406062" class="blog_comment_body">你可以参考这个<a href="http://msdn.microsoft.com/en-us/library/windows/apps/windows.storage.applicationdata.localfolder.aspx" target="_blank">http://msdn.microsoft.com/en-us/library/windows/apps/windows.storage.applicationdata.localfolder.aspx</a></div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2406062,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2406062,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	<div id="comments_pager_bottom"></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.loadComments();</script>
+<div id="comment_form" class="commentform">
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" id="lnk_RefreshComments" onclick="return RefreshCommentList();">刷新评论</a><a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+
+<script type="text/javascript">
+    if (typeof commentManager === 'undefined') {
+        commentManager = new blogCommentManager();
+    }
+    commentManager.loadCommentForm();   
+</script>
+
+<div class="ad_text_commentbox"><a href="http://q.cnblogs.com/" target="_blank">程序员问答社区，解决您的技术难题</a></div>
+<div id="site_nav_under"><a href="http://www.cnblogs.com/" target="_blank" title="程序员的网上家园">博客园首页</a><a href="http://q.cnblogs.com/" target="_blank" title="程序员问答社区">博问</a><a href="http://news.cnblogs.com/" target="_blank" title="IT新闻">新闻</a><a href="http://home.cnblogs.com/ing/" target="_blank">闪存</a><a href="http://job.cnblogs.com/" target="_blank">程序员招聘</a><a href="http://kb.cnblogs.com/" target="_blank">知识库</a></div>
+<div id="ad_under_post_holder">
+<div id="google_ad_c1" class="c_ad_block">
+<!-- cnblogs_blogpost_C1_sitehome -->
+<div id="div-gpt-ad-1346480159711-0" style="width: 300px; height: 250px; ">
+
+<iframe id="google_ads_iframe_/1090369/cnblogs_blogpost_C1_sitehome_0" name="google_ads_iframe_/1090369/cnblogs_blogpost_C1_sitehome_0" width="300" height="250" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; "></iframe><iframe id="google_ads_iframe_/1090369/cnblogs_blogpost_C1_sitehome_0__hidden__" name="google_ads_iframe_/1090369/cnblogs_blogpost_C1_sitehome_0__hidden__" width="0" height="0" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; visibility: hidden; display: none; "></iframe></div>
+</div>
+<div id="blog_news_kb"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/158761/" target="_blank">Windows Phone 8 Build 9900功能演示</a><br> ·  <a href="http://news.cnblogs.com/n/158760/" target="_blank">港版iPhone 5在内地销售 每天跌价300元</a><br> ·  <a href="http://news.cnblogs.com/n/158759/" target="_blank">英特尔发布最新移动处理器奔腾B980</a><br> ·  <a href="http://news.cnblogs.com/n/158758/" target="_blank">英奢侈品公司推24克拉黄金版iPhone 5</a><br> ·  <a href="http://news.cnblogs.com/n/158757/" target="_blank">互联网耗电惊人浪费严重 30个核电站才够用</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/158173/" target="_blank">东方程序员怎么看西方程序员</a><br> ·  <a href="http://kb.cnblogs.com/page/121539/" target="_blank">一个前端工程师眼里的NodeJS</a><br> ·  <a href="http://kb.cnblogs.com/page/158426/" target="_blank">如何不怀疑自己</a><br> ·  <a href="http://kb.cnblogs.com/page/157001/" target="_blank">对的状态</a><br> ·  <a href="http://kb.cnblogs.com/page/158258/" target="_blank">看我姐和我妹子如何学编程</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="google_ad_c2" class="c_ad_block">
+<!-- cnblogs_blogpost_C2_sitehome -->
+<div id="div-gpt-ad-1346479110744-1" style="width: 468px; height: 60px; ">
+
+<iframe id="google_ads_iframe_/1090369/cnblogs_blogpost_C2_sitehome_0" name="google_ads_iframe_/1090369/cnblogs_blogpost_C2_sitehome_0" width="468" height="60" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; "></iframe></div>
+</div>
+<div id="ad_under_google" class="c_ad_block">
+<a href="http://www.china-pub.com/static07/1206/12znq_dyb_20120618/12znq_dyb_20120618.asp" target="_blank" rel="nofollow"><img src="./Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园_files/china-pub-0620.jpg" alt="" style="border:0px;"></a><br>
+<a href="http://www.china-pub.com/sale/usedbook.aspx" target="_blank" rel="nofollow">China-Pub 低价书精选</a><br>
+<a href="http://www.china-pub.com/static07/0901/zh_jueba_090121.asp" target="_blank" rel="nofollow">China-Pub 计算机绝版图书按需印刷服务</a>
+</div></div>
+<div id="HistoryToday" class="c_ad_block"><b>历史上的今天:</b><br>2005-09-17 <a href="http://www.cnblogs.com/shanyou/archive/2005/09/17/238854.html">使用Facility:EnterpriseLibrary整合进Castle</a><br>2005-09-17 <a href="http://www.cnblogs.com/shanyou/archive/2005/09/17/238840.html">应用IBatisNet+Castle进行项目的开发</a><br></div>
+</div>
+
+
+
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news" style=""><p>本Blog上的任何言论仅代表个人观点，与作者所在的公司没有任何关系。本Blog的内容按原样提供，作者与所属公司不提供任何形式的担保。</p>
+<p><strong><font color="#ff0000">由于技术更新很快,所有的文章都可能随时间的推移失效,请阅读的时候参考当前技术的相应版本.</font></strong></p>
+<p>
+</p><hr>
+<p></p>
+<p>欢迎来这里讨论，共同进步，不断学习才能不断进步。<br>姓名: 张善友<br>职业: 软件工程师<br>毕业于: <a href="http://www.lzu.edu.cn/" target="_blank">兰州大学</a><br>目前居住于: 中国深圳<br>2006年度微软最有价值专家<br>2007年度微软最有价值专家<br>2008年度微软最有价值专家<br>2009年度微软最有价值专家<br>2010年度微软最有价值专家<br>2011年度微软最有价值专家<br>2012年度微软最有价值专家<br><a href="https://mvp.support.microsoft.com/profile=F09F6B87-F4D5-43AC-8A18-AFC00CD602E3" target="_blank">张善友简介</a> <br><img alt="" src="./Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园_files/r_mvpLogo.jpg" width="170"> 
+<br>
+<!--QQ邮件列表订阅嵌入代码--><a target="_blank" href="http://list.qq.com/cgi-bin/qf_invite?id=a3a805b03b06557a9afbc8d4d81eb22822e38d8a24b348ff"><img alt="填写您的邮件地址，订阅我们的精彩内容：" border="0" src="./Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园_files/picMode_light_l.png"></a>
+</p>
+
+<div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/shanyou/">张善友</a><br>园龄：<a href="http://home.cnblogs.com/u/shanyou/" title="入园时间：2004-03-24">8年6个月</a><br>荣誉：<a href="http://www.cnblogs.com/expert/">推荐博客</a><br>粉丝：<a href="http://home.cnblogs.com/u/shanyou/followers/">838</a><br>关注：<a href="http://home.cnblogs.com/u/shanyou/followees/">204</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="cnblogs.UserManager.FollowBlogger(&#39;007f310b-63cf-dd11-9e4d-001cf0cd104b&#39;)">+加关注</a></div></div></div>
+</div>
+
+			<div id="calendar"><div id="blog-calendar" style="displya:none"></div></div>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn">
+
+<div class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+
+
+<div class="catListPostCategory">
+<h3 class="catListTitle">随笔分类<span style="font-size:11px;font-weight:normal">(1683)</span></h3>
+
+<ul>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/shanyou/category/40892.html">.net framework(135)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/shanyou/category/264189.html">Andriod(6)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/shanyou/category/76249.html">AOP(1)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/shanyou/category/58014.html">ASP.NET(58)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/shanyou/category/112942.html">ASP.NET MVC (67)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/shanyou/category/307401.html">ASP.NET Web API(32)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/shanyou/category/232884.html">Autofac(5)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/shanyou/category/383501.html">BigData(3)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_8" href="http://www.cnblogs.com/shanyou/category/66178.html">BPM&amp;WF(11)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_9" href="http://www.cnblogs.com/shanyou/category/72908.html">CardSpace(1)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_10" href="http://www.cnblogs.com/shanyou/category/38430.html">Castle&amp;IBatisNet(32)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_11" href="http://www.cnblogs.com/shanyou/category/54185.html">Database(20)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_12" href="http://www.cnblogs.com/shanyou/category/77165.html">English Everyday(2)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_13" href="http://www.cnblogs.com/shanyou/category/137508.html">Enterprise Library (13)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_14" href="http://www.cnblogs.com/shanyou/category/120796.html">Entity Framework(17)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_15" href="http://www.cnblogs.com/shanyou/category/234051.html">Erlang(1)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_16" href="http://www.cnblogs.com/shanyou/category/92825.html">Expression Studio(2)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_17" href="http://www.cnblogs.com/shanyou/category/92762.html">IronPython(16)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_18" href="http://www.cnblogs.com/shanyou/category/92761.html">IronRuby(7)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_19" href="http://www.cnblogs.com/shanyou/category/34493.html">IT生活(93)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_20" href="http://www.cnblogs.com/shanyou/category/223269.html">jQuery(8)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_21" href="http://www.cnblogs.com/shanyou/category/183250.html">K2 blackpearl(9)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_22" href="http://www.cnblogs.com/shanyou/category/120545.html">LINQ(14)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_23" href="http://www.cnblogs.com/shanyou/category/43483.html">Linux/Mono(119)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_24" href="http://www.cnblogs.com/shanyou/category/99656.html">LMJA(20)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_25" href="http://www.cnblogs.com/shanyou/category/281783.html">Mac开发(9)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_26" href="http://www.cnblogs.com/shanyou/category/234906.html">No SQL(26)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_27" href="http://www.cnblogs.com/shanyou/category/401285.html">NodeJS(2)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_28" href="http://www.cnblogs.com/shanyou/category/31793.html">ORM(26)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_29" href="http://www.cnblogs.com/shanyou/category/76303.html">PHP(5)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_30" href="http://www.cnblogs.com/shanyou/category/196511.html">Powershell (7)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_31" href="http://www.cnblogs.com/shanyou/category/102991.html">Quartz.net(25)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_32" href="http://www.cnblogs.com/shanyou/category/62502.html">Sharepoint(15)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_33" href="http://www.cnblogs.com/shanyou/category/372091.html">SignalR(5)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_34" href="http://www.cnblogs.com/shanyou/category/90828.html">SilverLight (71)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_35" href="http://www.cnblogs.com/shanyou/category/132323.html">SOA(7)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_36" href="http://www.cnblogs.com/shanyou/category/159023.html">SQL Server (45)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_37" href="http://www.cnblogs.com/shanyou/category/112948.html">Sync Framework(6)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_38" href="http://www.cnblogs.com/shanyou/category/126800.html">Unity (12)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_39" href="http://www.cnblogs.com/shanyou/category/111625.html">Visual Studio 2008(23)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_40" href="http://www.cnblogs.com/shanyou/category/192282.html">Visual Studio 2010(40)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_41" href="http://www.cnblogs.com/shanyou/category/405841.html">Visual Studio 2012(6)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_42" href="http://www.cnblogs.com/shanyou/category/72906.html">WCF(61)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_43" href="http://www.cnblogs.com/shanyou/category/240225.html">WCF Data Service(15)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_44" href="http://www.cnblogs.com/shanyou/category/187291.html">Windows 7(20)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_45" href="http://www.cnblogs.com/shanyou/category/323246.html">Windows 8(14)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_46" href="http://www.cnblogs.com/shanyou/category/254773.html">Windows AppFabric (8)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_47" href="http://www.cnblogs.com/shanyou/category/237850.html">Windows Phone 7  (20)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_48" href="http://www.cnblogs.com/shanyou/category/142790.html">Windows Server 2008 R2(40)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_49" href="http://www.cnblogs.com/shanyou/category/387029.html">Windows Server 2012(1)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_50" href="http://www.cnblogs.com/shanyou/category/181850.html">Windows云计算(10)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_51" href="http://www.cnblogs.com/shanyou/category/369052.html">WinRT(2)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_52" href="http://www.cnblogs.com/shanyou/category/167184.html">WiX(9)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_53" href="http://www.cnblogs.com/shanyou/category/72905.html">WPF(17)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_54" href="http://www.cnblogs.com/shanyou/category/262009.html">复合事件处理(CEP)(7)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_55" href="http://www.cnblogs.com/shanyou/category/77247.html">工具箱(83)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_56" href="http://www.cnblogs.com/shanyou/category/76424.html">互联网 (25)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_57" href="http://www.cnblogs.com/shanyou/category/56530.html">脚本语言(30)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_58" href="http://www.cnblogs.com/shanyou/category/32025.html">开源项目(186)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_59" href="http://www.cnblogs.com/shanyou/category/99637.html">敏捷开发(7)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_60" href="http://www.cnblogs.com/shanyou/category/84569.html">企业解决方案(42)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_61" href="http://www.cnblogs.com/shanyou/category/295740.html">腾讯开放社区(8)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_62" href="http://www.cnblogs.com/shanyou/category/33184.html">网络安全(18)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_0_Link_63" href="http://www.cnblogs.com/shanyou/category/76300.html">应用服务器(38)</a> </li>
+
+</ul>
+
+</div>
+
+<div class="catListPostArchive">
+<h3 class="catListTitle">随笔档案<span style="font-size:11px;font-weight:normal">(1162)</span></h3>
+
+<ul>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/shanyou/archive/2012/09.html">2012年9月 (21)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/shanyou/archive/2012/08.html">2012年8月 (30)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/shanyou/archive/2012/07.html">2012年7月 (14)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_3" href="http://www.cnblogs.com/shanyou/archive/2012/06.html">2012年6月 (22)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_4" href="http://www.cnblogs.com/shanyou/archive/2012/05.html">2012年5月 (20)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_5" href="http://www.cnblogs.com/shanyou/archive/2012/04.html">2012年4月 (8)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_6" href="http://www.cnblogs.com/shanyou/archive/2012/03.html">2012年3月 (14)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_7" href="http://www.cnblogs.com/shanyou/archive/2012/02.html">2012年2月 (7)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_8" href="http://www.cnblogs.com/shanyou/archive/2012/01.html">2012年1月 (12)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_9" href="http://www.cnblogs.com/shanyou/archive/2011/12.html">2011年12月 (6)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_10" href="http://www.cnblogs.com/shanyou/archive/2011/11.html">2011年11月 (2)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_11" href="http://www.cnblogs.com/shanyou/archive/2011/10.html">2011年10月 (8)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_12" href="http://www.cnblogs.com/shanyou/archive/2011/09.html">2011年9月 (6)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_13" href="http://www.cnblogs.com/shanyou/archive/2011/08.html">2011年8月 (3)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_14" href="http://www.cnblogs.com/shanyou/archive/2011/07.html">2011年7月 (9)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_15" href="http://www.cnblogs.com/shanyou/archive/2011/06.html">2011年6月 (6)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_16" href="http://www.cnblogs.com/shanyou/archive/2011/05.html">2011年5月 (4)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_17" href="http://www.cnblogs.com/shanyou/archive/2011/04.html">2011年4月 (7)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_18" href="http://www.cnblogs.com/shanyou/archive/2011/03.html">2011年3月 (13)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_19" href="http://www.cnblogs.com/shanyou/archive/2011/02.html">2011年2月 (14)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_20" href="http://www.cnblogs.com/shanyou/archive/2011/01.html">2011年1月 (10)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_21" href="http://www.cnblogs.com/shanyou/archive/2010/12.html">2010年12月 (9)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_22" href="http://www.cnblogs.com/shanyou/archive/2010/11.html">2010年11月 (12)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_23" href="http://www.cnblogs.com/shanyou/archive/2010/10.html">2010年10月 (16)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_24" href="http://www.cnblogs.com/shanyou/archive/2010/09.html">2010年9月 (11)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_25" href="http://www.cnblogs.com/shanyou/archive/2010/08.html">2010年8月 (10)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_26" href="http://www.cnblogs.com/shanyou/archive/2010/07.html">2010年7月 (13)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_27" href="http://www.cnblogs.com/shanyou/archive/2010/06.html">2010年6月 (14)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_28" href="http://www.cnblogs.com/shanyou/archive/2010/05.html">2010年5月 (12)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_29" href="http://www.cnblogs.com/shanyou/archive/2010/04.html">2010年4月 (21)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_30" href="http://www.cnblogs.com/shanyou/archive/2010/03.html">2010年3月 (34)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_31" href="http://www.cnblogs.com/shanyou/archive/2010/02.html">2010年2月 (17)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_32" href="http://www.cnblogs.com/shanyou/archive/2010/01.html">2010年1月 (6)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_33" href="http://www.cnblogs.com/shanyou/archive/2009/12.html">2009年12月 (14)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_34" href="http://www.cnblogs.com/shanyou/archive/2009/11.html">2009年11月 (13)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_35" href="http://www.cnblogs.com/shanyou/archive/2009/10.html">2009年10月 (9)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_36" href="http://www.cnblogs.com/shanyou/archive/2009/09.html">2009年9月 (16)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_37" href="http://www.cnblogs.com/shanyou/archive/2009/08.html">2009年8月 (15)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_38" href="http://www.cnblogs.com/shanyou/archive/2009/07.html">2009年7月 (16)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_39" href="http://www.cnblogs.com/shanyou/archive/2009/06.html">2009年6月 (10)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_40" href="http://www.cnblogs.com/shanyou/archive/2009/05.html">2009年5月 (18)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_41" href="http://www.cnblogs.com/shanyou/archive/2009/04.html">2009年4月 (16)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_42" href="http://www.cnblogs.com/shanyou/archive/2009/03.html">2009年3月 (13)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_43" href="http://www.cnblogs.com/shanyou/archive/2009/02.html">2009年2月 (13)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_44" href="http://www.cnblogs.com/shanyou/archive/2009/01.html">2009年1月 (20)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_45" href="http://www.cnblogs.com/shanyou/archive/2008/12.html">2008年12月 (29)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_46" href="http://www.cnblogs.com/shanyou/archive/2008/11.html">2008年11月 (20)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_47" href="http://www.cnblogs.com/shanyou/archive/2008/10.html">2008年10月 (15)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_48" href="http://www.cnblogs.com/shanyou/archive/2008/09.html">2008年9月 (9)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_49" href="http://www.cnblogs.com/shanyou/archive/2008/08.html">2008年8月 (15)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_50" href="http://www.cnblogs.com/shanyou/archive/2008/07.html">2008年7月 (3)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_51" href="http://www.cnblogs.com/shanyou/archive/2008/06.html">2008年6月 (8)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_52" href="http://www.cnblogs.com/shanyou/archive/2008/05.html">2008年5月 (11)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_53" href="http://www.cnblogs.com/shanyou/archive/2008/04.html">2008年4月 (12)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_54" href="http://www.cnblogs.com/shanyou/archive/2008/03.html">2008年3月 (21)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_55" href="http://www.cnblogs.com/shanyou/archive/2008/02.html">2008年2月 (9)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_56" href="http://www.cnblogs.com/shanyou/archive/2008/01.html">2008年1月 (13)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_57" href="http://www.cnblogs.com/shanyou/archive/2007/12.html">2007年12月 (11)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_58" href="http://www.cnblogs.com/shanyou/archive/2007/11.html">2007年11月 (16)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_59" href="http://www.cnblogs.com/shanyou/archive/2007/10.html">2007年10月 (7)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_60" href="http://www.cnblogs.com/shanyou/archive/2007/09.html">2007年9月 (15)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_61" href="http://www.cnblogs.com/shanyou/archive/2007/08.html">2007年8月 (21)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_62" href="http://www.cnblogs.com/shanyou/archive/2007/07.html">2007年7月 (14)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_63" href="http://www.cnblogs.com/shanyou/archive/2007/06.html">2007年6月 (22)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_64" href="http://www.cnblogs.com/shanyou/archive/2007/05.html">2007年5月 (31)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_65" href="http://www.cnblogs.com/shanyou/archive/2007/04.html">2007年4月 (19)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_66" href="http://www.cnblogs.com/shanyou/archive/2007/03.html">2007年3月 (13)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_67" href="http://www.cnblogs.com/shanyou/archive/2007/02.html">2007年2月 (24)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_68" href="http://www.cnblogs.com/shanyou/archive/2007/01.html">2007年1月 (16)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_69" href="http://www.cnblogs.com/shanyou/archive/2006/12.html">2006年12月 (8)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_70" href="http://www.cnblogs.com/shanyou/archive/2006/11.html">2006年11月 (19)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_71" href="http://www.cnblogs.com/shanyou/archive/2006/10.html">2006年10月 (27)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_72" href="http://www.cnblogs.com/shanyou/archive/2006/09.html">2006年9月 (18)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_73" href="http://www.cnblogs.com/shanyou/archive/2006/08.html">2006年8月 (15)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_74" href="http://www.cnblogs.com/shanyou/archive/2006/07.html">2006年7月 (8)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_75" href="http://www.cnblogs.com/shanyou/archive/2006/06.html">2006年6月 (4)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_76" href="http://www.cnblogs.com/shanyou/archive/2006/05.html">2006年5月 (8)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_77" href="http://www.cnblogs.com/shanyou/archive/2006/04.html">2006年4月 (12)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_78" href="http://www.cnblogs.com/shanyou/archive/2006/03.html">2006年3月 (10)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_79" href="http://www.cnblogs.com/shanyou/archive/2006/02.html">2006年2月 (8)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_80" href="http://www.cnblogs.com/shanyou/archive/2006/01.html">2006年1月 (9)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_81" href="http://www.cnblogs.com/shanyou/archive/2005/12.html">2005年12月 (7)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_82" href="http://www.cnblogs.com/shanyou/archive/2005/11.html">2005年11月 (11)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_83" href="http://www.cnblogs.com/shanyou/archive/2005/10.html">2005年10月 (18)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_84" href="http://www.cnblogs.com/shanyou/archive/2005/09.html">2005年9月 (11)</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_1_Link_85" href="http://www.cnblogs.com/shanyou/archive/2005/08.html">2005年8月 (11)</a> </li>
+
+</ul>
+
+</div>
+
+<div class="catList">
+<h3 class="catListTitle">Link</h3>
+
+<ul>
+
+<li><a id="ctl01_CatList_LinkList_2_Link_0" rel="nofollow" href="http://www.ajaxian.com/" target="_blank">ajaxian</a> </li>
+<li class="c_b_p_link_desc">Ajax及CSS设计强站</li>
+<li><a id="ctl01_CatList_LinkList_2_Link_1" rel="nofollow" href="http://www.ayende.com/Blog/" target="_blank">Ayende @ Blog </a> </li>
+
+<li><a id="ctl01_CatList_LinkList_2_Link_2" rel="nofollow" href="http://www.bitethebullet.co.uk/" target="_blank">bitethebullet.co.uk</a> </li>
+<li class="c_b_p_link_desc">spider</li>
+<li><a id="ctl01_CatList_LinkList_2_Link_3" rel="nofollow" href="http://www.example-code.com/csharp/" target="_blank">C# Examples </a> </li>
+
+<li><a id="ctl01_CatList_LinkList_2_Link_4" rel="nofollow" href="http://www.castleproject.org/">castle项目网站</a> </li>
+<li class="c_b_p_link_desc">Castle aspires to simplify the development of enterprise and web applications</li>
+<li><a id="ctl01_CatList_LinkList_2_Link_5" rel="nofollow" href="http://www.conceptdevelopment.net/" target="_blank">Concept Development</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_2_Link_6" rel="nofollow" href="http://www.db4o.com/china/" target="_blank">db4o china</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_2_Link_7" rel="nofollow" href="http://www.opengarden.org/" target="_blank">DekiWiki &amp; Dream</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_2_Link_8" rel="nofollow" href="http://blogs.msdn.com/dmitryr/default.aspx" target="_blank">dmitryr's blog</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_2_Link_9" rel="nofollow" href="http://www.dotnetboom.net/" target="_blank">DotNetBoom community </a> </li>
+
+<li><a id="ctl01_CatList_LinkList_2_Link_10" rel="nofollow" href="http://www.dotneti18n.com/" target="_blank">dotnet国际化</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_2_Link_11" rel="nofollow" href="http://blogs.iis.net/" target="_blank">IIS 7.0 项目组Blog</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_2_Link_12" rel="nofollow" href="http://www.linux-watch.com/" target="_blank">keeping an eye on the penguin</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_2_Link_13" rel="nofollow" href="http://www.lupaworld.com/" target="_blank">LUPA,开源社区</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_2_Link_14" rel="nofollow" href="http://www.mscui.net/Blog/Default.aspx" target="_blank">Microsoft Health CUI Team</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_2_Link_15" rel="nofollow" href="http://www.mono-project.com/Main_Page" target="_blank">Mono Project</a> </li>
+<li class="c_b_p_link_desc">Mono项目将提供能够自由进行应用程序开发或提供Web服务的工具，从而Linux用户也能够享受到.NET平台的巨大好处</li>
+<li><a id="ctl01_CatList_LinkList_2_Link_16" rel="nofollow" href="http://www.monodevelop.com/Main_Page" target="_blank">monodevelop网站</a> </li>
+<li class="c_b_p_link_desc">Linux平台的dotnet IDE工具</li>
+<li><a id="ctl01_CatList_LinkList_2_Link_17" rel="nofollow" href="http://social.microsoft.com/Forums/zh-CN/categories/" target="_blank">Msdn forums</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_2_Link_18" rel="nofollow" href="http://msdn.microsoft.com/msdnmag/default.aspx" target="_blank">MSDN 杂志</a> <a id="ctl01_CatList_LinkList_2_RssLink_18" href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#" onclick="return open_link(&#39;http://msdn.microsoft.com/msdnmag/default.aspx&#39;);">(rss)</a></li>
+
+<li><a id="ctl01_CatList_LinkList_2_Link_19" rel="nofollow" href="http://nhforge.org/">NHibernate for .NET</a> </li>
+<li class="c_b_p_link_desc">ORM工具</li>
+<li><a id="ctl01_CatList_LinkList_2_Link_20" rel="nofollow" href="http://cn.opensuse.org/" target="_blank">OpenSUSE计划的中文网站</a> </li>
+<li class="c_b_p_link_desc">面向中国的全球Linux产品唯一完全本地化的计划</li>
+<li><a id="ctl01_CatList_LinkList_2_Link_21" rel="nofollow" href="http://www.msotec.net/Forums/default.aspx" target="_blank">OTEC Forums</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_2_Link_22" rel="nofollow" href="http://blog.joycode.com/scottgu/" target="_blank">Scott Guthrie 博客中文版</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_2_Link_23" rel="nofollow" href="http://community.sharpdevelop.net/" target="_blank">SharpDevelop Community</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_2_Link_24" rel="nofollow" href="http://www.microsoft.com/silverlight/" target="_blank">silverlight</a> </li>
+<li class="c_b_p_link_desc">SilverLight 官方网站 </li>
+<li><a id="ctl01_CatList_LinkList_2_Link_25" rel="nofollow" href="http://www.mybatis.org/" target="_blank">SQL Map工具ibatis</a> </li>
+<li class="c_b_p_link_desc">数据访问组件IBatis</li>
+<li><a id="ctl01_CatList_LinkList_2_Link_26" rel="nofollow" href="http://www.sqldbatips.com/" target="_blank">sqldbatips</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_2_Link_27" rel="nofollow" href="http://www.subversion.org.cn/" target="_blank">subversion中文站</a> </li>
+<li class="c_b_p_link_desc">版本控制工具</li>
+<li><a id="ctl01_CatList_LinkList_2_Link_28" rel="nofollow" href="http://swik.net/Ajax" target="_blank">Swik.net</a> </li>
+<li class="c_b_p_link_desc">SWiK is a community driven resource for open source software</li>
+<li><a id="ctl01_CatList_LinkList_2_Link_29" rel="nofollow" href="http://www.microsoft.com/technet/technetmag/default.aspx?loc=zh" target="_blank">TechNet 杂志</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_2_Link_30" rel="nofollow" href="http://blogs.msdn.com/webdevtools/" target="_blank">Web Development Tools </a> </li>
+<li class="c_b_p_link_desc">  This is the team that builds all the great Web related tooling for Visual Studio and the Visual Web Developer Express product. </li>
+<li><a id="ctl01_CatList_LinkList_2_Link_31" rel="nofollow" href="http://msdn2.microsoft.com/zh-cn/arcjournal/default.aspx" target="_blank">架构师杂志</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_2_Link_32" rel="nofollow" href="http://goxia.maytide.net/index.php" target="_blank">苏繁 Blog</a> </li>
+<li class="c_b_p_link_desc">gOxiA=苏繁=SuFan's Blog</li>
+<li><a id="ctl01_CatList_LinkList_2_Link_33" rel="nofollow" href="http://www.msuniversity.edu.cn/" target="_blank">微软学生中心</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_2_Link_34" rel="nofollow" href="http://www.codeplex.com/" target="_blank">微软支持的开源网站</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_2_Link_35" rel="nofollow" href="http://www.cnmvp.org/" target="_blank">微软最有价值专家俱乐部</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_2_Link_36" rel="nofollow" href="http://www.engkoo.com/" target="_blank">英库(Engkoo)</a> </li>
+<li class="c_b_p_link_desc">英库在线英语工具（www.engkoo.com）本质上是一个帮助中国人学习英语的垂直搜索引擎</li>
+</ul>
+
+</div>
+
+<div class="catList">
+<h3 class="catListTitle">SharePoint Bloggers</h3>
+
+<ul>
+
+<li><a id="ctl01_CatList_LinkList_3_Link_0" rel="nofollow" href="http://blog.spsclerics.com/" target="_blank">Stramit's SharePoint Blog</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_3_Link_1" rel="nofollow" href="http://ms.mblogger.cn/tedteng/" target="_blank">Ted's SharePoint</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_3_Link_2" rel="nofollow" href="http://www.wssdemo.com/default.aspx" target="_blank">WSS Demo</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_3_Link_3" rel="nofollow" href="http://www.msiw.net/default.aspx" target="_blank">微软信息工作者网络 </a> </li>
+
+</ul>
+
+</div>
+
+<div class="catList">
+<h3 class="catListTitle">个人链接</h3>
+
+<ul>
+
+<li><a id="ctl01_CatList_LinkList_4_Link_0" rel="nofollow" href="http://shanyou.blog.51cto.com/" target="_blank">51cto blog</a> </li>
+
+<li><a id="ctl01_CatList_LinkList_4_Link_1" rel="nofollow" href="http://blog.csdn.net/shanyou" target="_blank">Csdn blog</a> </li>
+<li class="c_b_p_link_desc">我最早的blog </li>
+</ul>
+
+</div>
+
+
+<div class="catListBlogRank">
+<h3 class="catListTitle">积分与排名</h3>
+<ul>
+	<li class="liScore">
+		积分 -	2328286
+	</li>
+	<li class="liRank">
+		排名 -	10
+	</li>
+</ul>
+</div>
+
+
+
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+	<div id="RecentCommentsBlock"><ul>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/shanyou/archive/2012/05/27/2520603.html#2481318">1. Re:HTML Agility Pack 搭配 ScrapySharp，彻底解除Html解析的痛苦</a></li>
+    <li class="recent_comment_body">mark</li>
+    <li class="recent_comment_author">--玉菜园</li>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/shanyou/archive/2012/05/27/2520603.html#2481257">2. Re:HTML Agility Pack 搭配 ScrapySharp，彻底解除Html解析的痛苦</a></li>
+    <li class="recent_comment_body">最近找到一个比较好的解析网页的组件 <a href="http://code.google.com/p/csexwb2/" target="_blank">http://code.google.com/p/csexwb2/</a> 大家可以看看</li>
+    <li class="recent_comment_author">--何必</li>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/shanyou/archive/2011/11/10/2245082.html#2480652">3. Re:ServiceStack.Redis 使用教程</a></li>
+    <li class="recent_comment_body">又看了一遍感觉非常不错，谢谢jeff</li>
+    <li class="recent_comment_author">--win_and_first</li>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/shanyou/archive/2012/09/22/2697718.html#2480264">4. Re:Visual Studio Magazine -Mono for Android</a></li>
+    <li class="recent_comment_body">可惜Mono for Android 不是开源的,授权费用也挺高啊</li>
+    <li class="recent_comment_author">--Haozes</li>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/shanyou/archive/2011/11/10/2245082.html#2478700">5. Re:ServiceStack.Redis 使用教程</a></li>
+    <li class="recent_comment_body"><a href="http://blogs.shaunxu.me/archive/2012/04/27/redis-on-windows.aspx" target="_blank">Redis on Windows</a></li>
+    <li class="recent_comment_author">--张善友</li>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/shanyou/archive/2012/09/20/2694602.html#2477551">6. Re:超实用的8个Linux命令行性能监测工具</a></li>
+    <li class="recent_comment_body">收藏了</li>
+    <li class="recent_comment_author">--Gabriel Zhang</li>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/shanyou/archive/2009/08/30/1556659.html#2475737">7. Re:采用CAS原理构建单点登录</a></li>
+    <li class="recent_comment_body">不错</li>
+    <li class="recent_comment_author">--腾飞刘</li>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/shanyou/archive/2011/11/10/2245082.html#2475702">8. Re:ServiceStack.Redis 使用教程</a></li>
+    <li class="recent_comment_body">谢谢 jeff</li>
+    <li class="recent_comment_author">--win_and_first</li>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/shanyou/archive/2011/11/10/2245082.html#2475701">9. Re:ServiceStack.Redis 使用教程</a></li>
+    <li class="recent_comment_body">讲的很详细，呵呵</li>
+    <li class="recent_comment_author">--win_and_first</li>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/shanyou/archive/2010/10/23/1859528.html#2475181">10. Re:opensuse nginx+mono 2.8支持aspx环境的配置</a></li>
+    <li class="recent_comment_body"><a href="http://www.cnblogs.com/shanyou/archive/2011/09/17/WinRT.html#2475049" title="查看所回复的评论">@</a>白雲蒼狗<br>基本上没有使用fastcgi-mono-server+nginx了，推荐用Jexus /Mono 请看 <a href="http://linuxdot.net/" target="_blank">http://linuxdot.net/</a></li>
+    <li class="recent_comment_author">--张善友</li>
+</ul>
+</div>
+</div>
+
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/shanyou/archive/2005/12/22/302936.html">1. GridView控件使用经验(39941)</a></li><li><a href="./Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园_files/Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园.htm">2. Windows Runtime(WinRT) 揭秘(25225)</a></li><li><a href="http://www.cnblogs.com/shanyou/archive/2007/08/25/QuartzNETtutorial.html">3. 开源的作业调度框架 - Quartz.NET(21900)</a></li><li><a href="http://www.cnblogs.com/shanyou/archive/2012/02/05/2338797.html">4. QQ互联OAuth2.0 .NET SDK 发布以及网站QQ登陆示例代码(17987)</a></li><li><a href="http://www.cnblogs.com/shanyou/archive/2007/09/04/881935.html">5. 详细讲解Quartz.NET(17460)</a></li></ul></div>
+</div>
+
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/shanyou/archive/2012/07/20/2600465.html">1. Entity Framework开源了(26)</a></li><li><a href="./Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园_files/Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园.htm">2. Windows Runtime(WinRT) 揭秘(20)</a></li><li><a href="http://www.cnblogs.com/shanyou/archive/2012/03/28/2422432.html">3. 微软以Apache许可协议开源ASP.NET MVC(19)</a></li><li><a href="http://www.cnblogs.com/shanyou/archive/2012/07/28/2612919.html">4. Mono 团队Xamarin获得1200W美金融资，Mono将加速(17)</a></li><li><a href="http://www.cnblogs.com/shanyou/archive/2012/05/20/2509435.html">5. 系统性能优化一例(16)</a></li></ul></div>
+</div></div>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2012 张善友
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+<!--PageEndHtml Block Begin-->
+<script src="./Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园_files/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-887470-1";
+urchinTracker();
+</script>
+
+
+<!--PageEndHtml Block End-->
+<script type="text/javascript" src="./Windows Runtime(WinRT) 揭秘 - 张善友 - 博客园_files/google-analytics.js"></script>
+
+
+</body></html>

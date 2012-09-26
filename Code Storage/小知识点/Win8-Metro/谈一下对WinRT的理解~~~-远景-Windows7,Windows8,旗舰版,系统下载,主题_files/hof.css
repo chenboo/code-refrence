@@ -1,0 +1,79 @@
+#hof {
+    position: relative;
+    top: -6px;
+    z-index: 9999;
+    background: #FCFBF4;
+}
+#hof .bd {
+    height: 4px;
+	line-height: 0;
+	font-size: 0;
+    background: #009AD9;
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 100%;
+}
+#hof .hof_wrapper {
+    position: relative;
+    width: 1000px;
+    margin: 0 auto;
+}
+#hof .hof_inner {
+    height: 0;
+    width: 100%;
+    overflow: hidden;
+	position: relative;
+}
+#btn_hof {
+    background: url(http://pbcdn.com/public/javascript/hof/images/hof_ribbon.png) no-repeat 50% 0;
+    width: 42px;
+    height: 61px;
+    display: inline-block;
+    position: absolute;
+    right: 17px;
+    bottom: -53px;
+	outline: none;
+}
+#hof table {
+    text-align: center;
+    vertical-align: middle;
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+#hof .hof_logo {
+    width: 221px;
+    height: 98px;
+    margin: 0 auto 2em;
+}
+#hof .words {
+    font-size: 18px;
+    line-height: 1.8;
+    margin-top: 1em;
+}
+#hof .close {
+    position: absolute;
+    right: -5px;
+    top: -5px;
+    background: url(http://pbcdn.com/public/javascript/hof/images/hof_close.png) no-repeat 50% 0;
+    font-family: arial;
+    font-size: 50px;
+    color: #fff;
+    text-indent: 20px;
+    line-height: 70px;
+    width: 65px;
+    height: 65px;
+    cursor: pointer;
+    display: none;
+}
+#hof .ribbon_holder {
+    width: 42px;
+    display: inline-block;
+}
+html.hof, html.hof body {
+    overflow: hidden;
+    height: 100%;
+}
+html.hof #btn_hof { bottom: -61px }
+html.hof #hof .close { display: block }

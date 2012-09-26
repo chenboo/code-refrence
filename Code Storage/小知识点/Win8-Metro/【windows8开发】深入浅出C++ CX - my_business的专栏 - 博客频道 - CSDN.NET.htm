@@ -1,0 +1,703 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0056)http://blog.csdn.net/my_business/article/details/7497248 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>【windows8开发】深入浅出C++/CX - my_business的专栏 - 博客频道 - CSDN.NET</title>
+
+<meta name="description" content="什么是C++ /CX? 首先要明白它跟C++ 0x/11以及C++ /CLR是完全不同的东西。C++ 0x/11是目前最新的C++标准库，而C++ /CX其实是微软在Win8开发平台下，对C++语言的一种扩展。C++ /CLR是微软为了C++能在.Net下运行，针对CLR，虽然也是对C++的扩展，但它编译后是托管于CLR的，属于Managed C++。而C++ /CX则属于Native C++，它">
+<script type="text/javascript" async="" src="./【windows8开发】深入浅出C++ CX - my_business的专栏 - 博客频道 - CSDN.NET_files/ga.js"></script><script src="./【windows8开发】深入浅出C++ CX - my_business的专栏 - 博客频道 - CSDN.NET_files/jquery.js" type="text/javascript"></script>
+<script src="./【windows8开发】深入浅出C++ CX - my_business的专栏 - 博客频道 - CSDN.NET_files/plugins.js" type="text/javascript"></script>
+<script src="./【windows8开发】深入浅出C++ CX - my_business的专栏 - 博客频道 - CSDN.NET_files/common.js" type="text/javascript"></script>
+<link rel="Stylesheet" type="text/css" href="./【windows8开发】深入浅出C++ CX - my_business的专栏 - 博客频道 - CSDN.NET_files/style.css">
+<link id="RSSLink" title="RSS" type="application/rss+xml" rel="alternate" href="http://blog.csdn.net/my_business/rss/list">
+<link rel="shortcut icon" href="http://blog.csdn.net/favicon.ico">
+<link type="text/css" rel="stylesheet" href="./【windows8开发】深入浅出C++ CX - my_business的专栏 - 博客频道 - CSDN.NET_files/default.css">
+<link type="text/css" rel="stylesheet" href="chrome-extension://cpngackimfmofbokmjmljamhdncknpmg/style.css"><script type="text/javascript" charset="utf-8" src="chrome-extension://cpngackimfmofbokmjmljamhdncknpmg/page_context.js"></script></head>
+<body screen_capture_injected="true">
+<script src="./【windows8开发】深入浅出C++ CX - my_business的专栏 - 博客频道 - CSDN.NET_files/pub_topnav_2011.js" type="text/javascript"></script><link rel="stylesheet" type="text/css" href="./【windows8开发】深入浅出C++ CX - my_business的专栏 - 博客频道 - CSDN.NET_files/navtop_2012.css">
+<div class="nav_top_2011">
+<p><span style="color:red;">您还未登录！</span>|<a href="https://passport.csdn.net/account/login" target="_top">登录</a>|<a href="https://passport.csdn.net/account/register" target="_top">注册</a>|<a href="https://passport.csdn.net/help/faq" target="_blank">帮助</a></p><ul>
+<li><a href="http://www.csdn.net/" target="_blank">首页</a></li>
+<li><a href="http://news.csdn.net/" target="_blank">业界</a></li>
+<li><a href="http://mobile.csdn.net/" target="_blank">移动</a></li>
+<li><a href="http://cloud.csdn.net/" target="_blank">云计算</a></li>
+<li><a href="http://sd.csdn.net/" target="_blank">研发</a></li>
+<li><a href="http://bbs.csdn.net/" target="_blank">论坛</a></li>
+<li><a href="http://blog.csdn.net/" target="_blank">博客</a></li>
+<li><a href="http://download.csdn.net/" target="_blank">下载</a></li>
+<li class="more"><h2 id="topnav_btnmore" onclick="showNavMore(this)"><a href="javascript:void(0);">更多</a></h2>
+<div id="topnav_hidlist">
+<iframe name="nav_frm" src="about:blank" width="92" height="178" scrolling="no" frameborder="no"></iframe>
+</div>
+</li>
+</ul>
+</div>
+
+
+<div id="container">
+<div id="header">
+    <div class="header">
+        <div id="blog_title">
+            <h1><a href="http://blog.csdn.net/my_business">my_business的专栏</a></h1>
+            <h2></h2>
+            <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<div id="navigator">
+    <div class="navigator_bg"></div>
+    <div class="navigator">
+        <ul>
+            <li id="btnContents"><a href="http://blog.csdn.net/my_business?viewmode=contents"><span><img src="./【windows8开发】深入浅出C++ CX - my_business的专栏 - 博客频道 - CSDN.NET_files/ico_list.gif">目录视图</span></a></li>
+            <li id="btnView"><a href="http://blog.csdn.net/my_business?viewmode=list"><span><img src="./【windows8开发】深入浅出C++ CX - my_business的专栏 - 博客频道 - CSDN.NET_files/ico_summary.gif">摘要视图</span></a></li>
+            <li id="btnRss"><a href="http://blog.csdn.net/my_business/rss/list"><span><img src="./【windows8开发】深入浅出C++ CX - my_business的专栏 - 博客频道 - CSDN.NET_files/ico_rss.gif">订阅</span></a></li>
+</ul>
+    </div>
+</div>
+<script type="text/javascript">
+    var username = "my_business";
+    var blog_address = "http://blog.csdn.net/my_business";
+    var static_host = "http://static.blog.csdn.net";
+    var currentUserName = "";
+</script>
+        
+<div id="body">
+<div id="main">
+<div class="main">
+<div class="notice"> 
+
+<a href="http://blog.csdn.net/sq_zhuyi/article/details/7924776" target="_blank">
+<font color="red">
+公告：CSDN博客频道推出博客导出工具（开源） </font></a>
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+<a href="http://blog.csdn.net/csdnproduct/article/details/7987178" target="_blank">
+<font color="red"> 公告：CSDN博客频道推出文章目录功能</font></a>
+
+&nbsp;&nbsp;&nbsp;
+
+
+<a href="http://blog.csdn.net/csdnproduct/article/details/7964475" target="_blank">
+<font color="red">CSDN产品客服新浪微博正式上线 </font></a>
+
+<br>
+
+<a href="http://mdcc.csdn.net/" target="_blank">
+<font color="blue">移动开发者大会最新议题发布，八折抢票！
+ </font></a>
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a href="http://blog.csdn.net/blogdevteam/article/details/7988576" target="_blank">
+<font color="red">2013年1月微软MVP申请开始啦！
+ </font></a>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a href="http://blog.csdn.net/blogdevteam/article/details/7954317" target="_blank">
+<font color="blue">“第一次亲密接触”—有奖征文活动  </font></a>
+
+</div><script type="text/javascript" src="./【windows8开发】深入浅出C++ CX - my_business的专栏 - 博客频道 - CSDN.NET_files/ad.js"></script>
+
+<div id="article_details" class="details">
+    <div class="article_title">
+    <span class="ico ico_type_Original"></span>
+    <h3>
+        <span class="link_title"><a href="./【windows8开发】深入浅出C++ CX - my_business的专栏 - 博客频道 - CSDN.NET_files/【windows8开发】深入浅出C++ CX - my_business的专栏 - 博客频道 - CSDN.NET.htm">
+        【windows8开发】深入浅出C++/CX
+        </a></span>
+    </h3>
+</div>
+
+        
+    <div class="article_manage">
+        <span class="link_categories">
+        分类：
+            <a href="http://blog.csdn.net/my_business/article/category/1129249">window8 App开发</a> 
+            <a href="http://blog.csdn.net/my_business/article/category/1218444">让人又爱又恨的C++</a> 
+        </span>
+    <span class="link_postdate">2012-04-25 11:51</span>
+    <span class="link_view" title="阅读次数">2360人阅读</span>
+    <span class="link_comments" title="评论次数"><a href="http://blog.csdn.net/my_business/article/details/7497248#comments">评论</a>(12)</span>
+    <span class="link_collect"><a href="javascript:void(0);" onclick="javascript:collectArticle(&#39;【windows8开发】深入浅出C++/CX&#39;,&#39;7497248&#39;);return false;" title="收藏">收藏</a></span>
+    <span class="link_report"><a href="http://blog.csdn.net/my_business/article/details/7497248#report" onclick="javascript:report(7497248,2);return false;" title="举报">举报</a></span>
+    
+</div>
+
+    
+<div id="article_content" class="article_content">
+
+<div>
+<div><span style=""><span style="font-size:18px">什么是C++ /CX? 首先要明白它跟C++ 0x/11以及C++ /CLR是完全不同的东西。C++ 0x/11是目前最新的C++标准库，而C++ /CX其实是微软在Win8开发平台下，对C++语言的一种扩展。C++ /CLR是微软为了C++能在.Net下运行，针对CLR，虽然也是对C++的扩展，但它编译后是托管于CLR的，属于Managed C++。而C++ /CX则属于Native C++，它不使用CLR也没有垃圾回收机制。虽然C++
+ /CX有些新语法特性是直接从/CLR借鉴过来的，但是从底层实现上来看，它们是完全不同的两种扩展。</span></span></div>
+<div><span style=""><span style="font-size:18px">本文会简单介绍C++ /CX在语法上的一些扩展。</span></span></div>
+<div><span style=""><span style="font-size:18px"><br>
+</span></span></div>
+<div><span style=""><span style="font-size:18px">1.值类型value和引用类型ref</span></span></div>
+<div><span style=""><span style="font-size:18px"><br>
+</span></span></div>
+<div><span style=""><span style="font-size:18px">value和ref都是用来定义class的，所以有如下的语法：</span></span></div>
+<div>
+<div align="left"><span style=""><span style=""><span style="font-family:Consolas"><span style="font-size:18px"></span></span></span></span></div>
+<div class="dp-highlighter bg_cpp"><div class="bar"><div class="tools"><b>[cpp]</b> <a href="http://blog.csdn.net/my_business/article/details/7497248#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><a href="http://blog.csdn.net/my_business/article/details/7497248#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy</a><a href="http://blog.csdn.net/my_business/article/details/7497248#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a><a href="http://blog.csdn.net/my_business/article/details/7497248#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a><div style="position: absolute; left: 377px; top: 654px; width: 18px; height: 18px; z-index: 99; "><embed id="ZeroClipboardMovie_1" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="18" height="18" name="ZeroClipboardMovie_1" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=1&amp;width=18&amp;height=18" wmode="transparent"></div></div></div><ol start="1" class="dp-cpp"><li class="alt"><span><span>ref&nbsp;</span><span class="keyword">class</span><span>&nbsp;Object{};&nbsp;&nbsp;</span></span></li><li class=""><span>value&nbsp;<span class="keyword">class</span><span>&nbsp;Object{};&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="cpp" style="display: none; ">ref class Object{};
+value class Object{};</pre><br>
+<div align="left">
+<div align="left"><span style="font-family:Consolas"><span style="font-size:18px"></span></span></div>
+<div align="left"><span style="font-family:Consolas"><span style="font-size:18px">两者有什么不同？其实引用类型ref类似于Java里面的引用概念，而值类型value就是我们通常理解的C++类型。那又为什么要增加这样的关键字来进行区分呢？原因是不管统一成ref类型还是value类型都有一定缺陷。</span></span></div>
+<div align="left"><span style="font-family:Consolas"><span style="font-size:18px"><br>
+</span></span></div>
+<div align="left"><span style="font-family:Consolas"><span style="font-size:18px">值类型value的话，在栈上分配空间，效率较高，但是它不支持多态，所以比如作为函数返回值使用时，有时会存在部分拷贝的问题。其实标准C++里面都是值类型value，别说有指针什么呢，指针本身不过是个整型的地址值，它还是值类型的，也别跟我说什么函数参数传递有传值和传址呢，即使传址，所传递的指针本身还是以值的形式传递的。</span></span></div>
+<div align="left"><span style="font-family:Consolas"><span style="font-size:18px"><br>
+</span></span></div>
+<div align="left"><span style="font-family:Consolas"><span style="font-size:18px">而引用类型ref，支持多态，但是它是在堆上分配空间，效率较低，而且会带来额外引用计数上的开销。</span></span></div>
+</div>
+<span style="font-size:18px"><br>
+</span></div>
+<div><span style="font-size:18px">所以C++ /CX决定把两者区分开来，让开发者根据实际情况是选择。比如没必要支持多态的我们可以考虑使用value类型，比如希望交给系统管理引用计数的我们可以考虑使用ref类型。</span></div>
+<div><span style="font-size:18px"><br>
+</span></div>
+<div><span style="font-size:18px">2. public类</span></div>
+<div><span style="font-size:18px">C++ /CX里有这样的定义：</span></div>
+<div><span style="font-size:18px"></span></div>
+<div class="dp-highlighter bg_cpp"><div class="bar"><div class="tools"><b>[cpp]</b> <a href="http://blog.csdn.net/my_business/article/details/7497248#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><a href="http://blog.csdn.net/my_business/article/details/7497248#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy</a><a href="http://blog.csdn.net/my_business/article/details/7497248#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a><a href="http://blog.csdn.net/my_business/article/details/7497248#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a><div style="position: absolute; left: 377px; top: 1097px; width: 18px; height: 18px; z-index: 99; "><embed id="ZeroClipboardMovie_2" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="18" height="18" name="ZeroClipboardMovie_2" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=2&amp;width=18&amp;height=18" wmode="transparent"></div></div></div><ol start="1" class="dp-cpp"><li class="alt"><span><span class="keyword">public</span><span>&nbsp;ref&nbsp;</span><span class="keyword">class</span><span>&nbsp;Object&nbsp;{};&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">public</span><span>&nbsp;value&nbsp;</span><span class="keyword">class</span><span>&nbsp;Object&nbsp;{};&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="cpp" style="display: none; ">public ref class Object {};
+public value class Object {};</pre><br>
+<div><span style=""><span style="font-size:18px"></span></span></div>
+<div><span style="font-size:18px">用public来定义类，作用其实显而易见，所有准备对外公开的类必须设为public，比如组件里对外公布的类，如果不定义为public的话，外部是访问不到指定类型的。另外Native C++类(标准C++里的类)不能被定义为public，只有ref和value类型的类才可以设定为public，所以下面的代码编译会报错：</span></div>
+<div><span style="font-size:18px"></span><div class="dp-highlighter bg_cpp"><div class="bar"><div class="tools"><b>[cpp]</b> <a href="http://blog.csdn.net/my_business/article/details/7497248#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><a href="http://blog.csdn.net/my_business/article/details/7497248#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy</a><a href="http://blog.csdn.net/my_business/article/details/7497248#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a><a href="http://blog.csdn.net/my_business/article/details/7497248#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a><div style="position: absolute; left: 377px; top: 1280px; width: 18px; height: 18px; z-index: 99; "><embed id="ZeroClipboardMovie_3" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="18" height="18" name="ZeroClipboardMovie_3" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=3&amp;width=18&amp;height=18" wmode="transparent"></div></div></div><ol start="1" class="dp-cpp"><li class="alt"><span><span class="keyword">public</span><span>&nbsp;</span><span class="keyword">class</span><span>&nbsp;Object&nbsp;{};&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="comment">//&nbsp;compiler&nbsp;error</span><span>&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="cpp" style="display: none; ">public class Object {};    // compiler error</pre></div>
+<div><span style="font-size:18px">另外还归纳出以下2点：</span></div>
+<span style="font-size:18px">1. 标准C++方式的类不能被使用在public类的public属性成员中。<br>
+2. public ref类型类的public属性成员中，除非使用property，否则不能声明类成员变量。</span>
+<div><span style="font-size:18px">3. public value类型的类的public属性成员中，不能声明类成员变量以外的成员，如函数等。<br>
+</span>
+<div><span style="font-size:18px"><br>
+</span></div>
+<div><span style="font-size:18px">3. ^符号</span></div>
+<div><span style="font-size:18px">C++ /CX中，就是用^来表示当前数据类型是ref引用类型。</span></div>
+<div><span style="font-size:18px">比如有如下class：</span></div>
+<div><span style="font-size:18px"></span></div>
+<div class="dp-highlighter bg_cpp"><div class="bar"><div class="tools"><b>[cpp]</b> <a href="http://blog.csdn.net/my_business/article/details/7497248#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><a href="http://blog.csdn.net/my_business/article/details/7497248#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy</a><a href="http://blog.csdn.net/my_business/article/details/7497248#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a><a href="http://blog.csdn.net/my_business/article/details/7497248#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a><div style="position: absolute; left: 377px; top: 1575px; width: 18px; height: 18px; z-index: 99; "><embed id="ZeroClipboardMovie_4" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="18" height="18" name="ZeroClipboardMovie_4" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=4&amp;width=18&amp;height=18" wmode="transparent"></div></div></div><ol start="1" class="dp-cpp"><li class="alt"><span><span>ref&nbsp;</span><span class="keyword">class</span><span>&nbsp;SomeObj&nbsp;{&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">public</span><span>:&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">void</span><span>&nbsp;SomeFunc();&nbsp;&nbsp;</span></span></li><li class=""><span>};&nbsp;&nbsp;</span></li></ol></div><pre name="code" class="cpp" style="display: none; ">ref class SomeObj {
+public:
+     void SomeFunc();
+};</pre><br>
+<div><span style="font-size:18px"></span></div>
+<div><span style="font-size:18px">那么在新建这个类对象时，由于是ref引用类型，所以会通过如下方式创建对象：</span></div>
+<div><span style="font-size:18px"></span><div class="dp-highlighter bg_cpp"><div class="bar"><div class="tools"><b>[cpp]</b> <a href="http://blog.csdn.net/my_business/article/details/7497248#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><a href="http://blog.csdn.net/my_business/article/details/7497248#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy</a><a href="http://blog.csdn.net/my_business/article/details/7497248#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a><a href="http://blog.csdn.net/my_business/article/details/7497248#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a><div style="position: absolute; left: 377px; top: 1768px; width: 18px; height: 18px; z-index: 99; "><embed id="ZeroClipboardMovie_5" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="18" height="18" name="ZeroClipboardMovie_5" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=5&amp;width=18&amp;height=18" wmode="transparent"></div></div></div><ol start="1" class="dp-cpp"><li class="alt"><span><span>SomeObj^&nbsp;obj&nbsp;=&nbsp;ref&nbsp;</span><span class="keyword">new</span><span>&nbsp;SomeObj();&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="cpp" style="display: none; ">SomeObj^ obj = ref new SomeObj();</pre></div>
+<div><span style="font-size:18px">访问类具体成员对象时使用“-&gt;”</span></div>
+<div><span style="font-size:18px"></span><div class="dp-highlighter bg_cpp"><div class="bar"><div class="tools"><b>[cpp]</b> <a href="http://blog.csdn.net/my_business/article/details/7497248#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><a href="http://blog.csdn.net/my_business/article/details/7497248#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy</a><a href="http://blog.csdn.net/my_business/article/details/7497248#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a><a href="http://blog.csdn.net/my_business/article/details/7497248#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a><div style="position: absolute; left: 377px; top: 1881px; width: 18px; height: 18px; z-index: 99; "><embed id="ZeroClipboardMovie_6" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="18" height="18" name="ZeroClipboardMovie_6" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=6&amp;width=18&amp;height=18" wmode="transparent"></div></div></div><ol start="1" class="dp-cpp"><li class="alt"><span><span>obj-&gt;SomeFunc();&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="cpp" style="display: none; ">obj-&gt;SomeFunc();</pre></div>
+<div><span style="font-size:18px">^的变量代表它是引用类型的，系统会负责他们的引用计数，当引用计数为0时，它们会被销毁。</span></div>
+<div><span style="font-size:18px"><br>
+</span></div>
+<div><span style="font-size:18px">4. property</span></div>
+<div><span style="font-size:18px">可以在public属性中用property关键字来公开类的成员变量，比如：</span></div>
+<div><span style="font-size:18px"></span></div>
+<div class="dp-highlighter bg_cpp"><div class="bar"><div class="tools"><b>[cpp]</b> <a href="http://blog.csdn.net/my_business/article/details/7497248#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><a href="http://blog.csdn.net/my_business/article/details/7497248#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy</a><a href="http://blog.csdn.net/my_business/article/details/7497248#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a><a href="http://blog.csdn.net/my_business/article/details/7497248#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a><div style="position: absolute; left: 377px; top: 2072px; width: 18px; height: 18px; z-index: 99; "><embed id="ZeroClipboardMovie_7" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="18" height="18" name="ZeroClipboardMovie_7" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=7&amp;width=18&amp;height=18" wmode="transparent"></div></div></div><ol start="1" class="dp-cpp"><li class="alt"><span><span>ref&nbsp;</span><span class="keyword">class</span><span>&nbsp;SomeObj&nbsp;{&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">public</span><span>:&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;property&nbsp;<span class="datatypes">int</span><span>&nbsp;propertyX;&nbsp;&nbsp;</span></span></li><li class=""><span>};&nbsp;&nbsp;</span></li></ol></div><pre name="code" class="cpp" style="display: none; ">ref class SomeObj {
+public:
+     property int propertyX;
+};</pre><br>
+<div><span style="font-size:18px"></span></div>
+<div><span style="font-size:18px">可能你会觉得上面的写法跟不加property貌似没有什么区别，在使用确实上是一样的，但是用property的方式其实是会去自动生成针对m_propX的默认get(),set()函数，类似下面这样：</span></div>
+<div><span style=""><span style="font-size:18px"></span></span></div>
+<div class="dp-highlighter bg_cpp"><div class="bar"><div class="tools"><b>[cpp]</b> <a href="http://blog.csdn.net/my_business/article/details/7497248#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><a href="http://blog.csdn.net/my_business/article/details/7497248#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy</a><a href="http://blog.csdn.net/my_business/article/details/7497248#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a><a href="http://blog.csdn.net/my_business/article/details/7497248#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a><div style="position: absolute; left: 377px; top: 2265px; width: 18px; height: 18px; z-index: 99; "><embed id="ZeroClipboardMovie_8" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="18" height="18" name="ZeroClipboardMovie_8" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=8&amp;width=18&amp;height=18" wmode="transparent"></div></div></div><ol start="1" class="dp-cpp"><li class="alt"><span><span>ref&nbsp;</span><span class="keyword">class</span><span>&nbsp;SomeObj&nbsp;{&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">public</span><span>:&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;property&nbsp;<span class="datatypes">int</span><span>&nbsp;propertyX{&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="datatypes">int</span><span>&nbsp;get()&nbsp;{&nbsp;</span><span class="keyword">return</span><span>&nbsp;mX;&nbsp;}&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">void</span><span>&nbsp;set(</span><span class="datatypes">int</span><span>&nbsp;x)&nbsp;{&nbsp;mX&nbsp;=&nbsp;x;&nbsp;};&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span><span class="keyword">private</span><span>:&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;<span class="datatypes">int</span><span>&nbsp;mX;&nbsp;&nbsp;</span></span></li><li class="alt"><span>};&nbsp;&nbsp;</span></li></ol></div><pre name="code" class="cpp" style="display: none; ">ref class SomeObj {
+public:
+   property int propertyX{
+       int get() { return mX; }
+       void set(int x) { mX = x; };
+   }
+private:
+   int mX;
+};</pre><br>
+<div><span style=""><span style="font-size:18px"></span></span></div>
+<div><span style="font-size:18px">那property关键字的使用到底有什么实际意义呢？</span></div>
+<div><span style="font-size:18px">首先，如果是public定义的类，那么它的public属性中只能通过property才能定义成员变量，如下这样的定义编译会出错：</span></div>
+<div><span style=""><span style=""><span style="font-size:18px"></span></span></span></div>
+<div class="dp-highlighter bg_cpp"><div class="bar"><div class="tools"><b>[cpp]</b> <a href="http://blog.csdn.net/my_business/article/details/7497248#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><a href="http://blog.csdn.net/my_business/article/details/7497248#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy</a><a href="http://blog.csdn.net/my_business/article/details/7497248#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a><a href="http://blog.csdn.net/my_business/article/details/7497248#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a><div style="position: absolute; left: 377px; top: 2574px; width: 18px; height: 18px; z-index: 99; "><embed id="ZeroClipboardMovie_9" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="18" height="18" name="ZeroClipboardMovie_9" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=9&amp;width=18&amp;height=18" wmode="transparent"></div></div></div><ol start="1" class="dp-cpp"><li class="alt"><span><span class="keyword">public</span><span>&nbsp;ref&nbsp;</span><span class="keyword">class</span><span>&nbsp;SomeObj&nbsp;{&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">public</span><span>:&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="datatypes">int</span><span>&nbsp;mX;&nbsp;</span><span class="comment">//&nbsp;compiler&nbsp;error</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>};&nbsp;&nbsp;</span></li></ol></div><pre name="code" class="cpp" style="display: none; ">public ref class SomeObj {
+public:
+     int mX; // compiler error
+};</pre><br>
+<div><span style=""><span style="font-size:18px"></span></span></div>
+<div><span style="font-size:18px">其次，通过property可以控制成员变量的访问权限，比如只读，可读可写等，如下代码就把propertyX设置为只读了：</span></div>
+<div><span style=""><span style=""><span style="font-size:18px"></span></span></span></div>
+<div class="dp-highlighter bg_cpp"><div class="bar"><div class="tools"><b>[cpp]</b> <a href="http://blog.csdn.net/my_business/article/details/7497248#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><a href="http://blog.csdn.net/my_business/article/details/7497248#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy</a><a href="http://blog.csdn.net/my_business/article/details/7497248#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a><a href="http://blog.csdn.net/my_business/article/details/7497248#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a><div style="position: absolute; left: 377px; top: 2767px; width: 18px; height: 18px; z-index: 99; "><embed id="ZeroClipboardMovie_10" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="18" height="18" name="ZeroClipboardMovie_10" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=10&amp;width=18&amp;height=18" wmode="transparent"></div></div></div><ol start="1" class="dp-cpp"><li class="alt"><span><span>ref&nbsp;</span><span class="keyword">class</span><span>&nbsp;SomeObj&nbsp;{&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">public</span><span>:&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;property&nbsp;<span class="datatypes">int</span><span>&nbsp;propertyX{&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="datatypes">int</span><span>&nbsp;get()&nbsp;{&nbsp;</span><span class="keyword">return</span><span>&nbsp;mX;&nbsp;}&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class=""><span><span class="keyword">private</span><span>:&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;<span class="datatypes">int</span><span>&nbsp;mX;&nbsp;&nbsp;</span></span></li><li class=""><span>};&nbsp;&nbsp;</span></li></ol></div><pre name="code" class="cpp" style="display: none; ">ref class SomeObj {
+public:
+     property int propertyX{
+          int get() { return mX; }
+     }
+private:
+   int mX;
+};</pre><br>
+<div><span style=""><span style="font-size:18px"></span></span></div>
+<div><span style="font-size:18px">同时我们还可以自己定义成员变量的读操作或写操作，如下代码把写操作控制为只会被设置为非0的值：</span></div>
+<div><span style=""><span style=""><span style="font-size:18px"></span></span></span></div>
+<div class="dp-highlighter bg_cpp"><div class="bar"><div class="tools"><b>[cpp]</b> <a href="http://blog.csdn.net/my_business/article/details/7497248#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><a href="http://blog.csdn.net/my_business/article/details/7497248#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy</a><a href="http://blog.csdn.net/my_business/article/details/7497248#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a><a href="http://blog.csdn.net/my_business/article/details/7497248#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a><div style="position: absolute; left: 377px; top: 3032px; width: 18px; height: 18px; z-index: 99; "><embed id="ZeroClipboardMovie_11" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="18" height="18" name="ZeroClipboardMovie_11" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=11&amp;width=18&amp;height=18" wmode="transparent"></div></div></div><ol start="1" class="dp-cpp"><li class="alt"><span><span>ref&nbsp;</span><span class="keyword">class</span><span>&nbsp;SomeObj&nbsp;{&nbsp;&nbsp;</span></span></li><li class=""><span><span class="keyword">public</span><span>:&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;property&nbsp;<span class="datatypes">int</span><span>&nbsp;propertyX{&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="datatypes">int</span><span>&nbsp;get()&nbsp;{&nbsp;</span><span class="keyword">return</span><span>&nbsp;mX;&nbsp;}&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">void</span><span>&nbsp;set(</span><span class="datatypes">int</span><span>&nbsp;x)&nbsp;{&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span><span>&nbsp;(x&nbsp;!=&nbsp;0)&nbsp;mX&nbsp;=&nbsp;x;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span><span class="keyword">private</span><span>:&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="datatypes">int</span><span>&nbsp;mX;&nbsp;&nbsp;</span></span></li><li class="alt"><span>};&nbsp;&nbsp;</span></li></ol></div><pre name="code" class="cpp" style="display: none; ">ref class SomeObj {
+public:
+     property int propertyX{
+        int get() { return mX; }
+        void set(int x) { 
+            if (x != 0) mX = x; 
+        };
+     }
+private:
+     int mX;
+};
+</pre>
+<div><br>
+</div>
+<div><span style="font-size:18px">5. 委托delegate和事件event</span></div>
+<div><span style="font-size:18px">先看delegate的一个实例：</span></div>
+<div align="left"><span style="font-size:18px"><span style="font-family:Consolas; color:rgb(0,0,255)"></span></span></div>
+<div class="dp-highlighter bg_cpp"><div class="bar"><div class="tools"><b>[cpp]</b> <a href="http://blog.csdn.net/my_business/article/details/7497248#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><a href="http://blog.csdn.net/my_business/article/details/7497248#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy</a><a href="http://blog.csdn.net/my_business/article/details/7497248#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a><a href="http://blog.csdn.net/my_business/article/details/7497248#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a><div style="position: absolute; left: 377px; top: 3377px; width: 18px; height: 18px; z-index: 99; "><embed id="ZeroClipboardMovie_12" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="18" height="18" name="ZeroClipboardMovie_12" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=12&amp;width=18&amp;height=18" wmode="transparent"></div></div></div><ol start="1" class="dp-cpp"><li class="alt"><span><span>delegate&nbsp;</span><span class="keyword">void</span><span>&nbsp;EventHandler(</span><span class="datatypes">int</span><span>&nbsp;x);&nbsp;&nbsp;</span></span></li><li class=""><span>ref&nbsp;<span class="keyword">class</span><span>&nbsp;WinRTObj&nbsp;sealed&nbsp;&nbsp;</span></span></li><li class="alt"><span>{&nbsp;&nbsp;</span></li><li class=""><span><span class="keyword">public</span><span>:&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WinRTObj()&nbsp;{&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;eHandler&nbsp;=&nbsp;ref&nbsp;<span class="keyword">new</span><span>&nbsp;EventHandler([</span><span class="keyword">this</span><span>](</span><span class="datatypes">int</span><span>&nbsp;x)&nbsp;{&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">this</span><span>-&gt;mX&nbsp;=&nbsp;x;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;});&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">void</span><span>&nbsp;FireEvent(</span><span class="datatypes">int</span><span>&nbsp;x)&nbsp;{&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;eHandler(x);&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EventHandler^&nbsp;eHandler;&nbsp;&nbsp;</span></li><li class=""><span><span class="keyword">private</span><span>:&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="datatypes">int</span><span>&nbsp;mX;&nbsp;&nbsp;</span></span></li><li class=""><span>};&nbsp;&nbsp;</span></li></ol></div><pre name="code" class="cpp" style="display: none; ">delegate void EventHandler(int x);
+ref class WinRTObj sealed
+{
+public:
+     WinRTObj() {
+          eHandler = ref new EventHandler([this](int x) {
+               this-&gt;mX = x;
+          });
+     }
+     void FireEvent(int x) {
+          eHandler(x);
+     }
+     EventHandler^ eHandler;
+private:
+     int mX;
+};</pre><br>
+<div align="left"><span style="font-family:Consolas"><span style="font-size:18px"></span></span></div>
+<div><span style="font-size:18px"><span style="font-family:Consolas; color:rgb(0,0,255)">delegate声明的</span><span style="color:rgb(43,145,175); font-family:Consolas">EventHandler其实功能就类似于函数指针，在</span><span style="font-family:Consolas; color:rgb(43,145,175)">WinRTObj类中我们定义了</span><span style="font-family:Consolas; color:rgb(43,145,175)">EventHandler</span><span style="font-family:Consolas">^类型的成员变量，并在构造函数中初始化，new&nbsp;</span><span style="color:rgb(43,145,175); font-family:Consolas">EventHandler时的参数是一个Lambda表达式的匿名函数，所以在</span><span style="color:rgb(43,145,175); font-family:Consolas">FireEvent中</span><span style="color:rgb(43,145,175); font-family:Consolas">调用</span><span style="font-family:Consolas">eHandler(x)时，其实就会去运行这个匿名函数。</span></span></div>
+<div><span style="font-family:Consolas"><span style="font-size:18px"><br>
+</span></span></div>
+<div><span style="font-family:Consolas"><span style="font-size:18px">我们再把event应用到上面这个例子中，看看event有什么功能：</span></span></div>
+<div align="left"><span style="font-family:Consolas"><span style=""><span style="font-size:18px"><span style="font-family:Consolas; color:rgb(0,0,255)"></span></span></span></span></div>
+<div class="dp-highlighter bg_cpp"><div class="bar"><div class="tools"><b>[cpp]</b> <a href="http://blog.csdn.net/my_business/article/details/7497248#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><a href="http://blog.csdn.net/my_business/article/details/7497248#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy</a><a href="http://blog.csdn.net/my_business/article/details/7497248#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a><a href="http://blog.csdn.net/my_business/article/details/7497248#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a><div style="position: absolute; left: 377px; top: 3864px; width: 18px; height: 18px; z-index: 99; "><embed id="ZeroClipboardMovie_13" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="18" height="18" name="ZeroClipboardMovie_13" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=13&amp;width=18&amp;height=18" wmode="transparent"></div></div></div><ol start="1" class="dp-cpp"><li class="alt"><span><span>delegate&nbsp;</span><span class="keyword">void</span><span>&nbsp;EventHandler(</span><span class="datatypes">int</span><span>&nbsp;x);&nbsp;&nbsp;</span></span></li><li class=""><span>ref&nbsp;<span class="keyword">class</span><span>&nbsp;WinRTObj&nbsp;sealed&nbsp;&nbsp;</span></span></li><li class="alt"><span>{&nbsp;&nbsp;</span></li><li class=""><span><span class="keyword">public</span><span>:&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WinRTObj()&nbsp;{&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;eHandler&nbsp;+=&nbsp;ref&nbsp;<span class="keyword">new</span><span>&nbsp;EventHandler([</span><span class="keyword">this</span><span>](</span><span class="datatypes">int</span><span>&nbsp;x)&nbsp;{&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">this</span><span>-&gt;mX&nbsp;=&nbsp;x;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;});&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">void</span><span>&nbsp;FireEvent(</span><span class="datatypes">int</span><span>&nbsp;x)&nbsp;{&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;eHandler(x);&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;event&nbsp;EventHandler^&nbsp;eHandler;&nbsp;&nbsp;</span></li><li class=""><span><span class="keyword">private</span><span>:&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="datatypes">int</span><span>&nbsp;mX;&nbsp;&nbsp;</span></span></li><li class=""><span>};&nbsp;&nbsp;</span></li></ol></div><pre name="code" class="cpp" style="display: none; ">delegate void EventHandler(int x);
+ref class WinRTObj sealed
+{
+public:
+     WinRTObj() {
+          eHandler += ref new EventHandler([this](int x) {
+               this-&gt;mX = x;
+          });
+     }
+     void FireEvent(int x) {
+          eHandler(x);
+     }
+     event EventHandler^ eHandler;
+private:
+     int mX;
+};</pre><br>
+<div align="left"><span style="font-family:Consolas"><span style="font-size:18px"></span></span></div>
+<div><span style="font-size:18px">上面的代码我们只是在声明<span style="font-family:Consolas">eHandler时用了event关键字，同时在构造函数创建</span><span style="font-family:Consolas">eHandler时，把"="改成了"+="。那么event增加了什么特性呢？从"+="可以看出，我们可以通过"+="向</span><span style="font-family:Consolas">eHandler添加多个委托，如下所示：</span></span></div>
+<div align="left"><span style="font-family:Consolas"><span style=""><span style="font-size:18px"><span style="font-family:Consolas; color:rgb(43,145,175)"></span></span></span></span></div>
+<div class="dp-highlighter bg_cpp"><div class="bar"><div class="tools"><b>[cpp]</b> <a href="http://blog.csdn.net/my_business/article/details/7497248#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><a href="http://blog.csdn.net/my_business/article/details/7497248#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy</a><a href="http://blog.csdn.net/my_business/article/details/7497248#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a><a href="http://blog.csdn.net/my_business/article/details/7497248#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a><div style="position: absolute; left: 377px; top: 4299px; width: 18px; height: 18px; z-index: 99; "><embed id="ZeroClipboardMovie_14" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="18" height="18" name="ZeroClipboardMovie_14" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=14&amp;width=18&amp;height=18" wmode="transparent"></div></div></div><ol start="1" class="dp-cpp"><li class="alt"><span><span>WinRTObj()&nbsp;{&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;eHandler&nbsp;+=&nbsp;ref&nbsp;<span class="keyword">new</span><span>&nbsp;EventHandler([</span><span class="keyword">this</span><span>](</span><span class="datatypes">int</span><span>&nbsp;x)&nbsp;{&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;<span class="keyword">this</span><span>-&gt;mX&nbsp;=&nbsp;x;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;});&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;eHandler&nbsp;+=&nbsp;ref&nbsp;<span class="keyword">new</span><span>&nbsp;EventHandler([</span><span class="keyword">this</span><span>](</span><span class="datatypes">int</span><span>&nbsp;x)&nbsp;{&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;......</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;});&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;eHandler::add(ref&nbsp;<span class="keyword">new</span><span>&nbsp;EventHandler([</span><span class="keyword">this</span><span>](</span><span class="datatypes">int</span><span>&nbsp;x)&nbsp;{&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;......</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}));&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;auto&nbsp;temp&nbsp;=&nbsp;eHandler::add(ref&nbsp;<span class="keyword">new</span><span>&nbsp;EventHandler([</span><span class="keyword">this</span><span>](</span><span class="datatypes">int</span><span>&nbsp;x)&nbsp;{&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;......</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}));&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;eHandler::remove(temp);&nbsp;&nbsp;</span></li><li class=""><span>}&nbsp;&nbsp;</span></li></ol></div><pre name="code" class="cpp" style="display: none; ">WinRTObj() {
+     eHandler += ref new EventHandler([this](int x) {
+   this-&gt;mX = x;
+     });
+     eHandler += ref new EventHandler([this](int x) {
+   // ......
+     });
+     eHandler::add(ref new EventHandler([this](int x) {
+   // ......
+     }));
+     auto temp = eHandler::add(ref new EventHandler([this](int x) {
+     
+   // ......
+     }));
+     eHandler::remove(temp);
+}</pre><br>
+<div>
+<div style="font-family:Consolas">
+<div align="left"><span style="color:rgb(43,145,175)"><span style="font-size:18px"></span></span></div>
+</div>
+<div align="left" style="font-family:Consolas"><span style="color:#2B91AF"><span style="font-size:18px">从上面的代码可以看出，除了用"+="来添加委托外，我们还可以用add方法，同时也可以用remove方法删除已经绑定的委托。</span></span></div>
+<div align="left" style="font-family:Consolas"><span style="font-size:18px"><span style="color:#2B91AF">现在大家应该明白</span><span style="font-family:Tahoma"><span style="font-family:Consolas"><span style="color:#0000FF">delegate</span>结合</span></span><span style="color:rgb(43,145,175)">event的具体作用了吧。</span></span></div>
+</div>
+<div align="left" style="font-family:Consolas"><span style="color:rgb(43,145,175)"><span style="font-size:18px"><br>
+</span></span></div>
+<div align="left"><span style="font-size:18px"><span style="font-family:Tahoma">6.&nbsp;</span>partial类</span></div>
+<div align="left">
+<div><span style=""><span style=""><span style="font-size:18px">partial关键字也是用来修饰class，它可以让类可以再多个地方定义同一个类，在编译的时候会自动合并。比如：</span></span></span></div>
+<div><span style=""><span style=""><span style="font-size:18px"></span></span></span></div>
+<div class="dp-highlighter bg_cpp"><div class="bar"><div class="tools"><b>[cpp]</b> <a href="http://blog.csdn.net/my_business/article/details/7497248#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><a href="http://blog.csdn.net/my_business/article/details/7497248#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy</a><a href="http://blog.csdn.net/my_business/article/details/7497248#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a><a href="http://blog.csdn.net/my_business/article/details/7497248#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a><div style="position: absolute; left: 377px; top: 4813px; width: 18px; height: 18px; z-index: 99; "><embed id="ZeroClipboardMovie_15" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="18" height="18" name="ZeroClipboardMovie_15" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=15&amp;width=18&amp;height=18" wmode="transparent"></div></div></div><ol start="1" class="dp-cpp"><li class="alt"><span><span>partial&nbsp;ref&nbsp;</span><span class="keyword">class</span><span>&nbsp;N&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>{&nbsp;&nbsp;</span></li><li class="alt"><span><span class="keyword">public</span><span>:&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;<span class="datatypes">int</span><span>&nbsp;Method1();&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;<span class="keyword">static</span><span>&nbsp;</span><span class="datatypes">int</span><span>&nbsp;sData1;&nbsp;&nbsp;</span></span></li><li class=""><span>};&nbsp;&nbsp;</span></li><li class="alt"><span>ref&nbsp;<span class="keyword">class</span><span>&nbsp;N&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span><span class="keyword">public</span><span>:&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">void</span><span>&nbsp;Method2();&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="datatypes">int</span><span>&nbsp;mData2;&nbsp;&nbsp;</span></span></li><li class=""><span>};&nbsp;&nbsp;</span></li></ol></div><pre name="code" class="cpp" style="display: none; ">partial ref class N 
+{
+public:
+   int Method1();
+   static int sData1;
+};
+ref class N 
+{   
+public:
+     void Method2();
+     int mData2;
+};</pre><br>
+<div><span style=""><span style=""><span style="font-size:18px"></span></span></span></div>
+<div><span style="font-size:18px">有什么用呢？其实在实际开发的代码中应该很少会用到，之所以需要partial，是因为Metro UI的界面是用XAML画的，VS会把XAML传变为实际代码，因为这些UI代码跟本身开发的UI逻辑代码等是属于同一个类，所以XAML转变的那部分会被定义为partial，然后编译的时候会被自动合并。</span></div>
+<div><span style="font-size:18px"><br>
+</span></div>
+<div><span style="font-size:18px">好了，关于C++ /CX的特性就说这么多，其实这些以外/CX还有很多新特性，比如内置类型，C++模板，枚举，异常等方面都有一些新的扩展。还是那句话，本文只是个说明的引子，更全的资料参照MSDN吧。</span></div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="share_buttons" id="sharePanel"><span>分享到：</span> <a name="sina" class="share_sina" title="分享到新浪微博"></a><a name="qq" class="share_qq" title="分享到腾讯微博"></a></div>
+<!--192.168.1.237-->
+<div class="article_next_prev">
+    <li class="prev_article"><span>上一篇：</span><a href="http://blog.csdn.net/my_business/article/details/7494197">【windows8开发】异步编程之Promise(Javascript)</a></li>
+    <li class="next_article"><span>下一篇：</span><a href="http://blog.csdn.net/my_business/article/details/7558900">apache代理解决Javascript跨域问题</a></li>
+</div>
+
+
+            <div id="digg" articleid="7497248">
+            <dl id="btnDigg" class="digg digg_disable">
+                <dt>顶</dt>
+                <dd>2</dd>
+            </dl>
+            <dl id="btnBury" class="digg digg_disable">
+                <dt>踩</dt>
+                <dd>0</dd>
+            </dl>
+        </div>
+
+</div>
+<div id="ad_cen"><iframe id="ad_frm_0" frameborder="0" scrolling="no" style="border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; overflow-x: hidden; overflow-y: hidden; width: 1647px; height: 95px; " src="./【windows8开发】深入浅出C++ CX - my_business的专栏 - 博客频道 - CSDN.NET_files/ad(1).htm"></iframe></div>
+<script type="text/javascript">
+    new Ad(4, 'ad_cen');
+</script>
+<div id="comment_title" class="panel_head">查看评论<a name="comments"></a></div>
+<div id="comment_list"><dl class="comment_item comment_topic" id="comment_item_2381651"><dt class="comment_head" floor="7">7楼 <span class="user"><a class="username" href="http://blog.csdn.net/liuhuili23" target="_blank">liuhuili23</a> <span class="ptime">昨天 20:28发表</span>  <a href="http://blog.csdn.net/my_business/article/details/7497248#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2381651" username="liuhuili23"> <a href="http://blog.csdn.net/my_business/article/details/7497248#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/my_business/article/details/7497248#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/liuhuili23" target="_blank"><img src="./【windows8开发】深入浅出C++ CX - my_business的专栏 - 博客频道 - CSDN.NET_files/3_liuhuili23.jpg" width="40" height="40"></a></dd><dd class="comment_body">请问下，在win8里怎么把void *转成winRt 类型指针，因为我要调用c语言库，谢谢！</dd><dl class="comment_item comment_reply" id="comment_item_2381741"><dt class="comment_head" floor="7">Re: <span class="user"><a class="username" href="http://blog.csdn.net/my_business" target="_blank">my_business</a> <span class="ptime">昨天 22:14发表</span>  <a href="http://blog.csdn.net/my_business/article/details/7497248#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2381741" username="my_business"> <a href="http://blog.csdn.net/my_business/article/details/7497248#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/my_business/article/details/7497248#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/my_business" target="_blank"><img src="./【windows8开发】深入浅出C++ CX - my_business的专栏 - 博客频道 - CSDN.NET_files/3_my_business.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复liuhuili23：一般情况下，会在内部逻辑中处理void*，得到的结果会根据业务逻辑转换成一系列WinRT支持的类型暴露给外部调用。不知道你具体的需求什么样的？</dd><dl class="comment_item comment_reply" id="comment_item_2381952"><dt class="comment_head" floor="1">Re: <span class="user"><a class="username" href="http://blog.csdn.net/liuhuili23" target="_blank">liuhuili23</a> <span class="ptime">昨天 09:15发表</span>  <a href="http://blog.csdn.net/my_business/article/details/7497248#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2381952" username="liuhuili23"> <a href="http://blog.csdn.net/my_business/article/details/7497248#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/my_business/article/details/7497248#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/liuhuili23" target="_blank"><img src="./【windows8开发】深入浅出C++ CX - my_business的专栏 - 博客频道 - CSDN.NET_files/3_liuhuili23.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复my_business：我要使用一个第三方C接口库，有一个函数要传人回调函数作为参数，这个回调函数有一个void *参数来传入自己的数据，而我把winRT类型指针传入再在回调函数内部再强转过来。<br><br>不知道我的描述清不清楚，谢谢你的回复</dd><dl class="comment_item comment_reply" id="comment_item_2382248"><dt class="comment_head" floor="1">Re: <span class="user">[游客] <span class="ptime">昨天 12:26发表</span>  <a href="http://blog.csdn.net/my_business/article/details/7497248#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2382248" username=""> <a href="http://blog.csdn.net/my_business/article/details/7497248#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/my_business/article/details/7497248#report" class="cmt_btn report" title="举报">[举报]</a> <a href="http://blog.csdn.net/my_business/article/details/7497248#delete" class="cmt_btn delete" title="删除">[删除]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/" target="_blank"><img src="./【windows8开发】深入浅出C++ CX - my_business的专栏 - 博客频道 - CSDN.NET_files/2_guest.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复liuhuili23：意思我明白了。据我目前的了解，WinRT中暂时还找不到完全能匹配转换void*的。主要还是要根据你回调中void*传回的是什么形式的数据来自己转换。比如说，如果它传来的是一块内存空间的首地址，那势必还需要其他参数传来内存空间长度，如果内存空间中数据结构是已知固定的话，再根据数据结构转换。假设数据结构是int*指向的数组的话，那就转为Array&lt;int&gt;型。。。。。</dd></dl></dl></dl></dl><dl class="comment_item comment_topic" id="comment_item_2371516"><dt class="comment_head" floor="6">6楼 <span class="user"><a class="username" href="http://blog.csdn.net/vipygd" target="_blank">vipygd</a> <span class="ptime">2012-09-14 06:56发表</span>  <a href="http://blog.csdn.net/my_business/article/details/7497248#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2371516" username="vipygd"> <a href="http://blog.csdn.net/my_business/article/details/7497248#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/my_business/article/details/7497248#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/vipygd" target="_blank"><img src="./【windows8开发】深入浅出C++ CX - my_business的专栏 - 博客频道 - CSDN.NET_files/3_vipygd.jpg" width="40" height="40"></a></dd><dd class="comment_body">楼主的文章很给力。谢谢楼主！学习了。以后和楼主多多交流。</dd></dl><dl class="comment_item comment_topic" id="comment_item_2267993"><dt class="comment_head" floor="5">5楼 <span class="user"><a class="username" href="http://blog.csdn.net/goof" target="_blank">goof</a> <span class="ptime">2012-06-29 11:00发表</span>  <a href="http://blog.csdn.net/my_business/article/details/7497248#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2267993" username="goof"> <a href="http://blog.csdn.net/my_business/article/details/7497248#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/my_business/article/details/7497248#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/goof" target="_blank"><img src="./【windows8开发】深入浅出C++ CX - my_business的专栏 - 博客频道 - CSDN.NET_files/3_goof.jpg" width="40" height="40"></a></dd><dd class="comment_body">非常不错，希望楼主继续。多写一些Windows 8的新特性。</dd></dl><dl class="comment_item comment_topic" id="comment_item_2235386"><dt class="comment_head" floor="4">4楼 <span class="user"><a class="username" href="http://blog.csdn.net/g10589119" target="_blank">g10589119</a> <span class="ptime">2012-05-28 21:01发表</span>  <a href="http://blog.csdn.net/my_business/article/details/7497248#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2235386" username="g10589119"> <a href="http://blog.csdn.net/my_business/article/details/7497248#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/my_business/article/details/7497248#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/g10589119" target="_blank"><img src="./【windows8开发】深入浅出C++ CX - my_business的专栏 - 博客频道 - CSDN.NET_files/3_g10589119.jpg" width="40" height="40"></a></dd><dd class="comment_body">楼主你好，最近遇到一个问题，就是在metro的开发中，想用c#调用C++ /CX写的DLL，<br>public ref class test_class sealed<br> {<br>     public:<br>    void fun(int a, int&amp;  b,int c[10])<br>   {<br>    ....<br>   }<br> }<br> <br><br>类似上面的函数，从C#中如何调用，数组和引用的参数不知在C#中怎么传递，望能写一篇类似文章</dd><dl class="comment_item comment_reply" id="comment_item_2236356"><dt class="comment_head" floor="4">Re: <span class="user"><a class="username" href="http://blog.csdn.net/my_business" target="_blank">my_business</a> <span class="ptime">2012-05-29 17:00发表</span>  <a href="http://blog.csdn.net/my_business/article/details/7497248#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2236356" username="my_business"> <a href="http://blog.csdn.net/my_business/article/details/7497248#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/my_business/article/details/7497248#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/my_business" target="_blank"><img src="./【windows8开发】深入浅出C++ CX - my_business的专栏 - 博客频道 - CSDN.NET_files/3_my_business.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复g10589119：在以下文章中回复了你的问题，有什么问题，欢迎留言讨论。<br>http://blog.csdn.net/my_business/article/details/7613396</dd></dl></dl><dl class="comment_item comment_topic" id="comment_item_2208599"><dt class="comment_head" floor="3">3楼 <span class="user"><a class="username" href="http://blog.csdn.net/zzcko115" target="_blank">zzcko115</a> <span class="ptime">2012-05-08 15:08发表</span>  <a href="http://blog.csdn.net/my_business/article/details/7497248#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2208599" username="zzcko115"> <a href="http://blog.csdn.net/my_business/article/details/7497248#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/my_business/article/details/7497248#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/zzcko115" target="_blank"><img src="./【windows8开发】深入浅出C++ CX - my_business的专栏 - 博客频道 - CSDN.NET_files/3_zzcko115.jpg" width="40" height="40"></a></dd><dd class="comment_body">很精彩，我也等后续。</dd><dl class="comment_item comment_reply" id="comment_item_2209103"><dt class="comment_head" floor="3">Re: <span class="user"><a class="username" href="http://blog.csdn.net/my_business" target="_blank">my_business</a> <span class="ptime">2012-05-08 21:19发表</span>  <a href="http://blog.csdn.net/my_business/article/details/7497248#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2209103" username="my_business"> <a href="http://blog.csdn.net/my_business/article/details/7497248#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/my_business/article/details/7497248#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/my_business" target="_blank"><img src="./【windows8开发】深入浅出C++ CX - my_business的专栏 - 博客频道 - CSDN.NET_files/3_my_business.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复zzcko115：最近有点忙，抽不出时间写博客， 不过还是希望大家多来踩踩，有时间会更新博客的。</dd></dl></dl><dl class="comment_item comment_topic" id="comment_item_2199211"><dt class="comment_head" floor="2">2楼 <span class="user"><a class="username" href="http://blog.csdn.net/my_business" target="_blank">my_business</a> <span class="ptime">2012-04-28 21:04发表</span>  <a href="http://blog.csdn.net/my_business/article/details/7497248#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2199211" username="my_business"> <a href="http://blog.csdn.net/my_business/article/details/7497248#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/my_business/article/details/7497248#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/my_business" target="_blank"><img src="./【windows8开发】深入浅出C++ CX - my_business的专栏 - 博客频道 - CSDN.NET_files/3_my_business.jpg" width="40" height="40"></a></dd><dd class="comment_body">谢谢，你们的认同是我继续的动力，呵呵。</dd></dl><dl class="comment_item comment_topic" id="comment_item_2199103"><dt class="comment_head" floor="1">1楼 <span class="user"><a class="username" href="http://blog.csdn.net/Preboy" target="_blank">Preboy</a> <span class="ptime">2012-04-28 17:55发表</span>  <a href="http://blog.csdn.net/my_business/article/details/7497248#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2199103" username="Preboy"> <a href="http://blog.csdn.net/my_business/article/details/7497248#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/my_business/article/details/7497248#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/Preboy" target="_blank"><img src="./【windows8开发】深入浅出C++ CX - my_business的专栏 - 博客频道 - CSDN.NET_files/3_preboy.jpg" width="40" height="40"></a></dd><dd class="comment_body">非常精彩，坐等后续<br>谢谢博主</dd></dl><div class="clear"></div></div>
+<div id="comment_bar" style="display: none; "></div>
+<div id="comment_form"><div class="guest_link">您还没有登录,请<a href="http://passport.csdn.net/account/login?from=http%3A%2F%2Fblog.csdn.net%2Fmy_business%2Farticle%2Fdetails%2F7497248">[登录]</a>或<a href="http://passport.csdn.net/account/register?from=http%3A%2F%2Fblog.csdn.net%2Fmy_business%2Farticle%2Fdetails%2F7497248">[注册]</a></div></div>
+<div class="announce">* 以上用户言论只代表其个人观点，不代表CSDN网站的观点或立场<a name="reply"></a><a name="quote"></a></div>
+<script type="text/javascript">
+    var fileName = '7497248';
+    var commentscount = 12;
+    var islock = false
+</script>
+<script type="text/javascript" src="./【windows8开发】深入浅出C++ CX - my_business的专栏 - 博客频道 - CSDN.NET_files/comment.js"></script>
+<div id="ad_bot"><iframe id="ad_frm_1" frameborder="0" scrolling="no" style="border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; overflow-x: hidden; overflow-y: hidden; width: 1647px; height: 170px; " src="./【windows8开发】深入浅出C++ CX - my_business的专栏 - 博客频道 - CSDN.NET_files/ad(2).htm"></iframe></div>
+<script type="text/javascript">
+    new Ad(5, 'ad_bot');
+</script>
+<div id="report_dialog"></div>
+
+<div id="d-top">
+<a href="http://blog.csdn.net/my_business/article/details/7497248#" onclick="javascript:document.body.scrollTop=0;document.documentElement.scrollTop=0;this.blur();return false;" title="回到顶部">
+<img src="./【windows8开发】深入浅出C++ CX - my_business的专栏 - 博客频道 - CSDN.NET_files/top.png" alt="TOP"></a>
+</div>
+
+
+
+<div class="clear"></div>
+</div>
+</div>
+
+<div id="side">
+<div class="side">
+<div id="panel_Profile" class="panel">
+    <ul class="panel_head"><span>个人资料</span></ul>
+    <ul class="panel_body profile">
+        <div id="blog_userface">
+            <a href="http://my.csdn.net/my_business" target="_blank">
+            <img src="./【windows8开发】深入浅出C++ CX - my_business的专栏 - 博客频道 - CSDN.NET_files/1_my_business.jpg" title="访问我的空间" style="max-width:90%">
+            </a>
+            <br>
+            <span><a href="http://my.csdn.net/my_business" target="_blank">my_business</a></span>
+        </div>
+<div class="interact">
+<!--<a href="#" class="attented" title="已关注"></a>-->
+<a href="http://blog.csdn.net/my_business/article/details/7497248#" class="attent" id="span_add_follow" title="[加关注]"></a>
+<a href="http://my.csdn.net/my/letter/send/my_business" class="letter" title="[发私信]"></a>
+</div>
+        <div id="blog_medal">
+        <div id="bms_box"><a href="http://medal.blog.csdn.net/allmedal.aspx" target="_blank"><img src="./【windows8开发】深入浅出C++ CX - my_business的专栏 - 博客频道 - CSDN.NET_files/columnstar_s.gif" onmouseover="m_over_m(this,0)" onmouseout="m_out_m()" alt=""></a><a href="http://medal.blog.csdn.net/allmedal.aspx" target="_blank"><img src="./【windows8开发】深入浅出C++ CX - my_business的专栏 - 博客频道 - CSDN.NET_files/holdon_s.gif" onmouseover="m_over_m(this,1)" onmouseout="m_out_m()" alt=""></a></div></div>
+        <ul id="blog_rank">
+            <li>访问：<span>32080次</span></li>
+            <li>积分：<span>943分</span></li>
+            <li>排名：<span>第8739名</span></li>
+        </ul>
+        <ul id="blog_statistics">
+            <li>原创：<span>58篇</span></li>
+            <li>转载：<span>3篇</span></li>
+            <li>译文：<span>0篇</span></li>
+            <li>评论：<span>75条</span></li>
+        </ul>
+    </ul>
+</div>
+<script type="text/javascript">
+    var _blogger = 'my_business';
+</script>
+<script type="text/javascript">
+$(document).ready(function () {
+    var un = getUN().toLowerCase();
+    if (un == _blogger.toLowerCase()) {
+        $('.interact').hide();
+    } else if(un) {
+        var url = "http://my.csdn.net/index.php/follow/check_is_followed/" + encodeURIComponent(un) + "/" + encodeURIComponent(_blogger) + "?jsonpcallback=?";
+        $.getJSON(url, {}, function (data) {
+            if (data.succ == 1 && data.info == 1) {
+                $('#span_add_follow').attr('class', 'attented');
+            } else {
+                $('#span_add_follow').click(guanzhu);
+            }
+        }, 'json');
+    }
+});
+function guanzhu() {
+    var url = "http://my.csdn.net/index.php/follow/do_follow?jsonpcallback=?";
+    $.getJSON(url, { "username": _blogger }, function (data) {
+        if (data.succ == 1) {
+            alert('关注成功！');
+            $('#span_add_follow').attr('class', 'attented').click(function () { return false; });
+        } else {
+            alert(data.msg);
+        }
+    });
+    return false;
+}
+function getUN() {
+    var m = document.cookie.match(new RegExp("(^| )UserName=([^;]*)(;|$)"));
+    if (m) return m[2];
+    else return '';
+}
+</script>
+
+<div id="panel_Category" class="panel">
+    <ul class="panel_head"><span>博客专栏</span></ul>
+    <ul class="panel_body" id="sp_column">
+    <table cellpadding="0" cellspacing="0"><tbody><tr>
+    <td style="padding:10px 10px 0 0;">
+    <a href="http://blog.csdn.net/column/details/itlife.html" target="_blank"><img src="./【windows8开发】深入浅出C++ CX - my_business的专栏 - 博客频道 - CSDN.NET_files/20120524164936133.jpg" style="width:75px;height:75px;"></a>
+    </td>
+    <td style="padding:10px 0; vertical-align:top;">
+    <a href="http://blog.csdn.net/column/details/itlife.html" target="_blank">挨踢人生</a>
+    <p>文章：11篇</p>
+    <span>阅读：9299</span>
+    </td>
+    </tr></tbody></table>
+    <table cellpadding="0" cellspacing="0"><tbody><tr>
+    <td style="padding:10px 10px 0 0;">
+    <a href="http://blog.csdn.net/column/details/oodesign.html" target="_blank"><img src="./【windows8开发】深入浅出C++ CX - my_business的专栏 - 博客频道 - CSDN.NET_files/20120428214748912.jpg" style="width:75px;height:75px;"></a>
+    </td>
+    <td style="padding:10px 0; vertical-align:top;">
+    <a href="http://blog.csdn.net/column/details/oodesign.html" target="_blank">设计模式攻略</a>
+    <p>文章：19篇</p>
+    <span>阅读：5294</span>
+    </td>
+    </tr></tbody></table>
+    <table cellpadding="0" cellspacing="0"><tbody><tr>
+    <td style="padding:10px 10px 0 0;">
+    <a href="http://blog.csdn.net/column/details/win8.html" target="_blank"><img src="./【windows8开发】深入浅出C++ CX - my_business的专栏 - 博客频道 - CSDN.NET_files/20120428212805895.jpg" style="width:75px;height:75px;"></a>
+    </td>
+    <td style="padding:10px 0; vertical-align:top;">
+    <a href="http://blog.csdn.net/column/details/win8.html" target="_blank">Windows8开发专栏</a>
+    <p>文章：22篇</p>
+    <span>阅读：13967</span>
+    </td>
+    </tr></tbody></table>
+    </ul>
+</div><div id="panel_Category" class="panel">
+    <ul class="panel_head"><span>文章分类</span></ul>
+    <ul class="panel_body">
+        <li>
+        <a href="http://blog.csdn.net/my_business/article/category/1112331">设计模式系列</a><span>(19)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/my_business/article/category/1106883">挨踢生涯</a><span>(11)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/my_business/article/category/1106886">技术杂谈</a><span>(6)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/my_business/article/category/1129249">window8 App开发</a><span>(23)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/my_business/article/category/1218444">让人又爱又恨的C++</a><span>(3)</span>
+        </li>
+    </ul>
+</div><div class="panel" id="panel_Search">
+    <ul class="panel_head"><span>文章搜索</span></ul>
+    <ul class="panel_body">
+        <form id="frmSearch" action="http://so.csdn.net/search" class="form_search" target="_blank">
+        <span><input id="inputSearch" type="text" class="blogsearch" title="请输入关键字"></span>
+        <input id="btnSubmit" type="submit" value="搜索" title="search in blog">
+        <input type="hidden" name="q" id="inputQ">
+        <input type="hidden" name="t" value="blog">
+        <a id="btnSearchBlog" target="_blank"></a>
+        </form>
+    </ul>
+</div><div id="panel_Archive" class="panel">
+    <ul class="panel_head"><span>文章存档</span></ul>
+    <ul class="panel_body">
+        <div id="archive_list"><li><a href="http://blog.csdn.net/my_business/article/month/2012/09">2012年09月</a><span>(9)</span></li><li><a href="http://blog.csdn.net/my_business/article/month/2012/08">2012年08月</a><span>(6)</span></li><li><a href="http://blog.csdn.net/my_business/article/month/2012/07">2012年07月</a><span>(4)</span></li><li><a href="http://blog.csdn.net/my_business/article/month/2012/06">2012年06月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/my_business/article/month/2012/05">2012年05月</a><span>(7)</span></li><span class="hidelist" style="display:none;"><li><a href="http://blog.csdn.net/my_business/article/month/2012/04">2012年04月</a><span>(24)</span></li><li><a href="http://blog.csdn.net/my_business/article/month/2012/03">2012年03月</a><span>(7)</span></li><li><a href="http://blog.csdn.net/my_business/article/month/2012/02">2012年02月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/my_business/article/month/2012/01">2012年01月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/my_business/article/month/2011/12">2011年12月</a><span>(1)</span></li></span><div id="archive_list_button" class="list_closed">展开</div></div>
+    </ul>
+</div>
+<div id="hotarticls" class="panel">
+    <ul class="panel_head"><span>阅读排行</span></ul>
+    <ul class="panel_body itemlist">
+        <li>
+            <a href="./【windows8开发】深入浅出C++ CX - my_business的专栏 - 博客频道 - CSDN.NET_files/【windows8开发】深入浅出C++ CX - my_business的专栏 - 博客频道 - CSDN.NET.htm" title="【windows8开发】深入浅出C++/CX">【windows8开发】深入浅出C++/CX</a><span>(2360)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/my_business/article/details/7484395" title="【windows8开发】C++开发WinRT组件和JS调用">【windows8开发】C++开发WinRT组件和JS调用</a><span>(1502)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/my_business/article/details/7436096" title="一个苏州IT人的5年挨踢经历-------未来篇">一个苏州IT人的5年挨踢经历-------未来篇</a><span>(1355)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/my_business/article/details/7161688" title="一个苏州IT人的5年挨踢经历-------面试篇(之一)">一个苏州IT人的5年挨踢经历-------面试篇(之一)</a><span>(1326)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/my_business/article/details/7482974" title="【windows8开发】开发平台与开发框架">【windows8开发】开发平台与开发框架</a><span>(1256)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/my_business/article/details/7490511" title="【windows8开发】异步编程入门篇之 Concurrency::task（C++）">【windows8开发】异步编程入门篇之 Concurrency::task（C++）</a><span>(1212)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/my_business/article/details/7576062" title="【windows8开发】C++开发Metro风格App">【windows8开发】C++开发Metro风格App</a><span>(1178)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/my_business/article/details/7170625" title="一个苏州IT人的5年挨踢经历-------面试篇(之二)">一个苏州IT人的5年挨踢经历-------面试篇(之二)</a><span>(1133)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/my_business/article/details/7256306" title="一个苏州IT人的5年挨踢经历-------面试篇(之三)">一个苏州IT人的5年挨踢经历-------面试篇(之三)</a><span>(986)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/my_business/article/details/7436088" title="一个苏州IT人的5年挨踢经历-------经历篇(之五)">一个苏州IT人的5年挨踢经历-------经历篇(之五)</a><span>(831)</span>
+        </li>
+    </ul>
+</div>
+<div id="hotarticls2" class="panel">
+    <ul class="panel_head"><span>评论排行</span></ul>
+    <ul class="panel_body itemlist">
+        <li>
+            <a href="./【windows8开发】深入浅出C++ CX - my_business的专栏 - 博客频道 - CSDN.NET_files/【windows8开发】深入浅出C++ CX - my_business的专栏 - 博客频道 - CSDN.NET.htm" title="【windows8开发】深入浅出C++/CX">【windows8开发】深入浅出C++/CX</a><span>(12)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/my_business/article/details/7484395" title="【windows8开发】C++开发WinRT组件和JS调用">【windows8开发】C++开发WinRT组件和JS调用</a><span>(7)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/my_business/article/details/7492951" title="【windows8开发】异步编程入门篇之 Concurrency::create_async（C++）">【windows8开发】异步编程入门篇之 Concurrency::create_async（C++）</a><span>(6)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/my_business/article/details/7161688" title="一个苏州IT人的5年挨踢经历-------面试篇(之一)">一个苏州IT人的5年挨踢经历-------面试篇(之一)</a><span>(5)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/my_business/article/details/7895879" title="【windows8开发】现有代码移植到Metro App所必须的API整合">【windows8开发】现有代码移植到Metro App所必须的API整合</a><span>(5)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/my_business/article/details/7490511" title="【windows8开发】异步编程入门篇之 Concurrency::task（C++）">【windows8开发】异步编程入门篇之 Concurrency::task（C++）</a><span>(5)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/my_business/article/details/7477615" title="C++ 0x/11学习笔记">C++ 0x/11学习笔记</a><span>(5)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/my_business/article/details/7998178" title="【Windows8开发】异步编程进阶篇之 单线程套间(STA)及如何控制task执行上下文">【Windows8开发】异步编程进阶篇之 单线程套间(STA)及如何控制task执行上下文</a><span>(5)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/my_business/article/details/7727356" title="【windows8开发】javascript开发Metro风格App">【windows8开发】javascript开发Metro风格App</a><span>(4)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/my_business/article/details/7482974" title="【windows8开发】开发平台与开发框架">【windows8开发】开发平台与开发框架</a><span>(4)</span>
+        </li>
+    </ul>
+</div>
+<div id="homepageArticles" class="panel">
+    <ul class="panel_head"><span>推荐文章</span></ul>
+    <ul class="panel_body" id="ad_commend">
+    <iframe id="ad_frm_2" frameborder="0" scrolling="no" style="border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; overflow-x: hidden; overflow-y: hidden; width: 194px; height: 218px; " src="./【windows8开发】深入浅出C++ CX - my_business的专栏 - 博客频道 - CSDN.NET_files/ad.htm"></iframe></ul>
+</div>
+<script type="text/javascript" src="./【windows8开发】深入浅出C++ CX - my_business的专栏 - 博客频道 - CSDN.NET_files/ad.js"></script>
+<script type="text/javascript">
+    new Ad(12, 'ad_commend');
+</script><div id="newcomments" class="panel">
+<ul class="panel_head"><span>最新评论</span></ul>
+<ul class="panel_body itemlist">
+    <li>
+    <a href="http://blog.csdn.net/my_business/article/details/7497248#comments">【windows8开发】深入浅出C++/CX</a>
+    <p style="margin:0px;">:
+@liuhuili23:意思我明白了。据我目前的了解，WinRT中暂时还找不到完全能匹配转换void...
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/my_business/article/details/7497248#comments">【windows8开发】深入浅出C++/CX</a>
+    <p style="margin:0px;">liuhuili23:
+@my_business:我要使用一个第三方C接口库，有一个函数要传人回调函数作为参数，这个回调函数...
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/my_business/article/details/7497248#comments">【windows8开发】深入浅出C++/CX</a>
+    <p style="margin:0px;">my_business:
+@liuhuili23:一般情况下，会在内部逻辑中处理void*，得到的结果会根据业务逻辑转换成一系...
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/my_business/article/details/7497248#comments">【windows8开发】深入浅出C++/CX</a>
+    <p style="margin:0px;">liuhuili23:
+请问下，在win8里怎么把void *转成winRt 类型指针，因为我要调用c语言库，谢谢！
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/my_business/article/details/7998178#comments">【Windows8开发】异步编程进阶篇之 单线程套间(STA)及如何控制task执行上下文</a>
+    <p style="margin:0px;">ayumihe:
+@my_business:多谢指教, 另外我想真心地请教一下, 使用task如何解决我这个问题呢? ...
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/my_business/article/details/7998178#comments">【Windows8开发】异步编程进阶篇之 单线程套间(STA)及如何控制task执行上下文</a>
+    <p style="margin:0px;">my_business:
+@ayumihe:通过Thread Pool的Completed事件，然后用Dispatcher确实...
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/my_business/article/details/7998178#comments">【Windows8开发】异步编程进阶篇之 单线程套间(STA)及如何控制task执行上下文</a>
+    <p style="margin:0px;">ayumihe:
+@my_business:是底层库操作后，底层IMbnDeviceServiceEvent的一个响应...
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/my_business/article/details/7998178#comments">【Windows8开发】异步编程进阶篇之 单线程套间(STA)及如何控制task执行上下文</a>
+    <p style="margin:0px;">my_business:
+@ayumihe:有一点不太理解，你注册的静态回调函数是什么事件下触发回调的？是在哪个线程中被回调的...
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/my_business/article/details/7998178#comments">【Windows8开发】异步编程进阶篇之 单线程套间(STA)及如何控制task执行上下文</a>
+    <p style="margin:0px;">ayumihe:
+这个文章我已经参考过, 我也试过, 好像有点问题, 我是这样试的:1. 底层(非UI线程), 通过U...
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/my_business/article/details/7484395#comments">【windows8开发】C++开发WinRT组件和JS调用</a>
+    <p style="margin:0px;">my_business:
+@oldmtn:谢谢，关于第一点以后我会尽量把把具体操作的截图也放上去，方便大家参照。关于第二点引用...
+    </p>
+    </li>
+</ul>
+</div>
+</div>
+<div class="clear"></div>
+</div>
+
+<div class="clear"></div>
+</div>
+<script type="text/javascript" src="./【windows8开发】深入浅出C++ CX - my_business的专栏 - 博客频道 - CSDN.NET_files/shCore-src.js"></script>
+<script type="text/javascript" src="./【windows8开发】深入浅出C++ CX - my_business的专栏 - 博客频道 - CSDN.NET_files/ZeroClipboard.js"></script>
+<script type="text/javascript" src="./【windows8开发】深入浅出C++ CX - my_business的专栏 - 博客频道 - CSDN.NET_files/article_code.js"></script>
+
+<script type="text/javascript" src="./【windows8开发】深入浅出C++ CX - my_business的专栏 - 博客频道 - CSDN.NET_files/show.js"></script>
+<script type="text/javascript" src="./【windows8开发】深入浅出C++ CX - my_business的专栏 - 博客频道 - CSDN.NET_files/showblogmedal.ashx"></script>
+<script type="text/javascript">document.write("<img src=http://counter.csdn.net/pv.aspx?id=24 border=0 width=0 height=0>");</script><img src="./【windows8开发】深入浅出C++ CX - my_business的专栏 - 博客频道 - CSDN.NET_files/pv.aspx" border="0" width="0" height="0">
+
+<script type="text/javascript" src="./【windows8开发】深入浅出C++ CX - my_business的专栏 - 博客频道 - CSDN.NET_files/publib_footer.js"></script><link rel="stylesheet" type="text/css" href="./【windows8开发】深入浅出C++ CX - my_business的专栏 - 博客频道 - CSDN.NET_files/pub_footer_2012.css"><div class="pub_footerall"><dl><dt></dt> <dd><a href="http://www.csdn.net/company/about.html" target="_blank">公司简介</a>|<a href="http://www.csdn.net/company/recruit.html" target="_blank">招贤纳士</a>|<a href="http://www.csdn.net/company/marketing.html" target="_blank">广告服务</a>|<a href="http://www.csdn.net/company/account.html" target="_blank">银行汇款帐号</a>|<a href="http://www.csdn.net/company/contact.html" target="_blank">联系方式</a>|<a href="http://www.csdn.net/company/statement.html" target="_blank">版权声明</a>|<a href="http://www.csdn.net/company/layer.html" target="_blank">法律顾问</a>|<a href="mailto:webmaster@csdn.net">问题报告</a></dd><dd>京&nbsp;ICP&nbsp;证&nbsp;070598&nbsp;号</dd><dd>北京创新乐知信息技术有限公司 版权所有</dd><dd><img src="./【windows8开发】深入浅出C++ CX - my_business的专栏 - 博客频道 - CSDN.NET_files/ico_email.gif" alt="" title=""> 联系邮箱：webmaster(at)csdn.net</dd><dd>Copyright © 1999-2012, CSDN.NET, All Rights Reserved&nbsp;<a href="http://www.hd315.gov.cn/beian/view.asp?bianhao=010202001032100010" target="_blank"><img src="./【windows8开发】深入浅出C++ CX - my_business的专栏 - 博客频道 - CSDN.NET_files/gongshang_logos.gif" alt="GongshangLogo" title=""></a></dd></dl></div>
+
+<script type="text/javascript" src="./【windows8开发】深入浅出C++ CX - my_business的专栏 - 博客频道 - CSDN.NET_files/counter.js"></script><script type="text/javascript" charset="UTF-8" src="./【windows8开发】深入浅出C++ CX - my_business的专栏 - 博客频道 - CSDN.NET_files/msg.popup.js"></script>
+
+<!--ad.csdn.net-->
+<script type="text/javascript" src="./【windows8开发】深入浅出C++ CX - my_business的专栏 - 博客频道 - CSDN.NET_files/ad-blog.js"></script><script type="text/javascript" src="./【windows8开发】深入浅出C++ CX - my_business的专栏 - 博客频道 - CSDN.NET_files/ad-ibm27.js"></script>
+
+
+
+
+</div>
+
+<iframe style="width: 1px; height: 1px; position: absolute; visibility: hidden; " src="./【windows8开发】深入浅出C++ CX - my_business的专栏 - 博客频道 - CSDN.NET_files/university-of-bari-blog-homepage-960-90-0823.htm"></iframe></body></html>

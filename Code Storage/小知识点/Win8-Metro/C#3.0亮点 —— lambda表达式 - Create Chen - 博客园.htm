@@ -1,0 +1,500 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0065)http://www.cnblogs.com/technology/archive/2011/02/21/1959761.html -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>C#3.0亮点 —— lambda表达式 - Create Chen - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./C#3.0亮点 —— lambda表达式 - Create Chen - 博客园_files/common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./C#3.0亮点 —— lambda表达式 - Create Chen - 博客园_files/style.css">
+<link type="text/css" rel="stylesheet" href="./C#3.0亮点 —— lambda表达式 - Create Chen - 博客园_files/common2.css">
+<link type="text/css" rel="stylesheet" href="./C#3.0亮点 —— lambda表达式 - Create Chen - 博客园_files/shStyle.css">
+<link type="text/css" rel="stylesheet" href="./C#3.0亮点 —— lambda表达式 - Create Chen - 博客园_files/customcss.aspx">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/technology/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/technology/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/technology/wlwmanifest.xml">
+<script async="" type="text/javascript" src="./C#3.0亮点 —— lambda表达式 - Create Chen - 博客园_files/gpt.js"></script><script type="text/javascript" async="" src="./C#3.0亮点 —— lambda表达式 - Create Chen - 博客园_files/ga.js"></script><script src="./C#3.0亮点 —— lambda表达式 - Create Chen - 博客园_files/jquery.js" type="text/javascript"></script>  
+<script type="text/javascript">
+var currentBlogApp = 'technology';
+</script>
+<script src="./C#3.0亮点 —— lambda表达式 - Create Chen - 博客园_files/common.js" type="text/javascript"></script> 
+<script src="./C#3.0亮点 —— lambda表达式 - Create Chen - 博客园_files/json2.js" type="text/javascript"></script>
+<script type="text/javascript" src="./C#3.0亮点 —— lambda表达式 - Create Chen - 博客园_files/syntaxHighlighter.js"></script>
+<link type="text/css" rel="stylesheet" href="chrome-extension://cpngackimfmofbokmjmljamhdncknpmg/style.css"><script type="text/javascript" charset="utf-8" src="chrome-extension://cpngackimfmofbokmjmljamhdncknpmg/page_context.js"></script><script async="" type="text/javascript" src="./C#3.0亮点 —— lambda表达式 - Create Chen - 博客园_files/google_ads_gpt.js"></script><script type="text/javascript" src="./C#3.0亮点 —— lambda表达式 - Create Chen - 博客园_files/osd.js"></script></head>
+<body screen_capture_injected="true">
+<a name="top"></a>
+<!--PageBeginHtml Block Begin-->
+  <script>
+	function readPattern(){
+		var btn = document.getElementById("btnRead");
+		if(btn.value=="阅读模式")
+		{
+			btn.value="普通模式";
+			$("#header").animate({opacity: 0,top: '-=90',height: 'toggle'},1000);
+			$("#sideBar").animate({opacity:0,left:'-=280',height:'toggle'},1000);
+			$("#mainContent").animate({marginLeft:'140px',marginRight:'145px'},1000);
+		}
+		else
+		{
+			btn.value="阅读模式";
+			$("#header").animate({opacity: 1,top: '+=90',height: 'toggle'},1000);
+			$("#sideBar").animate({opacity:1,left:'+=280',height:'toggle'},1000);
+			$("#mainContent").animate({marginLeft:'280px',marginRight:'5px'},1000);
+		}
+	}
+
+	function hideTip(id){
+		$(id).fadeTo(1,1);
+		var t = setTimeout(function(){$(id).fadeOut(1000);},2500);
+	}
+  </script>
+<div id="tip" style="position: fixed; right: 10px; bottom: 57px; background-image: initial; background-attachment: initial; background-origin: initial; background-clip: initial; background-color: rgb(255, 255, 150); padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; font-size: 12px; width: 140px; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 0px; border-left-width: 1px; border-top-color: rgb(185, 185, 185); border-right-color: rgb(185, 185, 185); border-bottom-color: rgb(185, 185, 185); border-left-color: rgb(185, 185, 185); border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; line-height: 15px; z-index: 10001; display: none; opacity: 1; background-position: initial initial; background-repeat: initial initial; ">
+<b>模式切换成功！</b><br>您可以再次单击恢复。
+<div style="position:absolute;margin:5px -5px 0px -5px;height:12px;
+width: 150px;
+background: url(&#39;http://pic002.cnblogs.com/images/2011/70278/2011061510460797.gif&#39;) top right no-repeat;"></div>
+</div>
+
+<div id="readFucn" style="position: fixed;
+right: 5px;
+bottom: 5px;
+padding: 10px 10px 10px 35px;background: url(&#39;http://pic002.cnblogs.com/images/2011/70278/2011061417145532.png&#39;) no-repeat center left;
+background-color: rgba(30, 144, 255, 0.8);filter:alpha(opacity=80);zoom:1;
+-webkit-border-radius: 4px;z-index:10000;">
+		<input type="button" style="background: url(&#39;http://pic002.cnblogs.com/images/2011/70278/2011060320275124.png&#39;) repeat-x 0 0;
+height: 25px;
+width: 70px;
+background-position: 0 -36px;
+border: 1px solid #787878;
+color: black;
+cursor: pointer;
+font-family: &#39;Microsoft Yahei&#39;,Tahoma,Arial,Helvetica,STHeiti;
+-webkit-border-radius: 4px;" id="btnRead" value="普通模式" onclick="readPattern();hideTip(&#39;#tip&#39;);">
+</div>
+<!--PageBeginHtml Block End-->
+
+<div id="home">
+<div id="header" style="opacity: 0; top: -90px; display: none; ">
+	<div id="blogTitle">
+		
+<!--done-->
+<div class="title"><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/technology/">Create Chen's Blog</a></div>
+<div class="subtitle"></div>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="MyLinks1_HomeLink" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+<li><a id="MyLinks1_MyHomeLink" class="menu" href="http://www.cnblogs.com/technology/">首页</a></li>
+<li><a class="menu" href="http://q.cnblogs.com/">博问</a></li>
+<li><a class="menu" href="http://home.cnblogs.com/ing/">闪存</a></li>
+<li><a id="MyLinks1_NewPostLink" class="menu" rel="nofollow" href="http://www.cnblogs.com/technology/admin/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="MyLinks1_ContactLink" class="menu" rel="nofollow" href="http://space.cnblogs.com/msg/send/Create+Chen">联系</a></li>
+<li><a id="MyLinks1_Syndication" class="menu" href="http://www.cnblogs.com/technology/rss">订阅</a>
+<!--<a id="MyLinks1_XMLLink" class="aHeaderXML" href="http://www.cnblogs.com/technology/rss"><img src="/Skins/Custom/images/rss.gif" alt="订阅" /></a>--></li>
+<li><a id="MyLinks1_Admin" class="menu" rel="nofollow" href="http://www.cnblogs.com/technology/admin/EditPosts.aspx">管理</a></li>
+</ul>
+
+		<div class="blogStats">
+			
+			
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+<div id="main">
+	<div id="mainContent" style="margin-left: 140px; margin-right: 145px; ">
+	<div class="forFlow">
+		
+	
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="./C#3.0亮点 —— lambda表达式 - Create Chen - 博客园_files/C#3.0亮点 —— lambda表达式 - Create Chen - 博客园.htm">C#3.0亮点 —— lambda表达式</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body"><h1>使用"命名方法"实现lambda的功能(Before C#2.0)</h1>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; C#2.0之前, 如果一个方法或者变量需要使用委托(delegate)时, 则之前必须创建一个命名方法, 并在需要委托的位置传入这个名称. 比如有一个针对int类型的数据处理, 目的是筛选出一个int数组中为奇数的元素, 或者其它一些满足条件的元素...</p>
+<div><div id="highlighter_18938" class="syntaxhighlighter  csharp"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number0 index0 alt1 break">&nbsp;</div><div class="line number1 index1 alt2">1</div><div class="line number2 index2 alt1">2</div><div class="line number3 index3 alt2">3</div><div class="line number4 index4 alt1">4</div><div class="line number5 index5 alt2">5</div><div class="line number6 index6 alt1">6</div><div class="line number7 index7 alt2">7</div><div class="line number8 index8 alt1">8</div><div class="line number9 index9 alt2">9</div><div class="line number10 index10 alt1">10</div><div class="line number11 index11 alt2">11</div><div class="line number12 index12 alt1">12</div><div class="line number13 index13 alt2">13</div></td><td class="code"><div class="container"><div class="line number0 index0 alt1 break"><code class="csharp keyword">public</code> <code class="csharp keyword">class</code> <code class="csharp plain">Commom</code></div><div class="line number1 index1 alt2"><code class="csharp plain">{</code></div><div class="line number2 index2 alt1"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp comments">//命名一个委托方法</code></div><div class="line number3 index3 alt2"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp keyword">public</code> <code class="csharp keyword">delegate</code> <code class="csharp keyword">bool</code> <code class="csharp plain">IntFilter(</code><code class="csharp keyword">int</code> <code class="csharp plain">i);</code></div><div class="line number4 index4 alt1"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp comments">//筛选出符合委托方法所要求的int, 返回一个int[]</code></div><div class="line number5 index5 alt2"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp keyword">public</code> <code class="csharp keyword">static</code> <code class="csharp keyword">int</code><code class="csharp plain">[] FilterArrayOfInts(</code><code class="csharp keyword">int</code><code class="csharp plain">[] ints, IntFilter filter)</code></div><div class="line number6 index6 alt1"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp plain">{</code></div><div class="line number7 index7 alt2"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp plain">ArrayList aList = </code><code class="csharp keyword">new</code> <code class="csharp plain">ArrayList();</code></div><div class="line number8 index8 alt1"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp keyword">foreach</code> <code class="csharp plain">(</code><code class="csharp keyword">int</code> <code class="csharp plain">i </code><code class="csharp keyword">in</code> <code class="csharp plain">ints)</code></div><div class="line number9 index9 alt2"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp keyword">if</code> <code class="csharp plain">(filter(i))</code></div><div class="line number10 index10 alt1"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp plain">aList.Add(i);</code></div><div class="line number11 index11 alt2"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp keyword">return</code> <code class="csharp plain">(</code><code class="csharp keyword">int</code><code class="csharp plain">[])aList.ToArray(</code><code class="csharp keyword">typeof</code><code class="csharp plain">(</code><code class="csharp keyword">int</code><code class="csharp plain">));</code></div><div class="line number12 index12 alt1"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp plain">}</code></div><div class="line number13 index13 alt2"><code class="csharp plain">}</code></div></div></td></tr></tbody></table></div></div>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Commom类建立了一个统一的模型, 这个模型主要用于传入一个delegate方法, 可以获得这个delegate方法条件所要求的数字. 具体这个delegate方法可以写在另一个类中, 可以写很多方法, 检测是否是奇数, 是否是偶数, 这个数是否是3的倍数...这个根据需要自己写. 这样写可以提高Commom类的可重用程度.</p>
+<div><div id="highlighter_54635" class="syntaxhighlighter  csharp"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number0 index0 alt1 break">&nbsp;</div><div class="line number1 index1 alt2">1</div><div class="line number2 index2 alt1">2</div><div class="line number3 index3 alt2">3</div><div class="line number4 index4 alt1">4</div><div class="line number5 index5 alt2">5</div><div class="line number6 index6 alt1">6</div><div class="line number7 index7 alt2">7</div><div class="line number8 index8 alt1">8</div><div class="line number9 index9 alt2">9</div><div class="line number10 index10 alt1">10</div><div class="line number11 index11 alt2">11</div><div class="line number12 index12 alt1">12</div><div class="line number13 index13 alt2">13</div><div class="line number14 index14 alt1">14</div></td><td class="code"><div class="container"><div class="line number0 index0 alt1 break"><code class="csharp comments">//根据需要, 自己定义筛选方法</code></div><div class="line number1 index1 alt2"><code class="csharp keyword">public</code> <code class="csharp keyword">class</code> <code class="csharp plain">MyIntFilter</code></div><div class="line number2 index2 alt1"><code class="csharp plain">{</code></div><div class="line number3 index3 alt2"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp comments">//自己定义的筛选方法1: 检测是否是奇数</code></div><div class="line number4 index4 alt1"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp keyword">public</code> <code class="csharp keyword">static</code> <code class="csharp keyword">bool</code> <code class="csharp plain">IsOdd(</code><code class="csharp keyword">int</code> <code class="csharp plain">i)</code></div><div class="line number5 index5 alt2"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp plain">{</code></div><div class="line number6 index6 alt1"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp keyword">return</code> <code class="csharp plain">((i &amp; 1) == 1);</code></div><div class="line number7 index7 alt2"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp plain">}</code></div><div class="line number8 index8 alt1"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp comments">//自己定义的筛选方法2: 检测是否是偶数</code></div><div class="line number9 index9 alt2"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp keyword">public</code> <code class="csharp keyword">static</code> <code class="csharp keyword">bool</code> <code class="csharp plain">IsEven(</code><code class="csharp keyword">int</code> <code class="csharp plain">i)</code></div><div class="line number10 index10 alt1"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp plain">{</code></div><div class="line number11 index11 alt2"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp keyword">return</code> <code class="csharp plain">((i &amp; 1) != 1);</code></div><div class="line number12 index12 alt1"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp plain">}</code></div><div class="line number13 index13 alt2"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp comments">//...根据需要还可以定义其它筛选方法</code></div><div class="line number14 index14 alt1"><code class="csharp plain">}</code></div></div></td></tr></tbody></table></div></div>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 调用MyIntFilter中的筛选方法:</p>
+<div><div id="highlighter_915871" class="syntaxhighlighter  csharp"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number0 index0 alt1 break">&nbsp;</div><div class="line number1 index1 alt2">1</div><div class="line number2 index2 alt1">2</div><div class="line number3 index3 alt2">3</div><div class="line number4 index4 alt1">4</div><div class="line number5 index5 alt2">5</div><div class="line number6 index6 alt1">6</div><div class="line number7 index7 alt2">7</div><div class="line number8 index8 alt1">8</div><div class="line number9 index9 alt2">9</div><div class="line number10 index10 alt1">10</div><div class="line number11 index11 alt2">11</div></td><td class="code"><div class="container"><div class="line number0 index0 alt1 break"><code class="csharp keyword">int</code><code class="csharp plain">[] nums = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };</code></div><div class="line number1 index1 alt2"><code class="csharp comments">//筛选出奇数</code></div><div class="line number2 index2 alt1"><code class="csharp keyword">int</code><code class="csharp plain">[] oddNums = Commom.FilterArrayOfInts(nums, MyIntFilter.IsOdd);</code></div><div class="line number3 index3 alt2"><code class="csharp comments">//筛选出偶数</code></div><div class="line number4 index4 alt1"><code class="csharp keyword">int</code><code class="csharp plain">[] evenNums = Commom.FilterArrayOfInts(nums, MyIntFilter.IsEven);</code></div><div class="line number5 index5 alt2"><code class="csharp comments">//测试结果, 打印出oddNums和evenNums</code></div><div class="line number6 index6 alt1"><code class="csharp plain">Console.WriteLine(</code><code class="csharp string">"Print oddNums:"</code><code class="csharp plain">);</code></div><div class="line number7 index7 alt2"><code class="csharp keyword">foreach</code> <code class="csharp plain">(</code><code class="csharp keyword">int</code> <code class="csharp plain">i </code><code class="csharp keyword">in</code> <code class="csharp plain">oddNums)</code></div><div class="line number8 index8 alt1"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp plain">Console.Write(i + </code><code class="csharp string">" "</code><code class="csharp plain">);</code></div><div class="line number9 index9 alt2"><code class="csharp plain">Console.WriteLine(</code><code class="csharp string">"Print evenNums:"</code><code class="csharp plain">);</code></div><div class="line number10 index10 alt1"><code class="csharp keyword">foreach</code> <code class="csharp plain">(</code><code class="csharp keyword">int</code> <code class="csharp plain">i </code><code class="csharp keyword">in</code> <code class="csharp plain">evenNums)</code></div><div class="line number11 index11 alt2"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp plain">Console.Write(i + </code><code class="csharp string">" "</code><code class="csharp plain">);</code></div></div></td></tr></tbody></table></div></div>
+<h1>使用"匿名方法"实现lambda的功能(Since C#2.0)</h1>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 为什么要使用匿名方法? 答: 偷懒. 为每一个筛选策略专门写一个方法很多时候会令人很烦, 很多方法可能只被用到一次两次, 且为每个方法都起一个好听的名字并在调用这些方法的时候传入这些方法名令人不爽, 因此C#2.0的时候可以使用"匿名方法"解决这一问题:</p>
+<div><div id="highlighter_551731" class="syntaxhighlighter  csharp"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number0 index0 alt1 break">&nbsp;</div><div class="line number1 index1 alt2">1</div><div class="line number2 index2 alt1">2</div><div class="line number3 index3 alt2">3</div><div class="line number4 index4 alt1">4</div><div class="line number5 index5 alt2">5</div><div class="line number6 index6 alt1">6</div><div class="line number7 index7 alt2">7</div><div class="line number8 index8 alt1">8</div></td><td class="code"><div class="container"><div class="line number0 index0 alt1 break"><code class="csharp keyword">int</code><code class="csharp plain">[] nums = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };</code></div><div class="line number1 index1 alt2"><code class="csharp comments">//筛选出奇数</code></div><div class="line number2 index2 alt1"><code class="csharp keyword">int</code><code class="csharp plain">[] oddNums = Commom.FilterArrayOfInts(nums, </code><code class="csharp keyword">delegate</code><code class="csharp plain">(</code><code class="csharp keyword">int</code> <code class="csharp plain">i)</code></div><div class="line number3 index3 alt2"><code class="csharp plain">{</code></div><div class="line number4 index4 alt1"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp keyword">return</code> <code class="csharp plain">((i &amp; 1) == 1);</code></div><div class="line number5 index5 alt2"><code class="csharp plain">});</code></div><div class="line number6 index6 alt1"><code class="csharp plain">Console.WriteLine(</code><code class="csharp string">"Print oddNums:"</code><code class="csharp plain">);</code></div><div class="line number7 index7 alt2"><code class="csharp keyword">foreach</code> <code class="csharp plain">(</code><code class="csharp keyword">int</code> <code class="csharp plain">i </code><code class="csharp keyword">in</code> <code class="csharp plain">oddNums)</code></div><div class="line number8 index8 alt1"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp plain">Console.Write(i + </code><code class="csharp string">" "</code><code class="csharp plain">);</code></div></div></td></tr></tbody></table></div></div>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 这时筛选出了int数组中所有的奇数, 而没有使用MyIntFilter类里面用于判断是否是奇数的方法. 这种匿名的方法好处在于省去了维护程序代码中上下文的精力.</p>
+<h1>使用lambda表达式(Since C#3.0)</h1>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lambda表达式的形式如下:</p>
+<div><div id="highlighter_352925" class="syntaxhighlighter  csharp"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number0 index0 alt1 break">&nbsp;</div></td><td class="code"><div class="container"><div class="line number0 index0 alt1 break"><code class="csharp plain">(param1, param2, param3...)=&gt;{doSomethingWithParam1, doSomethingWithParam2, doSomethingWithParam3...}</code></div></div></td></tr></tbody></table></div></div>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lambda的好处在于哪里? 最关键的作用可能是可读性提高了, 简洁明了, 只需要列出方法体中需要使用到的参数, 然后加上=&gt;{}, 在大括号中写方法体. 但注意的是<strong>传入的参数类型要满足之前delegate定义的输入类型, 并返回delegate定义的返回类型</strong>.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 同样是上面的要求, 从int数组中筛选出奇数, 使用lambda表达式就是这样写:</p>
+<div><div id="highlighter_751000" class="syntaxhighlighter  csharp"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number0 index0 alt1 break">&nbsp;</div><div class="line number1 index1 alt2">1</div><div class="line number2 index2 alt1">2</div><div class="line number3 index3 alt2">3</div><div class="line number4 index4 alt1">4</div></td><td class="code"><div class="container"><div class="line number0 index0 alt1 break"><code class="csharp keyword">int</code><code class="csharp plain">[] nums = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };</code></div><div class="line number1 index1 alt2"><code class="csharp comments">//筛选出奇数</code></div><div class="line number2 index2 alt1"><code class="csharp keyword">int</code><code class="csharp plain">[] oddNums = Commom.FilterArrayOfInts(nums, (i) =&gt; ((i &amp; 1) == 1));</code></div><div class="line number3 index3 alt2"><code class="csharp keyword">foreach</code> <code class="csharp plain">(</code><code class="csharp keyword">int</code> <code class="csharp plain">i </code><code class="csharp keyword">in</code> <code class="csharp plain">oddNums)</code></div><div class="line number4 index4 alt1"><code class="csharp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="csharp plain">Console.Write(i + </code><code class="csharp string">" "</code><code class="csharp plain">);</code></div></div></td></tr></tbody></table></div></div>
+<h1>何时适合使用lambda表达式</h1>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 比较三种做法, 可以发现lambda表达式最简洁. 但并不是所有的这种情况都使用lambda表达式. 对于比较复杂的算法, 需要重用的算法, 最好还是使用第一种"命名方法", 因为这样做, 在任何时候任何开发者都可以很方便的直接调用方法, 而不需考虑这些细节.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; C#3.0很多新特性几乎都暗示着是为Linq而服务的, Lambda表达式也不例外, 因为一个Linq查询通常只需要调用一次, 不需要为每一个查询专门命名一个方法.</p></div><div id="MySignature"><div id="bottom">
+<p style="padding-bottom: 10px; padding-left: 100px; padding-right: 10px;
+background:url(http://pic002.cnblogs.com/images/2011/70278/2011011010492759.png) #3398cc no-repeat 1% 50%;color:#ffffff;
+font-size: 11px; padding-top: 10px" id="PSignature">
+作者：<a href="http://technology.cnblogs.com/" target="_blank">Create Chen</a> <br>
+出处：<a href="http://technology.cnblogs.com/" target="_blank">http://technology.cnblogs.com</a><br>
+说明：文章为作者平时里的思考和练习，可能有不当之处，请博客园的园友们多提宝贵意见。<br>
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.5/cn/"><img alt="知识共享许可协议" style="border-width:0; margin-bottom:0px;vertical-align:middle" src="./C#3.0亮点 —— lambda表达式 - Create Chen - 博客园_files/88x31.png"></a>本作品采用<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.5/cn/">知识共享署名-非商业性使用-相同方式共享 2.5 中国大陆许可协议</a>进行许可。
+</p>
+</div></div>
+<script type="text/javascript">
+var isLogined = false;
+var cb_blogId = 57213;
+var cb_entryId = 1959761;
+var cb_blogApp = currentBlogApp;
+var cb_blogUserGuid = "56e23a9e-2e53-de11-9510-001cf0cd104b";
+var cb_entryCreatedDate = '2011/2/21 15:05:00';
+var enableGoogleAd = true;
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+</script>
+<div id="blog_post_info_block">
+<div id="blog_post_info"><div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/technology/category/241302.html">C#</a>, <a href="http://www.cnblogs.com/technology/category/235473.html">.NET Works</a></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/technology/tag/C%23%E6%96%B0%E7%89%B9%E6%80%A7/">C#新特性</a>, <a href="http://www.cnblogs.com/technology/tag/lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/">lambda表达式</a></div>
+<div id="green_channel">
+绿色通道：
+<a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(cb_entryId,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+<a id="green_channel_follow" onclick="c_follow();" href="javascript:void(0);">关注我</a>
+<a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a><a id="green_channel_contact" href="http://space.cnblogs.com/msg/send/Create+Chen" target="_blank">与我联系</a>
+<a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./C#3.0亮点 —— lambda表达式 - Create Chen - 博客园_files/icon_weibo_24.png" alt=""></a>
+</div>
+<div id="digg_block">
+<div id="author_profile">
+<div id="author_profile_info" class="author_profile_info">
+<a href="http://home.cnblogs.com/u/technology/" target="_blank"><img src="./C#3.0亮点 —— lambda表达式 - Create Chen - 博客园_files/u70278.jpg" class="author_avatar" alt=""></a>
+<div id="author_profile_detail" class="author_profile_info">
+<a href="http://home.cnblogs.com/u/technology/">Create Chen</a><br>
+<a href="http://home.cnblogs.com/u/technology/followees">关注 - 6</a><br>
+<a href="http://home.cnblogs.com/u/technology/followers">粉丝 - 316</a>
+</div>
+</div>
+<div class="clear"></div>
+<div id="author_profile_honor">荣誉：<a href="http://www.cnblogs.com/expert/" target="_blank">推荐博客</a></div>
+<div id="author_profile_follow">
+<a href="javascript:void(0);" onclick="c_follow();return false;">+加关注</a>
+</div>
+</div>
+<div id="div_digg">										
+	<div class="diggit" onclick="votePost(cb_entryId,&#39;Digg&#39;)"> 
+		<span class="diggnum" id="digg_count">4</span>
+	</div>
+	
+	<div class="clear"></div>	
+	<div class="diggword" id="digg_tips">
+    (请您对文章做出评价)
+    </div>	
+</div>
+</div></div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/technology/archive/2011/02/04/1949086.html" class="p_n_p_prefix">« </a> 博主前一篇：<a href="http://www.cnblogs.com/technology/archive/2011/02/04/1949086.html" title="发布于2011-02-04 00:12">费马小定理在公钥加密中的应用及原理</a><br><a href="http://www.cnblogs.com/technology/archive/2011/02/21/1959899.html" class="p_n_p_prefix">» </a> 博主后一篇：<a href="http://www.cnblogs.com/technology/archive/2011/02/21/1959899.html" title="发布于2011-02-21 17:04">C#3.0亮点 —— 关键字var和匿名类型</a><br></div>
+</div>
+<script type="text/javascript">
+    //SyntaxHighlighter.config.strings.expandSource = '<span><img src="http://static.cnblogs.com/images/expand-code.gif" alt="" class="expand-code-icon"/>View Code</span>';
+    $(function () {             
+        fixPostBodyFormat();
+        loadAdUnderPost();
+        loadBlogSignature();
+        LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+        GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);        
+        GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);        
+    });
+</script>
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2011-02-21 15:05</span> <a href="http://www.cnblogs.com/technology/">Create Chen</a> 阅读(648) 评论(<span id="post-comment-count">4</span>)  <a href="http://www.cnblogs.com/technology/admin/EditPosts.aspx?postid=1959761" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/technology/archive/2011/02/21/1959761.html#" onclick="AddToWz(1959761);return false;">收藏</a></div>
+	</div>
+	<img src="./C#3.0亮点 —— lambda表达式 - Create Chen - 博客园_files/1959761.html" width="1" height="1" alt="">
+	
+</div><!--end: topics 文章、评论容器-->
+<div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<!--done-->
+<div class="feedback_area_title">评论列表</div>
+<div class="feedbackNoItems"></div>
+	
+
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/technology/archive/2011/02/21/1959761.html#2030426" class="layer">#1楼</a><a name="2030426" id="comment_anchor_2030426"></a>  <span class="comment_date">2011-02-21 16:32</span> <a id="a_comment_author_2030426" href="http://home.cnblogs.com/u/135280/" target="_blank">Jacky hao</a> <a href="http://space.cnblogs.com/msg/send/Jacky+hao" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2030426" class="blog_comment_body">好文! 读完后我收获很多!</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2030426,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2030426,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		<img src="./C#3.0亮点 —— lambda表达式 - Create Chen - 博客园_files/sample_face.gif" onerror="this.src=&#39;http://pic.cnblogs.com/face/sample_face.gif&#39;" class="feedbackAvatar"></div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/technology/archive/2011/02/21/1959761.html#2030603" class="layer">#2楼</a><a name="2030603" id="comment_anchor_2030603"></a>  <span class="comment_date">2011-02-21 21:55</span> <a id="a_comment_author_2030603" href="http://home.cnblogs.com/u/42772/" target="_blank">记忆</a> <a href="http://space.cnblogs.com/msg/send/%e8%ae%b0%e5%bf%86" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2030603" class="blog_comment_body">好文! 读完后我收获很多!</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2030603,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2030603,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		<img src="./C#3.0亮点 —— lambda表达式 - Create Chen - 博客园_files/sample_face.gif" onerror="this.src=&#39;http://pic.cnblogs.com/face/sample_face.gif&#39;" class="feedbackAvatar"></div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/technology/archive/2011/02/21/1959761.html#2031004" class="layer">#3楼</a><a name="2031004" id="comment_anchor_2031004"></a>  <span class="comment_date">2011-02-22 12:46</span> <a id="a_comment_author_2031004" href="http://home.cnblogs.com/u/174380/" target="_blank">孔令星</a> <a href="http://space.cnblogs.com/msg/send/%e5%ad%94%e4%bb%a4%e6%98%9f" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2031004" class="blog_comment_body">打酱油的, 飘过~~~~</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2031004,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2031004,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		<img src="./C#3.0亮点 —— lambda表达式 - Create Chen - 博客园_files/sample_face.gif" onerror="this.src=&#39;http://pic.cnblogs.com/face/sample_face.gif&#39;" class="feedbackAvatar"></div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/technology/archive/2011/02/21/1959761.html#2034319" class="layer">#4楼</a><a name="2034319" id="comment_anchor_2034319"></a><span id="comment-maxId" style="display:none;">2034319</span><span id="comment-maxDate" style="display:none;">2011/2/26 23:20:35</span>  <span class="comment_date">2011-02-26 23:20</span> <a id="a_comment_author_2034319" href="http://home.cnblogs.com/u/6201/" target="_blank">木野狐(Neil Chen)</a> <a href="http://space.cnblogs.com/msg/send/%e6%9c%a8%e9%87%8e%e7%8b%90(Neil+Chen)" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2034319" class="blog_comment_body">只有一个参数的时候可以省略括号。<br>(i) =&gt; 可简写为<br>i =&gt;</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2034319,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2034319,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		<img src="./C#3.0亮点 —— lambda表达式 - Create Chen - 博客园_files/a6201.jpg" onerror="this.src=&#39;http://pic.cnblogs.com/face/sample_face.gif&#39;" class="feedbackAvatar"></div>
+	<div id="comments_pager_bottom"></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.loadComments();</script>
+<div id="comment_form" class="commentform">
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" id="lnk_RefreshComments" onclick="return RefreshCommentList();">刷新评论</a><a href="http://www.cnblogs.com/technology/archive/2011/02/21/1959761.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/technology/archive/2011/02/21/1959761.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+
+<script type="text/javascript">
+    if (typeof commentManager === 'undefined') {
+        commentManager = new blogCommentManager();
+    }
+    commentManager.loadCommentForm();   
+</script>
+
+<div class="ad_text_commentbox"><a href="http://q.cnblogs.com/" target="_blank">程序员问答社区，解决您的技术难题</a></div>
+
+<div id="ad_under_post_holder">
+<div id="google_ad_c1" class="c_ad_block">
+<div id="div-gpt-ad-1320933818841-0" style="width: 300px; height: 250px; ">
+
+<iframe id="google_ads_iframe_/1090369/cnblogs_blogpost_C1_0" name="google_ads_iframe_/1090369/cnblogs_blogpost_C1_0" width="300" height="250" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; "></iframe><iframe id="google_ads_iframe_/1090369/cnblogs_blogpost_C1_0__hidden__" name="google_ads_iframe_/1090369/cnblogs_blogpost_C1_0__hidden__" width="0" height="0" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; visibility: hidden; display: none; "></iframe></div>
+</div>
+<div id="blog_news_kb"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/158682/" target="_blank">苏宁易购宣布收购红孩子 整合垂直电商</a><br> ·  <a href="http://news.cnblogs.com/n/158681/" target="_blank">Torque 3D 游戏引擎开源</a><br> ·  <a href="http://news.cnblogs.com/n/158680/" target="_blank">多少水分子才能形成冰？</a><br> ·  <a href="http://news.cnblogs.com/n/158679/" target="_blank">Web设计者和开发者必须学习网络营销的三大理由</a><br> ·  <a href="http://news.cnblogs.com/n/158678/" target="_blank">微软故意浪费数百万度电 避免21万美元罚款</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/121539/" target="_blank">一个前端工程师眼里的NodeJS</a><br> ·  <a href="http://kb.cnblogs.com/page/158426/" target="_blank">如何不怀疑自己</a><br> ·  <a href="http://kb.cnblogs.com/page/157001/" target="_blank">对的状态</a><br> ·  <a href="http://kb.cnblogs.com/page/158258/" target="_blank">看我姐和我妹子如何学编程</a><br> ·  <a href="http://kb.cnblogs.com/page/158242/" target="_blank">对当前软件行业的一点点感想</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="google_ad_c2" class="c_ad_block">
+<div id="div-gpt-ad-1320933818841-1" style="width: 468px; height: 60px; ">
+
+<iframe id="google_ads_iframe_/1090369/cnblogs_blogpost_C2_0" name="google_ads_iframe_/1090369/cnblogs_blogpost_C2_0" width="468" height="60" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; "></iframe></div>
+</div>
+<div id="ad_under_google" class="c_ad_block">
+<a href="http://www.china-pub.com/static07/1206/12znq_dyb_20120618/12znq_dyb_20120618.asp" target="_blank" rel="nofollow"><img src="./C#3.0亮点 —— lambda表达式 - Create Chen - 博客园_files/china-pub-0620.jpg" alt="" style="border:0px;"></a><br>
+<a href="http://www.china-pub.com/sale/usedbook.aspx" target="_blank" rel="nofollow">China-Pub 低价书精选</a><br>
+<a href="http://www.china-pub.com/static07/0901/zh_jueba_090121.asp" target="_blank" rel="nofollow">China-Pub 计算机绝版图书按需印刷服务</a>
+</div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+</div>
+
+
+
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar" style="opacity: 0; left: -272px; display: none; ">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news" style=""><p style="line-height: 1.5;margin: 5px auto -5px;">
+微博：<span style="color:#06C;"><a href="http://weibo.com/createchen" target="_blank">http://weibo.com/createchen</a></span><br>
+邮箱：<span style="color: #06C;">chenhua0108@gmail.com</span>
+</p><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/technology/">Create Chen</a><br>园龄：<a href="http://home.cnblogs.com/u/technology/" title="入园时间：2009-06-07">3年3个月</a><br>荣誉：<a href="http://www.cnblogs.com/expert/">推荐博客</a><br>粉丝：<a href="http://home.cnblogs.com/u/technology/followers/">316</a><br>关注：<a href="http://home.cnblogs.com/u/technology/followees/">6</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="cnblogs.UserManager.FollowBlogger(&#39;56e23a9e-2e53-de11-9510-001cf0cd104b&#39;)">+加关注</a></div></div></div>
+</div>
+
+			<div id="calendar"><div id="blog-calendar" style="displya:none"></div></div>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn">
+
+<div class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+
+
+<div class="catListEssay">
+<h3 class="catListTitle">最新随笔</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/technology/archive/2012/07/25/2607560.html">1. 制作一个选择中国大学的弹框 (数据、步骤、代码)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2012/07/12/Perceptual-Hash-Algorithm.html">2. 感知哈希算法——找出相似的图片</a></li><li><a href="http://www.cnblogs.com/technology/archive/2012/02/28/2372331.html">3. 注意 IE iframe 中 Session 值的设置</a></li><li><a href="http://www.cnblogs.com/technology/archive/2012/02/03/2336444.html">4. 谨慎使用 innerHTML</a></li><li><a href="http://www.cnblogs.com/technology/archive/2012/01/30/2331527.html">5. Google Maps Application Developing —— Location</a></li><li><a href="http://www.cnblogs.com/technology/archive/2012/01/28/2330769.html">6. Google Maps Application Developing —— Search Address</a></li><li><a href="http://www.cnblogs.com/technology/archive/2012/01/28/2330320.html">7. Google Maps Application Developing —— Quick Start</a></li><li><a href="http://www.cnblogs.com/technology/archive/2011/08/27/2155666.html">8. 测试了一下LINQ写的Quick Sort性能</a></li><li><a href="http://www.cnblogs.com/technology/archive/2011/08/23/2150096.html">9. 思考: 从曲线中提取出近似直线的一段</a></li><li><a href="http://www.cnblogs.com/technology/archive/2011/08/10/2133734.html">10. 使用BULK INSERT高效导入大量数据到SQL Server数据库</a></li>
+</ul>
+</div>
+
+<div class="catListPostCategory">
+<h3 class="catListTitle">随笔分类</h3>
+
+<ul>
+
+<li><a id="ctl02_CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/technology/category/235473.html">.NET Works(18)</a> </li>
+
+<li><a id="ctl02_CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/technology/category/215287.html">Algorithm(6)</a> </li>
+
+<li><a id="ctl02_CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/technology/category/279276.html">ASP.NET(3)</a> </li>
+
+<li><a id="ctl02_CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/technology/category/241589.html">Assembly(1)</a> </li>
+
+<li><a id="ctl02_CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/technology/category/241302.html">C#(21)</a> </li>
+
+<li><a id="ctl02_CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/technology/category/300851.html">CLR(2)</a> </li>
+
+<li><a id="ctl02_CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/technology/category/350663.html">Google Map(4)</a> </li>
+
+<li><a id="ctl02_CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/technology/category/241590.html">HTML&amp;CSS(3)</a> </li>
+
+<li><a id="ctl02_CatList_LinkList_0_Link_8" href="http://www.cnblogs.com/technology/category/351690.html">Javascript(2)</a> </li>
+
+<li><a id="ctl02_CatList_LinkList_0_Link_9" href="http://www.cnblogs.com/technology/category/284567.html">LINQ(2)</a> </li>
+
+<li><a id="ctl02_CatList_LinkList_0_Link_10" href="http://www.cnblogs.com/technology/category/216224.html">Other Notes(7)</a> </li>
+
+<li><a id="ctl02_CatList_LinkList_0_Link_11" href="http://www.cnblogs.com/technology/category/241587.html">Pro Thinking(5)</a> </li>
+
+<li><a id="ctl02_CatList_LinkList_0_Link_12" href="http://www.cnblogs.com/technology/category/400194.html">Reading Notes</a> </li>
+
+<li><a id="ctl02_CatList_LinkList_0_Link_13" href="http://www.cnblogs.com/technology/category/298709.html">Refactoring(7)</a> </li>
+
+<li><a id="ctl02_CatList_LinkList_0_Link_14" href="http://www.cnblogs.com/technology/category/209538.html">SICP Study(2)</a> </li>
+
+<li><a id="ctl02_CatList_LinkList_0_Link_15" href="http://www.cnblogs.com/technology/category/315361.html">SQL(1)</a> </li>
+
+<li><a id="ctl02_CatList_LinkList_0_Link_16" href="http://www.cnblogs.com/technology/category/293065.html">Visual Studio(2)</a> </li>
+
+<li><a id="ctl02_CatList_LinkList_0_Link_17" href="http://www.cnblogs.com/technology/category/293434.html">Web(3)</a> </li>
+
+<li><a id="ctl02_CatList_LinkList_0_Link_18" href="http://www.cnblogs.com/technology/category/293385.html">Windows 7(7)</a> </li>
+
+<li><a id="ctl02_CatList_LinkList_0_Link_19" href="http://www.cnblogs.com/technology/category/293380.html">WinForm(2)</a> </li>
+
+<li><a id="ctl02_CatList_LinkList_0_Link_20" href="http://www.cnblogs.com/technology/category/294916.html">WPF(2)</a> </li>
+
+</ul>
+
+</div>
+
+<div class="catListPostArchive">
+<h3 class="catListTitle">随笔档案</h3>
+
+<ul>
+
+<li><a id="ctl02_CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/technology/archive/2012/07.html">2012年7月 (2)</a> </li>
+
+<li><a id="ctl02_CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/technology/archive/2012/02.html">2012年2月 (2)</a> </li>
+
+<li><a id="ctl02_CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/technology/archive/2012/01.html">2012年1月 (4)</a> </li>
+
+<li><a id="ctl02_CatList_LinkList_1_Link_3" href="http://www.cnblogs.com/technology/archive/2011/08.html">2011年8月 (4)</a> </li>
+
+<li><a id="ctl02_CatList_LinkList_1_Link_4" href="http://www.cnblogs.com/technology/archive/2011/07.html">2011年7月 (5)</a> </li>
+
+<li><a id="ctl02_CatList_LinkList_1_Link_5" href="http://www.cnblogs.com/technology/archive/2011/06.html">2011年6月 (2)</a> </li>
+
+<li><a id="ctl02_CatList_LinkList_1_Link_6" href="http://www.cnblogs.com/technology/archive/2011/05.html">2011年5月 (11)</a> </li>
+
+<li><a id="ctl02_CatList_LinkList_1_Link_7" href="http://www.cnblogs.com/technology/archive/2011/04.html">2011年4月 (5)</a> </li>
+
+<li><a id="ctl02_CatList_LinkList_1_Link_8" href="http://www.cnblogs.com/technology/archive/2011/03.html">2011年3月 (1)</a> </li>
+
+<li><a id="ctl02_CatList_LinkList_1_Link_9" href="http://www.cnblogs.com/technology/archive/2011/02.html">2011年2月 (9)</a> </li>
+
+<li><a id="ctl02_CatList_LinkList_1_Link_10" href="http://www.cnblogs.com/technology/archive/2011/01.html">2011年1月 (2)</a> </li>
+
+<li><a id="ctl02_CatList_LinkList_1_Link_11" href="http://www.cnblogs.com/technology/archive/2010/12.html">2010年12月 (3)</a> </li>
+
+<li><a id="ctl02_CatList_LinkList_1_Link_12" href="http://www.cnblogs.com/technology/archive/2010/10.html">2010年10月 (2)</a> </li>
+
+<li><a id="ctl02_CatList_LinkList_1_Link_13" href="http://www.cnblogs.com/technology/archive/2010/08.html">2010年8月 (2)</a> </li>
+
+<li><a id="ctl02_CatList_LinkList_1_Link_14" href="http://www.cnblogs.com/technology/archive/2010/07.html">2010年7月 (2)</a> </li>
+
+<li><a id="ctl02_CatList_LinkList_1_Link_15" href="http://www.cnblogs.com/technology/archive/2010/06.html">2010年6月 (2)</a> </li>
+
+<li><a id="ctl02_CatList_LinkList_1_Link_16" href="http://www.cnblogs.com/technology/archive/2010/05.html">2010年5月 (3)</a> </li>
+
+<li><a id="ctl02_CatList_LinkList_1_Link_17" href="http://www.cnblogs.com/technology/archive/2010/04.html">2010年4月 (10)</a> </li>
+
+<li><a id="ctl02_CatList_LinkList_1_Link_18" href="http://www.cnblogs.com/technology/archive/2010/03.html">2010年3月 (1)</a> </li>
+
+<li><a id="ctl02_CatList_LinkList_1_Link_19" href="http://www.cnblogs.com/technology/archive/2009/11.html">2009年11月 (1)</a> </li>
+
+</ul>
+
+</div>
+
+
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/technology/archive/2010/12/22/1913821.html">1. 关于QQ一些功能的实现(一)(24288)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2011/07/20/svchost_exe.html">2. 那是什么进程 —— svchost.exe是什么? 它为何运行?(9959)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2011/07/21/dwm_exe.html">3. 那是什么进程 —— dwm.exe是什么? 它为何运行?(7560)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2010/06/22/1762902.html">4. 小软件获取QQ好友是否"隐身对你可见"(6814)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2011/05/03/2035410.html">5. C#异步的Socket通信(重构局域网聊天小工具)(6112)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2010/08/15/1799858.html">6. 用Socket做一个局域网聊天工具(5868)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2012/07/25/2607560.html">7. 制作一个选择中国大学的弹框 (数据、步骤、代码)(5414)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2011/05/10/2042255.html">8. 改善代码设计 —— 优化函数的构成(Composing Methods)(4916)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2012/07/12/Perceptual-Hash-Algorithm.html">9. 感知哈希算法——找出相似的图片(4896)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2011/04/19/2020910.html">10. WPF中使用amCharts绘制股票K线图(4306)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2011/06/01/2067203.html">11. 解决服务器返回JSON数据中文乱码问题(4216)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2011/01/16/1936788.html">12. "六度空间"的应用——找出两个陌生人之间的关系(一)(3852)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2010/03/04/1678070.html">13. Windows 7的"上帝模式"(3798)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2010/12/27/1918372.html">14. 关于QQ一些功能的实现(二)(3711)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2011/05/26/2058842.html">15. 理解A*寻路算法具体过程(3678)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2011/05/22/2053802.html">16. 共享一下我的博客皮肤(3134)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2010/10/27/1862732.html">17. .NET操作Excel表格的整理(2909)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2010/08/31/1814010.html">18. WinForm下屏幕截图程序的实现(2817)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2010/04/08/1707822.html">19. 梁朝伟变刘德华之山寨实现(2699)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2010/04/07/1706698.html">20. 如何实现两个人脸照片的变换(2647)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2011/01/17/1937831.html">21. "六度空间"的应用——找出两个陌生人之间的关系(二)(2335)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2011/05/17/2048735.html">22. 改善代码设计 —— 总结篇(Summary)(2323)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2010/05/16/1736782.html">23. 关于汇编语言寄存器和指令操作的整理(2114)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2011/05/22/2053567.html">24. CLR via C# —— 线程(2111)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2011/05/14/2046066.html">25. 改善代码设计 —— 简化条件表达式(Simplifying Conditional Expressions)(2097)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2010/05/14/1735757.html">26. 算法练习 (一)(1977)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2011/05/15/2047030.html">27. 改善代码设计 —— 简化函数调用(Making Method Calls Simpler)(1954)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2011/05/13/2045394.html">28. 改善代码设计 —— 组织好你的数据(Composing Data)(1945)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2011/04/04/2005351.html">29. 解决C#中一个"异步方法却同步执行"的问题(1874)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2011/04/30/2033474.html">30. C#匿名方法与Delegate类型转换错误(1802)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2011/07/20/jusched_exe.html">31. 那是什么进程 —— jusched.exe是什么? 它为何运行?(1737)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2011/02/04/1949086.html">32. 费马小定理在公钥加密中的应用及原理(1734)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2011/08/10/2133734.html">33. 使用BULK INSERT高效导入大量数据到SQL Server数据库(1700)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2010/04/19/1715760.html">34. 刚刚体验了一把用WPF做的QQ概念版(1698)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2010/04/10/1709216.html">35. 把Omegle改一改, 摇身变成窗口类型的聊天程序(1686)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2010/07/03/1770483.html">36. 个性化你的Windows 7 Taskbar Thumbnail(1666)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2011/08/23/2150096.html">37. 思考: 从曲线中提取出近似直线的一段(1633)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2011/05/11/2043307.html">38. 改善代码设计 —— 优化物件之间的特性(Moving Features Between Objects)(1586)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2010/05/15/1736275.html">39. 算法练习 (二)(1505)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2010/04/13/1711298.html">40. VS2010和IE8是怎样让"Ctrl+鼠标滚轮的上下操作"实现改变字体或页面大小的(1497)</a></li></ul></div>
+</div>
+
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/technology/archive/2010/12/22/1913821.html">1. 关于QQ一些功能的实现(一)(78)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2011/05/10/2042255.html">2. 改善代码设计 —— 优化函数的构成(Composing Methods)(70)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2012/07/12/Perceptual-Hash-Algorithm.html">3. 感知哈希算法——找出相似的图片(59)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2010/08/15/1799858.html">4. 用Socket做一个局域网聊天工具(54)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2012/07/25/2607560.html">5. 制作一个选择中国大学的弹框 (数据、步骤、代码)(47)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2010/12/27/1918372.html">6. 关于QQ一些功能的实现(二)(43)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2011/01/16/1936788.html">7. "六度空间"的应用——找出两个陌生人之间的关系(一)(41)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2011/05/22/2053802.html">8. 共享一下我的博客皮肤(35)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2011/01/17/1937831.html">9. "六度空间"的应用——找出两个陌生人之间的关系(二)(33)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2011/05/26/2058842.html">10. 理解A*寻路算法具体过程(31)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2011/07/20/svchost_exe.html">11. 那是什么进程 —— svchost.exe是什么? 它为何运行?(28)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2010/04/08/1707822.html">12. 梁朝伟变刘德华之山寨实现(28)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2011/05/03/2035410.html">13. C#异步的Socket通信(重构局域网聊天小工具)(27)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2010/06/22/1762902.html">14. 小软件获取QQ好友是否"隐身对你可见"(26)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2011/04/19/2020910.html">15. WPF中使用amCharts绘制股票K线图(21)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2010/05/14/1735757.html">16. 算法练习 (一)(18)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2010/04/07/1706698.html">17. 如何实现两个人脸照片的变换(18)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2010/03/04/1678070.html">18. Windows 7的"上帝模式"(17)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2010/05/15/1736275.html">19. 算法练习 (二)(17)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2010/08/31/1814010.html">20. WinForm下屏幕截图程序的实现(15)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2011/05/14/2046066.html">21. 改善代码设计 —— 简化条件表达式(Simplifying Conditional Expressions)(14)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2011/02/23/1962252.html">22. LINQ中的Func委托(14)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2011/05/13/2045394.html">23. 改善代码设计 —— 组织好你的数据(Composing Data)(13)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2011/06/01/2067203.html">24. 解决服务器返回JSON数据中文乱码问题(13)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2011/02/04/1949086.html">25. 费马小定理在公钥加密中的应用及原理(13)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2011/02/21/1959899.html">26. C#3.0亮点 —— 关键字var和匿名类型(12)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2011/05/11/2043307.html">27. 改善代码设计 —— 优化物件之间的特性(Moving Features Between Objects)(12)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2011/02/21/1960128.html">28. C#3.0亮点 —— 分部方法(12)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2011/04/04/2005351.html">29. 解决C#中一个"异步方法却同步执行"的问题(10)</a></li><li><a href="http://www.cnblogs.com/technology/archive/2011/08/23/2150096.html">30. 思考: 从曲线中提取出近似直线的一段(9)</a></li></ul></div>
+</div>
+</div>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2012 Create Chen
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+<!--PageEndHtml Block Begin-->
+<script type="text/javascript">
+$("#ad_under_comment2").remove();
+$("#kb_link").remove();
+$("#blog-news-kb").remove();
+$(".itnews.c_ad_block").remove();
+$("#blog_post_info_block").ajaxStop(function(){
+$(".buryit").remove();
+});
+$("#site_nav_under").remove();
+
+$("body").append("<div id=\"topBackground\"></div>");
+
+$("#blog-comments-placeholder").ajaxStop(function(){
+var elements = $(".feedbackItem");
+if (elements.length > 0) {
+        for (i = 0; i < elements.length; i++) {
+            var s = $(elements[i]).children(".feedbackListSubtitle").html();
+            var matchResult = s.match(/http:\/\/home.cnblogs.com\/u\/(\d{1,})/);
+            if (matchResult) {
+                var id = matchResult[1];
+                $(elements[i]).append('<img src="http://pic.cnblogs.com/avatar/a' + id + '.jpg" onerror="this.src=\'http://pic.cnblogs.com/face/sample_face.gif\'" class="feedbackAvatar">');
+            } else {
+                $(elements[i]).append('<img src="http://pic.cnblogs.com/face/sample_face.gif" class="feedbackAvatar">');
+            }
+        }
+    }
+});
+</script><div id="topBackground"></div>
+<!--PageEndHtml Block End-->
+<script type="text/javascript" src="./C#3.0亮点 —— lambda表达式 - Create Chen - 博客园_files/google-analytics.js"></script>
+
+
+</body></html>
