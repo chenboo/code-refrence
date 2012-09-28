@@ -1,0 +1,582 @@
+/*
+name:黑白
+Powered by Eisdl
+
+颜色对照表 210 15
+
+#f6f6f6 | #f5f6f7
+#eeeeee | #eceef1
+#dedede | #dadee3
+#dddddd | #d8dde2
+#cccccc | #bcc2cd
+#aaaaaa | #9fa8b3
+#999999 | #8a99a8
+#888888 | #77889a
+#777777 | #667789
+#666666 | #576675
+#555555 | #495562
+#444444 | #3a444e
+#333333 | #2c333b
+
+*/
+
+/* ----------------------------------
+全局通用颜色样式
+----------------------------------
+1、边框颜色
+2、特殊边框样式
+3、背景颜色
+4、链接触动背景颜色
+5、字体颜色
+6、链接颜色
+7、链接触动颜色
+---------------------------------- */
+
+/* 边框颜色 */
+.eis_b_c_e{ border-color: #eceef1 !important; }
+.eis_b_c_d{ border-color: #d8dde2 !important; }
+.eis_b_c_c{ border-color: #bcc2cd !important; }
+.eis_b_c_a{ border-color: #9fa8b3 !important; }
+.eis_b_c_9{ border-color: #8a99a8 !important; }
+.eis_b_c_8{ border-color: #77889a !important; }
+.eis_b_c_7{ border-color: #667789 !important; }
+.eis_b_c_6{ border-color: #576675 !important; }
+.eis_b_c_5{ border-color: #495562 !important; }
+.eis_b_c_4{ border-color: #3a444e !important; }
+.eis_b_c_3{ border-color: #2c333b !important; }
+
+/*特殊边框样式*/
+.eis_b_s_1{ border-style: solid; border-width: 1px; border-color: #bcc2cd #9fa8b3 #9fa8b3 #bcc2cd; }
+.eis_b_s_2{ border-style: solid; border-width: 3px 1px 1px 1px; border-color: #9fa8b3 #bcc2cd #bcc2cd #bcc2cd; }
+.eis_b_s_3{ border-style: solid; border-width: 1px; border-color: #dadee3 #bcc2cd #bcc2cd #bcc2cd; }
+.eis_b_s_4{ border-style: solid; border-width: 1px 0; border-color: #9fa8b3 #bcc2cd; }
+.eis_b_s_5{ border-style: solid; border-width: 1px; border-color: #9fa8b3 #bcc2cd #bcc2cd #bcc2cd; }
+
+/*背景*/
+.eis_bg_f{ background-color: #ffffff !important; }
+.eis_bg_f6{ background-color: #f5f6f7 !important; }
+.eis_bg_e{ background-color: #eceef1 !important; }
+.eis_bg_de{ background-color: #dadee3 !important; }
+.eis_bg_d{ background-color: #d8dde2 !important; }
+.eis_bg_c{ background-color: #bcc2cd !important; }
+.eis_bg_a{ background-color: #9fa8b3 !important; }
+.eis_bg_9{ background-color: #8a99a8 !important; }
+.eis_bg_8{ background-color: #77889a !important; }
+.eis_bg_7{ background-color: #667789 !important; }
+.eis_bg_6{ background-color: #576675 !important; }
+.eis_bg_5{ background-color: #495562 !important; }
+.eis_bg_4{ background-color: #3a444e !important; }
+.eis_bg_3{ background-color: #2c333b !important; }
+
+/*链接触动背景色*/
+.eis_bg_h_f a:hover{ background-color: #ffffff !important; }
+.eis_bg_h_f6 a:hover{ background-color: #f5f6f7 !important; }
+.eis_bg_h_e a:hover{ background-color: #eceef1 !important; }
+.eis_bg_h_de a:hover{ background-color: #dadee3 !important; }
+.eis_bg_h_d a:hover{ background-color: #d8dde2 !important; }
+.eis_bg_h_c a:hover{ background-color: #bcc2cd !important; }
+.eis_bg_h_a a:hover{ background-color: #9fa8b3 !important; }
+.eis_bg_h_9 a:hover{ background-color: #8a99a8 !important; }
+.eis_bg_h_8 a:hover{ background-color: #77889a !important; }
+.eis_bg_h_7 a:hover{ background-color: #667789 !important; }
+.eis_bg_h_6 a:hover{ background-color: #576675 !important; }
+.eis_bg_h_5 a:hover{ background-color: #495562 !important; }
+.eis_bg_h_4 a:hover{ background-color: #3a444e !important; }
+.eis_bg_h_3 a:hover{ background-color: #2c333b !important; }
+
+
+/*字体颜色*/
+.eis_f_f{ color: #ffffff; }
+.eis_f_c{ color: #bcc2cd; }
+.eis_f_a{ color: #9fa8b3; }
+.eis_f_9{ color: #8a99a8; }
+.eis_f_6{ color: #576675; }
+.eis_f_4{ color: #3a444e; }
+.eis_f_3{ color: #2c333b; }
+.eis_f_369{ color: #336699; }
+.eis_f_036{ color: #003366; }
+.eis_f_f60{ color: #ff6600; }
+
+/*链接颜色*/
+.eis_f_a_f a{ color: #ffffff; }
+.eis_f_a_c a{ color: #bcc2cd; }
+.eis_f_a_a a{ color: #9fa8b3; }
+.eis_f_a_9 a{ color: #8a99a8; }
+.eis_f_a_6 a{ color: #576675; }
+.eis_f_a_4 a{ color: #3a444e; }
+.eis_f_a_3 a{ color: #2c333b; }
+.eis_f_a_369 a{ color: #336699; }
+.eis_f_a_036 a{ color: #003366; }
+.eis_f_a_f60 a{ color: #ff6600; }
+
+/*链接触动颜色*/
+.eis_f_h_f a:hover{ color: #ffffff; }
+.eis_f_h_c a:hover{ color: #bcc2cd; }
+.eis_f_h_9 a:hover{ color: #8a99a8; }
+.eis_f_h_6 a:hover{ color: #576675; }
+.eis_f_h_4 a:hover{ color: #3a444e; }
+.eis_f_h_3 a:hover{ color: #2c333b; }
+.eis_f_h_369 a:hover{ color: #336699; }
+.eis_f_h_036 a:hover{ color: #003366; }
+.eis_f_h_f60 a:hover{ color: #ff6600; }
+
+/* ----------------------------------
+重定义CSS样式
+----------------------------------
+1、tb切换按钮
+2、bm模块样式
+3、pn按钮样式
+4、分栏样式
+5、面包屑导航
+6、分页
+7、分类信息选项当前状态
+8、分栏左侧导航 tbn
+9、下拉菜单
+0、重定义图片按钮
+a、重定义字体
+b、重定义好友列表
+---------------------------------- */
+
+/*tb*/
+.tb { border-bottom: 1px solid #bcc2cd ; }
+.tb a { border: 1px solid #bcc2cd; background: #fff; border-top: 3px solid #9fa8b3; border-bottom: 0px; }
+.tb .a a, .tb .current a { background: #667789; color: #fff; border: 1px solid #667789; border-top: 3px solid #576675; border-bottom: 0px; }
+
+/*右侧 tb*/
+.sd .tb a{ border:0px; border-right:1px solid #bcc2cd;}
+.sd .tb .a a, .sd .tb .current a{ border:0px; border-right:1px solid #9fa8b3; background:#9fa8b3}
+
+/*发贴按钮*/
+.tb li.eis_addthread a{ background:url(eis_addthread.gif) no-repeat; }
+
+/*bm*/
+.bm { border: 1px solid #bcc2cd; border-top: 3px solid #9fa8b3; }
+.bm_h { background: url(eis_bm_h.gif) repeat-x 0 100%; line-height: 38px; }
+.bmw .bm_h,.fl .bm_h { background: url(eis_bm_h.gif) repeat-x 0 100%; }
+
+/*tb o 切换按钮右侧高亮按钮*/
+.tb .o, .tb .o a { background: url(eis_pn.gif) repeat-x 0 -48px; }
+.tb .o { border: 1px solid #495562; }
+
+/*pn 按钮*/
+.pn { border: 1px solid #8a99a8; background: #E5E5E5 url(eis_pn.gif) repeat-x 0 0;}
+.pmo { background: url(eis_pn.gif) repeat-x 0 -320px;}
+.pmo em { background: url(eis_pn.gif) no-repeat 100% -360px; }
+.pnc, a.pnc { border-color: #495562 !important; background-color: #667789 ; background-position: 0 -48px; }
+
+/*分栏样式*/
+.ct2_a, .ct3_a { border: 0px solid #bcc2cd; background: url(eis_vlineb.gif) repeat-y 0 0 #fff;}
+.ct2_a_b, .ct3_a_b { background: url(eis_vlineb.gif) repeat-x 0 100% #fff;}
+.ct2_a_b_c, .ct3_a_b_c { border: 0px solid #bcc2cd; }
+.ct2_a_r #postbox{ border: 1px solid #bcc2cd; border-top:0px; }/*发帖左侧*/
+.ct2_a_r .appl{ border: 1px solid #bcc2cd;}/*发帖右侧*/
+
+.pg_post .ct2_a_r,.pg_portalcp .ct2_a_r { background: none; border:0px; }
+.pg_post .ct2_a_r .tb,.pg_portalcp .ct2_a_r .tb{ margin-bottom: 0px !important; }
+
+/*面包屑导航*/
+#pt{ border: 1px solid #bcc2cd; }
+#pt .z{ color: #8a99a8; }
+#pt .z a, #pt .z em, #pt .z span { color: #8a99a8; }
+#pt .z em { background: #bcc2cd; line-height: 200px; overflow: hidden; }
+.nvhm { background: url(eis_nvhm.gif) no-repeat 0 0 !important; }
+
+/*分页*/
+.pg a, .pg strong, .pgb a { border-color: #bcc2cd; background-color: #fff; color: #3a444e; }
+.pg a:hover, .pgb a:hover { border-color: #9fa8b3; color: #2c333b; }
+.pg strong { background-color: #3a444e;border-color: #3a444e; color: #fff; }
+
+/*分类信息选项当前状态*/
+.tsm .a a { background: #003366; color: #fff; }
+
+/*分栏左侧导航标题*/
+.tbn h2{ border-bottom: 1px solid #9fa8b3!important; }
+
+/*分栏左侧导航列表*/
+.tbn li { background: url(eis_ct2_a_tbn.gif) no-repeat 0 100%; }
+.tbn li.a { background: url(eis_ct2_a_tbn_a.gif) repeat-y 0 100%; }
+
+/*下拉菜单*/
+.p_pop{ border:1px solid #9fa8b3;}
+.p_pop a { border-bottom-color: #eceef1; }
+.p_pop a:hover, .p_pop a.a, #sctype_menu .sca { background-color: #f5f6f7; color: #2c333b; }
+.blk a:hover { background-color: transparent; }
+
+/*发贴按钮*/
+.pgs #newspecial, .pgs #newspecialtmp { background: url(eis_pn_post.gif) no-repeat 0 0; }
+#post_reply, #post_replytmp { background: url(eis_pn_reply.gif) no-repeat 0 0; }
+
+/*心情发布按钮*/
+.moodfm_btn { background-image: url(eis_mood_input_btn.gif) !important; }
+
+/*创建群组按钮*/
+#create_group_btn { background: url(eis_create_group.gif) no-repeat 0 0; }
+.bm #create_group_btn{ background: url(eis_create_group_n.gif) no-repeat 0 0;}
+
+/*其他背景*/
+.el .ec .hot { background-image: url(hotspot.gif); }
+.pll .s { background-image:url(polljoins.gif); }
+
+/* 重定义字体 */
+.fl .bm_h h2 a, .xi1, #um .new, .topnav .new, .sch .new, .el .ec .hot em, .pll .s a.joins { color: #ff6600; }
+.pll .s a.go { color: #FFF; }
+.xi2, .xi2 a { color: #2c333b; }
+
+/* 重定义好友列表 */
+#nv_home .buddy li { background-color: transparent; border: none; }
+
+/* ----------------------------------
+全局通用CSS样式
+----------------------------------
+1、下边线 虚线
+2、区块样式
+---------------------------------- */
+/*下边线 虚线*/
+.eis_dotted{ background: url(eis_dotted.gif) repeat-x 0 100%; }
+
+/*区块样式*/
+.eis_block_title{ background: url(eis_block_title.gif) repeat-x 0 0; }
+
+/* ----------------------------------
+头部通用CSS样式
+----------------------------------
+1、重定义背景
+2、用户按钮
+3、logo
+4、导航
+---------------------------------- */
+
+/*重定义背景*/
+body{ background: url(body.gif);}
+#hd { background: url(eis_header.gif) repeat-x 0 0; }
+
+/*eis_um 用户导航按钮*/
+.eis_um ul li.eis_line{ width: 1px; overflow: hidden;background: url(eis_line.gif) no-repeat; }
+.eis_um ul li.eis_u1 a{ background: url(eis_u1.gif) no-repeat 0 0; }
+.eis_um ul li.eis_u1 a:hover{ background: url(eis_u1.gif) no-repeat 0 -39px; }
+.eis_um ul li.eis_u2 a{ background: url(eis_u2.gif) no-repeat 0 0; }
+.eis_um ul li.eis_u2 a:hover{ background: url(eis_u2.gif) no-repeat 0 -39px; }
+.eis_um ul li.eis_u3 a{ background: url(eis_u3.gif) no-repeat 0 0; }
+.eis_um ul li.eis_u3 a:hover{ background: url(eis_u3.gif) no-repeat 0 -39px; }
+.eis_um ul li.eis_u4 a{ background: url(eis_u4.gif) no-repeat 0 0; }
+.eis_um ul li.eis_u4 a:hover{ background: url(eis_u4.gif) no-repeat 0 -39px; }
+.eis_um ul li.eis_u5 a{ background: url(eis_u5.gif) no-repeat 0 0; }
+.eis_um ul li.eis_u5 a:hover{ background: url(eis_u5.gif) no-repeat 0 -39px; }
+.eis_um ul li.eis_u6 a{ background: url(eis_u6.gif) no-repeat 0 0; }
+.eis_um ul li.eis_u6 a:hover{ background: url(eis_u6.gif) no-repeat 0 -39px; }
+.eis_um ul li.eis_u7 a{ background: url(eis_u7.gif) no-repeat 0 0; }
+.eis_um ul li.eis_u7 a:hover{ background: url(eis_u7.gif) no-repeat 0 -39px; }
+.eis_um ul li.eis_u8 a{ background: url(eis_u8.gif) no-repeat 0 0; }
+.eis_um ul li.eis_u8 a:hover{ background: url(eis_u8.gif) no-repeat 0 -39px; }
+.eis_um ul li.eis_u9 a{ background: url(eis_u9.gif) no-repeat 0 0; }
+.eis_um ul li.eis_u9 a:hover{ background: url(eis_u9.gif) no-repeat 0 -39px; }	
+
+#u1.a{ background: url(eis_u1.gif) no-repeat 0 -39px; }
+#u2.a{ background: url(eis_u2.gif) no-repeat 0 -39px; }
+#u3.a{ background: url(eis_u3.gif) no-repeat 0 -39px; }
+#u4.a{ background: url(eis_u4.gif) no-repeat 0 -39px; }
+
+/*logo */
+#hd h2 { background: url(logo.gif) no-repeat 0 0; }
+/*导航栏*/
+.eis_nv ul{ background: url(eis_nv.gif) no-repeat 100% 0; }
+.eis_nv ul li{ background: url(eis_nv.gif) no-repeat 0 0; }
+.eis_nv li a:hover,.eis_nv li.a a{ background: url(eis_nv.gif) repeat-x 0 -65px; }
+
+/* ----------------------------------
+通用右侧按钮CSS样式
+----------------------------------
+1、业务介绍
+2、定制按钮
+---------------------------------- */
+/*业务介绍*/
+.eis_c li a{ background: url(eis_c.gif) no-repeat; }
+/*定制按钮*/
+.eis_go li a{ background: url(eis_go.gif) no-repeat; }
+
+/* ----------------------------------
+DIY CSS样式
+----------------------------------
+1、eis_b3
+2、图片排行榜
+---------------------------------- */
+.eis_b3 .title{ background: url(eis_dotted.gif) repeat-x 0 100%; }
+
+/*图片排行榜*/
+.eis_pictop10 li p span{ background: url(eis_pictop10.gif) no-repeat 0 -30px; }
+.eis_pictop10 li.first div span{ background: url(eis_pictop10.gif) no-repeat 0 0; }
+
+/* ----------------------------------
+版块列表样式
+----------------------------------
+1、版块列表
+2、直排
+3、横排
+4、公告
+5、统计
+---------------------------------- */
+/*版块列表*/
+.eis_cattitle{ background: url(eis_block_title.gif) repeat-x 0 0; }
+
+/*直排*/
+.eis_caticon { background: url(eis_caticon.gif) no-repeat 0 0; }
+
+/*横排*/
+.eis_forumcolumns{ background: url(eis_solid.gif) repeat-y 50% 0; }
+
+/*公告*/
+#an { background: url(eis_an.gif) no-repeat 0 0; }
+
+/*统计*/
+.eis_count{ background: url(eis_count.gif) no-repeat 0 0; }
+
+/* ----------------------------------
+论坛版块页样式
+----------------------------------
+1、版块统计
+2、版主/收藏/RSS/存档/管理
+3、帖子筛选
+4、查看数/回复数
+5、分类信息左侧
+6、分类信息内容
+
+---------------------------------- */
+/*版块统计*/
+.eis_forumcount{ background: url(eis_forumcount.gif) no-repeat; }
+
+/*版主*/
+.eis_forum_info ul li.eis_fa_modedby a{ background: url(eis_fa_modedby.gif) no-repeat 0 0; }
+.eis_forum_info ul li.eis_fa_modedby a:hover{ background: url(eis_fa_modedby.gif) no-repeat 0 -30px; }
+
+/*收藏*/
+.eis_forum_info ul li.eis_fa_fav a{ background: url(eis_fa_fav.gif) no-repeat 0 0; }
+.eis_forum_info ul li.eis_fa_fav a:hover{ background: url(eis_fa_fav.gif) no-repeat 0 -30px; }
+
+/*RSS*/
+.eis_forum_info ul li.eis_fa_rss a{ background: url(eis_fa_rss.gif) no-repeat 0 0; }
+.eis_forum_info ul li.eis_fa_rss a:hover{ background: url(eis_fa_rss.gif) no-repeat 0 -30px; }
+
+/*存档*/
+.eis_forum_info ul li.eis_fa_achv a{ background: url(eis_fa_achv.gif) no-repeat 0 0; }
+.eis_forum_info ul li.eis_fa_achv a:hover{ background: url(eis_fa_achv.gif) no-repeat 0 -30px; }
+
+/*管理*/
+.eis_forum_info ul li.eis_fa_modcp a{ background: url(eis_fa_modcp.gif) no-repeat 0 0; }
+.eis_forum_info ul li.eis_fa_modcp a:hover{ background: url(eis_fa_modcp.gif) no-repeat 0 -30px; }
+
+
+/*eis_vp 查看数/回复数*/
+.eis_vp{ background: url(eis_vp.gif) no-repeat left 0; }
+.eis_vp span{ background: url(eis_vp.gif) no-repeat right -20px; }
+.eis_vp:hover{ background: url(eis_vp_hover.gif) no-repeat left 0; }
+.eis_vp span:hover{ background: url({eis_vp_hover.gif) no-repeat right -20px; }
+
+/*分类信息左侧*/
+.eis_sort_l{ background: url(eis_skin_l.gif) no-repeat 0 0; }
+
+/*分类信息内容*/
+.eis_sortinfo{ background: url(eis_dotted.gif) repeat-x 0 100%; }
+
+/* ----------------------------------
+帖子页页样式
+----------------------------------
+1、帖子内容头部
+2、相关帖子
+3、按钮
+4、帖子右侧发帖与管理按钮
+5、作者按钮
+6、帖子按钮
+7、分享按钮
+8、评分
+9、抢楼/奖励
+0、悬赏
+a、回答
+
+---------------------------------- */
+
+/*帖子内容头部*/
+.eis_viewtop{ background: url(eis_viewtop.gif) no-repeat 100px 0; }
+
+/*回复左侧用户头像背景框
+.eis_postuser{ background: url(eis_pua.gif) no-repeat 0 0; }
+*/
+
+/*回复头像右侧箭头
+.eis_postsp{ background: url(eis_postsp.gif) no-repeat 0 48px; }
+*/
+
+/*相关帖子*/
+.eis_sub li{ background: url(eis_sub.gif) no-repeat 5px 13px; }
+
+/*按钮*/
+#a_favorite { background: url(eis_fav.gif) no-repeat 4px 50% ; } /*收藏*/
+#a_share { background: url(eis_oshr.gif) no-repeat 4px 50% ; } /*分享*/
+.req {  background: url(eis_repquote.gif) no-repeat 4px 50%; } /*引用*/
+
+/*帖子右侧发帖与管理按钮*/
+.eis_threadbtn li.eis_tb1 a{ background: url(eis_threadbtn.gif) no-repeat 0 0; }
+.eis_threadbtn li.eis_tb2 a{ background: url(eis_threadbtn.gif) no-repeat -98px 0 ;}
+.eis_threadbtn li.eis_tb3 a{ background: url(eis_threadbtn.gif) no-repeat -159px 0 ;}
+
+.eis_threadbtn li.eis_tb1 a:hover{ background: url(eis_threadbtn.gif) no-repeat 0 -52px; }
+.eis_threadbtn li.eis_tb2 a:hover{ background: url(eis_threadbtn.gif) no-repeat -98px -52px; }
+.eis_threadbtn li.eis_tb3 a:hover, #mod.a{ background: url(eis_threadbtn.gif) no-repeat -159px -52px; }
+
+/*作者按钮*/
+.eis_userbtn li.eis_ub1 a{ background: url(eis_userbtn.gif) no-repeat 0 0; }
+.eis_userbtn li.eis_ub2 a{ background: url(eis_userbtn.gif) no-repeat -21px 0; }
+.eis_userbtn li.eis_ub3 a{ background: url(eis_userbtn.gif) no-repeat -42px 0; }
+.eis_userbtn li.eis_ub4 a{ background: url(eis_userbtn.gif) no-repeat -63px 0; }
+
+.eis_userbtn li.eis_ub1 a:hover{ background: url(eis_userbtn.gif) no-repeat 0 -22px; }
+.eis_userbtn li.eis_ub2 a:hover{ background: url(eis_userbtn.gif) no-repeat -21px -22px; }
+.eis_userbtn li.eis_ub3 a:hover{ background: url(eis_userbtn.gif) no-repeat -42px -22px; }
+.eis_userbtn li.eis_ub4 a:hover{ background: url(eis_userbtn.gif) no-repeat -63px -22px; }
+
+/*帖子按钮*/
+.psave { background: url(eis_pubsave.gif) no-repeat 4px 50%; }
+.appendp { background: url(eis_icon_append.gif) no-repeat 4px 50%; }
+.cmmnt { background: url(eis_cmmnt.gif) no-repeat 0 50%; }
+.push { background: url(eis_push.gif) no-repeat 4px 50%; }
+.editp { background: url(eis_edit.gif) no-repeat 4px 50%; }
+.fastre { background: url(eis_fastreply.gif) no-repeat 4px 50%; }
+
+/*分享按钮*/
+#p_btn a { background: url(eis_share_btn.gif) no-repeat 0 0; }
+#p_btn i { background: url(eis_share_btn.gif) no-repeat 100% 100%; }
+
+#k_share em{ background: url(eis_oshr.gif) no-repeat 0 0;}
+#k_favorite em{ background: url(eis_fav.gif) no-repeat 0 0;}
+#recommend_add em{ background: url(eis_rec_add.gif) no-repeat 0 0;}
+#recommend_subtract em{ background: url(eis_rec_subtract.gif) no-repeat 0 0;}
+#ak_rate em{ background: url(eis_agree.gif) no-repeat 0 0;}
+#eis_invite em{ background: url(eis_activitysmall.gif) no-repeat 0 0;}
+
+/*附件 变换色系可不改变颜色 
+.pattl p a.xw1{ color: #666; } 
+*/
+
+/*rate 评分*/
+.rate{ border-color:#bcc2cd; }
+.ratl thead td,.ratl thead th{ background: url(eis_block_title.gif) repeat-x 0 100%; }
+
+/*eis_ttt 抢楼/奖励*/
+.eis_ttt_j th{ background: url(eis_ttt.gif) no-repeat 0 0; }
+.eis_ttt_q th{ background: url(eis_ttt.gif) no-repeat 0 -41px; }
+.eis_ttt td{ background: url(eis_ttt.gif) repeat-x 0 -82px; }
+
+/*eis_reward 悬赏*/
+.eis_reward_icon{ background: url(eis_reward_icon.gif) no-repeat 0 0; }
+.eis_reward_ok{ background: url(eis_reward_icon.gif) no-repeat 0 -60px; }
+
+/*回答*/
+.eis_answer{ background: url(eis_answer.gif) no-repeat 0 0; }
+
+/* ----------------------------------
+恩斯道专用样式
+----------------------------------
+1、资讯右侧按钮
+2、资讯列表
+---------------------------------- */
+
+/*资讯右侧按钮*/
+.eis_news_rt li.eis_addnews a{ background-image: url(eis_addnews.png);}
+.eis_news_rt li.eis_rss a{ background-image: url(eis_rss.png); }
+
+
+/*资讯列表*/
+.eis_newslist_m{ background: url(eis_newslist_m.gif) no-repeat 0 0; }
+
+
+/* ----------------------------------
+恩斯道专用样式
+----------------------------------
+1、滚动图片按钮
+2、首页切换容器
+3、容器内容器
+4、首页模块样式
+5、首页DIY样式
+6、内容样式
+
+---------------------------------- */
+
+/*恩斯道模板区专用图片切换
+.eis_sort_tab li img{ border: 1px solid #ccc; }
+.eis_sort_tab li.curtab img{ border: 1px solid #af0404; }
+*/
+
+/*滚动图片按钮*/
+.eis_scrollpic .arrow_l{ background: url(eis_left.png) repeat-x 0 0; }
+.eis_scrollpic .arrow_r{ background: url(eis_right.png) repeat-x 0 0; }
+
+/*首页切换容器*/
+#index{ background: url(eis_index.gif) repeat-y 0 0 #fff; }
+
+.eis_index_tab li.tab{ background: url(eis_index_tab.gif) no-repeat 0 -40px; }
+.eis_index_tab li.curtab{ background: url(eis_index_tab.gif) no-repeat 0 0; }
+
+/*容器内容器*/
+.eis_i1area{ background: url(eis_solid.gif) repeat-y 538px 0 #fff; }
+.eis_i2area{ background: url(eis_solid.gif) repeat-y 380px 0 #fff; }
+
+/*首页模块样式*/
+.eis_b1 .title{ background: url(eis_b1.gif) repeat-x 0 0; }
+.eis_b1 .title .titletext{ background: url(eis_b1.gif) repeat-x 0 -30px; }
+
+/*eis_newskin
+.eis_newskin li div{ background: url(eis_newskin.gif) no-repeat 0 0; }
+*/
+/*eis_sub
+.eis_indexsub li h4{ background: url({eis_indexsub.gif) no-repeat 5px 17px; }
+*/
+/*eis_twolist*/
+.eis_twolist{ background: url(eis_twolist.gif) no-repeat 254px 50%; }
+.eis_twolist li{ background: url(eis_dot.gif) no-repeat 0 14px; }
+
+/*eis_tpl*/
+.eis_tpl{ background: url(eis_tpl.gif) no-repeat 50% 100%; }
+
+/*eis_picline
+.eis_picline li div{ background: url(eis_picline.gif) no-repeat 0 0; }
+*/
+/*eis_indextop10*/
+.eis_indextop10 li h4 span{ background: url(eis_indextop10.gif) no-repeat 0 0; }
+#i21 span{ background: url(eis_indextop10.gif) no-repeat 0 -30px; }
+#i22 span{ background: url(eis_indextop10.gif) no-repeat 0 -60px; }
+#i23 span{ background: url(eis_indextop10.gif) no-repeat 0 -90px; }
+.eis_indextop10 li.first span{ font-size: 18px; color: #fff; background: url(eis_indextop10.gif) no-repeat 0 -120px !important; }
+
+/*容器*/
+.eis_about{ background: url(eis_about.gif) repeat-y 0 0 #fff;}
+
+/*分类列表*/
+.eis_about_cat li{ background: url(eis_about_cat.gif) no-repeat 0 100%; }
+.eis_about_cat li.a{ background: url(eis_about_cat_a.gif) repeat-y 0 0; }
+.ie6 .eis_about,.ie7 .eis_about{ background: url(eis_about.gif) repeat-y 1px 0 #fff; }
+
+/*联系方式
+.eis_about_contact{ background: url(eis_contact.gif) no-repeat 0 0; }
+*/
+/*支付方式
+.eis_about_payment{ background: url(eis_payment.gif) no-repeat 0 0; }
+*/
+/*开始定制
+.eis_about_view_list .eis_about_contact{ background: url(eis_contact.gif) no-repeat 45px 0; }
+*/
+
+/*定制流程*/
+.eis_about_process_1{ background: url(eis_process_1.gif) no-repeat 258px 58px; }
+.eis_about_process_2{ background: url(eis_process_2.gif) no-repeat 258px 58px; }
+.eis_about_process_3{ background: url(eis_process_3.gif) no-repeat 258px 58px; }
+.eis_about_process_4{ background: url(eis_process_4.gif) no-repeat 258px 58px; }
+.eis_about_process_5{ background: url(eis_process_5.gif) no-repeat 258px 58px; }
+.eis_about_process_6{ background: url(eis_process_6.gif) no-repeat 258px 58px; }
+.eis_about_process_7{ background: url(eis_process_7.gif) no-repeat 258px 58px; }
+.eis_about_process_8{ background: url(eis_process_8.gif) no-repeat 258px 58px; }
+.eis_about_process_9{ background: url(eis_process_9.gif) no-repeat 258px 58px; }
+
+/*箭头*/
+.eis_about_arrow1{ background: url(eis_arrow1.gif) no-repeat 50% 50%; }
+.eis_about_arrow2{ background: url(eis_arrow2.gif) no-repeat 50% 50%; }
+.eis_about_arrow3{ background: url(eis_arrow3.gif) no-repeat 50% 50%; }
+.eis_about_arrow4{ background: url(eis_arrow1.gif) no-repeat 50% 50%; }

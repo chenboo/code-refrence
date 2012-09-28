@@ -1,0 +1,624 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+<title>论坛首页-DEVDIV.COM -  Powered by DEVDIV.COM!</title>
+<meta property="wb:webmaster" content="8b1a4a745645ee3d" />
+<meta name="baidu-site-verification" content="fN8YVhTMOjXNXtNZ" />
+<meta http-equiv="refresh" content="1800"/>
+<meta name="google-site-verification" content="RZiNln3Qd-vkg8Gtm8zkath-eg8hTg0I51pCMimRwHg" />
+<link href="http://www.devdiv.com/images/favicon.ico" rel="SHORTCUT ICON" />
+<meta name="msvalidate.01" content="1C0066B2141AEBAFA37D46AEBDFDA311" />
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-30205218-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+<script src="static/js/code/scripts/brush.js" type="text/javascript"></script>
+<link type="text/css" rel="stylesheet" href="static/js/code/styles/shCore.css"/>
+<link type="text/css" rel="stylesheet" href="static/js/code/styles/shThemeDefault.css"/>
+<script type="text/javascript">
+SyntaxHighlighter.config.clipboardSwf = 'static/js/code//scripts/clipboard.swf';
+SyntaxHighlighter.all();
+</script> 
+<meta name="keywords" content="论坛首页-DEVDIV.COM" />
+<meta name="description" content="论坛首页-DEVDIV.COM " />
+<meta name="generator" content="Discuz! X2 RC" />
+<meta name="author" content="Discuz! Team and Comsenz UI Team" />
+<meta name="copyright" content="2010-2012 DEVDIV.COM" />
+<meta name="MSSmartTagsPreventParsing" content="True" />
+<meta http-equiv="MSThemeCompatible" content="Yes" />
+<base href="http://www.devdiv.com/" />
+  <link rel="stylesheet" type="text/css" href="data/cache/style_13_common.css?1ll" /><link rel="stylesheet" type="text/css" href="data/cache/style_13_forum_index.css?1ll" /><link rel="stylesheet" id="css_extstyle" type="text/css" href="static/image/eisdldefault/style/t5/style.css" /><script type="text/javascript">var STYLEID = '13', STATICURL = 'static/', IMGDIR = 'static/image/eisdldefault', VERHASH = '1ll', charset = 'gbk', discuz_uid = '0', cookiepre = 'KWBw_09ed_', cookiedomain = '.devdiv.com', cookiepath = '/', showusercard = '1', attackevasive = '4', disallowfloat = 'newthread|reply', creditnotice = '2|资源分|,3|技术分|,5|激情|', defaultstyle = 'static/image/eisdldefault/style/t5', REPORTURL = 'aHR0cDovL3d3dy5kZXZkaXYuY29tL3h3Yi9pbWFnZXMveHdiXzIlMjBSQy5jc3M=', SITEURL = 'http://www.devdiv.com/', JSPATH = 'data/cache/';</script>
+<script src="data/cache/common.js?1ll" type="text/javascript"></script><meta name="application-name" content="DEVDIV.COM" />
+<meta name="msapplication-tooltip" content="DEVDIV.COM" />
+<meta name="msapplication-task" content="name=首页;action-uri=http://www.devdiv.com;icon-uri=http://www.devdiv.com/static/image/eisdldefault/portal.ico" /><meta name="msapplication-task" content="name=论坛;action-uri=http://www.devdiv.com/forum.php;icon-uri=http://www.devdiv.com/static/image/eisdldefault/bbs.ico" />
+<meta name="msapplication-task" content="name=群组;action-uri=http://www.devdiv.com/group.php;icon-uri=http://www.devdiv.com/static/image/eisdldefault/group.ico" /><meta name="msapplication-task" content="name=空间;action-uri=http://www.devdiv.com/home.php;icon-uri=http://www.devdiv.com/static/image/eisdldefault/home.ico" /><link rel="archives" title="DEVDIV.COM" href="http://www.devdiv.com/archiver/" />
+<link rel="alternate" type="application/rss+xml" title="DEVDIV.COM" href="http://www.devdiv.com/forum.php?mod=rss&auth=0" />
+<script src="data/cache/forum.js?1ll" type="text/javascript"></script>
+  
+<script language="javascript">
+  function Eis(area,id) {
+    var tabArea=document.getElementById(area);
+    var contents=tabArea.childNodes;
+    for(i=0; i<contents.length; i++) {
+      if(contents[i].className=='tabcontent'){contents[i].style.display='none';}
+    }
+    document.getElementById(id).style.display='';
+  
+    var tabs=document.getElementById(area+'tabs').getElementsByTagName('li');
+    for(i=0; i<tabs.length; i++) { tabs[i].className='tab'; }
+    document.getElementById(id+'tab').className='tab curtab';
+    document.getElementById(id+'tab').blur();
+  }
+  function eiscs(area,id) {
+    var lis=document.getElementById(area).getElementsByTagName('li');
+    for(i=0; i<lis.length; i++) { lis[i].className=''; }
+    document.getElementById(id).className='first';
+    document.getElementById(id).blur();
+  }
+  </script>
+  
+<!--[if IE 6]>
+  <script src="static/image/eisdldefault/png.js" type="text/javascript"></script>
+  <script type="text/javascript">
+  DD_belatedPNG.fix('.eis_png,.eis_indexwp');
+  </script>
+  <![endif]-->
+</head>
+
+<body id="nv_forum" class="pg_index" onkeydown="if(event.keyCode==27) return false;">
+<div id="append_parent"></div><div id="ajaxwaitid"></div>
+
+    <ul id="u1_menu" class="eis_upop eis_b_c_a" style="display:none">
+                  <li class="eis_b_c_e eis_f_a_3"><a href="http://www.devdiv.com/home.php?mod=spacecp&ac=credit" style="background-image:url(http://www.devdiv.com/static/image/eisdldefault/eis_u31.gif) !important">积分</a></li>
+                        <li class="eis_b_c_e eis_f_a_3"><a href="http://www.devdiv.com/home.php?mod=space&do=friend" style="background-image:url(http://www.devdiv.com/static/image/eisdldefault/eis_friend_b.png) !important">好友</a></li>
+                        <li class="eis_b_c_e eis_f_a_3"><a href="http://www.devdiv.com/home.php?mod=space&do=thread&view=me" style="background-image:url(http://www.devdiv.com/static/image/eisdldefault/eis_thread_b.png) !important">帖子</a></li>
+                        <li class="eis_b_c_e eis_f_a_3"><a href="http://www.devdiv.com/home.php?mod=magic" style="background-image:url(http://www.devdiv.com/static/image/eisdldefault/eis_magic_b.png) !important">道具</a></li>
+                        <li class="eis_b_c_e eis_f_a_3"><a href="http://www.devdiv.com/home.php?mod=space&do=favorite&view=me" style="background-image:url(http://www.devdiv.com/static/image/eisdldefault/eis_favorite_b.png) !important">收藏</a></li>
+                        <li class="eis_b_c_e eis_f_a_3"><a href="http://www.devdiv.com/home.php?mod=medal" style="background-image:url(http://www.devdiv.com/static/image/eisdldefault/eis_medal_b.png) !important">勋章</a></li>
+                        <li class="eis_b_c_e eis_f_a_3"><a href="http://www.devdiv.com/home.php?mod=task" style="background-image:url(http://www.devdiv.com/static/image/eisdldefault/eis_task_b.png) !important">任务</a></li>
+                        <li class="eis_b_c_e eis_f_a_3"><a href="http://www.devdiv.com/home.php?mod=spacecp&amp;ac=plugin&amp;id=sina_xweibo_x2:home_binding" style="background-image:url(http://www.devdiv.com/data/attachment/common/cf/094352l5qlhfxtfzqr1lkt.jpeg?B91Kxd) !important">绑定微博</a></li>
+                        <li class="eis_b_c_e eis_f_a_3"><a href="http://www.devdiv.com/connect.php?mod=config" style="background-image:url(http://www.devdiv.com/data/attachment/common/cf/094510binz4geygn2jy2ja.jpeg?79IEdJ) !important">绑定QQ</a></li>
+                </ul>
+    <ul id="u2_menu" class="eis_upop eis_b_c_a" style="display:none">
+      <li class="eis_b_c_e eis_f_a_3"><a href="http://www.devdiv.com/home.php?mod=space&amp;do=pm" id="pm_ntc">消息</a></li>
+      <li class="eis_b_c_e eis_f_a_3"><a href="http://www.devdiv.com/home.php?mod=space&amp;do=notice" id="myprompt">提醒</a></li>
+      <span id="myprompt_check"></span>
+          </ul>
+    <ul id="u3_menu" class="eis_upop eis_b_c_a" style="display:none">
+      <li class="eis_b_c_e eis_f_a_3"><a href="http://www.devdiv.com/home.php?mod=spacecp" id="u31">个人设置</a></li>
+                            </ul>
+    <ul id="u4_menu" class="eis_upopt eis_b_c_a cl" style="display:none">
+    <li onClick="extstyle('default')" title="黑白"><i></i></li>
+<li onClick="extstyle('static/image/eisdldefault/style/t5')" title="墨蓝"><i style='background:#354b66'></i></li>
+<li onClick="extstyle('static/image/eisdldefault/style/t4')" title="80后"><i style='background:#eff3f4'></i></li>
+<li onClick="extstyle('static/image/eisdldefault/style/t3')" title="月夜"><i style='background:#33442e'></i></li>    </ul>
+<div id="eis_body">
+<div id="hd">
+<div class="wp">
+<div class="hdc cl"><h2><a href="./" title="DEVDIV.COM"><img src="static/image/eisdldefault/blank.gif" alt="DEVDIV.COM" border="0" /></a></h2>
+          <div class="eis_hdr">
+            <div class="eis_um">
+              <ul>
+                                <li class="eis_line"></li>
+                <li class="eis_ui eis_u6"><a href="http://www.devdiv.com/member.php?mod=logging&amp;action=login" onClick="showWindow('login', this.href)" title="登录"></a></li>
+                <li class="eis_line"></li>
+                <li class="eis_ui eis_u7"><a href="http://www.devdiv.com/member.php?mod=register" title="注册"></a></li>
+                <li class="eis_line"></li>
+                <li class="eis_ui eis_u8"><a href="javascript:;" onClick="showWindow('login', 'member.php?mod=logging&action=login&viewlostpw=1')" title="找回密码"></a></li>
+                <li class="eis_line"></li>
+                <li class="eis_ui eis_u9"><a href="http://www.devdiv.com/connect.php?mod=login&op=init&referer=forum.php&statfrom=login_simple" title="用QQ登陆"></a></li>
+                <li class="eis_line"></li>              
+                <li style="padding-top:8px;"><a href="http://www.devdiv.com/xwb.php?m=xwbAuth.login"><img src="http://www.devdiv.com/xwb/images/bgimg/sina_login_btn2.png" /></a></li>
+                <li class="eis_line"></li> 
+                              </ul>
+            </div>
+            <div class="eis_nv">
+              <ul>
+                                  <li id="mn_portal" onmouseover="showMenu({'ctrlid':this.id,'ctrlclass':'hover','duration':2})"><a href="http://www.devdiv.com" hidefocus="true"   style="font-weight: bold;">首页</a></li>                                                                                                                                        <li id="mn_Na983" ><a href="http://www.devdiv.com/%E8%AF%BA%E5%9F%BA%E4%BA%9AWP%E4%B8%93%E5%8C%BA-catlist-83-1.html" hidefocus="true"   style="font-weight: bold;">诺基亚WP</a></li>                                  <li class="a" id="mn_forum" onmouseover="showMenu({'ctrlid':this.id,'ctrlclass':'hover','duration':2})"><a href="http://www.devdiv.com/forum.php" hidefocus="true"   style="font-weight: bold;">论坛</a></li>                                  <li id="mn_group" ><a href="http://www.devdiv.com/group.php" hidefocus="true"   style="font-weight: bold;">群组</a></li>                                  <li id="mn_home" onmouseover="showMenu({'ctrlid':this.id,'ctrlclass':'hover','duration':2})"><a href="http://www.devdiv.com/home.php" hidefocus="true"   style="font-weight: bold;">空间</a></li>                                                                    <li id="mn_N0062" ><a href="http://www.devdiv.com/home-blog.html" hidefocus="true"   style="font-weight: bold;">博客</a></li>                                  <li id="mn_N3428" ><a href="http://www.devdiv.com/%E6%8A%80%E6%9C%AF%E6%B2%99%E9%BE%99-catlist-91-1.html" hidefocus="true"   style="font-weight: bold;">沙龙</a></li>                                  <li id="mn_Nba65" ><a href="http://www.devdiv.com/%E5%9F%B9%E8%AE%AD%E4%B8%93%E5%8C%BA-catlist-87-1.html" hidefocus="true"   style="font-weight: bold;">培训</a></li>                                  <li id="mn_N849c" ><a href="http://hr.devdiv.com" hidefocus="true"   style="font-weight: bold;">人才</a></li>                              </ul>
+            </div>
+                        <ul class="p_pop h_pop" id="mn_portal_menu" style="display: none"><li><a href="http://www.devdiv.com/%E8%B5%84%E8%AE%AF-catlist-1-1.html" hidefocus="true" >资讯</a></li><li><a href="http://www.devdiv.com/Android%E5%BC%80%E5%8F%91%E7%B2%BE%E9%80%89-catlist-72-1.html" hidefocus="true" >Android开发精选</a></li><li><a href="http://www.devdiv.com/iOS%E5%BC%80%E5%8F%91%E7%B2%BE%E9%80%89-catlist-73-1.html" hidefocus="true" >iOS开发精选</a></li><li><a href="http://www.devdiv.com/WP%E5%BC%80%E5%8F%91%E7%B2%BE%E9%80%89-catlist-68-1.html" hidefocus="true" >WP开发精选</a></li><li><a href="http://www.devdiv.com/Windows8%E5%BC%80%E5%8F%91%E7%B2%BE%E9%80%89-catlist-85-1.html" hidefocus="true" >Windows8开发精选</a></li><li><a href="http://www.devdiv.com/misc.php?mod=ranklist&type=member&view=post" hidefocus="true" >排行</a></li></ul><ul class="p_pop h_pop" id="mn_forum_menu" style="display: none"><li><a href="http://www.devdiv.com/Android%E5%BC%80%E5%8F%91%E8%AE%BA%E5%9D%9B-forum-110-1.html" hidefocus="true" >Android开发论坛</a></li><li><a href="http://www.devdiv.com/Android%E5%BC%80%E5%8F%91%E8%B5%84%E6%96%99-forum-102-1.html" hidefocus="true" >Android开发资料</a></li><li><a href="http://www.devdiv.com/iOS%E5%BC%80%E5%8F%91%E8%AE%BA%E5%9D%9B_iPhone%E5%BC%80%E5%8F%91%E8%AE%BA%E5%9D%9B-forum-111-1.html" hidefocus="true" >iOS/iPhone开发论坛</a></li><li><a href="http://www.devdiv.com/iOS%E5%BC%80%E5%8F%91%E8%B5%84%E6%96%99_iPhone%E5%BC%80%E5%8F%91%E8%B5%84%E6%96%99-forum-214-1.html" hidefocus="true" >iOS/iPhone开发资料</a></li><li><a href="http://www.devdiv.com/%E5%BE%AE%E8%BD%AF_%E8%AF%BA%E5%9F%BA%E4%BA%9A_Windows_Phone%E5%BC%80%E5%8F%91%E8%AE%BA%E5%9D%9B-forum-105-1.html" hidefocus="true" >WP开发论坛</a></li><li><a href="http://www.devdiv.com/Windows_Phone%E5%BC%80%E5%8F%91%E8%B5%84%E6%96%99-forum-85-1.html" hidefocus="true" >WP开发资料</a></li><li><a href="http://www.devdiv.com/Windows_8_%E5%BC%80%E5%8F%91%E8%AE%BA%E5%9D%9B-forum-216-1.html" hidefocus="true" >Windows8开发论坛</a></li><li><a href="http://www.devdiv.com/Windows_8_%E5%BC%80%E5%8F%91%E8%B5%84%E6%96%99-forum-237-1.html" hidefocus="true" >Windows8开发资料</a></li><li><a href="http://www.devdiv.com/Symbian%E5%BC%80%E5%8F%91%E8%AE%BA%E5%9D%9B-forum-98-1.html" hidefocus="true" >Symbian开发论坛</a></li><li><a href="http://www.devdiv.com/%E8%B7%A8%E5%B9%B3%E5%8F%B0%E6%B8%B8%E6%88%8F%E8%AE%A8%E8%AE%BA%E5%8C%BA-forum-225-1.html" hidefocus="true" >跨平台游戏讨论区</a></li><li><a href="http://www.devdiv.com/%E6%B4%BB%E5%8A%A8%E4%B8%93%E5%8C%BA-forum-149-1.html" hidefocus="true" >活动专区</a></li><li><a href="http://www.devdiv.com/%E8%B5%84%E8%AE%AF%E5%8C%BA-forum-154-1.html" hidefocus="true" >资讯区</a></li><li><a href="http://www.devdiv.com/%E8%81%8C%E5%9C%BA-forum-222-1.html" hidefocus="true" >职业生涯</a></li><li><a href="http://www.devdiv.com/App%E5%B1%95%E7%A4%BA%E5%8C%BA-forum-153-1.html" hidefocus="true" >Apps展示区</a></li><li><a href="http://www.devdiv.com/%E7%81%8C%E6%B0%B4%E5%8C%BA-forum-14-1.html" hidefocus="true" >灌水区</a></li><li><a href="http://www.devdiv.com/%E6%8A%A2%E6%A5%BC%E7%AD%BE%E5%88%B0-forum-151-1.html" hidefocus="true" >抢楼签到</a></li></ul><ul class="p_pop h_pop" id="mn_home_menu" style="display: none"><li><a href="http://www.devdiv.com/home-blog.html" hidefocus="true" >博客</a></li><li><a href="http://www.devdiv.com/home.php?mod=space&do=album" hidefocus="true" >相册</a></li><li><a href="http://www.devdiv.com/home.php?mod=space&do=share" hidefocus="true" >分享</a></li><li><a href="http://www.devdiv.com/home.php?mod=space&do=doing" hidefocus="true" >记录</a></li></ul>          </div>
+</div>
+</div>
+</div>
+  
+<div id="wp" class="wp ">
+<style id="diy_style" type="text/css"></style>
+
+<div class="wp">
+<!--[diy=diy1]--><div id="diy1" class="area"></div><!--[/diy]-->
+</div>
+
+<div id="ct" class="wp cl">
+<div id="chart" class="bm bw0 cl">
+<p class="chart z">今日: <em>232</em><span class="pipe">|</span>昨日: <em>1282</em><span class="pipe">|</span>帖子: <em>680099</em><span class="pipe">|</span>会员: <em>291642</em><span class="pipe">|</span>欢迎新会员: <em><a href="http://www.devdiv.com/home.php?mod=space&amp;username=%CC%EF%BE%B6" target="_blank" class="xi2">田径</a></em></p>
+<div class="y">
+<a href="http://www.devdiv.com/search.php?mod=forum&amp;srchfrom=177000&amp;searchsubmit=yes" title="查看新帖" class="xi2">查看新帖</a></div>
+</div>
+
+<div class="mn">
+
+<div class="bm">
+<div class="bm_h cl">
+<h2>论坛热点</h2>
+</div>
+<div class="bm_c cl">
+<div class="heat z"><dl class="xld">
+<dt><a href="http://www.devdiv.com/iOS_iPhone-iOS_5_Programming_Cookbook中文翻译_合集-thread-134604-1-1.html" target="_blank" class="xi2">iOS 5 Programming Cookbook中文翻译_合集</a></dt>
+<dd>iOS 5 Programming Cookbook中文翻译——合集&nbsp; &nbsp;&nbsp;让我把你白发染黑，携手回到相识那一刻，回到那时的绿水青山。& ...</dd>
+</dl>
+<dl class="xld">
+<dt><a href="http://www.devdiv.com/活动纪实：2012-09-22_诺基亚手机平台北京技术交流会-thread-136141-1-1.html" target="_blank" class="xi2">活动纪实：2012-09-22 诺基亚手机平台北京技术交流会</a></dt>
+<dd>“诺基亚手机平台北京技术交流会"于9月22日下午在中关村3w coffee如期举行，近120名开发人员到场参会。诺基亚演讲嘉宾与我 ...</dd>
+</dl>
+</div>
+<ul class="xl xl1 heatl"><li>&middot; <a href="http://www.devdiv.com/iOS_iPhone-Core_Animation中文翻译各章节汇总-_最近更新2012-09-24_-thread-135050-1-1.html" target="_blank" class="xi2">Core Animation中文翻译各章节汇总-(最近更新2012-09-24)</a></li>
+<li>&middot; <a href="http://www.devdiv.com/Building_Windows_8_apps_with_HTML5_and_JavaScript中文翻译汇总-最近更新2012-9-24-thread-134629-1-1.html" target="_blank" class="xi2">Building Windows 8 apps with HTML5 and JavaScript中文翻译汇总-最近更新2012-9-24</a></li>
+<li>&middot; <a href="http://www.devdiv.com/Windows_Phone-WP8新特性【8】Windows_Phone_8界面调用一般DLL，非Runtime_Component方法-thread-135252-1-1.html" target="_blank" class="xi2">WP8新特性【8】Windows Phone 8界面调用一般DLL，非Runtime Component方法</a></li>
+<li>&middot; <a href="http://www.devdiv.com/iOS_iPhone-AppStore发布产品步骤-thread-136388-1-1.html" target="_blank" class="xi2">AppStore发布产品步骤</a></li>
+<li>&middot; <a href="http://www.devdiv.com/Android-问一个GridView瀑布流的问题-thread-134139-1-1.html" target="_blank" class="xi2">问一个GridView瀑布流的问题</a></li>
+<li>&middot; <a href="http://www.devdiv.com/iOS_iPhone-坑爹的Xcode4.5_收集遇到的问题，也希望能有人给出解决方案-thread-136813-1-1.html" target="_blank" class="xi2">坑爹的Xcode4.5,收集遇到的问题，也希望能有人给出解决方案</a></li>
+<li>&middot; <a href="http://www.devdiv.com/Windows_Phone-WP中viewAnimator的实现-thread-133893-1-1.html" target="_blank" class="xi2">WP中viewAnimator的实现</a></li>
+<li>&middot; <a href="http://www.devdiv.com/Windows_Phone-屌丝电脑玩wp8-thread-136132-1-1.html" target="_blank" class="xi2">屌丝电脑玩wp8</a></li>
+</ul>
+</div>
+</div>
+
+<div class="fl bm"><div class="bm bmw  cl">
+<div class="bm_h cl">
+<span class="o">
+<img id="category_97_img" src="static/image/eisdldefault/collapsed_no.gif" title="收起/展开" alt="收起/展开" onclick="toggle_collapse('category_97');" />
+</span>
+<h2><a href="http://www.devdiv.com/forum.php?gid=97" style="">开发讨论区</a></h2>
+</div>
+<div id="category_97" class="bm_c" style="">
+<table cellspacing="0" cellpadding="0" class="fl_tb">
+<tr><td class="fl_icn"  style="width: 60px;">
+<a href="http://www.devdiv.com/Android开发论坛-forum-110-1.html"><img src="http://www.devdiv.com/bbs/forumimage//android.jpg" align="left" alt="" /></a></td>
+<td>
+<h2><a href="http://www.devdiv.com/Android开发论坛-forum-110-1.html">Android开发论坛</a><em class="xw0 xi1" title="今日"> (17)</em></h2>
+<p class="xg2">Android开发论坛、环境搭建、应用开发、驱动开发、系统移植、文档</p><p>版主: <span class="xi2"><a href="http://www.devdiv.com/home.php?mod=space&username=Gphone" class="notabs" c="1">Gphone</a>, <a href="http://www.devdiv.com/home.php?mod=space&username=starup" class="notabs" c="1">starup</a>, <a href="http://www.devdiv.com/home.php?mod=space&username=xyz_lmn" class="notabs" c="1">xyz_lmn</a>, <a href="http://www.devdiv.com/home.php?mod=space&username=Sodino" class="notabs" c="1">Sodino</a>, <a href="http://www.devdiv.com/home.php?mod=space&username=cqllang" class="notabs" c="1">cqllang</a>, <a href="http://www.devdiv.com/home.php?mod=space&username=penguin_0831" class="notabs" c="1">penguin_0831</a></span></p></td>
+<td class="fl_i">
+<span class="xi2">20684</span><span class="xg1"> / 86490</span></td>
+<td class="fl_by">
+<div>
+<a href="http://www.devdiv.com/forum.php?mod=redirect&amp;tid=139049&amp;goto=lastpost#lastpost" class="xi2">Failed to allocate memory: 8</a> <cite><span title="2012-9-28 10:39:49">5&nbsp;分钟前</span> <a href="http://www.devdiv.com/home.php?mod=space&username=penguin_0831">penguin_0831</a></cite>
+</div>
+</td>
+</tr>
+<tr class="fl_row">
+<td class="fl_icn"  style="width: 60px;">
+<a href="http://www.devdiv.com/Android开发资料-forum-102-1.html"><img src="http://www.devdiv.com/bbs/forumimage/android_doc.jpg" align="left" alt="" /></a></td>
+<td>
+<h2><a href="http://www.devdiv.com/Android开发资料-forum-102-1.html">Android开发资料</a><em class="xw0 xi1" title="今日"> (7)</em></h2>
+<p class="xg2">Android代码、教程、入门、文档、视频</p><p>版主: <span class="xi2"><a href="http://www.devdiv.com/home.php?mod=space&username=BeyondVincent" class="notabs" c="1">BeyondVincent</a></span></p></td>
+<td class="fl_i">
+<span class="xi2">1027</span><span class="xg1"> / 14972</span></td>
+<td class="fl_by">
+<div>
+<a href="http://www.devdiv.com/forum.php?mod=redirect&amp;tid=125963&amp;goto=lastpost#lastpost" class="xi2">使用ViewPager实现左右滑动效果</a> <cite><span title="2012-9-28 10:37:18">7&nbsp;分钟前</span> <a href="http://www.devdiv.com/home.php?mod=space&username=sunzhiwdwd">sunzhiwdwd</a></cite>
+</div>
+</td>
+</tr>
+<tr class="fl_row">
+<td class="fl_icn"  style="width: 60px;">
+<a href="http://www.devdiv.com/iOS开发论坛_iPhone开发论坛-forum-111-1.html"><img src="http://www.devdiv.com/bbs/forumimage/ios.jpg" align="left" alt="" /></a></td>
+<td>
+<h2><a href="http://www.devdiv.com/iOS开发论坛_iPhone开发论坛-forum-111-1.html">iOS开发论坛/iPhone开发论坛</a><em class="xw0 xi1" title="今日"> (64)</em></h2>
+<p class="xg2">iPhone开发论坛、iOS开发论坛、iOS开发者论坛、环境搭建、应用开发、开发入门、文档</p><p>版主: <span class="xi2"><a href="http://www.devdiv.com/home.php?mod=space&username=Gphone" class="notabs" c="1">Gphone</a>, <a href="http://www.devdiv.com/home.php?mod=space&username=cloudhsu" class="notabs" c="1">cloudhsu</a>, <a href="http://www.devdiv.com/home.php?mod=space&username=laigb" class="notabs" c="1">laigb</a>, <a href="http://www.devdiv.com/home.php?mod=space&username=yinjiahjk" class="notabs" c="1">yinjiahjk</a>, <a href="http://www.devdiv.com/home.php?mod=space&username=OC_WIND" class="notabs" c="1">OC_WIND</a>, <a href="http://www.devdiv.com/home.php?mod=space&username=kangqijun" class="notabs" c="1">kangqijun</a>, <a href="http://www.devdiv.com/home.php?mod=space&username=symbian_love" class="notabs" c="1">symbian_love</a></span></p></td>
+<td class="fl_i">
+<span class="xi2">20291</span><span class="xg1"> / 83194</span></td>
+<td class="fl_by">
+<div>
+<a href="http://www.devdiv.com/forum.php?mod=redirect&amp;tid=139046&amp;goto=lastpost#lastpost" class="xi2">如何将UIView输出为PDF文件格式呢 ...</a> <cite><span title="2012-9-28 10:40:26">4&nbsp;分钟前</span> <a href="http://www.devdiv.com/home.php?mod=space&username=kangqijun">kangqijun</a></cite>
+</div>
+</td>
+</tr>
+<tr class="fl_row">
+<td class="fl_icn"  style="width: 60px;">
+<a href="http://www.devdiv.com/iOS开发资料_iPhone开发资料-forum-214-1.html"><img src="data/attachment/common/ca/common_214_icon.jpeg" align="left" alt="" /></a></td>
+<td>
+<h2><a href="http://www.devdiv.com/iOS开发资料_iPhone开发资料-forum-214-1.html" style="color: #000000;">iOS开发资料/iPhone开发资料</a><em class="xw0 xi1" title="今日"> (76)</em></h2>
+<p class="xg2">iOS代码、教程、入门、文档、视频</p><p>版主: <span class="xi2"><a href="http://www.devdiv.com/home.php?mod=space&username=BeyondVincent" class="notabs" c="1">BeyondVincent</a>, <a href="http://www.devdiv.com/home.php?mod=space&username=jourkliu" class="notabs" c="1">jourkliu</a></span></p></td>
+<td class="fl_i">
+<span class="xi2">1182</span><span class="xg1"> / 41004</span></td>
+<td class="fl_by">
+<div>
+<a href="http://www.devdiv.com/forum.php?mod=redirect&amp;tid=127260&amp;goto=lastpost#lastpost" class="xi2">iOS 5 Programming Cookbook中文 ...</a> <cite><span title="2012-9-28 10:41:03">4&nbsp;分钟前</span> <a href="http://www.devdiv.com/home.php?mod=space&username=%B6%FE%BB%F5%C4%E3%BA%C3">二货你好</a></cite>
+</div>
+</td>
+</tr>
+<tr class="fl_row">
+<td class="fl_icn"  style="width: 60px;">
+<a href="http://www.devdiv.com/微软_诺基亚_Windows_Phone开发论坛-forum-105-1.html"><img src="http://www.devdiv.com/bbs/forumimage/wp.jpg" align="left" alt="" /></a></td>
+<td>
+<h2><a href="http://www.devdiv.com/微软_诺基亚_Windows_Phone开发论坛-forum-105-1.html">微软/诺基亚 Windows Phone开发论坛</a><em class="xw0 xi1" title="今日"> (11)</em></h2>
+<p class="xg2">Windows Phone开发论坛、Windows Phone开发者论坛、环境搭建、应用开发、文档</p><p>版主: <span class="xi2"><a href="http://www.devdiv.com/home.php?mod=space&username=fanfan" class="notabs" c="1">fanfan</a>, <a href="http://www.devdiv.com/home.php?mod=space&username=0nongyu0" class="notabs" c="1">0nongyu0</a>, <a href="http://www.devdiv.com/home.php?mod=space&username=NokiaWP%BC%BC%CA%F5%D6%A7%B3%D6" class="notabs" c="1">NokiaWP技术支持</a>, <a href="http://www.devdiv.com/home.php?mod=space&username=fengyun1989" class="notabs" c="1">fengyun1989</a></span></p></td>
+<td class="fl_i">
+<span class="xi2">10028</span><span class="xg1"> / 43301</span></td>
+<td class="fl_by">
+<div>
+<a href="http://www.devdiv.com/forum.php?mod=redirect&amp;tid=139065&amp;goto=lastpost#lastpost" class="xi2">关于listbox的相关滑动事件的疑问 ...</a> <cite><span title="2012-9-28 10:17:23">27&nbsp;分钟前</span> <a href="http://www.devdiv.com/home.php?mod=space&username=totoro">totoro</a></cite>
+</div>
+</td>
+</tr>
+<tr class="fl_row">
+<td class="fl_icn"  style="width: 60px;">
+<a href="http://www.devdiv.com/Windows_Phone开发资料-forum-85-1.html"><img src="http://www.devdiv.com/bbs/forumimage/wp_doc_new.jpg" align="left" alt="" /></a></td>
+<td>
+<h2><a href="http://www.devdiv.com/Windows_Phone开发资料-forum-85-1.html">Windows Phone开发资料</a><em class="xw0 xi1" title="今日"> (5)</em></h2>
+<p class="xg2">Windows Phone代码、教程、入门、文档、视频</p><p>版主: <span class="xi2"><a href="http://www.devdiv.com/home.php?mod=space&username=BeyondVincent" class="notabs" c="1">BeyondVincent</a></span></p></td>
+<td class="fl_i">
+<span class="xi2">306</span><span class="xg1"> / 3297</span></td>
+<td class="fl_by">
+<div>
+<a href="http://www.devdiv.com/forum.php?mod=redirect&amp;tid=139067&amp;goto=lastpost#lastpost" class="xi2">Windows Phone自定义控件step by ...</a> <cite><span title="2012-9-28 10:36:59">8&nbsp;分钟前</span> <a href="http://www.devdiv.com/home.php?mod=space&username=Vincent">Vincent</a></cite>
+</div>
+</td>
+</tr>
+<tr class="fl_row">
+<td class="fl_icn"  style="width: 60px;">
+<a href="http://www.devdiv.com/Windows_8_开发论坛-forum-216-1.html"><img src="http://www.devdiv.com/bbs/forumimage/win8.jpg" align="left" alt="" /></a></td>
+<td>
+<h2><a href="http://www.devdiv.com/Windows_8_开发论坛-forum-216-1.html">Windows 8 开发论坛</a><em class="xw0 xi1" title="今日"> (1)</em></h2>
+<p class="xg2">Windows 8 代码、教程、入门、文档、视频</p><p>版主: <span class="xi2"><a href="http://www.devdiv.com/home.php?mod=space&username=hsany330" class="notabs" c="1">hsany330</a>, <a href="http://www.devdiv.com/home.php?mod=space&username=lanseshuibei" class="notabs" c="1">lanseshuibei</a>, <a href="http://www.devdiv.com/home.php?mod=space&username=fengyun1989" class="notabs" c="1">fengyun1989</a></span></p></td>
+<td class="fl_i">
+<span class="xi2">692</span><span class="xg1"> / 1865</span></td>
+<td class="fl_by">
+<div>
+<a href="http://www.devdiv.com/forum.php?mod=redirect&amp;tid=137795&amp;goto=lastpost#lastpost" class="xi2">使用 c#代码 添加button到基页内 ...</a> <cite><span title="2012-9-28 09:14:22">1&nbsp;小时前</span> <a href="http://www.devdiv.com/home.php?mod=space&username=BeyondVincent">BeyondVincent</a></cite>
+</div>
+</td>
+</tr>
+<tr class="fl_row">
+<td class="fl_icn"  style="width: 60px;">
+<a href="http://www.devdiv.com/Windows_8_开发资料-forum-237-1.html"><img src="data/attachment/common/53/common_237_icon.png" align="left" alt="" /></a></td>
+<td>
+<h2><a href="http://www.devdiv.com/Windows_8_开发资料-forum-237-1.html">Windows 8 开发资料</a><em class="xw0 xi1" title="今日"> (5)</em></h2>
+<p class="xg2">Windows 8开发资料，Windows 8示例代码，Windows 8开发文档</p><p>版主: <span class="xi2"><a href="http://www.devdiv.com/home.php?mod=space&username=BeyondVincent" class="notabs" c="1">BeyondVincent</a></span></p></td>
+<td class="fl_i">
+<span class="xi2">299</span><span class="xg1"> / 1674</span></td>
+<td class="fl_by">
+<div>
+<a href="http://www.devdiv.com/forum.php?mod=redirect&amp;tid=136170&amp;goto=lastpost#lastpost" class="xi2">Building Windows 8 apps with H ...</a> <cite><span title="2012-9-28 09:39:53">1&nbsp;小时前</span> <a href="http://www.devdiv.com/home.php?mod=space&username=ethan_xue">ethan_xue</a></cite>
+</div>
+</td>
+</tr>
+<tr class="fl_row">
+<td class="fl_icn"  style="width: 60px;">
+<a href="http://www.devdiv.com/Symbian开发论坛-forum-98-1.html"><img src="http://www.devdiv.com/bbs/forumimage/symbian.png" align="left" alt="" /></a></td>
+<td>
+<h2><a href="http://www.devdiv.com/Symbian开发论坛-forum-98-1.html">Symbian开发论坛</a></h2>
+<p class="xg2">Qt开发论坛、MeeGo开发论坛、Symbian开发论坛、开发工具、开发环境搭建、应用开发</p><p>版主: <span class="xi2"><a href="http://www.devdiv.com/home.php?mod=space&username=jimmy54" class="notabs" c="1">jimmy54</a>, <a href="http://www.devdiv.com/home.php?mod=space&username=symbian_F" class="notabs" c="1">symbian_F</a></span></p></td>
+<td class="fl_i">
+<span class="xi2">12815</span><span class="xg1"> / 88681</span></td>
+<td class="fl_by">
+<div>
+<a href="http://www.devdiv.com/forum.php?mod=redirect&amp;tid=25291&amp;goto=lastpost#lastpost" class="xi2">Symbian发布程序流程</a> <cite><span title="2012-9-27 08:27:08">昨天&nbsp;08:27</span> <a href="http://www.devdiv.com/home.php?mod=space&username=yikaikai">yikaikai</a></cite>
+</div>
+</td>
+</tr>
+<tr class="fl_row">
+<td class="fl_icn"  style="width: 60px;">
+<a href="http://www.devdiv.com/跨平台游戏讨论区-forum-225-1.html"><img src="http://www.devdiv.com/bbs/forumimage/cross.jpg" align="left" alt="" /></a></td>
+<td>
+<h2><a href="http://www.devdiv.com/跨平台游戏讨论区-forum-225-1.html">跨平台游戏讨论区</a></h2>
+<p class="xg2">各平台游戏引擎讨论区</p><p>版主: <span class="xi2"><a href="http://www.devdiv.com/home.php?mod=space&username=pp_psy" class="notabs" c="1">pp_psy</a></span></p></td>
+<td class="fl_i">
+<span class="xi2">53</span><span class="xg1"> / 488</span></td>
+<td class="fl_by">
+<div>
+<a href="http://www.devdiv.com/forum.php?mod=redirect&amp;tid=82163&amp;goto=lastpost#lastpost" class="xi2">cocos2d中拖尾效果的实现</a> <cite>2012-9-16 20:53:07 <a href="http://www.devdiv.com/home.php?mod=space&username=6720wall">6720wall</a></cite>
+</div>
+</td>
+</tr>
+<tr class="fl_row">
+<td class="fl_icn"  style="width: 60px;">
+<a href="http://www.devdiv.com/HTML5开发论坛-forum-206-1.html"><img src="http://www.devdiv.com/bbs/forumimage/html5.jpg" align="left" alt="" /></a></td>
+<td>
+<h2><a href="http://www.devdiv.com/HTML5开发论坛-forum-206-1.html">HTML5开发论坛</a></h2>
+<p class="xg2">HTML5开发讨论区，HTML5开发资源共享区</p></td>
+<td class="fl_i">
+<span class="xi2">162</span><span class="xg1"> / 237</span></td>
+<td class="fl_by">
+<div>
+<a href="http://www.devdiv.com/forum.php?mod=redirect&amp;tid=130649&amp;goto=lastpost#lastpost" class="xi2">HTML 5 &lt;figcaption&gt; 标签</a> <cite>2012-7-24 14:14:35 <a href="http://www.devdiv.com/home.php?mod=space&username=iGoogle">iGoogle</a></cite>
+</div>
+</td>
+</tr>
+<tr class="fl_row">
+<td class="fl_icn"  style="width: 60px;">
+<a href="http://www.devdiv.com/其他平台-forum-84-1.html"><img src="http://www.devdiv.com/bbs/forumimage/mobile.gif" align="left" alt="" /></a></td>
+<td>
+<h2><a href="http://www.devdiv.com/其他平台-forum-84-1.html">其他平台</a></h2>
+<p class="xg2">J2ME开发论坛、BREW开发论坛、BlackBerry开发论坛、黑莓开发论坛、MTK开发论坛</p><p>版主: <span class="xi2"><a href="http://www.devdiv.com/home.php?mod=space&username=BeyondVincent" class="notabs" c="1">BeyondVincent</a></span></p></td>
+<td class="fl_i">
+<span class="xi2">4711</span><span class="xg1"> / 23371</span></td>
+<td class="fl_by">
+<div>
+<a href="http://www.devdiv.com/forum.php?mod=redirect&amp;tid=117509&amp;goto=lastpost#lastpost" class="xi2">J2ME一个小拼图，不知道哪里出现 ...</a> <cite>2012-6-10 18:13:27 <a href="http://www.devdiv.com/home.php?mod=space&username=Vincent">Vincent</a></cite>
+</div>
+</td>
+</tr>
+<tr class="fl_row">
+<td class="fl_icn"  style="width: 60px;">
+<a href="http://www.devdiv.com/三星应用开发论坛-forum-207-1.html"><img src="data/attachment/common/69/common_207_icon.jpg" align="left" alt="" /></a></td>
+<td>
+<h2><a href="http://www.devdiv.com/三星应用开发论坛-forum-207-1.html">三星应用开发论坛</a></h2>
+<p class="xg2">Android三星技术讨论区、bada讨论区、Smart TV讨论区</p><p>版主: <span class="xi2"><a href="http://www.devdiv.com/home.php?mod=space&username=newbie" class="notabs" c="1">newbie</a></span></p></td>
+<td class="fl_i">
+<span class="xi2">133</span><span class="xg1"> / 372</span></td>
+<td class="fl_by">
+<div>
+<a href="http://www.devdiv.com/forum.php?mod=redirect&amp;tid=109033&amp;goto=lastpost#lastpost" class="xi2">bada中的图像类</a> <cite><span title="2012-9-23 07:05:17">5&nbsp;天前</span> <a href="http://www.devdiv.com/home.php?mod=space&username=qianlin256">qianlin256</a></cite>
+</div>
+</td>
+</tr>
+<tr class="fl_row">
+</tr>
+</table>
+</div>
+</div><div class="bm bmw  cl">
+<div class="bm_h cl">
+<span class="o">
+<img id="category_66_img" src="static/image/eisdldefault/collapsed_no.gif" title="收起/展开" alt="收起/展开" onclick="toggle_collapse('category_66');" />
+</span>
+<h2><a href="http://www.devdiv.com/forum.php?gid=66" style="">扩充话题</a></h2>
+</div>
+<div id="category_66" class="bm_c" style="">
+<table cellspacing="0" cellpadding="0" class="fl_tb">
+<tr><td class="fl_icn"  style="width: 60px;">
+<a href="http://www.devdiv.com/资讯区-forum-154-1.html"><img src="http://www.devdiv.com/bbs/forumimage/news.gif" align="left" alt="" /></a></td>
+<td>
+<h2><a href="http://www.devdiv.com/资讯区-forum-154-1.html">资讯区</a><em class="xw0 xi1" title="今日"> (12)</em></h2>
+<p class="xg2">网聚行业资讯、热点信息、专业点评！</p><p>版主: <span class="xi2"><a href="http://www.devdiv.com/home.php?mod=space&username=newbie" class="notabs" c="1">newbie</a>, <a href="http://www.devdiv.com/home.php?mod=space&username=kuifeng2008" class="notabs" c="1">kuifeng2008</a></span></p></td>
+<td class="fl_i">
+<span class="xi2">5704</span><span class="xg1"> / 14222</span></td>
+<td class="fl_by">
+<div>
+<a href="http://www.devdiv.com/forum.php?mod=redirect&amp;tid=139057&amp;goto=lastpost#lastpost" class="xi2">Lumia 920定价比Galaxy S3贵：消 ...</a> <cite><span title="2012-9-28 09:33:15">1&nbsp;小时前</span> <a href="http://www.devdiv.com/home.php?mod=space&username=BeyondVincent">BeyondVincent</a></cite>
+</div>
+</td>
+</tr>
+<tr class="fl_row">
+<td class="fl_icn"  style="width: 60px;">
+<a href="http://www.devdiv.com/活动专区-forum-149-1.html"><img src="http://www.devdiv.com/bbs/forumimage/gathering.jpg" align="left" alt="" /></a></td>
+<td>
+<h2><a href="http://www.devdiv.com/活动专区-forum-149-1.html">活动专区</a></h2>
+<p class="xg2">DevDiv及合伙伙伴活动发布专区</p><p>版主: <span class="xi2"><a href="http://www.devdiv.com/home.php?mod=space&username=Vincent" class="notabs" c="1">Vincent</a>, <a href="http://www.devdiv.com/home.php?mod=space&username=max" class="notabs" c="1">max</a></span></p></td>
+<td class="fl_i">
+<span class="xi2">22</span><span class="xg1"> / 500</span></td>
+<td class="fl_by">
+<div>
+<a href="http://www.devdiv.com/forum.php?mod=redirect&amp;tid=136141&amp;goto=lastpost#lastpost" class="xi2">活动纪实：2012-09-22 诺基亚手机 ...</a> <cite><span title="2012-9-27 17:28:15">昨天&nbsp;17:28</span> <a href="http://www.devdiv.com/home.php?mod=space&username=hou686">hou686</a></cite>
+</div>
+</td>
+</tr>
+<tr class="fl_row">
+<td class="fl_icn"  style="width: 64px;">
+<a href="http://www.devdiv.com/职场-forum-222-1.html"><img src="data/attachment/common/bc/common_222_icon.png" align="left" alt="" /></a></td>
+<td>
+<h2><a href="http://www.devdiv.com/职场-forum-222-1.html">职场</a></h2>
+<p class="xg2">创业故事、职业生涯规划、职场难题交流讨论区</p><p>版主: <span class="xi2"><a href="http://www.devdiv.com/home.php?mod=space&username=max" class="notabs" c="1">max</a>, <a href="http://www.devdiv.com/home.php?mod=space&username=far99" class="notabs" c="1">far99</a></span></p></td>
+<td class="fl_i">
+<span class="xi2">1146</span><span class="xg1"> / 7655</span></td>
+<td class="fl_by">
+<div>
+<a href="http://www.devdiv.com/forum.php?mod=redirect&amp;tid=130658&amp;goto=lastpost#lastpost" class="xi2">技术牛人专属通道——UC浏览器研 ...</a> <cite><span title="2012-9-27 19:53:12">昨天&nbsp;19:53</span> <a href="http://www.devdiv.com/home.php?mod=space&username=BeyondVincent">BeyondVincent</a></cite>
+</div>
+</td>
+</tr>
+<tr class="fl_row">
+<td class="fl_icn"  style="width: 60px;">
+<a href="http://www.devdiv.com/App展示区-forum-153-1.html"><img src="http://www.devdiv.com/bbs/forumimage/apps.jpg" align="left" alt="" /></a></td>
+<td>
+<h2><a href="http://www.devdiv.com/App展示区-forum-153-1.html">App展示区</a></h2>
+<p class="xg2">DEVDIV会员作品展示区</p><p>版主: <span class="xi2"><a href="http://www.devdiv.com/home.php?mod=space&username=BeyondVincent" class="notabs" c="1">BeyondVincent</a></span></p></td>
+<td class="fl_i">
+<span class="xi2">92</span><span class="xg1"> / 633</span></td>
+<td class="fl_by">
+<div>
+<a href="http://www.devdiv.com/forum.php?mod=redirect&amp;tid=107042&amp;goto=lastpost#lastpost" class="xi2">iPad计算器应用发布成功</a> <cite><span title="2012-9-27 15:09:12">昨天&nbsp;15:09</span> <a href="http://www.devdiv.com/home.php?mod=space&username=%C1%B7%CF%B0">练习</a></cite>
+</div>
+</td>
+</tr>
+<tr class="fl_row">
+<td class="fl_icn"  style="width: 60px;">
+<a href="http://www.devdiv.com/UE_UI_商店_盈利讨论区-forum-223-1.html"><img src="http://www.devdiv.com/bbs/forumimage/outsourcing.jpg" align="left" alt="" /></a></td>
+<td>
+<h2><a href="http://www.devdiv.com/UE_UI_商店_盈利讨论区-forum-223-1.html">UE/UI/商店/盈利讨论区</a></h2>
+<p class="xg2">商店提交策略、盈利模式讨论、UE/UI交流</p><p>版主: <span class="xi2"><a href="http://www.devdiv.com/home.php?mod=space&username=BeyondVincent" class="notabs" c="1">BeyondVincent</a></span></p></td>
+<td class="fl_i">
+<span class="xi2">79</span><span class="xg1"> / 459</span></td>
+<td class="fl_by">
+<div>
+<a href="http://www.devdiv.com/forum.php?mod=redirect&amp;tid=135404&amp;goto=lastpost#lastpost" class="xi2">QQ影像 for iPhone 设计分享</a> <cite><span title="2012-9-21 16:03:31">7&nbsp;天前</span> <a href="http://www.devdiv.com/home.php?mod=space&username=BeyondVincent">BeyondVincent</a></cite>
+</div>
+</td>
+</tr>
+<tr class="fl_row">
+<td class="fl_icn"  style="width: 60px;">
+<a href="http://www.devdiv.com/外包区-forum-224-1.html"><img src="http://www.devdiv.com/bbs/forumimage/money.gif" align="left" alt="" /></a></td>
+<td>
+<h2><a href="http://www.devdiv.com/外包区-forum-224-1.html">外包区</a></h2>
+<p class="xg2">软件外包、会员承接外包宣传区！</p><p>版主: <span class="xi2"><a href="http://www.devdiv.com/home.php?mod=space&username=Vincent" class="notabs" c="1">Vincent</a></span></p></td>
+<td class="fl_i">
+<span class="xi2">141</span><span class="xg1"> / 461</span></td>
+<td class="fl_by">
+<div>
+<a href="http://www.devdiv.com/forum.php?mod=redirect&amp;tid=125524&amp;goto=lastpost#lastpost" class="xi2">【承接项目】中国顶尖iphone、an ...</a> <cite><span title="2012-9-26 12:13:38">前天&nbsp;12:13</span> <a href="http://www.devdiv.com/home.php?mod=space&username=enveesoft">enveesoft</a></cite>
+</div>
+</td>
+</tr>
+<tr class="fl_row">
+<td class="fl_icn"  style="width: 60px;">
+<a href="http://www.devdiv.com/灌水区-forum-14-1.html"><img src="http://www.devdiv.com/bbs/forumimage/water.gif" align="left" alt="" /></a></td>
+<td>
+<h2><a href="http://www.devdiv.com/灌水区-forum-14-1.html">灌水区</a><em class="xw0 xi1" title="今日"> (21)</em></h2>
+<p class="xg2">谈天说地、品头论足、笑话、聊天、吹牛、发泄……</p><p>版主: <span class="xi2"><a href="http://www.devdiv.com/home.php?mod=space&username=dabao" class="notabs" c="1">dabao</a>, <a href="http://www.devdiv.com/home.php?mod=space&username=bamboo_zqq" class="notabs" c="1">bamboo_zqq</a></span></p></td>
+<td class="fl_i">
+<span class="xi2">16458</span><span class="xg1"> / 198881</span></td>
+<td class="fl_by">
+<div>
+<a href="http://www.devdiv.com/forum.php?mod=redirect&amp;tid=139066&amp;goto=lastpost#lastpost" class="xi2">利好消息</a> <cite><span title="2012-9-28 10:41:56">3&nbsp;分钟前</span> <a href="http://www.devdiv.com/home.php?mod=space&username=kangqijun">kangqijun</a></cite>
+</div>
+</td>
+</tr>
+<tr class="fl_row">
+<td class="fl_icn"  style="width: 60px;">
+<a href="http://www.devdiv.com/抢楼签到-forum-151-1.html"><img src="http://www.devdiv.com/bbs/forumimage/signature.jpg" align="left" alt="" /></a></td>
+<td>
+<h2><a href="http://www.devdiv.com/抢楼签到-forum-151-1.html">抢楼签到</a><em class="xw0 xi1" title="今日"> (13)</em></h2>
+<p class="xg2">抢楼签到，领取资源分、激情分</p><p>版主: <span class="xi2"><a href="http://www.devdiv.com/home.php?mod=space&username=Vincent" class="notabs" c="1">Vincent</a></span></p></td>
+<td class="fl_i">
+<span class="xi2">949</span><span class="xg1"> / 46508</span></td>
+<td class="fl_by">
+<div>
+<a href="http://www.devdiv.com/forum.php?mod=redirect&amp;tid=139027&amp;goto=lastpost#lastpost" class="xi2">淡淡的</a> <cite><span title="2012-9-28 10:20:52">24&nbsp;分钟前</span> <a href="http://www.devdiv.com/home.php?mod=space&username=prince_banana">prince_banana</a></cite>
+</div>
+</td>
+</tr>
+<tr class="fl_row">
+<td class="fl_icn"  style="width: 60px;">
+<a href="http://www.devdiv.com/DEVDIV出品-forum-218-1.html"><img src="data/attachment/common/e9/common_218_icon.png" align="left" alt="" /></a></td>
+<td>
+<h2><a href="http://www.devdiv.com/DEVDIV出品-forum-218-1.html">DEVDIV出品</a></h2>
+<p class="xg2">DEVDIV开发者沙龙PPT、DEVDIV原创教程、视频、翻译、DEVDIV著书及代码等！</p><p>版主: <span class="xi2"><a href="http://www.devdiv.com/home.php?mod=space&username=BeyondVincent" class="notabs" c="1">BeyondVincent</a></span></p></td>
+<td class="fl_i">
+<span class="xi2">70</span><span class="xg1"> / 836</span></td>
+<td class="fl_by">
+<div>
+<a href="http://www.devdiv.com/forum.php?mod=redirect&amp;tid=132659&amp;goto=lastpost#lastpost" class="xi2">DevDiv出品《iOS 开发实战体验》 ...</a> <cite><span title="2012-9-27 22:46:55">昨天&nbsp;22:46</span> <a href="http://www.devdiv.com/home.php?mod=space&username=liqianya">liqianya</a></cite>
+</div>
+</td>
+</tr>
+<tr class="fl_row">
+<td class="fl_icn"  style="width: 60px;">
+<a href="http://www.devdiv.com/投诉建议公告-forum-16-1.html"><img src="http://www.devdiv.com/bbs/forumimage/notice.gif" align="left" alt="" /></a></td>
+<td>
+<h2><a href="http://www.devdiv.com/投诉建议公告-forum-16-1.html">投诉建议公告</a></h2>
+<p class="xg2">投诉意见反馈、版务公开区</p><p>版主: <span class="xi2"><a href="http://www.devdiv.com/home.php?mod=space&username=Vincent" class="notabs" c="1">Vincent</a></span></p></td>
+<td class="fl_i">
+<span class="xi2">158</span><span class="xg1"> / 5209</span></td>
+<td class="fl_by">
+<div>
+<a href="http://www.devdiv.com/forum.php?mod=redirect&amp;tid=133717&amp;goto=lastpost#lastpost" class="xi2">现在发帖要审核？</a> <cite>2012-8-30 14:05:43 <a href="http://www.devdiv.com/home.php?mod=space&username=frazier">frazier</a></cite>
+</div>
+</td>
+</tr>
+<tr class="fl_row">
+<td class="fl_icn"  style="width: 60px;">
+<a href="http://www.devdiv.com/高级会员区-forum-118-1.html"><img src="http://www.devdiv.com/bbs/forumimage/star.png" align="left" alt="" /></a></td>
+<td>
+<h2><a href="http://www.devdiv.com/高级会员区-forum-118-1.html">高级会员区</a></h2>
+<p class="xg2">高级会员、版主意见反馈讨论区</p><p>版主: <span class="xi2"><a href="http://www.devdiv.com/home.php?mod=space&username=Vincent" class="notabs" c="1">Vincent</a></span></p></td>
+<td class="fl_i">
+<span class="xi2">58</span><span class="xg1"> / 892</span></td>
+<td class="fl_by">
+<div>
+私密版块
+</div>
+</td>
+</tr>
+<tr class="fl_row">
+<td class="fl_icn"  style="width: 60px;">
+<a href="http://www.devdiv.com/管理区-forum-127-1.html"><img src="http://www.devdiv.com/bbs/forumimage/audit.gif" align="left" alt="" /></a></td>
+<td>
+<h2><a href="http://www.devdiv.com/管理区-forum-127-1.html">管理区</a></h2>
+<p class="xg2">待审核历史资料</p><p>版主: <span class="xi2"><a href="http://www.devdiv.com/home.php?mod=space&username=Vincent" class="notabs" c="1">Vincent</a></span></p></td>
+<td class="fl_i">
+<span class="xi2">1019</span><span class="xg1"> / 14897</span></td>
+<td class="fl_by">
+<div>
+私密版块
+</div>
+</td>
+</tr>
+<tr class="fl_row">
+</tr>
+</table>
+</div>
+</div></div>
+
+<div class="wp mtn">
+<!--[diy=diy3]--><div id="diy3" class="area"></div><!--[/diy]-->
+</div>
+
+<div id="online" class="bm oll">
+<div class="bm_h">
+<span class="o"><a href="http://www.devdiv.com/forum.php?showoldetails=yes#online" title="收起/展开"><img src="static/image/eisdldefault/collapsed_yes.gif" alt="收起/展开" /></a></span>
+<h3>
+<strong><a href="http://www.devdiv.com/home.php?mod=space&amp;do=friend&amp;view=online&amp;type=member">在线会员</a></strong>
+<span class="xs1">- 总计 <strong>2363</strong> 人在线
+- 最高记录是 <strong>11702</strong> 于 <strong>2012-3-1</strong>.</span>
+</h3>
+</div>
+</div>
+
+</div>
+
+</div>	</div>
+    <div class="eis_flink eis_b_c_3 eis_bg_4 eis_f_f eis_f_a_f">
+  <div class="wp cl">
+    <div class="eis_fitem  eis_fitem1 eis_b_c_3">
+      <h4><span class="eis_png">联系我们</span></h4>
+      <p>电话: 010-87227071</p>
+      <p>传真: 010-87227071</p>
+      <p>邮件: webmaster@devdiv.com</p>
+    </div>
+    <div class="eis_fitem eis_fitem2 eis_b_c_3">
+      <form action="http://list.qq.com/cgi-bin/qf_compose_send" target="_blank" name="form" id="form"  method='post' onsubmit="if(document.getElementById('to').value =='' || document.getElementById('to').value == '例如：username@qq.com'){ alert('请填写邮件地址'); return false;}else{return true;}">
+      <input type="hidden" name="t" value="qf_booked_feedback">
+      <input type="hidden" name="id" value="aa2c63a30f24712e21ac7ce197786e87bc3a801f463b20d1">
+      <h4><span class="eis_png">及时将最新信息发给我</span></h4>
+      <p>通过Email及时将最新的模板和服务发给我。</p>
+      <p><input type="text" onblur="if(this.value==''){this.value='例如：username@qq.com';}" onfocus="if(this.value=='例如：username@qq.com'){this.value='';}"class="eis_fitem_input eis_b_c_3 eis_bg_8" value="例如：username@qq.com" name="to" id="to" /><button type="submit" class="eis_fitem_btn eis_bg_3 eis_f_f">订阅</button></p>
+      </form>
+    </div>
+    <div class="eis_fitem eis_fitem3 eis_b_c_3">
+      <h4><span class="eis_png">关注微博</span></h4>
+      <p>及时了解我们最新动态。关注我们的微博</p>
+      <p>新浪微博: <a href="http://weibo.com/xueyw" target="_blank">VINCENT</a>&nbsp;&nbsp;<a href="http://weibo.com/wangxinglongcn" target="_blank">MAX</a>&nbsp;&nbsp;<a href="http://weibo.com/beyondvincent" target="_blank">BeyondVincent</a>&nbsp;</p>
+      <p>腾讯微博: <a href="http://t.qq.com/ixueyw" target="_blank">VINCENT</a>&nbsp;&nbsp;<a href="http://t.qq.com/maxwxl" target="_blank">MAX</a>&nbsp;&nbsp;<a href="http://t.qq.com/beyondvincent/" target="_blank">BeyondVincent</a>&nbsp;</p>
+    </div>
+    <div class="eis_fitem eis_fitem4">
+      <h4><span class="eis_png">关于我们</span></h4>
+        <p><a href="http://www.devdiv.com/%E6%8A%80%E6%9C%AF%E6%B2%99%E9%BE%99-catlist-91-1.html">技术沙龙</a></p>
+        <p><a href="http://hr.devdiv.com/">猎头服务</a></p>
+        <p><a href="http://www.devdiv.com/Android%E5%9F%B9%E8%AE%AD-catlist-89-1.html">技术培训</a></p>
+    </div>    
+  </div>
+</div>  <div id="ft" class="wp cl">
+<div id="flk" class="y">
+<p><a href="http://www.devdiv.com/forum.php?mobile=yes" >手机版</a><span class="pipe">|</span><a href="archiver/" >Archiver</a><span class="pipe">|</span><strong><a href="http://www.devdiv.com/" target="_blank">DEVDIV.COM</a></strong>
+( <a href="http://www.miitbeian.gov.cn/" target="_blank">京ICP备07040843号</a> )&nbsp;&nbsp;<span id="tcss"></span><script type="text/javascript" reload="1">appendscript('http://tcss.qq.com/ping.js', '1ll', '1', 'utf-8');safescript('cloudstatjs', function () {pgvMain({"discuzParams":{"ui":0,"rt":"forum","pn":1},"virtualDomain":"www.devdiv.com"})}, 1000, 5);</script></p>
+<p class="xs0">
+GMT+8, 2012-9-28 10:45<span id="debuginfo">
+</span>
+</p>
+</div>
+<div id="frt">
+<p>Powered by <strong><a href="http://www.devdiv.com" target="_blank">DEVDIV.COM!</a></strong></p>
+<p class="xs0">&copy; 2010-2012 <a href="http://www.devdiv.com" target="_blank">DEVDIV.COM Coummunity.</a></p>
+</div></div>
+  </div><!--内BODY-->
+<div id="g_upmine_menu" class="tip tip_3" style="display:none;">
+<div class="tip_c">
+积分 0, 距离下一级还需  积分
+</div>
+<div class="tip_horn"></div>
+</div>
+<script src="home.php?mod=misc&ac=sendmail&rand=1348800311" type="text/javascript"></script>
+<span id="scrolltop" onclick="window.scrollTo('0','0')">回顶部</span>
+<script type="text/javascript">_attachEvent(window, 'scroll', function(){showTopLink();});</script>
+</body>
+</html>
