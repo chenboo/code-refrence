@@ -1,0 +1,232 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0034)http://kb.cnblogs.com/page/136288/ -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+   
+<title>Windows Runtime - 面向对象化的C++（并非意味着托管）_知识库_博客园</title>
+<meta name="keywords" content="WinRT,Windows Runtime - 面向对象化的C++（并非意味着托管）">
+<link rel="stylesheet" type="text/css" href="./Windows Runtime - 面向对象化的C++（并非意味着托管）_知识库_博客园_files/common_mini.css">
+<link rel="shortcut icon" href="http://static.cnblogs.com/favicon.ico"> 
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://feed.cnblogs.com/kb/">   
+<script type="text/javascript" async="" src="./Windows Runtime - 面向对象化的C++（并非意味着托管）_知识库_博客园_files/ga.js"></script><script async="" type="text/javascript" src="./Windows Runtime - 面向对象化的C++（并非意味着托管）_知识库_博客园_files/gpt.js"></script><script src="./Windows Runtime - 面向对象化的C++（并非意味着托管）_知识库_博客园_files/jquery.js" type="text/javascript"></script>
+<script type="text/javascript" src="./Windows Runtime - 面向对象化的C++（并非意味着托管）_知识库_博客园_files/common_mini.js"></script>
+<script type="text/javascript">
+    var googletag = googletag || {};
+    googletag.cmd = googletag.cmd || [];
+    (function () {
+        var gads = document.createElement('script');
+        gads.async = true;
+        gads.type = 'text/javascript';        
+        gads.src = 'http://common.cnblogs.com/script/gpt.js';
+        var node = document.getElementsByTagName('script')[0];
+        node.parentNode.insertBefore(gads, node);
+    })();
+</script>
+<script type="text/javascript">
+    googletag.cmd.push(function () {
+        googletag.defineSlot('/1090369/kb_k1', [728, 90], 'div-gpt-ad-1320920372773-0').addService(googletag.pubads());
+        googletag.defineSlot('/1090369/kb_k2', [300, 250], 'div-gpt-ad-1320920372773-1').addService(googletag.pubads());
+        googletag.defineSlot('/1090369/kb_k3', [300, 250], 'div-gpt-ad-1320920372773-2').addService(googletag.pubads());
+        googletag.defineSlot('/1090369/kb_K4', [468, 60], 'div-gpt-ad-1320994977668-0').addService(googletag.pubads());
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+    });
+</script>
+<link rel="stylesheet" type="text/css" href="./Windows Runtime - 面向对象化的C++（并非意味着托管）_知识库_博客园_files/detail_mini.css">
+<link type="text/css" rel="stylesheet" href="./Windows Runtime - 面向对象化的C++（并非意味着托管）_知识库_博客园_files/shStyle.css">
+<script type="text/javascript">
+    var contentId = 136288;
+</script>
+<script type="text/javascript" src="./Windows Runtime - 面向对象化的C++（并非意味着托管）_知识库_博客园_files/detail_mini.js"></script>
+<script type="text/javascript" src="./Windows Runtime - 面向对象化的C++（并非意味着托管）_知识库_博客园_files/syntaxHighlighter.js"></script>
+<link type="text/css" rel="stylesheet" href="chrome-extension://cpngackimfmofbokmjmljamhdncknpmg/style.css"><script type="text/javascript" charset="utf-8" src="chrome-extension://cpngackimfmofbokmjmljamhdncknpmg/page_context.js"></script><script async="" type="text/javascript" src="./Windows Runtime - 面向对象化的C++（并非意味着托管）_知识库_博客园_files/google_ads_gpt.js"></script><script type="text/javascript" src="./Windows Runtime - 面向对象化的C++（并非意味着托管）_知识库_博客园_files/osd.js"></script></head>
+<body screen_capture_injected="true">
+    <div id="hd_info">
+        <div id="cnts">
+            <div id="site_nav"><a href="http://www.cnblogs.com/" title="程序员的网上家园">首页</a><a href="http://news.cnblogs.com/">新闻</a><a href="http://q.cnblogs.com/">博问</a><a href="http://home.cnblogs.com/ing/">闪存</a><a href="http://job.cnblogs.com/">招聘</a><a href="http://home.cnblogs.com/wz/">网摘</a><a href="http://home.cnblogs.com/">园子</a></div>
+            <div id="login_area">[<a href="http://kb.cnblogs.com/page/136288/#" onclick="login();return false">登录</a>·<a href="http://kb.cnblogs.com/page/136288/#" onclick="register();return false">注册</a>]</div>
+            <div class="clear"></div>
+        </div>
+    </div> 
+    <div id="wrapper">        
+        <div id="header">
+           <div class="logo"><a href="http://kb.cnblogs.com/"><img src="./Windows Runtime - 面向对象化的C++（并非意味着托管）_知识库_博客园_files/kblogo.gif" alt="知识库"></a></div>
+           <div class="banner">
+                <!-- kb_k1 -->
+                <div id="div-gpt-ad-1320920372773-0" style="width: 728px; height: 90px; " class="banner">
+                <script type="text/javascript">
+                    googletag.cmd.push(function () { googletag.display('div-gpt-ad-1320920372773-0'); });
+                </script>
+                <iframe id="google_ads_iframe_/1090369/kb_k1_0" name="google_ads_iframe_/1090369/kb_k1_0" width="728" height="90" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; "></iframe><iframe id="google_ads_iframe_/1090369/kb_k1_0__hidden__" name="google_ads_iframe_/1090369/kb_k1_0__hidden__" width="0" height="0" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; visibility: hidden; display: none; "></iframe></div>
+           </div>          
+           <div class="clear"></div>
+        </div>        
+        <div id="nav_zone">
+            <span class="nav">  
+            <a href="http://kb.cnblogs.com/" class="nobg">知识库</a>
+	        <a href="http://kb.cnblogs.com/zt/">专题</a>
+            <a href="http://kb.cnblogs.com/list/1001/" class="current">.NET技术</a>               
+            <a href="http://kb.cnblogs.com/list/1002/">Web前端</a>
+            <a href="http://kb.cnblogs.com/list/1008/">软件设计</a>
+            <a href="http://kb.cnblogs.com/list/1016/">手机开发</a>            
+            <a href="http://kb.cnblogs.com/list/1004/">软件工程</a>            
+            <a href="http://kb.cnblogs.com/list/1011/">程序人生</a>            
+            <a href="http://kb.cnblogs.com/list/1009/">项目管理</a>
+            <a href="http://kb.cnblogs.com/list/1003/">数据库</a>            
+            <a href="http://home.cnblogs.com/kb/">最新文章</a>
+            </span>
+        </div>  
+        <div class="clear"></div>        
+<div id="guide_detail">
+	<div id="guide_de">
+		<strong style="color:#454545;font-size:12px;">您的位置：</strong><a href="http://kb.cnblogs.com/">知识库</a> » <a href="http://kb.cnblogs.com/list/1001/">.NET技术</a>	
+	</div>
+</div>
+<div id="main_content">    
+	<div id="left_content">
+		<div id="left_content_pages">
+			<h1 class="contents_header"><a href="./Windows Runtime - 面向对象化的C++（并非意味着托管）_知识库_博客园_files/Windows Runtime - 面向对象化的C++（并非意味着托管）_知识库_博客园.htm">Windows Runtime - 面向对象化的C++（并非意味着托管）</a></h1>
+			<div class="contents_info">
+				作者: <a href="http://www.cnblogs.com/chuncn/" target="_blank">chuncn</a>&nbsp;&nbsp;来源: <a href="http://www.cnblogs.com/" target="_blank">博客园</a>&nbsp;&nbsp;发布时间: 2012-03-24 17:01&nbsp;&nbsp;阅读: 3922 次&nbsp;&nbsp;<a id="link_source" href="http://kb.cnblogs.com/page/136288/m/chuncn/archive/2011/10/12/2208558.html" target="_blank">原文链接</a>&nbsp;&nbsp;
+				<a href="http://archive.cnblogs.com/kb/136288/">全屏阅读</a>　
+				<a href="javascript:add_to_wz()" class="graylink">[收藏]</a>&nbsp;&nbsp;
+			</div>
+			<div class="contents_main">
+				<div id="ArticleCnt" class="content_words">
+					<p>　　Windows 8的开发平台总体上分为两部分：一是全新的WinRT，界面搭配Metro style，二是传统的Win32、.NET(SL)、IE三大平台，界面为传统窗体风格。其中全新的WinRT被微软视为开发者的未来。</p>
+<p>　　WinRT平台开发又细分为两大方式：一是C/C++搭配XAML，或C#/VB搭配XAML，二是JavaScript搭配HTML/CSS。C、C++、C#、VB、Javascript全部可以直接调用WinRT APIs，这样微软将Native（本地）、Managed（托管）、Dynamic（动态）三大语言运行机制统一了起来。可见，WinRT是微软将Win32、.NET（SL）、IE三大平台进行整合的产物。</p>
+<p>　　回顾历史，Win32是微软最早推出、发展时间最久的一个开发平台。C++搭配Windows SDK或C++搭配MFC等类库或VB均是Win32平台的开发方式。而COM技术，也作为那个时代的组件模型，为微软的发展建立了不可磨灭的功勋。2000年，微软推出.NET战略，.NET平台开始走入主流。WinForm、WPF以及之后的Silverlight均是.NET时代的产物。而Assembly组件模型，也逐步地在很多领域替代COM技术。</p>
+<p>　　Win32时代，我称之为“PC时代”。那时的硬件性能普遍较低，所以Win32平台具有非常高效的性能。但是开发效率低下，内存管理复杂，COM技术晦涩难懂、没有统一的数据传递模型等这些问题，使Win32难以适应网络发展的需要。于是微软推出.NET战略，“网络时代”来临。.NET平台从2000年开始，到现在，已经发展了10年左右，微软依次给我们带来了.NET1.1、.NET2.0、.NET3.0、.NET3.5。</p>
+<p>　　.NET4.0。.NET平台解决了Win32平台的问题，设计了非常优雅的开发接口和庞大类库，开发效率提升了，内存管理引入了GC，Assembly组件模型非常简单，而且还解决了COM技术造成的DLL Hell问题，也带来了统一的数据传递模型XML。但是.NET平台从一开始，就暴露了缺点，由于.NET是建立在Win32基础上的托管API接口，性能下降，系统资源消耗严重，而且和Win32平台交互困难。随着硬件的提升、.NET平台的不断发展优化，性能得到部分提升，跨平台调用方案也一定程度解决了Win32平台的交互问题。但是这些改变，没有根本解决问题，即便微软后来又推出了“改良的.NET平台”——Silverlight，但.NET平台的缺点还是随着“移动时代”的来临，再次暴露无疑。此时WinRT上场了！</p>
+<p>　　那么，WinRT给我们带来了什么呢？WinRT是“移动时代”需求的产物，那肯定会充满“移动时代”的色彩。第一，WinRT给我们带来了界面上的革命：Metro。新的Metro风格界面更加适合触摸屏操作，更加适合多尺寸的显示屏，全屏的显示方式突出了以内容为中心的理念。第二，WinRT给我们带来了全新的系统级Native API，WinRT APIs是Native的，而且直接建立在系统内核之上，并且还自动获得硬件加速，包装非常类似.NET，既高效又易用。第三，WinRT采用了MVC模式，做到了界面和逻辑的很好分离。XAML和HTML5作为两大界面标记语言同时被采用。第三，WinRT给我们带来了新的组件模型：C++组件扩展。该组件模型是COM和Assembly技术的结合体，可同时被Native、Managed和Dynamic三种类型的语言直接调用。WinRT APIs本身就是使用的C++组件扩展技术实现的，所以做到了C、C++、C#、VB、Javascript的直接调用。WPF、SL、网页应用均可以较小代码调整，即可在WinRT平台运行。第四，WinRT同时支持X86/64、ARM架构，即可在PC上运行，又可在Pad上运行。第五，WinRT全面采用了异步技术。在WinRT中，微软一直遵循一个简单的规则：如果一个API预计耗时超过50毫秒，那么API就是异步的，这样就能确保Metro UI上的操作体验是最好的。第六，WinRT程序在不显示的时候，自动转换为挂起状态，不占用CPU，节省了电能消耗。</p>
+<p>　　对于传统平台开发，也稍微做下介绍。IE平台更新到了IE10版本，.NET平台更新到了.NET4.5版本。另外，专门提下，传统的网页插件技术已经不能在Metro风格的IE中获得支持。而新的插件技术或者是否还提供插件技术尚不得而知。</p>
+<p>　　开发工具对应的是Visual Studio 11 和 Expression Blend 5。</p>
+<p>　　WinRT是一个新的API 集合，具有以下特性：</p>
+<ul>
+<li>它实现了Metro UI规范的UI库</li>
+<li>为Windows开发人员提供一个简单的UI编程模型，你不需要学习Win32API的那些复杂的API了</li>
+<li>它使用XAML-base的UI系统</li>
+<li>API都设计成了异步的</li>
+<li>它和.NET一样是个沙箱的API，自成体系，用于创建AppStore上的应用程序。</li>
+<li>API的元数据格式是ECMA335，和.NET一样的标准。这是不是意味着以后Mono也可以在xUnit上去实现这样的API呢？</li>
+</ul>
+<p>　　WinRT包装的新的用户界面系统，和Win32API一样是Com的上层。</p>
+<p>　　Windows运行时（WinRT）是为了在Windows上给用户提供一种流畅且安全的应用体验。WinRT会受到.NET、C++、以及JavaScript三者的影响。WinRT不会取代CLR或Win32，而是为那些使用不同语言编写的应用程序提供统一支持，以便它们可使用新的Metro风格用户界面运行于Windows之上。&nbsp;</p>
+<p>　　WinRT不是为了取代.NET或Win32提供的所有功能，但是它是一个公共平台，以便那些使用不同语言编写的应用程序可使用新的Metro风格界面来运行。当混合C#应用程序基于WinRT创建Metro风格用户界面时，程序中将仍能执行LINQ查询，对于存储、网络、新式应用程序的安全性等方面同样能执行LINQ查询。完整的<a href="http://channel9.msdn.com/Events/BUILD/BUILD2011/PLAT-874T">运行时架构</a>如下图所示：</p>
+<p style="text-align: center;"><img src="./Windows Runtime - 面向对象化的C++（并非意味着托管）_知识库_博客园_files/2012032417013426.jpg" alt=""></p>
+<p>　　在类型上，WinRT必须提供语言无关的类型——integer（整数）、enumerations（枚举）、structures（结构）、arrays（数组）、interfaces（接口）、generic interfaces（泛型接口）、以及runtime classes（运行时类）。引入了被称之为HSTRING的新字符串类型，该类型允许在不进行任何数据复制的情况下，在应用程序与运行时环境之间传输字符串。</p>
+<p>　　每个WinRT对象都会对应一些接口，其中有两个接口属于每个对象：IUnknown接口，熟悉的COM接口；以及IInspectable接口，用于根据对象所包含的元数据来发现有关该对象的信息。一个对象可能通过接口提供其他功能，然而运行时类会把这些接口集中公开出来。例如，一个FileInformation对象拥有由FileInformation类公开的IStorageItemInformation、IStorageItem、IStorageFile三个接口。</p>
+<p>　　WinRT对象在编译时被公开给C++应用程序，而对于C#或VB.NET应用程序而言，对WinRT对象的绑定一部分是在编译时完成的，另一部分则是在运行时完成的。HTML或JavaScript应用程序只有在运行时可以看到WinRT对象，而且元数据是动态生成的。</p>
+<p>　　Metro界面运行在一个不可重入的单线程之上，然而应用程序的其余部分可以从线程池中使用由运行时环境所自动提供的多线程。</p>
+<p>　　开发者可以用C#语言创建可供C++或JavaScript的WinRT应用程序使用的Windows运行时组件，然而<a href="http://www.infoq.com/cn/news/2011/09/DotNet-On-WinRT;jsessionid=B617AC72A8CD3621B4D5062C0882FD86">须要遵守一系列规则</a>：“结构体只能拥有公共数据字段；只允许对XAML控件使用继承，其它类型都必须使用sealed关键字；只支持系统提供的泛型。”&nbsp;</p>
+				</div>				
+			</div>
+            <div id="content_bottom">
+            <div id="div_digg">										
+	            <div class="diggit" onclick="voteArticle(contentId,&#39;Digg&#39;)"> 
+		            <span class="diggnum" id="digg_count">2</span>
+	            </div>
+	            <div class="buryit" onclick="voteArticle(contentId,&#39;Bury&#39;)"> 
+		            <span class="burynum" id="bury_count">0</span>
+	            </div>
+	            <div class="clear"></div>	
+	            <div id="digg_tips" class="digg-tips">请先<a href="javascript:void(0);" onclick="login()">登录</a></div>	
+            </div>
+		    <div id="panelTags">
+	<div class="tag">标签： <a href="http://kb.cnblogs.com/tag/WinRT/" class="catalink">WinRT</a> &nbsp;&nbsp;</div>
+</div>	           
+			<div class="prevnextblock">
+				<a href="http://kb.cnblogs.com/page/136281/">« </a>上一篇：<a href="http://kb.cnblogs.com/page/136281/">谈一谈 Windows 8 的软件开发架构</a><br><a href="http://kb.cnblogs.com/page/138573/">» </a>下一篇：<a href="http://kb.cnblogs.com/page/138573/">使用Phalanger整合PHP和.Net</a>
+			</div>   
+			<div id="article_A4area">
+				<span id="shareA4" class="fl">
+				<a href="http://job.cnblogs.com/" target="_blank">找优秀程序员，就在博客园</a>
+				</span>
+			</div>
+            <div class="ad_bottom">
+                <!-- kb_K4 -->
+                <div id="div-gpt-ad-1320994977668-0" style="width: 468px; height: 60px; ">
+                <script type="text/javascript">
+                    googletag.cmd.push(function () { googletag.display('div-gpt-ad-1320994977668-0'); });
+                </script>
+                <iframe id="google_ads_iframe_/1090369/kb_K4_0" name="google_ads_iframe_/1090369/kb_K4_0" width="468" height="60" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; "></iframe></div>
+            </div>			
+            </div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$("#link_source").attr("href", "m/chuncn/archive/2011/10/12/2208558.html");
+		$("#link_source").attr("target", "_blank");
+	</script>
+	<div id="right_content">
+		<div class="rt_cnt">
+			<div class="list_rt_mid" style="text-align:center">
+                <!-- kb_k2 -->
+                <div id="div-gpt-ad-1320920372773-1" style="width: 300px; height: 250px; ">
+                <script type="text/javascript">
+                    googletag.cmd.push(function () { googletag.display('div-gpt-ad-1320920372773-1'); });
+                </script>
+                <iframe id="google_ads_iframe_/1090369/kb_k2_0" name="google_ads_iframe_/1090369/kb_k2_0" width="300" height="250" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; "></iframe></div>
+			</div>
+	</div>
+<div id="side_right_search">           
+<form action="http://www.google.com.hk/cse" id="cse-search-box" target="_blank">
+  <div>
+    <input type="hidden" name="cx" value="partner-pub-4210569241504288:2038822605">
+    <input type="hidden" name="ie" value="UTF-8">
+    <input type="text" name="q" size="27" style="border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-top-color: rgb(126, 157, 185); border-right-color: rgb(126, 157, 185); border-bottom-color: rgb(126, 157, 185); border-left-color: rgb(126, 157, 185); border-image: initial; padding-top: 2px; padding-right: 2px; padding-bottom: 2px; padding-left: 2px; background-image: url(http://www.google.com/cse/intl/zh-Hans/images/google_custom_search_watermark.gif); background-attachment: initial; background-origin: initial; background-clip: initial; background-color: rgb(255, 255, 255); background-position: 0% 50%; background-repeat: no-repeat no-repeat; ">
+    <input type="submit" name="sa" value="搜索文章">
+  </div>
+<input name="siteurl" type="hidden" value="kb.cnblogs.com/page/136288/"><input name="ref" type="hidden" value="www.baidu.com/s?ie=utf-8&amp;bs=visual+C%2B%2B+2005%E5%85%A5%E9%97%A8%E7%BB%8F%E5%85%B8&amp;f=8&amp;rsv_bp=1&amp;wd=windows+runtime&amp;rsv_sug3=14&amp;rsv_sug4=5834&amp;rsv_sug1=13&amp;inputT=7198"><input name="ss" type="hidden" value=""></form>
+<script type="text/javascript" src="./Windows Runtime - 面向对象化的C++（并非意味着托管）_知识库_博客园_files/brand"></script>
+
+</div>
+<div class="rt_cnt">
+	<div class="list_rt_top"><h3>推荐链接</h3></div>
+	<ul class="sr_list">
+	<li><a href="http://zt.cnblogs.com/training/2012/" target="_blank"><b>国家职业资格证书.NET/Java免费培训(上海)</b></a></li>
+	<li><a href="http://q.cnblogs.com/" target="_blank">博问，解决您的技术难题</a></li>
+	<li><a href="http://job.cnblogs.com/" target="_blank">找优秀程序员，就在博客园</a></li>
+	<!--<li><a href="http://news.cnblogs.com/" target="_blank">看博客园新闻，知天下IT事</a></li>	-->
+	</ul>
+</div>
+        <div id="right_content_list"><div class="rt_cnt"><div class="list_rt_top"><h3>.NET技术热门文章</h3></div><ul class="sr_list"><li><a href="http://kb.cnblogs.com/page/42528/" target="_blank">C#多线程学习(一) 多线程的相关概念</a></li><li><a href="http://kb.cnblogs.com/page/42529/" target="_blank">C#多线程学习(二) 如何操纵一个线程</a></li><li><a href="http://kb.cnblogs.com/page/100216/" target="_blank">ASP.NET MVC 入门介绍 (上)</a></li><li><a href="http://kb.cnblogs.com/page/42530/" target="_blank">C#多线程学习(三) 生产者和消费者</a></li><li><a href="http://kb.cnblogs.com/page/43094/" target="_blank">构建第一个Silverlight应用程序</a></li></ul></div><div class="rt_cnt"><div class="list_rt_top"><h3>.NET技术最新文章</h3></div><ul class="sr_list"><li><a href="http://kb.cnblogs.com/page/156747/" target="_blank">我看Windows 8 RT</a></li><li><a href="http://kb.cnblogs.com/page/153383/" target="_blank">ASP.NET MVC 4 - 测试驱动 ASP.NET MVC</a></li><li><a href="http://kb.cnblogs.com/page/119174/" target="_blank">IIS 内部运行机制</a></li><li><a href="http://kb.cnblogs.com/page/151268/" target="_blank">代码如何运行？</a></li><li><a href="http://kb.cnblogs.com/page/151109/" target="_blank">JavaScript 和 .NET 中的 JavaScript Object Notation (JSON) 简介</a></li></ul></div><div class="rt_cnt"><div class="list_rt_top"><h3>最新新闻</h3></div><ul class="sr_list"><li><a href="http://news.cnblogs.com/n/159047/" target="_blank">手机和互联网超报纸成美第二大新闻源</a></li><li><a href="http://news.cnblogs.com/n/159046/" target="_blank">联邦快递低价战照旧：拿牌后主攻中国市场</a></li><li><a href="http://news.cnblogs.com/n/159045/" target="_blank">2015年中文网民人数将超英语网民</a></li><li><a href="http://news.cnblogs.com/n/159044/" target="_blank">HTC将于11月8日发布旗下首款Windows Phone 8手机</a></li><li><a href="http://news.cnblogs.com/n/159043/" target="_blank">网络代购火车票悄然恢复 被12306冲击</a></li></ul></div><div class="rt_cnt"><div class="list_rt_top"><h3>热门新闻</h3></div><ul class="sr_list"><li><a href="http://news.cnblogs.com/n/158437/" target="_blank">夸大或误导?苹果称iPhone 5屏幕最先进!Lumia 920笑了</a></li><li><a href="http://news.cnblogs.com/n/158749/" target="_blank">英国男孩患超忆症拥有超强记忆力</a></li><li><a href="http://news.cnblogs.com/n/158745/" target="_blank">强制排队功能被取消！12306最大升级宣告失败</a></li><li><a href="http://news.cnblogs.com/n/158787/" target="_blank">科技也公益：404页面变身失踪儿童寻人启事</a></li><li><a href="http://news.cnblogs.com/n/158639/" target="_blank">阮一峰：虚数的意义</a></li></ul></div></div>
+        <script type="text/javascript">
+	        LoadSideRightList(1001,'.NET技术');
+        </script>
+        <div class="rt_cnt">
+		        <div class="list_rt_mid" style="text-align:center">
+                    <!-- kb_k3 -->
+                    <div id="div-gpt-ad-1320920372773-2" style="width: 300px; height: 250px; ">
+                    <script type="text/javascript">
+                        googletag.cmd.push(function () { googletag.display('div-gpt-ad-1320920372773-2'); });
+                    </script>
+                    <iframe id="google_ads_iframe_/1090369/kb_k3_0" name="google_ads_iframe_/1090369/kb_k3_0" width="300" height="250" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" style="border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; border-image: initial; "></iframe></div>
+		        </div>
+        </div>
+	</div>
+	<script type="text/javascript">
+	    try {
+	        $(function () {
+	            SyntaxHighlighter.all();
+	        });
+	    }
+	    catch (e) { }
+	</script> 
+</div>     
+        <div class="clear"></div>
+        <div id="footer"> 
+             <a href="http://www.cnblogs.com/AboutUS.aspx">关于我们</a><a href="http://www.cnblogs.com/ContactUs.aspx">联系我们</a><a href="http://www.cnblogs.com/ad.aspx">广告服务</a><a href="http://www.miibeian.gov.cn/" target="_blank">沪ICP备09004260号</a>　© 2012<a href="http://www.cnblogs.com/">博客园</a><a title="订阅知识库文章" target="_blank" href="http://feed.cnblogs.com/kb/"><img src="./Windows Runtime - 面向对象化的C++（并非意味着托管）_知识库_博客园_files/rss.png" alt="RSS"></a>
+             <script type="text/javascript">
+		  var _gaq = _gaq || [];
+		  _gaq.push(['_setAccount', 'UA-476124-11']);
+		  _gaq.push(['_trackPageview']);
+		  (function() {
+		    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		  })();
+	     </script>
+        </div>
+    </div>
+
+</body></html>

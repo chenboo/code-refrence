@@ -30,6 +30,12 @@ private:
 	Platform::Collections::Vector<FeedItem^>^ m_items;
 };
 
+//发现了一个很古怪的东西 “[Windows::UI::Xaml::Data::Bindable]”真服了微软，就喜欢做些修修改改，刚开始
+//还真不懂这是个什么东西，又不是注视什么的，在标准C++里面从未见过，后来发现是这么一回事，这是为类添加
+//“Bindable”特性，即绑定，这样的话在XAML文件中也能进行访问了。
+
+//还有一个是在ref前面加了个public，ref稍后会讲到，只有在加了ref的类才可以定义为public，标准C++的类是
+//不能加public的。
 
 //二、新的关键字介绍
 
