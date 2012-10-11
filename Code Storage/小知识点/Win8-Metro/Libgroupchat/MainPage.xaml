@@ -1,0 +1,109 @@
+﻿<Page
+    x:Class="Libgroupchat.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Libgroupchat"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Loaded="PageLoadedhandler">
+
+    <!--
+    <Page.Resources>
+        <CollectionViewSource
+            x:Name="itemsViewSource"
+            Source="{Binding Items}"/>
+
+        <DataTemplate x:Key="DefaultListItemTemplate">
+            <Grid HorizontalAlignment="Stretch" Width="Auto" Height="110" 
+                Margin="10,10,10,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="1"  HorizontalAlignment="Left" 
+                    Margin="12,8,0,0">
+                    <Image Source="{Binding Imagpath}"/>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
+    -->
+
+    <Grid Background="White" Name="MainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="53"/>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Image x:Name="Titlebar" AutomationProperties.Name="A placeholder image" Source="Assets/top_border_left.png"  
+                   Stretch="Fill" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <TextBlock x:Name="TitleName" Text="LibGoupChat" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                   FontSize="26.667" Foreground="White" FontWeight="Bold"/>
+
+        <Grid Name="LeftGrid" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="80"/>
+            </Grid.RowDefinitions>
+
+            <ListView x:Name="ItemListView" ItemsSource="{Binding Path=Items}" Margin="10,0,0,10">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Path=Imagpath}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <!--
+            <ListView
+                x:Name="itemListView"
+                AutomationProperties.AutomationId="ItemsListView"
+                AutomationProperties.Name="Items"
+                TabIndex="1"
+                Margin="10,0,0,10"
+                ItemsSource="{Binding Source={StaticResource itemsViewSource}}"
+                IsSwipeEnabled="False"
+                ItemTemplate="{StaticResource DefaultListItemTemplate}"/>
+             -->
+
+            <Grid Name="BottomGrid" Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="80"/>
+                </Grid.ColumnDefinitions>
+                <TextBox x:Name="InputText" Text="hello" VerticalAlignment="Center" 
+                   FontSize="26.667" Foreground="Red" FontWeight="Bold" Margin="10,0">
+                    <TextBox.Resources>
+                        <VisualBrush x:Key="HelpBrush" TileMode="None" Opacity="0.3" Stretch="None" AlignmentX="Left">
+                            <VisualBrush.Visual>
+                                <TextBlock FontStyle="Italic" Text="请输入用户名"/>
+                            </VisualBrush.Visual>
+                        </VisualBrush>
+                    </TextBox.Resources>
+
+                    <TextBox.Style>
+                        <Style TargetType="TextBox">
+                            <Style.Triggers>
+                                <Trigger Property="Text" Value="{x:Null}">
+                                    <Setter Property="Background" Value="{StaticResource HelpBrush}"/>
+                                </Trigger>
+                                <Trigger Property="Text" Value="">
+                                    <Setter Property="Background" Value="{StaticResource HelpBrush}"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+
+                <Button x:Name="send" Grid.Column="1" Padding="5,5,5,5">
+                    <Image Source="SampleData/Images/3.png"  
+                        Stretch="Fill" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                </Button>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>
