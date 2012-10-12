@@ -36,12 +36,52 @@
     <ClCompile Include="App.xaml.cpp" />
     <ClCompile Include="MainPage.xaml.cpp" />
     <ClCompile Include="pch.cpp" />
+    <ClCompile Include="Common\BindableBase.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\BooleanToVisibilityConverter.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\BooleanNegationConverter.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\LayoutAwarePage.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\RichTextColumns.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\SuspensionManager.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="ChatPage.xaml.cpp" />
+    <ClCompile Include="TopicSelectPage.xaml.cpp" />
     <ClCompile Include="ItemSource.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
     <ClInclude Include="App.xaml.h" />
     <ClInclude Include="MainPage.xaml.h" />
+    <ClInclude Include="Common\BindableBase.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\BooleanToVisibilityConverter.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\BooleanNegationConverter.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\LayoutAwarePage.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\RichTextColumns.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\SuspensionManager.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="ChatPage.xaml.h" />
+    <ClInclude Include="TopicSelectPage.xaml.h" />
     <ClInclude Include="ItemSource.h" />
   </ItemGroup>
   <ItemGroup>
@@ -49,9 +89,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Libgroupchat_TemporaryKey.pfx" />
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="MainPage.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\top_border_left.png">
@@ -85,5 +122,15 @@
     <Image Include="SampleData\Images\26.jpg" />
     <Image Include="SampleData\Images\27.jpg" />
     <Image Include="SampleData\Images\28.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="MainPage.xaml" />
+    <Page Include="TopicSelectPage.xaml" />
+    <Page Include="ChatPage.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Common\ReadMe.txt">
+      <Filter>Common</Filter>
+    </Text>
   </ItemGroup>
 </Project>

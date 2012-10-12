@@ -129,23 +129,41 @@
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ChatPage.xaml.h">
+      <DependentUpon>ChatPage.xaml</DependentUpon>
+    </ClInclude>
+    <ClInclude Include="Common\BindableBase.h" />
+    <ClInclude Include="Common\BooleanNegationConverter.h" />
+    <ClInclude Include="Common\BooleanToVisibilityConverter.h" />
+    <ClInclude Include="Common\LayoutAwarePage.h" />
+    <ClInclude Include="Common\RichTextColumns.h" />
+    <ClInclude Include="Common\SuspensionManager.h" />
     <ClInclude Include="ItemSource.h" />
+    <ClInclude Include="MainPage.xaml.h">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </ClInclude>
     <ClInclude Include="pch.h" />
     <ClInclude Include="App.xaml.h">
       <DependentUpon>App.xaml</DependentUpon>
     </ClInclude>
-    <ClInclude Include="MainPage.xaml.h">
-      <DependentUpon>MainPage.xaml</DependentUpon>
+    <ClInclude Include="TopicSelectPage.xaml.h">
+      <DependentUpon>TopicSelectPage.xaml</DependentUpon>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="ChatPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Common\StandardStyles.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Include="MainPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TopicSelectPage.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
@@ -194,6 +212,15 @@
     <ClCompile Include="App.xaml.cpp">
       <DependentUpon>App.xaml</DependentUpon>
     </ClCompile>
+    <ClCompile Include="ChatPage.xaml.cpp">
+      <DependentUpon>ChatPage.xaml</DependentUpon>
+    </ClCompile>
+    <ClCompile Include="Common\BindableBase.cpp" />
+    <ClCompile Include="Common\BooleanNegationConverter.cpp" />
+    <ClCompile Include="Common\BooleanToVisibilityConverter.cpp" />
+    <ClCompile Include="Common\LayoutAwarePage.cpp" />
+    <ClCompile Include="Common\RichTextColumns.cpp" />
+    <ClCompile Include="Common\SuspensionManager.cpp" />
     <ClCompile Include="ItemSource.cpp" />
     <ClCompile Include="MainPage.xaml.cpp">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -206,6 +233,12 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="TopicSelectPage.xaml.cpp">
+      <DependentUpon>TopicSelectPage.xaml</DependentUpon>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Common\ReadMe.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
