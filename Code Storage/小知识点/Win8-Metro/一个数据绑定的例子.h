@@ -103,7 +103,7 @@ void MainPage::GetItemData()
 	item->Imagpath = "SampleData/Images/6.png";
 	m_item->Items->Append(item);
 
-	this->DataContext = m_item;//设置Mainpage的数据上下文为m_item，这样在maipage的xaml文件中就可见了
+	this->DataContext = m_item;//设置Mainpage的数据上下文为m_item，这样在mainpage的xaml文件中就可见了
 }
 
 void Libgroupchat::MainPage::PageLoadedhandler(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
