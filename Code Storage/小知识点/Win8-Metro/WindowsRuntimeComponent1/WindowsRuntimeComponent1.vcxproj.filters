@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resources">
+      <UniqueIdentifier>fa32131b-d109-4d46-8b9c-1b1b670ac853</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="Direct2DSample.cpp" />
+    <ClCompile Include="SampleOverlay.cpp" />
+    <ClCompile Include="DirectXBase.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="Direct2DSample.h" />
+    <ClInclude Include="DirectXBase.h" />
+    <ClInclude Include="SampleOverlay.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Assets\squareTile-sdk.png">
+      <Filter>Resources</Filter>
+    </Image>
+    <Image Include="Assets\smallTile-sdk.png">
+      <Filter>Resources</Filter>
+    </Image>
+    <Image Include="74.gif">
+      <Filter>Resources</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
