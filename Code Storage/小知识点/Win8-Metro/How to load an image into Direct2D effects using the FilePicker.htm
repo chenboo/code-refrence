@@ -1,0 +1,690 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0078)http://msdn.microsoft.com/en-us/library/windows/desktop/hh780393(v=vs.85).aspx -->
+<!DOCTYPE html PUBLIC "" ""><HTML dir="ltr" xmlns="http://www.w3.org/1999/xhtml"><HEAD><META 
+content="IE=10.000" http-equiv="X-UA-Compatible">
+<LINK href="http://msdn.microsoft.com/en-us/library/windows/desktop/hh780393(v=vs.85).aspx" 
+rel="canonical">         
+<META http-equiv="Content-Type" content="text/html; charset=utf-8"><TITLE>How to 
+load an image into Direct2D effects using the FilePicker</TITLE> 
+<META name="DCS.dcsuri" content="/en-us/library/windows/desktop/hh780393(d=default,l=en-us,v=vs.85).aspx"> 
+<META name="NormalizedUrl" content="http://msdn.microsoft.com/en-us/library/windows/desktop/hh780393(d=default,l=en-us,v=vs.85).aspx"> 
+<META name="VotingContextUrl" content="http://msdn.microsoft.com/en-us/library/windows/desktop/hh780393(d=default,l=en-us,v=vs.85).aspx"> 
+<META name="MN" content="33917CF9-10:00:37 AM"> 
+<META name="Search.ShortId" content="hh780393"> 
+<META name="Ms.Locale" content="en-us">                 <LINK href="How%20to%20load%20an%20image%20into%20Direct2D%20effects%20using%20the%20FilePicker_files/Combined.css" 
+rel="stylesheet" type="text/css">
+<META name="GENERATOR" content="MSHTML 10.00.9200.16384"></HEAD>     
+<BODY class="library">
+<DIV id="page">
+<DIV id="ux-header">
+<DIV class="GlobalBar">
+<DIV class="PassportScarab"><A class="scarabLink" id="idPPScarab" href="https://login.live.com/login.srf?wa=wsignin1.0&amp;rpsnv=11&amp;ct=1351616437&amp;rver=6.0.5276.0&amp;wp=MCLBI&amp;wlcxt=msdn%24msdn%24msdn&amp;wreply=http%3a%2f%2fmsdn.microsoft.com%2fen-us%2flibrary%2fwindows%2fdesktop%2fhh780393%2528v%3dvs.85%2529.aspx&amp;lc=1033&amp;id=254354&amp;mkt=en-US"><SPAN 
+id="idPPScarabSIT">Sign in</SPAN></A>         </DIV></DIV>
+<DIV class="Clear"></DIV>
+<DIV class="Search">
+<DIV class="SearchBox">
+<FORM id="HeaderSearchForm" onsubmit="return SearchBoxOnSubmit('Search Dev Center with Bing');" 
+action="http://social.msdn.microsoft.com/search/en-us/windows/desktop" method="get"><INPUT 
+name="query" title="Search Dev Center with Bing" class="TextBoxSearchLoaded" id="HeaderSearchTextBox" 
+onfocus="WatermarkFocus(this, 'Search Dev Center with Bing', 'TextBoxSearchLoaded TextBoxSearch')" 
+onblur="WatermarkBlur(this, 'Search Dev Center with Bing', 'TextBoxSearchLoaded')" 
+type="text" maxlength="100" value="Search Dev Center with Bing">             
+<INPUT name="Refinement" type="hidden" value="181">             <INPUT title="Search Dev Center with Bing" class="SearchButton" id="HeaderSearchButton" type="submit"><INPUT id="HeaderSearchButtonHidden" style="display: none;" type="submit"> 
+              </FORM></DIV></DIV>
+<DIV class="siteLogo"><A title="Dev Center - Desktop" href="http://msdn.microsoft.com/en-us/windows/desktop">
+<DIV title="Dev Center - Desktop" class="sitelogoImage" alt="Dev Center - Desktop"></DIV><SPAN>Dev 
+Center - Desktop</SPAN>         </A>     </DIV>
+<DIV class="tabs"><A title="Home" href="http://msdn.microsoft.com/windows/desktop/aa904944">Home</A> 
+                           <A title="Dashboard" href="https://sysdev.microsoft.com/en-US/desktop/">Dashboard</A> 
+                           <A title="Docs" class="highlightedTab" href="http://msdn.microsoft.com/library/windows/desktop/">Docs</A> 
+                           <A title="Samples" href="http://code.msdn.microsoft.com/en-us/windowsdesktop">Samples</A> 
+                           <A title="Downloads" href="http://msdn.microsoft.com/windows/desktop/aa904949">Downloads</A> 
+                           <A title="Support" href="http://msdn.microsoft.com/windows/desktop/aa905013">Support</A> 
+                           <A title="Community" href="http://msdn.microsoft.com/windows/desktop/aa904945">Community</A> 
+                 </DIV>
+<DIV class="masthead_hr"></DIV></DIV>
+<DIV class="breadCrumb"><A title="Dev Center - Desktop" href="http://msdn.microsoft.com/en-us/windows/desktop/">Dev 
+Center - Desktop</A>            <SPAN>&gt;</SPAN> <A title="Docs" href="http://msdn.microsoft.com/en-us/library/windows/desktop/">Docs</A> 
+           <SPAN>&gt;</SPAN> <A title="Windows Development Reference" href="http://msdn.microsoft.com/en-us/library/windows/desktop/hh447209(v=vs.85).aspx">Windows 
+Development Reference</A>            <SPAN>&gt;</SPAN> <A title="Graphics and Gaming" 
+href="http://msdn.microsoft.com/en-us/library/windows/desktop/ee663279(v=vs.85).aspx">Graphics 
+and Gaming</A>            <SPAN>&gt;</SPAN> <A title="DirectX Graphics and Gaming" 
+href="http://msdn.microsoft.com/en-us/library/windows/desktop/ee663274(v=vs.85).aspx">DirectX 
+Graphics and Gaming</A>            <SPAN>&gt;</SPAN> <A title="Direct2D" href="http://msdn.microsoft.com/en-us/library/windows/desktop/dd370990(v=vs.85).aspx">Direct2D</A> 
+           <SPAN>&gt;</SPAN> <A title="Programming Guide" href="http://msdn.microsoft.com/en-us/library/windows/desktop/dd372337(v=vs.85).aspx">Programming 
+Guide</A>            <SPAN>&gt;</SPAN> <A title="Effects" href="http://msdn.microsoft.com/en-us/library/windows/desktop/hh973240(v=vs.85).aspx">Effects</A> 
+           <SPAN>&gt;</SPAN>         <A title="How to load an image into Direct2D Effects using the FilePicker" 
+href="http://msdn.microsoft.com/en-us/library/windows/desktop/hh780393(v=vs.85).aspx">How 
+to load an image into Direct2D Effects using the FilePicker</A>     </DIV>
+<H1 id="TopicTitle">How to load an image into Direct2D effects using the 
+FilePicker</H1>
+<DIV id="body">
+<DIV id="leftNav">
+<DIV id="tocnav">
+<DIV class="toclevel0" data-toclevel="0"><A title="Windows Desktop App Development" 
+id="aa906041_MSDN.10_en-us" href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa904962.aspx" 
+data-tochassubtree="true">Windows Desktop App Development</A></DIV>
+<DIV class="toclevel0" data-toclevel="0"><A title="Windows Development Reference" 
+id="br230310_VS.85_en-us" href="http://msdn.microsoft.com/en-us/library/windows/desktop/hh447209(v=vs.85).aspx" 
+data-tochassubtree="true">Windows Development Reference</A></DIV>
+<DIV class="toclevel0" data-toclevel="0"><A title="Graphics and Gaming" id="hh309588_VS.85_en-us" 
+href="http://msdn.microsoft.com/en-us/library/windows/desktop/ee663279(v=vs.85).aspx" 
+data-tochassubtree="true">Graphics and Gaming</A></DIV>
+<DIV class="toclevel0" data-toclevel="0"><A title="DirectX Graphics and Gaming" 
+id="hh867911_VS.85_en-us" href="http://msdn.microsoft.com/en-us/library/windows/desktop/ee663274(v=vs.85).aspx" 
+data-tochassubtree="true">DirectX Graphics and Gaming</A></DIV>
+<DIV class="toclevel0" data-toclevel="0"><A title="Direct2D" id="dd317440_VS.85_en-us" 
+href="http://msdn.microsoft.com/en-us/library/windows/desktop/dd370990(v=vs.85).aspx" 
+data-tochassubtree="true">Direct2D</A></DIV>
+<DIV class="toclevel0" data-toclevel="0"><A title="Programming Guide" id="dd758118_VS.85_en-us" 
+href="http://msdn.microsoft.com/en-us/library/windows/desktop/dd372337(v=vs.85).aspx" 
+data-tochassubtree="true">Programming Guide</A></DIV>
+<DIV class="toclevel1" data-toclevel="1"><A title="Effects" id="hh973249_VS.85_en-us" 
+href="http://msdn.microsoft.com/en-us/library/windows/desktop/hh973240(v=vs.85).aspx" 
+data-tochassubtree="true">Effects</A></DIV>
+<DIV class="toclevel2" data-toclevel="2"><A title="Custom effects" href="http://msdn.microsoft.com/en-us/library/windows/desktop/jj710194(v=vs.85).aspx">Custom 
+effects</A></DIV>
+<DIV class="toclevel2 current" data-toclevel="2"><A title="How to load an image into Direct2D Effects using the FilePicker" 
+href="http://msdn.microsoft.com/en-us/library/windows/desktop/hh780393(v=vs.85).aspx">How 
+to load an image into Direct2D Effects using the FilePicker</A></DIV>
+<DIV class="toclevel2" data-toclevel="2"><A title="How to save Direct2D content to an image file" 
+href="http://msdn.microsoft.com/en-us/library/windows/desktop/hh994451(v=vs.85).aspx">How 
+to save Direct2D content to an image file</A></DIV>
+<DIV class="toclevel2" data-toclevel="2"><A title="How to Apply Effects to Primitives" 
+href="http://msdn.microsoft.com/en-us/library/windows/desktop/hh973241(v=vs.85).aspx">How 
+to Apply Effects to Primitives</A></DIV>
+<DIV class="toclevel2" data-toclevel="2"><A title="Built-in Effects" id="jj585603_VS.85_en-us" 
+href="http://msdn.microsoft.com/en-us/library/windows/desktop/hh706316(v=vs.85).aspx" 
+data-tochassubtree="true">Built-in Effects</A></DIV></DIV><A id="NavigationResize" 
+href="javascript:epx.library.navigationResize.resize()"><IMG title="Expand" 
+class="cl_nav_resize_open" alt="Expand" src="How%20to%20load%20an%20image%20into%20Direct2D%20effects%20using%20the%20FilePicker_files/ImageSprite.png"> 
+    <IMG title="Minimize" class="cl_nav_resize_close" alt="Minimize" src="How%20to%20load%20an%20image%20into%20Direct2D%20effects%20using%20the%20FilePicker_files/ImageSprite.png"> 
+</A> </DIV>
+<DIV class="content" id="content">
+<DIV class="cl_lw_vs_seperator" id="ratingCounterSeperator" style="display: none;"></DIV>
+<DIV id="ratingCounter"><SPAN class="ratingText" id="rcA">            2 out of 3 
+rated this helpful <SPAN id="rateThisPrefix">- </SPAN><A title="Rate this topic" 
+id="rateThisTopic" href="http://msdn.microsoft.com/en-us/library/windows/desktop/hh780393(v=vs.85).aspx#feedback">Rate 
+this topic</A>                     </SPAN>     </DIV>
+<DIV class="topic" xmlns="http://www.w3.org/1999/xhtml">
+<DIV id="mainSection">
+<DIV class="clsServerSDKContent"></DIV>
+<P>Shows how to use the <A href="http://msdn.microsoft.com/en-us/library/windows/desktop/windows.storage.pickers.fileopenpicker.aspx"><STRONG 
+xmlns="http://www.w3.org/1999/xhtml">Windows::Storage::Pickers::FileOpenPicker</STRONG></A> 
+to load an image into <A href="http://msdn.microsoft.com/en-us/library/windows/desktop/hh973240(v=vs.85).aspx">Direct2D 
+effects</A>. If you want to let the user select an image file from storage in a 
+Windows Store app, we recommend that you use the <A href="http://msdn.microsoft.com/en-us/library/windows/desktop/windows.storage.pickers.fileopenpicker.aspx"><STRONG 
+xmlns="http://www.w3.org/1999/xhtml">FileOpenPicker</STRONG></A>.</P>
+<H3><A id="What_you_need_to_know"></A><A id="what_you_need_to_know"></A><A id="WHAT_YOU_NEED_TO_KNOW"></A>What 
+you need to know</H3>
+<H4><A id="Technologies"></A><A id="technologies"></A><A 
+id="TECHNOLOGIES"></A>Technologies</H4>
+<UL>
+  <LI><A href="http://msdn.microsoft.com/en-us/library/windows/desktop/dd370990(v=vs.85).aspx">Direct2D</A> 
+  </LI>
+  <LI><A href="http://msdn.microsoft.com/en-us/library/windows/desktop/hh973240(v=vs.85).aspx">Direct2D 
+  effects</A> </LI>
+  <LI><A href="http://msdn.microsoft.com/en-us/library/windows/desktop/windows.storage.pickers.fileopenpicker.aspx"><STRONG 
+  xmlns="http://www.w3.org/1999/xhtml">Windows::Storage::Pickers::FileOpenPicker</STRONG></A> 
+  </LI>
+  <LI><A href="http://msdn.microsoft.com/en-us/library/windows/desktop/br211363.aspx">Windows 
+  Store apps</A> </LI></UL>
+<H4><A id="Prerequisites"></A><A id="prerequisites"></A><A 
+id="PREREQUISITES"></A>Prerequisites</H4>
+<UL>
+  <LI>You need an <A href="http://msdn.microsoft.com/en-us/library/windows/desktop/hh404479(v=vs.85).aspx"><STRONG 
+  xmlns="http://www.w3.org/1999/xhtml">ID2D1DeviceContext</STRONG></A> object 
+  for creating effects.</LI>
+  <LI>You need an <A href="http://msdn.microsoft.com/en-us/library/windows/desktop/ee690281(v=vs.85).aspx"><STRONG 
+  xmlns="http://www.w3.org/1999/xhtml">IWICImagingFactory</STRONG></A> object 
+  for creating  WIC objects.</LI></UL>
+<H3>Instructions</H3>
+<H4><A id="Open_the_file_picker"></A><A id="open_the_file_picker"></A><A id="OPEN_THE_FILE_PICKER"></A>Step 
+1: Open the file picker</H4>
+<P>Create a <A href="http://msdn.microsoft.com/en-us/library/windows/desktop/windows.storage.pickers.fileopenpicker.aspx"><STRONG 
+xmlns="http://www.w3.org/1999/xhtml">FileOpenPicker</STRONG></A> object and set 
+the <EM>ViewMode</EM>, <EM>SuggestedStartLocation</EM>, and the 
+<EM>FileTypeFilter</EM> for selecting images.  Call the <A href="http://msdn.microsoft.com/en-us/library/windows/desktop/br207852.aspx"><STRONG 
+xmlns="http://www.w3.org/1999/xhtml">PickSingleFileAsync</STRONG></A> 
+method.</P>
+<DIV class="codeSnippetContainer" xmlns="">
+<DIV class="codeSnippetContainerTabs">
+<DIV class="codeSnippetContainerTabSingle" dir="ltr"><A>C++</A></DIV></DIV>
+<DIV class="codeSnippetContainerCodeContainer">
+<DIV class="codeSnippetToolBar">
+<DIV class="codeSnippetToolBarText"><A name="CodeSnippetCopyLink" title="Copy to clipboard." 
+style="display: none;" href="javascript:if (window.epx.codeSnippet)window.epx.codeSnippet.copyCode('CodeSnippetContainerCode_fd9c8691-f4b3-4355-9f4c-ce0c50f675fd');">Copy</A> 
+            </DIV></DIV>
+<DIV class="codeSnippetContainerCode" id="CodeSnippetContainerCode_fd9c8691-f4b3-4355-9f4c-ce0c50f675fd" 
+dir="ltr">
+<DIV style="color: black;">
+<PRE>
+    FileOpenPicker^ openPicker = <SPAN style="color: blue;">ref</SPAN> <SPAN style="color: blue;">new</SPAN> FileOpenPicker();
+    openPicker-&gt;ViewMode = PickerViewMode::Thumbnail;
+    openPicker-&gt;SuggestedStartLocation = PickerLocationId::PicturesLibrary;
+    openPicker-&gt;FileTypeFilter-&gt;Append(<SPAN style="color: rgb(163, 21, 21);">".jpg"</SPAN>);
+    auto pickOperation = openPicker-&gt;PickSingleFileAsync();
+
+</PRE></DIV></DIV></DIV></DIV>
+<P>After the <A href="http://msdn.microsoft.com/en-us/library/windows/desktop/br207852.aspx"><STRONG 
+xmlns="http://www.w3.org/1999/xhtml">PickSingleFileAsync</STRONG></A> completes, 
+you get a file stream from the <A href="http://msdn.microsoft.com/en-us/library/windows/desktop/bb776309(v=vs.85).aspx"><STRONG 
+xmlns="http://www.w3.org/1999/xhtml">IAsyncOperation</STRONG></A> interface it 
+returns.</P>
+<H4><A id="Get_a_file_stream"></A><A id="get_a_file_stream"></A><A id="GET_A_FILE_STREAM"></A>Step 
+2: Get a file stream</H4>
+<P>Declare a completion handler to run after the file picker async operation 
+returns.  Use the <A href="http://msdn.microsoft.com/en-us/library/windows/desktop/br205815(v=vs.85).aspx"><STRONG 
+xmlns="http://www.w3.org/1999/xhtml">GetResults</STRONG></A> method to retrieve 
+the file and to get the file stream object. </P>
+<DIV class="codeSnippetContainer" xmlns="">
+<DIV class="codeSnippetContainerTabs">
+<DIV class="codeSnippetContainerTabSingle" dir="ltr"><A>C++</A></DIV></DIV>
+<DIV class="codeSnippetContainerCodeContainer">
+<DIV class="codeSnippetToolBar">
+<DIV class="codeSnippetToolBarText"><A name="CodeSnippetCopyLink" title="Copy to clipboard." 
+style="display: none;" href="javascript:if (window.epx.codeSnippet)window.epx.codeSnippet.copyCode('CodeSnippetContainerCode_6616ddad-d5b4-447d-95c2-26ed2c07a6b9');">Copy</A> 
+            </DIV></DIV>
+<DIV class="codeSnippetContainerCode" id="CodeSnippetContainerCode_6616ddad-d5b4-447d-95c2-26ed2c07a6b9" 
+dir="ltr">
+<DIV style="color: black;">
+<PRE>
+    pickOperation-&gt;Completed = <SPAN style="color: blue;">ref</SPAN> <SPAN style="color: blue;">new</SPAN> AsyncOperationCompletedHandler&lt;StorageFile^&gt;(
+          [=](IAsyncOperation&lt;StorageFile^&gt; ^operation, AsyncStatus status)
+    {
+        auto file = operation-&gt;GetResults();
+        <SPAN style="color: blue;">if</SPAN> (file) <SPAN style="color: green;">// If file == nullptr, the user did not select a file.</SPAN>
+        {
+                             auto openOperation = file-&gt;OpenAsync(FileAccessMode::Read);
+                             openOperation-&gt;Completed = <SPAN style="color: blue;">ref</SPAN> <SPAN style="color: blue;">new</SPAN>
+                                      AsyncOperationCompletedHandler&lt;IRandomAccessStream^&gt;(
+                                      [=](IAsyncOperation&lt;IRandomAccessStream^&gt; ^operation, AsyncStatus status)
+                             {
+                                      auto fileStream = operation-&gt;GetResults();
+
+                                      <SPAN style="color: green;">// Pass IRandomAccessStream^ into DirectXApp for decoding/processing.</SPAN>
+                                      OpenFile(fileStream);
+                             });
+        }
+    });
+
+</PRE></DIV></DIV></DIV></DIV>
+<P>In the next step you   convert the <A href="http://msdn.microsoft.com/en-us/library/windows/desktop/hh438400(v=vs.85).aspx"><STRONG 
+xmlns="http://www.w3.org/1999/xhtml">IRandomAccessStream</STRONG></A> object to 
+an <A href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa380034(v=vs.85).aspx"><STRONG 
+xmlns="http://www.w3.org/1999/xhtml">IStream</STRONG></A> that you can pass to 
+<A href="http://msdn.microsoft.com/en-us/library/windows/desktop/ee719655(v=vs.85).aspx">WIC</A>.</P>
+<P></P>
+<H4><A id="Convert_the_file_stream"></A><A id="convert_the_file_stream"></A><A 
+id="CONVERT_THE_FILE_STREAM"></A>Step 3: Convert the file stream</H4>
+<P>Use the <A href="http://msdn.microsoft.com/en-us/library/windows/desktop/hh846258(v=vs.85).aspx"><STRONG 
+xmlns="http://www.w3.org/1999/xhtml">CreateStreamOverRandomAccessStream</STRONG></A> 
+function to convert the file stream. Windows Runtime APIs represent streams with 
+<A href="http://msdn.microsoft.com/en-us/library/windows/desktop/hh438400(v=vs.85).aspx"><STRONG 
+xmlns="http://www.w3.org/1999/xhtml">IRandomAccessStream</STRONG></A>, while <A 
+href="http://msdn.microsoft.com/en-us/library/windows/desktop/ee719655(v=vs.85).aspx">WIC</A> 
+consumes <A href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa380034(v=vs.85).aspx"><STRONG 
+xmlns="http://www.w3.org/1999/xhtml">IStream</STRONG></A>.</P>
+<DIV class="codeSnippetContainer" xmlns="">
+<DIV class="codeSnippetContainerTabs">
+<DIV class="codeSnippetContainerTabSingle" dir="ltr"><A>C++</A></DIV></DIV>
+<DIV class="codeSnippetContainerCodeContainer">
+<DIV class="codeSnippetToolBar">
+<DIV class="codeSnippetToolBarText"><A name="CodeSnippetCopyLink" title="Copy to clipboard." 
+style="display: none;" href="javascript:if (window.epx.codeSnippet)window.epx.codeSnippet.copyCode('CodeSnippetContainerCode_4b852e3a-d3a0-479a-8db1-2ba9fb323a36');">Copy</A> 
+            </DIV></DIV>
+<DIV class="codeSnippetContainerCode" id="CodeSnippetContainerCode_4b852e3a-d3a0-479a-8db1-2ba9fb323a36" 
+dir="ltr">
+<DIV style="color: black;">
+<PRE>
+    ComPtr&lt;IStream&gt; istream;
+    DX::ThrowIfFailed(
+        CreateStreamOverRandomAccessStream(
+        reinterpret_cast&lt;IUnknown*&gt;(fileStream),
+        IID_PPV_ARGS(&amp;istream)
+        )
+    );
+
+</PRE></DIV></DIV></DIV></DIV>
+<P></P>
+<P class="note"><STRONG>Note</STRONG>&nbsp;&nbsp;To use the <A href="http://msdn.microsoft.com/en-us/library/windows/desktop/hh846258(v=vs.85).aspx"><STRONG 
+xmlns="http://www.w3.org/1999/xhtml">CreateStreamOverRandomAccessStream</STRONG></A> 
+function, you should include <EM>shcore.h</EM> in your project.</P>
+<H4><A id="Create_a_WIC_decoder_and_get_the_frame"></A><A id="create_a_wic_decoder_and_get_the_frame"></A><A 
+id="CREATE_A_WIC_DECODER_AND_GET_THE_FRAME"></A>Step 4: Create a WIC decoder and 
+get the frame</H4>
+<P>Create an <A href="http://msdn.microsoft.com/en-us/library/windows/desktop/ee690086(v=vs.85).aspx"><STRONG 
+xmlns="http://www.w3.org/1999/xhtml">IWICBitmapDecoder</STRONG></A> object using 
+the <A href="http://msdn.microsoft.com/en-us/library/windows/desktop/ee690309(v=vs.85).aspx"><STRONG 
+xmlns="http://www.w3.org/1999/xhtml">IWICImagingFactory::CreateDecoderFromStream</STRONG></A> 
+method.</P>
+<DIV class="codeSnippetContainer" xmlns="">
+<DIV class="codeSnippetContainerTabs">
+<DIV class="codeSnippetContainerTabSingle" dir="ltr"><A>C++</A></DIV></DIV>
+<DIV class="codeSnippetContainerCodeContainer">
+<DIV class="codeSnippetToolBar">
+<DIV class="codeSnippetToolBarText"><A name="CodeSnippetCopyLink" title="Copy to clipboard." 
+style="display: none;" href="javascript:if (window.epx.codeSnippet)window.epx.codeSnippet.copyCode('CodeSnippetContainerCode_8d664bbb-f19e-486b-a0e9-328a3a28c89a');">Copy</A> 
+            </DIV></DIV>
+<DIV class="codeSnippetContainerCode" id="CodeSnippetContainerCode_8d664bbb-f19e-486b-a0e9-328a3a28c89a" 
+dir="ltr">
+<DIV style="color: black;">
+<PRE>
+    ComPtr&lt;IWICBitmapDecoder&gt; decoder;
+    DX::ThrowIfFailed(
+          m_wicFactory-&gt;CreateDecoderFromStream(
+                    istream.Get(),
+                    nullptr,
+                    WICDecodeMetadataCacheOnDemand,
+                    &amp;decoder
+                    )
+          );
+
+</PRE></DIV></DIV></DIV></DIV>
+<P>Get the first frame of the image from the decoder using the <A href="http://msdn.microsoft.com/en-us/library/windows/desktop/ee690099(v=vs.85).aspx"><STRONG 
+xmlns="http://www.w3.org/1999/xhtml">IWICBitmapDecoder::GetFrame</STRONG></A> 
+method.</P>
+<DIV class="codeSnippetContainer" xmlns="">
+<DIV class="codeSnippetContainerTabs">
+<DIV class="codeSnippetContainerTabSingle" dir="ltr"><A>C++</A></DIV></DIV>
+<DIV class="codeSnippetContainerCodeContainer">
+<DIV class="codeSnippetToolBar">
+<DIV class="codeSnippetToolBarText"><A name="CodeSnippetCopyLink" title="Copy to clipboard." 
+style="display: none;" href="javascript:if (window.epx.codeSnippet)window.epx.codeSnippet.copyCode('CodeSnippetContainerCode_1198abd9-61ec-498d-8e12-8fe8cda67bc6');">Copy</A> 
+            </DIV></DIV>
+<DIV class="codeSnippetContainerCode" id="CodeSnippetContainerCode_1198abd9-61ec-498d-8e12-8fe8cda67bc6" 
+dir="ltr">
+<DIV style="color: black;">
+<PRE>
+    ComPtr&lt;IWICBitmapFrameDecode&gt; frame;
+    DX::ThrowIfFailed(
+        decoder-&gt;GetFrame(0, &amp;frame)
+        );
+
+
+</PRE></DIV></DIV></DIV></DIV>
+<H4><A id="Create_a_WIC_converter_and_initialize"></A><A id="create_a_wic_converter_and_initialize"></A><A 
+id="CREATE_A_WIC_CONVERTER_AND_INITIALIZE"></A>Step 5: Create a WIC converter 
+and initialize</H4>
+<P>Convert the image to the BGRA color format using <A href="http://msdn.microsoft.com/en-us/library/windows/desktop/ee719655(v=vs.85).aspx">WIC</A>. 
+<A href="http://msdn.microsoft.com/en-us/library/windows/desktop/ee719894(v=vs.85).aspx">IWICBitmapFrameDecode</A> 
+will return the native pixel format of the image, like JPEGs are stored in 
+GUID_WICPixelFormat24bppBGR. However, as a performance optimization with 
+Direct2D we recommend that you convert to WICPixelFormat32bppPBGRA.</P>
+<OL>
+  <LI>
+  <P>Create a <A href="http://msdn.microsoft.com/en-us/library/windows/desktop/ee690274(v=vs.85).aspx"><STRONG 
+  xmlns="http://www.w3.org/1999/xhtml">IWICFormatConverter</STRONG></A> object 
+  using the <A href="http://msdn.microsoft.com/en-us/library/windows/desktop/ee690317(v=vs.85).aspx"><STRONG 
+  xmlns="http://www.w3.org/1999/xhtml">IWICImagingFactory::CreateFormatConverter</STRONG></A> 
+  method.</P>
+  <DIV class="codeSnippetContainer" xmlns="">
+  <DIV class="codeSnippetContainerTabs">
+  <DIV class="codeSnippetContainerTabSingle" dir="ltr"><A>C++</A></DIV></DIV>
+  <DIV class="codeSnippetContainerCodeContainer">
+  <DIV class="codeSnippetToolBar">
+  <DIV class="codeSnippetToolBarText"><A name="CodeSnippetCopyLink" title="Copy to clipboard." 
+  style="display: none;" href="javascript:if (window.epx.codeSnippet)window.epx.codeSnippet.copyCode('CodeSnippetContainerCode_22b52cae-cf23-444c-88bd-d4bbce6d9a88');">Copy</A> 
+              </DIV></DIV>
+  <DIV class="codeSnippetContainerCode" id="CodeSnippetContainerCode_22b52cae-cf23-444c-88bd-d4bbce6d9a88" 
+  dir="ltr">
+  <DIV style="color: black;">
+<PRE>
+    ComPtr&lt;IWICFormatConverter&gt; converter;
+    DX::ThrowIfFailed(
+        m_wicFactory-&gt;CreateFormatConverter(&amp;converter)
+        ); 
+ 
+
+</PRE></DIV></DIV></DIV></DIV></LI>
+  <LI>
+  <P>Initialize the format converter to use the WICPixelFormat32bppPBGRA  and 
+  pass in the bitmap frame.</P>
+  <DIV class="codeSnippetContainer" xmlns="">
+  <DIV class="codeSnippetContainerTabs">
+  <DIV class="codeSnippetContainerTabSingle" dir="ltr"><A>C++</A></DIV></DIV>
+  <DIV class="codeSnippetContainerCodeContainer">
+  <DIV class="codeSnippetToolBar">
+  <DIV class="codeSnippetToolBarText"><A name="CodeSnippetCopyLink" title="Copy to clipboard." 
+  style="display: none;" href="javascript:if (window.epx.codeSnippet)window.epx.codeSnippet.copyCode('CodeSnippetContainerCode_88d73e54-22a8-41a2-af0d-22a8b81edf79');">Copy</A> 
+              </DIV></DIV>
+  <DIV class="codeSnippetContainerCode" id="CodeSnippetContainerCode_88d73e54-22a8-41a2-af0d-22a8b81edf79" 
+  dir="ltr">
+  <DIV style="color: black;">
+<PRE>
+   DX::ThrowIfFailed(
+        converter-&gt;Initialize(
+            frame.Get(),
+            GUID_WICPixelFormat32bppPBGRA,
+            WICBitmapDitherTypeNone,
+            nullptr,
+            0.0f,
+            WICBitmapPaletteTypeCustom  <SPAN style="color: green;">// premultiplied BGRA has no paletting, so this is ignored</SPAN>
+            )
+        );
+
+</PRE></DIV></DIV></DIV></DIV></LI></OL>
+<P>The <A href="http://msdn.microsoft.com/en-us/library/windows/desktop/ee690274(v=vs.85).aspx"><STRONG 
+xmlns="http://www.w3.org/1999/xhtml">IWICFormatConverter</STRONG></A> interface 
+is derived from the <A href="http://msdn.microsoft.com/en-us/library/windows/desktop/ee690171(v=vs.85).aspx"><STRONG 
+xmlns="http://www.w3.org/1999/xhtml">IWICBitmapSource</STRONG></A> interface, so 
+you can pass the converter to the <A href="http://msdn.microsoft.com/en-us/library/windows/desktop/hh706312(v=vs.85).aspx">bitmap 
+source</A> effect. </P>
+<H4><A id="Create_effect_and_pass_in_an__IWICBitmapSource_"></A><A id="create_effect_and_pass_in_an__iwicbitmapsource_"></A><A 
+id="CREATE_EFFECT_AND_PASS_IN_AN__IWICBITMAPSOURCE_"></A>Step 6: Create effect 
+and pass in an  IWICBitmapSource </H4>
+<P>Use the <A href="http://msdn.microsoft.com/en-us/library/windows/desktop/hh404500(v=vs.85).aspx"><STRONG 
+xmlns="http://www.w3.org/1999/xhtml">CreateEffect</STRONG></A> method to create 
+a <A href="http://msdn.microsoft.com/en-us/library/windows/desktop/hh706312(v=vs.85).aspx">bitmap 
+source</A> <A href="http://msdn.microsoft.com/en-us/library/windows/desktop/hh404566(v=vs.85).aspx"><STRONG 
+xmlns="http://www.w3.org/1999/xhtml">ID2D1Effect</STRONG></A> object using the 
+<A href="http://msdn.microsoft.com/en-us/library/windows/desktop/dd535473(v=vs.85).aspx">Direct2D 
+</A> <A href="http://msdn.microsoft.com/en-us/library/windows/desktop/hh404479(v=vs.85).aspx"><STRONG 
+xmlns="http://www.w3.org/1999/xhtml">device context</STRONG></A>.</P>
+<P>Use the <A href="http://msdn.microsoft.com/en-us/library/windows/desktop/hh446885(v=vs.85).aspx"><STRONG 
+xmlns="http://www.w3.org/1999/xhtml">ID2D1Effect::SetValue</STRONG></A> method 
+to set the  <EM>D2D1_BITMAPSOURCE_PROP_WIC_BITMAP_SOURCE</EM> property to the <A 
+href="http://msdn.microsoft.com/en-us/library/windows/desktop/ee719655(v=vs.85).aspx">WIC</A> 
+<A href="http://msdn.microsoft.com/en-us/library/windows/desktop/ee690274(v=vs.85).aspx"><STRONG 
+xmlns="http://www.w3.org/1999/xhtml">format converter</STRONG></A>.</P>
+<P class="note"><STRONG>Note</STRONG>&nbsp;&nbsp;The <A href="http://msdn.microsoft.com/en-us/library/windows/desktop/hh706312(v=vs.85).aspx">bitmap 
+source</A> effect doesn't take an input from the <A href="http://msdn.microsoft.com/en-us/library/windows/desktop/hh404591(v=vs.85).aspx"><STRONG 
+xmlns="http://www.w3.org/1999/xhtml">SetInput</STRONG></A> method like many <A 
+href="http://msdn.microsoft.com/en-us/library/windows/desktop/hh973240(v=vs.85).aspx">Direct2D 
+effects</A>.  Instead, the <A href="http://msdn.microsoft.com/en-us/library/windows/desktop/ee690171(v=vs.85).aspx"><STRONG 
+xmlns="http://www.w3.org/1999/xhtml">IWICBitmapSource</STRONG></A> object is 
+specified as a property.</P>
+<DIV class="codeSnippetContainer" xmlns="">
+<DIV class="codeSnippetContainerTabs">
+<DIV class="codeSnippetContainerTabSingle" dir="ltr"><A>C++</A></DIV></DIV>
+<DIV class="codeSnippetContainerCodeContainer">
+<DIV class="codeSnippetToolBar">
+<DIV class="codeSnippetToolBarText"><A name="CodeSnippetCopyLink" title="Copy to clipboard." 
+style="display: none;" href="javascript:if (window.epx.codeSnippet)window.epx.codeSnippet.copyCode('CodeSnippetContainerCode_1de24d41-574b-43cd-891f-7b88772dff94');">Copy</A> 
+            </DIV></DIV>
+<DIV class="codeSnippetContainerCode" id="CodeSnippetContainerCode_1de24d41-574b-43cd-891f-7b88772dff94" 
+dir="ltr">
+<DIV style="color: black;">
+<PRE>
+    ComPtr&lt;ID2D1Effect&gt; bitmapSourceEffect;
+
+    DX::ThrowIfFailed(
+        m_d2dContext-&gt;CreateEffect(CLSID_D2D1BitmapSource, &amp;bitmapSourceEffect)
+        );
+
+    DX::ThrowIfFailed(
+        bitmapSourceEffect-&gt;SetValue(D2D1_BITMAPSOURCE_PROP_WIC_BITMAP_SOURCE, converter.Get())
+        );
+
+    <SPAN style="color: green;">// Insert code using the bitmap source in an effect graph.</SPAN>
+
+</PRE></DIV></DIV></DIV></DIV>
+<P>Now that you have the <A href="http://msdn.microsoft.com/en-us/library/windows/desktop/hh706312(v=vs.85).aspx">bitmap 
+source</A> effect, you can use it as input to any <A href="http://msdn.microsoft.com/en-us/library/windows/desktop/hh404566(v=vs.85).aspx"><STRONG 
+xmlns="http://www.w3.org/1999/xhtml">ID2D1Effect</STRONG></A> and create an 
+effect graph.</P>
+<H3>Complete example</H3>
+<P>Here is the full code for this example.</P>
+<DIV class="codeSnippetContainer" xmlns="">
+<DIV class="codeSnippetContainerTabs">
+<DIV class="codeSnippetContainerTabSingle" dir="ltr"><A>C++</A></DIV></DIV>
+<DIV class="codeSnippetContainerCodeContainer">
+<DIV class="codeSnippetToolBar">
+<DIV class="codeSnippetToolBarText"><A name="CodeSnippetCopyLink" title="Copy to clipboard." 
+style="display: none;" href="javascript:if (window.epx.codeSnippet)window.epx.codeSnippet.copyCode('CodeSnippetContainerCode_d6993cf7-de93-495e-a81b-37f365736a22');">Copy</A> 
+            </DIV></DIV>
+<DIV class="codeSnippetContainerCode" id="CodeSnippetContainerCode_d6993cf7-de93-495e-a81b-37f365736a22" 
+dir="ltr">
+<DIV style="color: black;">
+<PRE>
+
+ComPtr&lt;ID2D1Effect&gt; bitmapSourceEffect;
+
+<SPAN style="color: blue;">void</SPAN> OpenFilePicker()
+{
+    FileOpenPicker^ openPicker = <SPAN style="color: blue;">ref</SPAN> <SPAN style="color: blue;">new</SPAN> FileOpenPicker();
+    openPicker-&gt;ViewMode = PickerViewMode::Thumbnail;
+    openPicker-&gt;SuggestedStartLocation = PickerLocationId::PicturesLibrary;
+    openPicker-&gt;FileTypeFilter-&gt;Append(<SPAN style="color: rgb(163, 21, 21);">".jpg"</SPAN>);
+    auto pickOperation = openPicker-&gt;PickSingleFileAsync();
+    
+    pickOperation-&gt;Completed = <SPAN style="color: blue;">ref</SPAN> <SPAN style="color: blue;">new</SPAN> AsyncOperationCompletedHandler&lt;StorageFile^&gt;(
+          [=](IAsyncOperation&lt;StorageFile^&gt; ^operation, AsyncStatus status)
+    {
+        auto file = operation-&gt;GetResults();
+        <SPAN style="color: blue;">if</SPAN> (file)
+        {
+                             auto openOperation = file-&gt;OpenAsync(FileAccessMode::Read);
+                             openOperation-&gt;Completed = <SPAN style="color: blue;">ref</SPAN> <SPAN style="color: blue;">new</SPAN>
+                                      AsyncOperationCompletedHandler&lt;IRandomAccessStream^&gt;(
+                                      [=](IAsyncOperation&lt;IRandomAccessStream^&gt; ^operation, AsyncStatus status)
+                             {
+                                      auto fileStream = operation-&gt;GetResults();
+
+                                      <SPAN style="color: green;">// Pass IRandomAccessStream^ into DirectXApp for decoding/processing.</SPAN>
+                                      OpenFile(fileStream);
+                             });
+        }
+    });
+}
+
+<SPAN style="color: blue;">void</SPAN> OpenFile(Windows::Storage::Streams::IRandomAccessStream^ fileStream)
+{
+    ComPtr&lt;IStream&gt; istream;
+    DX::ThrowIfFailed(
+        CreateStreamOverRandomAccessStream(
+            reinterpret_cast&lt;IUnknown*&gt;(fileStream),
+            IID_PPV_ARGS(&amp;istream)
+            )
+        );
+
+    ComPtr&lt;IWICBitmapDecoder&gt; decoder;
+    DX::ThrowIfFailed(
+          m_wicFactory-&gt;CreateDecoderFromStream(
+                    istream.Get(),
+                    nullptr,
+                    WICDecodeMetadataCacheOnDemand,
+                    &amp;decoder
+                    )
+          );
+
+    ComPtr&lt;IWICBitmapFrameDecode&gt; frame;
+    DX::ThrowIfFailed(
+        decoder-&gt;GetFrame(0, &amp;frame)
+        );
+
+    ComPtr&lt;IWICFormatConverter&gt; converter;
+    DX::ThrowIfFailed(
+        m_wicFactory-&gt;CreateFormatConverter(&amp;converter)
+        );
+
+    DX::ThrowIfFailed(
+        converter-&gt;Initialize(
+            frame.Get(),
+            GUID_WICPixelFormat32bppPBGRA,
+            WICBitmapDitherTypeNone,
+            nullptr,
+            0.0f,
+            WICBitmapPaletteTypeCustom  <SPAN style="color: green;">// premultiplied BGRA has no paletting, so this is ignored</SPAN>
+            )
+        );
+
+	   ComPtr&lt;ID2D1Effect&gt; bitmapSourceEffect;
+
+    DX::ThrowIfFailed(
+        m_d2dContext-&gt;CreateEffect(CLSID_D2D1BitmapSource, &amp;bitmapSourceEffect)
+        );
+
+    DX::ThrowIfFailed(
+        bitmapSourceEffect-&gt;SetValue(D2D1_BITMAPSOURCE_PROP_WIC_BITMAP_SOURCE, converter.Get())
+        );
+
+    <SPAN style="color: green;">// Insert code using the bitmap source in an effect graph.</SPAN>
+}
+
+
+</PRE></DIV></DIV></DIV></DIV>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P><A title="Send comments about this topic to Microsoft" href="mailto:wsddocfb@microsoft.com?subject=Documentation%20feedback [direct2d\direct2d]:%20How to load an image into Direct2D effects using the FilePicker%20 RELEASE:%20(10/16/2012)&amp;body=%0A%0APRIVACY STATEMENT%0A%0AThe doc team uses your feedback to improve the documentation. We don't use your email address for any other purpose. We'll remove your email address from our system after the issue that you are reporting is resolved. While we are working to resolve this issue, we may send you an email message to request more info about your feedback. After the issue is addressed, we may send you an email message to let you know that your feedback has been addressed.%0A%0AFor more info about Microsoft's privacy policy, see http://privacy.microsoft.com/en-us/default.aspx.">Send 
+comments about this topic to Microsoft</A></P>
+<P>Build date: 10/16/2012</P></DIV></DIV>
+<DIV id="contentFeedback">
+<FORM action="/en-us/library/windows/desktop/feedback/add/hh780393(v=vs.85).aspx" 
+method="post"><INPUT name="__RequestVerificationToken" type="hidden" value="wFbRUljJWIzU7kuZI4MpjcmvWJAiRWDDtONOKD2bHBOggqpp+FIrboXbPGLkM1kAUDqAsAMPzBKmASKI2UQVTbeoUMCS5zPxdsoR3rLkYp62dyAQtOzFXwVJBq416tG1Nocd8w=="> 
+    
+<DIV id="contentFeedbackContainer">
+<DIV class="FeedbackTitleContainer"><A name="feedback"></A>        Did you find 
+this helpful?             <INPUT name="rdIsUseful" id="rdIsUsefulYes" onclick="toggleContentFeedback('Yes');" 
+type="radio" value="1"><LABEL for="rdIsUsefulYes">Yes</LABEL>             <INPUT 
+name="rdIsUseful" id="rdIsUsefulNo" onclick="toggleContentFeedback('No');" type="radio" 
+value="0"><LABEL for="rdIsUsefulNo">No</LABEL>                 </DIV>
+<DIV id="contentFeedbackQAContainer">
+<DIV class="FeedbackListContainer" id="feedbackListNoContainer">
+<DIV><INPUT name="chkbxNo" id="chkbxNo201" type="checkbox" value="201">          
+                       <LABEL for="chkbxNo201">Not accurate</LABEL>              
+               </DIV>
+<DIV><INPUT name="chkbxNo" id="chkbxNo202" type="checkbox" value="202">          
+                       <LABEL for="chkbxNo202">Not enough depth</LABEL>          
+                   </DIV>
+<DIV><INPUT name="chkbxNo" id="chkbxNo203" type="checkbox" value="203">          
+                       <LABEL for="chkbxNo203">Need more code examples</LABEL>   
+                          </DIV></DIV>
+<DIV class="FeedbackTellUsMoreContainer"><TEXTAREA name="feedbackText" class="TellUsMoreTextBoxSearchLoaded" id="feedbackText" onmouseover="TextBoxCharactersCounter(this, document.getElementById('feedbackTextCounter'), 1500)" onkeydown="TextBoxCharactersCounter(this, document.getElementById('feedbackTextCounter'), 1500)" onkeyup="TextBoxCharactersCounter(this, document.getElementById('feedbackTextCounter'), 1500)" onfocus="WatermarkFocus(this, 'Tell us more...', 'TellUsMoreTextBoxSearch')" onblur="WatermarkBlur(this, 'Tell us more...', 'TellUsMoreTextBoxSearchLoaded')">Tell us more...</TEXTAREA> 
+                </DIV><SPAN class="counter">(<SPAN 
+id="feedbackTextCounter">1500</SPAN> characters remaining)</SPAN>                
+ <INPUT name="returnUrl" id="returnUrl" type="hidden" value="http://msdn.microsoft.com/en-us/library/windows/desktop/hh780393(v=vs.85).aspx"> 
+                <INPUT title="Click to Submit Feedback" id="submit" onclick="WatermarkOnSubmit(document.getElementById('feedbackText'), 'Tell us more...', 'TellUsMoreTextBoxSearch')" type="submit" value="Submit"> 
+                
+<DIV style="clear: both;"></DIV></DIV></DIV></FORM></DIV>
+<SCRIPT id="CommentTemplate" type="text/x-jquery-tmpl">
+    <div class="communityContentAnnotation">
+        <a name="${Index}"></a>
+        <div class="communityContentAnnotationTitle h3">
+            <span>
+                ${Title}
+            </span>
+        </div>
+        <div class="communityContentAnnotationBody">
+            {{html Body}}
+        </div>
+        <div class="communityContentAnnotationInfo">
+            <div class="communityContentAnnotationAvatarContainer">
+                <a href="${UserAvatar.Href}" title="${UserAvatar.ToolTip}" class="communityContentAnnotationAvatar"><img src="${UserAvatar.ImageUrl}" alt="${UserAvatar.ImageAltText}" width="34" height="34" /></a>
+            </div>
+            <div class="communityContentAnnotationUserDateContainer">
+                <div class="communityContentAnnotationUserContainer">
+                    <a href="${UserAvatar.Href}">
+                        ${User}
+                    </a>
+                </div>
+                <div class="communityContentAnnotationDateContainer">
+                    <span>${Date}</span>
+                    
+                    {{if EditLink}}
+                        <span>
+                            <a href="${EditLink.Href}" title="${EditLink.ToolTip}" class="communityContentCommentEditLink">${EditLink.Title}</a>
+                        </span>
+                    {{/if}}
+
+                    {{if DeleteLink}}
+                        <span>
+                            <a href="${DeleteLink.Href}" title="${DeleteLink.ToolTip}" class="communityContentDeleteLink">${DeleteLink.Title}</a>
+                        </span>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+</SCRIPT>
+ 
+<DIV class="communityContentContainer">
+<DIV class="communityContentHeader" id="CommunityContentHeader">
+<DIV class="communityContentHeaderTitleContainer"><SPAN class="communityContentHeaderTitle h1">Community 
+Additions</SPAN>                 <A class="communityContentAddLink" href="http://msdn.microsoft.com/en-us/library/windows/desktop/community/add/hh780393(v=vs.85).aspx"><SPAN 
+title="Add" class="communityContentAddButton">                        ADD        
+             </SPAN>                 </A></DIV>
+<DIV style="clear: both;"></DIV></DIV>
+<DIV id="CommunityComments" data-url="/en-us/library/windows/desktop/community/comments/hh780393(v=vs.85).aspx"></DIV></DIV></DIV></DIV>
+<DIV class="clear"></DIV>
+<DIV id="ux-footer">
+<DIV class="blocks">
+<DIV class="footerPrimaryBlock">
+<DIV class="footerLinksTitles">Network sites</DIV>
+<DIV style="padding-top: 5px; padding-bottom: 14px;"><A title="Microsoft Developer Network" 
+href="http://msdn.microsoft.com/">
+<DIV class="clip49x17"><IMG title="Microsoft Developer Network" class="footerLogoImage" 
+alt="Network sites" src="How%20to%20load%20an%20image%20into%20Direct2D%20effects%20using%20the%20FilePicker_files/ImageSprite(1).png"> 
+                </DIV></A>             </DIV>
+<DIV style="padding-bottom: 71px;"><SPAN class="footerLinks"></SPAN></DIV></DIV>
+<DIV class="footerSubBlock">&nbsp;</DIV>
+<DIV class="footerSubBlock">
+<DIV class="footerLinksTitles">Windows Dev Center</DIV>
+<DIV class="footerLinks" style="padding-top: 5px;"><A title="Windows Dev Center home" 
+href="http://msdn.microsoft.com/windows">Windows Dev Center home</A>             
+        </DIV>
+<DIV class="footerLinks" style="padding-top: 5px;"><A title="Windows Store apps" 
+href="http://msdn.microsoft.com/windows/apps">Windows Store apps</A>             
+        </DIV>
+<DIV class="footerLinks" style="padding-top: 5px;"><A title="Internet Explorer" 
+href="http://msdn.microsoft.com/ie">Internet Explorer</A>                     
+</DIV>
+<DIV class="footerLinks" style="padding-top: 5px;"><A title="Desktop" href="http://msdn.microsoft.com/windows/desktop">Desktop</A> 
+                    </DIV>
+<DIV class="footerLinks" style="padding-top: 5px;"><A title="Hardware" href="http://msdn.microsoft.com/windows/hardware">Hardware</A> 
+                    </DIV></DIV>
+<DIV class="footerFinalBlock">
+<DIV class="footerLinksTitles">Other links</DIV>
+<DIV class="footerLinks" style="padding-top: 5px;"><A title="Support" href="http://msdn.microsoft.com/windows/desktop/aa905013">Support</A> 
+                    </DIV>
+<DIV class="footerLinks" style="padding-top: 5px;"><A title="Microsoft Connect" 
+href="https://connect.microsoft.com/dashboard/">Microsoft Connect</A>            
+         </DIV>
+<DIV class="footerLinks" style="padding-top: 5px;"><A title="Windows Phone Dev Center" 
+href="http://dev.windowsphone.com/">Windows Phone Dev Center</A>                 
+    </DIV></DIV></DIV>
+<DIV class="footerMSLogo"><A title="Microsoft" href="http://www.microsoft.com/">
+<DIV class="clip104x20"><IMG title="Microsoft" class="footerMsLogo" alt="" src="How%20to%20load%20an%20image%20into%20Direct2D%20effects%20using%20the%20FilePicker_files/ImageSprite(1).png"> 
+        </DIV></A>     </DIV>
+<DIV class="footerSubLinksContainer">
+<DIV class="footerSubLinks"><A title="Terms of use" href="http://msdn.microsoft.com/windows/desktop/cc300389">Terms 
+of use</A>               <SPAN class="footerSubLinksDivider">|</SPAN>            
+ <A title="Trademarks" href="http://www.microsoft.com/library/toolbar/3.0/trademarks/en-us.mspx">Trademarks</A> 
+              <SPAN class="footerSubLinksDivider">|</SPAN>             <A title="Privacy statement" 
+href="http://www.microsoft.com/info/privacy.mspx">Privacy statement</A>          
+     <SPAN class="footerSubLinksDivider">|</SPAN>                       <A 
+title="Site feedback" onclick="SiteFeedbackNewWindow('http://lab.msdn.microsoft.com/mailform/contactus.aspx?refurl=%2flibrary%2fwindows%2fdesktop%2fhh780393'); return false;" 
+href="http://lab.msdn.microsoft.com/mailform/contactus.aspx?refurl=%2flibrary%2fwindows%2fdesktop%2fhh780393" 
+target="_blank">Site feedback</A>           <SPAN 
+class="footerSubLinksDivider">|</SPAN>           <A title=" United States (English)" 
+href="http://msdn.microsoft.com/en-us/windows/desktop/SelectLocale?fromPage=%2flibrary%2fwindows%2fdesktop%2fhh780393"> 
+United States (English)</A>         </DIV>
+<DIV title="© 2012 Microsoft. All rights reserved." class="footerCopyright">© 
+2012 Microsoft. All rights reserved.</DIV></DIV></DIV>
+<DIV class="footerPrintView">
+<DIV class="footerCopyrightPrintView">© 2012 Microsoft. All rights 
+reserved.</DIV></DIV><INPUT id="MtpsDevice" type="hidden" value="Default"> <!--[CDATA[ Third party scripts and code linked to or referenced from this website are licensed to you by the parties that own such code, not by Microsoft.  See ASP.NET Ajax CDN Terms of Use – http://www.asp.net/ajaxlibrary/CDN.ashx. ]]--> 
+                                                                           
+<NOSCRIPT>&lt;div&gt;&lt;img alt="DCSIMG" id="Img1" width="1" height="1" 
+src="http://m.webtrends.com/dcsmgru7m99k7mqmgrhudo0k8_8c6m/njs.gif?dcsuri=/nojavascript&amp;amp;WT.js=No" 
+/&gt;&lt;/div&gt;</NOSCRIPT> <NOSCRIPT>  &lt;a href="http://www.omniture.com" 
+title="Web Analytics"&gt;    &lt;img 
+src="//msstonojsmsdn.112.2o7.net/b/ss/msstonojsmsdn/1/H.20.2--NS/0" height="1" 
+width="1" border="0" alt="" /&gt;  &lt;/a&gt; </NOSCRIPT>         </DIV>
+<SCRIPT class="mtps-injected" type="text/javascript">
+/*<![CDATA[*/
+(function(window,document){"use strict";function preload(scripts){for(var result=[],script,e,i=0;i<scripts.length;i++)script=scripts[i],script.hasOwnProperty("url")&&(e=document.createElement("script"),e.src=script.url,script.throwaway=e),result.push(script);return result}function inject(scripts,index){var script,elem;if(index>=scripts.length){delete mtps.injectScripts;return}script=scripts[index],elem=document.createElement("script"),elem.className="mtps-injected",elem.async=!1;var isLoaded=!1,timeoutId=0,injectNextFnName="",injectNext=elem.onerror=function(){isLoaded||(isLoaded=!0,inject(scripts,index+1),window.clearTimeout(timeoutId),elem.onload=elem.onerror=elem.onreadystatechange=null,injectNextFnName&&delete mtps[injectNextFnName],elem.removeEventListener&&elem.removeEventListener("load",injectNext,!1))};elem.addEventListener?elem.addEventListener("load",injectNext,!1):elem.readyState==="uninitialized"?elem.onreadystatechange=function(){(this.readyState==="loaded"||this.readyState==="complete")&&injectNext()}:elem.onload=injectNext,script.hasOwnProperty("url")?(timeoutId=window.setTimeout(injectNext,12e4),elem.src=script.url):(injectNextFnName="_injectNextScript_"+index,mtps[injectNextFnName]=injectNext,timeoutId=window.setTimeout(injectNext,2e3),elem.text="try {\n"+script.txt+"\n} finally { MTPS."+injectNextFnName+" && MTPS."+injectNextFnName+"(); }"),parent.appendChild(elem)}var mtps=window.MTPS||(window.MTPS={}),parent=document.getElementsByTagName("head")[0];mtps.injectScripts=function(scripts){inject(preload(scripts),0)}})(window,document);
+MTPS.injectScripts([
+	{ txt: "/**/\r\n\"use strict\"; \r\n(window.MTPS || (window.MTPS = {})).cdnDomains || (window.MTPS.cdnDomains = { \r\n\t\"image\": \"http://i.msdn.microsoft.com\", \r\n\t\"js\": \"http://i2.msdn.microsoft.com\", \r\n\t\"css\": \"http://i3.msdn.microsoft.com\"\r\n});\r\n/**/" },
+	{ txt: "//\n  var literalNormalizedUrl = \u0027/en-us/library/windows/desktop/hh780393(d=default,l=en-us,v=vs.85).aspx\u0027;\n  var wt_nvr_ru = \u0027WT_NVR_RU\u0027;\n  var wt_fpcdom = \u0027.microsoft.com\u0027;\n  var wt_domlist = \u0027msdn.microsoft.com\u0027;\n  var wt_pathlist = \u0027\u0027;\n  var wt_paramlist = \u0027DCSext.mtps_devcenter\u0027;\n  var wt_siteid = \u0027MSDN\u0027;\n  var gDomain = \u0027m.webtrends.com\u0027;\n  var gDcsId = \u0027dcsmgru7m99k7mqmgrhudo0k8_8c6m\u0027;\n  var gFpc = \u0027WT_FPC\u0027;\n  if (document.cookie.indexOf(gFpc + \"=\") == -1) {\n    var wtidJs = document.createElement(\"script\");\n    wtidJs.src = \"//\" + gDomain + \"/\" + gDcsId + \"/wtid.js\";\n    document.getElementsByTagName(\"head\")[0].appendChild(wtidJs);\n  }\n  var detectedLocale = \u0027en-us\u0027;\n  var wtsp = \u0027_msdn_\u0027;\n  var gTrackEvents = \u00270\u0027;\n/**/" },
+	{ txt: "/**/\n  var omni_guid = \"75737e6a-c438-46bf-a693-4e96f3d210cd\";\n/**/" },
+	{ url: "http://i2.msdn.microsoft.com/Combined.js?resources=0:webtrendsscript,1:omni_rsid_MSDN;/Areas/Global/Content/Webtrends/resources:0,/Areas/Global/Content/Omniture/resources/MSDN:1&amp;hashKey=2A2EA78286FAF39A313149F2A3E6EE83" },
+	{ url: "http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.1.min.js" },
+	{ url: "http://i2.msdn.microsoft.com/Combined.js?resources=0:Utilities,1:jquery-ui-1.8.16.custom.min,2:header,3:Toc,3:NavigationResize,4:FeedbackCounter,4:Feedback;/Areas/Epx/Content/Scripts:0,/Areas/Epx/Themes/WindowsAzure/Content:1,/Areas/Epx/Themes/Metro/Content:2,/Areas/Epx/Library/Content:3,/Areas/Epx/Shared/Content:4&amp;hashKey=CEFC9D7F83BFB67521DA33BE4ED575E6" },
+	{ url: "http://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js" },
+	{ url: "http://i2.msdn.microsoft.com/Combined.js?resources=0:CommunityContent,0:Topic,0:CodeSnippet,0:TopicNotInScope,0:CollapsibleArea,0:VersionSelector,0:SurveyBroker;/Areas/Epx/Content/Scripts:0&amp;hashKey=490EB45CA5D10CA44E394B73DE62BCD4" }
+]);
+
+/*]]>*/
+</SCRIPT>
+ </BODY></HTML>

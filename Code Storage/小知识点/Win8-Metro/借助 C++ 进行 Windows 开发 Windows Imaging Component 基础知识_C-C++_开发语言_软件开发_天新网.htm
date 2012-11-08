@@ -1,0 +1,512 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0041)http://dev.21tx.com/2009/02/09/14033.html -->
+<HTML xmlns="http://www.w3.org/1999/xhtml"><HEAD><META content="IE=7.0000" 
+http-equiv="X-UA-Compatible">
+<TITLE>借助 C++ 进行 Windows 开发: Windows Imaging Component 基础知识_C/C++_开发语言_软件开发_天新网</TITLE>
+<META name=keywords 
+content="借助 C++ 进行 Windows 开发: Windows Imaging Component 基础知识">
+<META name=description 
+content="目录 　　入门　　解码图像　　编码图像　　WIC 图像工厂　　使用流　　通过 WPF 使用 WIC　　下一步是什么 ...">
+<META name=qid content=TX-2-1197-20090209-14033>
+<META content="text/html; charset=gb2312" http-equiv=Content-Type>
+<META content=zh-CN http-equiv=Content-Language>
+<META content=no-cache http-equiv=pragma>
+<META content=IE=EmulateIE7 http-equiv=X-UA-Compatible>
+<SCRIPT language=JavaScript type=text/javascript 
+src="借助%20C++%20进行%20Windows%20开发%20Windows%20Imaging%20Component%20基础知识_C-C++_开发语言_软件开发_天新网_files/q.js"></SCRIPT>
+
+<SCRIPT language=JavaScript type=text/javascript 
+src="借助%20C++%20进行%20Windows%20开发%20Windows%20Imaging%20Component%20基础知识_C-C++_开发语言_软件开发_天新网_files/qAG.js"></SCRIPT>
+<LINK rel=stylesheet type=text/css 
+href="借助%20C++%20进行%20Windows%20开发%20Windows%20Imaging%20Component%20基础知识_C-C++_开发语言_软件开发_天新网_files/q.css"><LINK 
+rel=stylesheet type=text/css 
+href="借助%20C++%20进行%20Windows%20开发%20Windows%20Imaging%20Component%20基础知识_C-C++_开发语言_软件开发_天新网_files/qc.css">
+<STYLE type=text/css>#qcmenu .logo {
+	BACKGROUND: url(http://www.21tx.com/images/cmenu/dev_menu.gif)
+}
+#qcmenu .text {
+	BACKGROUND: url(http://www.21tx.com/images/cmenu/dev_menubg.gif)
+}
+</STYLE>
+
+<META name=GENERATOR content="MSHTML 10.00.9200.16384"></HEAD>
+<BODY><A name=qtop></A>
+<DIV id=qnav>
+<DIV>·<A href="http://www.21tx.com/" target=_top>天新网首页</A>·<A 
+onclick=qAddBookmark(document.title) href="javascript:void(0)" 
+target=_top>加入收藏</A>·<A onclick="qSetHome(this,'http://www.21tx.com/')" 
+href="javascript:void(0)" target=_top>设为首页</A>·<A 
+href="http://www.21tx.com/about/nav.html" target=_top>网站导航</A></DIV></DIV>
+<DIV id=qmenu>
+<DIV id=qlogo><A href="http://www.21tx.com/" target=_top><IMG border=0 alt=天新网 
+src="借助%20C++%20进行%20Windows%20开发%20Windows%20Imaging%20Component%20基础知识_C-C++_开发语言_软件开发_天新网_files/logo130.gif" 
+width=130></A></DIV>
+<DIV><A class=b href="http://www.21tx.com/digi/" target=_top>数码</A><A 
+href="http://www.21tx.com/notebook/" target=_top>笔记本</A><A 
+href="http://mobile.21tx.com/" target=_top>手机</A><A style="FONT-FAMILY: Arial" 
+href="http://www.21tx.com/dv/" target=_top>摄像机</A><A style="FONT-FAMILY: Arial" 
+href="http://www.21tx.com/dc/" target=_top>相机</A><A style="FONT-FAMILY: Arial" 
+href="http://www.21tx.com/mp3/" target=_top>MP3</A><A style="FONT-FAMILY: Arial" 
+href="http://www.21tx.com/mp4/" target=_top>MP4</A><A style="FONT-FAMILY: Arial" 
+href="http://www.21tx.com/gps/" target=_top>GPS</A><BR><A class=b 
+href="http://diy.21tx.com/" target=_top>硬件</A><A 
+href="http://www.21tx.com/deskpc/" target=_top>台式机</A><A 
+href="http://diy.21tx.com/net/" target=_top>网络</A><A 
+href="http://www.21tx.com/server/" target=_top>服务器</A><A 
+href="http://diy.21tx.com/mainboard/" target=_top>主板</A><A 
+style="FONT-FAMILY: Arial" href="http://diy.21tx.com/cpu/" target=_top>CPU</A><A 
+style="FONT-FAMILY: Arial" href="http://diy.21tx.com/hdd/" target=_top>硬盘</A><A 
+style="FONT-FAMILY: Arial" href="http://diy.21tx.com/display/" 
+target=_top>显卡</A></DIV>
+<DIV class=line></DIV>
+<DIV><A class=b href="http://www.21tx.com/oa/" target=_top>办公</A><A 
+href="http://www.21tx.com/oa/projector/" target=_top>投影</A><A 
+href="http://www.21tx.com/oa/print/" target=_top>打印</A><A 
+href="http://www.21tx.com/oa/fax/" target=_top>传真</A><BR><A class=b 
+href="http://www.21tx.com/digihome/" target=_top>家电</A><A 
+href="http://www.21tx.com/digihome/tv/" target=_top>电视</A><A 
+href="http://www.21tx.com/digihome/hifi/" target=_top>影院</A><A 
+href="http://www.21tx.com/digihome/ac/" target=_top>空调</A></DIV>
+<DIV class=line></DIV>
+<DIV><A class=b href="http://games.21tx.com/" target=_top>游戏</A><A 
+href="http://games.21tx.com/netgame/" target=_top>网游</A><A 
+href="http://games.21tx.com/pcgame/" target=_top>单机</A><A 
+href="http://games.21tx.com/cartoon/" target=_top>动漫</A><BR><A class=b 
+href="http://auto.21tx.com/" target=_top>汽车</A><A 
+href="http://auto.21tx.com/newcar/" target=_top>新车</A><A 
+href="http://auto.21tx.com/buy/" target=_top>购车</A><A 
+href="http://auto.21tx.com/test/" target=_top>试驾</A></DIV>
+<DIV class=line></DIV>
+<DIV><A class=b href="http://dl.21tx.com/" target=_top>下载</A><A 
+href="http://drivers.21tx.com/" target=_top>驱动</A><A 
+href="http://codes.21tx.com/" target=_top>源码</A><BR><A class=b 
+href="http://school.21tx.com/" target=_top>学院</A><A href="http://dev.21tx.com/" 
+target=_top>开发</A><A href="http://school.21tx.com/photo/" 
+target=_top>设计</A></DIV>
+<DIV class=line></DIV>
+<DIV><A class="b hot" href="http://exam.21tx.com/" target=_top>考试</A><A 
+href="http://exam.21tx.com/gwy/" target=_top>公务员</A><A 
+href="http://exam.21tx.com/gaokao/" target=_top>高考</A><A 
+href="http://exam.21tx.com/kaoyan/" target=_top>考研</A><BR><A class=b 
+href="http://news.21tx.com/" target=_top>业界</A><A 
+href="http://news.21tx.com/net/" target=_top>互联网</A><A 
+href="http://news.21tx.com/telcom/" target=_top>通信</A><A 
+href="http://news.21tx.com/discovery/" target=_top>探索</A></DIV></DIV>
+<DIV class=AG962>
+<SCRIPT type=text/javascript>qShowAG('pub_T960C');</SCRIPT>
+</DIV>
+<DIV id=qcmenu>
+<DIV class=logo></DIV>
+<DIV class=text>
+<DIV class=texta><A href="http://dev.21tx.com/">开发首页</A> | <A 
+href="http://dev.21tx.com/language/">开发语言</A> | <A 
+href="http://dev.21tx.com/dotnet/">.Net开发</A> | <A 
+href="http://dev.21tx.com/java/">Java开发</A> | <A 
+href="http://dev.21tx.com/web/">Web开发</A> | <A 
+href="http://dev.21tx.com/database/">数据库开发</A> | <A 
+href="http://dev.21tx.com/mobile/">移动开发</A> | <A 
+href="http://dev.21tx.com/game/">游戏开发</A> | <A 
+href="http://dev.21tx.com/corp/">企业开发</A> | <A 
+href="http://dev.21tx.com/os/">操作系统</A> | <A 
+href="http://dev.21tx.com/softengine/">软件工程</A></DIV>
+<DIV class=textb>
+<P><A href="http://dev.21tx.com/language/vb/">VB</A> <A 
+href="http://dev.21tx.com/language/vc/">VC</A> <A 
+href="http://dev.21tx.com/language/delphi/">Delphi</A> <A 
+href="http://dev.21tx.com/language/pb/">PB</A> <A 
+href="http://dev.21tx.com/language/bcb/">BCB</A> <A 
+href="http://dev.21tx.com/language/c/">C++</A> - <A 
+href="http://dev.21tx.com/dotnet/aspnet/">ASP.net</A> <A 
+href="http://dev.21tx.com/dotnet/csharp/">C#</A> <A 
+href="http://dev.21tx.com/dotnet/vbnet/">VB.net</A> - <A 
+href="http://dev.21tx.com/java/j2ee/">J2EE</A> <A 
+href="http://dev.21tx.com/java/j2se/">J2SE</A> <A 
+href="http://dev.21tx.com/java/j2me/">J2ME</A> <A 
+href="http://dev.21tx.com/java/ejb/">EJB</A> - <A 
+href="http://dev.21tx.com/web/asp/">ASP</A> <A 
+href="http://dev.21tx.com/web/php/">PHP</A> <A 
+href="http://dev.21tx.com/java/jsp/">JSP</A> <A 
+href="http://dev.21tx.com/web/cgi/">CGI</A> - <A 
+href="http://dev.21tx.com/database/mssql/">MSSQL</A> <A 
+href="http://dev.21tx.com/database/oracle/">Oracle</A> <A 
+href="http://dev.21tx.com/database/db2/">DB2</A> <A 
+href="http://dev.21tx.com/database/mysql/">MySQL</A> - <A 
+href="http://dev.21tx.com/codinglife/">CodingLife</A></P></DIV></DIV></DIV>
+<DIV id=qmain>
+<DIV id=qleft>
+<DIV id=qloc>您现在的位置：<A href="http://www.21tx.com/">天新网</A> &gt; <A 
+href="http://dev.21tx.com/">软件开发</A> &gt; <A 
+href="http://dev.21tx.com/language/">开发语言</A> &gt; <A 
+href="http://dev.21tx.com/language/c/">C/C++</A></DIV>
+<DIV id=qtit>借助 C++ 进行 Windows 开发: Windows Imaging Component 基础知识</DIV>
+<DIV id=qfrom><A href="http://www.21tx.com/">http://www.21tx.com/</A> 
+2009年02月09日 <FONT>msdn Kenny Kerr</FONT></DIV>
+<DIV id=qcnt>
+<SCRIPT language=JavaScript>qShowAG('pubC_HZH');</SCRIPT>
+
+<P><IMG alt="借助 C++ 进行 Windows 开发: Windows Imaging Component 基础知识" 
+src="借助%20C++%20进行%20Windows%20开发%20Windows%20Imaging%20Component%20基础知识_C-C++_开发语言_软件开发_天新网_files/22894.jpg">目录 
+</P>
+<P>　　入门</P>
+<P>　　解码图像</P>
+<P>　　编码图像</P>
+<P>　　WIC 图像工厂</P>
+<P>　　使用流</P>
+<P>　　通过 WPF 使用 WIC</P>
+<P>　　下一步是什么？</P>
+<P>　　Microsoft&reg; <A href="http://dev.21tx.com/os/windows/" 
+target=_blank>Windows</A>&reg; Imaging Component (WIC) 是用于编码、解码和操控图像的可扩展框架。WIC 最初是为 
+<A href="http://school.21tx.com/os/windows/" target=_blank>Windows</A> <A 
+href="http://school.21tx.com/os/longhorn/" target=_blank>Vista</A>&reg; 和 Windows 
+Presentation Foundation (WPF) 而设计的，但现在，不仅 Windows Vista 和 Microsoft <A 
+href="http://dev.21tx.com/dotnet/" target=_blank>.net</A> <A 
+href="http://dev.21tx.com/dotnet/framework/" target=_blank>Framework</A> 3.0 
+及更高版本附带此框架，而且它还是 <A href="http://school.21tx.com/os/winxp/" 
+target=_blank>Windows XP</A> 和 Windows Server&reg; 2003 的一个<A 
+href="http://dl.21tx.com/" target=_blank>下载</A>项，可供于本机应用程序使用。</P>
+<P>　　作为支持 WPF 的多个功能强大的本机框架之一，本文中所说的 WIC 是用于实现 System.Windows.Media.Imaging 
+命名空间的框架。但是，它也非常适合于以 <A href="http://dev.21tx.com/language/c/" 
+target=_blank>C++</A> 编写的本机应用程序，因为它提供了通过一组 COM 接口呈现的简单但功能强大的 API。</P>
+<P>　　WIC 使用一组可扩展的图像编解码器支持多种图像格式。每个编解码器支持一种不同的图像格式，并且通常同时提供编码器和解码器。WIC 
+包括用于所有主要图像格式的一组内置编解码器，这些格式包括 PNG、JPEG、GIF、TIFF、HD Photo (HDP)、ICO，当然还有 Windows 
+BMP。</P>
+<P>　　HDP 可能是唯一您没有听过的格式。它最初称为 Windows Media Photo 且是配合 Windows Vista 
+开发的，用于克服现有格式的一些限制并提供更好的性能和更高的图像质量。如需有关 HDP 的更多信息，请查看 
+microsoft.com/whdc/xps/wmphoto.mspx 上的规范。幸运地是，WIC 
+可很好地支持这一新图像格式，因此应用程序不必知道格式的具体细节即可使用它们。</P>
+<P>　　本月，我将向您展示如何使用 WIC 
+来编码和解码不同的图像格式以及其间的多项事宜。下一次，我将讲述一些更高级的功能，并向您展示如何使用自己的图像编解码器来扩展 WIC。</P>
+<P>　　入门</P>
+<P>　　WIC API 包含 COM 接口、函数、结构和错误代码，以及标识各种编解码器、容器和格式的 GUID。需要的所有声明均包括在 wincodec.h 
+和 wincodecsdk.h 头文件中，这些文件是 Windows SDK 的一部分（Visual Studio&reg; 2008 中附带这些文件）。您还必须链接到 
+WindowsCodecs.lib 库，该库提供了您可能需要的各种定义。可将以下代码添加到项目的预编译头文件中以使其完全可用：</P>
+<P><CODE class=txcode>#include &lt;wincodec.h&gt;<BR>#include 
+&lt;wincodecsdk.h&gt;<BR>#pragma comment(lib, "WindowsCodecs.lib")</CODE>
+<P>　　由于 WIC API 主要包含的是 COM 接口，因此我使用活动模板库 (ATL) CComPtr 
+类来处理接口指针的创建和管理。如果要执行相同的操作，还需包括定义 CComPtr 模板类的 atlbase.h 头文件：</P>
+<P><CODE class=txcode>#include &lt;atlbase.h&gt;</CODE>
+<P>　　WIC API 还使用 COM 库，因此使用此 API 的任何线程均必须调用 CoInitializeEx 函数。</P>
+<P>　　最后，WIC API 使用 HRESULT 来描述错误。本文中的示例使用 HR 宏来清晰地识别方法在何处返回需要检查的 
+HRESULT。可将它替换为自己的错误处理策略—由它引发异常或是您自己返回 HRESULT。</P>
+<P>　　解码图像</P>
+<P>　　解码器由 IWICBitmapDecoder 接口表示。WIC 提供了多种用于创建解码器对象的方法，但可仅使用特定解码器的 CLSID 
+来创建一个实例。以下示例为 TIFF 图像创建了一个解码器：</P>
+<P><CODE class=txcode>CComPtr&lt;IWICBitmapDecoder&gt; 
+decoder;<BR>HR(decoder.CoCreateInstance(CLSID_WICTiffDecoder));</CODE>
+<P>　　图 1 列出了 WIC 所包含的编解码器以及可用于创建不同解码器的 
+CLSID。创建完解码器后，需使用包含像素和可选元数据（它们使用解码器可理解的格式）的流对其进行初始化：</P>
+<P><IMG alt="借助 C++ 进行 Windows 开发: Windows Imaging Component 基础知识" 
+src="借助%20C++%20进行%20Windows%20开发%20Windows%20Imaging%20Component%20基础知识_C-C++_开发语言_软件开发_天新网_files/22894.jpg">Figure1内置 
+WIC 编解码器的 CLSID </P>
+<P>
+<TABLE>
+  <TBODY>
+  <TR>
+    <TD>格式</TD>
+    <TD>解码器</TD>
+    <TD>编码器</TD></TR>
+  <TR>
+    <TD>BMP</TD>
+    <TD>CLSID_WICBmpDecoder</TD>
+    <TD>CLSID_WICBmpEncoder</TD></TR>
+  <TR>
+    <TD>PNG</TD>
+    <TD>CLSID_WICPngDecoder</TD>
+    <TD>CLSID_WICPngEncoder</TD></TR>
+  <TR>
+    <TD>ICO</TD>
+    <TD>CLSID_WICIcoDecoder</TD>
+    <TD>不可用</TD></TR>
+  <TR>
+    <TD>JPEG</TD>
+    <TD>CLSID_WICJpegDecoder</TD>
+    <TD>CLSID_WICJpegEncoder</TD></TR>
+  <TR>
+    <TD>GIF</TD>
+    <TD>CLSID_WI<A href="http://dev.21tx.com/web/cgi/" 
+      target=_blank>CGI</A>fDecoder</TD>
+    <TD>CLSID_WICGifEncoder</TD></TR>
+  <TR>
+    <TD>TIFF</TD>
+    <TD>CLSID_WICTiffDecoder</TD>
+    <TD>CLSID_WICTiffEncoder</TD></TR>
+  <TR>
+    <TD>HDP</TD>
+    <TD>CLSID_WICWmpDecoder</TD>
+    <TD>CLSID_WICWmpEncoder</TD></TR></TBODY></TABLE></P>
+<P><CODE class=txcode>CComPtr&lt;IStream&gt; stream;<BR>// Create stream object 
+here...<BR>HR(decoder-&gt;Initialize(<BR>　stream,<BR>　WICDecodeMetadataCacheOnDemand));</CODE>
+<P>　　我将在本文后面的内容中讨论流，但 IStream 只是许多 API 使用的传统 COM 流接口，包括我在 2007 年 4 月出版的《MSDN&reg; 
+杂志》(msdn.microsoft.com/msdnmag/issues/07/04/<A 
+href="http://dev.21tx.com/web/xml/" target=_blank>XML</A>) 中所介绍的 XmlLite 
+分析器。</P>
+<P>　　Initialize 方法的第二个参数介绍您希望解码器如何从流中读取图像信息。WICDecodeMetadataCacheOnDemand 
+指示解码器应仅在需要时从流中读取图像信息。如果图像格式恰好包含或支持多个帧，则此标记将特别有用。与此相对的标记是 
+WICDecodeMetadataCacheOnLoad，它指示解码器应立即缓存所有图像信息。然后，对解码器的所有后续请求都应直接从<A 
+href="http://diy.21tx.com/memory/" 
+target=_blank>内存</A>执行。它对于托管代码具有更大的意义，我将在稍后进行介绍。</P>
+<P>　　初始化解码器后，即可自由查询解码器以获取信息。您最可能询问的是构成图像的一组帧。帧是包含像素的实际位图。可将图像格式看作一个帧容器。正如我所提到的，有些图像格式支持多个帧。</P>
+<P>　　GetFrameCount 函数用于确定图像中的帧数：</P>
+<P><CODE class=txcode>UINT frameCount = 
+0;<BR>HR(decoder-&gt;GetFrameCount(&amp;frameCount));</CODE>
+<P>　　给定帧数后，即可使用 GetFrame 方法来检索单个帧：</P>
+<P><CODE class=txcode>for (UINT index = 0; index &lt; frameCount; 
+++index)<BR>{<BR>　　CComPtr&lt;IWICBitmapFrameDecode&gt; 
+frame;<BR>　　HR(decoder-&gt;GetFrame(index, &amp;frame));<BR>}</CODE>
+<P>　　GetFrame 所返回的 IWICBitmapFrameDecode 接口是从代表只读位图的 IWICBitmapSource 
+接口派生而来的。IWICBitmapFrameDecode 提供与帧相关的信息，如元数据和色彩配置文件。IWICBitmapSource 
+提供位图的大小和分辨率、像素格式以及其他可选特性（如色彩表）。IWICBitmapSource 还提供 CopyPixels 
+方法，此方法可用于从位图中实际读取像素。</P>
+<P>　　可使用 GetSize 方法获取以像素表示的帧尺寸：</P>
+<P><CODE class=txcode>UINT width = 0;<BR>UINT height = 
+0;<BR>HR(frame-&gt;GetSize(&amp;width, &amp;height));</CODE>
+<P>　　并且可使用 GetResolution 方法获取以每英寸点数 (dpi) 表示的帧分辨率：</P>
+<P><CODE class=txcode>double dpiX = 0;<BR>double dpiY = 
+0;<BR>HR(frame-&gt;GetResolution(&amp;dpiX, &amp;dpiY));</CODE>
+<P>　　尽管分辨率对于像素本身没有影响，但在使用逻辑坐标系统（如 WPF 所使用的）时，它的确会影响图像的显示效果。</P>
+<P>　　最后一个重要帧属性是像素格式。像素格式描述像素在内存中的布局，并且还暗示支持的颜色或颜色空间的范围。GetPixelFormat 
+方法返回像素格式：</P>
+<P><CODE class=txcode>GUID pixelFormat = { 0 
+};<BR>HR(frame-&gt;GetPixelFormat(&amp;pixelFormat));</CODE>
+<P>　　像素格式定义为 GUID，其名称非常清楚地描述了内存布局。例如，GUID_WICPixelFormat24bppRGB 格式表示每个像素使用 24 
+位（3 字节）存储，其中每个颜色通道 1 个字节。此外，红色 (R)、绿色 (G) 和蓝色 (B) 
+字母的顺序表示从最不重要到最重要的字节顺序。例如，GUID_WICPixelFormat32bp<A 
+href="http://dev.21tx.com/language/pb/" target=_blank>PB</A>GRA 格式表示每个像素使用 32 
+位（4 字节）存储，其中每个颜色通道 1 个字节，阿尔法通道 1 个字节。在此示例中，通道的顺序是蓝色 (B) 通道最不重要，阿尔法 (A) 
+通道最重要。</P>
+<P>　　可使用 CopyPixels 方法来检索实际的像素。</P>
+<P><CODE class=txcode>HRESULT CopyPixels(<BR>　const WICRect* rect,<BR>　UINT 
+stride,<BR>　UINT bufferSize,<BR>　BYTE* buffer);</CODE>
+<P>　　rect 参数指定位图中要复制的一个矩形。可将此参数设置为 0，此时会复制整个位图。我马上会谈到跨距。buffer 和 bufferSize 
+参数指示将像素写到何处以及可用空间有多大。</P>
+<P>　　跨距是位图比较麻烦的一个方面。跨距是扫描线之间的字节数。一般而言，构成位图像素的位会被打包成行。单个行的长度应足够存储一行位图像素。跨距是一行的长度（以字节为单位），向上取整为最接近的 
+DWORD（4 个字节）。从而允许每像素少于 32 位 (bpp) 的位图占用更少的内存，同时仍提供良好的性能。可使用以下函数来计算指定位图的跨距：</P>
+<P><CODE class=txcode>UINT GetStride(<BR>　const UINT width, // image width in 
+pixels<BR>　const UINT bitCount) { // bits per pixel<BR>　ASSERT(0 == bitCount % 
+8);<BR>　const UINT byteCount = bitCount / 8;<BR>　const UINT stride = (width * 
+byteCount + 3) &amp; ~3;<BR>　ASSERT(0 == stride % sizeof(DWORD));<BR>　return 
+stride;<BR>}</CODE>
+<P>　　除此之外，可按如下调用 CopyPixels 方法，假定帧代表一个 32 bpp 位图：</P>
+<P><CODE class=txcode>const UINT stride = GetStride(width, 
+32);<BR>CAtlArray&lt;BYTE&gt; buffer;<BR>VERIFY(buffer.SetCount(stride * 
+height));<BR>HR(frame-&gt;CopyPixels(<BR>　0, // entire 
+bitmap<BR>　stride,<BR>　buffer.GetCount(),<BR>　&amp;buffer[0]));</CODE>
+<P>　　我的示例使用的是 ATL CAtlArray 集合类来分配缓存，当然您可以使用所喜欢的任何存储。要更有效地处理更大的位图，可多次调用 
+CopyPixels 以读取位图的不同部分。</P>
+<P>　　编码图像</P>
+<P>　　编码器由 IWICBitmapEncoder 接口表示。与解码器一样，WIC 提供了多种用于创建编码器的方法，但可仅使用特定编码器的 CLSID 
+来创建它。例如，以下代码为 PNG 图像创建了一个编码器：</P>
+<P><CODE class=txcode>CComPtr&lt;IWICBitmapEncoder&gt; 
+encoder;<BR>HR(encoder.CoCreateInstance(CLSID_WICPngEncoder));</CODE>
+<P>　　图 1 列出了可用于创建 WIC 所包含的各种编码器的 CLSID。创建完编码器后，需使用将最终接收已编码像素和可选元数据的流对其进行初始化：</P>
+<P><CODE class=txcode>CComPtr&lt;IStream&gt; stream;<BR>// Create stream object 
+here...<BR>HR(encoder-&gt;Initialize(<BR>　stream,<BR>　WICBitmapEncoderNoCache));</CODE>
+<P>　　Initialize 方法的第二个参数就没那么有趣了，因为 WICBitmapEncoderNoCache 是目前支持的唯一标记。</P>
+<P>　　初始化编码器后，现在开始添加帧。CreateNewFrame 方法会创建一个新帧，然后可对其进行配置并向其写入像素：</P>
+<P><CODE class=txcode>CComPtr&lt;IWICBitmapFrameEncode&gt; 
+frame;<BR>CComPtr&lt;IPropertyBag2&gt; 
+properties;<BR>HR(encoder-&gt;CreateNewFrame(<BR>　&amp;frame,<BR>　&amp;properties));</CODE>
+<P>　　CreateNewFrame 返回代表新帧的 IWICBitmapFrameEncode 接口和 IPropertyBag2 
+接口。后者为可选项，可用于指定任何特定于编码器的属性，如 JPEG 的图像质量或 TIFF 的压缩算法。例如，以下显示了可如何设置 JPEG 
+图像的图像质量：</P>
+<P><CODE class=txcode>PROPBAG2 name = { 0 };<BR>name.dwType = 
+PROPBAG2_TYPE_DATA;<BR>name.vt = VT_R4;<BR>name.pstrName = 
+L"ImageQuality";<BR>CComVariant value(0.75F);<BR>HR(properties-&gt;Write(<BR>　1, 
+// property count<BR>　&amp;name,<BR>　&amp;value));</CODE>
+<P>　　图像质量的值必须在 0.0（表示可能的最低质量）和 1.0（表示可能的最高质量）之间。</P>
+<P>　　设完编码器属性后，需先调用 Initialize 方法再进行配置和写入帧：</P>
+<P><CODE class=txcode>HR(frame-&gt;Initialize(properties));</CODE>
+<P>　　下一步是为新帧设置尺寸和像素格式，然后才能向它写入像素：</P>
+<P><CODE class=txcode>HR(frame-&gt;SetSize(width, height));<BR>GUID pixelFormat 
+= 
+GUID_WICPixelFormat24bppBGR;<BR>HR(frame-&gt;SetPixelFormat(&amp;pixelFormat));<BR>ASSERT(GUID_WICPixelFormat24bppBGR 
+== pixelFormat);</CODE>
+<P>　　SetPixelFormat 参数为一个 [in, out] 
+参数。在输入时，它指定所需的像素格式。在输出时，它包含所支持的最接近像素格式。这通常不是问题，除非格式是在运行时设置的，可能基于另一位图的像素格式。</P>
+<P>　　使用 WritePixels 方法将像素写入到帧中，如下所示：</P>
+<P><CODE class=txcode>HRESULT WritePixels(<BR>　UINT lineCount,<BR>　UINT 
+stride,<BR>　UINT bufferSize,<BR>　BYTE* buffer);</CODE>
+<P>　　lineCount 参数指定将写入的像素行数。这意味着可多次调用 WritePixels 来写入整个帧。stride 
+参数指示如何将缓存中的像素打包到行中。我已在上一小节中介绍了如何计算跨距。</P>
+<P>　　在一次或多次调用 WritePixels 来写入整个帧之后，需通过调用帧的 Commit 
+方法来告诉编码器帧已做好准备。并且，在提交了构成图像的所有帧后，需通过调用编码器的 Commit 方法来告诉编码器图像已做好被保存的准备。</P>
+<P>　　到此为止，我已介绍完编码和解码图像的基础知识。在介绍后续内容之前，我想通过一个简单的示例来将其表达清楚。图 2 显示一个 CopyIconToTiff 
+函数，它展示了如何读取构成图标的各个位图，以及如何将它们复制到多帧 TIFF 图像。</P>
+<P><IMG alt="借助 C++ 进行 Windows 开发: Windows Imaging Component 基础知识" 
+src="借助%20C++%20进行%20Windows%20开发%20Windows%20Imaging%20Component%20基础知识_C-C++_开发语言_软件开发_天新网_files/22894.jpg">Figure2CopyIconToTiff 
+</P>
+<P><CODE class=txcode>HRESULT CopyIconToTiff(<BR>　 IStream* sourceStream,<BR>　 
+IStream* targetStream) {<BR>　// Prepare the ICO 
+decoder<BR>　CComPtr&lt;IWICBitmapDecoder&gt; 
+decoder;<BR>　HR(decoder.CoCreateInstance(CLSID_WICIcoDecoder));<BR>　HR(decoder-&gt;Initialize(<BR>　　sourceStream,<BR>　　WICDecodeMetadataCacheOnDemand));<BR>　// 
+Prepare the TIFF encoder<BR>　CComPtr&lt;IWICBitmapEncoder&gt; 
+encoder;<BR>　HR(encoder.CoCreateInstance(CLSID_WICTiffEncoder));<BR>　HR(encoder-&gt;Initialize(<BR>　　targetStream,<BR>　　WICBitmapEncoderNoCache));<BR>　UINT 
+frameCount = 0;<BR>　HR(decoder-&gt;GetFrameCount(&amp;frameCount));<BR>　for 
+(UINT index = 0; index &lt; frameCount; ++index) {<BR>　　// Get the source frame 
+info<BR>　　CComPtr&lt;IWICBitmapFrameDecode&gt; 
+sourceFrame;<BR>　　HR(decoder-&gt;GetFrame(index, &amp;sourceFrame));<BR>　　UINT 
+width = 0;<BR>　　UINT height = 0;<BR>　　HR(sourceFrame-&gt;GetSize(&amp;width, 
+&amp;height));<BR>　　GUID pixelFormat = { 0 
+};<BR>　　HR(sourceFrame-&gt;GetPixelFormat(&amp;pixelFormat));<BR>　　// Prepare 
+the target frame<BR>　　CComPtr&lt;IWICBitmapFrameEncode&gt; 
+targetFrame;<BR>　　HR(encoder-&gt;CreateNewFrame(<BR>　　　&amp;targetFrame,<BR>　　　0)); 
+// no properties<BR>　　HR(targetFrame-&gt;Initialize(0)); // no 
+properties<BR>　　HR(targetFrame-&gt;SetSize(width, 
+height));<BR>　　HR(targetFrame-&gt;SetPixelFormat(&amp;pixelFormat));<BR>　　// 
+Copy the pixels and commit 
+frame<BR>　　HR(targetFrame-&gt;WriteSource(sourceFrame, 
+0));<BR>　　HR(targetFrame-&gt;Commit());<BR>　}<BR>　// Commit image to 
+stream<BR>　HR(encoder-&gt;Commit());<BR>　return S OK;<BR>}</CODE>
+<P>　　在该示例中，我通过利用 WritePixels 方法的替代项进一步简化了流程。不是先从源帧中复制像素然后将其写入到目标帧中，而是使用 
+WriteSource 方法来从给定的 IWICBitmapSource 接口直接读取像素。由于 IWICBitmapFrameDecode 接口是从 
+IWICBitmapSource 派生而来，因而提供了一个完善的<A href="http://dev.21tx.com/corp/solution/" 
+target=_blank>解决方案</A>。</P>
+<P>　　WIC 图像工厂</P>
+<P>　　WIC 提供了一个图像工厂来创建各种与 WIC 相关的对象。它通过 IWICImagingFactory 接口公开，并且可按如下所示进行创建：</P>
+<P><CODE class=txcode>CComPtr&lt;IWICImagingFactory&gt; 
+factory;<BR>HR(factory.CoCreateInstance(CLSID_WICImagingFactory));</CODE>
+<P>　　我已展示了如果特定图像格式给定了指出实现的 
+CLSID，该如何创建解码器。当然，正如您可能猜想到，如果不必指定特定实现，或者可以硬编码图像的格式，那它会更有用途。</P>
+<P>　　幸运的是，WIC 提供了解决方案。在创建解码器之前，WIC 
+可检查给定流有无可标识图像格式的模式。一旦找到最佳的匹配项，它会创建适当的解码器并使用相同流对其进行初始化。CreateDecoderFromStream 
+方法提供了这一功能：</P>
+<P><CODE class=txcode>CComPtr&lt;IWICBitmapDecoder&gt; 
+decoder;<BR>HR(factory-&gt;CreateDecoderFromStream(<BR>　stream,<BR>　0, // 
+vendor<BR>　WICDecodeMetadataCacheOnDemand,<BR>　&amp;decoder));</CODE>
+<P>　　第二个参数标识解码器的供应商。它是可选项，如果您偏好特定供应商的编解码器，这个参数就会派上用场。请记住，它仅是一个提示，如果特定供应商并未安装适合的解码器，则仍会选择一个解码器，而不管供应商是谁。</P>
+<P>　　IWICImagingFactory 还提供 CreateDecoderFromFilename 和 
+CreateDecoderFromFileHandle 方法，它们分别提供到文件和文件句柄的路径。也可以不指定 CLSID 
+或流，而是指出图像格式来创建解码器。CreateDecoder 方法正好可以完成这项工作：</P>
+<P><CODE class=txcode>CComPtr&lt;IWICBitmapDecoder&gt; 
+decoder;<BR>HR(factory-&gt;CreateDecoder(<BR>　GUID_ContainerFormatIco,<BR>　0, // 
+vendor<BR>　&amp;decoder));<BR>HR(decoder-&gt;Initialize(<BR>　stream,<BR>　WICDecodeMetadataCacheOnDemand));</CODE>
+<P>　　与此类似，CreateEncoder 方法为特定图像格式创建编码器时也不必考虑其实现，如下所示：</P>
+<P><CODE class=txcode>CComPtr&lt;IWICBitmapEncoder&gt; 
+encoder;<BR>HR(factory-&gt;CreateEncoder(<BR>　GUID_ContainerFormatBmp,<BR>　0, // 
+vendor<BR>　&amp;encoder));<BR>HR(encoder-&gt;Initialize(<BR>　stream,<BR>　WICBitmapEncoderNoCache));</CODE>
+<P>　　图 3 列出了标识独立于实现的图像格式的 GUID，也称为容器格式。</P>
+<P><IMG alt="借助 C++ 进行 Windows 开发: Windows Imaging Component 基础知识" 
+src="借助%20C++%20进行%20Windows%20开发%20Windows%20Imaging%20Component%20基础知识_C-C++_开发语言_软件开发_天新网_files/22894.jpg">Figure3容器格式 
+GUID </P>
+<P>
+<TABLE>
+  <TBODY>
+  <TR>
+    <TD>格式</TD>
+    <TD>GUID</TD></TR>
+  <TR>
+    <TD>BMP</TD>
+    <TD>GUID_ContainerFormatBmp</TD></TR>
+  <TR>
+    <TD>PNG</TD>
+    <TD>GUID_ContainerFormatPng</TD></TR>
+  <TR>
+    <TD>ICO</TD>
+    <TD>GUID_ContainerFormatIco</TD></TR>
+  <TR>
+    <TD>JPEG</TD>
+    <TD>GUID_ContainerFormatJpeg</TD></TR>
+  <TR>
+    <TD>GIF</TD>
+    <TD>GUID_ContainerFormatGif</TD></TR>
+  <TR>
+    <TD>TIFF</TD>
+    <TD>GUID_ContainerFormatTiff</TD></TR>
+  <TR>
+    <TD>HDP</TD>
+    <TD>GUID_ContainerFormatWmp</TD></TR></TBODY></TABLE></P>
+<P>　　使用流</P>
+<P>　　可随时提供任何有效的 IStream 实现以用于 WIC。例如，可使用我在 XmlLite 这篇文章中所介绍的 
+CreateStreamOnHGlobal 或 SHCreateStreamOnFile 函数，也可以编写您自己的实现。WIC 还提供非常方便且灵活的 
+IStream 实现。</P>
+<P>　　通过使用我在上一小节中介绍的图像工厂，可按如下所示创建未初始化的流对象：</P>
+<P><CODE class=txcode>CComPtr&lt;IWICStream&gt; 
+stream;<BR>HR(factory-&gt;CreateStream(&amp;stream));</CODE>
+<P>　　IWICStream 接口继承自 Istream，并提供了多种方法来将流与不同的存储支持相关联。例如，可使用 
+InitializeFromFilename 来创建特定文件所支持的流：</P>
+<P><CODE class=txcode>HR(stream-&gt;InitializeFromFilename(<BR>　L"file 
+path",<BR>　GENERIC_READ));</CODE>
+<P>　　也可使用 InitializeFromIStreamRegion 将某个流创建为另一个流的子集，或使用 InitializeFromMemory 
+在一个内存块上创建流。</P>
+<P>　　通过 WPF 使用 WIC</P>
+<P>　　正如我已提到的，WIC 提供了作为 WPF 图像处理功能基础的框架。System.Windows.Media.Imaging 
+命名空间中定义了各种图像处理类。为向您展示从托管代码使用是多么地简单，图 4 显示了原本在图 2 中的 CopyIconToTiff 函数，它使用 WPF 
+包装类以 <A href="http://dev.21tx.com/dotnet/csharp/" target=_blank>C#</A> 
+重新进行了编写。</P>
+<P><IMG alt="借助 C++ 进行 Windows 开发: Windows Imaging Component 基础知识" 
+src="借助%20C++%20进行%20Windows%20开发%20Windows%20Imaging%20Component%20基础知识_C-C++_开发语言_软件开发_天新网_files/22894.jpg">Figure4以 
+C# 和 WPF 重新编写的 CopyIconToTiff </P>
+<P><CODE class=txcode>static void CopyIconToTiff(Stream 
+sourceStream,<BR>　　　　　　　　　　　　　 Stream targetStream) {<BR>　IconBitmapDecoder 
+decoder = new 
+IconBitmapDecoder(<BR>　　sourceStream,<BR>　　BitmapCreateOptions.None,<BR>　　BitmapCacheOption.OnDemand);<BR>　TiffBitmapEncoder 
+encoder = new TiffBitmapEncoder();<BR>　foreach (BitmapFrame frame in 
+decoder.Frames) 
+{<BR>　　encoder.Frames.Add(frame);<BR>　}<BR>　encoder.Save(targetStream);<BR>}</CODE>
+<P>　　BitmapCacheOption.OnDemand 值对应于本机代码中使用的 WICDecodeMetadataCacheOnDemand 
+解码器选项。另一个 BitmapCacheOption.OnLoad 值则对应 WICDecodeMetadataCacheOnLoad 解码器选项。</P>
+<P>　　我已介绍了当解码器将图像信息读入内存时，这些选项分别有何影响。但是，在托管代码中处理这些选项时，还有一个应了解的副作用。考虑一下指定 
+BitmapCacheOption.OnDemand 
+时可能发生什么情况。解码器会持有对基础流的引用，并且可能在创建位图解码器对象后的某个时间从其中执行读取。它的前提是流仍然可用。您需要注意，应用程序不会过早地关闭流。因此需要管理流的生存期，以便不会在解码器完成使用之前将其关闭。</P>
+<P>　　它不会影响本机代码，因为 IStream 接口为标准 COM 
+接口，其生存期是由引用计数控制的。应用程序可释放对它的所有引用，但只要有必要，解码器都会保存一个引用。并且，仅当释放了所有接口指针后才会关闭流。</P>
+<P>　　下一步是什么？</P>
+<P>　　WIC 提供了一个功能极其强大且灵活的框架，它可满足您的各种图像处理需求。通过使用一组丰富的编解码器和一个简单的 
+API，您即可立刻开始利用它的多项功能。</P>
+<P>　　在下一专栏中，我将探讨 WIC 
+所提供的一些更高级的功能。我将向您展示如何开发自己的编解码器，并详细地说明注册和发现过程，包括模式匹配功能。到时，我还会更正一个内置编解码器中的一个限制。</P>
+<P><A href="http://dev.21tx.com/2009/02/09/14032.html">上一篇： C++ Plus: 使用 Visual 
+C++ 2008 功能包加强 Windows 应用程序</A><BR><A 
+href="http://dev.21tx.com/2009/02/09/14031.html">下一篇： GUI 库：使本机应用程序具备 Windows 
+窗体的简易性</A></P></DIV>
+<SCRIPT language=JavaScript>
+qShowAG('pubC_ArtBtmText');
+qShowCopyText();
+qShowPageBtmBtn();
+</SCRIPT>
+
+<DIV id=qrlt>
+<DL>
+  <DT>相关内容 
+  <DD>
+  <UL>
+    <LI><A href="http://dev.21tx.com/2009/02/10/15494.html" target=_blank>从 C++ 
+    到 .NET: 将本机 C++ 映射到通用类型系统</A> 2009-02-10 
+    <LI><A href="http://dev.21tx.com/2009/02/10/15493.html" 
+    target=_blank>通过托管代码和 Windows Vista 智能卡 API 来保护您的数据</A> 2009-02-10 
+    <LI><A href="http://dev.21tx.com/2009/02/10/15492.html" target=_blank>从 C++ 
+    到 .NET: 正则表达式</A> 2009-02-10 
+    <LI><A href="http://dev.21tx.com/2009/02/10/15491.html" 
+    target=_blank>利用堆排序实现学生成绩管理</A> 2009-02-10 
+    <LI><A href="http://dev.21tx.com/2009/02/10/15490.html" target=_blank>从 C++ 
+    到 .NET: 公共类型系统的设计空间</A> 2009-02-10 
+    <LI><A href="http://dev.21tx.com/2009/02/10/15489.html" target=_blank>C++ 
+    双向循环链表的操作与实现</A> 2009-02-10 
+    <LI><A href="http://dev.21tx.com/2009/02/09/14032.html" target=_blank>C++ 
+    Plus: 使用 Visual C++ 2008 功能包加强 Windows 应用程序</A> 2009-02-09 
+    <LI><A href="http://dev.21tx.com/2009/02/09/14031.html" target=_blank>GUI 
+    库：使本机应用程序具备 Windows 窗体的简易性</A> 2009-02-09 </LI></UL></DD></DL></DIV></DIV>
+<DIV id=qright>
+<SCRIPT language=JavaScript type=text/javascript 
+src="借助%20C++%20进行%20Windows%20开发%20Windows%20Imaging%20Component%20基础知识_C-C++_开发语言_软件开发_天新网_files/dev_c.js"></SCRIPT>
+
+<SCRIPT language=JavaScript>qCRight();</SCRIPT>
+</DIV>
+<DIV id=qmainend>
+<DIV></DIV></DIV></DIV>
+<DIV class=qclr></DIV>
+<DIV id=qbtm>
+<DIV class=btm1><A href="http://www.21tx.com/about/aboutus.html" 
+target=_blank>关于我们</A> | <A href="http://www.21tx.com/about/contact.html" 
+target=_blank>联系我们</A> | <A href="http://www.21tx.com/about/hr.html" 
+target=_blank>加入我们</A> | <A href="http://www.21tx.com/ag/" 
+target=_blank>广告服务</A> | <A href="http://www.21tx.com/about/suggest.html" 
+target=_blank>投诉意见</A> | <A id=qnavb href="http://www.21tx.com/about/nav.html" 
+target=_blank>网站导航</A></DIV>
+<DIV class=btm2>Copyright &copy; 2000-2011 <FONT>21tx.com</FONT>, All Rights 
+Reserved.</DIV>
+<DIV class=btm3>晨新科技 版权所有 Created by TXSite.net</DIV></DIV>
+<DIV id=qcount style="DISPLAY: none">
+<SCRIPT type=text/javascript 
+src="借助%20C++%20进行%20Windows%20开发%20Windows%20Imaging%20Component%20基础知识_C-C++_开发语言_软件开发_天新网_files/count.js"></SCRIPT>
+</DIV></BODY></HTML>

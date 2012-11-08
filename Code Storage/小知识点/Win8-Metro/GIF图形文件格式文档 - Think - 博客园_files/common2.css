@@ -1,0 +1,54 @@
+P {
+	MARGIN: 10px auto; TEXT-INDENT: 0px
+}
+.postBody P {
+	MARGIN: 10px auto
+}
+.postCon P {
+	MARGIN: 10px auto
+}
+.postBody P {
+	TEXT-INDENT: 0px
+}
+.postCon P {
+	TEXT-INDENT: 0px
+}
+.cnblogs_code SPAN {
+	LINE-HEIGHT: 1.5
+}
+.login_tips A {
+	TEXT-DECORATION: underline
+}
+#div_digg .diggnum {
+	LINE-HEIGHT: 1.5em
+}
+#div_digg .burynum {
+	LINE-HEIGHT: 1.5em
+}
+#green_channel A:link {
+	BORDER-TOP-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none; COLOR: #ffffff; BORDER-RIGHT-STYLE: none
+}
+#green_channel A:visited {
+	BORDER-TOP-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none; COLOR: #ffffff; BORDER-RIGHT-STYLE: none
+}
+#green_channel A:active {
+	BORDER-TOP-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none; COLOR: #ffffff; BORDER-RIGHT-STYLE: none
+}
+.cnblogs_code {
+	FONT-SIZE: 12px; FONT-FAMILY: Courier New
+}
+.cnblogs_code PRE {
+	FONT-SIZE: 12px; FONT-FAMILY: Courier New
+}
+.cnblogs_code SPAN {
+	FONT-SIZE: 12px; FONT-FAMILY: Courier New
+}
+#cnblogs_post_body UL LI {
+	
+}
+#cnblogs_post_body {
+	WORD-BREAK: normal !important
+}
+#cnblogs_post_body TD {
+	WORD-BREAK: normal !important
+}
