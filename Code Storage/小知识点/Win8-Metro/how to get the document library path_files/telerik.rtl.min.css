@@ -1,0 +1,315 @@
+.t-rtl {
+	direction: rtl; -ms-zoom: 1;
+}
+.t-rtl .t-button-icontext .t-icon {
+	margin: 0px -3px 0px 3px;
+}
+.t-rtl .t-window-actions {
+	left: 0.5em; right: auto;
+}
+.t-rtl .t-window-title .t-image {
+	margin: 0px 0px 0px 5px;
+}
+.t-rtl .t-tabstrip-items .t-item {
+	margin: 0.1em 0px 0px 0.3em;
+}
+.t-rtl .t-panelbar .t-tabstrip-items .t-item {
+	margin: 0.1em 0px 0px 0.3em;
+}
+.t-rtl .t-tabstrip-items .t-item .t-icon {
+	margin: -1px -3px 0px 4px;
+}
+.t-rtl .t-panelbar .t-tabstrip-items .t-item .t-icon {
+	margin: -1px -3px 0px 4px;
+}
+.t-rtl .t-tabstrip-items .t-item .t-image {
+	margin: -4px -3px 0px 3px;
+}
+.t-rtl .t-tabstrip-items .t-item .t-sprite {
+	margin: -4px -3px 0px 3px;
+}
+.t-rtl .t-panelbar .t-tabstrip-items .t-item .t-image {
+	margin: -4px -3px 0px 3px;
+}
+.t-rtl .t-panelbar .t-tabstrip-items .t-item .t-sprite {
+	margin: -4px -3px 0px 3px;
+}
+.t-rtl .t-tabstrip-items .t-state-active {
+	padding-bottom: 1px; margin-bottom: -1px;
+}
+.t-rtl .t-panelbar .t-tabstrip-items .t-state-active {
+	padding-bottom: 1px; margin-bottom: -1px;
+}
+.t-rtl .t-panelbar .t-item {
+	-ms-zoom: normal;
+}
+.t-rtl .t-panelbar .t-image {
+	margin-right: 0px; margin-left: 5px; float: right;
+}
+.t-rtl .t-panelbar .t-sprite {
+	margin-right: 0px; margin-left: 5px; float: right;
+}
+.t-rtl .t-panelbar .t-arrow-up {
+	left: 2px; right: auto;
+}
+.t-rtl .t-panelbar .t-arrow-down {
+	left: 2px; right: auto;
+}
+.t-rtl .t-panelbar .t-group .t-group .t-link {
+	padding-right: 2em; padding-left: 0px;
+}
+.t-rtl .t-menu .t-group .t-link {
+	padding-right: 0.97em; padding-left: 2em;
+}
+.t-rtl .t-menu .t-item {
+	border-width: 0px 0px 0px 1px;
+}
+.t-rtl .t-menu .t-image {
+	margin: 0px -4px 0px 4px;
+}
+.t-rtl .t-menu .t-sprite {
+	margin: 0px -4px 0px 4px;
+}
+.t-rtl .t-menu .t-arrow-down {
+	margin-right: 2px; margin-left: -10px;
+}
+.t-rtl .t-menu .t-arrow-next {
+	left: 0px; right: auto;
+}
+.t-rtl .t-menu .t-animation-container {
+	left: auto; right: -1px;
+}
+.t-rtl .t-menu .t-group {
+	left: auto; right: -1px;
+}
+.t-rtl .t-menu .t-animation-container .t-animation-container {
+	left: auto; right: 100%;
+}
+.t-rtl .t-menu .t-group .t-group {
+	left: auto; right: 100%;
+}
+.t-rtl .t-menu-vertical .t-animation-container {
+	left: auto; right: 100%;
+}
+.t-rtl .t-menu-vertical .t-group {
+	left: auto; right: 100%;
+}
+.t-rtl .t-menu .t-animation-container .t-group {
+	right: auto;
+}
+.t-rtl .t-grid div.t-grid-header {
+	direction: rtl; -ms-zoom: 1;
+}
+.t-rtl .t-grid .t-grid-content {
+	direction: rtl; -ms-zoom: 1;
+}
+.t-rtl .t-grid .t-grid-footer {
+	direction: rtl; -ms-zoom: 1;
+}
+.t-rtl .t-grid .t-grouping-header {
+	direction: rtl; -ms-zoom: 1;
+}
+.t-rtl .t-grid .t-grid-toolbar {
+	direction: rtl; -ms-zoom: 1;
+}
+.t-rtl .t-grid .t-filter-options {
+	direction: rtl; -ms-zoom: 1;
+}
+.t-rtl .t-grid tbody {
+	direction: rtl; -ms-zoom: 1;
+}
+.t-rtl .t-grid table {
+	border-collapse: separate;
+}
+.t-rtl .t-grid div.t-grid-header {
+	text-align: right;
+}
+.t-rtl .t-grid .t-header {
+	text-align: right;
+}
+.t-rtl .t-grid td {
+	text-align: right;
+}
+.t-rtl .t-grid div.t-grid-header {
+	padding-right: 0px; padding-left: 17px;
+}
+.t-rtl .t-grid-rightscroll.t-grid div.t-grid-header {
+	padding-right: 17px; padding-left: 0px;
+}
+.t-rtl .t-grid .t-header {
+	border-width: 0px 0px 0px 1px;
+}
+.t-rtl .t-grid td {
+	border-width: 0px 0px 0px 1px;
+}
+.t-rtl .t-grid-rightscroll.t-grid .t-header {
+	border-width: 0px 1px 0px 0px;
+}
+.t-rtl .t-grid-rightscroll.t-grid td {
+	border-width: 0px 1px 0px 0px;
+}
+.t-rtl .t-grid .t-header .t-link {
+	padding: 0.3em 0.6em 0.3em 2.4em;
+}
+.t-rtl .t-grid .t-grid-filter {
+	margin-right: 3px; margin-left: -0.6em; float: left;
+}
+.t-rtl .t-grid .t-pager {
+	float: right; direction: ltr;
+}
+.t-rtl .t-grid .t-status {
+	margin: -0.2em -0.6em -0.2em 0.6em; border-right-width: 0px; border-left-width: 1px; border-left-style: solid; float: right;
+}
+.t-rtl .t-grid .t-status-text {
+	float: left;
+}
+.t-rtl .t-grid .t-grouping-row p {
+	padding-right: 0.6em; padding-left: 0px; margin-right: -0.6em; margin-left: 0px;
+}
+.t-rtl .t-grid .t-button .t-icon {
+	margin-right: -3px; margin-left: 3px;
+}
+.t-rtl .t-grid .t-last {
+	border-left-width: 0px;
+}
+.t-rtl .t-grouping-header .t-button .t-icon {
+	margin: 0px 3px 0px 0px;
+}
+.t-rtl .t-autocomplete {
+	background-position: 0px 50% !important;
+}
+.t-rtl .t-dropdown-wrap {
+	padding-right: 0px; padding-left: 16px; -ms-zoom: 1;
+}
+* html .t-rtl .t-combobox .t-dropdown-wrap {
+	padding-right: 0px; padding-left: 16px;
+}
+* html .t-rtl .t-picker-wrap {
+	padding-right: 0px; padding-left: 25px;
+}
+.t-rtl .t-picker-wrap .t-select {
+	left: 0px; right: auto; -ms-zoom: 1;
+}
+.t-rtl .t-dropdown-wrap .t-select {
+	left: 0px; right: auto; -ms-zoom: 1;
+}
+* html .t-rtl .t-picker-wrap .t-select {
+	left: 1px; right: auto;
+}
+* html .t-rtl .t-dropdown-wrap .t-select {
+	left: 1px; right: auto;
+}
+.t-rtl .t-combobox .t-select {
+	border-width: 0px 1px 0px 0px;
+}
+.t-rtl .t-dropdown .t-input {
+	padding: 0.2em 3px 0.2em 0px;
+}
+.t-rtl .t-selectbox .t-input {
+	padding: 0.2em 3px 0.2em 0px;
+}
+.t-rtl .t-picker-wrap .t-icon-calendar {
+	margin: 3px 3px 0px 0px;
+}
+.t-rtl .t-picker-wrap .t-icon-clock {
+	margin: 3px 3px 0px 0px;
+}
+.t-rtl .t-picker-wrap {
+	padding: 0px 0px 0px 25px;
+}
+.t-rtl .t-datetimepicker .t-picker-wrap {
+	padding: 0px 0px 0px 44px;
+}
+.t-rtl .t-treeview .t-item {
+	padding: 0px 16px 0px 0px;
+}
+.t-rtl .t-treeview-lines .t-top {
+	padding-right: 20px; padding-left: 0px; margin-right: -16px; margin-left: 0px;
+}
+.t-rtl .t-treeview-lines .t-mid {
+	padding-right: 20px; padding-left: 0px; margin-right: -16px; margin-left: 0px;
+}
+.t-rtl .t-treeview-lines .t-bot {
+	padding-right: 20px; padding-left: 0px; margin-right: -16px; margin-left: 0px;
+}
+.t-rtl .t-treeview .t-plus {
+	margin-right: -20px; margin-left: 0px; float: right;
+}
+.t-rtl .t-treeview .t-minus {
+	margin-right: -20px; margin-left: 0px; float: right;
+}
+.t-rtl .t-treeview .t-plus-disabled {
+	margin-right: -20px; margin-left: 0px; float: right;
+}
+.t-rtl .t-treeview .t-minus-disabled {
+	margin-right: -20px; margin-left: 0px; float: right;
+}
+.t-rtl .t-treeview .t-image {
+	margin-right: 0px; margin-left: 3px;
+}
+.t-rtl .t-treeview-lines .t-top {
+	background-position: 100% 0px;
+}
+.t-rtl .t-treeview-lines .t-bot {
+	background-position: 100% -22px;
+}
+.t-rtl .t-treeview-lines .t-mid {
+	background-position: 100% -44px;
+}
+.t-rtl .t-treeview-lines .t-last .t-top {
+	background-position: 100% -66px;
+}
+.t-rtl .t-treeview-lines .t-group .t-last .t-bot {
+	background-position: 100% -22px;
+}
+.t-rtl .t-treeview-lines .t-item {
+	background-position: 100% 0px;
+}
+.t-rtl .t-treeview-lines .t-first {
+	background-position: 100% 16px;
+}
+.t-rtl .t-numerictextbox .t-icon {
+	margin-right: -16px; margin-left: 0px;
+}
+@media not all
+{
+.t-rtl .t-numerictextbox .t-icon {
+	position: relative; z-index: 2;
+}
+.t-rtl .t-numerictextbox {
+	position: relative;
+}
+.t-rtl .t-numerictextbox .t-formatted-value {
+	right: 0px;
+}
+}
+.t-rtl .t-editor-colorpicker .t-icon {
+	border-width: 0px 1px 0px 0px;
+}
+.t-rtl .t-header .t-tabstrip-items .t-link {
+	padding: 0.3em 0.9em;
+}
+.t-rtl .t-breadcrumbs {
+	margin: 0px -1px 0px 0px; float: right;
+}
+.t-rtl .t-breadcrumbs-wrap {
+	left: auto; right: 0px; padding-right: 5px; padding-left: 0px;
+}
+.t-rtl .t-breadcrumbs-input {
+	padding-right: 2px; padding-left: 0px;
+}
+.t-rtl .t-search-wrap {
+	float: left;
+}
+.t-rtl .t-search-wrap label {
+	left: auto; right: 7px;
+}
+.t-rtl .t-search-wrap .t-search {
+	left: 2px; right: auto;
+}
+.t-rtl .t-tile {
+	float: right;
+}
+.t-rtl .t-imagebrowser .t-thumb {
+	margin: 4px 4px 0px 10px; float: right;
+}

@@ -1,0 +1,609 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0054)http://blog.chinaunix.net/uid-20476365-id-1942431.html -->
+<HTML xmlns="http://www.w3.org/1999/xhtml"><HEAD><META content="IE=7.0000" 
+http-equiv="X-UA-Compatible">
+<TITLE>用CompositionTarget_Rendering实现固定时间间隔定时器_js_jammy-ChinaUnix博客</TITLE>
+<META content="text/html; charset=gbk" http-equiv=content-type>
+<META content=IE=EmulateIE7 http-equiv=X-UA-Compatible>
+<META name=description 
+content=用CompositionTarget_Rendering实现固定时间间隔定时器Silverlight提供了大致五种定时方式，这篇文章比较了各种定时方式的特点和应用环境。限于篇幅，本文就不赘述了。本文主要讨论实现游戏动画的定时器应用，当然还是针对正在开发的MMORPG游戏。一般来说，除>
+<SCRIPT language=javascript type=text/javascript 
+src="用CompositionTarget_Rendering实现固定时间间隔定时器_js_jammy-ChinaUnix博客_files/script_cookie.js"></SCRIPT>
+
+<SCRIPT language=javascript type=text/javascript 
+src="用CompositionTarget_Rendering实现固定时间间隔定时器_js_jammy-ChinaUnix博客_files/script_common.js"></SCRIPT>
+
+<SCRIPT language=javascript type=text/javascript 
+src="用CompositionTarget_Rendering实现固定时间间隔定时器_js_jammy-ChinaUnix博客_files/script_menu.js"></SCRIPT>
+
+<SCRIPT language=javascript type=text/javascript 
+src="用CompositionTarget_Rendering实现固定时间间隔定时器_js_jammy-ChinaUnix博客_files/script_ajax.js"></SCRIPT>
+
+<SCRIPT language=javascript type=text/javascript 
+src="用CompositionTarget_Rendering实现固定时间间隔定时器_js_jammy-ChinaUnix博客_files/script_face.js"></SCRIPT>
+
+<SCRIPT language=javascript type=text/javascript 
+src="用CompositionTarget_Rendering实现固定时间间隔定时器_js_jammy-ChinaUnix博客_files/script_manage.js"></SCRIPT>
+<LINK rel=StyleSheet type=text/css 
+href="用CompositionTarget_Rendering实现固定时间间隔定时器_js_jammy-ChinaUnix博客_files/style.css" 
+media=screen><LINK rel=StyleSheet type=text/css 
+href="用CompositionTarget_Rendering实现固定时间间隔定时器_js_jammy-ChinaUnix博客_files/default.css" 
+media=screen>
+<META name=GENERATOR content="MSHTML 10.00.9200.16420"></HEAD>
+<BODY>
+<STYLE type=text/css>@import url( http://blog.chinaunix.net/css/nav.css );
+</STYLE>
+
+<DIV class=login>
+<DIV class=Content>
+<DIV id=ll class=l1><A href="http://www.chinaunix.net/" target=_blank>CU首页</A> 
+<A title=CU论坛 
+href="http://blog.chinaunix.net/link.php?url=http://bbs.chinaunix.net" 
+target=_blank>CU论坛首页</A> <A title=CU博客 
+href="http://blog.chinaunix.net/link.php?url=http://blog.chinaunix.net" 
+target=_blank>CU博客首页</A> ┊ <A 
+href="http://blog.chinaunix.net/do.php?ac=wuxingzypcw213">登录</A> <A 
+href="http://blog.chinaunix.net/do.php?ac=8f442ba1e0c79cd3efcd1fd42b8aad8e">注册</A> 
+┊ <A href="http://blog.chinaunix.net/network.php">随便看看</A> </DIV>
+<DIV class=r1>
+<FORM method=get action=/cp.php><INPUT id=ac type=hidden value=search name=ac> <INPUT class=btn1 style="MARGIN-BOTTOM: 0px" type=submit> <SELECT id=searchType 
+style="MARGIN-BOTTOM: 0px; HEIGHT: 21px; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; LINE-HEIGHT: 13px; PADDING-RIGHT: 0px" 
+name=searchType> <OPTION selected value=blog>博文</OPTION> <OPTION 
+  value=friend>博主</OPTION> <OPTION value=album>相册</OPTION> <OPTION 
+  value=poll>投票</OPTION> <OPTION value=event>活动</OPTION></SELECT> <INPUT 
+id=searchkey class=inp1 style="MARGIN-BOTTOM: 0px" name=searchkey> <A class=a1 
+href="http://blog.chinaunix.net/cp.php?ac=blog">发博文</A> 
+</FORM></DIV></DIV></DIV>
+<UL id=ucappmenu_menu class=dropmenu_drop style="DISPLAY: none">
+  <LI><A title=CU论坛 
+  href="http://blog.chinaunix.net/link.php?url=http://bbs.chinaunix.net" 
+  target=_blank>CU论坛首页</A> 
+  <LI><A title=CU博客 
+  href="http://blog.chinaunix.net/link.php?url=http://blog.chinaunix.net" 
+  target=_blank>CU博客首页</A> </LI></UL>
+<DIV id=append_parent style="Z-INDEX: 99999"></DIV>
+<DIV id=ajaxwaitid></DIV><SPAN id=pageSet></SPAN>
+<DIV id=Content class=Content>
+<DIV id=top class=top style="POSITION: relative">
+<DIV class=tm><A 
+href="http://blog.chinaunix.net/link.php?url=http%3A%2F%2Fblog.chinaunix.net%2Fuid-24789255-id-3393190.html%26stats%3Dclick" 
+target=_blank>公告：11月原创评选开始啦，欢迎参与！</A></DIV>
+<DIV class=addr><B id=home_title>我的爱好</B> 
+<P><A 
+href="http://blog.chinaunix.net/uid/20476365.html">http://blog.chinaunix.net/uid/20476365.html</A> 
+</P><SPAN id=blog_brief><SPAN id=blog_b>技术,运动</SPAN>&nbsp;&nbsp;&nbsp; </SPAN>
+<DIV id=blog_brief_form style="HEIGHT: auto; DISPLAY: none">
+<FORM id=brief_form method=post action=/do.php?ac=ajax&amp;op=blog_brief><INPUT 
+id=blog_brief style="MARGIN-BOTTOM: 0px" size=50 value=技术,运动 
+name=blog_brief></INPUT> <INPUT onclick=checkBbrief(); class=submit style="MARGIN-BOTTOM: 0px; HEIGHT: 20px" type=button value=提交>&nbsp; 
+<INPUT type=hidden value=bd614fc2 name=formhash> <INPUT onclick="s('blog_brief');h('blog_brief_form');" class=submit style="MARGIN-BOTTOM: 0px; HEIGHT: 20px" type=button value=取消> 
+</FORM></DIV><!-- 徽章定位3 --></DIV>
+<DIV class=daoh><A href="http://blog.chinaunix.net/uid/20476365.html">首页</A> | 
+<A class=here href="http://blog.chinaunix.net/uid/20476365/frmd/-1.html" 
+;>博文目录</A> | <A 
+href="http://blog.chinaunix.net/space.php?do=album&amp;view=me&amp;uid=20476365">相册</A> 
+| <A href="http://blog.chinaunix.net/group.php" target=_blank>博客圈</A> | <A 
+href="http://blog.chinaunix.net/space.php?do=profile&amp;uid=20476365">关于我</A> | 
+<A 
+href="http://blog.chinaunix.net/space.php?do=profile&amp;uid=20476365#comment">留言</A> 
+</DIV></DIV><LINK rel=stylesheet type=text/css 
+href="用CompositionTarget_Rendering实现固定时间间隔定时器_js_jammy-ChinaUnix博客_files/fck_editorarea.css">
+<DIV class="l2 "><!-- 个人资料 -->
+<DIV id=profile class="bor1 mt10">
+<DIV class=tit1>个人资料</DIV>
+<DIV class="Img dingwei_img1"><A 
+href="http://blog.chinaunix.net/uid/20476365.html"><IMG 
+onerror="this.onerror=null;this.src='http://passport.ixpub.net/images/noavatar_big.gif'" 
+src="用CompositionTarget_Rendering实现固定时间间隔定时器_js_jammy-ChinaUnix博客_files/65_avatar_big.jpg"></A> 
+</DIV>
+<DIV class=Text>
+<DIV class=p1><A href="http://blog.chinaunix.net/uid/20476365.html">js_jammy</A> 
+</DIV>
+<DIV class=p3 style="HEIGHT: 38px"><A 
+href="http://blog.chinaunix.net/space.php?do=doing&amp;view=me&amp;uid=20476365" 
+target=_blank>微博</A> <A href="http://bbs.chinaunix.net/" target=_blank>论坛</A> 
+</DIV>
+<DIV class=p3><A onclick="ajaxmenu(event, this.id, 1)" id=a_pm 
+href="http://blog.chinaunix.net/cp.php?ac=pm&amp;uid=20476365">发纸条</A> <A 
+onclick="ajaxmenu(event, this.id, 1)" id=a_poke 
+href="http://blog.chinaunix.net/cp.php?ac=poke&amp;op=send&amp;uid=20476365">打招呼</A> 
+<SPAN id=attention><A onclick="attention(20476365 , 'add');" 
+href="javascript:;">加关注</A></SPAN> <A onclick="ajaxmenu(event, this.id, 1)" 
+id=a_friend_li 
+href="http://blog.chinaunix.net/cp.php?ac=friend&amp;op=add&amp;uid=20476365">加好友</A> 
+</DIV>
+<DIV class=list1>
+<UL>
+  <LI>博客访问：175436 
+  <LI>博文数量：257 
+  <LI>博客积分：3053 
+  <LI>博客等级：<A 
+  href="http://blog.chinaunix.net/cp.php?ac=credit&amp;op=usergroup">中校</A> 
+  <LI>关注人气： 1 
+  <LI>注册时间：2009-05-02 21:11:03 </LI></UL></DIV></DIV></DIV><!-- 文章分类 -->
+<DIV id=blist class="bor1 mt10">
+<DIV class=tit1>文章分类</DIV>
+<DIV class=allla>
+<DIV class=alll><A 
+href="http://blog.chinaunix.net/uid/20476365/frmd/-1.html">全部博文<B>(257)</B></A></DIV>
+<DIV class=alll1><IMG 
+src="用CompositionTarget_Rendering实现固定时间间隔定时器_js_jammy-ChinaUnix博客_files/list3.gif"><A 
+title=数据库 
+href="http://blog.chinaunix.net/uid/20476365/frmd/147789.html">数据库(15)</A></DIV>
+<DIV id=DIV_147789 class=alll3 style="DISPLAY: none"></DIV>
+<DIV class=alll1><IMG 
+src="用CompositionTarget_Rendering实现固定时间间隔定时器_js_jammy-ChinaUnix博客_files/list3.gif"><A 
+title=ObjectC 
+href="http://blog.chinaunix.net/uid/20476365/frmd/57164.html">ObjectC(1)</A></DIV>
+<DIV id=DIV_57164 class=alll3 style="DISPLAY: none"></DIV>
+<DIV class=alll1><IMG 
+src="用CompositionTarget_Rendering实现固定时间间隔定时器_js_jammy-ChinaUnix博客_files/list3.gif"><A 
+title=silverlight 
+href="http://blog.chinaunix.net/uid/20476365/frmd/57163.html">silverlight(39)</A></DIV>
+<DIV id=DIV_57163 class=alll3 style="DISPLAY: none"></DIV>
+<DIV class=alll1><IMG 
+src="用CompositionTarget_Rendering实现固定时间间隔定时器_js_jammy-ChinaUnix博客_files/list3.gif"><A 
+title=其他 
+href="http://blog.chinaunix.net/uid/20476365/frmd/57162.html">其他(2)</A></DIV>
+<DIV id=DIV_57162 class=alll3 style="DISPLAY: none"></DIV>
+<DIV class=alll1><IMG 
+src="用CompositionTarget_Rendering实现固定时间间隔定时器_js_jammy-ChinaUnix博客_files/list3.gif"><A 
+title=japanese 
+href="http://blog.chinaunix.net/uid/20476365/frmd/57161.html">japanese(5)</A></DIV>
+<DIV id=DIV_57161 class=alll3 style="DISPLAY: none"></DIV>
+<DIV class=alll1><IMG 
+src="用CompositionTarget_Rendering实现固定时间间隔定时器_js_jammy-ChinaUnix博客_files/list3.gif"><A 
+title=Java 
+href="http://blog.chinaunix.net/uid/20476365/frmd/57160.html">Java(22)</A></DIV>
+<DIV id=DIV_57160 class=alll3 style="DISPLAY: none"></DIV>
+<DIV class=alll1><IMG 
+src="用CompositionTarget_Rendering实现固定时间间隔定时器_js_jammy-ChinaUnix博客_files/list3.gif"><A 
+title=C/C++ 
+href="http://blog.chinaunix.net/uid/20476365/frmd/57159.html">C/C++(65)</A></DIV>
+<DIV id=DIV_57159 class=alll3 style="DISPLAY: none"></DIV>
+<DIV class=alll1><IMG 
+src="用CompositionTarget_Rendering实现固定时间间隔定时器_js_jammy-ChinaUnix博客_files/list3.gif"><A 
+title=windows 
+href="http://blog.chinaunix.net/uid/20476365/frmd/57158.html">windows(42)</A></DIV>
+<DIV id=DIV_57158 class=alll3 style="DISPLAY: none"></DIV>
+<DIV class=alll1><IMG 
+src="用CompositionTarget_Rendering实现固定时间间隔定时器_js_jammy-ChinaUnix博客_files/list3.gif"><A 
+title=Linux 
+href="http://blog.chinaunix.net/uid/20476365/frmd/57157.html">Linux(64)</A></DIV>
+<DIV id=DIV_57157 class=alll3 style="DISPLAY: none"></DIV>
+<DIV class=alll><A 
+href="http://blog.chinaunix.net/uid/20476365/frmd/0.html">未分类博文(2)</A></DIV></DIV></DIV>
+<SCRIPT>
+function opDIV(id){
+if(document.getElementById('DIV_'+id).style.display=='none'){
+document.getElementById('DIV_'+id).style.display='block';
+document.getElementById(id).src="/image/list4.gif";
+}else{
+document.getElementById('DIV_'+id).style.display='none';
+document.getElementById(id).src="/image/list41.gif";
+}
+}
+</SCRIPT>
+<!-- 订阅我的博客 -->
+<DIV id=rss class="bor1 mt10">
+<DIV class=tit1>订阅我的博客</DIV>
+<UL class=list3>
+  <LI><A href="http://blog.chinaunix.net/rss.php?uid=20476365"><IMG alt=订阅 
+  src="用CompositionTarget_Rendering实现固定时间间隔定时器_js_jammy-ChinaUnix博客_files/feedsky.gif" 
+  width=49 height=16></A> 
+  <LI><A 
+  href="http://www.xianguo.com/subscribe.php?url=http://home.chinaunix.com/rss.php?uid=20476365" 
+  target=_blank><IMG border=0 alt=订阅到鲜果 
+  src="用CompositionTarget_Rendering实现固定时间间隔定时器_js_jammy-ChinaUnix博客_files/d2.png"></A> 
+
+  <LI><A 
+  href="http://www.zhuaxia.com/add_channel.php?url=http://home.chinaunix.com/rss.php?uid=20476365" 
+  target=_blank><IMG border=0 alt=订阅到抓虾 
+  src="用CompositionTarget_Rendering实现固定时间间隔定时器_js_jammy-ChinaUnix博客_files/d3.png" 
+  width=103 height=16></A> 
+  <LI><A 
+  href="http://fusion.google.com/add?feedurl=http://home.chinaunix.com/rss.php?uid=20476365" 
+  target=_blank><IMG border=0 alt=订阅到Google 
+  src="用CompositionTarget_Rendering实现固定时间间隔定时器_js_jammy-ChinaUnix博客_files/d4.png" 
+  width=103 height=16></A> </LI></UL></DIV><!-- 好友 --><!-- 最近来访 --></DIV>
+<DIV id=blog_center class=r2 style="POSITION: relative"><!-- 博文 -->
+<DIV class="bor1 mt10">
+<DIV class=tit5><SPAN>字体大小：<A onclick="doZoom('16');" id=font_16 
+href="javascript:;">大</A> <A onclick="doZoom('14');" id=font_14 
+href="javascript:;">中</A> <A onclick="doZoom('12');" id=font_12 
+href="javascript:;">小</A></SPAN>博文</DIV>
+<DIV class=text>
+<DIV class=tit6><A 
+href="javascript:;">用CompositionTarget_Rendering实现固定时间间隔定时器</A> (2010-09-14 
+12:32) </DIV>
+<DIV class=tit7>分类： <A 
+href="http://blog.chinaunix.net/space.php?uid=20476365&amp;do=blog&amp;frmd=0&amp;classid=57163&amp;view=me">silverlight</A> 
+</DIV><BR><BR>
+<DIV id=detail class=detail style="LINE-HEIGHT: 1.3">
+<P>
+<DIV>
+<H3>用CompositionTarget_Rendering实现固定时间间隔定时器</H3>
+<DIV>&nbsp;</DIV>
+<DIV>Silverlight提供了大致五种定时方式，<A 
+href="http://blogs.msdn.com/nikola/archive/2009/08/19/exposed-5-methods-to-create-game-loop-which-is-the-best.aspx" 
+target=_blank><FONT 
+color=#0000ff>这篇文章</FONT></A>比较了各种定时方式的特点和应用环境。限于篇幅，本文就不赘述了。本文主要讨论实现游戏动画的定时器应用，当然还是针对正在开发的MMORPG游戏。&nbsp;一般来说，除非是很特殊很复杂的应用，storyboard，dispatcher 
+timer和CompositionTarget_Rendering三种方式就足够应付了。</DIV>
+<DIV>&nbsp;&nbsp;</DIV>
+<DIV>简单说来，storyboard动画的实质就是控制UIElement的属性随时间的变化来实现动画效果。因为silverlight控制所有内部变化细节，动画效果比较平滑。相比之下，dispatcher 
+timer来实现相同的动画，就需要多一些代码来控制了。不过有些动画无法用UIElement的属性变化来体现，也就不能直接用storyboard来实现，这时候就需要考虑dispatcher 
+timer了。dispatcher timer其实跟普通定时器（例如Thread.Timer）没有太大差别，唯一特殊的是dispatcher 
+timer和UI运行在同一个线程，所以比较适合实现UI动画。总的来说，几种定时方式并无孰优孰劣之分，只有使用场合的不同。</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>本文重点讨论CompositionTarget_Rendering定时方式来实现动画。为什么青睐于CompositionTarget_Rendering呢？可能读者已经知道CompositionTarget_Rendering的事件在UI即将提交的时候触发，与silverlight应用程序的帧频是一致的。换句话说，无论动画理论上变化多快，帧频多高，最终反映到计算机显示器上，帧频是不可能高于silverlight应用程序的最大帧频的。也就是说，很多帧只是在内存中闪了一下，并没有机会显示在屏幕上。可以想象这是多么大的浪费，尽管没有验证过，相信性能上会受影响。因为CompositionTarget_Rendering的事件在UI即将提交的时候触发，此时来决定需要显示的帧，避免了资源浪费。尤其在silverlight应用程序的最大帧频设置变化的情况，CompositionTarget_Rendering可以自适应的调整动画的帧频，保证最大限度的节省资源消耗。</DIV>
+<DIV>&nbsp;</DIV>
+<DIV></DIV>
+<DIV>CompositionTarget_Rendering严格讲不是一个定时器，因为我们不能控制触发的时间间隔。因为CompositionTarget_Rendering事件的触发由silverlight应用程序的帧频决定，而silverlight应用程序的帧频由最大帧频设置和硬件环境等因素决定，所以CompositionTarget_Rendering事件的触发的时间间隔是不固定的，大致上等于（1000/最大帧频设置）毫秒。对于动画控制，变化的时间间隔是不能接受的。所以我们需要模拟一个固定时间间隔的CompositionTarget_Rendering定时器。具体看下面的代码。</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>
+<DIV class=cnblogs_code>
+<DIV><!--<br/ />
+<br/ />
+Code highlighting produced by Actipro CodeHighlighter (freeware)<br/ />
+http://www.CodeHighlighter.com/<br/ />
+<br/ />
+--><SPAN style="COLOR: #000000">&nbsp;&nbsp;&nbsp;&nbsp;</SPAN><SPAN 
+style="COLOR: #0000ff">public</SPAN><SPAN 
+style="COLOR: #000000">&nbsp;</SPAN><SPAN 
+style="COLOR: #0000ff">abstract</SPAN><SPAN 
+style="COLOR: #000000">&nbsp;</SPAN><SPAN 
+style="COLOR: #0000ff">class</SPAN><SPAN 
+style="COLOR: #000000">&nbsp;MainLoop<BR>&nbsp;&nbsp;&nbsp;&nbsp;{<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</SPAN><SPAN 
+style="COLOR: #0000ff">protected</SPAN><SPAN 
+style="COLOR: #000000">&nbsp;DateTime&nbsp;lastTick;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</SPAN><SPAN 
+style="COLOR: #0000ff">public</SPAN><SPAN 
+style="COLOR: #000000">&nbsp;</SPAN><SPAN 
+style="COLOR: #0000ff">delegate</SPAN><SPAN 
+style="COLOR: #000000">&nbsp;</SPAN><SPAN 
+style="COLOR: #0000ff">void</SPAN><SPAN 
+style="COLOR: #000000">&nbsp;UpdateHandler(</SPAN><SPAN 
+style="COLOR: #0000ff">object</SPAN><SPAN 
+style="COLOR: #000000">&nbsp;sender,&nbsp;</SPAN><SPAN 
+style="COLOR: #0000ff">int</SPAN><SPAN 
+style="COLOR: #000000">&nbsp;elapsed);<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</SPAN><SPAN 
+style="COLOR: #0000ff">public</SPAN><SPAN 
+style="COLOR: #000000">&nbsp;</SPAN><SPAN 
+style="COLOR: #0000ff">event</SPAN><SPAN 
+style="COLOR: #000000">&nbsp;UpdateHandler&nbsp;Timeout;<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</SPAN><SPAN 
+style="COLOR: #0000ff">public</SPAN><SPAN 
+style="COLOR: #000000">&nbsp;</SPAN><SPAN 
+style="COLOR: #0000ff">void</SPAN><SPAN 
+style="COLOR: #000000">&nbsp;Tick()<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DateTime&nbsp;now&nbsp;</SPAN><SPAN 
+style="COLOR: #000000">=</SPAN><SPAN 
+style="COLOR: #000000">&nbsp;DateTime.Now;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;elapsed&nbsp;</SPAN><SPAN 
+style="COLOR: #000000">=</SPAN><SPAN 
+style="COLOR: #000000">&nbsp;(now&nbsp;</SPAN><SPAN 
+style="COLOR: #000000">-</SPAN><SPAN 
+style="COLOR: #000000">&nbsp;lastTick).Milliseconds;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lastTick&nbsp;</SPAN><SPAN 
+style="COLOR: #000000">=</SPAN><SPAN 
+style="COLOR: #000000">&nbsp;now;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</SPAN><SPAN 
+style="COLOR: #0000ff">if</SPAN><SPAN 
+style="COLOR: #000000">&nbsp;(Timeout&nbsp;</SPAN><SPAN 
+style="COLOR: #000000">!=</SPAN><SPAN style="COLOR: #000000">&nbsp;</SPAN><SPAN 
+style="COLOR: #0000ff">null</SPAN><SPAN 
+style="COLOR: #000000">)&nbsp;Timeout(</SPAN><SPAN 
+style="COLOR: #0000ff">this</SPAN><SPAN 
+style="COLOR: #000000">,&nbsp;elapsed);<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</SPAN><SPAN 
+style="COLOR: #0000ff">public</SPAN><SPAN 
+style="COLOR: #000000">&nbsp;</SPAN><SPAN 
+style="COLOR: #0000ff">virtual</SPAN><SPAN 
+style="COLOR: #000000">&nbsp;</SPAN><SPAN 
+style="COLOR: #0000ff">void</SPAN><SPAN 
+style="COLOR: #000000">&nbsp;Start()<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lastTick&nbsp;</SPAN><SPAN 
+style="COLOR: #000000">=</SPAN><SPAN 
+style="COLOR: #000000">&nbsp;DateTime.Now;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</SPAN><SPAN 
+style="COLOR: #0000ff">public</SPAN><SPAN 
+style="COLOR: #000000">&nbsp;</SPAN><SPAN 
+style="COLOR: #0000ff">virtual</SPAN><SPAN 
+style="COLOR: #000000">&nbsp;</SPAN><SPAN 
+style="COLOR: #0000ff">void</SPAN><SPAN 
+style="COLOR: #000000">&nbsp;Stop()<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;}<BR></SPAN></DIV></DIV>
+<P>&nbsp;</P></DIV>
+<DIV>&nbsp;</DIV>
+<DIV>MainLoop类是抽象基类，定义公共的方法和事件接口。CompositionTargetMainLoop类继承并实现MainLoop类。当然也可以只用一个类来实现。用基类和具体类来实现的好处是可以用不同的方法（例如dispatcher 
+timer）来实现该基类，但是保持相同的接口，便于不同定时方式实现之间的互换。</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>该定时器本身并不提供固定时间间隔的定时，实际上定时的事件总是和UI的帧频保持一致的，由前面的讨论可知，该时间间隔受最大帧频设置，硬件配置，运行环境的因素影响而变化，是不确定的。解决的办法是在每次定时事件中提供距离上次定时事件的时间间隔，然后由使用该定时器的类来计算模拟固定时间间隔。代码如下。</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>
+<DIV class=cnblogs_code>
+<DIV><!--<br/ /><br/ />Code highlighting produced by Actipro CodeHighlighter (freeware)<br/ />http://www.CodeHighlighter.com/<br/ /><br/ />--><SPAN 
+style="COLOR: #000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</SPAN><SPAN 
+style="COLOR: #0000ff">void</SPAN><SPAN 
+style="COLOR: #000000">&nbsp;Instance_Timeout(</SPAN><SPAN 
+style="COLOR: #0000ff">object</SPAN><SPAN 
+style="COLOR: #000000">&nbsp;sender,&nbsp;</SPAN><SPAN 
+style="COLOR: #0000ff">int</SPAN><SPAN 
+style="COLOR: #000000">&nbsp;elapsed)<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_lastElapsed&nbsp;</SPAN><SPAN 
+style="COLOR: #000000">+=</SPAN><SPAN 
+style="COLOR: #000000">&nbsp;elapsed;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</SPAN><SPAN 
+style="COLOR: #0000ff">if</SPAN><SPAN 
+style="COLOR: #000000">&nbsp;(_lastElapsed&nbsp;</SPAN><SPAN 
+style="COLOR: #000000">&gt;=</SPAN><SPAN 
+style="COLOR: #000000">&nbsp;_timerlInterval)<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</SPAN><SPAN 
+style="COLOR: #0000ff">while</SPAN><SPAN 
+style="COLOR: #000000">&nbsp;(_lastElapsed&nbsp;</SPAN><SPAN 
+style="COLOR: #000000">&gt;=</SPAN><SPAN 
+style="COLOR: #000000">&nbsp;_timerlInterval)<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_lastElapsed&nbsp;</SPAN><SPAN 
+style="COLOR: #000000">-=</SPAN><SPAN 
+style="COLOR: #000000">&nbsp;_timerlInterval;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</SPAN></DIV></DIV></DIV></DIV>
+<P></P></DIV></DIV>
+<DIV class=cont5>
+<DIV class=t>博客推荐文章</DIV>
+<UL>
+  <LI><A href="http://blog.chinaunix.net/uid-26466663-id-3399157.html">Linux 
+  makefile 教程 非常详细，且易懂</A> (6分钟前) </LI>
+  <LI><A 
+  href="http://blog.chinaunix.net/uid-28349085-id-3399148.html">MySQL数据结构分析--DYNAMIC_ARRAY和DYNAMIC_STRING</A> 
+  (15分钟前) </LI>
+  <LI><A 
+  href="http://blog.chinaunix.net/uid-28349085-id-3399147.html">MySQL数据结构分析--DYNAMIC_ARRAY和DYNAMIC_STRING</A> 
+  (15分钟前) </LI>
+  <LI><A href="http://blog.chinaunix.net/uid-28349085-id-3399146.html">蛇巢公告</A> 
+  (15分钟前) </LI>
+  <LI><A 
+  href="http://blog.chinaunix.net/uid-28349085-id-3399144.html">VMware完全卸载 
+  批处理文件</A> (15分钟前) </LI></UL></DIV>
+<DIV class=cont6><!-- 分享 -->
+<DIV class=fx>
+<DIV class=icon><!-- JiaThis Button BEGIN -->
+<DIV id=ckepop><A class="jiathis jiathis_txt jtico jtico_jiathis" 
+href="http://www.jiathis.com/share/" target=_blank>分享到：</A> <A 
+class=jiathis_button_tsina>新浪微博</A> <A class=jiathis_button_qzone>QQ空间</A> <A 
+class=jiathis_button_kaixin001>开心网</A> <A class=jiathis_button_douban>豆瓣</A> <A 
+class=jiathis_button_renren>人人网</A> <A class=jiathis_button_twitter>twitter</A> 
+<A class=jiathis_button_fb>fb</A> </DIV>
+<SCRIPT type=text/javascript charset=utf-8 
+src="用CompositionTarget_Rendering实现固定时间间隔定时器_js_jammy-ChinaUnix博客_files/jia.js"></SCRIPT>
+<!-- JiaThis Button END --></DIV><SPAN style="CURSOR: pointer"><A 
+id=support>0</A> <BR><A onclick="ajaxmenu(event, this.id,0, 2000, 'doSupport')" 
+id=click_blogid_1942431 
+href="http://blog.chinaunix.net/cp.php?ac=click&amp;op=add&amp;clickid=4&amp;idtype=blogid&amp;id=1942431&amp;hash=d24f955370734ad9bbfebb458edf347e">&nbsp;&nbsp;&nbsp;<B>顶</B> 
+</A></SPAN>
+<DIV class=clear></DIV></DIV>
+<DIV class=clear></DIV>
+<STYLE>.bor0223 {
+	HEIGHT: 90px; MARGIN: 0px auto 20px; WIDTH: 708px
+}
+.bor0223_tit {
+	FONT-SIZE: 14px; HEIGHT: 28px; BORDER-BOTTOM: #ccc 1px dashed; FONT-WEIGHT: bold; PADDING-LEFT: 12px; LINE-HEIGHT: 28px
+}
+.list0223 {
+	MARGIN: 10px 0px 0px 12px; WIDTH: 698px
+}
+.list0223 LI {
+	HEIGHT: 20px; FLOAT: left; LINE-HEIGHT: 20px; WIDTH: 174px
+}
+</STYLE>
+
+<DIV class=bor0223>
+<DIV class=bor0223_tit>热门推荐</DIV>
+<UL class=list0223>
+  <LI><A title="IBM System x3650 M3(7945075)" 
+  href="http://product.it168.com/detail/doc/475704/index.shtml" 
+  target=_blank>IBM System x3650 M3(...</A></LI>
+  <LI><A title="苹果 Mac mini with Lion Server" 
+  href="http://product.it168.com/detail/doc/457779/index.shtml" target=_blank>苹果 
+  Mac mini with Lion ...</A></LI>
+  <LI><A title="联想 万全T168 G6(Xeon X3430/2GB/500GB) " 
+  href="http://product.it168.com/detail/doc/379596/index.shtml" target=_blank>联想 
+  万全T168 G6(Xeon ...</A></LI>
+  <LI><A title="IBM System x3650 M2(7947I01)" 
+  href="http://product.it168.com/detail/doc/232493/index.shtml" 
+  target=_blank>IBM System x3650 M2(...</A></LI>
+  <LI><A title="CentOS63 no medium found on devsr0" 
+  href="http://blog.chinaunix.net/zhuanti/101152/CentOS63nomediumfoundondevsr0_1011517539.shtml" 
+  target=_blank>CentOS63 no medium f...</A></LI>
+  <LI><A title=用combined更新mac版本的步骤 
+  href="http://blog.chinaunix.net/zhuanti/101153/yongcombinedgengxinmacbanbendebuzhou_1011523140.shtml" 
+  target=_blank>用combined更新mac版本的步骤...</A></LI>
+  <LI><A title="安装zend studio 需要jdk的支持" 
+  href="http://blog.chinaunix.net/zhuanti/101151/anzhuangzendstudioxuyaojdkdezhichi_1011507318.shtml" 
+  target=_blank>安装zend studio 需要jd...</A></LI>
+  <LI><A title=C#modbus测试程序 
+  href="http://blog.chinaunix.net/zhuanti/101152/Cmodbusceshichengxu_1011517375.shtml" 
+  target=_blank>C#modbus测试程序</A></LI></UL></DIV><!-- 阅读 -->
+<DIV class=read><A href="javascript:;">阅读<B>(300)</B></A>┊ <A 
+href="http://blog.chinaunix.net/space.php?uid=20476365&amp;do=blog&amp;id=1942431#comment">评论 
+<B>(<SPAN id=comm_num>0</SPAN>)</B></A>┊<A onclick="ajaxmenu(event, this.id, 1)" 
+id=a_favorite 
+href="http://blog.chinaunix.net/cp.php?ac=favorites&amp;op=addfavorites&amp;blogid=1942431">收藏(0)</A>┊<A 
+onclick="ajaxmenu(event, this.id, 1)" id=a_report 
+href="http://blog.chinaunix.net/cp.php?ac=common&amp;op=report&amp;idtype=blogid&amp;id=1942431">举报</A>┊<A 
+href="javascript:window.print();">打印</A> </DIV>
+<DIV class=next1>前一篇：<A 
+href="http://blog.chinaunix.net/uid-20476365-id-1942430.html">Http模块</A></DIV><!-- 评论 -->
+<DIV id=comment_dv class=tit8 style="DISPLAY: none"><SPAN><A 
+href="http://blog.chinaunix.net/uid-20476365-id-1942431.html#comment">[发评论]</A></SPAN> 
+<B>评论</B>&nbsp;重要提示：警惕虚假中奖信息! </DIV>
+<DIV id=comment class=comments_list>
+<DIV class=box_content>
+<UL id=comment_ul class="post_list a_list justify_list"></UL></DIV></DIV>
+<DIV class=clear></DIV><!-- 发评论 -->
+<DIV class=logins>亲，您还没有登录,请<A 
+href="http://blog.chinaunix.net/do.php?ac=wuxingzypcw213">[登录]</A>或<A 
+href="http://blog.chinaunix.net/do.php?ac=8f442ba1e0c79cd3efcd1fd42b8aad8e">[注册]</A>后再进行评论</DIV></DIV></DIV><!-- 徽章定位1 --></DIV>
+<DIV class=clear></DIV></DIV>
+<SCRIPT type=text/javascript>
+<!--
+var blogid = 1942431;
+var bloguid = 0;
+function doSupport(){
+var x = new Ajax();
+x.get('do.php?ac=ajax&op=support&id='+blogid , function(s){
+document.getElementById('support').innerHTML = s;
+});
+}
+
+function code_hide(id){
+var code = document.getElementById(id).style.display;
+if(code == 'none'){
+document.getElementById(id).style.display = 'block';
+}else{
+document.getElementById(id).style.display = 'none';
+}
+}
+
+
+function checkComment(id){
+
+//	if(bloguid < 1 &&  ($('nim').checked == false) ){
+//		alert('请选择匿名发表评论！');
+//		return false;
+//	}
+if(trim($('seccode').value) == ''){
+alert('验证码不能为空！');
+return false;
+}
+s('comment_dv');
+ajaxpost('quickcommentform_'+id, 'comment_add');
+$('seccode').value = '';
+
+var img = '/do.php?ac=seccode&rand='+Math.random();
+$('img_seccode').src = img;
+}
+$('font_14').style.fontWeight='bold';
+function doZoom(s){
+$('font_12').style.fontWeight='normal';
+$('font_14').style.fontWeight='normal';
+$('font_16').style.fontWeight='normal';
+$('font_'+s).style.fontWeight='bold';
+s = s + 'px';
+$('detail').style.fontSize = s;
+}
+function setTop(t , id)
+{
+var x = new Ajax();
+x.get('/admin.php?ac=blog&op='+ t +'&id='+id , function(s){
+if(t == 'retop'){
+document.getElementById('top_' + id).innerHTML = "<a href=\"javascript:;\" onclick=\"setTop('top', '"+id+"');\">&nbsp;置顶首页</a>";
+}else{
+document.getElementById('top_' + id).innerHTML = "<a href=\"javascript:;\" onclick=\"setTop('retop', '"+id+"');\">&nbsp;取消置顶</a>";
+}
+});
+}
+
+var FmId = 2;
+
+function attention(uid , t){
+if(uid){
+var x = new Ajax();
+x.get('/cp.php?ac=attention&op='+ t +'&uid=' + uid , function(s){
+if(t == 'add'){
+
+var h = "<a href='javascript:;' onclick='attention(\""+ uid +"\" , \"delete\");'>取消关注</a>";
+document.getElementById('attention').innerHTML = h;
+}else{
+var h = "<a href='javascript:;' onclick='attention(\""+ uid +"\" , \"add\");'>加关注</a>";
+document.getElementById('attention').innerHTML = h;
+}
+});
+}
+}
+//-->
+</SCRIPT>
+
+<DIV id=footer>
+<DIV class=l><A href="http://www.chinaunix.net/about/index.shtml" 
+rel=nofollow>关于我们</A> | <A href="http://www.it168.com/bottomfile/it168.shtml" 
+rel=nofollow>关于IT168</A> | <A href="http://www.chinaunix.net/about/connect.html" 
+rel=nofollow>联系方式</A> | <A href="http://www.chinaunix.net/about/service.html" 
+rel=nofollow>广告合作</A> | <A href="http://blog.chinaunix.net/about/fl.html" 
+rel=nofollow>法律声明</A> | <A href="http://blog.chinaunix.net/register.php" 
+rel=nofollow>免费注册</A> 
+<ADDRESS>Copyright &copy; 2001-2010 ChinaUnix.net All Rights Reserved 
+北京皓辰网域网络信息技术有限公司. 版权所有 </ADDRESS></DIV>
+<DIV class=r>感谢所有关心和支持过ChinaUnix的朋友们<BR>京ICP证041476号 京ICP证060528号 </DIV>
+<DIV class=clear></DIV></DIV>
+<DIV id=dialogBoxShadow style="Z-INDEX: 49; DISPLAY: none"></DIV><INPUT id=dot 
+type=hidden></INPUT>
+<SCRIPT type=text/javascript>
+
+<!--
+if($('dot').value == 'theme')  getPageSet();
+function checkHtitle(){
+var tt = $('spacetitle').value;
+if(ttlen(trim(tt)) > 48){
+alert('博客宣言不能超过48个字符！');
+return false;
+}
+ajaxpost('home_from','homeTitle');
+}
+function checkBbrief(){
+var tt = $('blog_brief').value;
+if(ttlen(trim(tt)) > 200){
+alert('个性签名不能超过200个字符！');
+return false;
+}
+ajaxpost('brief_form','blogBrief');
+}
+function homeTitle()
+{
+var spacetitle_value = $('spacetitle').value;
+if(!spacetitle_value){
+spacetitle_value = '还没有博客宣言';
+}
+var x = new Ajax();
+x.get('/do.php?ac=ajax&op=htl', function(s){
+document.getElementById('home_t').innerHTML = s
+});
+s('home_title');
+h('home_title_form');
+}
+function blogBrief()
+{
+var spacetitle_value = $('blog_brief').value;
+if(!spacetitle_value){
+spacetitle_value = '还没有个性签名';
+}
+var x = new Ajax();
+x.get('/do.php?ac=ajax&op=bbf', function(s){
+document.getElementById('blog_b').innerHTML = s
+});
+s('blog_brief');
+h('blog_brief_form');
+}
+//-->
+</SCRIPT>
+
+<SCRIPT language=javascript 
+src="用CompositionTarget_Rendering实现固定时间间隔定时器_js_jammy-ChinaUnix博客_files/pv.js"></SCRIPT>
+
+<SCRIPT type=text/javascript>
+    function sendPV(){
+        var pvTrack = new PvTrack();
+        pvTrack.type = 35; // 频道类别ID
+        pvTrack.channel = 189; // 频道ID
+        pvTrack.pageType = 0;
+        pvTrack.track();
+    }
+    window.setTimeout("sendPV()", 0); 
+
+</SCRIPT>
+
+<SCRIPT type=text/javascript>
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-20237423-2']);
+  _gaq.push(['_setDomainName', '.chinaunix.net']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</SCRIPT>
+ 
+<DIV style="DISPLAY: none">
+<SCRIPT type=text/javascript> 
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F0ee5e8cdc4d43389b3d1bfd76e83216b' type='text/javascript'%3E%3C/script%3E"));
+</SCRIPT>
+</DIV></BODY></HTML>

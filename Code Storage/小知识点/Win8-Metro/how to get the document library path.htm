@@ -1,0 +1,396 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0106)http://social.msdn.microsoft.com/Forums/is/wingameswithdirectx/thread/b8f2a101-c4a0-46e0-a454-059c06ccc4b4 -->
+<!DOCTYPE html PUBLIC "" ""><HTML xmlns="http://www.w3.org/1999/xhtml"><HEAD 
+id="Head1"><META content="IE=10.000" http-equiv="X-UA-Compatible">
+             <LINK href="http://i1.social.s-msft.com/Forums/GlobalResources/images/Msdn/favicon.ico" 
+rel="shortcut icon" type="image/x-icon">     
+<META http-equiv="Content-Type" content="text/html; charset=utf-8"><LINK href="how%20to%20get%20the%20document%20library%20path_files/36a2ab668d9244eeea1269e94be1d14c-5b0a71281384377ef4ecbba3a3c5360f-RequestReducedStyle.css" 
+rel="Stylesheet" type="text/css">
+<META name="CommunityInfo" content=" B=Msdn;A=Forums;L=en-US;">     
+<SCRIPT language="javascript" src="how%20to%20get%20the%20document%20library%20path_files/jquery-1.7.1.min.js" type="text/javascript"></SCRIPT>
+     
+<SCRIPT src="how%20to%20get%20the%20document%20library%20path_files/198faff60a83dd768cacdf60118b0b19-6584225de39c1527dd5dd7bce11792ab-RequestReducedScript.js" type="text/javascript"></SCRIPT>
+        <TITLE>    how to get the document library path </TITLE>	         <!--[if IE 6]>
+    <link type="text/css" rel="Stylesheet" href="http://i3.social.s-msft.com/Forums/resources/styles/IE6Core.css?cver=0%0d%0a" />
+    <![endif]--> 
+        
+<SCRIPT type="text/javascript">
+    //<![CDATA[
+        var fms_site_culture = 'en-US'; var fms_site_lcid = '1033';
+    //]]>
+     </SCRIPT>
+             
+<SCRIPT src="how%20to%20get%20the%20document%20library%20path_files/9b2be8aeb37404ca188071a8eadd6880-802bf9d2048b706d6f30c8433e4f659a-RequestReducedScript.js" type="text/javascript"></SCRIPT>
+        
+<SCRIPT type="text/javascript">
+    $(document).ready(function () {
+        prettyPrint();
+    });
+</SCRIPT>
+     <LINK title="how to get the document library path" href="http://social.msdn.microsoft.com/Forums/is/wingameswithdirectx/thread/b8f2a101-c4a0-46e0-a454-059c06ccc4b4?outputAs=rss" 
+rel="alternate" type="application/rss+xml">     
+<META name="Search.MSForums.Iroot" content="windows/apps">     
+<META name="Search.MSForums.CategoryID" content="6a1b6e2b-9416-44a2-968f-322de9f77294"> 
+    
+<META name="Search.MSForums.CategoryName" content="windowsapps">         <!--
+Third party scripts and code linked to or referenced from this website are licensed to you by the parties that own such code, not by Microsoft.  See ASP.NET Ajax CDN Terms of Use – http://www.asp.net/ajaxlibrary/CDN.ashx.
+--> 
+<META name="GENERATOR" content="MSHTML 10.00.9200.16420"></HEAD> 
+<BODY class=" en-us Forums " dir="ltr">
+<DIV class="ltr" id="BodyBackground">
+<DIV id="JelloSizer">
+<DIV id="JelloExpander">
+<DIV id="JelloWrapper">
+<DIV class="Clear"></DIV>
+<DIV class="Masthead">
+<DIV class="BrandLogo" id="BrandLogo"><A class="BrandLogoLink" href="http://msdn.microsoft.com/en-us/ms348103.aspx"><SPAN 
+id="BrandDisplayText">Microsoft Developer Network</SPAN></A></DIV>
+<DIV class="Search">
+<DIV class="SearchBox" id="SearchBox"><INPUT name="SearchTextBox" class="TextBoxSearch TextBoxSearchIE7" 
+id="SearchTextBox" type="text"><INPUT name="SearchButton" class="SearchButton" 
+id="SearchButton" type="image" src="how%20to%20get%20the%20document%20library%20path_files/trans(1).gif"><SPAN 
+class="Bing">&nbsp;</SPAN></DIV></DIV>
+<DIV class="GlobalBar">
+<DIV class="PassportScarab"><A id="idPPScarab" href="https://login.live.com/login.srf?wa=wsignout1.0&amp;id=254354&amp;wreply=https%3a%2f%2fsocial.msdn.microsoft.com%2fForums%2fis%2fwingameswithdirectx%2fthread%2fb8f2a101-c4a0-46e0-a454-059c06ccc4b4%3fstoAI%3d20">Sign 
+out</A>                             </DIV>
+<DIV class="LocaleFlyout" id="LocaleFlyout">
+<DIV id="LocaleSelector">
+<DIV id="TargetPanel"><A>United States (English)</A><SPAN 
+class="DropDownArrow">&nbsp;</SPAN>                     </DIV>
+<DIV class="ContextMenuPanel" id="PopupPanel"><A class="ContextMenuItem" href="http://social.msdn.microsoft.com/Forums/pt-BR/wingameswithdirectx/thread/b8f2a101-c4a0-46e0-a454-059c06ccc4b4" 
+rel="nofollow">Brasil (Português)</A><A class="ContextMenuItem" href="http://social.msdn.microsoft.com/Forums/cs-CZ/wingameswithdirectx/thread/b8f2a101-c4a0-46e0-a454-059c06ccc4b4" 
+rel="nofollow">Česká&nbsp;republika (Čeština)</A><A class="ContextMenuItem" 
+href="http://social.msdn.microsoft.com/Forums/de-DE/wingameswithdirectx/thread/b8f2a101-c4a0-46e0-a454-059c06ccc4b4" 
+rel="nofollow">Deutschland (Deutsch)</A><A class="ContextMenuItem" href="http://social.msdn.microsoft.com/Forums/es-ES/wingameswithdirectx/thread/b8f2a101-c4a0-46e0-a454-059c06ccc4b4" 
+rel="nofollow">España (Español)</A><A class="ContextMenuItem" href="http://social.msdn.microsoft.com/Forums/fr-FR/wingameswithdirectx/thread/b8f2a101-c4a0-46e0-a454-059c06ccc4b4" 
+rel="nofollow">France (Français)</A><A class="ContextMenuItem" href="http://social.msdn.microsoft.com/Forums/id-ID/wingameswithdirectx/thread/b8f2a101-c4a0-46e0-a454-059c06ccc4b4" 
+rel="nofollow">Indonesia (Bahasa)</A><A class="ContextMenuItem" href="http://social.msdn.microsoft.com/Forums/it-IT/wingameswithdirectx/thread/b8f2a101-c4a0-46e0-a454-059c06ccc4b4" 
+rel="nofollow">Italia (Italiano)</A><A class="ContextMenuItem" href="http://social.msdn.microsoft.com/Forums/ro-RO/wingameswithdirectx/thread/b8f2a101-c4a0-46e0-a454-059c06ccc4b4" 
+rel="nofollow">România (Română)</A><A class="ContextMenuItem" href="http://social.msdn.microsoft.com/Forums/tr-TR/wingameswithdirectx/thread/b8f2a101-c4a0-46e0-a454-059c06ccc4b4" 
+rel="nofollow">Türkiye (Türkçe)</A><A class="ContextMenuItem" href="http://social.msdn.microsoft.com/Forums/ru-RU/wingameswithdirectx/thread/b8f2a101-c4a0-46e0-a454-059c06ccc4b4" 
+rel="nofollow">Россия (Русский)</A><A class="ContextMenuItem" href="http://social.msdn.microsoft.com/Forums/he-IL/wingameswithdirectx/thread/b8f2a101-c4a0-46e0-a454-059c06ccc4b4" 
+rel="nofollow">ישראל (עברית)</A><A class="ContextMenuItem" href="http://social.msdn.microsoft.com/Forums/ar-SA/wingameswithdirectx/thread/b8f2a101-c4a0-46e0-a454-059c06ccc4b4" 
+rel="nofollow">المملكة العربية السعودية (العربية)</A><A class="ContextMenuItem" 
+href="http://social.msdn.microsoft.com/Forums/th-TH/wingameswithdirectx/thread/b8f2a101-c4a0-46e0-a454-059c06ccc4b4" 
+rel="nofollow">ไทย (ไทย)</A><A class="ContextMenuItem" href="http://social.msdn.microsoft.com/Forums/ko-KR/wingameswithdirectx/thread/b8f2a101-c4a0-46e0-a454-059c06ccc4b4" 
+rel="nofollow">대한민국 (한국어)</A><A class="ContextMenuItem" href="http://social.msdn.microsoft.com/Forums/zh-CN/wingameswithdirectx/thread/b8f2a101-c4a0-46e0-a454-059c06ccc4b4" 
+rel="nofollow">中华人民共和国 (中文)</A><A class="ContextMenuItem" href="http://social.msdn.microsoft.com/Forums/zh-TW/wingameswithdirectx/thread/b8f2a101-c4a0-46e0-a454-059c06ccc4b4" 
+rel="nofollow">台灣 (中文)</A><A class="ContextMenuItem" href="http://social.msdn.microsoft.com/Forums/ja-JP/wingameswithdirectx/thread/b8f2a101-c4a0-46e0-a454-059c06ccc4b4" 
+rel="nofollow">日本 (日本語)</A></DIV></DIV></DIV>
+<DIV class="Clear"></DIV>
+<DIV class="UserName" id="UserName"><A title="lilingshui" id="ctl02_UserNameLink" 
+href="http://social.msdn.microsoft.com/profile/lilingshui/">lilingshui</A></DIV></DIV>
+<DIV class="Clear"></DIV>
+<DIV class="NetworkLogo" id="NetworkTagLineArea"><A id="NetworkLink" href="http://msdn.microsoft.com/en-US"> 
+                               &nbsp;                            </A>            
+             </DIV>
+<DIV class="leftcap" xmlns:msxsl="urn:schemas-microsoft-com:xslt">&nbsp;</DIV>
+<DIV class="internav" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><A href="http://msdn.microsoft.com/en-us/ms348103.aspx">Home</A><A 
+href="http://msdn.microsoft.com/en-us/library/default.aspx">Library</A><A href="http://msdn.microsoft.com/en-us/bb188199.aspx">Learn</A><A 
+href="http://code.msdn.microsoft.com/">Samples</A><A href="http://msdn.microsoft.com/en-us/aa570309.aspx">Downloads</A><A 
+href="http://msdn.microsoft.com/en-us/hh361695.aspx">Support</A><A href="http://msdn.microsoft.com/en-us/aa497440.aspx">Community</A><A 
+class="&#10;          active&#10;        " href="http://social.msdn.microsoft.com/Forums/en-US/categories">Forums</A></DIV></DIV>
+<DIV class="Clear"></DIV>
+<DIV class="topleftcorner"></DIV>
+<DIV class="toprightcorner"></DIV>
+<DIV class="alley"><!-- Left Side -->                         
+<DIV class="wrapper"><!-- Right Side -->                             
+<DIV class="inner">
+<DIV class="Clear"></DIV>
+<DIV class="Msdn" id="MainContent">
+<DIV class="bread">
+<DIV class="EyebrowElement" itemtype="http://data-vocabulary.org/Breadcrumb" 
+itemscope=""><SPAN><A 
+href="http://msdn.microsoft.com/en-us/ms348103.aspx">Microsoft Developer 
+Network</A></SPAN><SPAN> &gt; </SPAN>     </DIV>
+<DIV class="EyebrowElement" itemtype="http://data-vocabulary.org/Breadcrumb" 
+itemscope=""><A href="http://social.msdn.microsoft.com/Forums/is/categories" 
+itemprop="url"><SPAN itemprop="title">Forums Home</SPAN>                 
+</A>&gt;&nbsp;           </DIV>
+<DIV class="EyebrowElement" itemtype="http://data-vocabulary.org/Breadcrumb" 
+itemscope=""><A href="http://social.msdn.microsoft.com/Forums/is/category/windowsapps" 
+itemprop="url"><SPAN itemprop="title">Windows Store apps Forums</SPAN>           
+      </A>&gt;&nbsp;           </DIV>
+<DIV class="EyebrowElement" itemtype="http://data-vocabulary.org/Breadcrumb" 
+itemscope=""><A href="http://social.msdn.microsoft.com/Forums/is/wingameswithdirectx/threads" 
+itemprop="url"><SPAN itemprop="title">Building Windows Store games with 
+DirectX</SPAN>                 </A>&gt;&nbsp;           </DIV>
+<DIV class="EyebrowElement" itemscope=""><SPAN itemprop="title">how to get the 
+document library path</SPAN>         </DIV></DIV>
+<DIV class="contentWrapperLeft" id="contentWrapper">
+<DIV class="contentLeft" id="content">
+<DIV id="forumsMessage"></DIV><INPUT name="IsTrusted" id="trustedU" type="hidden" 
+value="False"> <INPUT name="IsTrustedCheckEnabled" id="isTrustedCheckEnabled" 
+type="hidden" value="True">     
+<FORM id="__AjaxAntiForgeryForm" action="#" method="post"><INPUT name="__RequestVerificationToken" 
+type="hidden" value="XPi48i8kgF61bIm7O2OU7p02uO0wMeqwBM-EHRkSrlh2peMxx0-fFSphFislWm0FOciXrCLstnHI6oELoNRy-SlUg05q0QhC_X2U1JPJw48BYrhBxMu59yqq8WLqw7jaHifzyaaTzkaHRzhTp8KHDrLNMCIsxsYL1qRc8X4BCyN7kX-e0"></FORM>
+<H1><IMG title="Answered" class="icon answer" alt="Answered" src="how%20to%20get%20the%20document%20library%20path_files/trans.gif"> 
+    <SPAN name="subject">how to get the document library path</SPAN>         <A 
+href="http://social.msdn.microsoft.com/Forums/is/wingameswithdirectx/thread/b8f2a101-c4a0-46e0-a454-059c06ccc4b4?outputAs=rss" 
+rel="nofollow"><IMG class="icon rss" src="how%20to%20get%20the%20document%20library%20path_files/trans.gif"></A> 
+</H1><!-- Scope: forum--> 
+<DIV class="box discover">
+<DIV class="content">
+<DIV class="search">
+<FORM id="forumsSearch" action="/Forums/is/search" method="post"><INPUT name="searchTerm" 
+class="searchTerm" id="searchTerm" type="text"><INPUT type="image" src="how%20to%20get%20the%20document%20library%20path_files/trans.gif"> 
+            <A name="searchRefinements" class="popup" id="searchRefinements" 
+style="height: 18px; display: none;" href="javascript:void(0);"></A>             
+<UL class="popup" name="searchRefinementsPopup" popupalign="left">
+  <LI><A title="Search Building Windows Store games with DirectX Forum" href="http://social.msdn.microsoft.com/Forums/is/wingameswithdirectx/thread/b8f2a101-c4a0-46e0-a454-059c06ccc4b4#" 
+  scopedata="wingameswithdirectx" scopetype="Forum">                            
+  Search Building Windows Store games with DirectX Forum		                     
+  </A></LI>
+  <LI><A title="Search All Windows Store apps Forums" href="http://social.msdn.microsoft.com/Forums/is/wingameswithdirectx/thread/b8f2a101-c4a0-46e0-a454-059c06ccc4b4#" 
+  scopedata="windowsapps" scopetype="Category">		                    Search All 
+  Windows Store apps Forums		                     </A></LI>
+  <LI><A title="Search All MSDN Forums" href="http://social.msdn.microsoft.com/Forums/is/wingameswithdirectx/thread/b8f2a101-c4a0-46e0-a454-059c06ccc4b4#" 
+  scopedata="" scopetype="Brand">		                Search All MSDN Forums		      
+             </A></LI></UL><INPUT name="scopeType" id="scopeType" type="hidden" 
+value="Forum">             <INPUT name="scopeData" id="scopeData" type="hidden" 
+value="wingameswithdirectx">             <INPUT name="currentScopeType" id="currentScopeType" 
+type="hidden" value="Forum">             <INPUT name="currentScopeData" id="currentScopeData" 
+type="hidden" value="wingameswithdirectx">         </FORM>
+<SCRIPT type="text/javascript">
+            $(document).ready(function()
+            {
+                $("#forumsSearch #searchTerm").watermark('Search Building Windows Store games with DirectX Forum');
+                $("#btnSubmit").attr("disabled", "disabled");
+                $("a#searchRefinements").show();
+
+                $("#forumsSearch").submit(function()
+                {
+                    var strippedVal = $("#forumsSearch #searchTerm").watermarkVal().replace(/^\s+|\s+$/g, "");
+                    return (strippedVal.length > 0)
+                });
+
+                $("#forumsSearch ul.popup a").click(function()
+                {
+                    $("#forumsSearch #scopeType").val($(this).attr("scopeType"));
+                    $("#forumsSearch #scopeData").val($(this).attr("scopeData"));
+                    $("#forumsSearch").submit();
+                    return false;
+                });
+            });
+        </SCRIPT>
+         </DIV>
+<DIV id="askaquestion"><A name="ask" title="Ask a question" class="btn askQuestionLink" 
+href="http://social.msdn.microsoft.com/Forums/is/newthread?category=windowsapps&amp;forum=wingameswithdirectx" 
+rel="nofollow">            Ask a question         </A>     </DIV>
+<DIV class="clear"></DIV></DIV></DIV>
+<UL class="message root">
+  <LI class="message  root" id="b8f2a101-c4a0-46e0-a454-059c06ccc4b4">
+  <DIV class="menu thread">
+  <UL class="menu thread">
+    <LI><A name="subscribe" title="" href="javascript:void();" rel="nofollow" 
+    url="http://social.msdn.microsoft.com/Forums/is/wingameswithdirectx/thread/b8f2a101-c4a0-46e0-a454-059c06ccc4b4/subscribe/"><IMG 
+    title="Alert Me" class="icon alert" alt="Alert Me" src="how%20to%20get%20the%20document%20library%20path_files/trans.gif"><NOBR>Alert 
+    Me</NOBR></A></LI> </UL>
+  <DIV class="clear">                    &nbsp;</DIV></DIV>
+  <DIV class="head"><SPAN class="date">Thursday, February 09, 2012 6:37 
+  AM</SPAN>             
+  <DIV class="profile-usercard-mini" data-profile-usercard-customlink="{&quot;href&quot;:&quot;http://social.msdn.microsoft.com/Forums/is/user/threads?user=william%20wong%20qiwei&quot;, &quot;text&quot;:&quot;william wong qiwei's threads&quot;}" 
+  data-profile-userid="ee06ac7f-cd7a-4858-890e-24b7bad2ae1b">
+  <DIV class="profile-mini-content"></DIV>                &nbsp;</DIV>
+  <DIV class="helpful">                &nbsp;                            
+  </DIV></DIV>
+  <DIV class="votingouterbox">
+  <DIV class="voting"><A name="voteup" title="Vote As Helpful" class="voteuphreflink" 
+  href="http://social.msdn.microsoft.com/Forums/is/wingameswithdirectx/thread/b8f2a101-c4a0-46e0-a454-059c06ccc4b4/b8f2a101-c4a0-46e0-a454-059c06ccc4b4/voteHelpful"><IMG 
+  title="Vote As Helpful" class="icon voteup" alt="Vote As Helpful" src="how%20to%20get%20the%20document%20library%20path_files/trans.gif"> 
+                             
+  <DIV class="votecount">0</DIV></A></DIV><SPAN class="votinglabel type">Vote As 
+  Helpful</SPAN> </DIV>
+  <DIV class="container">
+  <DIV class="body">
+  <P>i use the codee:</P>
+  <P>StorageFolder^ documentsFolder = KnownFolders::DocumentsLibrary;&nbsp;<BR>
+  &nbsp; &nbsp; auto fileOperation = 
+  documentsFolder-&gt;CreateFileAsync(L"sample.txt", 
+  CreationCollisionOption::ReplaceExisting);&nbsp;</P>
+  <P>but it cant create the file, and the documentsFolder-&gt;Path is null also, 
+  how can i get the documents folder path, because i want to create a file to 
+  save my private data in my metro style game , thanks a log</P></DIV><INPUT id="b8f2a101-c4a0-46e0-a454-059c06ccc4b4_attachments" 
+  type="hidden"></DIV>
+  <DIV class="abusive">
+  <UL class="menu" name="AbusiveMenus">
+    <LI><A name="Abusivea5cd4ad7-2fbc-45ca-9de1-49616f0a1731" title="Report As Abuse" 
+    class="popup" href="javascript:void(0);" rel="nofollow"><IMG title="Report As Abuse" 
+    class="icon " alt="Report As Abuse" src="how%20to%20get%20the%20document%20library%20path_files/trans.gif"> 
+                        <NOBR>Report As Abuse</NOBR></A>
+    <UL class="popup" name="Abusivea5cd4ad7-2fbc-45ca-9de1-49616f0a1731Popup"> 
+      <LI><A name="reportAbuse" title="Spam/Advertising" class="btn" href="http://social.msdn.microsoft.com/Forums/is/wingameswithdirectx/thread/b8f2a101-c4a0-46e0-a454-059c06ccc4b4/b8f2a101-c4a0-46e0-a454-059c06ccc4b4/reportAbuse?type=SPAMOrAdvertising" 
+      rel="nofollow"><IMG title="Spam/Advertising" class="icon" alt="Spam/Advertising" 
+      src="how%20to%20get%20the%20document%20library%20path_files/trans.gif"><NOBR>Spam/Advertising</NOBR></A></LI>
+      <LI><A name="reportAbuse" title="Profanity" class="btn" href="http://social.msdn.microsoft.com/Forums/is/wingameswithdirectx/thread/b8f2a101-c4a0-46e0-a454-059c06ccc4b4/b8f2a101-c4a0-46e0-a454-059c06ccc4b4/reportAbuse?type=Profanity" 
+      rel="nofollow"><IMG title="Profanity" class="icon" alt="Profanity" src="how%20to%20get%20the%20document%20library%20path_files/trans.gif"><NOBR>Profanity</NOBR></A></LI>
+      <LI><A name="reportAbuse" title="Inappropriate/Adult Content" class="btn" 
+      href="http://social.msdn.microsoft.com/Forums/is/wingameswithdirectx/thread/b8f2a101-c4a0-46e0-a454-059c06ccc4b4/b8f2a101-c4a0-46e0-a454-059c06ccc4b4/reportAbuse?type=InappropriateOrAdultContent" 
+      rel="nofollow"><IMG title="Inappropriate/Adult Content" class="icon" alt="Inappropriate/Adult Content" 
+      src="how%20to%20get%20the%20document%20library%20path_files/trans.gif"><NOBR>Inappropriate/Adult 
+      Content</NOBR></A></LI>
+      <LI><A name="reportAbuse" title="Off Topic/Irrelevant Posts" class="btn" 
+      href="http://social.msdn.microsoft.com/Forums/is/wingameswithdirectx/thread/b8f2a101-c4a0-46e0-a454-059c06ccc4b4/b8f2a101-c4a0-46e0-a454-059c06ccc4b4/reportAbuse?type=OffTopicOrIrrelevantPosts" 
+      rel="nofollow"><IMG title="Off Topic/Irrelevant Posts" class="icon" alt="Off Topic/Irrelevant Posts" 
+      src="how%20to%20get%20the%20document%20library%20path_files/trans.gif"><NOBR>Off 
+      Topic/Irrelevant Posts</NOBR></A></LI>
+      <LI><A name="reportAbuse" title="Other Term of Use or Code of Conduct violation" 
+      class="btn" href="http://social.msdn.microsoft.com/Forums/is/wingameswithdirectx/thread/b8f2a101-c4a0-46e0-a454-059c06ccc4b4/b8f2a101-c4a0-46e0-a454-059c06ccc4b4/reportAbuse?type=OtherTermofUseOrCodeofConductviolation" 
+      rel="nofollow"><IMG title="Other Term of Use or Code of Conduct violation" 
+      class="icon" alt="Other Term of Use or Code of Conduct violation" src="how%20to%20get%20the%20document%20library%20path_files/trans.gif"><NOBR>Other 
+      Term of Use or Code of Conduct violation</NOBR></A></LI></UL></LI>           
+      </UL></DIV>
+  <DIV class="menu message">
+  <UL class="menu">
+    <LI><A name="reply" title="Reply" href="javascript:void();" rel="nofollow" 
+    url="http://social.msdn.microsoft.com/Forums/is/wingameswithdirectx/thread/b8f2a101-c4a0-46e0-a454-059c06ccc4b4/b8f2a101-c4a0-46e0-a454-059c06ccc4b4/reply"><IMG 
+    title="Reply" class="icon reply" alt="Reply" src="how%20to%20get%20the%20document%20library%20path_files/trans.gif"><NOBR>Reply</NOBR></A></LI> 
+                    
+    <LI><A name="quote" title="" href="javascript:void();" rel="nofollow" url="http://social.msdn.microsoft.com/Forums/is/wingameswithdirectx/thread/b8f2a101-c4a0-46e0-a454-059c06ccc4b4/b8f2a101-c4a0-46e0-a454-059c06ccc4b4/quote"><IMG 
+    title="Quote" class="icon quote" alt="Quote" src="how%20to%20get%20the%20document%20library%20path_files/trans.gif"><NOBR>Quote</NOBR></A></LI> 
+  </UL>
+  <DIV class="clear">                &nbsp;</DIV></DIV></LI></UL>
+<DIV class="answers">
+<H3>                Answers                 </H3>
+<UL class="message">
+  <LI class="message  answer" id="99febe53-f696-46e1-a2b9-f524889b6879">
+  <DIV class="head"><SPAN class="date">Thursday, February 09, 2012 6:47 
+  AM</SPAN>             
+  <DIV class="profile-usercard-mini" data-profile-usercard-customlink="{&quot;href&quot;:&quot;http://social.msdn.microsoft.com/Forums/is/user/threads?user=Rob%20Caplan&quot;, &quot;text&quot;:&quot;Rob Caplan's threads&quot;}" 
+  data-profile-userid="552e01dd-6f21-4bf3-bb76-0062f29e44aa">
+  <DIV class="profile-mini-content">Moderator</DIV>                &nbsp;</DIV>
+  <DIV class="helpful">                &nbsp;<IMG title="Answered" class="icon answer" 
+  alt="Answered" src="how%20to%20get%20the%20document%20library%20path_files/trans.gif"> 
+                             </DIV></DIV>
+  <DIV class="votingouterbox">
+  <DIV class="voting"><A name="voteup" title="Vote As Helpful" class="voteuphreflink" 
+  href="http://social.msdn.microsoft.com/Forums/is/wingameswithdirectx/thread/b8f2a101-c4a0-46e0-a454-059c06ccc4b4/99febe53-f696-46e1-a2b9-f524889b6879/voteHelpful"><IMG 
+  title="Vote As Helpful" class="icon voteup" alt="Vote As Helpful" src="how%20to%20get%20the%20document%20library%20path_files/trans.gif"> 
+                             
+  <DIV class="votecount">0</DIV></A></DIV><SPAN class="votinglabel type">Vote As 
+  Helpful</SPAN> </DIV>
+  <DIV class="container">
+  <DIV class="body">
+  <P>You are getting the documents library correctly, but your application 
+  probably doesn't have access to it. You would need to declare the capability 
+  and associate your file type in order to access files in the documents 
+  library. You would then have to access it via the StorageFile and not directly 
+  by path.</P>
+  <P>That said, the documents library is not the right place to store private 
+  data. That should be stored in your application's data store. See the 
+  Application data <A href="http://msdn.microsoft.com/en-us/library/windows/apps/hh464917.aspx">documentation 
+  </A>and <A href="http://code.msdn.microsoft.com/windowsapps/ApplicationData-04c434b3">
+  sample</A>.</P>
+  <P>For questions like this which aren't related to using DirectX in your Metro 
+  style app you will likely find more responses in the <A href="http://social.msdn.microsoft.com/Forums/en-US/winappswithnativecode/threads">
+  Building Metro style apps with C++</A> forum. </P>
+  <P>--Rob</P></DIV>
+  <UL class="history">
+    <LI><SPAN class="type">Proposed As Answer by</SPAN>                     <A 
+    title="About Rob Caplan" class="author" href="http://social.msdn.microsoft.com/profile/rob%20caplan/?type=forum&amp;referrer=http://social.msdn.microsoft.com/Forums/is/wingameswithdirectx/thread/b8f2a101-c4a0-46e0-a454-059c06ccc4b4" 
+    rel="nofollow"><SPAN>Rob Caplan</SPAN><ABBR class="affil">Microsoft 
+    Employee, Moderator</ABBR></A>                 <SPAN class="date">Thursday, 
+    February 09, 2012 6:47 AM</SPAN>             </LI>
+    <LI><SPAN class="type">Marked As Answer by</SPAN>                     <A 
+    title="About Rob Caplan" class="author" href="http://social.msdn.microsoft.com/profile/rob%20caplan/?type=forum&amp;referrer=http://social.msdn.microsoft.com/Forums/is/wingameswithdirectx/thread/b8f2a101-c4a0-46e0-a454-059c06ccc4b4" 
+    rel="nofollow"><SPAN>Rob Caplan</SPAN><ABBR class="affil">Microsoft 
+    Employee, Moderator</ABBR></A>                 <SPAN class="date">Tuesday, 
+    February 14, 2012 1:45 AM</SPAN>             </LI>
+    <LI>&nbsp;</LI></UL><INPUT id="99febe53-f696-46e1-a2b9-f524889b6879_attachments" 
+  type="hidden"></DIV>
+  <DIV class="abusive">
+  <UL class="menu" name="AbusiveMenus">
+    <LI><A name="Abusivebcb4d7f6-9015-4c7a-befc-557139fa9e37" title="Report As Abuse" 
+    class="popup" href="javascript:void(0);" rel="nofollow"><IMG title="Report As Abuse" 
+    class="icon " alt="Report As Abuse" src="how%20to%20get%20the%20document%20library%20path_files/trans.gif"> 
+                        <NOBR>Report As Abuse</NOBR></A>
+    <UL class="popup" name="Abusivebcb4d7f6-9015-4c7a-befc-557139fa9e37Popup"> 
+      <LI><A name="reportAbuse" title="Spam/Advertising" class="btn" href="http://social.msdn.microsoft.com/Forums/is/wingameswithdirectx/thread/b8f2a101-c4a0-46e0-a454-059c06ccc4b4/99febe53-f696-46e1-a2b9-f524889b6879/reportAbuse?type=SPAMOrAdvertising" 
+      rel="nofollow"><IMG title="Spam/Advertising" class="icon" alt="Spam/Advertising" 
+      src="how%20to%20get%20the%20document%20library%20path_files/trans.gif"><NOBR>Spam/Advertising</NOBR></A></LI>
+      <LI><A name="reportAbuse" title="Profanity" class="btn" href="http://social.msdn.microsoft.com/Forums/is/wingameswithdirectx/thread/b8f2a101-c4a0-46e0-a454-059c06ccc4b4/99febe53-f696-46e1-a2b9-f524889b6879/reportAbuse?type=Profanity" 
+      rel="nofollow"><IMG title="Profanity" class="icon" alt="Profanity" src="how%20to%20get%20the%20document%20library%20path_files/trans.gif"><NOBR>Profanity</NOBR></A></LI>
+      <LI><A name="reportAbuse" title="Inappropriate/Adult Content" class="btn" 
+      href="http://social.msdn.microsoft.com/Forums/is/wingameswithdirectx/thread/b8f2a101-c4a0-46e0-a454-059c06ccc4b4/99febe53-f696-46e1-a2b9-f524889b6879/reportAbuse?type=InappropriateOrAdultContent" 
+      rel="nofollow"><IMG title="Inappropriate/Adult Content" class="icon" alt="Inappropriate/Adult Content" 
+      src="how%20to%20get%20the%20document%20library%20path_files/trans.gif"><NOBR>Inappropriate/Adult 
+      Content</NOBR></A></LI>
+      <LI><A name="reportAbuse" title="Off Topic/Irrelevant Posts" class="btn" 
+      href="http://social.msdn.microsoft.com/Forums/is/wingameswithdirectx/thread/b8f2a101-c4a0-46e0-a454-059c06ccc4b4/99febe53-f696-46e1-a2b9-f524889b6879/reportAbuse?type=OffTopicOrIrrelevantPosts" 
+      rel="nofollow"><IMG title="Off Topic/Irrelevant Posts" class="icon" alt="Off Topic/Irrelevant Posts" 
+      src="how%20to%20get%20the%20document%20library%20path_files/trans.gif"><NOBR>Off 
+      Topic/Irrelevant Posts</NOBR></A></LI>
+      <LI><A name="reportAbuse" title="Other Term of Use or Code of Conduct violation" 
+      class="btn" href="http://social.msdn.microsoft.com/Forums/is/wingameswithdirectx/thread/b8f2a101-c4a0-46e0-a454-059c06ccc4b4/99febe53-f696-46e1-a2b9-f524889b6879/reportAbuse?type=OtherTermofUseOrCodeofConductviolation" 
+      rel="nofollow"><IMG title="Other Term of Use or Code of Conduct violation" 
+      class="icon" alt="Other Term of Use or Code of Conduct violation" src="how%20to%20get%20the%20document%20library%20path_files/trans.gif"><NOBR>Other 
+      Term of Use or Code of Conduct violation</NOBR></A></LI></UL></LI>           
+      </UL></DIV>
+  <DIV class="menu message">
+  <UL class="menu">
+    <LI><A name="reply" title="Reply" href="javascript:void();" rel="nofollow" 
+    url="http://social.msdn.microsoft.com/Forums/is/wingameswithdirectx/thread/b8f2a101-c4a0-46e0-a454-059c06ccc4b4/99febe53-f696-46e1-a2b9-f524889b6879/reply"><IMG 
+    title="Reply" class="icon reply" alt="Reply" src="how%20to%20get%20the%20document%20library%20path_files/trans.gif"><NOBR>Reply</NOBR></A></LI> 
+                    
+    <LI><A name="quote" title="" href="javascript:void();" rel="nofollow" url="http://social.msdn.microsoft.com/Forums/is/wingameswithdirectx/thread/b8f2a101-c4a0-46e0-a454-059c06ccc4b4/99febe53-f696-46e1-a2b9-f524889b6879/quote"><IMG 
+    title="Quote" class="icon quote" alt="Quote" src="how%20to%20get%20the%20document%20library%20path_files/trans.gif"><NOBR>Quote</NOBR></A></LI> 
+  </UL>
+  <DIV class="clear">                &nbsp;</DIV></DIV></LI></UL></DIV>
+<DIV class="clear"></DIV></DIV></DIV>
+<DIV id="nrSurvey"></DIV>
+<DIV class="railRight" id="rail"><A class="help" href="http://social.msdn.microsoft.com/Forums/en-US/help" 
+rel="Help">Frequently asked questions - Forums help</A></DIV>
+<DIV class="Clear"></DIV></DIV></DIV></DIV></DIV>
+<DIV class="Clearbottom"></DIV>
+<DIV class="bottomleftcorner"></DIV>
+<DIV class="bottomrightcorner"></DIV>
+<DIV id="Footer">
+<DIV class="FooterLogoContainer"><A href="http://www.microsoft.com/en/us/default.aspx">
+<DIV title="Microsoft Corporation" class="FooterLogo">&nbsp;</DIV></A></DIV>
+<DIV class="FooterCopyright" id="FooterCopyright">© 2012  Microsoft. All rights 
+reserved.</DIV>
+<DIV class="FooterLinks"><SPAN class="FooterAnchorList"><A href="http://msdn.microsoft.com/cc300389.aspx">Terms 
+of Use</A><SPAN class="Pipe">|</SPAN><A href="http://www.microsoft.com/library/toolbar/3.0/trademarks/en-us.mspx">Trademarks</A><SPAN 
+class="Pipe">|</SPAN><A 
+href="http://go.microsoft.com/fwlink/?LinkId=248681">Privacy Statement</A><SPAN 
+class="Pipe">|</SPAN><A href="https://lab.msdn.microsoft.com/mailform/contactus.aspx?refurl=http%3a%2f%2fsocial.msdn.microsoft.com%2fForums%2fis%2fwingameswithdirectx%2fthread%2fb8f2a101-c4a0-46e0-a454-059c06ccc4b4" 
+target="_blank">Site Feedback</A></SPAN></DIV></DIV></DIV></DIV></DIV></DIV>
+<DIV data-chameleon-template="megablade"></DIV>
+<SCRIPT src="how%20to%20get%20the%20document%20library%20path_files/ce7898c244c7acf55c8ac0d7c3a4c216-0c09966f154b72a15c7e25d68f47af9f-RequestReducedScript.js" type="text/javascript"></SCRIPT>
+ <LINK href="how%20to%20get%20the%20document%20library%20path_files/telerik.common.min.css" 
+rel="stylesheet" type="text/css"> <LINK href="how%20to%20get%20the%20document%20library%20path_files/telerik.windows7.min.css" 
+rel="stylesheet" type="text/css"> <LINK href="how%20to%20get%20the%20document%20library%20path_files/telerik.rtl.min.css" 
+rel="stylesheet" type="text/css"> <LINK href="how%20to%20get%20the%20document%20library%20path_files/TelerikEditorStyles.css" 
+rel="stylesheet" type="text/css">     
+<SCRIPT src="how%20to%20get%20the%20document%20library%20path_files/cab4ab34f03e9e144a144cc0922854ad-898884c56b1f914699d1b849ebafcbe7-RequestReducedScript.js" type="text/javascript"></SCRIPT>
+        
+<SCRIPT language="javascript" type="text/javascript">
+var railItems = ["/Forums/en-US/rightrailannouncement/Msdn/6a1b6e2b-9416-44a2-968f-322de9f77294?forumName=wingameswithdirectx","/Forums/is/user/mylinks?forumId=e359fc1f-41c5-4448-b21e-a1669d6db933&forumName=wingameswithdirectx","/Forums/is/search/RelatedThreadsByThread?threadTopic=how%20to%20get%20the%20document%20library%20path&threadId=b8f2a101-c4a0-46e0-a454-059c06ccc4b4","/Forums/is/wingameswithdirectx/thread/b8f2a101-c4a0-46e0-a454-059c06ccc4b4/stats?createdOn=02%2F09%2F2012%2006%3A37%3A55&lastReplyOn=02%2F09%2F2012%2006%3A47%3A26&replies=1&views=1534&helpfulVotes=0"];
+
+</SCRIPT>
+     
+<SCRIPT language="javascript" type="text/javascript">
+        var pageData = {"validUser":true,"autoSubscribe":false};
+    </SCRIPT>
+      
+<SCRIPT language="javascript" type="text/javascript">
+            var userEmailConfigured = false;
+     </SCRIPT>
+         
+<SCRIPT src="how%20to%20get%20the%20document%20library%20path_files/f88ffb7c2150f1a349aa26a707e68862-c609d34f6a7fae955f519faf8ccf6c24-RequestReducedScript.js" type="text/javascript"></SCRIPT>
+             <NOSCRIPT>        &lt;img alt="" border="0" id="DCSIMG" width="1" 
+height="1" 
+src="http://m.webtrends.com/dcsour5e80000008ybade4ttg_1i1l/njs.gif?dcsuri=/nojavascript&amp;amp;WT.js=No"&gt; 
+    </NOSCRIPT>         
+<SCRIPT src="how%20to%20get%20the%20document%20library%20path_files/broker.js" type="text/javascript"></SCRIPT>
+                
+<SCRIPT language="javascript" src="how%20to%20get%20the%20document%20library%20path_files/loader.js" type="text/javascript"></SCRIPT>
+             
+<SCRIPT language="javascript" src="how%20to%20get%20the%20document%20library%20path_files/SearchBox.js" type="text/javascript"></SCRIPT>
+     
+<SCRIPT src="how%20to%20get%20the%20document%20library%20path_files/1137f6ae0c6c7e7ceac4da6ce50ab853-e8eb82aca209d38ec3ab7c7283926e84-RequestReducedScript.js" type="text/javascript"></SCRIPT>
+                                <NOSCRIPT>&lt;a href="http://www.omniture.com" 
+title="Web Analytics"&gt;        &lt;img 
+src="http://msstonojssocial.112.2O7.net/b/ss/msstonojssocial/1/H.20.2--NS/0" 
+height="1" width="1" alt="" /&gt;        &lt;/a&gt;</NOSCRIPT>     
+</BODY></HTML>

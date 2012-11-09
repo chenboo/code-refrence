@@ -1,0 +1,75 @@
+body blockquote {
+	margin: 1em 2em; padding: 1em; background-color: rgb(208, 208, 208);
+}
+.t-editor .t-html {
+	background-image: url("insert-html-icon.png");
+}
+.t-editor .t-code {
+	background-image: url("insert-code-icon.png");
+}
+.html-view .t-button-wrapper {
+	padding: 0.5em 0px;
+}
+#htmlCancel {
+	float: right;
+}
+.textarea {
+	border-width: 1px; border-style: solid;
+}
+.textarea textarea {
+	font: 12px/normal Consolas, Courier New, monospace; margin: 0px; padding: 0px; border: 0px currentColor; width: 100%; height: 300px; font-size-adjust: none; font-stretch: normal;
+}
+.codeprettify {
+	border-width: 1px; border-style: solid;
+}
+.codeprettify textarea {
+	font: 12px/normal Consolas, Courier New, monospace; margin: 0px; padding: 0px; border: 0px currentColor; width: 100%; height: 425px; font-size-adjust: none; font-stretch: normal;
+}
+.t-addfolder {
+	display: none;
+}
+.t-delete {
+	display: none;
+}
+.t-breadcrumbs {
+	display: none;
+}
+.t-search-wrap {
+	display: none;
+}
+.t-tiles-arrange {
+	display: none;
+}
+.t-tile {
+	margin: 0px; width: auto; height: auto;
+}
+.t-imagebrowser .t-thumb {
+	margin: 0px; width: auto; height: auto;
+}
+.t-tile {
+	background-image: none;
+}
+.t-imagebrowser .t-image {
+	margin: 0px;
+}
+.t-form-text-row label {
+	text-align: left;
+}
+.t-imageBrowser-conditions {
+	font-size: inherit; font-style: inherit;
+}
+.t-imagebrowser strong {
+	display: none;
+}
+.t-imagebrowser .t-filesize {
+	display: none;
+}
+.t-editor .t-editable-area {
+	background-position: center; height: 91%; background-image: url("../resources/images/loading.gif"); background-repeat: no-repeat;
+}
+.t-editor .t-editor-toolbar-wrap {
+	height: 9%;
+}
+pre {
+	direction: ltr;
+}

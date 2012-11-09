@@ -1,0 +1,342 @@
+.t-widget {
+	border-color: rgb(165, 179, 197); background-color: rgb(252, 252, 252);
+}
+.t-input {
+	border-color: rgb(165, 179, 197); background-color: rgb(252, 252, 252);
+}
+.t-header {
+	background: rgb(241, 245, 251); border-color: rgb(165, 179, 197);
+}
+.t-grid-header {
+	background: rgb(241, 245, 251); border-color: rgb(165, 179, 197);
+}
+.t-icon {
+	background-image: url("Windows7/sprite.png");
+}
+.t-editor .t-tool-icon {
+	background-image: url("Windows7/editor.png");
+}
+.t-loading {
+	background: url("Windows7/loading.gif") no-repeat 0px 0px;
+}
+.t-widget .t-loading {
+	background: url("Windows7/loading.gif") no-repeat 0px 0px;
+}
+.t-widget {
+	color: rgb(0, 0, 0);
+}
+.t-link {
+	color: rgb(0, 0, 0);
+}
+.t-popup {
+	color: rgb(0, 0, 0);
+}
+.t-header {
+	color: rgb(76, 96, 122);
+}
+.t-header .t-link {
+	color: rgb(76, 96, 122);
+}
+.t-header .t-group {
+	color: rgb(51, 51, 51);
+}
+.t-group .t-link {
+	color: rgb(51, 51, 51);
+}
+.t-group {
+	border-color: rgb(165, 179, 197); background-color: rgb(252, 252, 252);
+}
+.t-content {
+	border-color: rgb(165, 179, 197); background-color: rgb(252, 252, 252);
+}
+.t-editable-area {
+	border-color: rgb(165, 179, 197); background-color: rgb(252, 252, 252);
+}
+.t-colorpicker .t-arrow-down {
+	border-color: rgb(165, 179, 197);
+}
+.t-separator {
+	border-color: rgb(255, 255, 255); background-color: rgb(194, 206, 219);
+}
+.t-alt {
+	background-color: rgb(235, 239, 243);
+}
+.t-state-default {
+	border-color: rgb(165, 179, 197);
+}
+.t-active-filter {
+	background-color: rgb(195, 220, 250);
+}
+.t-state-hover {
+	color: rgb(0, 0, 0);
+}
+.t-state-hover .t-link {
+	color: rgb(0, 0, 0);
+}
+.t-header .t-state-hover {
+	color: rgb(0, 0, 0);
+}
+.t-group .t-state-hover {
+	color: rgb(0, 0, 0);
+}
+.t-state-hover {
+	border-color: rgb(141, 174, 213); background-color: rgb(209, 228, 252);
+}
+.t-state-hover:hover {
+	border-color: rgb(141, 174, 213); background-color: rgb(209, 228, 252);
+}
+.t-state-active {
+	border-color: rgb(66, 102, 130); background-color: rgb(255, 255, 255);
+}
+.t-state-selected {
+	background-color: rgb(222, 236, 254);
+}
+.t-state-focused {
+	background-color: rgb(196, 209, 224);
+}
+.t-dropdown .t-state-focused {
+	background: url("Windows7/sprite.png") repeat-x 0px -752px rgb(190, 212, 239); border-color: rgb(190, 212, 239);
+}
+.t-state-error {
+	border-color: rgb(255, 0, 0); background-color: rgb(255, 192, 203);
+}
+.input-validation-error.t-widget {
+	border-color: rgb(255, 0, 0); background-color: rgb(255, 192, 203);
+}
+.t-widget .input-validation-error {
+	border-color: rgb(255, 0, 0); background-color: rgb(255, 192, 203);
+}
+.t-button {
+	color: rgb(13, 32, 43);
+}
+.t-button {
+	background: url("Windows7/sprite.png") repeat-x 0px -560px rgb(231, 236, 245); border-color: rgb(194, 206, 219);
+}
+button.t-state-disabled.t-button:hover {
+	background: url("Windows7/sprite.png") repeat-x 0px -560px rgb(231, 236, 245); border-color: rgb(194, 206, 219);
+}
+a.t-state-disabled.t-button:hover {
+	background: url("Windows7/sprite.png") repeat-x 0px -560px rgb(231, 236, 245); border-color: rgb(194, 206, 219);
+}
+.t-state-disabled .t-button:hover {
+	background: url("Windows7/sprite.png") repeat-x 0px -560px rgb(231, 236, 245); border-color: rgb(194, 206, 219);
+}
+.t-button:hover {
+	background-position: 0px -624px; border-color: rgb(155, 201, 255); color: rgb(14, 61, 79); background-color: rgb(221, 232, 246);
+}
+.t-state-disabled {
+	color: rgb(153, 153, 153);
+}
+.t-state-disabled:hover {
+	color: rgb(153, 153, 153);
+}
+.t-state-disabled .t-link {
+	color: rgb(153, 153, 153);
+}
+.t-widget .t-state-disabled.t-link {
+	color: rgb(153, 153, 153);
+}
+.t-state-disabled .t-button {
+	color: rgb(153, 153, 153);
+}
+.t-toolbar {
+	border-color: rgb(174, 197, 209); background-color: rgb(241, 245, 251);
+}
+.t-grouping-header {
+	border-color: rgb(174, 197, 209); background-color: rgb(241, 245, 251);
+}
+.t-grid-pager {
+	border-color: rgb(174, 197, 209); background-color: rgb(241, 245, 251);
+}
+.t-widget .t-status {
+	border-color: rgb(174, 197, 209); background-color: rgb(241, 245, 251);
+}
+.t-panelbar .t-link {
+	border-color: rgb(165, 179, 197);
+}
+.t-tabstrip .t-item {
+	border-bottom-color: rgb(66, 102, 130);
+}
+.t-grid-header-wrap {
+	border-color: rgb(165, 179, 197);
+}
+.t-grid-footer-wrap {
+	border-color: rgb(165, 179, 197);
+}
+.t-grid td {
+	border-color: rgb(218, 226, 232);
+}
+.t-grouping-row td {
+	background: url("Windows7/sprite.png") repeat-x 0px -48px rgb(255, 255, 255);
+}
+.t-footer-template td {
+	border-color: rgb(174, 197, 209) rgb(226, 234, 244); background-color: rgb(226, 234, 244);
+}
+.t-group-footer td {
+	border-color: rgb(174, 197, 209); background-color: rgb(226, 234, 244);
+}
+.t-grid-footer {
+	border-color: rgb(174, 197, 209); background-color: rgb(226, 234, 244);
+}
+.t-grid-footer-wrap table {
+	border-color: rgb(174, 197, 209); background-color: rgb(226, 234, 244);
+}
+.t-grouping-header .t-group-indicator {
+	border-color: rgb(204, 204, 204); color: rgb(51, 51, 51);
+}
+.t-grouping-dropclue {
+	background: url("Windows7/sprite.png") no-repeat -48px -288px;
+}
+.t-grouping-row .t-group-cell {
+	background: rgb(255, 255, 255);
+}
+.t-grouping-row p {
+	background: rgb(255, 255, 255);
+}
+.t-treeview .t-drop-clue {
+	background-position: 0px -358px; background-image: url("Windows7/sprite.png");
+}
+.t-treeview .t-state-selected {
+	border-color: rgb(143, 176, 214);
+}
+.t-calendar th {
+	border-color: rgb(212, 219, 229);
+}
+.t-other-month .t-link {
+	color: rgb(167, 167, 167);
+}
+.t-editor-button .t-state-hover {
+	border-color: rgb(229, 240, 253) rgb(139, 166, 196) rgb(139, 166, 196) rgb(229, 240, 253); background-color: rgb(209, 228, 252);
+}
+.t-editor-button .t-state-active {
+	border-color: rgb(174, 193, 214) rgb(227, 235, 245) rgb(227, 235, 245) rgb(174, 193, 214); background-color: rgb(204, 219, 237);
+}
+.t-slider .t-draghandle {
+	color: rgb(76, 96, 122); background-image: url("Windows7/sprite.png");
+}
+.t-slider-track {
+	border-color: rgb(166, 171, 195);
+}
+.t-slider-horizontal .t-slider-track {
+	background-image: url("Windows7/sprite.png");
+}
+.t-slider-horizontal .t-slider-selection {
+	background-image: url("Windows7/sprite.png");
+}
+.t-slider-vertical .t-slider-track {
+	background-image: url("Windows7/sprite-vertical.png");
+}
+.t-slider-vertical .t-slider-selection {
+	background-image: url("Windows7/sprite-vertical.png");
+}
+.t-slider-horizontal .t-tick {
+	background-image: url("Windows7/slider-h.gif");
+}
+.t-slider-vertical .t-tick {
+	background-image: url("Windows7/slider-v.gif");
+}
+.t-tooltip {
+	background: url("Windows7/sprite.png") repeat-x 0px -560px rgb(231, 236, 245); color: rgb(14, 61, 79);
+}
+.t-callout {
+	background-image: url("Windows7/sprite.png");
+}
+.t-splitter {
+	border-color: rgb(218, 226, 232);
+}
+.t-splitbar-vertical {
+	border-color: rgb(218, 226, 232); background-color: rgb(241, 245, 251);
+}
+.t-splitbar-horizontal {
+	border-color: rgb(218, 226, 232); background-color: rgb(241, 245, 251);
+}
+.t-splitbar-vertical {
+	background-image: url("Windows7/sprite.png");
+}
+.t-ghost-splitbar-vertical {
+	background-image: url("Windows7/sprite.png");
+}
+.t-splitbar-horizontal {
+	background-image: url("Windows7/sprite-vertical.png");
+}
+.t-ghost-splitbar-horizontal {
+	background-image: url("Windows7/sprite-vertical.png");
+}
+.t-dropzone-active {
+	border-color: rgb(194, 206, 219);
+}
+.t-upload-files {
+	border-color: rgb(194, 206, 219);
+}
+.t-dropzone-hovered {
+	background-color: rgb(241, 245, 251);
+}
+.t-upload-files {
+	background-color: rgb(241, 245, 251);
+}
+.t-dropzone em {
+	color: rgb(167, 167, 167);
+}
+.t-progress {
+	background-image: url("Windows7/sprite.png");
+}
+.t-progress-status {
+	background-image: url("Windows7/sprite.png");
+}
+.t-progress {
+	background-position: 0px -465px; border-color: rgb(194, 206, 219);
+}
+.t-progress-status {
+	background-position: 0px -472px; border-color: rgb(29, 178, 238) transparent rgb(49, 134, 219);
+}
+.t-imagebrowser .t-content {
+	background: rgb(241, 245, 251);
+}
+.t-breadcrumbs .t-link {
+	color: rgb(30, 57, 91);
+}
+.t-tiles-arrange {
+	color: rgb(30, 57, 91);
+}
+.t-tiles-arrange a {
+	color: rgb(30, 57, 91);
+}
+.t-breadcrumbs .t-first {
+	color: rgb(167, 167, 167);
+}
+.t-breadcrumbs .t-first:hover {
+	color: rgb(167, 167, 167);
+}
+.t-search-wrap label {
+	color: rgb(167, 167, 167);
+}
+.t-tiles {
+	background: rgb(255, 255, 255); border-color: rgb(194, 206, 219);
+}
+.t-tile {
+	background: url("Windows7/imagebrowser.png") repeat-x 0px 100px; border-color: rgb(255, 255, 255);
+}
+.t-tiles li.t-state-hover {
+	border-color: rgb(184, 214, 251);
+}
+.t-tiles li.t-state-selected {
+	background-position: 0px -100px; border-color: rgb(125, 162, 206);
+}
+.t-tile .t-folder {
+	background-image: url("Windows7/imagebrowser.png");
+}
+.t-tile em {
+	color: rgb(167, 167, 167);
+}
+.t-tile .t-filesize {
+	color: rgb(167, 167, 167);
+}
+.t-tiles li.t-state-selected em {
+	color: rgb(125, 162, 206);
+}
+.t-tiles li.t-state-selected .t-filesize {
+	color: rgb(125, 162, 206);
+}
+.t-tile-empty strong {
+	color: rgb(194, 206, 219);
+}
