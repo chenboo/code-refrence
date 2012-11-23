@@ -1,0 +1,225 @@
+BODY {
+	WORD-WRAP: break-word; FONT-SIZE: 13px; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; MARGIN: 0px
+}
+#header {
+	BORDER-TOP: medium none; HEIGHT: 318px; BORDER-RIGHT: medium none; BACKGROUND: url(images/o_mbookTop.jpg) no-repeat left top; BORDER-BOTTOM: medium none; POSITION: absolute; LEFT: 0px; BORDER-LEFT: medium none; TOP: 0px; WIDTH: 1015px
+}
+#HeaderTitle {
+	RIGHT: 393px; POSITION: absolute; TEXT-ALIGN: right; TOP: 90px; PADDING-RIGHT: 0px; MARGIN-RIGHT: 0px
+}
+#Title {
+	FONT-SIZE: 20px; FONT-WEIGHT: bold
+}
+#SubTitle {
+	FONT-SIZE: 16px
+}
+P.date IMG {
+	VERTICAL-ALIGN: middle
+}
+#main {
+	POSITION: absolute; PADDING-TOP: 150px; LEFT: 60px; TOP: 0px; WIDTH: 565px
+}
+H2 {
+	FONT-SIZE: 13px; MARGIN-TOP: 10px
+}
+#rightmenu {
+	RIGHT: 5px; POSITION: absolute; LINE-HEIGHT: 1.5; TOP: 60px; WIDTH: 250px; BACKGROUND-COLOR: #fff
+}
+#rightmenu H3 {
+	FONT-SIZE: 13px; BORDER-TOP: #69a 1px solid; BORDER-RIGHT: #69a 1px solid; BORDER-BOTTOM: medium none; COLOR: #06a; PADDING-BOTTOM: 2px; PADDING-TOP: 2px; PADDING-LEFT: 5px; MARGIN: 10px 0px 0px; BORDER-LEFT: #69a 1px solid; PADDING-RIGHT: 5px; BACKGROUND-COLOR: #adf
+}
+#rightmenu UL {
+	LIST-STYLE-TYPE: none; BORDER-TOP: #69a 1px solid; BORDER-RIGHT: #69a 1px solid; BORDER-BOTTOM: #69a 1px solid; PADDING-BOTTOM: 5px; PADDING-TOP: 5px; PADDING-LEFT: 5px; MARGIN: 0px; BORDER-LEFT: #69a 1px solid; PADDING-RIGHT: 5px
+}
+#rightmenu LI {
+	PADDING-BOTTOM: 3px
+}
+#footer {
+	FONT-SIZE: 11px; BORDER-TOP: #7ac 1px solid; TEXT-ALIGN: center; PADDING-TOP: 5px; WIDTH: 560px
+}
+INPUT.text {
+	WIDTH: 300px
+}
+TEXTAREA {
+	HEIGHT: 200px; WIDTH: 300px
+}
+#comments H4 SPAN {
+	COLOR: #999
+}
+#comments H4 {
+	FONT-SIZE: 13px; MARGIN: 0px
+}
+P {
+	FONT-SIZE: 13px; MARGIN: 10px 0px; LINE-HEIGHT: 1.5
+}
+H3 {
+	FONT-SIZE: 15px; BORDER-BOTTOM: #aaa 1px solid
+}
+#relatedlinks UL {
+	LIST-STYLE-TYPE: none; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN-LEFT: 10px; PADDING-RIGHT: 0px
+}
+A {
+	BACKGROUND: none transparent scroll repeat 0% 0%; COLOR: #336699; TEXT-DECORATION: none
+}
+A:link {
+	BACKGROUND: none transparent scroll repeat 0% 0%; COLOR: #336699
+}
+A:visited {
+	BACKGROUND: none transparent scroll repeat 0% 0%; COLOR: #336699
+}
+A:hover {
+	BACKGROUND: none transparent scroll repeat 0% 0%; COLOR: #336699; TEXT-DECORATION: none
+}
+BODY {
+	BACKGROUND: url(images/o_mbookBG.jpg) #28557e repeat-y left 50%
+}
+.date {
+	DISPLAY: none
+}
+H1 A {
+	FONT-SIZE: 20px; BORDER-TOP: medium none; FONT-FAMILY: verdana, arial, sans-serif; BORDER-RIGHT: medium none; BORDER-BOTTOM: medium none; FONT-WEIGHT: bold; COLOR: #000000; BORDER-LEFT: medium none
+}
+H1 A:link {
+	FONT-SIZE: 20px; BORDER-TOP: medium none; FONT-FAMILY: verdana, arial, sans-serif; BORDER-RIGHT: medium none; BORDER-BOTTOM: medium none; FONT-WEIGHT: bold; COLOR: #000000; BORDER-LEFT: medium none
+}
+H1 A:visited {
+	FONT-SIZE: 20px; BORDER-TOP: medium none; FONT-FAMILY: verdana, arial, sans-serif; BORDER-RIGHT: medium none; BORDER-BOTTOM: medium none; FONT-WEIGHT: bold; COLOR: #000000; BORDER-LEFT: medium none
+}
+H1 A:active {
+	FONT-SIZE: 20px; BORDER-TOP: medium none; FONT-FAMILY: verdana, arial, sans-serif; BORDER-RIGHT: medium none; BORDER-BOTTOM: medium none; FONT-WEIGHT: bold; COLOR: #000000; BORDER-LEFT: medium none
+}
+H1 A:hover {
+	FONT-SIZE: 20px; BORDER-TOP: medium none; FONT-FAMILY: verdana, arial, sans-serif; BORDER-RIGHT: medium none; BORDER-BOTTOM: medium none; FONT-WEIGHT: bold; COLOR: #000000; BORDER-LEFT: medium none
+}
+DIV.post {
+	FONT-SIZE: 13px; LINE-HEIGHT: 1.5
+}
+DIV.post H2 {
+	BORDER-BOTTOM: #666 1px solid
+}
+H2 A:link {
+	FONT-WEIGHT: normal; COLOR: #0000ff
+}
+H2 A:visited {
+	FONT-WEIGHT: normal; COLOR: #0000ff
+}
+H2 A:active {
+	FONT-WEIGHT: normal; COLOR: #0000ff
+}
+H2 A:hover {
+	BORDER-TOP: medium none; BORDER-RIGHT: medium none; BORDER-BOTTOM: medium none; FONT-WEIGHT: bold; COLOR: #0000ff; BORDER-LEFT: medium none
+}
+#rightmenu {
+	POSITION: absolute; COLOR: #aaa; LEFT: 713px; TOP: 60px; WIDTH: 250px; BACKGROUND-COLOR: transparent
+}
+#rightmenu H3 {
+	BORDER-TOP: medium none; BORDER-RIGHT: medium none; BORDER-BOTTOM: #aaa 1px dashed; COLOR: #aaa; PADDING-BOTTOM: 0px; PADDING-TOP: 5px; FONT: bold 13px Verdana; PADDING-LEFT: 5px; MARGIN: 0px; BORDER-LEFT: medium none; PADDING-RIGHT: 5px; BACKGROUND-COLOR: transparent
+}
+#rightmenu UL {
+	LIST-STYLE-TYPE: none; FONT-SIZE: 12px; BORDER-TOP: medium none; BORDER-RIGHT: medium none; BORDER-BOTTOM: medium none; PADDING-BOTTOM: 2px; PADDING-TOP: 2px; PADDING-LEFT: 2px; MARGIN: 0px 0px 5px; BORDER-LEFT: medium none; PADDING-RIGHT: 2px
+}
+#rightmenu A:link {
+	BACKGROUND: none transparent scroll repeat 0% 0%; COLOR: #aaa
+}
+#rightmenu A:visited {
+	BACKGROUND: none transparent scroll repeat 0% 0%; COLOR: #aaa
+}
+#rightmenu A:hover {
+	BACKGROUND: none transparent scroll repeat 0% 0%; COLOR: #aaa
+}
+P.date {
+	MARGIN-BOTTOM: 0px; FONT-SIZE: 13px; BORDER-BOTTOM: #aaa 1px solid; FONT-WEIGHT: bold; PADDING-BOTTOM: 2px; PADDING-TOP: 2px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px
+}
+BLOCKQUOTE {
+	
+}
+P.postfoot {
+	FONT-SIZE: 11px
+}
+.Cal {
+	FONT-SIZE: 12px; BORDER-TOP: #69a 1px solid; HEIGHT: 150px; FONT-FAMILY: Arial; BORDER-RIGHT: #69a 1px solid; BORDER-BOTTOM: #69a 1px solid; COLOR: #aaa; BORDER-LEFT: #69a 1px solid; MARGIN-TOP: 10px; WIDTH: 100%; BACKGROUND-COLOR: transparent
+}
+.CalTitle {
+	FONT-SIZE: 13px; HEIGHT: 100%; FONT-FAMILY: Arial; BORDER-TOP-COLOR: #adf; BORDER-BOTTOM: #69a 1px solid; COLOR: #aaa; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; PADDING-LEFT: 0px; MARGIN-LEFT: 0px; BORDER-RIGHT-COLOR: #adf; PADDING-RIGHT: 0px; BACKGROUND-COLOR: #28557c; BORDER-LEFT-COLOR: #adf
+}
+.CalOtherMonthDay {
+	COLOR: #808080
+}
+.CalSelector {
+	
+}
+.CalNextPrev {
+	
+}
+.CalDayHeader {
+	
+}
+.CalSelectedDay {
+	
+}
+.CalWeekendDay {
+	
+}
+.CalTodayDay {
+	COLOR: red
+}
+.CalTodayDay {
+	COLOR: red
+}
+.input_my_zzk {
+	BORDER-TOP: #ebebeb 1px solid; BORDER-RIGHT: #ebebeb 1px solid; BORDER-BOTTOM: #ebebeb 1px solid; PADDING-BOTTOM: 2px; PADDING-TOP: 2px; PADDING-LEFT: 5px; BORDER-LEFT: #ebebeb 1px solid; PADDING-RIGHT: 5px; WIDTH: 120px; BACKGROUND-COLOR: transparent
+}
+.btn_my_zzk {
+	BORDER-TOP: #ebebeb 1px solid; BORDER-RIGHT: #ebebeb 1px solid; BORDER-BOTTOM: #ebebeb 1px solid; COLOR: #aaa; BORDER-LEFT: #ebebeb 1px solid
+}
+IMG {
+	BORDER-TOP: 0px; BORDER-RIGHT: 0px; BORDER-BOTTOM: 0px; BORDER-LEFT: 0px
+}
+#digg_block {
+	MARGIN-TOP: 10px
+}
+#author_profile {
+	FLOAT: left; MARGIN-TOP: 10px; WIDTH: 300px
+}
+.author_avatar {
+	BORDER-TOP: 0px; BORDER-RIGHT: 0px; VERTICAL-ALIGN: top; BORDER-BOTTOM: 0px; FLOAT: left; PADDING-TOP: 5px; PADDING-LEFT: 2px; BORDER-LEFT: 0px; PADDING-RIGHT: 5px
+}
+.author_profile_title {
+	FONT-WEIGHT: bold; COLOR: #666
+}
+.author_profile_info {
+	FLOAT: left; LINE-HEIGHT: 18px
+}
+#div_digg {
+	MARGIN-BOTTOM: 10px; FONT-SIZE: 12px; FLOAT: right; TEXT-ALIGN: center; MARGIN-TOP: 10px; WIDTH: 120px; MARGIN-RIGHT: 30px
+}
+.diggit {
+	CURSOR: pointer; HEIGHT: 52px; BACKGROUND: url(/images/upup.gif) no-repeat; FLOAT: left; TEXT-ALIGN: center; MARGIN-TOP: 2px; WIDTH: 46px
+}
+.diggnum {
+	FONT-SIZE: 14px; FONT-FAMILY: Verdana; COLOR: #075db3; LINE-HEIGHT: 2.2em
+}
+.buryit {
+	CURSOR: pointer; HEIGHT: 52px; BACKGROUND: url(/images/downdown.gif) no-repeat; FLOAT: right; TEXT-ALIGN: center; MARGIN-LEFT: 20px; MARGIN-TOP: 2px; WIDTH: 46px
+}
+.burynum {
+	FONT-SIZE: 14px; FONT-FAMILY: Verdana; COLOR: #075db3; LINE-HEIGHT: 2.2em
+}
+.diggword {
+	FONT-SIZE: 12px; COLOR: gray; MARGIN-LEFT: 0px; MARGIN-TOP: 5px
+}
+A.digg_gray:link {
+	COLOR: gray; TEXT-DECORATION: underline
+}
+A.digg_gray:visited {
+	COLOR: gray; TEXT-DECORATION: underline
+}
+A.digg_gray:hover {
+	COLOR: red; TEXT-DECORATION: underline
+}
+A.digg_gray:active {
+	COLOR: gray; TEXT-DECORATION: underline
+}
+.comment_quote {
+	BORDER-TOP: #bbbbbb 1px solid; BORDER-RIGHT: #bbbbbb 1px solid; BORDER-BOTTOM: #bbbbbb 1px solid; BORDER-LEFT: #bbbbbb 1px solid
+}

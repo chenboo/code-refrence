@@ -1,0 +1,205 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0065)http://www.cnblogs.com/jing870812/archive/2012/03/31/2427806.html -->
+<HTML><HEAD><META content="IE=5.0000" http-equiv="X-UA-Compatible">
+<TITLE>Windows 8学习笔记(三)--RichTextBlock和MessageDialog - LucyTang - 博客园</TITLE>
+<META content="text/html; charset=utf-8" http-equiv=Content-Type><LINK 
+rel=stylesheet type=text/css 
+href="Windows%208学习笔记(三)--RichTextBlock和MessageDialog%20-%20LucyTang%20-%20博客园_files/common.css"><LINK 
+id=MainCss rel=stylesheet type=text/css 
+href="Windows%208学习笔记(三)--RichTextBlock和MessageDialog%20-%20LucyTang%20-%20博客园_files/style.css"><LINK 
+rel=stylesheet type=text/css 
+href="Windows%208学习笔记(三)--RichTextBlock和MessageDialog%20-%20LucyTang%20-%20博客园_files/common2.css"><LINK 
+rel=stylesheet type=text/css 
+href="Windows%208学习笔记(三)--RichTextBlock和MessageDialog%20-%20LucyTang%20-%20博客园_files/shStyle.css"><LINK 
+rel=stylesheet type=text/css 
+href="Windows%208学习笔记(三)--RichTextBlock和MessageDialog%20-%20LucyTang%20-%20博客园_files/customcss.css"><LINK 
+title=RSS rel=alternate type=application/rss+xml 
+href="http://www.cnblogs.com/jing870812/rss"><LINK title=RSD rel=EditURI 
+type=application/rsd+xml href="http://www.cnblogs.com/jing870812/rsd.xml"><LINK 
+rel=wlwmanifest type=application/wlwmanifest+xml 
+href="http://www.cnblogs.com/jing870812/wlwmanifest.xml">
+<SCRIPT type=text/javascript 
+src="Windows%208学习笔记(三)--RichTextBlock和MessageDialog%20-%20LucyTang%20-%20博客园_files/jquery.js"></SCRIPT>
+
+<SCRIPT type=text/javascript>
+var currentBlogApp = 'jing870812';
+</SCRIPT>
+
+<SCRIPT type=text/javascript 
+src="Windows%208学习笔记(三)--RichTextBlock和MessageDialog%20-%20LucyTang%20-%20博客园_files/common.js"></SCRIPT>
+
+<SCRIPT type=text/javascript 
+src="Windows%208学习笔记(三)--RichTextBlock和MessageDialog%20-%20LucyTang%20-%20博客园_files/json2.js"></SCRIPT>
+
+<SCRIPT type=text/javascript 
+src="Windows%208学习笔记(三)--RichTextBlock和MessageDialog%20-%20LucyTang%20-%20博客园_files/syntaxHighlighter.js"></SCRIPT>
+
+<META name=GENERATOR content="MSHTML 10.00.9200.16420"></HEAD>
+<BODY><A name=top></A>
+<SCRIPT type=text/javascript>
+	try {
+		if (screen.availWidth > 1200) {
+			document.getElementById("MainCss").href = '/Skins/BOOK/style2.css';
+		}
+	} catch (e) { }
+</SCRIPT>
+
+<DIV id=header>
+<DIV id=HeaderTitle>
+<DIV id=Title><A id=Header1_HeaderTitle class=headermaintitle 
+href="http://www.cnblogs.com/jing870812/">晶晶</A> </DIV>
+<DIV id=subTitle>慢慢地，慢慢地静下心来。。。</DIV></DIV></DIV>
+<DIV id=main>
+<DIV class=post>
+<H2><A id=cb_post_title_url 
+href="http://www.cnblogs.com/jing870812/archive/2012/03/31/2427806.html">Windows 
+8学习笔记(三)--RichTextBlock和MessageDialog</A> </H2>
+<DIV id=cnblogs_post_body>
+<P><FONT size=4><STRONG>RichTextBlock</STRONG></FONT> 
+<P>今天用了一下RichTextBlock富文本，基本用法与Windows Phone 
+7中没有太大区别，只是没有HyperLink，而是HyperLinkButton取而代之，需装载进InlineUIContainer对象即可。 
+<P>用法如下： 
+<DIV class=cnblogs_Highlighter><PRE class=brush:csharp;collapse:false;;gutter:false;>            Paragraph ph = new Paragraph();
+            Run run = new Run();
+            run.Text = @"中广网北京3月31日消息 据经济之声《天下财经》报道，根据国家发改委调整国内成品油价格的政策规定，经北京市政府批准，从今天起，北京调整出租车燃油附加费标准，乘坐距离超过3公里的乘客燃油附加费标准由2元/运次调整为3元/运次，乘坐距离在3公里以内的乘客不收取燃油附加费。";
+            ph.Inlines.Add(run);
+
+            InlineUIContainer container = new InlineUIContainer();
+            BitmapImage bitImage = new BitmapImage(new Uri("ms-            appx:///Images/head.jpg"));
+            Image image = new Image();
+            image.Source = bitImage;
+            container.Child = image;
+            ph.Inlines.Add(container);
+
+            InlineUIContainer hpcontainer = new InlineUIContainer();
+            HyperlinkButton hplink = new HyperlinkButton();
+            hplink.Content = "http://money.msn.com.cn/internal/20120331/15451387966.shtml";
+            hplink.Click += hpcontainer_Click;
+            hpcontainer.Child = hplink;
+            ph.Inlines.Add(hpcontainer);
+
+            rtbText.Blocks.Add(ph);</PRE></DIV>
+<DIV class=cnblogs_Highlighter><PRE class=brush:csharp;collapse:false;;gutter:false;>&nbsp;</PRE></DIV>
+<P class=cnblogs_Highlighter><FONT size=4><STRONG>MessageDialog</STRONG></FONT> 
+<P>Win8中已没有MessageBox消息框，取而代之的是MessageDialog，采用异步方式显示。 
+<P>1、 显示一个消息框 
+<DIV class=cnblogs_Highlighter><PRE class=brush:csharp;collapse:false;;gutter:false;>     MessageDialog msg = new MessageDialog("测试成功.");
+     IUICommand result = await msg.ShowAsync();</PRE><PRE class=brush:csharp;collapse:false;;gutter:false;>&nbsp;</PRE></DIV>
+<P>2、 MessageDialog可以自定义消息框操作对象UICommand 
+<DIV class=cnblogs_Highlighter><PRE class=brush:csharp;collapse:false;;gutter:false;>      MessageDialog msg = new MessageDialog("确定退出吗?");
+      msg.Commands.Add(new UICommand("确定", new    UICommandInvokedHandler(this.CommandInvokedHandler)));
+      msg.Commands.Add(new UICommand("取消", new UICommandInvokedHandler(this.CommandInvokedHandler)));</PRE><PRE class=brush:csharp;collapse:false;;gutter:false;>&nbsp;</PRE><PRE class=brush:csharp;collapse:false;;gutter:false;>3、 可以设置高亮显示消息框命令按钮</PRE>
+<DIV class=cnblogs_Highlighter><PRE class=brush:csharp;collapse:false;;gutter:false;>     msg.DefaultCommandIndex = 1;</PRE><PRE class=brush:csharp;collapse:false;;gutter:false;>&nbsp;</PRE><PRE class=brush:csharp;collapse:false;;gutter:false;>4、同样也可以设置灰色显示命令按钮</PRE>
+<DIV class=cnblogs_Highlighter><PRE class=brush:csharp;collapse:false;;gutter:false;>      msg.CancelCommandIndex = 1;</PRE>
+<P>相比Phon7中的MessageBox，MessageDialog可自定义性更强，开发者可以根据不同需求自由搭配。</P></DIV></DIV></DIV></DIV>
+<DIV id=MySignature></DIV>
+<SCRIPT type=text/javascript>
+var isLogined = false;
+var cb_blogId = 65945;
+var cb_entryId = 2427806;
+var cb_blogApp = currentBlogApp;
+var cb_blogUserGuid = "265bd88c-2582-de11-be36-001cf0cd104b";
+var cb_entryCreatedDate = '2012/3/31 23:26:00';
+var enableGoogleAd = true;
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+</SCRIPT>
+
+<DIV id=blog_post_info_block>
+<DIV id=blog_post_info></DIV>
+<DIV class=clear></DIV>
+<DIV id=post_next_prev></DIV></DIV>
+<SCRIPT type=text/javascript>
+    //SyntaxHighlighter.config.strings.expandSource = '<span><img src="http://static.cnblogs.com/images/expand-code.gif" alt="" class="expand-code-icon"/>View Code</span>';
+    $(function () {             
+        fixPostBodyFormat();
+        loadAdUnderPost();
+        loadBlogSignature();
+        LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+        GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);        
+        GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);        
+    });
+</SCRIPT>
+
+<P class=postfoot>posted on <SPAN id=post-date>2012-03-31 23:26</SPAN> <A 
+href="http://www.cnblogs.com/jing870812/">LucyTang</A> 阅读(2459) 评论(<SPAN 
+id=post-comment-count>7</SPAN>) <A 
+href="http://www.cnblogs.com/jing870812/admin/EditPosts.aspx?postid=2427806" 
+rel=nofollow>编辑</A> <A onclick="AddToWz(2427806);return false;" 
+href="http://www.cnblogs.com/jing870812/archive/2012/03/31/2427806.html#">收藏</A> 
+</P></DIV><IMG alt="" 
+src="Windows%208学习笔记(三)--RichTextBlock和MessageDialog%20-%20LucyTang%20-%20博客园_files/2427806.jpg" 
+width=1 height=1> 
+<DIV id=blog-comments-placeholder></DIV>
+<SCRIPT type=text/javascript>var commentManager = new blogCommentManager();commentManager.loadComments();</SCRIPT>
+
+<DIV id=comment_form class=commentform>
+<DIV id=divCommentShow></DIV>
+<DIV id=comment_nav><SPAN id=span_refresh_tips></SPAN><A 
+onclick="return RefreshCommentList();" id=lnk_RefreshComments 
+href="javascript:void(0);">刷新评论</A><A onclick="return RefreshPage();" 
+href="http://www.cnblogs.com/jing870812/archive/2012/03/31/2427806.html#">刷新页面</A><A 
+href="http://www.cnblogs.com/jing870812/archive/2012/03/31/2427806.html#top">返回顶部</A></DIV>
+<DIV id=comment_form_container></DIV>
+<SCRIPT type=text/javascript>
+    if (typeof commentManager === 'undefined') {
+        commentManager = new blogCommentManager();
+    }
+    commentManager.loadCommentForm();   
+</SCRIPT>
+
+<DIV id=ad_text_under_commentbox class=ad_text_commentbox></DIV>
+<DIV id=site_nav_under><A title=程序员的网上家园 href="http://www.cnblogs.com/" 
+target=_blank>博客园首页</A><A title=程序员问答社区 href="http://q.cnblogs.com/" 
+target=_blank>博问</A><A title=IT新闻 href="http://news.cnblogs.com/" 
+target=_blank>新闻</A><A href="http://home.cnblogs.com/ing/" 
+target=_blank>闪存</A><A href="http://job.cnblogs.com/" target=_blank>程序员招聘</A><A 
+href="http://kb.cnblogs.com/" target=_blank>知识库</A></DIV>
+<DIV id=ad_under_post_holder></DIV>
+<DIV id=HistoryToday class=c_ad_block></DIV></DIV>
+<P id=footer>Powered by: <BR><A id=Footer1_Hyperlink3 
+href="http://www.cnblogs.com/" name=Hyperlink1><FONT face=Verdana>博客园</FONT></A> 
+<BR>Copyright © LucyTang </P></DIV>
+<DIV id=rightmenu>
+<DIV id=blog-calendar-block style="DISPLAY: none">
+<DIV id=blog-calendar></DIV></DIV>
+<H3>导航</H3>
+<UL>
+  <LI><A id=MyLinks1_HomeLink href="http://www.cnblogs.com/">博客园</A> 
+  <LI><A id=MyLinks1_MyHomeLink href="http://www.cnblogs.com/jing870812/">首页</A> 
+
+  <LI><A id=MyLinks1_NewPostLink 
+  href="http://www.cnblogs.com/jing870812/admin/EditPosts.aspx?opt=1" 
+  rel=nofollow>新随笔</A> 
+  <LI><A id=MyLinks1_ContactLink accessKey=9 
+  href="http://space.cnblogs.com/msg/send/LucyTang" rel=nofollow>联系</A> 
+  <LI><A id=MyLinks1_Syndication 
+  href="http://www.cnblogs.com/jing870812/rss">订阅</A><A id=MyLinks1_XMLLink 
+  href="http://www.cnblogs.com/jing870812/rss"><IMG alt=订阅 
+  src="Windows%208学习笔记(三)--RichTextBlock和MessageDialog%20-%20LucyTang%20-%20博客园_files/xml.gif"></A> 
+
+  <LI><A id=MyLinks1_Admin 
+  href="http://www.cnblogs.com/jing870812/admin/EditPosts.aspx" 
+  rel=nofollow>管理</A> </LI></UL>
+<H3>统计</H3>
+<UL>
+  <LI>随笔 - 31 
+  <LI>文章 - 0 
+  <LI>评论 - 111 
+  <LI>引用 - 0 </LI></UL>
+<H3>公告</H3>
+<DIV id=blog-news></DIV>
+<DIV id=blog-sidecolumn></DIV></DIV><!--PageEndHtml Block Begin-->
+<DIV id=MySignature>
+<DIV id=JingJingSignature>作者：<A href="http://www.cnblogs.com/jing870812/" 
+target=_blank>LucyTang</A>（<A href="http://www.cnblogs.com/jing870812/" 
+target=_blank>LucyTang's Blog on 博客园</A>） <BR>出处：<A 
+href="http://www.cnblogs.com/jing870812/" 
+target=_blank>http://www.cnblogs.com/jing870812/</A><BR><BR>本作品由LucyTang创作，采用<A 
+href="http://creativecommons.org/licenses/by-nc-nd/2.5/cn/" rel=license 
+target=_blank>知识共享署名-非商业性使用-禁止演绎 2.5 中国大陆许可协议</A>进行许可。 
+任何转载必须保留完整文章，在显要地方显示署名以及原文链接。如您有任何疑问或者授权方面的协商，请<A 
+href="http://space.cnblogs.com/msg/compose" target=_blank>给我留言</A>。 </DIV></DIV><!--PageEndHtml Block End-->
+<SCRIPT type=text/javascript 
+src="Windows%208学习笔记(三)--RichTextBlock和MessageDialog%20-%20LucyTang%20-%20博客园_files/google-analytics.js"></SCRIPT>
+</BODY></HTML>
