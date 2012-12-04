@@ -1,0 +1,22 @@
+Qt 中 实现gif动画的播放
+在ped.pro中加入
+LIBS+=-lgif -lpng -ljpeg -lpthread
+
+CONFIG+=gif 
+
+头文件中加入
+
+#include "qmovie.h" 
+
+ QLabel   *lab_gif;  
+ QMovie* movie;
+
+在构造函数中的例子
+
+ lab_gif   =   new   QLabel("gif",this   );   
+ lab_gif->setGeometry(   QRect(0,0,400,320));  
+ QMovie   movie("ui/targetDistance.gif");  
+ movie.setBackgroundColor(black);
+ movie.unpause ();
+ lab_gif->setMovie(movie);    
+ lab_gif->show();
