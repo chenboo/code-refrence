@@ -1,0 +1,476 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0052)http://blog.csdn.net/li6a209/article/details/6334633 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>QTextEdit 实现gif动画 - li6a209的专栏 - 博客频道 - CSDN.NET</title>
+
+<meta name="description" content="  它们支持html..所以很容易想到用html实现gif动画...不过很悲剧  在QTextEdit 只能显示gif的第一帧 所以只能手动换帧了!! 用一个QMovie管理gif,每当其换帧后,就手动更新Edit中的图片以此来达到动画的效果 插入图片     edit-&gt;insertHtml();//此处的test即">
+<script type="text/javascript" async="" src="./QTextEdit 实现gif动画 - li6a209的专栏 - 博客频道 - CSDN.NET_files/ga.js"></script><script src="./QTextEdit 实现gif动画 - li6a209的专栏 - 博客频道 - CSDN.NET_files/jquery.js" type="text/javascript"></script>
+<script src="./QTextEdit 实现gif动画 - li6a209的专栏 - 博客频道 - CSDN.NET_files/plugins.js" type="text/javascript"></script>
+<script src="./QTextEdit 实现gif动画 - li6a209的专栏 - 博客频道 - CSDN.NET_files/common.js" type="text/javascript"></script>
+<script type="text/javascript" src="./QTextEdit 实现gif动画 - li6a209的专栏 - 博客频道 - CSDN.NET_files/ad.js"></script>
+<link rel="Stylesheet" type="text/css" href="./QTextEdit 实现gif动画 - li6a209的专栏 - 博客频道 - CSDN.NET_files/style.css">
+<link id="RSSLink" title="RSS" type="application/rss+xml" rel="alternate" href="http://blog.csdn.net/li6a209/rss/list">
+<link rel="shortcut icon" href="http://blog.csdn.net/favicon.ico">
+<link type="text/css" rel="stylesheet" href="./QTextEdit 实现gif动画 - li6a209的专栏 - 博客频道 - CSDN.NET_files/default.css">
+<link type="text/css" rel="stylesheet" href="chrome-extension://cpngackimfmofbokmjmljamhdncknpmg/style.css"><script type="text/javascript" charset="utf-8" src="chrome-extension://cpngackimfmofbokmjmljamhdncknpmg/page_context.js"></script><style type="text/css">#yddContainer{display:block;font-family:Microsoft YaHei;position:relative;width:100%;height:100%;top:-4px;left:-4px;font-size:12px;border:1px solid}#yddTop{display:block;height:22px}#yddTopBorderlr{display:block;position:static;height:17px;padding:2px 28px;line-height:17px;font-size:12px;color:#5079bb;font-weight:bold;border-style:none solid;border-width:1px}#yddTopBorderlr .ydd-sp{position:absolute;top:2px;height:0;overflow:hidden}.ydd-icon{left:5px;width:17px;padding:0px 0px 0px 0px;padding-top:17px;background-position:-16px -44px}.ydd-close{right:5px;width:16px;padding-top:16px;background-position:left -44px}#yddKeyTitle{float:left;text-decoration:none}#yddMiddle{display:block;margin-bottom:10px}.ydd-tabs{display:block;margin:5px 0;padding:0 5px;height:18px;border-bottom:1px solid}.ydd-tab{display:block;float:left;height:18px;margin:0 5px -1px 0;padding:0 4px;line-height:18px;border:1px solid;border-bottom:none}.ydd-trans-container{display:block;line-height:160%}.ydd-trans-container a{text-decoration:none;}#yddBottom{position:absolute;bottom:0;left:0;width:100%;height:22px;line-height:22px;overflow:hidden;background-position:left -22px}.ydd-padding010{padding:0 10px}#yddWrapper{color:#252525;z-index:10001;background:url(chrome-extension://eopjamdnofihpioajgfdikhhbobonhbb/ab20.png);}#yddContainer{background:#fff;border-color:#4b7598}#yddTopBorderlr{border-color:#f0f8fc}#yddWrapper .ydd-sp{background-image:url(chrome-extension://eopjamdnofihpioajgfdikhhbobonhbb/ydd-sprite.png)}#yddWrapper a,#yddWrapper a:hover,#yddWrapper a:visited{color:#50799b}#yddWrapper .ydd-tabs{color:#959595}.ydd-tabs,.ydd-tab{background:#fff;border-color:#d5e7f3}#yddBottom{color:#363636}#yddWrapper{min-width:250px;max-width:400px;}</style></head>
+<body screen_capture_injected="true">
+<script src="./QTextEdit 实现gif动画 - li6a209的专栏 - 博客频道 - CSDN.NET_files/pub_topnav_2011.js" type="text/javascript"></script><link rel="stylesheet" type="text/css" href="./QTextEdit 实现gif动画 - li6a209的专栏 - 博客频道 - CSDN.NET_files/navtop_2012.css">
+<div class="nav_top_2011">
+<p><span style="color:red;">您还未登录！</span>|<a href="https://passport.csdn.net/account/login" target="_top">登录</a>|<a href="https://passport.csdn.net/account/register" target="_top">注册</a>|<a href="https://passport.csdn.net/help/faq" target="_blank">帮助</a></p><ul>
+<li><a href="http://www.csdn.net/" target="_blank">首页</a></li>
+<li><a href="http://news.csdn.net/" target="_blank">业界</a></li>
+<li><a href="http://mobile.csdn.net/" target="_blank">移动</a></li>
+<li><a href="http://cloud.csdn.net/" target="_blank">云计算</a></li>
+<li><a href="http://sd.csdn.net/" target="_blank">研发</a></li>
+<li><a href="http://bbs.csdn.net/" target="_blank">论坛</a></li>
+<li><a href="http://blog.csdn.net/" target="_blank">博客</a></li>
+<li><a href="http://download.csdn.net/" target="_blank">下载</a></li>
+<li class="more"><h2 id="topnav_btnmore" onclick="showNavMore(this)"><a href="javascript:void(0);">更多</a></h2>
+<div id="topnav_hidlist">
+<iframe name="nav_frm" src="about:blank" width="92" height="178" scrolling="no" frameborder="no"></iframe>
+</div>
+</li>
+</ul>
+</div>
+
+
+<div id="container">
+<div id="header">
+    <div class="header">
+        <div id="blog_title">
+            <h1><a href="http://blog.csdn.net/li6a209">li6a209的专栏</a></h1>
+            <h2></h2>
+            <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<div id="navigator">
+    <div class="navigator_bg"></div>
+    <div class="navigator">
+        <ul>
+            <li id="btnContents"><a href="http://blog.csdn.net/li6a209?viewmode=contents"><span><img src="./QTextEdit 实现gif动画 - li6a209的专栏 - 博客频道 - CSDN.NET_files/ico_list.gif">目录视图</span></a></li>
+            <li id="btnView"><a href="http://blog.csdn.net/li6a209?viewmode=list"><span><img src="./QTextEdit 实现gif动画 - li6a209的专栏 - 博客频道 - CSDN.NET_files/ico_summary.gif">摘要视图</span></a></li>
+            <li id="btnRss"><a href="http://blog.csdn.net/li6a209/rss/list"><span><img src="./QTextEdit 实现gif动画 - li6a209的专栏 - 博客频道 - CSDN.NET_files/ico_rss.gif">订阅</span></a></li>
+</ul>
+    </div>
+</div>
+<script type="text/javascript">
+    var username = "li6a209";
+    var blog_address = "http://blog.csdn.net/li6a209";
+    var static_host = "http://static.blog.csdn.net";
+    var currentUserName = "";
+</script>
+        
+<div id="body">
+<div id="main">
+<div class="main">
+<div class="notice"> 
+
+<a href="http://blog.csdn.net/csdnproduct/article/details/8206587" target="_blank">
+<font color="red">
+公告：CSDN 搜索第二版正式上线！  </font></a>
+
+&nbsp;&nbsp;
+
+<a href="http://bbs.csdn.net/topics/390296252" target="_blank"><font color="red">CSDN大会PPT合集下载，纯干货！  </font></a>
+
+&nbsp;&nbsp;&nbsp;
+
+<a href="http://blog.csdn.net/zhangoi391/article/details/8161343" target="_blank">
+<font color="red">2000元大奖征异构开发博文  </font></a>
+
+<br>
+
+
+
+
+
+<a href="http://vote.blog.csdn.net/details/blogstar" target="_blank">
+<font color="red">2012CSDN博客之星评选正式上线 </font></a>
+
+&nbsp;&nbsp;
+
+<a href="http://events.csdn.net/DR2012/roadshow/index.html" target="_blank">
+<font color="red">【免费】解读海外市场营销奥秘   </font></a>
+
+&nbsp;&nbsp;
+
+<a href="http://blog.csdn.net/csdnproduct/article/details/8101993" target="_blank">
+<font color="red">CSDN博客频道推出TAG功能  </font></a>
+
+</div><div id="article_details" class="details">
+    <div class="article_title">
+    <span class="ico ico_type_Original"></span>
+    <h3>
+        <span class="link_title"><a href="./QTextEdit 实现gif动画 - li6a209的专栏 - 博客频道 - CSDN.NET_files/QTextEdit 实现gif动画 - li6a209的专栏 - 博客频道 - CSDN.NET.html">
+        QTextEdit 实现gif动画
+        </a></span>
+    </h3>
+</div>
+
+        
+    <div class="article_manage">
+        <span class="link_categories">
+        分类：
+            <a href="http://blog.csdn.net/li6a209/article/category/722001">Qt...</a> 
+        </span>
+    <span class="link_postdate">2011-04-19 22:14</span>
+    <span class="link_view" title="阅读次数">634人阅读</span>
+    <span class="link_comments" title="评论次数"><a href="http://blog.csdn.net/li6a209/article/details/6334633#comments">评论</a>(4)</span>
+    <span class="link_collect"><a href="javascript:void(0);" onclick="javascript:collectArticle(&#39;QTextEdit 实现gif动画&#39;,&#39;6334633&#39;);return false;" title="收藏">收藏</a></span>
+    <span class="link_report"><a href="http://blog.csdn.net/li6a209/article/details/6334633#report" onclick="javascript:report(6334633,2);return false;" title="举报">举报</a></span>
+    
+</div>
+
+
+    
+<div id="article_content" class="article_content">
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>它们支持html..所以很容易想到用html实现gif动画...不过很悲剧 &nbsp;在QTextEdit 只能显示gif的第一帧</p>
+<p>&nbsp;</p>
+<p>所以只能手动换帧了!!</p>
+<p>&nbsp;</p>
+<p>用一个QMovie管理gif,每当其换帧后,就手动更新Edit中的图片以此来达到动画的效果</p>
+<p>&nbsp;</p>
+<p>插入图片</p>
+<p>&nbsp;</p>
+<p>&nbsp;&nbsp; &nbsp;edit<span>-&gt;</span>insertHtml<span>(</span><span>"&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;img</span><span> </span><span>src='test'/&gt;"</span><span>);</span><span>  </span><span>//</span><span>   </span><span>此处的test</span><span> </span><span>即</span><span> </span><span>url(图片的索引吧</span></p>
+<pre><span>    </span>edit<span>-&gt;</span>addAnimation<span>(</span><span>QUrl</span><span>(</span><span>"test"</span><span>),</span><span> </span><span>"cat.gif"</span><span>);</span><span>  </span><span>//添加一个动画.</span></pre>
+<pre><span>addAnimation代码:</span></pre>
+<pre><div class="dp-highlighter bg_cpp"><div class="bar"><div class="tools"><b>[cpp]</b> <a href="http://blog.csdn.net/li6a209/article/details/6334633#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><a href="http://blog.csdn.net/li6a209/article/details/6334633#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy</a><a href="http://blog.csdn.net/li6a209/article/details/6334633#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a><a href="http://blog.csdn.net/li6a209/article/details/6334633#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a><div style="position: absolute; left: 602px; top: 889px; width: 18px; height: 18px; z-index: 99; "><embed id="ZeroClipboardMovie_1" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="18" height="18" name="ZeroClipboardMovie_1" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=1&amp;width=18&amp;height=18" wmode="transparent"></div></div></div><ol start="1" class="dp-cpp"><li class="alt"><span><span class="keyword">void</span><span>&nbsp;AnimatedTextEdit::addAnimation(</span><span class="keyword">const</span><span>&nbsp;QUrl&amp;&nbsp;url,&nbsp;</span><span class="keyword">const</span><span>&nbsp;QString&amp;&nbsp;fileName)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;QFile&nbsp;*file&nbsp;=<span class="keyword">new</span><span>&nbsp;QFile(fileName);&nbsp;&nbsp;</span><span class="comment">//读取gif文件</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span><span>(!file-&gt;open(QIODevice::ReadOnly)){&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;qDebug()&lt;&lt;<span class="string">"&nbsp;open&nbsp;err"</span><span>;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span><span>(lstUrl.contains(url)){&nbsp;</span><span class="comment">//同一个gif&nbsp;使用同一个movie</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<span class="keyword">else</span><span>{&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lstUrl.append(url);&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;QMovie*&nbsp;movie&nbsp;=&nbsp;<span class="keyword">new</span><span>&nbsp;QMovie(</span><span class="keyword">this</span><span>);&nbsp;</span><span class="comment">//</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;movie-&gt;setFileName(fileName);&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;movie-&gt;setCacheMode(QMovie::CacheNone);&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lstMovie.append(movie);&nbsp;&nbsp;&nbsp;<span class="comment">//获取该movie,以便删除</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;urls.insert(movie,&nbsp;url);&nbsp;&nbsp;&nbsp;<span class="comment">//urls&nbsp;一个hash</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//换帧时刷新</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;connect(movie,&nbsp;SIGNAL(frameChanged(<span class="datatypes">int</span><span>)),&nbsp;</span><span class="keyword">this</span><span>,&nbsp;SLOT(animate(</span><span class="datatypes">int</span><span>)));&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;movie-&gt;start();&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;file-&gt;close();&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">delete</span><span>&nbsp;file;&nbsp;&nbsp;</span></span></li></ol></div><textarea cols="50" rows="15" name="code" class="cpp" style="display: none; ">void AnimatedTextEdit::addAnimation(const QUrl&amp; url, const QString&amp; fileName)   
+       QFile *file =new QFile(fileName);  //读取gif文件
+        if(!file-&gt;open(QIODevice::ReadOnly)){
+            qDebug()&lt;&lt;" open err";
+        }
+
+         if(lstUrl.contains(url)){ //同一个gif 使用同一个movie
+             return;
+         }else{
+            lstUrl.append(url);
+         }
+
+        QMovie* movie = new QMovie(this); //
+        movie-&gt;setFileName(fileName);
+        movie-&gt;setCacheMode(QMovie::CacheNone);
+
+
+        lstMovie.append(movie);   //获取该movie,以便删除
+        urls.insert(movie, url);   //urls 一个hash
+
+        //换帧时刷新
+        connect(movie, SIGNAL(frameChanged(int)), this, SLOT(animate(int)));
+        movie-&gt;start();
+        file-&gt;close();
+        delete file;</textarea> </pre>
+<pre>与上函数槽向接的函数</pre>
+<pre><div class="dp-highlighter bg_cpp"><div class="bar"><div class="tools"><b>[cpp]</b> <a href="http://blog.csdn.net/li6a209/article/details/6334633#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><a href="http://blog.csdn.net/li6a209/article/details/6334633#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy</a><a href="http://blog.csdn.net/li6a209/article/details/6334633#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a><a href="http://blog.csdn.net/li6a209/article/details/6334633#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a><div style="position: absolute; left: 602px; top: 1474px; width: 18px; height: 18px; z-index: 99; "><embed id="ZeroClipboardMovie_2" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="18" height="18" name="ZeroClipboardMovie_2" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=2&amp;width=18&amp;height=18" wmode="transparent"></div></div></div><ol start="1" class="dp-cpp"><li class="alt"><span><span class="keyword">void</span><span>&nbsp;AnimatedTextEdit::animate(</span><span class="datatypes">int</span><span>&nbsp;a)&nbsp;&nbsp;</span></span></li><li class=""><span>{&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;qDebug()&lt;&lt;"hash&nbsp;count&nbsp;is&nbsp;"&lt;&lt;urls.count();</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span><span>&nbsp;(QMovie*&nbsp;movie&nbsp;=&nbsp;qobject_cast&lt;QMovie*&gt;(sender()))&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;document()-&gt;addResource(QTextDocument::ImageResource,&nbsp;&nbsp;&nbsp;<span class="comment">//替换图片为当前帧</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;urls.value(movie),&nbsp;movie-&gt;currentPixmap());&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setLineWrapColumnOrWidth(lineWrapColumnOrWidth());&nbsp;<span class="comment">//&nbsp;..刷新显示</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>}&nbsp;&nbsp;</span></li></ol></div><textarea cols="50" rows="15" name="code" class="cpp" style="display: none; ">void AnimatedTextEdit::animate(int a)
+{
+       // qDebug()&lt;&lt;"hash count is "&lt;&lt;urls.count();
+        if (QMovie* movie = qobject_cast&lt;QMovie*&gt;(sender()))
+        {            
+            document()-&gt;addResource(QTextDocument::ImageResource,   //替换图片为当前帧
+                                    urls.value(movie), movie-&gt;currentPixmap());   
+            
+            setLineWrapColumnOrWidth(lineWrapColumnOrWidth()); // ..刷新显示
+        }
+}</textarea> </pre>
+<pre>其中 addResource函数会将textEdit中的url替换成图片资源,这里我们刚好就是每当gif换帧的时候就替换,以此达到了gif的效果</pre>
+<pre>setLineWrapColumnOrWidth会导致 textEdit重新刷新 要不上面替换的图片,是显示不出来的!   </pre>
+<pre>demo 下载地址:</pre>
+<pre><a href="http://download.csdn.net/source/3206932">http://download.csdn.net/source/3206932</a></pre>
+<pre><span><br></span></pre>
+<p>&nbsp;</p>
+</div>
+<div class="share_buttons" id="sharePanel"><span>分享到：</span> <a name="sina" class="share_sina" title="分享到新浪微博"></a><a name="qq" class="share_qq" title="分享到腾讯微博"></a></div>
+<!--192.168.1.237-->
+<div class="article_next_prev">
+    <li class="prev_article"><span>上一篇：</span><a href="http://blog.csdn.net/li6a209/article/details/6226448">第一个python程序</a></li>
+    <li class="next_article"><span>下一篇：</span><a href="http://blog.csdn.net/li6a209/article/details/6666104">android 中的视图切换（launcher中的WorkSpace...</a></li>
+</div>
+
+
+    
+</div>
+<div id="ad_cen"><iframe id="ad_frm_0" frameborder="0" scrolling="no" style="border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; overflow-x: hidden; overflow-y: hidden; width: 732px; height: 92px; " src="./QTextEdit 实现gif动画 - li6a209的专栏 - 博客频道 - CSDN.NET_files/ad(1).html"></iframe></div>
+<script type="text/javascript">
+    new Ad(4, 'ad_cen');
+</script>
+<div id="comment_title" class="panel_head">查看评论<a name="comments"></a></div>
+<div id="comment_list"><dl class="comment_item comment_topic" id="comment_item_2398828"><dt class="comment_head" floor="4">4楼 <span class="user"><a class="username" href="http://blog.csdn.net/capjason" target="_blank">capjason</a> <span class="ptime">2012-10-12 20:00发表</span>  <a href="http://blog.csdn.net/li6a209/article/details/6334633#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2398828" username="capjason"> <a href="http://blog.csdn.net/li6a209/article/details/6334633#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/li6a209/article/details/6334633#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/capjason" target="_blank"><img src="./QTextEdit 实现gif动画 - li6a209的专栏 - 博客频道 - CSDN.NET_files/3_capjason.jpg" width="40" height="40"></a></dd><dd class="comment_body">你好，非常感谢您的方法，我已经实现了添加动态图片，但是很我想在删除该图片的时候应该删除掉原来的movie，释放内存，我注意到你也做了这方面的思考，请问你有什么号的实现删除movie的方法吗</dd></dl><dl class="comment_item comment_topic" id="comment_item_2320277"><dt class="comment_head" floor="3">3楼 <span class="user"><a class="username" href="http://blog.csdn.net/zouzhengbing" target="_blank">8023天使</a> <span class="ptime">2012-08-03 14:24发表</span>  <a href="http://blog.csdn.net/li6a209/article/details/6334633#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2320277" username="zouzhengbing"> <a href="http://blog.csdn.net/li6a209/article/details/6334633#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/li6a209/article/details/6334633#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/zouzhengbing" target="_blank"><img src="./QTextEdit 实现gif动画 - li6a209的专栏 - 博客频道 - CSDN.NET_files/3_zouzhengbing.jpg" width="40" height="40"></a></dd><dd class="comment_body">我也遇到同样的问题，只显示一帧，路径有什么问题呢?</dd></dl><dl class="comment_item comment_topic" id="comment_item_2095399"><dt class="comment_head" floor="2">2楼 <span class="user"><a class="username" href="http://blog.csdn.net/lijunda213" target="_blank">最帅的小猪</a> <span class="ptime">2012-02-09 17:09发表</span>  <a href="http://blog.csdn.net/li6a209/article/details/6334633#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2095399" username="lijunda213"> <a href="http://blog.csdn.net/li6a209/article/details/6334633#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/li6a209/article/details/6334633#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/lijunda213" target="_blank"><img src="./QTextEdit 实现gif动画 - li6a209的专栏 - 博客频道 - CSDN.NET_files/3_lijunda213.jpg" width="40" height="40"></a></dd><dd class="comment_body">OK了，是路径问题，谢谢！</dd></dl><dl class="comment_item comment_topic" id="comment_item_2093499"><dt class="comment_head" floor="1">1楼 <span class="user"><a class="username" href="http://blog.csdn.net/lijunda213" target="_blank">最帅的小猪</a> <span class="ptime">2012-02-07 20:11发表</span>  <a href="http://blog.csdn.net/li6a209/article/details/6334633#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2093499" username="lijunda213"> <a href="http://blog.csdn.net/li6a209/article/details/6334633#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/li6a209/article/details/6334633#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/lijunda213" target="_blank"><img src="./QTextEdit 实现gif动画 - li6a209的专栏 - 博客频道 - CSDN.NET_files/3_lijunda213.jpg" width="40" height="40"></a></dd><dd class="comment_body">你好，我用了你的例子，有个问题想请教下，就是GIF只有第一帧，跟了下代码，槽函数换帧刷新未执行，怎么回事？</dd></dl><div class="clear"></div></div>
+<div id="comment_bar" style="display: none; "></div>
+<div id="comment_form"><div class="guest_link">您还没有登录,请<a href="http://passport.csdn.net/account/login?from=http%3A%2F%2Fblog.csdn.net%2Fli6a209%2Farticle%2Fdetails%2F6334633">[登录]</a>或<a href="http://passport.csdn.net/account/register?from=http%3A%2F%2Fblog.csdn.net%2Fli6a209%2Farticle%2Fdetails%2F6334633">[注册]</a></div></div>
+<div class="announce">* 以上用户言论只代表其个人观点，不代表CSDN网站的观点或立场<a name="reply"></a><a name="quote"></a></div>
+<script type="text/javascript">
+    var fileName = '6334633';
+    var commentscount = 4;
+    var islock = false
+</script>
+<script type="text/javascript" src="./QTextEdit 实现gif动画 - li6a209的专栏 - 博客频道 - CSDN.NET_files/comment.js"></script>
+<div id="ad_bot"><iframe id="ad_frm_1" frameborder="0" scrolling="no" style="border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; overflow-x: hidden; overflow-y: hidden; width: 732px; height: 170px; " src="./QTextEdit 实现gif动画 - li6a209的专栏 - 博客频道 - CSDN.NET_files/ad(2).html"></iframe></div>
+<script type="text/javascript">
+    new Ad(5, 'ad_bot');
+</script>
+<div id="report_dialog"></div>
+
+<div id="d-top">
+<a href="http://blog.csdn.net/li6a209/article/details/6334633#" onclick="javascript:document.body.scrollTop=0;document.documentElement.scrollTop=0;this.blur();return false;" title="回到顶部">
+<img src="./QTextEdit 实现gif动画 - li6a209的专栏 - 博客频道 - CSDN.NET_files/top.png" alt="TOP"></a>
+</div>
+
+
+
+<div class="clear"></div>
+</div>
+</div>
+
+<div id="side">
+<div class="side">
+<div id="panel_Profile" class="panel">
+    <ul class="panel_head"><span>个人资料</span></ul>
+    <ul class="panel_body profile">
+        <div id="blog_userface">
+            <a href="http://my.csdn.net/li6a209" target="_blank">
+            <img src="./QTextEdit 实现gif动画 - li6a209的专栏 - 博客频道 - CSDN.NET_files/1_li6a209.jpg" title="访问我的空间" style="max-width:90%">
+            </a>
+            <br>
+            <span><a href="http://my.csdn.net/li6a209" class="user_name" target="_blank">li6a209</a></span>
+        </div>
+<div class="interact">
+<!--<a href="#" class="attented" title="已关注"></a>-->
+<a href="http://blog.csdn.net/li6a209/article/details/6334633#" class="attent" id="span_add_follow" title="[加关注]"></a>
+<a href="http://my.csdn.net/my/letter/send/li6a209" class="letter" title="[发私信]"></a>
+</div>
+        <div id="blog_medal">
+        <div id="bms_box"></div></div>
+        <ul id="blog_rank">
+            <li>访问：<span>2525次</span></li>
+            <li>积分：<span>120分</span></li>
+            <li>排名：<span>千里之外</span></li>
+        </ul>
+        <ul id="blog_statistics">
+            <li>原创：<span>8篇</span></li>
+            <li>转载：<span>0篇</span></li>
+            <li>译文：<span>0篇</span></li>
+            <li>评论：<span>7条</span></li>
+        </ul>
+    </ul>
+</div>
+<script type="text/javascript">
+    var _blogger = 'li6a209';
+</script>
+<script type="text/javascript">
+$(document).ready(function () {
+    var un = getUN().toLowerCase();
+    if (un == _blogger.toLowerCase()) {
+        $('.interact').hide();
+    } else if(un) {
+        var url = "http://my.csdn.net/index.php/follow/check_is_followed/" + encodeURIComponent(un) + "/" + encodeURIComponent(_blogger) + "?jsonpcallback=?";
+        $.getJSON(url, {}, function (data) {
+            if (data.succ == 1 && data.info == 1) {
+                $('#span_add_follow').attr('class', 'attented');
+            } else {
+                $('#span_add_follow').click(guanzhu);
+            }
+        }, 'json');
+    }
+});
+function guanzhu() {
+    var url = "http://my.csdn.net/index.php/follow/do_follow?jsonpcallback=?";
+    $.getJSON(url, { "username": _blogger }, function (data) {
+        if (data.succ == 1) {
+            alert('关注成功！');
+            $('#span_add_follow').attr('class', 'attented').click(function () { return false; });
+        } else {
+            alert(data.msg);
+        }
+    });
+    return false;
+}
+function getUN() {
+    var m = document.cookie.match(new RegExp("(^| )UserName=([^;]*)(;|$)"));
+    if (m) return m[2];
+    else return '';
+}
+</script>
+
+<div class="panel" id="panel_Search">
+    <ul class="panel_head"><span>文章搜索</span></ul>
+    <ul class="panel_body">
+        <form id="frmSearch" action="http://so.csdn.net/search" class="form_search" target="_blank">
+        <span><input id="inputSearch" type="text" class="blogsearch" title="请输入关键字"></span>
+        <input id="btnSubmit" type="submit" value="搜索" title="search in blog">
+        <input type="hidden" name="q" id="inputQ">
+        <input type="hidden" name="t" value="blog">
+        <a id="btnSearchBlog" target="_blank"></a>
+        </form>
+    </ul>
+</div><div id="panel_Category" class="panel">
+    <ul class="panel_head"><span>文章分类</span></ul>
+    <ul class="panel_body">
+        <li>
+        <a href="http://blog.csdn.net/li6a209/article/category/722003">android和java</a><span>(2)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/li6a209/article/category/725421">c/c++...</a><span>(0)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/li6a209/article/category/722002">linux</a><span>(0)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/li6a209/article/category/792659">python</a><span>(1)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/li6a209/article/category/722001">Qt...</a><span>(3)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/li6a209/article/category/722004">生活....</a><span>(0)</span>
+        </li>
+    </ul>
+</div><div id="panel_Archive" class="panel">
+    <ul class="panel_head"><span>文章存档</span></ul>
+    <ul class="panel_body">
+        <div id="archive_list"><li><a href="http://blog.csdn.net/li6a209/article/month/2012/02">2012年02月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/li6a209/article/month/2011/08">2011年08月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/li6a209/article/month/2011/04">2011年04月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/li6a209/article/month/2011/03">2011年03月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/li6a209/article/month/2010/11">2010年11月</a><span>(1)</span></li><span class="hidelist" style="display:none;"><li><a href="http://blog.csdn.net/li6a209/article/month/2010/10">2010年10月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/li6a209/article/month/2010/08">2010年08月</a><span>(2)</span></li></span><div id="archive_list_button" class="list_closed">展开</div></div>
+    </ul>
+</div>
+<div id="hotarticls" class="panel">
+    <ul class="panel_head"><span>阅读排行</span></ul>
+    <ul class="panel_body itemlist">
+        <li>
+            <a href="http://blog.csdn.net/li6a209/article/details/5985048" title="...Qt实现--自定义标题栏">...Qt实现--自定义标题栏</a><span>(773)</span>
+        </li>
+        <li>
+            <a href="./QTextEdit 实现gif动画 - li6a209的专栏 - 博客频道 - CSDN.NET_files/QTextEdit 实现gif动画 - li6a209的专栏 - 博客频道 - CSDN.NET.html" title="QTextEdit 实现gif动画">QTextEdit 实现gif动画</a><span>(634)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/li6a209/article/details/6666104" title="android 中的视图切换（launcher中的WorkSpace...">android 中的视图切换（launcher中的WorkSpace...</a><span>(304)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/li6a209/article/details/7255171" title="android 中wevView的简单使用">android 中wevView的简单使用</a><span>(115)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/li6a209/article/details/5809145" title="....帝国同学的截图软件   ----">....帝国同学的截图软件   ----</a><span>(111)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/li6a209/article/details/5809333" title="android...应用畅想....">android...应用畅想....</a><span>(60)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/li6a209/article/details/6226448" title="第一个python程序">第一个python程序</a><span>(49)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/li6a209/article/details/5970027" title="----Qt-开发!!---">----Qt-开发!!---</a><span>(43)</span>
+        </li>
+    </ul>
+</div>
+<div id="hotarticls2" class="panel">
+    <ul class="panel_head"><span>评论排行</span></ul>
+    <ul class="panel_body itemlist">
+        <li>
+            <a href="./QTextEdit 实现gif动画 - li6a209的专栏 - 博客频道 - CSDN.NET_files/QTextEdit 实现gif动画 - li6a209的专栏 - 博客频道 - CSDN.NET.html" title="QTextEdit 实现gif动画">QTextEdit 实现gif动画</a><span>(4)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/li6a209/article/details/6666104" title="android 中的视图切换（launcher中的WorkSpace...">android 中的视图切换（launcher中的WorkSpace...</a><span>(2)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/li6a209/article/details/5809333" title="android...应用畅想....">android...应用畅想....</a><span>(1)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/li6a209/article/details/5809145" title="....帝国同学的截图软件   ----">....帝国同学的截图软件   ----</a><span>(0)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/li6a209/article/details/5970027" title="----Qt-开发!!---">----Qt-开发!!---</a><span>(0)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/li6a209/article/details/5985048" title="...Qt实现--自定义标题栏">...Qt实现--自定义标题栏</a><span>(0)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/li6a209/article/details/6226448" title="第一个python程序">第一个python程序</a><span>(0)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/li6a209/article/details/7255171" title="android 中wevView的简单使用">android 中wevView的简单使用</a><span>(0)</span>
+        </li>
+    </ul>
+</div>
+<div id="homepageArticles" class="panel">
+    <ul class="panel_head"><span>推荐文章</span></ul>
+    <ul class="panel_body" id="ad_commend">
+    <iframe id="ad_frm_2" frameborder="0" scrolling="no" style="border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; overflow-x: hidden; overflow-y: hidden; width: 182px; height: 254px; " src="./QTextEdit 实现gif动画 - li6a209的专栏 - 博客频道 - CSDN.NET_files/ad.html"></iframe></ul>
+</div>
+<script type="text/javascript">
+    new Ad(12, 'ad_commend');
+</script><div id="newcomments" class="panel">
+<ul class="panel_head"><span>最新评论</span></ul>
+<ul class="panel_body itemlist">
+    <li>
+    <a href="http://blog.csdn.net/li6a209/article/details/6334633#comments">QTextEdit 实现gif动画</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/capjason" class="user_name">capjason</a>:
+你好，非常感谢您的方法，我已经实现了添加动态图片，但是很我想在删除该图片的时候应该删除掉原来的mov...
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/li6a209/article/details/6666104#comments">android 中的视图切换（launcher中的WorkSpace...</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/hacker_viking" class="user_name">hacker_viking</a>:
+LZ你就不能用中文注释啊。根本无法准确理解你注释的意思。
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/li6a209/article/details/6666104#comments">android 中的视图切换（launcher中的WorkSpace...</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/hacker_viking" class="user_name">hacker_viking</a>:
+讲得很不错，如果讲全就好了。
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/li6a209/article/details/6334633#comments">QTextEdit 实现gif动画</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/zouzhengbing" class="user_name">8023天使</a>:
+我也遇到同样的问题，只显示一帧，路径有什么问题呢?
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/li6a209/article/details/6334633#comments">QTextEdit 实现gif动画</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/lijunda213" class="user_name">最帅的小猪</a>:
+OK了，是路径问题，谢谢！
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/li6a209/article/details/6334633#comments">QTextEdit 实现gif动画</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/lijunda213" class="user_name">最帅的小猪</a>:
+你好，我用了你的例子，有个问题想请教下，就是GIF只有第一帧，跟了下代码，槽函数换帧刷新未执行，怎么...
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/li6a209/article/details/5809333#comments">android...应用畅想....</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/kun77416" class="user_name">kun77416</a>:
+期待这样的应用诞生，抢个沙发先！
+    </p>
+    </li>
+</ul>
+</div>
+</div>
+<div class="clear"></div>
+</div>
+
+<div class="clear"></div>
+</div>
+<script type="text/javascript" src="./QTextEdit 实现gif动画 - li6a209的专栏 - 博客频道 - CSDN.NET_files/shCore-src.js"></script>
+<script type="text/javascript" src="./QTextEdit 实现gif动画 - li6a209的专栏 - 博客频道 - CSDN.NET_files/ZeroClipboard.js"></script>
+<script type="text/javascript" src="./QTextEdit 实现gif动画 - li6a209的专栏 - 博客频道 - CSDN.NET_files/article_code.js"></script>
+<script type="text/javascript" src="./QTextEdit 实现gif动画 - li6a209的专栏 - 博客频道 - CSDN.NET_files/cnick.js"></script>
+
+<script type="text/javascript" src="./QTextEdit 实现gif动画 - li6a209的专栏 - 博客频道 - CSDN.NET_files/show.js"></script>
+<script type="text/javascript" src="./QTextEdit 实现gif动画 - li6a209的专栏 - 博客频道 - CSDN.NET_files/showblogmedal.ashx"></script>
+
+<script type="text/javascript" src="./QTextEdit 实现gif动画 - li6a209的专栏 - 博客频道 - CSDN.NET_files/publib_footer.js"></script><link rel="stylesheet" type="text/css" href="./QTextEdit 实现gif动画 - li6a209的专栏 - 博客频道 - CSDN.NET_files/pub_footer_2012.css"><div class="pub_footerall"><dl><dt></dt> <dd><a href="http://www.csdn.net/company/about.html" target="_blank">公司简介</a>|<a href="http://www.csdn.net/company/recruit.html" target="_blank">招贤纳士</a>|<a href="http://www.csdn.net/company/marketing.html" target="_blank">广告服务</a>|<a href="http://www.csdn.net/company/account.html" target="_blank">银行汇款帐号</a>|<a href="http://www.csdn.net/company/contact.html" target="_blank">联系方式</a>|<a href="http://www.csdn.net/company/statement.html" target="_blank">版权声明</a>|<a href="http://www.csdn.net/company/layer.html" target="_blank">法律顾问</a>|<a href="mailto:webmaster@csdn.net">问题报告</a></dd><dd>京&nbsp;ICP&nbsp;证&nbsp;070598&nbsp;号</dd><dd>北京创新乐知信息技术有限公司 版权所有</dd><dd><img src="./QTextEdit 实现gif动画 - li6a209的专栏 - 博客频道 - CSDN.NET_files/ico_email.gif" alt="" title=""> 联系邮箱：webmaster(at)csdn.net</dd><dd>Copyright © 1999-2012, CSDN.NET, All Rights Reserved&nbsp;<a href="http://www.hd315.gov.cn/beian/view.asp?bianhao=010202001032100010" target="_blank"><img src="./QTextEdit 实现gif动画 - li6a209的专栏 - 博客频道 - CSDN.NET_files/gongshang_logos.gif" alt="GongshangLogo" title=""></a></dd></dl></div>
+
+<script type="text/javascript">document.write("<img src=http://counter.csdn.net/pv.aspx?id=24 border=0 width=0 height=0>");</script><img src="./QTextEdit 实现gif动画 - li6a209的专栏 - 博客频道 - CSDN.NET_files/pv.aspx" border="0" width="0" height="0">
+<script type="text/javascript" src="./QTextEdit 实现gif动画 - li6a209的专栏 - 博客频道 - CSDN.NET_files/counter.js"></script><script type="text/javascript" charset="UTF-8" src="./QTextEdit 实现gif动画 - li6a209的专栏 - 博客频道 - CSDN.NET_files/msg.popup.js"></script>
+
+<!--ad.csdn.net-->
+<script type="text/javascript" src="./QTextEdit 实现gif动画 - li6a209的专栏 - 博客频道 - CSDN.NET_files/ad-blog.js"></script><script type="text/javascript" src="./QTextEdit 实现gif动画 - li6a209的专栏 - 博客频道 - CSDN.NET_files/ad-ibm425.js"></script>
+
+
+
+
+</div>
+
+</body></html>

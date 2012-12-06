@@ -1,0 +1,463 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0051)http://lijiangna.is-programmer.com/posts/32654.html -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="robots" content="all">
+<meta name="author" content="">
+<meta name="description" content="关于Qt显示中文乱码问题-	  一直都在代码中使用GBK编码来解决Qt显示中文的问题，即在main（）函数中添加下面几句：    QTextCodec::setCodecForLocale(QTextCodec::codecForName(&amp;quot;GBK&amp;quot;));    QTextCodec::setCodecForCStrings(QTextCodec::codecForName(&amp;qu...">
+<meta name="keywords" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" type="image/x-icon" href="http://lijiangna.is-programmer.com/user_files/lijiangna/config/favicon.ico">
+<link href="http://lijiangna.is-programmer.com/posts.rss" rel="alternate" title="Blog RSS" type="application/rss+xml">
+<link href="http://lijiangna.is-programmer.com/comments.rss" rel="alternate" title="Comments RSS" type="application/rss+xml">
+<link href="http://lijiangna.is-programmer.com/messages.rss" rel="alternate" title="Messages RSS" type="application/rss+xml">
+<link href="http://lijiangna.is-programmer.com/site.rss" rel="alternate" title="is-Programmer.com RSS" type="application/rss+xml">
+<link href="./关于Qt显示中文乱码问题 - 阿紫的小窝 - Happy Coding_files/common.css" media="screen" rel="stylesheet" type="text/css">
+<link href="./关于Qt显示中文乱码问题 - 阿紫的小窝 - Happy Coding_files/jquery-ui.css" media="screen" rel="stylesheet" type="text/css">
+<link href="./关于Qt显示中文乱码问题 - 阿紫的小窝 - Happy Coding_files/style.css" media="screen" rel="stylesheet" type="text/css">
+
+
+<meta content="authenticity_token" name="csrf-param">
+<meta content="sA5kDWmnquYy0uns9rxyCQIX+xPnGXyxZ63XQARzq7U=" name="csrf-token">
+<script type="text/javascript" async="" src="./关于Qt显示中文乱码问题 - 阿紫的小窝 - Happy Coding_files/ga.js"></script><script src="./关于Qt显示中文乱码问题 - 阿紫的小窝 - Happy Coding_files/jquery.min.js" type="text/javascript"></script>
+<title>关于Qt显示中文乱码问题 - 阿紫的小窝 - Happy Coding</title>
+<script src="./关于Qt显示中文乱码问题 - 阿紫的小窝 - Happy Coding_files/searchhi.js" type="text/javascript"></script><link href="./关于Qt显示中文乱码问题 - 阿紫的小窝 - Happy Coding_files/shCore.css" media="screen" rel="stylesheet" type="text/css">
+<link href="./关于Qt显示中文乱码问题 - 阿紫的小窝 - Happy Coding_files/shThemeDefault.css" media="screen" rel="stylesheet" type="text/css">
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-1563106-1']);
+  _gaq.push(['_setDomainName', 'none']);
+  _gaq.push(['_setAllowLinker', true]);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+<link href="./关于Qt显示中文乱码问题 - 阿紫的小窝 - Happy Coding_files/plugin.css" media="screen" rel="stylesheet" type="text/css">
+<link type="text/css" rel="stylesheet" href="chrome-extension://cpngackimfmofbokmjmljamhdncknpmg/style.css"><script type="text/javascript" charset="utf-8" src="chrome-extension://cpngackimfmofbokmjmljamhdncknpmg/page_context.js"></script><style type="text/css">#yddContainer{display:block;font-family:Microsoft YaHei;position:relative;width:100%;height:100%;top:-4px;left:-4px;font-size:12px;border:1px solid}#yddTop{display:block;height:22px}#yddTopBorderlr{display:block;position:static;height:17px;padding:2px 28px;line-height:17px;font-size:12px;color:#5079bb;font-weight:bold;border-style:none solid;border-width:1px}#yddTopBorderlr .ydd-sp{position:absolute;top:2px;height:0;overflow:hidden}.ydd-icon{left:5px;width:17px;padding:0px 0px 0px 0px;padding-top:17px;background-position:-16px -44px}.ydd-close{right:5px;width:16px;padding-top:16px;background-position:left -44px}#yddKeyTitle{float:left;text-decoration:none}#yddMiddle{display:block;margin-bottom:10px}.ydd-tabs{display:block;margin:5px 0;padding:0 5px;height:18px;border-bottom:1px solid}.ydd-tab{display:block;float:left;height:18px;margin:0 5px -1px 0;padding:0 4px;line-height:18px;border:1px solid;border-bottom:none}.ydd-trans-container{display:block;line-height:160%}.ydd-trans-container a{text-decoration:none;}#yddBottom{position:absolute;bottom:0;left:0;width:100%;height:22px;line-height:22px;overflow:hidden;background-position:left -22px}.ydd-padding010{padding:0 10px}#yddWrapper{color:#252525;z-index:10001;background:url(chrome-extension://eopjamdnofihpioajgfdikhhbobonhbb/ab20.png);}#yddContainer{background:#fff;border-color:#4b7598}#yddTopBorderlr{border-color:#f0f8fc}#yddWrapper .ydd-sp{background-image:url(chrome-extension://eopjamdnofihpioajgfdikhhbobonhbb/ydd-sprite.png)}#yddWrapper a,#yddWrapper a:hover,#yddWrapper a:visited{color:#50799b}#yddWrapper .ydd-tabs{color:#959595}.ydd-tabs,.ydd-tab{background:#fff;border-color:#d5e7f3}#yddBottom{color:#363636}#yddWrapper{min-width:250px;max-width:400px;}</style></head>
+
+<body id="aqua" screen_capture_injected="true">
+<a id="top"></a>
+	<div id="main_page" align="center">
+		<div id="header">
+			<div id="companyname" align="left">
+			    <a href="http://lijiangna.is-programmer.com/">阿紫的小窝</a>
+			    <div id="gem_slogan">Happy Coding</div>
+			</div>
+			<div align="right" class="links_menu" id="menu">
+					<a href="http://lijiangna.is-programmer.com/">首页</a> |
+					<a href="http://lijiangna.is-programmer.com/admin">管理</a> |
+					<a href="http://lijiangna.is-programmer.com/guestbook">留言板</a> |
+			</div>
+		</div>
+		<br>
+		<div id="content">
+			<div id="leftpanel">
+				<div class="table_top">
+				    <div align="center"><span class="title_panel">头像</span> </div>
+				</div>
+				    <div class="table_content">
+					<div class="table_text">
+					    <div id="head">
+<img alt="Avatar" height="120" src="./关于Qt显示中文乱码问题 - 阿紫的小窝 - Happy Coding_files/avatar.png" width="120">
+    <div id="info"></div>
+</div>
+
+					</div>
+				    </div>
+				<div class="table_bottom">
+				    <img alt="Table_bottom" border="0" height="23" src="./关于Qt显示中文乱码问题 - 阿紫的小窝 - Happy Coding_files/table_bottom.jpg" width="204">
+				</div>
+				<br>
+				<div class="table_top">
+				    <div align="center"><span class="title_panel">分类</span> </div>
+				</div>
+				    <div class="table_content">
+					<div class="table_text">
+					        <ul id="category">
+	<li class="category">
+	        <a href="http://lijiangna.is-programmer.com/categories/7687/posts">c/c++</a>
+	</li>
+	<li class="category">
+	        <a href="http://lijiangna.is-programmer.com/categories/7689/posts">Qt</a>
+	</li>
+	<li class="category">
+	        <a href="http://lijiangna.is-programmer.com/categories/7694/posts">Python</a>
+	</li>
+    </ul>
+
+					</div>
+				    </div>
+				<div class="table_bottom">
+				    <img alt="Table_bottom" border="0" height="23" src="./关于Qt显示中文乱码问题 - 阿紫的小窝 - Happy Coding_files/table_bottom.jpg" width="204">
+				</div>
+				<br>
+				<div class="table_top">
+				    <div align="center"><span class="title_panel">随机文章</span> </div>
+				</div>
+				    <div class="table_content">
+					<div class="table_text">
+					    <ul class="navlist">
+</ul>	
+
+					</div>
+				    </div>
+				<div class="table_bottom">
+				    <img alt="Table_bottom" border="0" height="23" src="./关于Qt显示中文乱码问题 - 阿紫的小窝 - Happy Coding_files/table_bottom.jpg" width="204">
+				</div>
+				<br>
+				<div class="table_top">
+				    <div align="center"><span class="title_panel">存档</span> </div>
+				</div>
+				    <div class="table_content">
+					<div class="table_text">
+					    <ul class="navlist">
+            <li><a href="http://lijiangna.is-programmer.com/2012/4">2012年04月</a></li>
+</ul>	
+
+					</div>
+				    </div>
+				<div class="table_bottom">
+				    <img alt="Table_bottom" border="0" height="23" src="./关于Qt显示中文乱码问题 - 阿紫的小窝 - Happy Coding_files/table_bottom.jpg" width="204">
+				</div>
+				<br>
+				<div class="table_top">
+				    <div align="center"><span class="title_panel">链接</span> </div>
+				</div>
+				    <div class="table_content">
+					<div class="table_text">
+					    <ul class="navlist">
+			    <li><a href="http://my.unix-center.net/~lishuai860113/" title="- No Info -">linux菜园子</a></li>
+</ul>	
+
+					</div>
+				    </div>
+				<div class="table_bottom">
+				    <img alt="Table_bottom" border="0" height="23" src="./关于Qt显示中文乱码问题 - 阿紫的小窝 - Happy Coding_files/table_bottom.jpg" width="204">
+				</div>
+				<br>
+				<div class="table_top">
+				    <div align="center"><span class="title_panel">最新评论</span> </div>
+				</div>
+				    <div class="table_content">
+					<div class="table_text">
+					    <ul class="navlist">
+	
+</ul>	
+
+					</div>
+				    </div>
+				<div class="table_bottom">
+				    <img alt="Table_bottom" border="0" height="23" src="./关于Qt显示中文乱码问题 - 阿紫的小窝 - Happy Coding_files/table_bottom.jpg" width="204">
+				</div>
+				<br>
+				<div class="table_top">
+				    <div align="center"><span class="title_panel">最新留言</span> </div>
+				</div>
+				    <div class="table_content">
+					<div class="table_text">
+					    <ul class="navlist">
+	
+</ul>	
+
+					</div>
+				    </div>
+				<div class="table_bottom">
+				    <img alt="Table_bottom" border="0" height="23" src="./关于Qt显示中文乱码问题 - 阿紫的小窝 - Happy Coding_files/table_bottom.jpg" width="204">
+				</div>
+				<br>
+				<div class="table_top">
+				    <div align="center"><span class="title_panel">计数器</span> </div>
+				</div>
+				    <div class="table_content">
+					<div class="table_text">
+					    <div id="count" style="text-align:center;">
+	2320
+</div>
+					</div>
+				    </div>
+				<div class="table_bottom">
+				    <img alt="Table_bottom" border="0" height="23" src="./关于Qt显示中文乱码问题 - 阿紫的小窝 - Happy Coding_files/table_bottom.jpg" width="204">
+				</div>
+				<br>
+				<div class="table_top">
+				    <div align="center"><span class="title_panel">搜索</span> </div>
+				</div>
+				    <div class="table_content">
+					<div class="table_text">
+					    <div id="chito_search">
+<form accept-charset="UTF-8" action="http://lijiangna.is-programmer.com/posts" id="search_form" method="get"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"></div>    <input id="s" name="s" size="10" type="text" value="">
+    <input name="commit" type="submit" value="搜索">
+</form></div>
+
+					</div>
+				    </div>
+				<div class="table_bottom">
+				    <img alt="Table_bottom" border="0" height="23" src="./关于Qt显示中文乱码问题 - 阿紫的小窝 - Happy Coding_files/table_bottom.jpg" width="204">
+				</div>
+				<br>
+			
+			</div>
+			<div id="contenttext">
+    
+<div id="article_wrap">
+  <div class="pre_next_post">
+	<div></div> 
+        <div></div>
+  </div>
+
+  <h1>关于Qt显示中文乱码问题</h1>
+
+  <div id="article_header">
+    <strong> 阿紫</strong> 
+    posted @ 2012年3月27日 16:03
+     in <a href="http://lijiangna.is-programmer.com/categories/7689/posts">Qt</a>
+    , 668 阅读
+        </div>
+
+  
+  
+  <div id="article_body">
+    <div id="article_content"><p>
+	<span style="font-size: 14px">&nbsp; &nbsp; </span>一直都在代码中使用GBK编码来解决Qt显示中文的问题，即在main（）函数中添加下面几句：</p>
+<div><div id="highlighter_744477" class="syntaxhighlighter  actionscript3"><div class="toolbar"><span><a href="http://lijiangna.is-programmer.com/posts/32654.html#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="actionscript3 plain">QTextCodec::setCodecForLocale(QTextCodec::codecForName(</code><code class="actionscript3 string">"GBK"</code><code class="actionscript3 plain">));</code></div><div class="line number2 index1 alt1"><code class="actionscript3 plain">QTextCodec::setCodecForCStrings(QTextCodec::codecForName(</code><code class="actionscript3 string">"GBK"</code><code class="actionscript3 plain">));</code></div><div class="line number3 index2 alt2"><code class="actionscript3 plain">QTextCodec::setCodecForTr(QTextCodec::codecForName(</code><code class="actionscript3 string">"GBK"</code><code class="actionscript3 plain">));</code></div></div></td></tr></tbody></table></div></div>
+<p>
+	然后在发布的应用程序文件夹下建立plugins\codecs，然后将qcncodecs4.dll放到该目录下，也没再出现乱码。但是后来客户反馈说存在乱码。为什么会出现乱码呢？<span style="font-size: 14px">&nbsp; &nbsp;&nbsp;</span></p>
+<p>
+	<span style="font-size: 14px">&nbsp; &nbsp; </span>原来如此。比如写了“汉字”两个字，然后以GBK形式保存在计算机的存储设备中（“汉字”的GBK编码是BA、BA、D7、D6）。然后在读取时，计算机中的二进制码“BA、BA、D7、D6”却不是以同样的GBK形式被解释成“汉字”两个字符。比如说以ISO-88591形式被读取，那么“BA、BA、D7、D6”就会被解释为四个西欧文字了。如果将程序发布到一些非简体中文的国家或地区，可能出现对方的机器上根本没有安装任何中文的编码格式，所以就会出现乱码。</p>
+<p>
+	<span style="font-size: 14px">&nbsp; &nbsp; </span>那么，如何彻底解决乱码问题呢？Qt提供了强大的多国语言工具Qt Linguist。</p>
+<p>
+	&nbsp; &nbsp;一、编写源码：</p>
+<p>
+	&nbsp; &nbsp; 实现多语言，1）、首先必须保证每一个用户可见的字符串都使用了tr（）函数；2）、在应用程序启动时使用QTranslator载入一个翻译文件（.qm）。如：</p>
+<div><div id="highlighter_371853" class="syntaxhighlighter  actionscript3"><div class="toolbar"><span><a href="http://lijiangna.is-programmer.com/posts/32654.html#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div><div class="line number17 index16 alt2">17</div><div class="line number18 index17 alt1">18</div><div class="line number19 index18 alt2">19</div><div class="line number20 index19 alt1">20</div><div class="line number21 index20 alt2">21</div><div class="line number22 index21 alt1">22</div><div class="line number23 index22 alt2">23</div><div class="line number24 index23 alt1">24</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="actionscript3 plain">#</code><code class="actionscript3 keyword">include</code> <code class="actionscript3 plain">&lt;QtGui/QApplication&gt;</code></div><div class="line number2 index1 alt1"><code class="actionscript3 plain">#</code><code class="actionscript3 keyword">include</code> <code class="actionscript3 plain">&lt;QTranslator&gt;</code></div><div class="line number3 index2 alt2"><code class="actionscript3 plain">#</code><code class="actionscript3 keyword">include</code> <code class="actionscript3 plain">&lt;QMessageBox&gt;</code></div><div class="line number4 index3 alt1">&nbsp;</div><div class="line number5 index4 alt2"><code class="actionscript3 keyword">int</code> <code class="actionscript3 plain">main(</code><code class="actionscript3 keyword">int</code> <code class="actionscript3 plain">argc, char *argv[])</code></div><div class="line number6 index5 alt1"><code class="actionscript3 plain">{</code></div><div class="line number7 index6 alt2"><code class="actionscript3 spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="actionscript3 plain">QApplication app(argc, argv);</code></div><div class="line number8 index7 alt1">&nbsp;</div><div class="line number9 index8 alt2"><code class="actionscript3 spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="actionscript3 comments">//载入翻译文件</code></div><div class="line number10 index9 alt1"><code class="actionscript3 spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="actionscript3 plain">QTranslator translator;</code></div><div class="line number11 index10 alt2"><code class="actionscript3 spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="actionscript3 plain">bool bLoaded = translator.load(</code><code class="actionscript3 string">"readnv_chs"</code><code class="actionscript3 plain">);</code><code class="actionscript3 comments">//语言包文件，由linguist工具生成</code></div><div class="line number12 index11 alt1">&nbsp;</div><div class="line number13 index12 alt2"><code class="actionscript3 spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="actionscript3 keyword">if</code> <code class="actionscript3 plain">(!bLoaded)</code></div><div class="line number14 index13 alt1"><code class="actionscript3 spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="actionscript3 plain">{</code></div><div class="line number15 index14 alt2"><code class="actionscript3 spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="actionscript3 plain">QMessageBox::warning(NULL,QApplication::tr(</code><code class="actionscript3 string">"Load File Failed"</code><code class="actionscript3 plain">), QApplication::tr(</code><code class="actionscript3 string">"Load readnv_chs.qm Failed!"</code><code class="actionscript3 plain">));</code></div><div class="line number16 index15 alt1"><code class="actionscript3 spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="actionscript3 plain">}</code></div><div class="line number17 index16 alt2">&nbsp;</div><div class="line number18 index17 alt1"><code class="actionscript3 spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="actionscript3 plain">app.installTranslator(&amp;translator);</code></div><div class="line number19 index18 alt2">&nbsp;</div><div class="line number20 index19 alt1"><code class="actionscript3 spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="actionscript3 plain">mainwindow w;</code></div><div class="line number21 index20 alt2"><code class="actionscript3 spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="actionscript3 plain">w.show();</code></div><div class="line number22 index21 alt1">&nbsp;</div><div class="line number23 index22 alt2"><code class="actionscript3 spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="actionscript3 keyword">return</code> <code class="actionscript3 plain">app.exec();</code></div><div class="line number24 index23 alt1"><code class="actionscript3 plain">}</code></div></div></td></tr></tbody></table></div></div>
+<p>
+	注意：翻译文件加载的位置必须在界面实例化之前完成。编写好代码后：</p>
+<p>
+	&nbsp; &nbsp;二、生成翻译文件：</p>
+<p>
+	&nbsp; &nbsp; 1）、在.pro文件中添加TRANSLATIONS+=readnv_chs.ts。指明在项目中生成翻译源文件readnv_chs.ts。&lt;.ts是可读的翻译文件，使用简单的XML格式；而.qm是经过.ts转换而成的二进制机器语言&gt;。</p>
+<p>
+	&nbsp; &nbsp; &nbsp;2）、执行命令：lupdate -verbose xx.pro。从应用程序的源代码中提取所有用户可见的字符串，生成相应的.ts文件（readnv_chs.ts）。</p>
+<p>
+	<span style="font-size: 18px"><span style="line-height: 20px; background-color: rgb(255,255,255); font-family: Arial; color: rgb(51,51,51)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img alt="" src="./关于Qt显示中文乱码问题 - 阿紫的小窝 - Happy Coding_files/11.png" style="cursor: pointer; width: 400px; height: 124.59016393442623px; " title="在新窗口打开" width="400" height="124"></span></span></p>
+<p>
+	&nbsp;&nbsp;&nbsp; &nbsp;3）、使用Qt Linguist翻译该应用程序。使用linguist打开readnv_chs.ts文件，对tr（）函数的字符串参数进行翻译，然后点击release，生成相应的.qm文件，即readnv_chs.qm。然后将.qm文件放在应用程序目录下即可。</p>
+<p>
+	&nbsp; &nbsp;&nbsp;</p>
+<p>
+	&nbsp; &nbsp;&nbsp;</p>
+<p>
+	&nbsp;</p>
+<p>
+	<span style="font-size: 18px">&nbsp; &nbsp;</span></p>
+<p>
+	&nbsp;</p>
+<p>
+	&nbsp;</p>
+<p style="text-align: left">
+	&nbsp;</p>
+<p style="text-align: left">
+	&nbsp;</p>
+</div>
+  </div>
+
+  
+  <div id="article_bar">
+  <div id="article_tabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
+    <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+	    <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="http://lijiangna.is-programmer.com/posts/32654.html#global_relative_posts_post_bar">全局相关文章&nbsp;</a></li>
+    </ul>
+	<div id="global_relative_posts_post_bar" class="ui-tabs-panel ui-widget-content ui-corner-bottom">
+	    <ul>
+	    <li>无匹配</li>
+</ul>	
+
+	</div>
+  </div>
+  </div>
+
+
+
+  <div id="comments_wrap">
+      
+
+<div class="articlefooter">
+        <span class="comments">
+	<a href="http://lijiangna.is-programmer.com/posts/32654.rss"><img alt="Small_feed" class="feed" src="./关于Qt显示中文乱码问题 - 阿紫的小窝 - Happy Coding_files/small_feed.png"></a>
+	评论 (0)
+    </span>
+</div>
+    <div id="comments">
+        
+ 
+    </div>
+
+
+
+<script src="./关于Qt显示中文乱码问题 - 阿紫的小窝 - Happy Coding_files/ckeditor.js" type="text/javascript"></script><br>
+<div id="post_comment">
+    <a href="http://lijiangna.is-programmer.com/posts/32654.html#" id="cancel_reply_link" onclick="cancel_reply_to_id();event.returnValue = false;return false;" style="display:none;">[取消回复评论]</a>
+
+<form accept-charset="UTF-8" action="http://lijiangna.is-programmer.com/posts/32654/comments" data-remote="true" id="rform_chito_comment" method="post" onsubmit="return false;"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="sA5kDWmnquYy0uns9rxyCQIX+xPnGXyxZ63XQARzq7U="></div>
+     <div id="comment_error" style="display: none;"></div>
+
+
+     
+    	 <label>昵称</label>
+         <input id="comment_writer" name="comment[writer]" size="10" type="text" value=""> 
+         <a href="http://lijiangna.is-programmer.com/login?jump=http%3A%2F%2Flijiangna.is-programmer.com%2Fposts%2F32654.html">登录</a> 
+         <label>E-mail:</label>
+         <input id="comment_email" name="comment[email]" size="30" type="text" value=""> *
+         <br>
+         <label>Web:</label>
+         <input id="comment_homepage" name="comment[homepage]" size="30" type="text" value="">
+         <br>
+         <label>Twitter:</label>
+         <input id="comment_twitter" name="comment[twitter]" size="12" type="text" value="">
+         <br>
+         <input id="comment_info" name="comment[info]" size="6" type="text" value="" class="comment_info_field" autocomplete="off"> 
+         <input id="comment_value" name="comment[value]" type="hidden" value="some">
+
+     <div id="comment_editor">
+       <input id="comment_mode" name="comment[mode]" type="hidden" value="plain">	
+       <input id="comment_reply_to" name="comment[reply_to]" type="hidden" value="">
+       <textarea class="pc" cols="40" id="comment_content" name="comment[content]" onkeydown="if(event.ctrlKey&amp;&amp;event.keyCode==13){document.getElementById(&#39;subm_chito_comment&#39;).click();return false};" rows="3"></textarea>
+       <input type="button" id="comment_editor_button" onclick="show_editor();">
+     </div>
+         <label><input checked="checked" id="enable_notifier" name="enable_notifier" type="checkbox" value="1">当有新评论通过 E-mail 通知我 </label>
+     <div id="comment_extra">
+         <div id="show_simple_captcha"><!-- Copyright (c) 2007 [Sur http://expressica.com] -->
+
+<style type="text/CSS">
+  
+  #simple_captcha{padding: 5px 0 0 0 !important;}
+  #simple_captcha,
+  #simple_captcha div{display: table;}
+  #simple_captcha .simple_captcha_field,
+  #simple_captcha .simple_captcha_image{
+    margin: 0px 0px 2px 0px !important;
+    padding: 0px !important;
+  }
+  #simple_captcha .simple_captcha_image img{
+    margin: 0px !important;
+    padding: 0px !important;
+    width: 110px !important;
+  }
+  #simple_captcha .simple_captcha_label{font-size: 12px;}
+  #simple_captcha .simple_captcha_field input{
+    width: 120px !important;
+    border: 1px solid #ccc;
+    background-color: #efefef;
+  }
+</style>
+
+<div id="simple_captcha">
+  <div class="simple_captcha_image">
+    <img src="./关于Qt显示中文乱码问题 - 阿紫的小窝 - Happy Coding_files/simple_captcha" alt="loading captcha image...">
+  </div>
+  
+  <div class="simple_captcha_field">
+    <input id="captcha" name="captcha" type="text">
+  </div>
+  
+  <div class="simple_captcha_label">
+    (输入验证码)
+  </div>
+</div>
+</div>
+     </div>
+         <input autocomplete="off" data-disable-with="发送评论中……" id="subm_chito_comment" name="commit" type="submit" value="发送">
+         <span id="crtl_enter_tip" style="color:#ccc;font-size:small;"> or Ctrl+Enter</span>
+</form>
+
+</div>
+ <script type="text/javascript">
+//<![CDATA[
+        $('#subm_chito_comment').click(function(){
+            $(this).attr("disabled",true);
+            $(this).val('发送评论中……');
+            update_field();
+            $('#comment_value').val('');
+            $.post('/posts/32654/comments', $('#rform_chito_comment').find('input').serialize() + '&' + $('#rform_chito_comment').find('textarea').serialize(), function(){
+                $('#subm_chito_comment').val('发送');
+                $('#subm_chito_comment').attr("disabled",false);
+            });
+
+            return false;
+        });
+
+//]]>
+</script>
+
+
+  </div>
+  <div class="page_clear"></div>
+
+</div>
+
+
+
+			</div>
+			<br>
+			<br>
+<script src="./关于Qt显示中文乱码问题 - 阿紫的小窝 - Happy Coding_files/jquery-ui.min.js" type="text/javascript"></script>
+<script src="./关于Qt显示中文乱码问题 - 阿紫的小窝 - Happy Coding_files/jquery.rails.js" type="text/javascript"></script>
+<script src="./关于Qt显示中文乱码问题 - 阿紫的小窝 - Happy Coding_files/blog.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+//<![CDATA[
+$(function() {$("#article_tabs").tabs();});
+//]]>
+</script>
+<script src="./关于Qt显示中文乱码问题 - 阿紫的小窝 - Happy Coding_files/jquery.jslatex.packed.js" type="text/javascript"></script>
+ <script type="text/javascript">
+                    function auto_js_latex(){
+                        try{
+                            $('#article_content').html($('#article_content').html().replace(/\[tex\]/g, "<span class='latex_eq'>").replace(/\[\/tex\]/g, "</span>"));
+                        }catch(e){;}
+                        try{
+                            $('#comments').html($('#comments').html().replace(/\[tex\]/g, "<span class='latex_eq'>").replace(/\[\/tex\]/g, "</span>"));
+                        }catch(e){;}
+                        try{
+                            $('.post_brief').each(function(index){
+                                $(this).html($(this).html().replace(/\[tex\]/g, "<span class='latex_eq'>").replace(/\[\/tex\]/g, "</span>"));
+                            });
+                        }catch(e){;}
+                        $(".latex_eq").each(function(){
+                            var html = $(this).html();
+                            html = html.replace(/&nbsp;/g, " ").replace(/<br \/>/g, "");
+                            $(this).html(html);
+                        });
+                        $(".latex_eq").latex(); 
+                    }
+                    $(document).ready(auto_js_latex);
+                </script>
+ <script src="./关于Qt显示中文乱码问题 - 阿紫的小窝 - Happy Coding_files/shCore.js" type="text/javascript"></script>
+<script src="./关于Qt显示中文乱码问题 - 阿紫的小窝 - Happy Coding_files/shBrushes.js" type="text/javascript"></script>
+<script type="text/javascript">SyntaxHighlighter.all();</script><script src="./关于Qt显示中文乱码问题 - 阿紫的小窝 - Happy Coding_files/core.js" type="text/javascript"></script>
+ <script type="text/javascript">
+                    function auto_resize_img(){
+                        img_resize_normal(400, "在新窗口打开");
+                    }
+                    $(document).ready(auto_resize_img);
+                    </script>
+
+
+			<div class="footer">
+				<br>
+				Host by <a href="http://www.is-programmer.com/">is-Programmer.com</a> | Power by <a href="http://github.com/galeki/chito">Chito 1.3.1 beta</a> | Designed by <a href="http://www.winkhosting.com/">Wink Hosting</a>.
+			</div>
+		</div>
+	</div>
+
+
+</body></html>

@@ -1,0 +1,569 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0044)http://mobile.51cto.com/symbian-271989_1.htm -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=GBK">
+
+<meta http-equiv="x-ua-compatible" content="ie=7">
+<title>详解 Qt 源码分析 QObject(2) - 51CTO.COM</title>
+<meta name="description" content="本文介绍的是Qt 源码分析 QObject，代码一一实现，先来看内容。">
+<meta name="keywords" content="Qt , QObject ">
+<!--<base target="_blank">--><base href="." target="_blank">
+<link href="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/grid.css" rel="stylesheet" type="text/css">
+<link type="text/css" rel="stylesheet" href="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/art_master_top.css">
+<script type="text/javascript" async="" src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/ga.js"></script><script language="javaScript" src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/base_art.js"></script>
+<script src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/index_1_down.js"></script>
+<link type="text/css" rel="stylesheet" href="chrome-extension://cpngackimfmofbokmjmljamhdncknpmg/style.css"><script type="text/javascript" charset="utf-8" src="chrome-extension://cpngackimfmofbokmjmljamhdncknpmg/page_context.js"></script><style type="text/css">#yddContainer{display:block;font-family:Microsoft YaHei;position:relative;width:100%;height:100%;top:-4px;left:-4px;font-size:12px;border:1px solid}#yddTop{display:block;height:22px}#yddTopBorderlr{display:block;position:static;height:17px;padding:2px 28px;line-height:17px;font-size:12px;color:#5079bb;font-weight:bold;border-style:none solid;border-width:1px}#yddTopBorderlr .ydd-sp{position:absolute;top:2px;height:0;overflow:hidden}.ydd-icon{left:5px;width:17px;padding:0px 0px 0px 0px;padding-top:17px;background-position:-16px -44px}.ydd-close{right:5px;width:16px;padding-top:16px;background-position:left -44px}#yddKeyTitle{float:left;text-decoration:none}#yddMiddle{display:block;margin-bottom:10px}.ydd-tabs{display:block;margin:5px 0;padding:0 5px;height:18px;border-bottom:1px solid}.ydd-tab{display:block;float:left;height:18px;margin:0 5px -1px 0;padding:0 4px;line-height:18px;border:1px solid;border-bottom:none}.ydd-trans-container{display:block;line-height:160%}.ydd-trans-container a{text-decoration:none;}#yddBottom{position:absolute;bottom:0;left:0;width:100%;height:22px;line-height:22px;overflow:hidden;background-position:left -22px}.ydd-padding010{padding:0 10px}#yddWrapper{color:#252525;z-index:10001;background:url(chrome-extension://eopjamdnofihpioajgfdikhhbobonhbb/ab20.png);}#yddContainer{background:#fff;border-color:#4b7598}#yddTopBorderlr{border-color:#f0f8fc}#yddWrapper .ydd-sp{background-image:url(chrome-extension://eopjamdnofihpioajgfdikhhbobonhbb/ydd-sprite.png)}#yddWrapper a,#yddWrapper a:hover,#yddWrapper a:visited{color:#50799b}#yddWrapper .ydd-tabs{color:#959595}.ydd-tabs,.ydd-tab{background:#fff;border-color:#d5e7f3}#yddBottom{color:#363636}#yddWrapper{min-width:250px;max-width:400px;}</style></head>
+<body screen_capture_injected="true">
+<!-- 导航 开始-->
+<div id="home_top">    <div class="top_nav">        <div class="left" style="width:400px"><div class="logo_51cto" title="51CTO.COM - 技术成就梦想 -  中国领先的IT技术网站"></div><a href="http://www.51cto.com/">首页</a><img width="16" height="25" align="absmiddle" src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/top_bg_xian.gif" style="padding-top: 2px;"><a onmouseover="show(1,this);" onmouseout="popupClose();" href="http://www.51cto.com/col/35/" target="_blank">技术频道<img align="absmiddle" src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/nav_ico1.gif" style="padding-left: 4px;"></a><img width="16" height="25" align="absmiddle" src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/top_bg_xian.gif"><a onmouseover="show(2,this);" onmouseout="popupClose();" href="http://www.51cto.com/" target="_blank">51CTO旗下网站<img align="absmiddle" src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/nav_ico1.gif" style="padding-left: 4px;"></a><img width="16" height="25" align="absmiddle" src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/top_bg_xian.gif"><a href="http://www.51cto.com/about/map.htm" target="_blank">地图</a> <a href="http://www.51cto.com/about/rss.html" target="_blank"><img src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/143749870.gif" style="vertical-align:middle; margin-bottom: 5px; margin-left:5px;"></a>       </div>        <div class="right">            <div class="more"><img width="27" height="16" align="absmiddle" src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/top_shequ.gif">社区：<a href="http://bbs.51cto.com/" target="_blank">论坛</a><a href="http://blog.51cto.com/" target="_blank">博客</a><a href="http://down.51cto.com/" target="_blank">下载</a><a href="http://book.51cto.com/" target="_blank">读书</a><a onmouseover="show(3,this)" onmouseout="popupClose()" href="javascript:viod(0);">更多<img align="absmiddle" src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/nav_ico1.gif" style="padding-left: 4px;"></a>            </div>            <span id="login_status"><div class="login" style="padding-top:8px; text-align:right;"><a href="http://home.51cto.com/index.php?s=/Home/index" style="background:none"><img style="margin-top:-3px" id="dia" align="absmiddle" width="20" title="今天领无忧币了吗？" src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/dia.gif"></a><a href="http://home.51cto.com/?reback=http%253A%252F%252Fmobile.51cto.com%252Fsymbian-271989.htm" target="_self">登录</a><a href="http://ucenter.51cto.com/reg_01.php?reback=http%253A%252F%252Fmobile.51cto.com%252Fsymbian-271989.htm" target="_self">注册</a></div></span>                </div>    </div></div>
+<div class="subMenu1" id="s1" onmouseover="popupNoClose();" onmouseout="popupClose();">
+<ul>
+<li><a href="http://network.51cto.com/" target="_blank">网络</a></li>
+<li><a href="http://netsecurity.51cto.com/" target="_blank">安全</a></li>
+<li><a href="http://developer.51cto.com/" target="_blank">开发</a></li>
+<li><a href="http://database.51cto.com/" target="_blank">数据库</a></li>
+<li><a href="http://server.51cto.com/" target="_blank">服务器</a></li>
+<li><a href="http://os.51cto.com/" target="_blank">系统</a></li>
+<li><a href="http://virtual.51cto.com/" target="_blank">虚拟化</a></li>
+<li><a href="http://cloud.51cto.com/" target="_blank">云计算</a></li>
+<li><a href="http://developer.51cto.com/embed/" target="_blank">嵌入式</a></li>
+<li><a href="http://mobile.51cto.com/" target="_blank">移动开发</a></li>
+</ul>
+</div> 
+<div class="subMenu2" id="s2" onmouseover="popupNoClose()" onmouseout="popupClose()">
+<ul>
+<li><a href="http://www.51cto.com/" target="_blank" title="中国领先的IT技术网站">51CTO.COM</a></li>
+<li><a href="http://www.cioage.com/" target="_blank" title="中国首个专门服务于CIO的专业网站">CIOage.com</a></li>
+<li><a href="http://www.watchstor.com/" target="_blank" title="领先的中文存储网络媒体">WatchStor.com</a></li>
+<li><a href="http://www.hc3i.cn/" target="_blank" title="中国首家专注于数字医疗及医疗信息化的专业网站">HC3i.cn</a></li>
+<li><a href="http://www.linkphone.cn/" target="_blank" title="移动互联网生活门户">灵客风LinkPhone</a></li>
+</ul>
+</div>
+<script src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/jquery-1.4.4.js"></script>
+<script>
+$(function(){
+	$(".bann").height(515);	 
+	$(".bann").css("background-color","white");
+});
+
+</script>
+
+<script src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/head_art_more1.js"></script><div class="subMenu3" id="s3" onmouseover="popupNoClose()" onmouseout="popupClose()" style="z-index:9999;position: absolute;">
+<ul>
+<li><a href="http://home.51cto.com/" target="_blank">家园</a></li>
+<li><a href="http://t.51cto.com/" target="_blank">微博</a></li>
+<li><a href="http://blog.51cto.com/" target="_blank">博客</a></li>
+<li><a href="http://bbs.51cto.com/" target="_blank">论坛</a></li>
+<li><a href="http://down.51cto.com/" target="_blank">下载</a></li>
+<li><a href="http://selftest.51cto.com/" target="_blank">自测</a></li>
+<li><a href="http://doctor.51cto.com/" target="_blank">门诊</a></li>
+<li><a href="http://blog.51cto.com/newsletter/" target="_blank">周刊</a></li>
+<li><a href="http://book.51cto.com/" target="_blank">读书</a></li>
+<li><a href="http://g.51cto.com/" target="_blank">技术圈</a></li>
+<li><a href="http://zhidao.51cto.com/" target="_blank">知道</a></li>
+</ul>
+</div>
+
+<!-- 登陆信息 -->
+<!-- 导航 结束--> 
+ <div class="g_39 mb10">
+	<div id="tonglanad" class="fl"><script language="JavaScript" src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/ad.js"></script><script type="text/javascript" src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/ad.php"></script><iframe width="760" height="90" noresize="" scrolling="No" frameborder="0" marginheight="0" marginwidth="0" src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/14(1).html" align="left"></iframe></div>
+	<div id="list4" class="fr">
+		<ul>
+			<li id="wordlinkad1"><script src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/wordlink1.js"></script><script language="JavaScript" type="text/javascript" src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/adjs.php"></script><a href="http://vd.51cto.com/adclick.php?bannerid=8642&zoneid=477&source=&dest=http%3A%2F%2Fwww.microsoft.com%2Fclick%2Fservices%2FRedirect2.ashx%3FCR_CC%3D200148499" target="_blank"><font color="blue">云创益大赛火热招募中！</font></a><div id="beacon_8642" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/adlog.php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div></li>
+			<li id="wordlinkad2"><script src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/wordlink2.js"></script><script language="JavaScript" type="text/javascript" src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/adjs(1).php"></script><a href="http://vd.51cto.com/adclick.php?bannerid=8617&zoneid=478&source=&dest=http%3A%2F%2Fwww.microsoft.com%2Fclick%2Fservices%2FRedirect2.ashx%3FCR_CC%3D200137032" target="_blank"><font color="blue">微软TechEd 2012 预订购票！</font></a><div id="beacon_8617" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/adlog(1).php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div></li>
+			<li id="wordlinkad3"><script src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/wordlink3.js"></script><script language="JavaScript" type="text/javascript" src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/adjs(2).php"></script><a href="http://vd.51cto.com/adclick.php?bannerid=5630&zoneid=479&source=&dest=http%3A%2F%2Foa.51cto.com%2Fart%2F201105%2F260161.htm" target="_blank"><font color="red">针式打印机保养方法汇总</font></a><div id="beacon_5630" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/adlog(2).php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div></li>
+			<li id="wordlinkad4"><script src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/wordlink4.js"></script><script language="JavaScript" type="text/javascript" src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/adjs(3).php"></script><a href="http://vd.51cto.com/adclick.php?bannerid=8920&zoneid=480&source=&dest=http%3A%2F%2Fwww.microsoft.com%2Fclick%2Fservices%2FRedirect2.ashx%3FCR_CC%3D200163139" target="_blank"><font color="blue">知人.成事 领创商业新纪元</font></a><div id="beacon_8920" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/adlog(3).php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div></li>
+		</ul>
+	</div>
+<br class="dle">
+</div>
+
+<div class="g_39 menu">
+<div class="subNav_logo"><a href="http://mobile.51cto.com/" title="移动开发"><img src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/143329156.gif"></a></div>
+<div class="subNav_l"><a href="http://mobile.51cto.com/">首页</a> | <a href="http://mobile.51cto.com/android/">Android</a> | <a href="http://mobile.51cto.com/iphone/">iOS</a> | <a href="http://mobile.51cto.com/windows-phone/">Windows Phone</a> | <a href="http://mobile.51cto.com/blackberry/">BlackBerry</a> | <a href="http://mobile.51cto.com/webos/">webOS</a> | <a href="http://mobile.51cto.com/symbian/">Symbian</a> | <a href="http://mobile.51cto.com/bada/">bada</a> | <a href="http://mobile.51cto.com/ophone/">OPhone</a> | <a href="http://mobile.51cto.com/others/" target="_blank">其他</a></div>  
+<div class="search fr">
+<dl>
+<form name="searchform" action="http://www.51cto.com/php/search.php" target="_blank" method="post" style="margin:0px; padding:0px;">
+<dt class="fl"><input name="keyword" type="text" class="searchInput f14 input" value="请输入关键字" onfocus="doempty(this, &#39;请输入关键字&#39;);" onblur="doempty(this, &#39;请输入关键字&#39;);"></dt>
+<dd class="fl"><input type="image" src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/search.gif"></dd></form>
+</dl>
+</div>
+<br class="dle">
+</div>
+<div class="g_39 b3-s-4273B3 rel">
+<!--width : 26*25 - 15 = 635px-->
+<div class="g_26 fl m_l">
+<div class="brief bgF8F8F8">
+<p class="crumb ">您所在的位置：<a href="http://mobile.51cto.com/">移动开发</a> &gt; <a href="http://mobile.51cto.com/col/1541/">Symbian</a> &gt;  <b>详解 Qt 源码分析 QObject(2)</b> </p>
+<h1>详解 Qt 源码分析 QObject(2)</h1>
+<div class="msg">
+<div>2011-06-28 16:18  佚名  互联网 <span class="f12-a"><a href="http://mobile.51cto.com/symbian-271989_1.htm#commment" target="_self">我要评论(<span id="pinglun_1"><script language="JavaScript" src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/getArtCount.php"></script>0</span>)</a></span> 字号：<span class="f14-b"><a href="javascript:setfont(12);" target="_self">T</a></span> | <span class="f16-b"><a href="javascript:setfont(16);" target="_self">T</a></span></div>
+<div class="fav"><a href="javascript:favorBox('open');" title="一键收藏，随时查看，分享好友！" target="_self"><img src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/Fav.gif" alt="一键收藏，随时查看，分享好友！" border="0"></a></div>
+</div>
+<div class="brieftext">
+<p class="f14 green">本文介绍的是Qt 源码分析 QObject，代码一一实现，先来看内容。</p>
+<p class="ad">AD：
+<script src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/keywords_ad_new.js"></script>
+</p>
+</div>
+</div>
+<div class="tag bgF8F8F8" id="indexlist" style="display:none;">
+<ul id="indexliststr">
+</ul>
+<br class="dle">
+</div>
+<div class="content bgF8F8F8 f14">
+<div id="content">
+<p></p>
+<p>具体看一个例子吧,对这种句柄实体模式加深认识,这就是Qt中的按钮类QPushButton</p>
+<pre><ol class="dp-xml"><li class="alt"><span><span>QPushButton的句柄类派生关系是: &nbsp;</span></span></li><li><span>QObject &nbsp;</span></li><li class="alt"><span>&nbsp;QWidget &nbsp;</span></li><li><span>&nbsp;&nbsp;QAbstractButton &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;QPushButton &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp; &nbsp;</span></li><li class="alt"><span>QPushButton的实体类派生关系是: &nbsp;</span></li><li><span>QObjectData &nbsp;</span></li><li class="alt"><span>&nbsp;QObjectPrivate &nbsp;</span></li><li><span>&nbsp;&nbsp;QWidgetPrivate &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;QAbstractButtonPrivate &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;QPushButtonPrivate&nbsp;</span></li></ol></pre>
+<p>可以看出,这里确实是一个平行体系,只不过实体类派生关系中多了一个QObjectPrivate,这个类封装了线程处理,信号和槽机制等具体的实现,可以说它才是Qt实体类中</p>
+<p>真正起作用的基类,而QObjectData不过是一层浅浅的数据封装而已</p>
+<p>先不忙了解QObjectPrivate类中的接口和实现,我们先看看在Qt中,句柄类和实体类这两条体系是如何构造的?</p>
+<pre><ol class="dp-xml"><li class="alt"><span><span>QPushButton*&nbsp;</span><span class="attribute">quit</span><span>&nbsp;=&nbsp;</span><span class="attribute-value">new</span><span>&nbsp;QPushButton("Quit");&nbsp;</span></span></li></ol></pre>
+<p>创建一个Qt的按钮,简简单单一行代码,其实背后大有玄机</p>
+<pre><ol class="dp-xml"><li class="alt"><span><span>QPushButton::QPushButton(const&nbsp;QString&nbsp;&amp;text,&nbsp;QWidget&nbsp;*parent) &nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;QAbstractButton(*new&nbsp;QPushButtonPrivate,&nbsp;parent)&nbsp;</span></li></ol></pre>
+<p>首先QPushButton的构造函数中调用了QAbstractButton的构造函数,同时马上new出来一个QPushButtonPrivate实体类,然后把指针转换为引用传递给QAbstractButton</p>
+<pre><ol class="dp-xml"><li class="alt"><span><span>QAbstractButton::QAbstractButton(QAbstractButtonPrivate&nbsp;&amp;dd,&nbsp;QWidget&nbsp;*parent) &nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;QWidget(dd,&nbsp;parent,&nbsp;0)&nbsp;</span></li></ol></pre>
+<p>QAbstractButton的构造函数中继续调用基类QWidget的构造函数,同时把QPushButtonPrivate实体类指针继续传给基类</p>
+<pre><ol class="dp-xml"><li class="alt"><span><span>QWidget::QWidget(QWidgetPrivate&nbsp;&amp;dd,&nbsp;QWidget*&nbsp;parent,&nbsp;Qt::WFlags&nbsp;f) &nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;QObject(dd,&nbsp;((parent&nbsp;&amp;&amp;&nbsp;(parent-</span><span class="tag">&gt;</span><span>windowType()&nbsp;==&nbsp;Qt::Desktop))&nbsp;?&nbsp;0&nbsp;:&nbsp;parent)),&nbsp;QPaintDevice()&nbsp;</span></li></ol></pre>
+<p>QWidget继续坐着同样的事情</p>
+<pre><ol class="dp-xml"><li class="alt"><span><span>QObject::QObject(QObjectPrivate&nbsp;&amp;dd,&nbsp;QObject&nbsp;*parent) &nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;d_ptr(&amp;dd)&nbsp;</span></li></ol></pre>
+<p>终于到了基类QObject,这里就直接把QPushButtonPrivate的指针赋值给了d_ptr(还记得这个变量名称吧)</p>
+<p>最终在QPushButton构造时同时产生的new QPushButtonPrivate被写到了QObject中的d_ptr中</p>
+<pre><ol class="dp-xml"><li class="alt"><span><span>QObject::QObject(QObjectPrivate&nbsp;&amp;dd,&nbsp;QObject&nbsp;*parent) &nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;d_ptr(&amp;dd) &nbsp;</span></li><li class="alt"><span>{ &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;Q_D(QObject); &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;::qt_addObject(d_ptr-</span><span class="tag">&gt;</span><span class="attribute">q_ptr</span><span>&nbsp;=&nbsp;</span><span class="attribute-value">this</span><span>); &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;QThread&nbsp;*</span><span class="attribute">currentThread</span><span>&nbsp;=&nbsp;</span><span class="attribute-value">QThread</span><span>::currentThread(); &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;d-</span><span class="tag">&gt;</span><span class="attribute">thread</span><span>&nbsp;=&nbsp;</span><span class="attribute-value">currentThread</span><span>&nbsp;?&nbsp;QThreadData::get(currentThread)-</span><span class="tag">&gt;</span><span>id&nbsp;:&nbsp;-1; &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;Q_ASSERT_X(!parent&nbsp;||&nbsp;parent-</span><span class="tag">&gt;</span><span>d_func()-</span><span class="tag">&gt;</span><span class="attribute">thread</span><span>&nbsp;==&nbsp;d-</span><span class="tag">&gt;</span><span>thread,&nbsp;"QObject::QObject()", &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Cannot&nbsp;create&nbsp;children&nbsp;for&nbsp;a&nbsp;parent&nbsp;that&nbsp;is&nbsp;in&nbsp;a&nbsp;different&nbsp;thread."); &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(parent&nbsp;&amp;&amp;&nbsp;parent-</span><span class="tag">&gt;</span><span>d_func()-</span><span class="tag">&gt;</span><span>thread&nbsp;!=&nbsp;d-</span><span class="tag">&gt;</span><span>thread) &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">parent</span><span>&nbsp;=&nbsp;</span><span class="attribute-value">0</span><span>; &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(d-</span><span class="tag">&gt;</span><span>isWidget)&nbsp;{ &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(parent)&nbsp;{ &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;d-</span><span class="tag">&gt;</span><span class="attribute">parent</span><span class="attribute-value">parent</span><span>&nbsp;=&nbsp;parent; &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;d-</span><span class="tag">&gt;</span><span>parent-</span><span class="tag">&gt;</span><span>d_func()-</span><span class="tag">&gt;</span><span>children.append(this); &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;no&nbsp;events&nbsp;sent&nbsp;here,&nbsp;this&nbsp;is&nbsp;done&nbsp;at&nbsp;the&nbsp;end&nbsp;of&nbsp;the&nbsp;QWidget&nbsp;constructor &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;else&nbsp;{ &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setParent(parent); &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;} &nbsp;</span></li><li class="alt"><span>}&nbsp;</span></li></ol></pre>
+<p>然后执行QObject的构造函数,这里主要是一些线程的处理,先不理它</p>
+<pre><ol class="dp-xml"><li class="alt"><span><span>QWidget::QWidget(QWidgetPrivate&nbsp;&amp;dd,&nbsp;QWidget*&nbsp;parent,&nbsp;Qt::WFlags&nbsp;f) &nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;QObject(dd,&nbsp;((parent&nbsp;&amp;&amp;&nbsp;(parent-</span><span class="tag">&gt;</span><span>windowType()&nbsp;==&nbsp;Qt::Desktop))&nbsp;?&nbsp;0&nbsp;:&nbsp;parent)),&nbsp;QPaintDevice() &nbsp;</span></li><li class="alt"><span>{ &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;d_func()-</span><span class="tag">&gt;</span><span>init((parent&nbsp;&amp;&amp;&nbsp;parent-</span><span class="tag">&gt;</span><span>windowType()&nbsp;==&nbsp;Qt::Desktop&nbsp;?&nbsp;parent&nbsp;:&nbsp;0),&nbsp;f); &nbsp;</span></li><li class="alt"><span>}&nbsp;</span></li></ol></pre>
+<p>然后是QWidget的构造函数,这里调用了数据类QWidgetPrivate的init函数,这个函数不是虚函数,因此静态解析成QWidgetPrivate的init函数调用</p>
+<pre><ol class="dp-xml"><li class="alt"><span><span>QAbstractButton::QAbstractButton(QAbstractButtonPrivate&nbsp;&amp;dd,&nbsp;QWidget&nbsp;*parent) &nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;QWidget(dd,&nbsp;parent,&nbsp;0) &nbsp;</span></li><li class="alt"><span>{ &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;Q_D(QAbstractButton); &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;d-</span><span class="tag">&gt;</span><span>init(); &nbsp;</span></li><li><span>}&nbsp;</span></li></ol></pre>
+<p>然后是QAbstractButton的构造函数,这里调用了数据类QAbstractButton的init函数,这个函数不是虚函数,因此静态解析成QAbstractButton的init函数调用</p>
+<pre><ol class="dp-xml"><li class="alt"><span><span>QPushButton::QPushButton(const&nbsp;QString&nbsp;&amp;text,&nbsp;QWidget&nbsp;*parent) &nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;QAbstractButton(*new&nbsp;QPushButtonPrivate,&nbsp;parent) &nbsp;</span></li><li class="alt"><span>{ &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;Q_D(QPushButton); &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;d-</span><span class="tag">&gt;</span><span>init(); &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;setText(text); &nbsp;</span></li><li class="alt"><span>}&nbsp;</span></li></ol></pre>
+<p>然后是QPushButton的构造函数,这里调用了数据类QPushButton的init函数,这个函数不是虚函数,因此静态解析成QPushButton的init函数调用。</p>
+<p> 
+</p><p class="blank10"></p> 
+<div class="page"><a href="http://mobile.51cto.com/symbian-271989.htm" target="_self" class="prew"><span><em>&lt;&lt;</em>  上一页</span></a> <a href="http://mobile.51cto.com/symbian-271989.htm" target="_self"><span>1</span></a> <em id="cur">2</em><a href="http://mobile.51cto.com/symbian-271989_2.htm" target="_self"><span>3</span></a> <a href="http://mobile.51cto.com/symbian-271989_2.htm" target="_self" class="next"><span>下一页<em>&gt;&gt;</em></span></a></div> 
+<div class="docu"><strong class="f12">内容导航</strong><div class="f12"><table width="100%"><tbody><tr><td width="50%">&nbsp;第 1 页：<a href="http://mobile.51cto.com/symbian-271989.htm" target="_self">Qt的QObject</a></td> <td width="50%">&nbsp;第 2 页：<a href="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/详解 Qt 源码分析 QObject(2) - 51CTO.COM.html" target="_self"><font color="red">看一个例子 按钮类QPushButton</font></a></td> </tr><tr><td width="50%">&nbsp;第 3 页：<a href="http://mobile.51cto.com/symbian-271989_2.htm" target="_self">总结一下</a></td> </tr></tbody></table></div><br class="dle"></div> 
+<div class="biaoqing fixfloat">
+<ul>
+<li><a href="javascript:getcountscom(271989,1)" target="_self"><img src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/bq1.jpg"></a>
+<div><a href="javascript:getcountscom(271989,1)" target="_self">给力</a></div>
+<span id="271989_1">(65票)</span></li>
+<li><a href="javascript:getcountscom(271989,2)" target="_self"><img src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/bq2.jpg"></a>
+<div><a href="javascript:getcountscom(271989,2)" target="_self">动心</a></div>
+<span id="271989_2">(65票)</span></li>
+<li><a href="javascript:getcountscom(271989,3)" target="_self"><img src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/bq3.jpg"></a>
+<div><a href="javascript:getcountscom(271989,3)" target="_self">废话</a></div>
+<span id="271989_3">(64票)</span></li>
+<li><a href="javascript:getcountscom(271989,4)" target="_self"><img src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/bq4.jpg"></a>
+<div><a href="javascript:getcountscom(271989,4)" target="_self">专业</a></div>
+<span id="271989_4">(65票)</span></li>
+<li><a href="javascript:getcountscom(271989,5)" target="_self"><img src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/bq5.jpg"></a>
+<div><a href="javascript:getcountscom(271989,5)" target="_self">标题党</a></div>
+<span id="271989_5">(65票)</span></li>
+<li><a href="javascript:getcountscom(271989,6)" target="_self"><img src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/bq6.jpg"></a>
+<div><a href="javascript:getcountscom(271989,6)" target="_self">路过</a></div>
+<span id="271989_6">(65票)</span></li>
+</ul>
+</div>
+<script language="javascript"> 
+getcountscom(271989,11);
+getcountscom(271989,12);
+getcountscom(271989,13);
+getcountscom(271989,14);
+getcountscom(271989,15);
+getcountscom(271989,16); 
+</script>
+<p class="blank10"></p>
+<div class="f12"> <span class="fl">原文：<a href="http://mobile.51cto.com/symbian-271989.htm" class="blue"><b>详解 Qt 源码分析 QObject(2)</b></a></span> <span class="fr"><a href="http://mobile.51cto.com/">返回移动开发首页</a></span> </div>
+<p class="blank1"></p>
+</div>
+<div class="tips">
+<div class="fl"> 分享到： <span class="blue"> <img src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/weiboicon16.png">  
+<a style="background-position:0 -40px;cursor:pointer;" title="QQ微博" onclick="window.open( &#39;http://v.t.qq.com/share/share.php?url=&#39;+encodeURIComponent(document.location)+&#39;&amp;appkey=&amp;site=&amp;title=&#39;+encodeURI(document.title),&#39;&#39;, &#39;width=700, height=680, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, location=yes, resizable=no, status=no&#39; );" target="_self">QQ微博</a><img src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/qz_logo.png"><a href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://mobile.51cto.com/symbian-271989.htm" title="分享到QQ空间">QQ空间</a><img src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/kx.jpg"><a target="_blank" href="http://www.kaixin001.com/repaste/share.php?rurl=http://mobile.51cto.com/symbian-271989.htm&rtitle=%CF%EA%BD%E2%20Qt%20%D4%B4%C2%EB%B7%D6%CE%F6%20QObject(2)">开心</a><img src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/rr.jpg"><a href="http://share.renren.com/share/buttonshare.do?link=http://mobile.51cto.com/symbian-271989.htm&title=%CF%EA%BD%E2%20Qt%20%D4%B4%C2%EB%B7%D6%CE%F6%20QObject(2)" title="分享到人人网">人人网</a><img src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/145820640.gif" width="17" height="16">
+<a style="background-position:0 -120px;cursor:pointer;" title="豆瓣" onclick="window.open( &#39;http://www.douban.com/recommend/?url=&#39;+encodeURIComponent(document.location)+&#39;&amp;appkey=&amp;site=&amp;title=&#39;+encodeURI(document.title),&#39;&#39;, &#39;width=700, height=680, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, location=yes, resizable=no, status=no&#39; );" target="_self">豆瓣</a>
+<img src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/sina.gif"><a href="http://v.t.sina.com.cn/share/share.php?appkey=2378297317&url=http://mobile.51cto.com/symbian-271989.htm&title=%CF%EA%BD%E2%20Qt%20%D4%B4%C2%EB%B7%D6%CE%F6%20QObject(2)" title="分享到新浪微博">新浪微博</a></span></div><div class="fr blue"><a href="javascript:AddFavorite(document.location.href,document.title);" target="_self">收藏</a>|<a href="javascript:window.print();" target="_self">打印</a>|<a id="msnqqcopy" title="分享本资源给好友" target="_self">复制</a></div>
+</div>
+</div>
+<!--内容 end-->
+<div class="bor">
+<div class="titbg pl15">关于<a href="http://www.51cto.com/php/search.php?keyword=Qt%20" target="_blank" class="underline">Qt </a>&nbsp;&nbsp;<a href="http://www.51cto.com/php/search.php?keyword=%20QObject%20" target="_blank" class="underline"> QObject </a>的更多文章</div>
+<div class="reltag">
+<ul class="fl list02">
+  <li><a href="http://mobile.51cto.com/symbian-270674.htm" title="解析QT多线程程序详细设计之QObject可重入性 下篇">解析QT多线程程序详细设计之QObject可重入</a></li><li><a href="http://mobile.51cto.com/symbian-269739.htm" title="Qt学习之路 详解 下篇">Qt学习之路 详解 下篇</a></li><li><a href="http://mobile.51cto.com/symbian-268754.htm" title="初识Qt Object 类">初识Qt Object 类</a></li><li><a href="http://mobile.51cto.com/symbian-271998.htm" title="实现 Qt 统一风格与换肤实例">实现 Qt 统一风格与换肤实例</a></li><li><a href="http://mobile.51cto.com/symbian-271978.htm" title="Qt中设置Widget背景颜色及图片的注意事项">Qt中设置Widget背景颜色及图片的注意事项</a></li>
+</ul>
+<div class="fr">
+<div class="h5 f12"><a href="http://mobile.51cto.com/mobile/interview/tarena/" title="专访达内培训 传统PC应用向移动端移植"><b>专访达内培训 传统PC应用向移动端移植</b></a></div>
+<a href="http://mobile.51cto.com/mobile/interview/tarena/" title="专访达内培训 传统PC应用向移动端移植"><img src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/105030447.jpg" alt="专访达内培训 传统PC应用向移动端移植" width="100" height="80" border="0"></a>
+<p class="c666">6月21日下午，51CTO移动开发频道专访达内培训，达内培训的副总裁<a class="blue" href="http://mobile.51cto.com/mobile/interview/tarena/" title="专访达内培训 传统PC应用向移动端移植">[详细]</a></p>
+</div>
+</div>
+<!--reltag end-->
+</div>
+<p class="blank10"></p>
+<div class="bor">
+<div class="f14 comm">
+<h3 class="fl">网友评论<em>TOP5</em></h3>
+<span class="fr"> <a href="http://www.51cto.com/php/feedbackt.php?id=271989">查看所有评论（<span id="pinglun_2"><script language="JavaScript" src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/getArtCount.php"></script>0</span>）</a></span> </div>
+<p class="blank1"></p>
+<div class="blank1"></div>
+<ul class="commlist">
+<script src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/artcomment1105.php"></script>
+</ul>
+<div class="txt bgF8F8F8">
+<a name="commment"></a>
+<dl>
+<dt class="fl tlt">提交评论</dt>
+<dd><script src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/authart.php"></script><form action="http://www.51cto.com/login.php?referer=http://mobile.51cto.com/symbian-271989.htm" method="post" style="padding:0px;margin:0px" target="_self">通行证：<input name="username" size="10" type="text">&nbsp;密码：<input name="password" type="password" size="10"><input name="username2" class="test1" type="hidden" value="">&nbsp;<input type="submit" name="Submit" value="登录">&nbsp;&nbsp;<a href="http://ucenter.51cto.com/reg_01.php">注册通行证</a></form><form action="http://www.51cto.com/php/sendfeedback.php" method="post" name="feedback" id="feedback" onsubmit="return commentSubmit(this)" style="padding:0px;margin:0px" target="_self"><input type="hidden" name="referer" value="http://mobile.51cto.com/symbian-271989.htm"><input name="username" type="hidden" value=""><input name="uid" class="test1" type="hidden" value="">
+<br>
+</form></dd>
+
+</dl>
+	 <script type="text/javascript" language="javascript" src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/nomal_k.php"></script><textarea class="txtinput" name="msg" id="msg" style="height: 88px;"></textarea><br><table width="99%" border="0" cellspacing="0" cellpadding="0"><tbody><tr><td height="6" colspan="6"><input type="hidden" name="artID" value="271989"><input type="hidden" name="referer" value="http://mobile.51cto.com/symbian-271989.htm"><input type="hidden" name="quick" value="0"><input type="hidden" name="author2" value="51CTO网友"></td></tr><tr><td width="9%">验证码：</td><td width="11%"><input name="authnum" onclick="displaysecunum();" type="text" class="test3"></td><td width="51%"><img id="secunum" style="vertical-align:middle;" onclick="refimg()"><span style="display:none;" id="spanfont">点击图片可刷新验证码</span><span style="display:inline;" id="clickfont">请点击后输入验证码</span></td><td width="4%"><input name="nouser" type="checkbox" value="1" onclick="author2username2()"></td><td width="12%">匿名发表</td><td width="13%"><input type="image" name="Submit32" src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/tijiao.gif"></td></tr><tr><td height="6" colspan="6"></td></tr></tbody></table>
+	
+</div>
+</div>
+<!--box end-->
+<p class="blank10"></p>
+<div class="relart fl bor">
+<div class="titbg">
+<h3 class="fl t1">栏目热门</h3>
+<a href="http://mobile.51cto.com/col/1541/click1.htm" class="tmore">更多&gt;&gt;</a></div>
+<ul>
+  
+	  <li><a href="http://mobile.51cto.com/symbian-260971.htm" title="诺基亚Symbian Anna全新登场">诺基亚Symbian Anna全新登场</a></li>
+	  
+	  <li><a href="http://mobile.51cto.com/hot-259138.htm" title="用Qt为Symbian开发应用程序">用Qt为Symbian开发应用程序</a></li>
+	  
+	  <li><a href="http://mobile.51cto.com/hot-259982.htm" title="诺基亚发布Symbian^3 SDK 1.0">诺基亚发布Symbian^3 SDK 1.0</a></li>
+	  
+	  <li><a href="http://mobile.51cto.com/symbian-268191.htm" title="基于QT前端的Mplayer播放器项目之PC环境下的实现过程">基于QT前端的Mplayer播放器项目之PC环境下</a></li>
+	  
+	  <li><a href="http://mobile.51cto.com/symbian-267829.htm" title="深度解析嵌入式QT开发环境搭建">深度解析嵌入式QT开发环境搭建</a></li>
+	  
+</ul>
+</div>
+<div class="cathot fr bor">
+<div class="titbg">
+<h3 class="fl t1">同期最新</h3>
+<a href="http://mobile.51cto.com/col/1541" class="tmore">更多&gt;&gt;</a></div>
+<ul>
+	
+	  <li><a href="http://mobile.51cto.com/symbian-271978.htm" title="Qt中设置Widget背景颜色及图片的注意事项">Qt中设置Widget背景颜色及图片的注意事项</a></li>
+	  
+	  <li><a href="http://mobile.51cto.com/symbian-271961.htm" title="分析21个 Qt隐藏功能和技巧">分析21个 Qt隐藏功能和技巧</a></li>
+	  
+	  <li><a href="http://mobile.51cto.com/symbian-271958.htm" title="如何 Qt用模板来实现信号和槽">如何 Qt用模板来实现信号和槽</a></li>
+	  
+	  <li><a href="http://mobile.51cto.com/symbian-271956.htm" title="浅谈 Qt 内存管理">浅谈 Qt 内存管理</a></li>
+	  
+	  <li><a href="http://mobile.51cto.com/symbian-271952.htm" title="详解 Qt 中实现单例模式">详解 Qt 中实现单例模式</a></li>
+	  
+</ul>
+</div>
+<p class="blank10"></p>
+<div class="bor">
+<div class="titbg">
+<h3 class="fl t1"><a href="http://mobile.51cto.com/">移动开发</a></h3>
+<span class="pl10">频道导航</span></div>
+ <ul class="xtlist">
+<li><span class="tit">平台</span>
+<div><a href="http://mobile.51cto.com/web/">移动Web</a>|<a href="http://mobile.51cto.com/android/">Android</a>|<a href="http://mobile.51cto.com/iphone/">iOS</a>|<a href="http://mobile.51cto.com/windows-phone/">Windows Phone</a></div>
+</li>
+
+<li><span class="tit">应用</span>
+<div><a href="http://mobile.51cto.com/app-show/">移动应用</a>|<a href="http://mobile.51cto.com/team/">移动团队</a>|<a href="http://mobile.51cto.com/market/">应用商店</a>|<a href="http://mobile.51cto.com/speclist/">专题汇总</a>|<a href="http://mobile.51cto.com/1603/">Phone Club</a></div>
+</li>
+
+<li><span class="tit">观察</span>
+<div><a href="http://mobile.51cto.com/comment/">业界观察</a>|<a href="http://mobile.51cto.com/data/">调查数据</a>|<a href="http://mobile.51cto.com/informatization/">移动信息化</a></div>
+</li>
+
+<li class="last"><span class="tit">Android</span>
+<div><a href="http://mobile.51cto.com/ahot/">热点</a>|<a href="http://mobile.51cto.com/anews/">资讯</a>|<a href="http://mobile.51cto.com/android/abased/">基础</a>|<a href="http://mobile.51cto.com/android/amedia/">多媒体</a>|<a href="http://mobile.51cto.com/android/adatabase/">数据库</a>|<a href="http://mobile.51cto.com/android/design/">设计</a>|<a href="http://mobile.51cto.com/android/aengine/">工具</a>|<a href="http://mobile.51cto.com/android/aprogram/">编译</a></div>
+</li>
+</ul> 
+</div> 
+<p class="blank10"></p>
+<div class="leftbotcon">
+<div class="bor jdlist">
+<div class="titbg">
+<h3 class="t2">热点推荐</h3></div>
+<ul>
+<li><a onclick="javascript: _gaq.push([&#39;_trackPageview&#39;, &#39;/51cto/neirong/d-t-4&#39;]);" href="http://mobile.51cto.com/mobile-182392.htm"><img src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/153546162.jpg"></a> 
+<div class="name"><a onclick="javascript: _gaq.push([&#39;_trackPageview&#39;, &#39;/51cto/neirong/d-t-4&#39;]);" href="http://mobile.51cto.com/mobile-182392.htm">Android开发应用详解</a></div></li>
+<li><a onclick="javascript: _gaq.push([&#39;_trackPageview&#39;, &#39;/51cto/neirong/d-t-4&#39;]);" href="http://developer.51cto.com/art/201106/266369.htm"><img src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/133620622.jpg"></a> 
+<div class="name"><a onclick="javascript: _gaq.push([&#39;_trackPageview&#39;, &#39;/51cto/neirong/d-t-4&#39;]);" href="http://developer.51cto.com/art/201106/266369.htm">那些性感的让人尖叫的程序员</a></div></li>
+<li><a href="http://developer.51cto.com/art/200907/133407.htm"><img src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/134217922.jpg"></a> 
+<div class="name"><a href="http://developer.51cto.com/art/200907/133407.htm">HTML5 下一代Web开发标准详解</a></div></li>
+<li><a href="http://developer.51cto.com/art/201104/257581.htm"><img src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/123123954.jpg"></a> 
+<div class="name"><a href="http://developer.51cto.com/art/201104/257581.htm">高性能WEB开发应用指南</a></div></li>
+<li><a href="http://os.51cto.com/art/200706/49181.htm"><img src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/195816929.jpg"></a> 
+<div class="name"><a href="http://os.51cto.com/art/200706/49181.htm">Ubuntu开源技术交流频道</a></div></li></ul></div>
+<p class="blank10"></p>
+<div class="bor hotTag"><strong>热门标签：</strong> <a onclick="javascript: _gaq.push([&#39;_trackPageview&#39;, &#39;/51cto/neirong/d-2]);" href="http://os.51cto.com/windows/">windows频道</a><a onclick="javascript: _gaq.push([&#39;_trackPageview&#39;, &#39;/51cto/neirong/d-w&#39;]);" href="http://mobile.51cto.com/">移动开发</a><a onclick="javascript: _gaq.push([&#39;_trackPageview&#39;, &#39;/51cto/neirong/d-w&#39;]);" href="http://cloud.51cto.com/">云计算</a><a onclick="javascript: _gaq.push([&#39;_trackPageview&#39;, &#39;/51cto/neirong/d-w&#39;]);" href="http://mobile.51cto.com/mobile/objc/">objective-c</a><a onclick="javascript: _gaq.push([&#39;_trackPageview&#39;, &#39;/51cto/neirong/d-w&#39;]);" href="http://network.51cto.com/art/200909/151122.htm">tp-link路由器设置图解</a><a onclick="javascript: _gaq.push([&#39;_trackPageview&#39;, &#39;/51cto/neirong/d-w&#39;]);" href="http://developer.51cto.com/art/200907/133407.htm">html5</a> </div></div>
+<div class="leftbotbox"> </div>
+</div>
+<!--left end-->
+<div class="g_13 fr">
+<div class="focus fixfloat"> 
+ <div class="hot">
+<ul>
+<li class="tit"><em>专题</em> <a href="http://down.51cto.com/zt/40">Android开发入门之实战技巧和源码</a> </li>
+<li class="con"><dl><dt><a href="http://down.51cto.com/zt/40"><img border="0" src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/wKioJlC9Y87iGd_5AAAYzaYhdsI324.jpg"></a></dt>
+<dd>Google的绿机器人已经深入人心，Android的开发应用吸引着各类厂商与程序员的眼球，本专题…</dd>
+</dl></li></ul><ol class="hotlist"><li><a href="http://mobile.51cto.com/market-351874.htm">《移动开发者》2012年8月刊第2期</a></li><li><a href="http://mobile.51cto.com/hot-346617.htm">《移动开发者》2012年7月刊第1期</a></li></ol></div>
+<p>
+<script language="JavaScript" src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/ad(1).js" type="text/javascript"></script><script type="text/javascript" src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/ad(2).php"></script><iframe width="300" height="260" noresize="" scrolling="No" frameborder="0" marginheight="0" marginwidth="0" src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/14.html" align="left"></iframe>
+</p>
+</div>
+<div class="rank">
+<div class="tlt">
+      <h3>文章排行</h3>
+      <a onmouseover="change_top10(3);" id="top_3">本月</a><a onmouseover="change_top10(2);" id="top_2">本周</a><a onmouseover="change_top10(1);" class="myon" id="top_1">24小时</a> </div>
+ <div id="top10_1" style="display: block;" class="list"><ul>
+<li><a href="http://mobile.51cto.com/android-227548.htm" target="_blank" title="在Eclipse下搭建Android开发环境教程">在Eclipse下搭建Android开发环境教程</a>
+</li><li><a href="http://mobile.51cto.com/informatization-369839.htm" target="_blank" title="iOS VS Android：一场安全的战争">iOS VS Android：一场安全的战争</a>
+</li><li><a href="http://mobile.51cto.com/android-331742.htm" target="_blank" title="Android 4.0.4模拟器安装完全教程（图">Android 4.0.4模拟器安装完全教程（图</a>
+</li><li><a href="http://mobile.51cto.com/hot-367183.htm" target="_blank" title="女大学生携iPhone应聘被拒 招聘方称担">女大学生携iPhone应聘被拒 招聘方称担</a>
+</li><li><a href="http://mobile.51cto.com/design-250037.htm" target="_blank" title="21个免费的UI界面设计工具、资源及网站">21个免费的UI界面设计工具、资源及网站</a>
+</li><li><a href="http://mobile.51cto.com/android-223416.htm" target="_blank" title="多图详解 “Android UI”设计官方教程">多图详解 “Android UI”设计官方教程</a>
+</li><li><a href="http://mobile.51cto.com/hot-366827.htm" target="_blank" title="调查：18-29岁人群中9成人会与智能手机">调查：18-29岁人群中9成人会与智能手机</a>
+</li><li><a href="http://mobile.51cto.com/ahot-369868.htm" target="_blank" title="技术辩论：企业部署中选择iOS还是Andro">技术辩论：企业部署中选择iOS还是Andro</a>
+</li><li><a href="http://mobile.51cto.com/iphone-261119.htm" target="_blank" title="Objective-C代码学习大纲">Objective-C代码学习大纲</a>
+</li><li><a href="http://mobile.51cto.com/hot-292923.htm" target="_blank" title="人人都是开发者：5款傻瓜式APP开发工具">人人都是开发者：5款傻瓜式APP开发工具</a>
+</li></ul></div>
+<div id="top10_2" style="display: none;" class="list"><ul>
+<li><a href="http://mobile.51cto.com/hot-368292.htm" target="_blank" title="雅虎将收购什么类型公司？梅耶尔：移动">雅虎将收购什么类型公司？梅耶尔：移动</a>
+</li><li><a href="http://mobile.51cto.com/hot-368296.htm" target="_blank" title="iCar不再遥不可及！Siri将于明年初登陆">iCar不再遥不可及！Siri将于明年初登陆</a>
+</li><li><a href="http://mobile.51cto.com/blackberry-368834.htm" target="_blank" title="黑莓十大必须马上解决的问题:忘掉物理">黑莓十大必须马上解决的问题:忘掉物理</a>
+</li><li><a href="http://mobile.51cto.com/team-368717.htm" target="_blank" title="移动互联网搜索引擎的轮回:门户=商店,">移动互联网搜索引擎的轮回:门户=商店,</a>
+</li><li><a href="http://mobile.51cto.com/anews-368872.htm" target="_blank" title="五大科技公司觊觎智能眼镜：谷歌微软新">五大科技公司觊觎智能眼镜：谷歌微软新</a>
+</li><li><a href="http://mobile.51cto.com/hot-368599.htm" target="_blank" title="十个好用的iOS开发辅助工具与资源">十个好用的iOS开发辅助工具与资源</a>
+</li><li><a href="http://mobile.51cto.com/hot-368260.htm" target="_blank" title="传微软明年将推出Windows Blue操作系统">传微软明年将推出Windows Blue操作系统</a>
+</li><li><a href="http://mobile.51cto.com/market-368880.htm" target="_blank" title="Google Play收入增长远高于App Store ">Google Play收入增长远高于App Store </a>
+</li><li><a href="http://mobile.51cto.com/informatization-369633.htm" target="_blank" title="BYOD大潮下移动管理策略的变化：MDM转">BYOD大潮下移动管理策略的变化：MDM转</a>
+</li><li><a href="http://mobile.51cto.com/anews-369544.htm" target="_blank" title="雅虎CEO梅耶尔：黑莓称不上智能手机">雅虎CEO梅耶尔：黑莓称不上智能手机</a>
+</li></ul></div>
+<div id="top10_3" style="display: none;" class="list"><ul>
+<li><a href="http://mobile.51cto.com/ahot-364875.htm" target="_blank" title="程序员，中国最值得同情的职业么？">程序员，中国最值得同情的职业么？</a>
+</li><li><a href="http://mobile.51cto.com/ahot-364742.htm" target="_blank" title="Android 4.2深度评测：甜蜜美味的果冻">Android 4.2深度评测：甜蜜美味的果冻</a>
+</li><li><a href="http://mobile.51cto.com/ahot-364267.htm" target="_blank" title="Android平台各类恶意软件及病毒概览">Android平台各类恶意软件及病毒概览</a>
+</li><li><a href="http://mobile.51cto.com/hot-367183.htm" target="_blank" title="女大学生携iPhone应聘被拒 招聘方称担">女大学生携iPhone应聘被拒 招聘方称担</a>
+</li><li><a href="http://mobile.51cto.com/comment-365162.htm" target="_blank" title="互联网手机的围城：小米顶多再风光一年">互联网手机的围城：小米顶多再风光一年</a>
+</li><li><a href="http://mobile.51cto.com/anews-363638.htm" target="_blank" title="小米MIUI试水内置收费遭用户抵制 被指">小米MIUI试水内置收费遭用户抵制 被指</a>
+</li><li><a href="http://mobile.51cto.com/design-366219.htm" target="_blank" title="苹果的拟物化设计？">苹果的拟物化设计？</a>
+</li><li><a href="http://mobile.51cto.com/anews-365123.htm" target="_blank" title="日本五大电子巨企沦陷:无法适应移动互">日本五大电子巨企沦陷:无法适应移动互</a>
+</li><li><a href="http://mobile.51cto.com/ahot-365104.htm" target="_blank" title="开发者告诉你为什么Android是最好的开">开发者告诉你为什么Android是最好的开</a>
+</li><li><a href="http://mobile.51cto.com/informatization-363902.htm" target="_blank" title="BYOD时代来临 IT管理的新课题">BYOD时代来临 IT管理的新课题</a>
+</li></ul></div>
+ 
+ </div>
+<p class="blank1"></p>
+
+<div class="bor">
+<div class="titbg">
+<h3 class="fl t1">热点专题</h3>
+<a href="http://mobile.51cto.com/col/1541/spec1.htm" class="tmore">更多&gt;&gt;</a></div>
+<ul class="plist01">
+<li><a href="http://mobile.51cto.com/android-254834.htm" title="Android遭遇成长的烦恼"><img src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/161401153.gif" alt="Android遭遇成长的烦恼" width="100" height="80"></a>
+<h5><a href="http://mobile.51cto.com/android-254834.htm" title="Android遭遇成长的烦恼">Android遭遇成长的烦</a></h5>
+<div class="c666">纵览Android发展历程，在这短短的三年多时间里，Andro</div>
+</li><li><a href="http://mobile.51cto.com/others-251827.htm" title="webOS 2.1应用开发初体验"><img src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/163748451.gif" alt="webOS 2.1应用开发初体验" width="100" height="80"></a>
+<h5><a href="http://mobile.51cto.com/others-251827.htm" title="webOS 2.1应用开发初体验">webOS 2.1应用开发初</a></h5>
+<div class="c666">webOS原来是一个以Linux内核的嵌入式操作系统，webOS</div>
+</li><li><a href="http://mobile.51cto.com/2011qm-251193.htm" title="51CTO春之清明专题：IT时代的缅怀、纪念、反思、启程……"><img src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/135233946.jpg" alt="51CTO春之清明专题：IT时代的缅怀、纪念、反思、启程……" width="100" height="80"></a>
+<h5><a href="http://mobile.51cto.com/2011qm-251193.htm" title="51CTO春之清明专题：IT时代的缅怀、纪念、反思、启程……">51CTO春之清明专题：I</a></h5>
+<div class="c666">清明，农历二十四节气之一，是我国传统节日，也是最重</div>
+</li> 
+</ul>
+</div>
+<p class="blank10"></p>
+<div class="tagCloud">
+<div class="tlt">
+<h3>热点标签</h3>
+</div>
+<div class="taglist"><a title="iOS开发" href="http://mobile.51cto.com/mobile/objc/">iOS开发</a>  <a title="Android开发" href="http://mobile.51cto.com/mobile-182392.htm">Android开发</a> <a title="Symbian开发" href="http://mobile.51cto.com/mobile-220581.htm">Symbian开发</a>  <a title="MeeGo开发" href="http://mobile.51cto.com/meego-208013.htm">MeeGo开发</a>  <a title="BlackBerry开发" href="http://mobile.51cto.com/blackberry-255350.htm">BlackBerry开发</a>  <a title="Windows Phone开发" href="http://mobile.51cto.com/mobile-219051.htm">Windows Phone开发</a>  <a title="Phone Club" href="http://mobile.51cto.com/1603/">Phone Club</a>  <a title="Android 4.0" href="http://mobile.51cto.com/android-297987.htm" class="imp">Android 4.0</a>  <a title="webOS 3.0" href="http://mobile.51cto.com/webos-256291.htm">webOS 3.0</a>  <a title="智能手机" href="http://www.linkphone.cn/">智能手机</a> <a title="软件下载" href="http://download.linkphone.cn/">软件下载</a> </div>
+</div>
+<div class="rss">
+<ul>
+<li class="lin f12-c"><a href="http://news.51cto.com/col/1323/"><strong>点击这里查看样刊</strong></a></li>
+<li>
+<dl>
+<dt> </dt>
+<dd><a href="http://home.51cto.com/index.php?s=/Subscribe"><img src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/dingy.gif"></a></dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="bor">
+<div class="titbg">
+<h3 class="t1">全站热点</h3>
+</div>
+<div class="webhot fixfloat">
+<ul>
+
+<li>
+  <a href="http://os.51cto.com/art/201106/266372.htm" title="细数Ubuntu的“四宗罪”"><img src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/173540144.jpg"></a>
+  <div><a href="http://os.51cto.com/art/201106/266372.htm" title="细数Ubuntu的“四宗罪”">细数Ubuntu的“四宗罪”</a></div>
+</li>
+
+<li>
+  <a href="http://virtual.51cto.com/art/201105/265850_1.htm" title="SMB到底需要什么样虚拟化"><img src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/113906990.jpg"></a>
+  <div><a href="http://virtual.51cto.com/art/201105/265850_1.htm" title="SMB到底需要什么样虚拟化">SMB到底需要什么样虚拟化</a></div>
+</li>
+
+</ul>
+</div>
+<p class="blank1"></p>
+<ul class="list03">
+
+<li><a href="http://book.51cto.com/art/201103/250056.htm" title="马云内部讲话">马云内部讲话</a></li>
+
+<li><a href="http://book.51cto.com/art/201103/250052.htm" title="语音与语言处理">语音与语言处理</a></li>
+
+<li><a href="http://database.51cto.com/art/201103/249795.htm" title="SQL Server 2008中的代码安全">SQL Server 2008中的代码安全</a></li>
+
+<li><a href="http://netsecurity.51cto.com/art/201103/249700.htm" title="WEB应用威胁多 防黑防盗听鱼说">WEB应用威胁多 防黑防盗听鱼说</a></li>
+
+<li><a href="http://book.51cto.com/art/201103/249531.htm" title="HTML 5和样式应用指南">HTML 5和样式应用指南</a></li>
+
+</ul>
+</div>
+<p class="blank10"></p>
+<div class="bor">
+<div class="titbg">
+<h3 class="t1">读书</h3>
+</div>
+  
+
+<div class="catbook"><a href="http://book.51cto.com/art/200707/51411.htm" title="网管员必读—网络应用"><img src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/131514394.gif" width="66" height="98" border="0"></a>
+<h5><a href="http://book.51cto.com/art/200707/51411.htm">网管员必读—网络应用</a></h5>
+<div class="c666 text">本书是一本介绍当前主流计算机网络应用技术的工具图书，全面总结了当前最主流、最基础的计算机网络应用，包括局域网和互联网应用</div>
+</div>
+
+
+<ul class="list03">
+
+<li><a href="http://book.51cto.com/art/200704/45839.htm" title="精通SOA：基于服务总线的Struts+EJB+Web Service整合应用开发">精通SOA：基于服务总线的Struts+EJB+Web Service</a></li>
+
+<li><a href="http://book.51cto.com/art/200704/45842.htm" title="敏捷Acegi、CAS：构建安全的Java系统">敏捷Acegi、CAS：构建安全的Java系统</a></li>
+
+<li><a href="http://book.51cto.com/art/200704/45845.htm" title="实时UML与Rational Rose RealTime建模案例剖析">实时UML与Rational Rose RealTime建模案例剖析</a></li>
+
+<li><a href="http://book.51cto.com/art/200704/45926.htm" title="2006软考上半年试题分析与解答">2006软考上半年试题分析与解答</a></li>
+
+</ul>
+</div>
+<p class="blank10"></p>
+<div class="bor">
+<div class="titbg">
+<h3 class="t1 fl">博文推荐</h3>
+<a class="tmore" href="http://blog.51cto.com/">更多&gt;&gt;</a></div>
+<div class="blogtj">
+<ul>
+<li> <a href="http://nowpaper.blog.51cto.com/"><img width="60" height="65" src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/3893223_1320825949.jpg"></a>
+<h5><a href="http://nowpaper.blog.51cto.com/">nowpaper</a></h5>
+Windows Phone专家</li>
+<li> <a href="http://xiaominghimi.blog.51cto.com/"><img width="60" height="65" src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/125657389.jpg"></a>
+<h5><a href="http://xiaominghimi.blog.51cto.com/">himi</a></h5>
+<p>Android开发专家</p>
+</li>
+</ul>
+</div>
+<ul class="list03">
+ <li><a href="http://sery.blog.51cto.com/10037/244794/" target="_blank" title="nagios监控mysql主从复制">nagios监控mysql主从复制</a></li><li><a href="http://brantc.blog.51cto.com/410705/244767/" target="_blank" title="一个示范gettext实现L10N的小例子">一个示范gettext实现L10N的小例子</a></li><li><a href="http://zhoufoxcn.blog.51cto.com/792419/244751/" target="_blank" title="MVP Open Day手记——场上场下同样精彩">MVP Open Day手记——场上场下同样精</a></li><li><a href="http://devbean.blog.51cto.com/448512/244689/" target="_blank" title="Qt学习之路(33): 国际化(上)">Qt学习之路(33): 国际化(上)</a></li>
+</ul>
+</div>
+<p class="blank10"></p>
+<div class="tj">
+<div class="tlt">
+<h3>最新热帖</h3>
+<a class="more" href="http://bbs.51cto.com/hotthreads.php">更多&gt;&gt;</a></div>
+<ul>
+<li><a href="http://bbs.51cto.com/thread-426679-1.html" target="_blank" title="BE IT规划资料">BE IT规划资料</a></li><li><a href="http://bbs.51cto.com/thread-423022-1.html" target="_blank" title="某企业的IT战略规划方案PPT">某企业的IT战略规划方案PPT</a></li><li><a href="http://bbs.51cto.com/thread-422145-1.html" target="_blank" title="联想集团内部管理系统（非常好的实用文档）">联想集团内部管理系统（非常好的实用</a></li><li><a href="http://bbs.51cto.com/thread-422135-1.html" target="_blank" title="中小企业信息化实施20问">中小企业信息化实施20问</a></li><li><a href="http://bbs.51cto.com/thread-417451-1.html" target="_blank" title="“ISO13335信息技术安全管理方针”中文版下载">“ISO13335信息技术安全管理方针”中</a></li>
+</ul>
+</div>
+<div class="picAD">
+<iframe class="bann" frameborder="0" src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/baidu.html" scrolling="No" style="width: 300px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; overflow-x: hidden; overflow-y: hidden; height: 515px; background-color: white; "></iframe>
+</div>
+</div>
+<p class="blank1"></p> 
+<!--leftbotcon end-->
+</div> 
+ <div class="subweb">
+<h4>51CTO旗下网站</h4>
+<div>
+<a target="_blank" href="http://www.51cto.com/">领先的IT技术网站 51CTO</a>
+<a target="_blank" href="http://www.watchstor.com/">领先的中文存储媒体 WatchStor</a>
+<a target="_blank" href="http://www.cioage.com/">中国首个CIO网站 CIOage</a>
+<a target="_blank" href="http://www.hc3i.cn/">中国首家数字医疗网站 HC3i</a>
+<a target="_blank" href="http://www.linkphone.cn/">移动互联网生活门户 灵客风LinkPhone</a>
+</div>
+</div>
+<div id="ft"><div id="foot" align="center"><script src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/copy_right.js"></script>Copyright&#169;2005-2012 <a href="http://www.51cto.com/">51CTO.COM</a> 版权所有 未经许可 请勿转载</div></div>
+<script src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/count.js"></script><script src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/count.php"></script>
+<!-- START GA.js -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-20883758-1']);
+  _gaq.push(['_setDomainName', 'none']);
+  _gaq.push(['_setAllowLinker', true]);
+  _gaq.push(['_addOrganic', 'baidu', 'word']);
+  _gaq.push(['_addOrganic', 'google', 'q']);
+  _gaq.push(['_addOrganic', 'soso', 'w']);
+  _gaq.push(['_addOrganic', '3721', 'name']);
+  _gaq.push(['_addOrganic', 'yodao', 'q']);
+  _gaq.push(['_addOrganic', 'vnet', 'kw']);
+  _gaq.push(['_addOrganic', 'sogou', 'query']);
+  _gaq.push(['_trackPageview']);
+  _gaq.push(['_trackPageLoadTime']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<!-- END GA.js -->
+
+<!-- baidu.js -->
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Ff77ea1ecd95cb2a1bc65cbcb3aaba7d4' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/h.js" type="text/javascript"></script>
+<!--end baidu.js -->
+<!-- 新监测代码 -->
+<!-- 新监测代码 -->
+<div id="MyMoveAd" style="height: 2px; display: none; ">
+<span id="wordlink_1"><script src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/wordlink1.js"></script><script language="JavaScript" type="text/javascript" src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/adjs.php"></script><a href="http://vd.51cto.com/adclick.php?bannerid=8642&zoneid=477&source=&dest=http%3A%2F%2Fwww.microsoft.com%2Fclick%2Fservices%2FRedirect2.ashx%3FCR_CC%3D200148499" target="_blank"><font color="blue">云创益大赛火热招募中！</font></a><div id="beacon_8642" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/adlog.php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div></span>
+<span id="wordlink_2"><script src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/wordlink2.js"></script><script language="JavaScript" type="text/javascript" src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/adjs(1).php"></script><a href="http://vd.51cto.com/adclick.php?bannerid=8617&zoneid=478&source=&dest=http%3A%2F%2Fwww.microsoft.com%2Fclick%2Fservices%2FRedirect2.ashx%3FCR_CC%3D200137032" target="_blank"><font color="blue">微软TechEd 2012 预订购票！</font></a><div id="beacon_8617" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/adlog(1).php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div></span>
+<span id="wordlink_3"><script src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/wordlink3.js"></script><script language="JavaScript" type="text/javascript" src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/adjs(2).php"></script><a href="http://vd.51cto.com/adclick.php?bannerid=5630&zoneid=479&source=&dest=http%3A%2F%2Foa.51cto.com%2Fart%2F201105%2F260161.htm" target="_blank"><font color="red">针式打印机保养方法汇总</font></a><div id="beacon_5630" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/adlog(2).php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div></span>
+<span id="wordlink_4"><script src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/wordlink4.js"></script><script language="JavaScript" type="text/javascript" src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/adjs(3).php"></script><a href="http://vd.51cto.com/adclick.php?bannerid=8920&zoneid=480&source=&dest=http%3A%2F%2Fwww.microsoft.com%2Fclick%2Fservices%2FRedirect2.ashx%3FCR_CC%3D200163139" target="_blank"><font color="blue">知人.成事 领创商业新纪元</font></a><div id="beacon_8920" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/adlog(3).php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div></span>
+<span id="pinglun"><script language="JavaScript" src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/getArtCount.php"></script>0</span>
+<span id="tonglan"></span>
+<span id="wordlink"><script language="JavaScript" src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/ad(3).js"></script></span>
+<script src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/ad(3).js"></script>
+</div>   
+<script language="javascript" src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/favorite.js"></script>
+<script language="javaScript" src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/fb_words_list.php"></script>
+<script language="javaScript" src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/dialog_utf8.js"></script>
+<script language="javaScript" src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/mail.js"></script>  
+<script type="text/javascript" src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/favorbox.js"></script>
+<script language="javascript" src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/clipboard.js"></script>
+<script language="javaScript"> 
+	var thistid=271989; 
+	
+	//收藏按钮
+	var favor_url = 'http://mobile.51cto.com/symbian-271989.htm';  // 如：http://bbs.51cto.com/thread-789649-1.html
+	var favor_title = '详解 Qt 源码分析 QObject(2)';       //  
+	
+	//绑定复制按钮
+	copy('msnqqcopy', 'http://mobile.51cto.com/symbian-271989.htm', '分享到MSN/QQ的链接复制成功!');
+//	copy('bbscopy', '[url=http://mobile.51cto.com/symbian-271989.htm][u]详解 Qt 源码分析 QObject(2)[/u][/url]', '分享到论坛的UBB代码复制成功!');
+
+</script><div style="position: absolute; left: 1029px; top: 3087px; width: 34px; height: 13px; z-index: 99; "><embed id="ZeroClipboardMovie_1" src="http://images.51cto.com/images/art/newart1012/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="34" height="13" name="ZeroClipboardMovie_1" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=1&amp;width=34&amp;height=13" wmode="transparent"></div> 
+<script src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/index.php" charset="utf-8"></script>
+<script src="./详解 Qt 源码分析 QObject(2) - 51CTO.COM_files/count(1).php" language="javascript"></script>
+
+
+
+</body></html>
