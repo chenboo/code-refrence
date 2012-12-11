@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string name="app_name">SketchPadDemo</string>
+    
+	<string name="sketchpadtool_pen">Pen</string>
+	<string name="sketchpadtool_eraser">Eraser</string>
+	<string name="sketchpadtool_strokesize">Stroke Size</string>
+	<string name="sketchpadtool_eraser_size">Eraser Size</string>
+	<string name="sketchpadtool_undo">Undo</string>
+
+	<string name="sketchpadtool_redo">Redo</string>
+	<string name="sketchpadtool_choose">Choose Picture</string>
+	<string name="sketchpadtool_save">Save</string>
+	<string name="sketchpadtool_load">Load</string>
+	<string name="sketchpadtool_bkcolor">Bk Color</string>
+	<string name="sketchpadtool_pencolor">Pen Color</string>
+<string name="sketchpadtool_clear">Clear</string>
+<string name="selectpicture_tip">Please wait while finding media...</string>
+<string name="selectpicture_done">Done</string><string name="selectpicture_cancel">Cancel</string><string name="selectpicture_nosdcard">There is no SDCard</string><string name="selectcolor_done">Done</string>
+<string name="selectcolor_cancel">Cancel</string>
+
+
+
+<string name="selectpicture_nopictures">There is no pictures in SDCard</string>
+
+</resources>

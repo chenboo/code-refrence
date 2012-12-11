@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#FFE1E1E1" >
+  
+        <LinearLayout
+            android:id="@+id/progress_view"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="160px"
+            android:gravity="center">
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+                <!-- style="?android:attr/progressBarStyleLarge" -->
+             <TextView
+                android:id="@+id/waittip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_gravity="center"
+                android:textColor="#FF000000"
+                android:text="@string/selectpicture_tip"
+             />
+        </LinearLayout>
+        <TextView
+           android:id="@+id/no_picture"
+           android:layout_width="fill_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="170px"
+           android:gravity="center"
+           android:textColor="#FF000000"
+           android:visibility="gone"
+           android:text="@string/selectpicture_nopictures"
+        />        
+        <GridView
+            android:id="@+id/gridView"
+            android:layout_width="fill_parent"
+            android:layout_height="350px"
+            android:layout_marginTop="10px"
+            android:layout_marginLeft="10px"
+            android:layout_marginRight="10px"
+            android:horizontalSpacing="40dp"
+            android:verticalSpacing="20dp"
+            android:columnWidth="155dp"
+            android:numColumns="auto_fit"
+            android:stretchMode="columnWidth"
+            android:gravity="center"
+            android:visibility="gone"
+            android:background="#FFFFFFFF"/>
+
+       <Button
+            android:id="@+id/ok_btn"
+            android:layout_height="45px"
+            android:layout_width="120px"
+            android:layout_marginLeft="500px"
+            android:layout_marginTop="375px"
+            android:text="@string/selectpicture_done" />
+       <Button 
+            android:id="@+id/back_btn"
+            android:layout_height="45px"
+            android:layout_width="120px"
+            android:layout_marginLeft="650px" 
+            android:layout_marginTop="375px"
+            android:text="@string/selectpicture_cancel"/>
+</RelativeLayout>
