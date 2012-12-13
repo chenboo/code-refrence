@@ -1,0 +1,571 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0042)http://mobile.51cto.com/symbian-269343.htm -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=GBK">
+
+<meta http-equiv="x-ua-compatible" content="ie=7">
+<title>新手必学 QML入门教程 (1) - 51CTO.COM</title>
+<meta name="description" content="QML是Qt推出的Qt Quick技术的一部分，是一种新增的简便易学的语言。  QML是一种陈述性语言，用来描述一个程序的用户界面：无论是什么样子，以及它如何表现。">
+<meta name="keywords" content="Qt , QML , 教程">
+<!--<base target="_blank">--><base href="." target="_blank">
+<link href="./新手必学 QML入门教程 (1) - 51CTO.COM_files/grid.css" rel="stylesheet" type="text/css">
+<link type="text/css" rel="stylesheet" href="./新手必学 QML入门教程 (1) - 51CTO.COM_files/art_master_top.css">
+<script type="text/javascript" async="" src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/ga.js"></script><script language="javaScript" src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/base_art.js"></script>
+<script src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/index_1_down.js"></script>
+<link type="text/css" rel="stylesheet" href="chrome-extension://cpngackimfmofbokmjmljamhdncknpmg/style.css"><script type="text/javascript" charset="utf-8" src="chrome-extension://cpngackimfmofbokmjmljamhdncknpmg/page_context.js"></script><style type="text/css">#yddContainer{display:block;font-family:Microsoft YaHei;position:relative;width:100%;height:100%;top:-4px;left:-4px;font-size:12px;border:1px solid}#yddTop{display:block;height:22px}#yddTopBorderlr{display:block;position:static;height:17px;padding:2px 28px;line-height:17px;font-size:12px;color:#5079bb;font-weight:bold;border-style:none solid;border-width:1px}#yddTopBorderlr .ydd-sp{position:absolute;top:2px;height:0;overflow:hidden}.ydd-icon{left:5px;width:17px;padding:0px 0px 0px 0px;padding-top:17px;background-position:-16px -44px}.ydd-close{right:5px;width:16px;padding-top:16px;background-position:left -44px}#yddKeyTitle{float:left;text-decoration:none}#yddMiddle{display:block;margin-bottom:10px}.ydd-tabs{display:block;margin:5px 0;padding:0 5px;height:18px;border-bottom:1px solid}.ydd-tab{display:block;float:left;height:18px;margin:0 5px -1px 0;padding:0 4px;line-height:18px;border:1px solid;border-bottom:none}.ydd-trans-container{display:block;line-height:160%}.ydd-trans-container a{text-decoration:none;}#yddBottom{position:absolute;bottom:0;left:0;width:100%;height:22px;line-height:22px;overflow:hidden;background-position:left -22px}.ydd-padding010{padding:0 10px}#yddWrapper{color:#252525;z-index:10001;background:url(chrome-extension://eopjamdnofihpioajgfdikhhbobonhbb/ab20.png);}#yddContainer{background:#fff;border-color:#4b7598}#yddTopBorderlr{border-color:#f0f8fc}#yddWrapper .ydd-sp{background-image:url(chrome-extension://eopjamdnofihpioajgfdikhhbobonhbb/ydd-sprite.png)}#yddWrapper a,#yddWrapper a:hover,#yddWrapper a:visited{color:#50799b}#yddWrapper .ydd-tabs{color:#959595}.ydd-tabs,.ydd-tab{background:#fff;border-color:#d5e7f3}#yddBottom{color:#363636}#yddWrapper{min-width:250px;max-width:400px;}</style></head>
+<body screen_capture_injected="true" style="position: static; ">
+<!-- 导航 开始-->
+<div id="home_top">    <div class="top_nav">        <div class="left" style="width:400px"><div class="logo_51cto" title="51CTO.COM - 技术成就梦想 -  中国领先的IT技术网站"></div><a href="http://www.51cto.com/">首页</a><img width="16" height="25" align="absmiddle" src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/top_bg_xian.gif" style="padding-top: 2px;"><a onmouseover="show(1,this);" onmouseout="popupClose();" href="http://www.51cto.com/col/35/" target="_blank">技术频道<img align="absmiddle" src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/nav_ico1.gif" style="padding-left: 4px;"></a><img width="16" height="25" align="absmiddle" src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/top_bg_xian.gif"><a onmouseover="show(2,this);" onmouseout="popupClose();" href="http://www.51cto.com/" target="_blank">51CTO旗下网站<img align="absmiddle" src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/nav_ico1.gif" style="padding-left: 4px;"></a><img width="16" height="25" align="absmiddle" src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/top_bg_xian.gif"><a href="http://www.51cto.com/about/map.htm" target="_blank">地图</a> <a href="http://www.51cto.com/about/rss.html" target="_blank"><img src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/143749870.gif" style="vertical-align:middle; margin-bottom: 5px; margin-left:5px;"></a>       </div>        <div class="right">            <div class="more"><img width="27" height="16" align="absmiddle" src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/top_shequ.gif">社区：<a href="http://bbs.51cto.com/" target="_blank">论坛</a><a href="http://blog.51cto.com/" target="_blank">博客</a><a href="http://down.51cto.com/" target="_blank">下载</a><a href="http://book.51cto.com/" target="_blank">读书</a><a onmouseover="show(3,this)" onmouseout="popupClose()" href="javascript:viod(0);">更多<img align="absmiddle" src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/nav_ico1.gif" style="padding-left: 4px;"></a>            </div>            <span id="login_status"><div class="login" style="padding-top:8px; text-align:right;"><a href="http://home.51cto.com/index.php?s=/Home/index" style="background:none"><img style="margin-top:-3px" id="dia" align="absmiddle" width="20" title="今天领无忧币了吗？" src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/dia.gif"></a><a href="http://home.51cto.com/?reback=http%253A%252F%252Fmobile.51cto.com%252Fsymbian-269343.htm" target="_self">登录</a><a href="http://ucenter.51cto.com/reg_01.php?reback=http%253A%252F%252Fmobile.51cto.com%252Fsymbian-269343.htm" target="_self">注册</a></div></span>                </div>    </div></div>
+<div class="subMenu1" id="s1" onmouseover="popupNoClose();" onmouseout="popupClose();">
+<ul>
+<li><a href="http://network.51cto.com/" target="_blank">网络</a></li>
+<li><a href="http://netsecurity.51cto.com/" target="_blank">安全</a></li>
+<li><a href="http://developer.51cto.com/" target="_blank">开发</a></li>
+<li><a href="http://database.51cto.com/" target="_blank">数据库</a></li>
+<li><a href="http://server.51cto.com/" target="_blank">服务器</a></li>
+<li><a href="http://os.51cto.com/" target="_blank">系统</a></li>
+<li><a href="http://virtual.51cto.com/" target="_blank">虚拟化</a></li>
+<li><a href="http://cloud.51cto.com/" target="_blank">云计算</a></li>
+<li><a href="http://developer.51cto.com/embed/" target="_blank">嵌入式</a></li>
+<li><a href="http://mobile.51cto.com/" target="_blank">移动开发</a></li>
+</ul>
+</div> 
+<div class="subMenu2" id="s2" onmouseover="popupNoClose()" onmouseout="popupClose()">
+<ul>
+<li><a href="http://www.51cto.com/" target="_blank" title="中国领先的IT技术网站">51CTO.COM</a></li>
+<li><a href="http://www.cioage.com/" target="_blank" title="中国首个专门服务于CIO的专业网站">CIOage.com</a></li>
+<li><a href="http://www.watchstor.com/" target="_blank" title="领先的中文存储网络媒体">WatchStor.com</a></li>
+<li><a href="http://www.hc3i.cn/" target="_blank" title="中国首家专注于数字医疗及医疗信息化的专业网站">HC3i.cn</a></li>
+<li><a href="http://www.linkphone.cn/" target="_blank" title="移动互联网生活门户">灵客风LinkPhone</a></li>
+</ul>
+</div>
+<script src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/jquery-1.4.4.js"></script>
+<script>
+$(function(){
+	$(".bann").height(515);	 
+	$(".bann").css("background-color","white");
+});
+
+</script>
+
+<script src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/head_art_more1.js"></script><div class="subMenu3" id="s3" onmouseover="popupNoClose()" onmouseout="popupClose()" style="z-index:9999;position: absolute;">
+<ul>
+<li><a href="http://home.51cto.com/" target="_blank">家园</a></li>
+<li><a href="http://t.51cto.com/" target="_blank">微博</a></li>
+<li><a href="http://blog.51cto.com/" target="_blank">博客</a></li>
+<li><a href="http://bbs.51cto.com/" target="_blank">论坛</a></li>
+<li><a href="http://down.51cto.com/" target="_blank">下载</a></li>
+<li><a href="http://selftest.51cto.com/" target="_blank">自测</a></li>
+<li><a href="http://doctor.51cto.com/" target="_blank">门诊</a></li>
+<li><a href="http://blog.51cto.com/newsletter/" target="_blank">周刊</a></li>
+<li><a href="http://book.51cto.com/" target="_blank">读书</a></li>
+<li><a href="http://g.51cto.com/" target="_blank">技术圈</a></li>
+<li><a href="http://zhidao.51cto.com/" target="_blank">知道</a></li>
+</ul>
+</div>
+
+<!-- 登陆信息 -->
+<!-- 导航 结束--> 
+ <div class="g_39 mb10">
+	<div id="tonglanad" class="fl"><script language="JavaScript" src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/ad.js"></script><script type="text/javascript" src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/ad.php"></script><iframe width="760" height="90" noresize="" scrolling="No" frameborder="0" marginheight="0" marginwidth="0" src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/14(1).html" align="left"></iframe></div>
+	<div id="list4" class="fr">
+		<ul>
+			<li id="wordlinkad1"><script src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/wordlink1.js"></script><script language="JavaScript" type="text/javascript" src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/adjs.php"></script><a href="http://vd.51cto.com/adclick.php?bannerid=8642&zoneid=477&source=&dest=http%3A%2F%2Fwww.microsoft.com%2Fclick%2Fservices%2FRedirect2.ashx%3FCR_CC%3D200148499" target="_blank"><font color="blue">云创益大赛火热招募中！</font></a><div id="beacon_8642" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/adlog.php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div></li>
+			<li id="wordlinkad2"><script src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/wordlink2.js"></script><script language="JavaScript" type="text/javascript" src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/adjs(1).php"></script><a href="http://vd.51cto.com/adclick.php?bannerid=8802&zoneid=478&source=&dest=http%3A%2F%2Fvirtual.51cto.com%2Fexp%2Fvmware20121101%2Findex.html" target="_blank"><font color="blue">VMware：踏上“你的云”之旅</font></a><div id="beacon_8802" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/adlog(1).php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div></li>
+			<li id="wordlinkad3"><script src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/wordlink3.js"></script><script language="JavaScript" type="text/javascript" src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/adjs(2).php"></script><a href="http://vd.51cto.com/adclick.php?bannerid=8985&zoneid=479&source=&dest=http%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fcn%2Fweb%2Flp%2Fhtml5%2F%3Fcmp%3Ddwnpr%26cpb%3Ddw%26ct%3Ddwcon%26cr%3Dcn_51CTO_cs%26ccy%3Dcn" target="_blank"><font color="blue">HTML5 学习资源中心</font></a><div id="beacon_8985" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/adlog(2).php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div></li>
+			<li id="wordlinkad4"><script src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/wordlink4.js"></script><script language="JavaScript" type="text/javascript" src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/adjs(3).php"></script><a href="http://vd.51cto.com/adclick.php?bannerid=8920&zoneid=480&source=&dest=http%3A%2F%2Fwww.microsoft.com%2Fclick%2Fservices%2FRedirect2.ashx%3FCR_CC%3D200163139" target="_blank"><font color="blue">知人.成事 领创商业新纪元</font></a><div id="beacon_8920" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/adlog(3).php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div></li>
+		</ul>
+	</div>
+<br class="dle">
+</div>
+
+<div class="g_39 menu">
+<div class="subNav_logo"><a href="http://mobile.51cto.com/" title="移动开发"><img src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/143329156.gif"></a></div>
+<div class="subNav_l"><a href="http://mobile.51cto.com/">首页</a> | <a href="http://mobile.51cto.com/android/">Android</a> | <a href="http://mobile.51cto.com/iphone/">iOS</a> | <a href="http://mobile.51cto.com/windows-phone/">Windows Phone</a> | <a href="http://mobile.51cto.com/blackberry/">BlackBerry</a> | <a href="http://mobile.51cto.com/webos/">webOS</a> | <a href="http://mobile.51cto.com/symbian/">Symbian</a> | <a href="http://mobile.51cto.com/bada/">bada</a> | <a href="http://mobile.51cto.com/ophone/">OPhone</a> | <a href="http://mobile.51cto.com/others/" target="_blank">其他</a></div>  
+<div class="search fr">
+<dl>
+<form name="searchform" action="http://www.51cto.com/php/search.php" target="_blank" method="post" style="margin:0px; padding:0px;">
+<dt class="fl"><input name="keyword" type="text" class="searchInput f14 input" value="请输入关键字" onfocus="doempty(this, &#39;请输入关键字&#39;);" onblur="doempty(this, &#39;请输入关键字&#39;);"></dt>
+<dd class="fl"><input type="image" src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/search.gif"></dd></form>
+</dl>
+</div>
+<br class="dle">
+</div>
+<div class="g_39 b3-s-4273B3 rel">
+<!--width : 26*25 - 15 = 635px-->
+<div class="g_26 fl m_l">
+<div class="brief bgF8F8F8">
+<p class="crumb ">您所在的位置：<a href="http://mobile.51cto.com/">移动开发</a> &gt; <a href="http://mobile.51cto.com/col/1541/">Symbian</a> &gt;  <b>新手必学 QML入门教程 (1)</b> </p>
+<h1>新手必学 QML入门教程 (1)</h1>
+<div class="msg">
+<div>2011-06-16 09:28  佚名  Qt技术博客 <span class="f12-a"><a href="http://mobile.51cto.com/symbian-269343.htm#commment" target="_self">我要评论(<span id="pinglun_1"><script language="JavaScript" src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/getArtCount.php"></script>0</span>)</a></span> 字号：<span class="f14-b"><a href="javascript:setfont(12);" target="_self">T</a></span> | <span class="f16-b"><a href="javascript:setfont(16);" target="_self">T</a></span></div>
+<div class="fav"><a href="javascript:favorBox('open');" title="一键收藏，随时查看，分享好友！" target="_self"><img src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/Fav.gif" alt="一键收藏，随时查看，分享好友！" border="0"></a></div>
+</div>
+<div class="brieftext">
+<p class="f14 green">QML是Qt推出的Qt Quick技术的一部分，是一种新增的简便易学的语言。  QML是一种陈述性语言，用来描述一个程序的用户界面：无论是什么样子，以及它如何表现。</p>
+<p class="ad">AD：
+<script src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/keywords_ad_new.js"></script>
+</p>
+</div>
+</div>
+<div class="tag bgF8F8F8" id="indexlist" style="display:none;">
+<ul id="indexliststr">
+</ul>
+<br class="dle">
+</div>
+<div class="content bgF8F8F8 f14">
+<div id="content">
+<p></p><p>本文介绍<strong>QML</strong>入门教程的文章，教你如何学习<strong>QML</strong>。在<strong>QML</strong>，一个用户界面被指定为具有属性的对象树。 这使得Qt更加便于很少或没有编程经验的人使用。</p>
+<p><strong>Qt </strong>Declarative UI 传得沸沸扬扬，却很少有中文资料介绍这是一个什么样的技术，以及如何使用它。偶尔能搜到几篇也是掐头去尾的，让人摸不着头脑。CuteQt网友英狐奉献的三篇文章很有参考价值，把我带入了门。我准备翻译的这个入门<strong>教程</strong>来自于<strong>Qt</strong>官方文档，更多的是语法性的介绍。说是翻译，其实是我在原文基础上的一个阅读理解吧。</p>
+<p><strong>QML是什么？ </strong></p>
+<p><strong>QML</strong>是一种描诉性的脚本语言，文件格式以.qml结尾。语法格式非常像CSS(参考后文具体例子)，但又支持javacript形式的编程控制。我个人认为它结合了QtDesigner UI和QtScript的有点。QtDesigner可以设计出.ui界面文件,但是不支持和<strong>Qt</strong>原生C++代码的交互。QtScript可以和<strong>Qt</strong>原生代码进行交互，但是有一个缺点，如果要在脚本中创建一个继承于QObject的图形对象非常不方便，只能在Qt代码中创建图形对象，然后从QtScript中进行访问。而<strong>QML</strong>可以在脚本里创建图形对象，并且支持各种图形特效，以及状态机等，同时又能跟<strong>Qt</strong>写的C++代码进行方便的交互，使用起来非常方便。</p>
+<p><strong>如何使用？</strong></p>
+<p>在Qt C＋＋文件中通过QDeclarativeView加载，就像使用UiLoader加载.ui文件一样。不过本文不会去介绍如何在Qt C＋＋中使用QML，而是把重点放在QML的语法上，不过别担心看不到.qml文件的效果。Qt提供了一个工具QML Viewer可以查看.qml文件生成的效果，该程序在Qt的bin目录下，应用名字叫qml(Windows下叫qml.exe)。所以你在看到别人提供的.qml文件时，你可以用下面命令qml filename.qml 查看.qml的执行结果，咱们的第一个Hello,World生成界面如下：</p>
+<p><a target="_blank" href="./新手必学 QML入门教程 (1) - 51CTO.COM_files/0938490.png"><img class="fit-image" onload="javascript:if(this.width&gt;498)this.width=498;" onmousewheel="javascript:return big(this)" height="200" alt="新手必学 QML入门教程 (1)" width="498" border="0" src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/0938490.png"></a></p>
+<p><strong>开始QML吧</strong></p>
+<p>上面的Hello,World源代码如下</p>
+<pre><ol class="dp-xml"><li class="alt"><span><span>import&nbsp;Qt&nbsp;4.7 &nbsp;</span></span></li><li><span>&nbsp;Rectangle&nbsp;{ &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id:&nbsp;page &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;width:&nbsp;500;&nbsp;height:&nbsp;200 &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;color:&nbsp;“lightgray” &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Text&nbsp;{ &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id:&nbsp;helloText &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text:&nbsp;“Hello&nbsp;world!” &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font.pointSize:&nbsp;24;&nbsp;font.bold:&nbsp;true &nbsp;</span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;y:&nbsp;30;&nbsp;anchors.horizontalCenter:&nbsp;page.horizontalCenter &nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} &nbsp;</span></li><li><span>&nbsp;}&nbsp;</span></li></ol></pre>
+<p>第1行是<strong>Qt QML</strong>的统一用法，指明当前QML会使用Qt-4.7里已经定义好的类型，比如第3行的Rectangle和第8行的Text。</p>
+<p>第3行开始至文章结束处则定义了一个矩形的图形区域对象，第4行则申明了该矩形区域对象的id为”page”可以被其它对象识别并通过该id访问其成员属性，另外几个属性width/height/color则很好理解，语法跟CSS类似，可以写在一行中用分号”;”隔开。</p>
+<p>第8行至第12行则是一个文本对象，看它代码的嵌套结构可以知道它是内嵌于Rectangle的。Text的属性除了anchors其它几个都能顾名思义。anchors描诉的是当前对象的位置和其它对象的相对关系，这里看到其水平中心位置在“page“的水平中心位置。如果相对anchors了解更多，请参考锚的解释。</p>
+<p>以上就是Hello,World的全部代码，将其存为hellowordl.qml，那么只要执行 qml hellowrold.qml就能看到文章前头的界面了。</p>
+<p><strong>更多对象？</strong></p>
+<p>在上面的代码中我们用到了Rectangle和Text，那么我还有哪些对象以及这些对象有哪些属性呢。那么请访问<strong>QML</strong>-Item类,Item类是<strong>QML</strong>最基础的类，通过查看它的继承类以及这些继承类可用的属性，你可以添加更多你感兴趣的内容。</p>
+<p>【编辑推荐】</p>
+<div>
+<ol>
+    <li><a target="_blank" href="http://mobile.51cto.com/symbian-267657.htm">Qt教程 Hello, World (1)</a></li>
+    <li><a target="_blank" href="http://mobile.51cto.com/symbian-267662.htm">Qt教程 调用退出 (2)</a></li>
+    <li><a target="_blank" href="http://mobile.51cto.com/symbian-267668.htm">Qt教程 家庭价值 (3)</a></li>
+    <li><a target="_blank" href="http://mobile.51cto.com/symbian-267675.htm">Qt教程 使用窗口部件 (4)</a></li>
+    <li><a target="_blank" href="http://mobile.51cto.com/symbian-268147.htm">剖析Qt Quick之QML程序</a></li>
+    <li><a target="_blank" href="http://mobile.51cto.com/symbian-268154.htm">浅析Qt Quick Designer</a></li>
+</ol>
+</div>
+<div align="right">【责任编辑：<a class="ln" href="mailto:licz@51cto.com">李程站</a> TEL：（010）68476606】</div><br> 
+<p class="blank10"></p> 
+ 
+ 
+<div class="biaoqing fixfloat">
+<ul>
+<li><a href="javascript:getcountscom(269343,1)" target="_self"><img src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/bq1.jpg"></a>
+<div><a href="javascript:getcountscom(269343,1)" target="_self">给力</a></div>
+<span id="269343_1">(25票)</span></li>
+<li><a href="javascript:getcountscom(269343,2)" target="_self"><img src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/bq2.jpg"></a>
+<div><a href="javascript:getcountscom(269343,2)" target="_self">动心</a></div>
+<span id="269343_2">(23票)</span></li>
+<li><a href="javascript:getcountscom(269343,3)" target="_self"><img src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/bq3.jpg"></a>
+<div><a href="javascript:getcountscom(269343,3)" target="_self">废话</a></div>
+<span id="269343_3">(22票)</span></li>
+<li><a href="javascript:getcountscom(269343,4)" target="_self"><img src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/bq4.jpg"></a>
+<div><a href="javascript:getcountscom(269343,4)" target="_self">专业</a></div>
+<span id="269343_4">(22票)</span></li>
+<li><a href="javascript:getcountscom(269343,5)" target="_self"><img src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/bq5.jpg"></a>
+<div><a href="javascript:getcountscom(269343,5)" target="_self">标题党</a></div>
+<span id="269343_5">(22票)</span></li>
+<li><a href="javascript:getcountscom(269343,6)" target="_self"><img src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/bq6.jpg"></a>
+<div><a href="javascript:getcountscom(269343,6)" target="_self">路过</a></div>
+<span id="269343_6">(22票)</span></li>
+</ul>
+</div>
+<script language="javascript"> 
+getcountscom(269343,11);
+getcountscom(269343,12);
+getcountscom(269343,13);
+getcountscom(269343,14);
+getcountscom(269343,15);
+getcountscom(269343,16); 
+</script>
+<p class="blank10"></p>
+<div class="f12"> <span class="fl">原文：<a href="./新手必学 QML入门教程 (1) - 51CTO.COM_files/新手必学 QML入门教程 (1) - 51CTO.COM.html" class="blue"><b>新手必学 QML入门教程 (1)</b></a></span> <span class="fr"><a href="http://mobile.51cto.com/">返回移动开发首页</a></span> </div>
+<p class="blank1"></p>
+</div>
+<div class="tips">
+<div class="fl"> 分享到： <span class="blue"> <img src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/weiboicon16.png">  
+<a style="background-position:0 -40px;cursor:pointer;" title="QQ微博" onclick="window.open( &#39;http://v.t.qq.com/share/share.php?url=&#39;+encodeURIComponent(document.location)+&#39;&amp;appkey=&amp;site=&amp;title=&#39;+encodeURI(document.title),&#39;&#39;, &#39;width=700, height=680, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, location=yes, resizable=no, status=no&#39; );" target="_self">QQ微博</a><img src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/qz_logo.png"><a href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://mobile.51cto.com/symbian-269343.htm" title="分享到QQ空间">QQ空间</a><img src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/kx.jpg"><a target="_blank" href="http://www.kaixin001.com/repaste/share.php?rurl=http://mobile.51cto.com/symbian-269343.htm&rtitle=%D0%C2%CA%D6%B1%D8%D1%A7%20QML%C8%EB%C3%C5%BD%CC%B3%CC%20(1)">开心</a><img src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/rr.jpg"><a href="http://share.renren.com/share/buttonshare.do?link=http://mobile.51cto.com/symbian-269343.htm&title=%D0%C2%CA%D6%B1%D8%D1%A7%20QML%C8%EB%C3%C5%BD%CC%B3%CC%20(1)" title="分享到人人网">人人网</a><img src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/145820640.gif" width="17" height="16">
+<a style="background-position:0 -120px;cursor:pointer;" title="豆瓣" onclick="window.open( &#39;http://www.douban.com/recommend/?url=&#39;+encodeURIComponent(document.location)+&#39;&amp;appkey=&amp;site=&amp;title=&#39;+encodeURI(document.title),&#39;&#39;, &#39;width=700, height=680, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, location=yes, resizable=no, status=no&#39; );" target="_self">豆瓣</a>
+<img src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/sina.gif"><a href="http://v.t.sina.com.cn/share/share.php?appkey=2378297317&url=http://mobile.51cto.com/symbian-269343.htm&title=%D0%C2%CA%D6%B1%D8%D1%A7%20QML%C8%EB%C3%C5%BD%CC%B3%CC%20(1)" title="分享到新浪微博">新浪微博</a></span></div><div class="fr blue"><a href="javascript:AddFavorite(document.location.href,document.title);" target="_self">收藏</a>|<a href="javascript:window.print();" target="_self">打印</a>|<a id="msnqqcopy" title="分享本资源给好友" target="_self">复制</a></div>
+</div>
+</div>
+<!--内容 end-->
+<div class="bor">
+<div class="titbg pl15">关于<a href="http://www.51cto.com/php/search.php?keyword=Qt%20" target="_blank" class="underline">Qt </a>&nbsp;&nbsp;<a href="http://www.51cto.com/php/search.php?keyword=%20QML%20" target="_blank" class="underline"> QML </a>&nbsp;&nbsp;<a href="http://www.51cto.com/php/search.php?keyword=%20%BD%CC%B3%CC" target="_blank" class="underline"> 教程</a>的更多文章</div>
+<div class="reltag">
+<ul class="fl list02">
+  <li><a href="http://mobile.51cto.com/symbian-268154.htm" title="浅析Qt Quick Designer">浅析Qt Quick Designer</a></li><li><a href="http://mobile.51cto.com/symbian-268147.htm" title="剖析Qt Quick之QML程序">剖析Qt Quick之QML程序</a></li><li><a href="http://mobile.51cto.com/symbian-267675.htm" title="Qt教程 使用窗口部件 (4)">Qt教程 使用窗口部件 (4)</a></li><li><a href="http://mobile.51cto.com/symbian-267668.htm" title="Qt教程 家庭价值 (3)">Qt教程 家庭价值 (3)</a></li><li><a href="http://mobile.51cto.com/symbian-267662.htm" title="Qt教程 调用退出 (2)">Qt教程 调用退出 (2)</a></li>
+</ul>
+<div class="fr">
+<div class="h5 f12"><a href="http://mobile.51cto.com/mobile/interview/miiceic/" title="视频专题 专访安博中程"><b>视频专题 专访安博中程</b></a></div>
+<a href="http://mobile.51cto.com/mobile/interview/miiceic/" title="视频专题 专访安博中程"><img src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/124852556.jpg" alt="视频专题 专访安博中程" width="100" height="80" border="0"></a>
+<p class="c666">本专题为51CTO专访安博中程院校合作部总监李涛及移动开发资深培<a class="blue" href="http://mobile.51cto.com/mobile/interview/miiceic/" title="视频专题 专访安博中程">[详细]</a></p>
+</div>
+</div>
+<!--reltag end-->
+</div>
+<p class="blank10"></p>
+<div class="bor">
+<div class="f14 comm">
+<h3 class="fl">网友评论<em>TOP5</em></h3>
+<span class="fr"> <a href="http://www.51cto.com/php/feedbackt.php?id=269343">查看所有评论（<span id="pinglun_2"><script language="JavaScript" src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/getArtCount.php"></script>0</span>）</a></span> </div>
+<p class="blank1"></p>
+<div class="blank1"></div>
+<ul class="commlist">
+<script src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/artcomment1105.php"></script>
+</ul>
+<div class="txt bgF8F8F8">
+<a name="commment"></a>
+<dl>
+<dt class="fl tlt">提交评论</dt>
+<dd><script src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/authart.php"></script><form action="http://www.51cto.com/login.php?referer=http://mobile.51cto.com/symbian-269343.htm" method="post" style="padding:0px;margin:0px" target="_self">通行证：<input name="username" size="10" type="text">&nbsp;密码：<input name="password" type="password" size="10"><input name="username2" class="test1" type="hidden" value="">&nbsp;<input type="submit" name="Submit" value="登录">&nbsp;&nbsp;<a href="http://ucenter.51cto.com/reg_01.php">注册通行证</a></form><form action="http://www.51cto.com/php/sendfeedback.php" method="post" name="feedback" id="feedback" onsubmit="return commentSubmit(this)" style="padding:0px;margin:0px" target="_self"><input type="hidden" name="referer" value="http://mobile.51cto.com/symbian-269343.htm"><input name="username" type="hidden" value=""><input name="uid" class="test1" type="hidden" value="">
+<br>
+</form></dd>
+
+</dl>
+	 <script type="text/javascript" language="javascript" src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/nomal_k.php"></script><textarea class="txtinput" name="msg" id="msg" style="height: 88px;"></textarea><br><table width="99%" border="0" cellspacing="0" cellpadding="0"><tbody><tr><td height="6" colspan="6"><input type="hidden" name="artID" value="269343"><input type="hidden" name="referer" value="http://mobile.51cto.com/symbian-269343.htm"><input type="hidden" name="quick" value="0"><input type="hidden" name="author2" value="51CTO网友"></td></tr><tr><td width="9%">验证码：</td><td width="11%"><input name="authnum" onclick="displaysecunum();" type="text" class="test3"></td><td width="51%"><img id="secunum" style="vertical-align:middle;" onclick="refimg()"><span style="display:none;" id="spanfont">点击图片可刷新验证码</span><span style="display:inline;" id="clickfont">请点击后输入验证码</span></td><td width="4%"><input name="nouser" type="checkbox" value="1" onclick="author2username2()"></td><td width="12%">匿名发表</td><td width="13%"><input type="image" name="Submit32" src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/tijiao.gif"></td></tr><tr><td height="6" colspan="6"></td></tr></tbody></table>
+	
+</div>
+</div>
+<!--box end-->
+<p class="blank10"></p>
+<div class="relart fl bor">
+<div class="titbg">
+<h3 class="fl t1">栏目热门</h3>
+<a href="http://mobile.51cto.com/col/1541/click1.htm" class="tmore">更多&gt;&gt;</a></div>
+<ul>
+  
+	  <li><a href="http://mobile.51cto.com/symbian-260971.htm" title="诺基亚Symbian Anna全新登场">诺基亚Symbian Anna全新登场</a></li>
+	  
+	  <li><a href="http://mobile.51cto.com/hot-259138.htm" title="用Qt为Symbian开发应用程序">用Qt为Symbian开发应用程序</a></li>
+	  
+	  <li><a href="http://mobile.51cto.com/hot-259982.htm" title="诺基亚发布Symbian^3 SDK 1.0">诺基亚发布Symbian^3 SDK 1.0</a></li>
+	  
+	  <li><a href="http://mobile.51cto.com/symbian-268191.htm" title="基于QT前端的Mplayer播放器项目之PC环境下的实现过程">基于QT前端的Mplayer播放器项目之PC环境下</a></li>
+	  
+	  <li><a href="http://mobile.51cto.com/symbian-267829.htm" title="深度解析嵌入式QT开发环境搭建">深度解析嵌入式QT开发环境搭建</a></li>
+	  
+</ul>
+</div>
+<div class="cathot fr bor">
+<div class="titbg">
+<h3 class="fl t1">同期最新</h3>
+<a href="http://mobile.51cto.com/col/1541" class="tmore">更多&gt;&gt;</a></div>
+<ul>
+	
+	  <li><a href="http://mobile.51cto.com/symbian-269318.htm" title="Qt SDK的远程编译功能">Qt SDK的远程编译功能</a></li>
+	  
+	  <li><a href="http://mobile.51cto.com/symbian-269308.htm" title="分析Qt Symbian手机应用移植注意事项">分析Qt Symbian手机应用移植注意事项</a></li>
+	  
+	  <li><a href="http://mobile.51cto.com/symbian-269148.htm" title="在Linux上开发Qt">在Linux上开发Qt</a></li>
+	  
+	  <li><a href="http://mobile.51cto.com/symbian-269146.htm" title="向Qt 移植Android（Java）应用">向Qt 移植Android（Java）应用</a></li>
+	  
+	  <li><a href="http://mobile.51cto.com/symbian-269144.htm" title="浅析Qt Smart Installer使用">浅析Qt Smart Installer使用</a></li>
+	  
+</ul>
+</div>
+<p class="blank10"></p>
+<div class="bor">
+<div class="titbg">
+<h3 class="fl t1"><a href="http://mobile.51cto.com/">移动开发</a></h3>
+<span class="pl10">频道导航</span></div>
+ <ul class="xtlist">
+<li><span class="tit">平台</span>
+<div><a href="http://mobile.51cto.com/web/">移动Web</a>|<a href="http://mobile.51cto.com/android/">Android</a>|<a href="http://mobile.51cto.com/iphone/">iOS</a>|<a href="http://mobile.51cto.com/windows-phone/">Windows Phone</a></div>
+</li>
+
+<li><span class="tit">应用</span>
+<div><a href="http://mobile.51cto.com/app-show/">移动应用</a>|<a href="http://mobile.51cto.com/team/">移动团队</a>|<a href="http://mobile.51cto.com/market/">应用商店</a>|<a href="http://mobile.51cto.com/speclist/">专题汇总</a>|<a href="http://mobile.51cto.com/1603/">Phone Club</a></div>
+</li>
+
+<li><span class="tit">观察</span>
+<div><a href="http://mobile.51cto.com/comment/">业界观察</a>|<a href="http://mobile.51cto.com/data/">调查数据</a>|<a href="http://mobile.51cto.com/informatization/">移动信息化</a></div>
+</li>
+
+<li class="last"><span class="tit">Android</span>
+<div><a href="http://mobile.51cto.com/ahot/">热点</a>|<a href="http://mobile.51cto.com/anews/">资讯</a>|<a href="http://mobile.51cto.com/android/abased/">基础</a>|<a href="http://mobile.51cto.com/android/amedia/">多媒体</a>|<a href="http://mobile.51cto.com/android/adatabase/">数据库</a>|<a href="http://mobile.51cto.com/android/design/">设计</a>|<a href="http://mobile.51cto.com/android/aengine/">工具</a>|<a href="http://mobile.51cto.com/android/aprogram/">编译</a></div>
+</li>
+</ul> 
+</div> 
+<p class="blank10"></p>
+<div class="leftbotcon">
+<div class="bor jdlist">
+<div class="titbg">
+<h3 class="t2">热点推荐</h3></div>
+<ul>
+<li><a onclick="javascript: _gaq.push([&#39;_trackPageview&#39;, &#39;/51cto/neirong/d-t-4&#39;]);" href="http://mobile.51cto.com/mobile-182392.htm"><img src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/153546162.jpg"></a> 
+<div class="name"><a onclick="javascript: _gaq.push([&#39;_trackPageview&#39;, &#39;/51cto/neirong/d-t-4&#39;]);" href="http://mobile.51cto.com/mobile-182392.htm">Android开发应用详解</a></div></li>
+<li><a onclick="javascript: _gaq.push([&#39;_trackPageview&#39;, &#39;/51cto/neirong/d-t-4&#39;]);" href="http://developer.51cto.com/art/201106/266369.htm"><img src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/133620622.jpg"></a> 
+<div class="name"><a onclick="javascript: _gaq.push([&#39;_trackPageview&#39;, &#39;/51cto/neirong/d-t-4&#39;]);" href="http://developer.51cto.com/art/201106/266369.htm">那些性感的让人尖叫的程序员</a></div></li>
+<li><a href="http://developer.51cto.com/art/200907/133407.htm"><img src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/134217922.jpg"></a> 
+<div class="name"><a href="http://developer.51cto.com/art/200907/133407.htm">HTML5 下一代Web开发标准详解</a></div></li>
+<li><a href="http://developer.51cto.com/art/201104/257581.htm"><img src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/123123954.jpg"></a> 
+<div class="name"><a href="http://developer.51cto.com/art/201104/257581.htm">高性能WEB开发应用指南</a></div></li>
+<li><a href="http://os.51cto.com/art/200706/49181.htm"><img src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/195816929.jpg"></a> 
+<div class="name"><a href="http://os.51cto.com/art/200706/49181.htm">Ubuntu开源技术交流频道</a></div></li></ul></div>
+<p class="blank10"></p>
+<div class="bor hotTag"><strong>热门标签：</strong> <a onclick="javascript: _gaq.push([&#39;_trackPageview&#39;, &#39;/51cto/neirong/d-2]);" href="http://os.51cto.com/windows/">windows频道</a><a onclick="javascript: _gaq.push([&#39;_trackPageview&#39;, &#39;/51cto/neirong/d-w&#39;]);" href="http://mobile.51cto.com/">移动开发</a><a onclick="javascript: _gaq.push([&#39;_trackPageview&#39;, &#39;/51cto/neirong/d-w&#39;]);" href="http://cloud.51cto.com/">云计算</a><a onclick="javascript: _gaq.push([&#39;_trackPageview&#39;, &#39;/51cto/neirong/d-w&#39;]);" href="http://mobile.51cto.com/mobile/objc/">objective-c</a><a onclick="javascript: _gaq.push([&#39;_trackPageview&#39;, &#39;/51cto/neirong/d-w&#39;]);" href="http://network.51cto.com/art/200909/151122.htm">tp-link路由器设置图解</a><a onclick="javascript: _gaq.push([&#39;_trackPageview&#39;, &#39;/51cto/neirong/d-w&#39;]);" href="http://developer.51cto.com/art/200907/133407.htm">html5</a> </div></div>
+<div class="leftbotbox"> </div>
+</div>
+<!--left end-->
+<div class="g_13 fr">
+<div class="focus fixfloat"> 
+ <div class="hot">
+<ul>
+<li class="tit"><em>专题</em> <a href="http://down.51cto.com/zt/87">Android开发工具及插件(官方最新</a> </li>
+<li class="con"><dl><dt><a href="http://down.51cto.com/zt/87"><img border="0" src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/wKioOVDBglGTAMLtAAB14sX1lo8918.jpg"></a></dt>
+<dd>Google正式在Android官网发布Android 3.0 SDK，为了方便各位开发者及时、快速的找到…</dd>
+</dl></li></ul><ol class="hotlist"><li><a href="http://down.51cto.com/zt/40">Android开发入门之实战技巧和源码</a></li><li><a href="http://mobile.51cto.com/market-351874.htm">《移动开发者》2012年8月刊第2期</a></li></ol></div>
+<p>
+<script language="JavaScript" src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/ad(1).js" type="text/javascript"></script><script type="text/javascript" src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/ad(2).php"></script><iframe width="300" height="260" noresize="" scrolling="No" frameborder="0" marginheight="0" marginwidth="0" src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/14.html" align="left"></iframe>
+</p>
+</div>
+<div class="rank">
+<div class="tlt">
+      <h3>文章排行</h3>
+      <a onmouseover="change_top10(3);" id="top_3">本月</a><a onmouseover="change_top10(2);" id="top_2">本周</a><a onmouseover="change_top10(1);" class="myon" id="top_1">24小时</a> </div>
+ <div id="top10_1" style="display: block;" class="list"><ul>
+<li><a href="http://mobile.51cto.com/hot-273779.htm" target="_blank" title="简介跨平台的移动开发框架">简介跨平台的移动开发框架</a>
+</li><li><a href="http://mobile.51cto.com/android-227548.htm" target="_blank" title="在Eclipse下搭建Android开发环境教程">在Eclipse下搭建Android开发环境教程</a>
+</li><li><a href="http://mobile.51cto.com/design-250037.htm" target="_blank" title="21个免费的UI界面设计工具、资源及网站">21个免费的UI界面设计工具、资源及网站</a>
+</li><li><a href="http://mobile.51cto.com/android-331742.htm" target="_blank" title="Android 4.0.4模拟器安装完全教程（图">Android 4.0.4模拟器安装完全教程（图</a>
+</li><li><a href="http://mobile.51cto.com/android-223416.htm" target="_blank" title="多图详解 “Android UI”设计官方教程">多图详解 “Android UI”设计官方教程</a>
+</li><li><a href="http://mobile.51cto.com/informatization-369839.htm" target="_blank" title="iOS VS Android：一场安全的战争">iOS VS Android：一场安全的战争</a>
+</li><li><a href="http://mobile.51cto.com/hot-292923.htm" target="_blank" title="人人都是开发者：5款傻瓜式APP开发工具">人人都是开发者：5款傻瓜式APP开发工具</a>
+</li><li><a href="http://mobile.51cto.com/android-222812.htm" target="_blank" title="图文并茂 在MyEclipse 8.6上搭建Androi">图文并茂 在MyEclipse 8.6上搭建Androi</a>
+</li><li><a href="http://mobile.51cto.com/hot-232833.htm" target="_blank" title="Objective-C基础语法快速入门">Objective-C基础语法快速入门</a>
+</li><li><a href="http://mobile.51cto.com/web-321296.htm" target="_blank" title="三大移动Web开发框架哪个适合你？">三大移动Web开发框架哪个适合你？</a>
+</li></ul></div>
+<div id="top10_2" style="display: none;" class="list"><ul>
+<li><a href="http://mobile.51cto.com/ahot-369868.htm" target="_blank" title="技术辩论：企业部署中选择iOS还是Andro">技术辩论：企业部署中选择iOS还是Andro</a>
+</li><li><a href="http://mobile.51cto.com/news-370249.htm" target="_blank" title="NEIC活动地址">NEIC活动地址</a>
+</li><li><a href="http://mobile.51cto.com/app-show-370750.htm" target="_blank" title="主频提高售价降低 北斗小辣椒I2售价499">主频提高售价降低 北斗小辣椒I2售价499</a>
+</li><li><a href="http://mobile.51cto.com/app-show-370746.htm" target="_blank" title="网易LOFTER终结互联网版权霸王条款">网易LOFTER终结互联网版权霸王条款</a>
+</li><li><a href="http://mobile.51cto.com/app-show-369888.htm" target="_blank" title="腾讯微博举办移动应用分享赛 试探海量">腾讯微博举办移动应用分享赛 试探海量</a>
+</li><li><a href="http://mobile.51cto.com/1603-370715.htm" target="_blank" title="NEIC诺基亚体验创新中心">NEIC诺基亚体验创新中心</a>
+</li><li><a href="http://mobile.51cto.com/ahot-371164.htm" target="_blank" title="谁来给移动互联网发牌照：Android生态">谁来给移动互联网发牌照：Android生态</a>
+</li><li><a href="http://mobile.51cto.com/comment-371156.htm" target="_blank" title="移动互联网撬动儿童早教：竞争激烈 市">移动互联网撬动儿童早教：竞争激烈 市</a>
+</li><li><a href="http://mobile.51cto.com/ahot-371154.htm" target="_blank" title="Google Apps结束免费时代 微软危险了">Google Apps结束免费时代 微软危险了</a>
+</li><li><a href="http://mobile.51cto.com/hot-371152.htm" target="_blank" title="手机应用的下一个战场：移动视频通话服">手机应用的下一个战场：移动视频通话服</a>
+</li></ul></div>
+<div id="top10_3" style="display: none;" class="list"><ul>
+<li><a href="http://mobile.51cto.com/ahot-364875.htm" target="_blank" title="程序员，中国最值得同情的职业么？">程序员，中国最值得同情的职业么？</a>
+</li><li><a href="http://mobile.51cto.com/ahot-364742.htm" target="_blank" title="Android 4.2深度评测：甜蜜美味的果冻">Android 4.2深度评测：甜蜜美味的果冻</a>
+</li><li><a href="http://mobile.51cto.com/hot-367183.htm" target="_blank" title="女大学生携iPhone应聘被拒 招聘方称担">女大学生携iPhone应聘被拒 招聘方称担</a>
+</li><li><a href="http://mobile.51cto.com/comment-365162.htm" target="_blank" title="互联网手机的围城：小米顶多再风光一年">互联网手机的围城：小米顶多再风光一年</a>
+</li><li><a href="http://mobile.51cto.com/design-366219.htm" target="_blank" title="苹果的拟物化设计？">苹果的拟物化设计？</a>
+</li><li><a href="http://mobile.51cto.com/ahot-365104.htm" target="_blank" title="开发者告诉你为什么Android是最好的开">开发者告诉你为什么Android是最好的开</a>
+</li><li><a href="http://mobile.51cto.com/anews-365123.htm" target="_blank" title="日本五大电子巨企沦陷:无法适应移动互">日本五大电子巨企沦陷:无法适应移动互</a>
+</li><li><a href="http://mobile.51cto.com/hot-368292.htm" target="_blank" title="雅虎将收购什么类型公司？梅耶尔：移动">雅虎将收购什么类型公司？梅耶尔：移动</a>
+</li><li><a href="http://mobile.51cto.com/web-364661.htm" target="_blank" title="jQuery Mobile 1.2更新一览 更好的表单">jQuery Mobile 1.2更新一览 更好的表单</a>
+</li><li><a href="http://mobile.51cto.com/hot-366827.htm" target="_blank" title="调查：18-29岁人群中9成人会与智能手机">调查：18-29岁人群中9成人会与智能手机</a>
+</li></ul></div>
+ 
+ </div>
+<p class="blank1"></p>
+
+<div class="bor">
+<div class="titbg">
+<h3 class="fl t1">热点专题</h3>
+<a href="http://mobile.51cto.com/col/1541/spec1.htm" class="tmore">更多&gt;&gt;</a></div>
+<ul class="plist01">
+<li><a href="http://mobile.51cto.com/webos-256291.htm" title="webOS 3.0 惠普平板系统驾到"><img src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/112317955.jpg" alt="webOS 3.0 惠普平板系统驾到" width="100" height="80"></a>
+<h5><a href="http://mobile.51cto.com/webos-256291.htm" title="webOS 3.0 惠普平板系统驾到">webOS 3.0 惠普平板系</a></h5>
+<div class="c666">2011年3月30日，惠普宣布向Early Access开发者提供web</div>
+</li><li><a href="http://mobile.51cto.com/android-255480.htm" title="拉里·佩奇重掌谷歌：Android是发展重点"><img src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/143924111.jpg" alt="拉里·佩奇重掌谷歌：Android是发展重点" width="100" height="80"></a>
+<h5><a href="http://mobile.51cto.com/android-255480.htm" title="拉里·佩奇重掌谷歌：Android是发展重点">拉里·佩奇重掌谷歌：</a></h5>
+<div class="c666">4月4日，谷歌联合创始人拉里·佩奇正式出任Google公司</div>
+</li><li><a href="http://mobile.51cto.com/blackberry-255350.htm" title="BlackBerry应用开发指南"><img src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/155411573.jpg" alt="BlackBerry应用开发指南" width="100" height="80"></a>
+<h5><a href="http://mobile.51cto.com/blackberry-255350.htm" title="BlackBerry应用开发指南">BlackBerry应用开发指</a></h5>
+<div class="c666">BlackBerry手机是加拿大RIM公司推出的一种移动电子邮</div>
+</li> 
+</ul>
+</div>
+<p class="blank10"></p>
+<div class="tagCloud">
+<div class="tlt">
+<h3>热点标签</h3>
+</div>
+<div class="taglist"><a title="iOS开发" href="http://mobile.51cto.com/mobile/objc/">iOS开发</a>  <a title="Android开发" href="http://mobile.51cto.com/mobile-182392.htm">Android开发</a> <a title="Symbian开发" href="http://mobile.51cto.com/mobile-220581.htm">Symbian开发</a>  <a title="MeeGo开发" href="http://mobile.51cto.com/meego-208013.htm">MeeGo开发</a>  <a title="BlackBerry开发" href="http://mobile.51cto.com/blackberry-255350.htm">BlackBerry开发</a>  <a title="Windows Phone开发" href="http://mobile.51cto.com/mobile-219051.htm">Windows Phone开发</a>  <a title="Phone Club" href="http://mobile.51cto.com/1603/">Phone Club</a>  <a title="Android 4.0" href="http://mobile.51cto.com/android-297987.htm" class="imp">Android 4.0</a>  <a title="webOS 3.0" href="http://mobile.51cto.com/webos-256291.htm">webOS 3.0</a>  <a title="智能手机" href="http://www.linkphone.cn/">智能手机</a> <a title="软件下载" href="http://download.linkphone.cn/">软件下载</a> </div>
+</div>
+<div class="rss">
+<ul>
+<li class="lin f12-c"><a href="http://news.51cto.com/col/1323/"><strong>点击这里查看样刊</strong></a></li>
+<li>
+<dl>
+<dt> </dt>
+<dd><a href="http://home.51cto.com/index.php?s=/Subscribe"><img src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/dingy.gif"></a></dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="bor">
+<div class="titbg">
+<h3 class="t1">全站热点</h3>
+</div>
+<div class="webhot fixfloat">
+<ul>
+
+<li>
+  <a href="http://network.51cto.com/art/201105/265456.htm" title="图解：双IP地址引起的网络故障"><img src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/150219667.jpg"></a>
+  <div><a href="http://network.51cto.com/art/201105/265456.htm" title="图解：双IP地址引起的网络故障">图解：双IP地址引起的网络故障</a></div>
+</li>
+
+<li>
+  <a href="http://os.51cto.com/art/201106/268234.htm" title="《Linux运维趋势》第9期发布"><img src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/112025260.jpg"></a>
+  <div><a href="http://os.51cto.com/art/201106/268234.htm" title="《Linux运维趋势》第9期发布">《Linux运维趋势》第9期发布</a></div>
+</li>
+
+</ul>
+</div>
+<p class="blank1"></p>
+<ul class="list03">
+
+<li><a href="http://book.51cto.com/art/201103/248989.htm" title="网络安全进阶笔记">网络安全进阶笔记</a></li>
+
+<li><a href="http://developer.51cto.com/art/201103/248944.htm" title="JavaScript学习笔记 有问有答">JavaScript学习笔记 有问有答</a></li>
+
+<li><a href="http://virtual.51cto.com/art/201103/248773.htm" title="为桌面而构建 亲密接触VMware View">为桌面而构建 亲密接触VMware View</a></li>
+
+<li><a href="http://book.51cto.com/art/201103/248672.htm" title="计算复杂性（英文版）">计算复杂性（英文版）</a></li>
+
+<li><a href="http://book.51cto.com/art/201103/248391.htm" title="深入解析Windows操作系统（第5版英文版）">深入解析Windows操作系统（第5版英文</a></li>
+
+</ul>
+</div>
+<p class="blank10"></p>
+<div class="bor">
+<div class="titbg">
+<h3 class="t1">读书</h3>
+</div>
+  
+
+<div class="catbook"><a href="http://book.51cto.com/art/200704/44741.htm" title="Fedora Core 5 Linux架站与网管"><img src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/113129360.jpg" width="66" height="98" border="0"></a>
+<h5><a href="http://book.51cto.com/art/200704/44741.htm">Fedora Core 5 Linux架站与网管</a></h5>
+<div class="c666 text">Linux出色的网络功能堪称当今操作系统中的佼佼者，无论在功能还是在支持能力上都有令人满意的表现。Linux内置的多个服务器，几乎</div>
+</div>
+
+
+<ul class="list03">
+
+<li><a href="http://book.51cto.com/art/200704/46270.htm" title="网管员必读—网络应用（第2版）">网管员必读—网络应用（第2版）</a></li>
+
+<li><a href="http://book.51cto.com/art/200704/46273.htm" title="网络工程师必读——接入网与交换网">网络工程师必读——接入网与交换网</a></li>
+
+<li><a href="http://book.51cto.com/art/200704/46276.htm" title="网络工程师必读——网络工程基础">网络工程师必读——网络工程基础</a></li>
+
+<li><a href="http://book.51cto.com/art/200706/49300.htm" title="计算机网络技术">计算机网络技术</a></li>
+
+</ul>
+</div>
+<p class="blank10"></p>
+<div class="bor">
+<div class="titbg">
+<h3 class="t1 fl">博文推荐</h3>
+<a class="tmore" href="http://blog.51cto.com/">更多&gt;&gt;</a></div>
+<div class="blogtj">
+<ul>
+<li> <a href="http://nowpaper.blog.51cto.com/"><img width="60" height="65" src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/3893223_1320825949.jpg"></a>
+<h5><a href="http://nowpaper.blog.51cto.com/">nowpaper</a></h5>
+Windows Phone专家</li>
+<li> <a href="http://xiaominghimi.blog.51cto.com/"><img width="60" height="65" src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/125657389.jpg"></a>
+<h5><a href="http://xiaominghimi.blog.51cto.com/">himi</a></h5>
+<p>Android开发专家</p>
+</li>
+</ul>
+</div>
+<ul class="list03">
+ <li><a href="http://cecily.blog.51cto.com/308635/76385/" target="_blank" title="［SOA征文］SOA学习启示录：没有规矩不成方圆">［SOA征文］SOA学习启示录：没有规矩</a></li><li><a href="http://virtualman.blog.51cto.com/200540/76366/" target="_blank" title="虚拟化为您打造下一代数据中心">虚拟化为您打造下一代数据中心</a></li><li><a href="http://johnny.blog.51cto.com/161381/76313/" target="_blank" title="我所理解的SOA">我所理解的SOA</a></li><li><a href="http://yuelei.blog.51cto.com/202879/76302/" target="_blank" title="用SMTP,POP3访问Exchange邮箱:Exchange2003系列之六">用SMTP,POP3访问Exchange邮箱:Exchan</a></li>
+</ul>
+</div>
+<p class="blank10"></p>
+<div class="tj">
+<div class="tlt">
+<h3>最新热帖</h3>
+<a class="more" href="http://bbs.51cto.com/hotthreads.php">更多&gt;&gt;</a></div>
+<ul>
+<li><a href="http://bbs.51cto.com/thread-813930-1.html" target="_blank" title="在核心交换机配置vlan, vtp 等合适吗?">在核心交换机配置vlan, vtp 等合适吗</a></li><li><a href="http://bbs.51cto.com/thread-813905-1.html" target="_blank" title="ISA多外网IP的问题（已回复）">ISA多外网IP的问题（已回复）</a></li><li><a href="http://bbs.51cto.com/thread-813896-1.html" target="_blank" title="mac地址表是不是等于CAM表？">mac地址表是不是等于CAM表？</a></li><li><a href="http://bbs.51cto.com/thread-813895-1.html" target="_blank" title="华为3552交换机中继代理怎么配?【已解决】">华为3552交换机中继代理怎么配?【已</a></li><li><a href="http://bbs.51cto.com/thread-813884-1.html" target="_blank" title="大侠唐在飞；请教个LACP的问题，">大侠唐在飞；请教个LACP的问题，</a></li>
+</ul>
+</div>
+<div class="picAD">
+<iframe class="bann" frameborder="0" src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/baidu.html" scrolling="No" style="width: 300px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; overflow-x: hidden; overflow-y: hidden; height: 515px; background-color: white; "></iframe>
+</div>
+</div>
+<p class="blank1"></p> 
+<!--leftbotcon end-->
+</div> 
+ <div class="subweb">
+<h4>51CTO旗下网站</h4>
+<div>
+<a target="_blank" href="http://www.51cto.com/">领先的IT技术网站 51CTO</a>
+<a target="_blank" href="http://www.watchstor.com/">领先的中文存储媒体 WatchStor</a>
+<a target="_blank" href="http://www.cioage.com/">中国首个CIO网站 CIOage</a>
+<a target="_blank" href="http://www.hc3i.cn/">中国首家数字医疗网站 HC3i</a>
+<a target="_blank" href="http://www.linkphone.cn/">移动互联网生活门户 灵客风LinkPhone</a>
+</div>
+</div>
+<div id="ft"><div id="foot" align="center"><script src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/copy_right.js"></script>Copyright&#169;2005-2012 <a href="http://www.51cto.com/">51CTO.COM</a> 版权所有 未经许可 请勿转载</div></div>
+<script src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/count.js"></script><script src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/count.php"></script>
+<!-- START GA.js -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-20883758-1']);
+  _gaq.push(['_setDomainName', 'none']);
+  _gaq.push(['_setAllowLinker', true]);
+  _gaq.push(['_addOrganic', 'baidu', 'word']);
+  _gaq.push(['_addOrganic', 'google', 'q']);
+  _gaq.push(['_addOrganic', 'soso', 'w']);
+  _gaq.push(['_addOrganic', '3721', 'name']);
+  _gaq.push(['_addOrganic', 'yodao', 'q']);
+  _gaq.push(['_addOrganic', 'vnet', 'kw']);
+  _gaq.push(['_addOrganic', 'sogou', 'query']);
+  _gaq.push(['_trackPageview']);
+  _gaq.push(['_trackPageLoadTime']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<!-- END GA.js -->
+
+<!-- baidu.js -->
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Ff77ea1ecd95cb2a1bc65cbcb3aaba7d4' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/h.js" type="text/javascript"></script>
+<!--end baidu.js -->
+<!-- 新监测代码 -->
+<!-- 新监测代码 -->
+<div id="MyMoveAd" style="height: 2px; display: none; ">
+<span id="wordlink_1"><script src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/wordlink1.js"></script><script language="JavaScript" type="text/javascript" src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/adjs.php"></script><a href="http://vd.51cto.com/adclick.php?bannerid=8642&zoneid=477&source=&dest=http%3A%2F%2Fwww.microsoft.com%2Fclick%2Fservices%2FRedirect2.ashx%3FCR_CC%3D200148499" target="_blank"><font color="blue">云创益大赛火热招募中！</font></a><div id="beacon_8642" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/adlog.php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div></span>
+<span id="wordlink_2"><script src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/wordlink2.js"></script><script language="JavaScript" type="text/javascript" src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/adjs(1).php"></script><a href="http://vd.51cto.com/adclick.php?bannerid=8802&zoneid=478&source=&dest=http%3A%2F%2Fvirtual.51cto.com%2Fexp%2Fvmware20121101%2Findex.html" target="_blank"><font color="blue">VMware：踏上“你的云”之旅</font></a><div id="beacon_8802" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/adlog(1).php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div></span>
+<span id="wordlink_3"><script src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/wordlink3.js"></script><script language="JavaScript" type="text/javascript" src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/adjs(2).php"></script><a href="http://vd.51cto.com/adclick.php?bannerid=8985&zoneid=479&source=&dest=http%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fcn%2Fweb%2Flp%2Fhtml5%2F%3Fcmp%3Ddwnpr%26cpb%3Ddw%26ct%3Ddwcon%26cr%3Dcn_51CTO_cs%26ccy%3Dcn" target="_blank"><font color="blue">HTML5 学习资源中心</font></a><div id="beacon_8985" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/adlog(2).php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div></span>
+<span id="wordlink_4"><script src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/wordlink4.js"></script><script language="JavaScript" type="text/javascript" src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/adjs(3).php"></script><a href="http://vd.51cto.com/adclick.php?bannerid=8920&zoneid=480&source=&dest=http%3A%2F%2Fwww.microsoft.com%2Fclick%2Fservices%2FRedirect2.ashx%3FCR_CC%3D200163139" target="_blank"><font color="blue">知人.成事 领创商业新纪元</font></a><div id="beacon_8920" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/adlog(3).php" width="0" height="0" alt="" style="width: 0px; height: 0px;"></div></span>
+<span id="pinglun"><script language="JavaScript" src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/getArtCount.php"></script>0</span>
+<span id="tonglan"></span>
+<span id="wordlink"><script language="JavaScript" src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/ad(3).js"></script></span>
+<script src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/ad(3).js"></script>
+</div>   
+<script language="javascript" src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/favorite.js"></script>
+<script language="javaScript" src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/fb_words_list.php"></script>
+<script language="javaScript" src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/dialog_utf8.js"></script>
+<script language="javaScript" src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/mail.js"></script>  
+<script type="text/javascript" src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/favorbox.js"></script>
+<script language="javascript" src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/clipboard.js"></script>
+<script language="javaScript"> 
+	var thistid=269343; 
+	
+	//收藏按钮
+	var favor_url = 'http://mobile.51cto.com/symbian-269343.htm';  // 如：http://bbs.51cto.com/thread-789649-1.html
+	var favor_title = '新手必学 QML入门教程 (1)';       //  
+	
+	//绑定复制按钮
+	copy('msnqqcopy', 'http://mobile.51cto.com/symbian-269343.htm', '分享到MSN/QQ的链接复制成功!');
+//	copy('bbscopy', '[url=http://mobile.51cto.com/symbian-269343.htm][u]新手必学 QML入门教程 (1)[/u][/url]', '分享到论坛的UBB代码复制成功!');
+
+</script><div style="position: absolute; left: 782px; top: 2576px; width: 34px; height: 13px; z-index: 99; "><embed id="ZeroClipboardMovie_1" src="http://images.51cto.com/images/art/newart1012/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="34" height="13" name="ZeroClipboardMovie_1" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=1&amp;width=34&amp;height=13" wmode="transparent"></div> 
+<script src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/index.php" charset="utf-8"></script>
+<script src="./新手必学 QML入门教程 (1) - 51CTO.COM_files/count(1).php" language="javascript"></script>
+
+
+
+</body></html>
