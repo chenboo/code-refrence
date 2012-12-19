@@ -1,0 +1,446 @@
+/*
+ * Nokia fonts from 2012 skin
+ *
+ * The Nokia fonts
+ *
+ */
+@font-face {
+  font-family: 'NokiaPureTWebLight';
+  src: url('http://www.developer.nokia.com/css/2012/fonts/NokiaPureTWeb_Lt.eot');
+  src: url('http://www.developer.nokia.com/css/2012/fonts/NokiaPureTWeb_Lt.eot?#iefix') format('embedded-opentype'), url('http://www.developer.nokia.com/css/2012/fonts/NokiaPureTWeb_Lt.woff') format('woff'), url('http://www.developer.nokia.com/css/2012/fonts/NokiaPureTWeb_Lt.ttf') format('truetype'), url('http://www.developer.nokia.com/css/2012/fonts/NokiaPureTWeb_Lt.svg#NokiaPureTWebLight') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'NokiaPureTWebRegular';
+  src: url('http://www.developer.nokia.com/css/2012/fonts/NokiaPureTWeb_Rg.eot');
+  src: url('http://www.developer.nokia.com/css/2012/fonts/NokiaPureTWeb_Rg.eot?#iefix') format('embedded-opentype'), url('http://www.developer.nokia.com/css/2012/fonts/NokiaPureTWeb_Rg.woff') format('woff'), url('http://www.developer.nokia.com/css/2012/fonts/NokiaPureTWeb_Rg.ttf') format('truetype'), url('http://www.developer.nokia.com/css/2012/fonts/NokiaPureTWeb_Rg.svg#NokiaPureTWebRegular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'NokiaPureTWebBold';
+  src: url('http://www.developer.nokia.com/css/2012/fonts/NokiaPureTWeb_Bd.eot');
+  src: url('http://www.developer.nokia.com/css/2012/fonts/NokiaPureTWeb_Bd.eot?#iefix') format('embedded-opentype'), url('http://www.developer.nokia.com/css/2012/fonts/NokiaPureTWeb_Bd.woff') format('woff'), url('http://www.developer.nokia.com/css/2012/fonts/NokiaPureTWeb_Bd.ttf') format('truetype'), url('http://www.developer.nokia.com/css/2012/fonts/NokiaPureTWeb_Bd.svg#NokiaPureTWebBold') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'NokiaPureHWebLight';
+  src: url('http://www.developer.nokia.com/css/2012/fonts/nokiapurehweb_lt-webfont.eot');
+  src: url('http://www.developer.nokia.com/css/2012/fonts/nokiapurehweb_lt-webfont.eot?#iefix') format('embedded-opentype'), url('http://www.developer.nokia.com/css/2012/fonts/nokiapurehweb_lt-webfont.woff') format('woff'), url('http://www.developer.nokia.com/css/2012/fonts/nokiapurehweb_lt-webfont.ttf') format('truetype'), url('http://www.developer.nokia.com/css/2012/fonts/nokiapurehweb_lt-webfont.svg#NokiaPureHWebLight') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'NokiaPureHWebRegular';
+  src: url('http://www.developer.nokia.com/css/2012/fonts/NokiaPureHWeb_Rg.eot');
+  src: url('http://www.developer.nokia.com/css/2012/fonts/NokiaPureHWeb_Rg.eot?#iefix') format('embedded-opentype'), url('http://www.developer.nokia.com/css/2012/fonts/NokiaPureHWeb_Rg.woff') format('woff'), url('http://www.developer.nokia.com/css/2012/fonts/NokiaPureHWeb_Rg.otf') format('opentype'), url('http://www.developer.nokia.com/css/2012/fonts/NokiaPureHWeb_Rg.svg#NokiaPureHWebRegular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'NokiaPureHWebBold';
+  src: url('http://www.developer.nokia.com/css/2012/fonts/NokiaPureHWeb_Bd.eot');
+  src: url('http://www.developer.nokia.com/css/2012/fonts/NokiaPureHWeb_Bd.eot?#iefix') format('embedded-opentype'), url('http://www.developer.nokia.com/css/2012/fonts/NokiaPureHWeb_Bd.woff') format('woff'), url('http://www.developer.nokia.com/css/2012/fonts/NokiaPureHWeb_Bd.otf') format('opentype'), url('http://www.developer.nokia.com/css/2012/fonts/NokiaPureHWeb_Bd.svg#NokiaPureHWebBold') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+#fncontainer {
+    min-width: 990px;
+}
+
+#fnheaderComponent {
+    margin-left: 0px;
+    margin-right: 0px;
+    width: auto;
+}
+
+#piazzaContainer {
+}
+#piazzaLeftColumn {
+    float: left; 
+    width: 220px; 
+}
+#piazzaContentWrapper {
+    margin-left: 240px;
+}
+#piazzaTabs { 
+    height: 27px; 
+}
+#piazzaCenterContentWrapper {
+}
+#piazzaRightColumnWrapper {
+    float: right; 
+    width: 240px; 
+    z-index: 10;
+    position: relative;
+}
+#piazzaRightColumnWrapper div,
+#piazzaRightColumnWrapper a {
+    z-index: inherit;
+}
+#piazzaRightColumn {
+    background-color: #ffffff;
+    padding-left: 20px;
+    clear:both;
+}
+#mw-panel2 {
+    clear:both;
+}
+.blogContent #piazzaCenterContent {
+    margin-right: 240px; 
+}
+
+.blogSummaryContent #piazzaCenterContent {
+    margin-right: 0px; 
+}
+
+.blogContent #piazzaCenterContent h2:first-child {
+    margin: 0;
+}
+
+.blogContent #piazzaCenterContent h1:first-child {
+    padding: 0;
+}
+
+.piazzaBlogHomeImage {
+    float: left;
+    padding-top: 4px;
+}
+
+.piazzaBlogHomeListing {
+    padding: 14px 0px 22px 90px;
+}
+
+.piazzaBlogHomeListing h3, .piazzaBlogHomeListing h3 {
+    margin: 0;
+}
+
+.piazzaBlogHomeListing h3 a, .piazzaBlogHomeListing h3 a {
+    font-weight: normal;
+    color: #333333;
+}
+
+.community-title span {
+    float: right;
+    position: relative;
+    right: 0px;
+    top: 5px;
+}
+
+#piazzaRightColumn .community-title span {
+    float: none;
+    position: relative;
+}
+
+.community-box a {
+    padding-bottom: 1px;
+}
+
+.community-title img {
+    margin: auto;
+    height: auto;
+    width: auto;
+}
+#piazzaServiceTitle.diboContent {
+    background: transparent url(http://www.developer.nokia.com/Community/Piazza/images/Discussion-Icon.png) no-repeat scroll left 14px;
+    height: 75px;
+}
+#piazzaServiceTitle  {
+    height: 88px;
+    margin: 0;
+    padding: 0px;
+}
+
+#piazzaServiceTitle a {
+    margin-left: -70px;
+    padding-left: 70px;
+}
+
+#piazzaServiceTitle.blogContent {
+    background: transparent url(http://www.developer.nokia.com/Community/Piazza/images/Blog-Icon.png) no-repeat scroll left 14px;
+}
+#piazzaServiceTitle.wikiContent {
+    background: transparent url(http://www.developer.nokia.com/Community/Piazza/images/Wiki-Icon.png) no-repeat scroll left 14px;
+}
+#piazzaServiceTitle.groupContent {
+    background: transparent url(http://www.developer.nokia.com/Community/Piazza/images/Groups-Icon.png) no-repeat scroll left 14px;
+}
+#piazzaServiceTitle h1 {
+    padding: 20px 0px 30px 60px;
+}
+h5.community-title {
+    border-top: 2px solid #00C060;
+    color: #00C060;
+    font-family: "NokiaPureHWebLight", Arial, sans-serif;
+    font-size: 20px;
+    font-weight: normal;
+    letter-spacing: -0.07em;
+    margin-bottom: 10px !important;
+    margin-top: 0px;
+    padding-top: 12px;
+}
+.portal li {
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+}
+
+.blogContent h1,
+.blogContent h1 a,
+.blogContent h2,
+.blogContent h2 a {
+    color: #8a765d;
+}
+
+.blogContent h2 {
+    border-top: 2px solid #8a765d;
+}
+
+.piazzaBlogHomeListing {
+    border-bottom: 2px solid #8a765d;
+}
+
+.diboContent h1,
+.diboContent h1 a,
+.diboContent h2,
+.diboContent h2 a {
+    color: #01c060;
+}
+
+.diboContent h2 {
+    border-top: 2px solid #01c060;
+}
+
+.groupContent h1,
+.groupContent h1 a,
+.groupContent h2,
+.groupContent h2 a,
+.groupContent h3 {
+    color: #ff7e00;
+}
+
+.groupContent h2 {
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+}
+
+.groupContent h2 {
+    border-top: 2px solid #ff7e00;
+}
+
+.wikiContent h1,
+.wikiContent h1 a,
+.wikiContent h2,
+.wikiContent h2 a,
+#mw-panel div.portal h5,
+#mw-panel.collapsible-nav div.collapsed h5,
+#mw-panel2 div.portal h5,
+#mw-panel2.collapsible-nav div.collapsed h5 {
+    color: #555555;
+}
+
+.toggleDisplay {
+    color: #555555 !important;
+    line-height: 22px;
+    border-top-width: 0px !important;
+    padding-top: 0px !important;
+}
+
+.wikiContent h1 {
+    line-height: 40px;
+    padding-top: 10px;
+}
+
+.wikiContent h2,
+#mw-panel div.portal h5,
+#mw-panel2 div.portal h5 {
+    border-top: 2px solid #333333;
+    line-height: 22px;
+}
+
+.blogContent h2.community-title .headerRssLink a {
+    background: transparent url(http://www.developer.nokia.com/images/l/rss-orange.png) no-repeat;
+}
+
+.wikiContent h3 {
+    padding-top: 10px;
+}
+
+.community-box {
+    padding-right: 1em;
+    margin-bottom: 2px;
+}
+
+.community-box a {
+    display: inline;
+    width: auto;
+}
+
+.community-box ul li {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#piazzaCenterContent .community-box {
+    padding-right: 0px;
+}
+
+#fncontent .wikiContent .asc {
+  cursor: pointer;
+}
+
+#fncontent .wikiContent .even {
+  background-color: #ffffff;
+}
+
+#fncontent h3 {
+	font-family: "NokiaPureHWebLight", Arial, sans-serif;
+	font-size: 18px;
+	font-weight: normal;
+}
+
+#fncontent h4 {
+	font-family: "NokiaPureHWebLight", Arial, sans-serif;
+	font-size: 16px;
+	font-weight: normal;
+}
+
+#fncontent h5 {
+	font-family: "NokiaPureHWebLight", Arial, sans-serif;
+	font-size: 14px;
+	font-weight: normal;
+}
+
+#fncontent h6 {
+	font-family: "NokiaPureHWebLight", Arial, sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+}
+
+pre,
+code {
+    -webkit-border-bottom-left-radius: 8px;
+    -khtml-border-radius-bottomleft: 8px;   
+    -moz-border-radius-bottomleft: 8px; 
+    border-bottom-left-radius: 8px;
+    /* behavior:url(/images/l/border-radius.htc); */
+    /* background: none repeat scroll 0 0 #fafafa; */
+    background-color: #fafafa;
+    border: 1px solid #CAC9C9 !important;
+    padding: 10px 15px !important; 
+    margin-bottom: 12px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    font-family: "Courier New", Courier, monospace;
+}
+
+samp,
+.parmname {
+    font-family: "Courier New", Courier, monospace;
+}
+
+i, em {
+    font-style: italic;
+}
+
+b, strong {
+    font-weight: bolder;
+}
+
+tt {
+    font-family: monospace;
+}
+
+.wikiEditor-ui,
+#editform {
+    clear: right !important;
+}
+
+.wikiContent #piazzaCenterContent ol,
+.blogContent #piazzaCenterContent ol {
+    margin: 2px 0px 0px 17px;
+    list-style-type: decimal;
+    padding-left: 0.5em;
+}
+
+#piazzaCenterContent .libraryContent ol {
+    margin: 2px 0px 18px 17px;
+    list-style-type: decimal;
+    padding-left: 0.5em;
+}
+
+.wikiContent #piazzaCenterContent #catlinks ul {
+    margin: 0;
+}
+
+.wikiContent #piazzaCenterContent ul,
+.blogContent #piazzaCenterContent ul {
+    margin: 2px 0px 0px 17px;
+}
+
+#piazzaCenterContent .libraryContent ul {
+    margin: 2px 0px 18px 17px;
+}
+
+#piazzaCenterContent .itemList {
+    margin-left: 0px !important;
+}
+
+.wikiContent #content {
+    color: #555555;
+    line-height: 18px;
+    font-family: Tahoma, Geneva, sans-serif;
+}
+
+dt {
+    font-weight: bolder;
+}
+dl dd {
+    padding-left: 2em;
+}
+
+#piazzaRightColumn .rightColumn {
+    padding-bottom: 10px;
+}
+
+.editButtons {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.editHelp {
+    margin-left: 1em;
+}
+
+#mw-htmlform-description td,
+#mw-upload-form td {
+    padding: 3px;
+}
+#wpUploadDescription {
+    height: 8em;
+}
+
+.blogPost {
+    overflow: hidden;
+}
+
+blockquote,
+blockquote span {
+    background-image: none;
+}
+
+textarea {
+    height: 200px;
+}
+
+sup {
+    font-size: 80%;
+    vertical-align: super
+}
+
+sub {
+    font-size: 80%;
+    vertical-align: sub
+}

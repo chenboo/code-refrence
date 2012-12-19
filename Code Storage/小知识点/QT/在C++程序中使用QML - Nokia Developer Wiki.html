@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<!-- saved from url=(0110)http://www.developer.nokia.com/Community/Wiki/%E5%9C%A8C%2B%2B%E7%A8%8B%E5%BA%8F%E4%B8%AD%E4%BD%BF%E7%94%A8QML -->
+<html class="no-js client-js" lang="en"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+<title>在C++程序中使用QML - Nokia Developer Wiki</title>
+<meta charset="UTF-8">
+<meta name="generator" content="MediaWiki 1.18.6">
+<link rel="stylesheet" href="http://www.developer.nokia.com/css/2011/global.css">
+<link rel="stylesheet" href="http://www.developer.nokia.com/css/2011/fluid.css">
+<link rel="shortcut icon" href="http://www.developer.nokia.com/Community/Piazza/favicon.ico">
+<link rel="search" type="application/opensearchdescription+xml" href="http://www.developer.nokia.com/Community/Wiki/opensearch_desc.php" title="Nokia Developer Wiki (en)">
+<link rel="EditURI" type="application/rsd+xml" href="http://www.developer.nokia.com/Community/Wiki/api.php?action=rsd">
+<link rel="copyright" href="http://www.developer.nokia.com/Community/Wiki/Content_Licence">
+<link rel="alternate" type="application/atom+xml" title="Nokia Developer Wiki Atom feed" href="http://www.developer.nokia.com/Community/Wiki/index.php?title=Special:RecentChanges&feed=atom">
+<link rel="stylesheet" href="http://www.developer.nokia.com/Community/Wiki/load.php?v=1851&debug=false&lang=en&modules=mediawiki.legacy.commonPrint%2Cshared&only=styles&skin=nokiadev&*">
+<link rel="stylesheet" href="http://www.developer.nokia.com/Community/Wiki/skins/nokiadev/main-ltr.css?1851" media="screen">
+<link rel="stylesheet" href="http://www.developer.nokia.com/Community/Wiki/extensions/TalkHere/TalkHere.css"><style type="text/css" media="all">.ui-tooltip,.qtip{position:absolute;left:-28000px;top:-28000px;display:none;max-width:280px;min-width:50px;font-size:10.5px;line-height:12px;border-width:1px;border-style:solid} .ui-tooltip-fluid{display:block;visibility:hidden;position:static !important;float:left !important}.ui-tooltip-content{position:relative;padding:5px 9px;overflow:hidden;text-align:left;word-wrap:break-word}.ui-tooltip-titlebar{position:relative;min-height:14px;padding:5px 35px 5px 10px;overflow:hidden;border-width:0 0 1px;font-weight:bold}.ui-tooltip-titlebar + .ui-tooltip-content{border-top-width:0 !important} .ui-tooltip-titlebar .ui-state-default{position:absolute;right:4px;top:50%;margin-top:-9px;cursor:pointer;outline:medium none;border-width:1px;border-style:solid}* html .ui-tooltip-titlebar .ui-state-default{top:16px} .ui-tooltip-titlebar .ui-icon,.ui-tooltip-icon .ui-icon{display:block;text-indent:-1000em;direction:ltr}.ui-tooltip-icon,.ui-tooltip-icon .ui-icon{-moz-border-radius:3px;-webkit-border-radius:3px;border-radius:3px;text-decoration:none}.ui-tooltip-icon .ui-icon{width:18px;height:14px;text-align:center;text-indent:0;font:normal bold 10px/13px Tahoma,sans-serif;color:inherit;background:transparent none no-repeat -100em -100em} .ui-tooltip-focus{} .ui-tooltip-hover{} .ui-tooltip-default{border-color:#F1D031;background-color:#FFFFA3;color:#555}.ui-tooltip-default .ui-tooltip-titlebar{background-color:#FFEF93}.ui-tooltip-default .ui-tooltip-icon{border-color:#CCC;background:#F1F1F1;color:#777}.ui-tooltip-default .ui-tooltip-titlebar .ui-state-hover{border-color:#AAA;color:#111} .ui-tooltip-light{background-color:white;border-color:#E2E2E2;color:#454545}.ui-tooltip-light .ui-tooltip-titlebar{background-color:#f1f1f1} .ui-tooltip-dark{background-color:#505050;border-color:#303030;color:#f3f3f3}.ui-tooltip-dark .ui-tooltip-titlebar{background-color:#404040}.ui-tooltip-dark .ui-tooltip-icon{border-color:#444}.ui-tooltip-dark .ui-tooltip-titlebar .ui-state-hover{border-color:#303030} .ui-tooltip-cream{background-color:#FBF7AA;border-color:#F9E98E;color:#A27D35}.ui-tooltip-cream .ui-tooltip-titlebar{background-color:#F0DE7D}.ui-tooltip-cream .ui-state-default .ui-tooltip-icon{background-position:-82px 0} .ui-tooltip-red{background-color:#F78B83;border-color:#D95252;color:#912323}.ui-tooltip-red .ui-tooltip-titlebar{background-color:#F06D65}.ui-tooltip-red .ui-state-default .ui-tooltip-icon{background-position:-102px 0}.ui-tooltip-red .ui-tooltip-icon{border-color:#D95252}.ui-tooltip-red .ui-tooltip-titlebar .ui-state-hover{border-color:#D95252} .ui-tooltip-green{background-color:#CAED9E;border-color:#90D93F;color:#3F6219}.ui-tooltip-green .ui-tooltip-titlebar{background-color:#B0DE78}.ui-tooltip-green .ui-state-default .ui-tooltip-icon{background-position:-42px 0} .ui-tooltip-blue{background-color:#E5F6FE;border-color:#ADD9ED;color:#5E99BD}.ui-tooltip-blue .ui-tooltip-titlebar{background-color:#D0E9F5}.ui-tooltip-blue .ui-state-default .ui-tooltip-icon{background-position:-2px 0} .ui-tooltip-shadow{-webkit-box-shadow:1px 1px 3px 1px rgba(0,0,0,0.15);-moz-box-shadow:1px 1px 3px 1px rgba(0,0,0,0.15);box-shadow:1px 1px 3px 1px rgba(0,0,0,0.15)} .ui-tooltip-rounded,.ui-tooltip-tipsy,.ui-tooltip-bootstrap{-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px} .ui-tooltip-youtube{-moz-border-radius:2px;-webkit-border-radius:2px;border-radius:2px;-webkit-box-shadow:0 0 3px #333;-moz-box-shadow:0 0 3px #333;box-shadow:0 0 3px #333;color:white;border-width:0;background:#4A4A4A;background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0,#4A4A4A),color-stop(100%,black));background-image:-webkit-linear-gradient(top,#4A4A4A 0,black 100%);background-image:-moz-linear-gradient(top,#4A4A4A 0,black 100%);background-image:-ms-linear-gradient(top,#4A4A4A 0,black 100%);background-image:-o-linear-gradient(top,#4A4A4A 0,black 100%)}.ui-tooltip-youtube .ui-tooltip-titlebar{background-color:#4A4A4A;background-color:rgba(0,0,0,0)}.ui-tooltip-youtube .ui-tooltip-content{padding:.75em;font:12px arial,sans-serif;filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=0,StartColorStr=#4a4a4a,EndColorStr=#000000);-ms-filter:"progid:DXImageTransform.Microsoft.Gradient(GradientType=0,StartColorStr=#4a4a4a,EndColorStr=#000000);"}.ui-tooltip-youtube .ui-tooltip-icon{border-color:#222}.ui-tooltip-youtube .ui-tooltip-titlebar .ui-state-hover{border-color:#303030} .ui-tooltip-jtools{background:#232323;background:rgba(0,0,0,0.7);background-image:-webkit-gradient(linear,left top,left bottom,from(#717171),to(#232323));background-image:-moz-linear-gradient(top,#717171,#232323);background-image:-webkit-linear-gradient(top,#717171,#232323);background-image:-ms-linear-gradient(top,#717171,#232323);background-image:-o-linear-gradient(top,#717171,#232323);border:2px solid #ddd;border:2px solid rgba(241,241,241,1);-moz-border-radius:2px;-webkit-border-radius:2px;border-radius:2px;-webkit-box-shadow:0 0 12px #333;-moz-box-shadow:0 0 12px #333;box-shadow:0 0 12px #333} .ui-tooltip-jtools .ui-tooltip-titlebar{background-color:transparent;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#717171,endColorstr=#4A4A4A);-ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr=#717171,endColorstr=#4A4A4A)"}.ui-tooltip-jtools .ui-tooltip-content{filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#4A4A4A,endColorstr=#232323);-ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr=#4A4A4A,endColorstr=#232323)"}.ui-tooltip-jtools .ui-tooltip-titlebar,.ui-tooltip-jtools .ui-tooltip-content{background:transparent;color:white;border:0 dashed transparent}.ui-tooltip-jtools .ui-tooltip-icon{border-color:#555}.ui-tooltip-jtools .ui-tooltip-titlebar .ui-state-hover{border-color:#333} .ui-tooltip-cluetip{-webkit-box-shadow:4px 4px 5px rgba(0,0,0,0.4);-moz-box-shadow:4px 4px 5px rgba(0,0,0,0.4);box-shadow:4px 4px 5px rgba(0,0,0,0.4);background-color:#D9D9C2;color:#111;border:0 dashed transparent}.ui-tooltip-cluetip .ui-tooltip-titlebar{background-color:#87876A;color:white;border:0 dashed transparent}.ui-tooltip-cluetip .ui-tooltip-icon{border-color:#808064}.ui-tooltip-cluetip .ui-tooltip-titlebar .ui-state-hover{border-color:#696952;color:#696952} .ui-tooltip-tipsy{background:black;background:rgba(0,0,0,.87);color:white;border:0 solid transparent;font-size:11px;font-family:'Lucida Grande',sans-serif;font-weight:bold;line-height:16px;text-shadow:0 1px black}.ui-tooltip-tipsy .ui-tooltip-titlebar{padding:6px 35px 0 10;background-color:transparent}.ui-tooltip-tipsy .ui-tooltip-content{padding:6px 10}.ui-tooltip-tipsy .ui-tooltip-icon{border-color:#222;text-shadow:none}.ui-tooltip-tipsy .ui-tooltip-titlebar .ui-state-hover{border-color:#303030} .ui-tooltip-tipped{border:3px solid #959FA9;-moz-border-radius:3px;-webkit-border-radius:3px;border-radius:3px;background-color:#F9F9F9;color:#454545;font-weight:normal;font-family:serif}.ui-tooltip-tipped .ui-tooltip-titlebar{border-bottom-width:0;color:white;background:#3A79B8;background-image:-webkit-gradient(linear,left top,left bottom,from(#3A79B8),to(#2E629D));background-image:-webkit-linear-gradient(top,#3A79B8,#2E629D);background-image:-moz-linear-gradient(top,#3A79B8,#2E629D);background-image:-ms-linear-gradient(top,#3A79B8,#2E629D);background-image:-o-linear-gradient(top,#3A79B8,#2E629D);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#3A79B8,endColorstr=#2E629D);-ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr=#3A79B8,endColorstr=#2E629D)"}.ui-tooltip-tipped .ui-tooltip-icon{border:2px solid #285589;background:#285589}.ui-tooltip-tipped .ui-tooltip-icon .ui-icon{background-color:#FBFBFB;color:#555} .ui-tooltip-bootstrap{font-size:13px;line-height:18px;color:#333333;background-color:#ffffff;border:1px solid #ccc;border:1px solid rgba(0,0,0,0.2);*border-right-width:2px;*border-bottom-width:2px;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;-webkit-box-shadow:0 5px 10px rgba(0,0,0,0.2);-moz-box-shadow:0 5px 10px rgba(0,0,0,0.2);box-shadow:0 5px 10px rgba(0,0,0,0.2);-webkit-background-clip:padding-box;-moz-background-clip:padding;background-clip:padding-box}.ui-tooltip-bootstrap .ui-tooltip-titlebar{font-size:18px;line-height:22px;border-bottom:1px solid #ccc;background-color:transparent}.ui-tooltip-bootstrap .ui-tooltip-titlebar .ui-state-default{right:9px;top:49%;border-style:none}.ui-tooltip-bootstrap .ui-tooltip-icon{background:white}.ui-tooltip-bootstrap .ui-tooltip-icon .ui-icon{width:auto;height:auto;float:right;font-size:20px;font-weight:bold;line-height:18px;color:#000000;text-shadow:0 1px 0 #ffffff;opacity:0.2;filter:alpha(opacity=20)}.ui-tooltip-bootstrap .ui-tooltip-icon .ui-icon:hover{color:#000000;text-decoration:none;cursor:pointer;opacity:0.4;filter:alpha(opacity=40)} .ui-tooltip:not(.ie9haxors) div.ui-tooltip-content,.ui-tooltip:not(.ie9haxors) div.ui-tooltip-titlebar{filter:none;-ms-filter:none} .ui-tooltip .ui-tooltip-tip{margin:0 auto;overflow:hidden;z-index:10}.ui-tooltip .ui-tooltip-tip,.ui-tooltip .ui-tooltip-tip *{position:absolute;line-height:0.1px !important;font-size:0.1px !important;color:#123456;background:transparent;border:0 dashed transparent}.ui-tooltip .ui-tooltip-tip canvas{top:0;left:0} #qtip-overlay{position:fixed;left:-10000em;top:-10000em} #qtip-overlay.blurs{cursor:pointer} #qtip-overlay div{position:absolute;left:0;top:0;width:100%;height:100%;background-color:black;opacity:0.7;filter:alpha(opacity=70);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=70)"}
+
+/* cache key: wiki:resourceloader:filter:minify-css:4:4bbb55072f6cad2f96ea1a1b1527a70a */</style><style type="text/css" media="all">.mw-collapsible-toggle{float:right} li .mw-collapsible-toggle{float:none} .mw-collapsible-toggle-li{list-style:none}
+
+/* cache key: wiki:resourceloader:filter:minify-css:4:4250852ed2349a0d4d0fc6509a3e7d4c */</style><style type="text/css" media="all">.js-messagebox{margin:1em 5%;padding:0.5em 2.5%;border:1px solid #ccc;background-color:#fcfcfc;font-size:0.8em}.js-messagebox .js-messagebox-group{margin:1px;padding:0.5em 2.5%;border-bottom:1px solid #ddd}.js-messagebox .js-messagebox-group:last-child{border-bottom:thin none transparent}
+
+/* cache key: wiki:resourceloader:filter:minify-css:4:8b08bdc91c52a9ffba396dccfb5b473c */</style><style type="text/css" media="all">.suggestions{overflow:hidden;position:absolute;top:0px;left:0px;width:0px;border:none;z-index:1099;padding:0;margin:-1px -1px 0 0} html > body .suggestions{margin:-1px 0 0 0}.suggestions-special{position:relative;background-color:Window;font-size:0.8em;cursor:pointer;border:solid 1px #aaaaaa;padding:0;margin:0;margin-top:-2px;display:none;padding:0.25em 0.25em;line-height:1.25em}.suggestions-results{background-color:white;background-color:Window;font-size:0.8em;cursor:pointer;border:solid 1px #aaaaaa;padding:0;margin:0}.suggestions-result{color:black;color:WindowText;margin:0;line-height:1.5em;padding:0.01em 0.25em;text-align:left}.suggestions-result-current{background-color:#4C59A6;background-color:Highlight;color:white;color:HighlightText}.suggestions-special .special-label{font-size:0.8em;color:gray;text-align:left}.suggestions-special .special-query{color:black;font-style:italic;text-align:left}.suggestions-special .special-hover{background-color:silver}.suggestions-result-current .special-label,.suggestions-result-current .special-query{color:white;color:HighlightText}.autoellipsis-matched,.highlight{font-weight:bold}
+
+/* cache key: wiki:resourceloader:filter:minify-css:4:1421bbe1922a44daa3fbb100d858b3d8 */</style><style type="text/css" media="all">#mw-panel.collapsible-nav div h5:hover{cursor:pointer;text-decoration:none}#mw-panel.collapsible-nav div.collapsed h5:hover{text-decoration:underline}#mw-panel.collapsible-nav div.portal div.body{display:none}#mw-panel.collapsible-nav div.persistent div.body{display:block}#mw-panel.collapsible-nav div.first h5{display:none}#mw-panel.collapsible-nav div.persistent h5{cursor:default}
+
+/* cache key: wiki:resourceloader:filter:minify-css:4:2b7660b6bc289cb7f97173ab5ed66c64 */</style><style type="text/css" media="all">.ui-helper-hidden{display:none}.ui-helper-hidden-accessible{position:absolute;left:-99999999px}.ui-helper-reset{margin:0;padding:0;border:0;outline:0;line-height:1.3;text-decoration:none;font-size:100%;list-style:none}.ui-helper-clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}.ui-helper-clearfix{display:inline-block} * html .ui-helper-clearfix{height:1%}.ui-helper-clearfix{display:block} .ui-helper-zfix{width:100%;height:100%;top:0;left:0;position:absolute;opacity:0;filter:Alpha(Opacity=0)} .ui-state-disabled{cursor:default !important}  .ui-icon{display:block;text-indent:-99999px;overflow:hidden;background-repeat:no-repeat}  .ui-widget-overlay{position:absolute;top:0;left:0;width:100%;height:100%}  .ui-widget{font-family:sans-serif;font-size:1em}.ui-widget .ui-widget{font-size:1em}.ui-widget input,.ui-widget select,.ui-widget textarea,.ui-widget button{font-family:sans-serif;font-size:1em}.ui-widget-content{border:1px solid #aaaaaa;background:#ffffff url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAABkCAYAAAD0ZHJ6AAAAeUlEQVRoge3OMQHAIBAAsVL/nh8JDDfAkCjImpn5HvbfDpwIVoKVYCVYCVaClWAlWAlWgpVgJVgJVoKVYCVYCVaClWAlWAlWgpVgJVgJVoKVYCVYCVaClWAlWAlWgpVgJVgJVoKVYCVYCVaClWAlWAlWgpVgJVgJVhtqiwTEKTLXTgAAAABJRU5ErkJggg==) 50% 50% repeat-x;background:#ffffff url(http://www.developer.nokia.com/Community/Wiki/resources/jquery.ui/themes/default/images/ui-bg_flat_75_ffffff_40x100.png?2012-11-12T15:15:00Z) 50% 50% repeat-x!ie;color:#222222}.ui-widget-content a{color:#222222}.ui-widget-header{border:1px solid #aaaaaa;background:#cccccc url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAABkCAYAAAD0ZHJ6AAAAe0lEQVRoge3OMQHAIBAAMcC/tPdUJHTI0A4XBdkz86wfO18H3hRUBVVBVVAVVAVVQVVQFVQFVUFVUBVUBVVBVVAVVAVVQVVQFVQFVUFVUBVUBVVBVVAVVAVVQVVQFVQFVUFVUBVUBVVBVVAVVAVVQVVQFVQFVUFVUBVUF9M/BCsfFIRbAAAAAElFTkSuQmCC) 50% 50% repeat-x;background:#cccccc url(http://www.developer.nokia.com/Community/Wiki/resources/jquery.ui/themes/default/images/ui-bg_flat_75_cccccc_40x100.png?2012-11-12T15:15:00Z) 50% 50% repeat-x!ie;color:#222222;font-weight:bold}.ui-widget-header a{color:#222222} .ui-state-default,.ui-widget-content .ui-state-default,.ui-widget-header .ui-state-default{border:1px solid #d3d3d3;background:#e6e6e6 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAABkCAYAAAD0ZHJ6AAAAe0lEQVRoge3OMQHAIBAAMcC/zrdRJHTI0A4XBdkz86wfO18H3hRUBVVBVVAVVAVVQVVQFVQFVUFVUBVUBVVBVVAVVAVVQVVQFVQFVUFVUBVUBVVBVVAVVAVVQVVQFVQFVUFVUBVUBVVBVVAVVAVVQVVQFVQFVUFVUBVUF/04BHl6pKUyAAAAAElFTkSuQmCC) 50% 50% repeat-x;background:#e6e6e6 url(http://www.developer.nokia.com/Community/Wiki/resources/jquery.ui/themes/default/images/ui-bg_flat_75_e6e6e6_40x100.png?2012-11-12T15:15:00Z) 50% 50% repeat-x!ie;font-weight:normal;color:#555555}.ui-state-default a,.ui-state-default a:link,.ui-state-default a:visited{color:#555555;text-decoration:none}.ui-state-hover,.ui-widget-content .ui-state-hover,.ui-widget-header .ui-state-hover,.ui-state-focus,.ui-widget-content .ui-state-focus,.ui-widget-header .ui-state-focus{border:1px solid #999999;background:#dadada url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAABkCAYAAAD0ZHJ6AAAAe0lEQVRoge3OMQHAIBAAMcC/wjdTJHTI0A4XBdkz86wfO18H3hRUBVVBVVAVVAVVQVVQFVQFVUFVUBVUBVVBVVAVVAVVQVVQFVQFVUFVUBVUBVVBVVAVVAVVQVVQFVQFVUFVUBVUBVVBVVAVVAVVQVVQFVQFVUFVUBVUFyT4BFW9q9STAAAAAElFTkSuQmCC) 50% 50% repeat-x;background:#dadada url(http://www.developer.nokia.com/Community/Wiki/resources/jquery.ui/themes/default/images/ui-bg_flat_75_dadada_40x100.png?2012-11-12T15:15:00Z) 50% 50% repeat-x!ie;font-weight:normal;color:#212121}.ui-state-hover a,.ui-state-hover a:hover{color:#212121;text-decoration:none}.ui-state-active,.ui-widget-content .ui-state-active,.ui-widget-header .ui-state-active{border:1px solid #aaaaaa;background:#ffffff url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAABkCAYAAAD0ZHJ6AAAAeUlEQVRoge3OMQHAIBAAsVL/nh8JDDfAkCjImpn5HvbfDpwIVoKVYCVYCVaClWAlWAlWgpVgJVgJVoKVYCVYCVaClWAlWAlWgpVgJVgJVoKVYCVYCVaClWAlWAlWgpVgJVgJVoKVYCVYCVaClWAlWAlWgpVgJVgJVhtqiwTEKTLXTgAAAABJRU5ErkJggg==) 50% 50% repeat-x;background:#ffffff url(http://www.developer.nokia.com/Community/Wiki/resources/jquery.ui/themes/default/images/ui-bg_flat_65_ffffff_40x100.png?2012-11-12T15:15:00Z) 50% 50% repeat-x!ie;font-weight:normal;color:#212121}.ui-state-active a,.ui-state-active a:link,.ui-state-active a:visited{color:#212121;text-decoration:none}.ui-widget :active{outline:none} .ui-state-highlight,.ui-widget-content .ui-state-highlight,.ui-widget-header .ui-state-highlight{border:1px solid #fcefa1;background:#fbf9ee url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAABkCAYAAAD0ZHJ6AAAAfUlEQVRoge3OsRGAIAAAMWT/Wek9CxmBIoUWnwlyPfd6x4/NrwMnBVVBVVAVVAVVQVVQFVQFVUFVUBVUBVVBVVAVVAVVQVVQFVQFVUFVUBVUBVVBVVAVVAVVQVVQFVQFVUFVUBVUBVVBVVAVVAVVQVVQFVQFVUFVUBVUBdUGyFkEqRPgbgMAAAAASUVORK5CYII=) 50% 50% repeat-x;background:#fbf9ee url(http://www.developer.nokia.com/Community/Wiki/resources/jquery.ui/themes/default/images/ui-bg_flat_55_fbf9ee_40x100.png?2012-11-12T15:15:00Z) 50% 50% repeat-x!ie;color:#363636}.ui-state-highlight a,.ui-widget-content .ui-state-highlight a,.ui-widget-header .ui-state-highlight a{color:#363636}.ui-state-error,.ui-widget-content .ui-state-error,.ui-widget-header .ui-state-error{border:1px solid #cd0a0a;background:#fef1ec url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAABkCAYAAAD0ZHJ6AAAAfUlEQVRoge3OMQGAIAAAQaR/VBYLKBEYbtDhL8Fdz73e8WPz68BJQVVQFVQFVUFVUBVUBVVBVVAVVAVVQVVQFVQFVUFVUBVUBVVBVVAVVAVVQVVQFVQFVUFVUBVUBVVBVVAVVAVVQVVQFVQFVUFVUBVUBVVBVVAVVAVVQbUBECEEoi35emcAAAAASUVORK5CYII=) 50% 50% repeat-x;background:#fef1ec url(http://www.developer.nokia.com/Community/Wiki/resources/jquery.ui/themes/default/images/ui-bg_flat_95_fef1ec_40x100.png?2012-11-12T15:15:00Z) 50% 50% repeat-x!ie;color:#cd0a0a}.ui-state-error a,.ui-widget-content .ui-state-error a,.ui-widget-header .ui-state-error a{color:#cd0a0a}.ui-state-error-text,.ui-widget-content .ui-state-error-text,.ui-widget-header .ui-state-error-text{color:#cd0a0a}.ui-priority-primary,.ui-widget-content .ui-priority-primary,.ui-widget-header .ui-priority-primary{font-weight:bold}.ui-priority-secondary,.ui-widget-content .ui-priority-secondary,.ui-widget-header .ui-priority-secondary{opacity:.7;filter:Alpha(Opacity=70);font-weight:normal}.ui-state-disabled,.ui-widget-content .ui-state-disabled,.ui-widget-header .ui-state-disabled{opacity:.35;filter:Alpha(Opacity=35);background-image:none}  .ui-icon{width:16px;height:16px}.ui-icon,.ui-widget-content .ui-icon,.ui-widget-header .ui-icon{background-image:url(data:image/png;base64,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);background-image:url(http://www.developer.nokia.com/Community/Wiki/resources/jquery.ui/themes/default/images/ui-icons_222222_256x240.png?2012-11-12T15:15:00Z)!ie}.ui-state-default .ui-icon{background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAADwCAMAAADYSUr5AAAA7VBMVEWMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMioyMiozJxoFPAAAATnRSTlMAGBAyBAhQv4OZLiJUcEBmYBoSzQwgPBZCSEoeWiYwUiyFNIeBw2rJz8c4RBy9uXyrtaWNqa2zKP2fJO8KBgKPo2KVoa9s351GPm5+kWho0kj9AAAPhUlEQVR4nO1djWLbthEGyUiq5YSSLXtp7FpLOmfzkmxr126tmi2p03RJ1/Xe/3EGgARxPyAgRbIk2/hkSz4CJO4+HsE7AJSVysjI2AMUUOxahZ2iANhzBtZWr4BoIRSYAVN5u4QwDwQDRbcwfUi5KS3wFuDmFnQLa4Dtb//cqktwD5QEFFwfUs7PoCCA7y4bEJVFizcIob8KmhAplwwqVjt+9FBl3uINQniwEiryEyw9JHqGpQdEFNi+B4QQ7QOiHhysIPoAxUqxvdvvA9K42bsAv4S2fxfYOe57IJSRkZGRkZGxx7jxSHDHcRBXQMTyIjInBgHwBJ/bEx8PEANC+uhbpSSggCBAVODVabpI1S/k4WLZpTn6NpMhoX9Y40hxYERFpMcqUs4AloCtDQdID1YhnyXZ2hLjAYWiO9Dy1PDB7tPhIqLx+uMB8grZaR+Qxl2/C2RkZGRkZGRk7A7rBf7J0DR5/LUTjzUPIPSPGvQJiVJiB7kcQCiUOJrcFNtDZIf2xarQ3aGvLNxAVIFAabz90BFiBIlycTBhgWwOWCH0FLYHlPqwHaCvcIn2ZbosCevfPTRiFFcgvHukCjWwrc3GrGh1fsAof8EaUReKXkCB4/MzFNo97qLpFiKFYv/kNR5YQxQbQEofkZ2OuEOHqqT6gFTpru8CN7x/+jaZkZGRkZGRcV+x/rLUNcMM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);background-image:url(http://www.developer.nokia.com/Community/Wiki/resources/jquery.ui/themes/default/images/ui-icons_888888_256x240.png?2012-11-12T15:15:00Z)!ie}.ui-state-hover .ui-icon,.ui-state-focus .ui-icon,.ui-state-active .ui-icon{background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAADwCAMAAADYSUr5AAAA7VBMVEVERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkRERkQfbf86AAAATnRSTlMAGBAyBAhQv4OZLiJUcEBmYBoSzQwgPBZCSEoeWiYwUiyFNIeBw2rJz8c4RBy9uXyrtaWNqa2zKP2fJO8KBgKPo2KVoa9s351GPm5+kWho0kj9AAAPhUlEQVR4nO1djWLbthEGyUiq5YSSLXtp7FpLOmfzkmxr126tmi2p03RJ1/Xe/3EGgARxPyAgRbIk2/hkSz4CJO4+HsE7AJSVysjI2AMUUOxahZ2iANhzBtZWr4BoIRSYAVN5u4QwDwQDRbcwfUi5KS3wFuDmFnQLa4Dtb//cqktwD5QEFFwfUs7PoCCA7y4bEJVFizcIob8KmhAplwwqVjt+9FBl3uINQniwEiryEyw9JHqGpQdEFNi+B4QQ7QOiHhysIPoAxUqxvdvvA9K42bsAv4S2fxfYOe57IJSRkZGRkZGxx7jxSHDHcRBXQMTyIjInBgHwBJ/bEx8PEANC+uhbpSSggCBAVODVabpI1S/k4WLZpTn6NpMhoX9Y40hxYERFpMcqUs4AloCtDQdID1YhnyXZ2hLjAYWiO9Dy1PDB7tPhIqLx+uMB8grZaR+Qxl2/C2RkZGRkZGRk7A7rBf7J0DR5/LUTjzUPIPSPGvQJiVJiB7kcQCiUOJrcFNtDZIf2xarQ3aGvLNxAVIFAabz90BFiBIlycTBhgWwOWCH0FLYHlPqwHaCvcIn2ZbosCevfPTRiFFcgvHukCjWwrc3GrGh1fsAof8EaUReKXkCB4/MzFNo97qLpFiKFYv/kNR5YQxQbQEofkZ2OuEOHqqT6gFTpru8CN7x/+jaZkZGRkZGRcV+x/rLUNcMM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);background-image:url(http://www.developer.nokia.com/Community/Wiki/resources/jquery.ui/themes/default/images/ui-icons_454545_256x240.png?2012-11-12T15:15:00Z)!ie}.ui-state-highlight .ui-icon{background-image:url(data:image/png;base64,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);background-image:url(http://www.developer.nokia.com/Community/Wiki/resources/jquery.ui/themes/default/images/ui-icons_2e83ff_256x240.png?2012-11-12T15:15:00Z)!ie}.ui-state-error .ui-icon,.ui-state-error-text .ui-icon{background-image:url(data:image/png;base64,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);background-image:url(http://www.developer.nokia.com/Community/Wiki/resources/jquery.ui/themes/default/images/ui-icons_cd0a0a_256x240.png?2012-11-12T15:15:00Z)!ie} .ui-icon-carat-1-n{background-position:0 0}.ui-icon-carat-1-ne{background-position:-16px 0}.ui-icon-carat-1-e{background-position:-32px 0}.ui-icon-carat-1-se{background-position:-48px 0}.ui-icon-carat-1-s{background-position:-64px 0}.ui-icon-carat-1-sw{background-position:-80px 0}.ui-icon-carat-1-w{background-position:-96px 0}.ui-icon-carat-1-nw{background-position:-112px 0}.ui-icon-carat-2-n-s{background-position:-128px 0}.ui-icon-carat-2-e-w{background-position:-144px 0}.ui-icon-triangle-1-n{background-position:0 -16px}.ui-icon-triangle-1-ne{background-position:-16px -16px}.ui-icon-triangle-1-e{background-position:-32px -16px}.ui-icon-triangle-1-se{background-position:-48px -16px}.ui-icon-triangle-1-s{background-position:-64px -16px}.ui-icon-triangle-1-sw{background-position:-80px -16px}.ui-icon-triangle-1-w{background-position:-96px -16px}.ui-icon-triangle-1-nw{background-position:-112px -16px}.ui-icon-triangle-2-n-s{background-position:-128px -16px}.ui-icon-triangle-2-e-w{background-position:-144px -16px}.ui-icon-arrow-1-n{background-position:0 -32px}.ui-icon-arrow-1-ne{background-position:-16px -32px}.ui-icon-arrow-1-e{background-position:-32px -32px}.ui-icon-arrow-1-se{background-position:-48px -32px}.ui-icon-arrow-1-s{background-position:-64px -32px}.ui-icon-arrow-1-sw{background-position:-80px -32px}.ui-icon-arrow-1-w{background-position:-96px -32px}.ui-icon-arrow-1-nw{background-position:-112px -32px}.ui-icon-arrow-2-n-s{background-position:-128px -32px}.ui-icon-arrow-2-ne-sw{background-position:-144px -32px}.ui-icon-arrow-2-e-w{background-position:-160px -32px}.ui-icon-arrow-2-se-nw{background-position:-176px -32px}.ui-icon-arrowstop-1-n{background-position:-192px -32px}.ui-icon-arrowstop-1-e{background-position:-208px -32px}.ui-icon-arrowstop-1-s{background-position:-224px -32px}.ui-icon-arrowstop-1-w{background-position:-240px -32px}.ui-icon-arrowthick-1-n{background-position:0 -48px}.ui-icon-arrowthick-1-ne{background-position:-16px -48px}.ui-icon-arrowthick-1-e{background-position:-32px -48px}.ui-icon-arrowthick-1-se{background-position:-48px -48px}.ui-icon-arrowthick-1-s{background-position:-64px -48px}.ui-icon-arrowthick-1-sw{background-position:-80px -48px}.ui-icon-arrowthick-1-w{background-position:-96px -48px}.ui-icon-arrowthick-1-nw{background-position:-112px -48px}.ui-icon-arrowthick-2-n-s{background-position:-128px -48px}.ui-icon-arrowthick-2-ne-sw{background-position:-144px -48px}.ui-icon-arrowthick-2-e-w{background-position:-160px -48px}.ui-icon-arrowthick-2-se-nw{background-position:-176px -48px}.ui-icon-arrowthickstop-1-n{background-position:-192px -48px}.ui-icon-arrowthickstop-1-e{background-position:-208px -48px}.ui-icon-arrowthickstop-1-s{background-position:-224px -48px}.ui-icon-arrowthickstop-1-w{background-position:-240px -48px}.ui-icon-arrowreturnthick-1-w{background-position:0 -64px}.ui-icon-arrowreturnthick-1-n{background-position:-16px -64px}.ui-icon-arrowreturnthick-1-e{background-position:-32px -64px}.ui-icon-arrowreturnthick-1-s{background-position:-48px -64px}.ui-icon-arrowreturn-1-w{background-position:-64px -64px}.ui-icon-arrowreturn-1-n{background-position:-80px -64px}.ui-icon-arrowreturn-1-e{background-position:-96px -64px}.ui-icon-arrowreturn-1-s{background-position:-112px -64px}.ui-icon-arrowrefresh-1-w{background-position:-128px -64px}.ui-icon-arrowrefresh-1-n{background-position:-144px -64px}.ui-icon-arrowrefresh-1-e{background-position:-160px -64px}.ui-icon-arrowrefresh-1-s{background-position:-176px -64px}.ui-icon-arrow-4{background-position:0 -80px}.ui-icon-arrow-4-diag{background-position:-16px -80px}.ui-icon-extlink{background-position:-32px -80px}.ui-icon-newwin{background-position:-48px -80px}.ui-icon-refresh{background-position:-64px -80px}.ui-icon-shuffle{background-position:-80px -80px}.ui-icon-transfer-e-w{background-position:-96px -80px}.ui-icon-transferthick-e-w{background-position:-112px -80px}.ui-icon-folder-collapsed{background-position:0 -96px}.ui-icon-folder-open{background-position:-16px -96px}.ui-icon-document{background-position:-32px -96px}.ui-icon-document-b{background-position:-48px -96px}.ui-icon-note{background-position:-64px -96px}.ui-icon-mail-closed{background-position:-80px -96px}.ui-icon-mail-open{background-position:-96px -96px}.ui-icon-suitcase{background-position:-112px -96px}.ui-icon-comment{background-position:-128px -96px}.ui-icon-person{background-position:-144px -96px}.ui-icon-print{background-position:-160px -96px}.ui-icon-trash{background-position:-176px -96px}.ui-icon-locked{background-position:-192px -96px}.ui-icon-unlocked{background-position:-208px -96px}.ui-icon-bookmark{background-position:-224px -96px}.ui-icon-tag{background-position:-240px -96px}.ui-icon-home{background-position:0 -112px}.ui-icon-flag{background-position:-16px -112px}.ui-icon-calendar{background-position:-32px -112px}.ui-icon-cart{background-position:-48px -112px}.ui-icon-pencil{background-position:-64px -112px}.ui-icon-clock{background-position:-80px -112px}.ui-icon-disk{background-position:-96px -112px}.ui-icon-calculator{background-position:-112px -112px}.ui-icon-zoomin{background-position:-128px -112px}.ui-icon-zoomout{background-position:-144px -112px}.ui-icon-search{background-position:-160px -112px}.ui-icon-wrench{background-position:-176px -112px}.ui-icon-gear{background-position:-192px -112px}.ui-icon-heart{background-position:-208px -112px}.ui-icon-star{background-position:-224px -112px}.ui-icon-link{background-position:-240px -112px}.ui-icon-cancel{background-position:0 -128px}.ui-icon-plus{background-position:-16px -128px}.ui-icon-plusthick{background-position:-32px -128px}.ui-icon-minus{background-position:-48px -128px}.ui-icon-minusthick{background-position:-64px -128px}.ui-icon-close{background-position:-80px -128px}.ui-icon-closethick{background-position:-96px -128px}.ui-icon-key{background-position:-112px -128px}.ui-icon-lightbulb{background-position:-128px -128px}.ui-icon-scissors{background-position:-144px -128px}.ui-icon-clipboard{background-position:-160px -128px}.ui-icon-copy{background-position:-176px -128px}.ui-icon-contact{background-position:-192px -128px}.ui-icon-image{background-position:-208px -128px}.ui-icon-video{background-position:-224px -128px}.ui-icon-script{background-position:-240px -128px}.ui-icon-alert{background-position:0 -144px}.ui-icon-info{background-position:-16px -144px}.ui-icon-notice{background-position:-32px -144px}.ui-icon-help{background-position:-48px -144px}.ui-icon-check{background-position:-64px -144px}.ui-icon-bullet{background-position:-80px -144px}.ui-icon-radio-off{background-position:-96px -144px}.ui-icon-radio-on{background-position:-112px -144px}.ui-icon-pin-w{background-position:-128px -144px}.ui-icon-pin-s{background-position:-144px -144px}.ui-icon-play{background-position:0 -160px}.ui-icon-pause{background-position:-16px -160px}.ui-icon-seek-next{background-position:-32px -160px}.ui-icon-seek-prev{background-position:-48px -160px}.ui-icon-seek-end{background-position:-64px -160px}.ui-icon-seek-start{background-position:-80px -160px} .ui-icon-seek-first{background-position:-80px -160px}.ui-icon-stop{background-position:-96px -160px}.ui-icon-eject{background-position:-112px -160px}.ui-icon-volume-off{background-position:-128px -160px}.ui-icon-volume-on{background-position:-144px -160px}.ui-icon-power{background-position:0 -176px}.ui-icon-signal-diag{background-position:-16px -176px}.ui-icon-signal{background-position:-32px -176px}.ui-icon-battery-0{background-position:-48px -176px}.ui-icon-battery-1{background-position:-64px -176px}.ui-icon-battery-2{background-position:-80px -176px}.ui-icon-battery-3{background-position:-96px -176px}.ui-icon-circle-plus{background-position:0 -192px}.ui-icon-circle-minus{background-position:-16px -192px}.ui-icon-circle-close{background-position:-32px -192px}.ui-icon-circle-triangle-e{background-position:-48px -192px}.ui-icon-circle-triangle-s{background-position:-64px -192px}.ui-icon-circle-triangle-w{background-position:-80px -192px}.ui-icon-circle-triangle-n{background-position:-96px -192px}.ui-icon-circle-arrow-e{background-position:-112px -192px}.ui-icon-circle-arrow-s{background-position:-128px -192px}.ui-icon-circle-arrow-w{background-position:-144px -192px}.ui-icon-circle-arrow-n{background-position:-160px -192px}.ui-icon-circle-zoomin{background-position:-176px -192px}.ui-icon-circle-zoomout{background-position:-192px -192px}.ui-icon-circle-check{background-position:-208px -192px}.ui-icon-circlesmall-plus{background-position:0 -208px}.ui-icon-circlesmall-minus{background-position:-16px -208px}.ui-icon-circlesmall-close{background-position:-32px -208px}.ui-icon-squaresmall-plus{background-position:-48px -208px}.ui-icon-squaresmall-minus{background-position:-64px -208px}.ui-icon-squaresmall-close{background-position:-80px -208px}.ui-icon-grip-dotted-vertical{background-position:0 -224px}.ui-icon-grip-dotted-horizontal{background-position:-16px -224px}.ui-icon-grip-solid-vertical{background-position:-32px -224px}.ui-icon-grip-solid-horizontal{background-position:-48px -224px}.ui-icon-gripsmall-diagonal-se{background-position:-64px -224px}.ui-icon-grip-diagonal-se{background-position:-80px -224px}  .ui-corner-tl{-moz-border-radius-topleft:0;-webkit-border-top-left-radius:0;border-top-left-radius:0}.ui-corner-tr{-moz-border-radius-topright:0;-webkit-border-top-right-radius:0;border-top-right-radius:0}.ui-corner-bl{-moz-border-radius-bottomleft:0;-webkit-border-bottom-left-radius:0;border-bottom-left-radius:0}.ui-corner-br{-moz-border-radius-bottomright:0;-webkit-border-bottom-right-radius:0;border-bottom-right-radius:0}.ui-corner-top{-moz-border-radius-topleft:0;-webkit-border-top-left-radius:0;border-top-left-radius:0;-moz-border-radius-topright:0;-webkit-border-top-right-radius:0;border-top-right-radius:0}.ui-corner-bottom{-moz-border-radius-bottomleft:0;-webkit-border-bottom-left-radius:0;border-bottom-left-radius:0;-moz-border-radius-bottomright:0;-webkit-border-bottom-right-radius:0;border-bottom-right-radius:0}.ui-corner-right{-moz-border-radius-topright:0;-webkit-border-top-right-radius:0;border-top-right-radius:0;-moz-border-radius-bottomright:0;-webkit-border-bottom-right-radius:0;border-bottom-right-radius:0}.ui-corner-left{-moz-border-radius-topleft:0;-webkit-border-top-left-radius:0;border-top-left-radius:0;-moz-border-radius-bottomleft:0;-webkit-border-bottom-left-radius:0;border-bottom-left-radius:0}.ui-corner-all{-moz-border-radius:0;-webkit-border-radius:0;border-radius:0} .ui-widget-overlay,.ui-widget-shadow{background:#aaaaaa url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAABkCAYAAAD0ZHJ6AAAAe0lEQVRoge3OMQHAIBAAMcC/kjdZJHTI0A4XBdkz86wfO18H3hRUBVVBVVAVVAVVQVVQFVQFVUFVUBVUBVVBVVAVVAVVQVVQFVQFVUFVUBVUBVVBVVAVVAVVQVVQFVQFVUFVUBVUBVVBVVAVVAVVQVVQFVQFVUFVUBVUF8O8A8WdY6opAAAAAElFTkSuQmCC) 50% 50% repeat-x;background:#aaaaaa url(http://www.developer.nokia.com/Community/Wiki/resources/jquery.ui/themes/default/images/ui-bg_flat_0_aaaaaa_40x100.png?2012-11-12T15:15:00Z) 50% 50% repeat-x!ie}.ui-widget-overlay{opacity:.30;filter:Alpha(Opacity=30)}.ui-widget-shadow{margin:-8px 0 0 -8px;padding:8px;opacity:.30;filter:Alpha(Opacity=30);-moz-border-radius:8px;-webkit-border-radius:8px;border-radius:8px}
+
+/* cache key: wiki:resourceloader:filter:minify-css:4:37f1550adc43143bf170e67469fd61cb */</style><style type="text/css" media="all">.ui-resizable{position:relative}.ui-resizable-handle{position:absolute;font-size:0.1px;z-index:99999;display:block}.ui-resizable-disabled .ui-resizable-handle,.ui-resizable-autohide .ui-resizable-handle{display:none}.ui-resizable-n{cursor:n-resize;height:7px;width:100%;top:-5px;left:0}.ui-resizable-s{cursor:s-resize;height:7px;width:100%;bottom:-5px;left:0}.ui-resizable-e{cursor:e-resize;width:7px;right:-5px;top:0;height:100%}.ui-resizable-w{cursor:w-resize;width:7px;left:-5px;top:0;height:100%}.ui-resizable-se{cursor:se-resize;width:12px;height:12px;right:1px;bottom:1px}.ui-resizable-sw{cursor:sw-resize;width:9px;height:9px;left:-5px;bottom:-5px}.ui-resizable-nw{cursor:nw-resize;width:9px;height:9px;left:-5px;top:-5px}.ui-resizable-ne{cursor:ne-resize;width:9px;height:9px;right:-5px;top:-5px}
+
+/* cache key: wiki:resourceloader:filter:minify-css:4:c3a005c034055064ab5f5553477e56aa */</style><style type="text/css" media="all">.ui-autocomplete{position:absolute;cursor:default}.ui-autocomplete-loading{background:white url(data:image/gif;base64,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) right center no-repeat;url(http://www.developer.nokia.com/Community/Wiki/resources/jquery.ui/themes/default/images/ui-anim_basic_16x16.gif?2012-11-12T15:15:00Z) right center no-repeat!ie} * html .ui-autocomplete{width:1px}  .ui-menu{list-style:none;padding:2px;margin:0;display:block;float:left}.ui-menu .ui-menu{margin-top:-3px}.ui-menu .ui-menu-item{margin:0;padding:0;zoom:1;float:left;clear:left;width:100%}.ui-menu .ui-menu-item a{text-decoration:none;display:block;padding:.2em .4em;line-height:1.5;zoom:1}.ui-menu .ui-menu-item a.ui-state-hover,.ui-menu .ui-menu-item a.ui-state-active{font-weight:normal;margin:-1px}
+
+/* cache key: wiki:resourceloader:filter:minify-css:4:89087e183e8a2079219ffbfe047427ae */</style><style type="text/css" media="all">.ui-button{display:inline-block;position:relative;padding:0;margin-right:.1em;text-decoration:none !important;cursor:pointer;text-align:center;zoom:1;overflow:visible} .ui-button-icon-only{width:2.2em} button.ui-button-icon-only{width:2.4em} .ui-button-icons-only{width:3.4em}button.ui-button-icons-only{width:3.7em} .ui-button .ui-button-text{display:block;line-height:1.4}.ui-button-text-only .ui-button-text{padding:.4em 1em}.ui-button-icon-only .ui-button-text,.ui-button-icons-only .ui-button-text{padding:.4em;text-indent:-9999999px}.ui-button-text-icon .ui-button-text,.ui-button-text-icons .ui-button-text{padding:.4em 1em .4em 2.1em}.ui-button-text-icons .ui-button-text{padding-left:2.1em;padding-right:2.1em} input.ui-button{padding:.4em 1em} .ui-button-icon-only .ui-icon,.ui-button-text-icon .ui-icon,.ui-button-text-icons .ui-icon,.ui-button-icons-only .ui-icon{position:absolute;top:50%;margin-top:-8px}.ui-button-icon-only .ui-icon{left:50%;margin-left:-8px}.ui-button-text-icon .ui-button-icon-primary,.ui-button-text-icons .ui-button-icon-primary,.ui-button-icons-only .ui-button-icon-primary{left:.5em}.ui-button-text-icons .ui-button-icon-secondary,.ui-button-icons-only .ui-button-icon-secondary{right:.5em} .ui-buttonset{margin-right:7px}.ui-buttonset .ui-button{margin-left:0;margin-right:-.3em} button.ui-button::-moz-focus-inner{border:0;padding:0}
+
+/* cache key: wiki:resourceloader:filter:minify-css:4:a45fcc57946c9b778a8094e4eddd1cd7 */</style><style type="text/css" media="all">.ui-dialog{position:absolute;padding:.2em;width:300px;overflow:hidden}.ui-dialog .ui-dialog-titlebar{padding:.5em 1em .3em;position:relative}.ui-dialog .ui-dialog-title{float:left;margin:.1em 16px .2em 0}.ui-dialog .ui-dialog-titlebar-close{position:absolute;right:.3em;top:50%;width:19px;margin:-10px 0 0 0;padding:1px;height:18px}.ui-dialog .ui-dialog-titlebar-close span{display:block;margin:1px}.ui-dialog .ui-dialog-titlebar-close:hover,.ui-dialog .ui-dialog-titlebar-close:focus{padding:0}.ui-dialog .ui-dialog-content{border:0;padding:.5em 1em;background:none;overflow:auto;zoom:1}.ui-dialog .ui-dialog-buttonpane{text-align:left;border-width:1px 0 0 0;background-image:none;margin:.5em 0 0 0;padding:.3em 1em .5em .4em}.ui-dialog .ui-dialog-buttonpane button{float:right;margin:.5em .4em .5em 0;cursor:pointer;padding:.2em .6em .3em .6em;line-height:1.4em;width:auto;overflow:visible}.ui-dialog .ui-resizable-se{width:14px;height:14px;right:3px;bottom:3px}.ui-draggable .ui-dialog-titlebar{cursor:move}
+
+/* cache key: wiki:resourceloader:filter:minify-css:4:1f60951881c55ba057c35b8ca437190b */</style><style type="text/css" media="all">#ecsCategoryButtons{padding-top:10px;padding-bottom:10px}#ecsCategoryButtons label{padding-right:8px}#ecsPopupButton{padding-left:10px}#ecsPopupButton a{margin-bottom:8px}#ecspopup div.column{margin-right:0px !important}#ecsCurrentCheckboxes{color:#555}#ecsCurrentCheckboxes span{margin-right:10px}#ecsCurrentCheckboxes span input{margin-right:3px}#ecsMainCategories{border:solid;border-width:1px;border-color:#333;color:#555}#ecsMainCategories td{padding:7px}.ecsColumn{margin-right:0px}.ecsColumnHeading th{background-color:#ccc;font-weight:bold;padding:5px}#ecsMainCategories p{margin-bottom:2px}.ecsCategoryChosen{background-color:#F0F0F0}.ui-autocomplete{z-index:100 !important;overflow-y:auto;overflow-x:hidden;max-height:12em} #ecspopup{overflow:hidden !important;color:#555}#ecspopup p{margin-bottom:7px}.ui-dialog-titlebar-close{padding-right:10px !important}#ecsPopupSearchBar td{vertical-align:baseline}#ecsPopupMainTitle{padding-top:10px;padding-bottom:10px}#ecsOntologyTopics,#ecsOtherTopics{width:100%;border:solid;border-width:1px;border-color:#999;overflow-x:hidden;overflow-y:scroll;background:url(http://www.developer.nokia.com/Community/Piazza/images/loading.gif) no-repeat center center}#ecsPopupOthersTitle{padding-top:10px;padding-bottom:10px}.ui-icon{height:20px !important}.ui-icon-closethick{background-image:none !important;text-indent:2px !important;margin-top:-3px !important;margin-left:3px !important;width:26px !important}.editHelp{margin-left:2px}.editHelp a{padding:0px 4px;vertical-align:middle}.ui-widget{font-family:"NokiaPureHWebLight",Arial,sans-serif !important;font-size:14px !important}
+
+/* cache key: wiki:resourceloader:filter:minify-css:4:17b74939be508535ffb38f599d103f2f */</style><meta name="ResourceLoaderDynamicStyles" content="">
+
+<script src="./在C++程序中使用QML - Nokia Developer Wiki_files/load.php"></script><script src="./在C++程序中使用QML - Nokia Developer Wiki_files/load(1).php"></script>
+<script>if(window.mw){
+	mw.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "在C++程序中使用QML", "wgTitle": "在C++程序中使用QML", "wgCurRevisionId": 175285, "wgArticleId": 21546, "wgIsArticle": true, "wgAction": "view", "wgUserName": null, "wgUserGroups": ["*"], "wgCategories": ["Qt Quick", "Qt", "Lang-Chinese", "MeeGo Harmattan", "Symbian"], "wgBreakFrames": false, "wgRestrictionEdit": [], "wgRestrictionMove": [], "wgVectorEnabledModules": {"collapsiblenav": true, "collapsibletabs": true, "editwarning": false, "expandablesearch": false, "footercleanup": false, "sectioneditlinks": false, "simplesearch": true, "experiments": true}, "wgWikiEditorEnabledModules": {"toolbar": true, "dialogs": true, "hidesig": true, "templateEditor": false, "templates": false, "preview": true, "previewDialog": false, "publish": false, "toc": false}});
+}
+</script><script>if(window.mw){
+	mw.loader.load(["mediawiki.page.startup"]);
+}
+</script><script type="text/javascript" src="./在C++程序中使用QML - Nokia Developer Wiki_files/load(2).php"></script>
+<style type="text/css">/*<![CDATA[*/
+.source-cpp-qt {line-height: normal;}
+.source-cpp-qt li, .source-cpp-qt pre {
+	line-height: normal; border: 0px none white;
+}
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for cpp-qt
+ * CSS class: source-cpp-qt, CSS id: 
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.cpp-qt.source-cpp-qt .de1, .cpp-qt.source-cpp-qt .de2 {}
+.cpp-qt.source-cpp-qt  {font-family:monospace;}
+.cpp-qt.source-cpp-qt .imp {font-weight: bold; color: red;}
+.cpp-qt.source-cpp-qt li, .cpp-qt.source-cpp-qt .li1 {font-weight: normal; vertical-align:top;}
+.cpp-qt.source-cpp-qt .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
+.cpp-qt.source-cpp-qt .li2 {font-weight: bold; vertical-align:top;}
+.cpp-qt.source-cpp-qt .kw1 {color: #000000; font-weight:bold;}
+.cpp-qt.source-cpp-qt .kw2 {color: #0057AE;}
+.cpp-qt.source-cpp-qt .kw3 {color: #2B74C7;}
+.cpp-qt.source-cpp-qt .kw4 {color: #0057AE;}
+.cpp-qt.source-cpp-qt .kw5 {color: #22aadd;}
+.cpp-qt.source-cpp-qt .co1 {color: #888888;}
+.cpp-qt.source-cpp-qt .co2 {color: #006E28;}
+.cpp-qt.source-cpp-qt .coMULTI {color: #888888; font-style: italic;}
+.cpp-qt.source-cpp-qt .es0 {color: #000099; font-weight: bold;}
+.cpp-qt.source-cpp-qt .es1 {color: #000099; font-weight: bold;}
+.cpp-qt.source-cpp-qt .es2 {color: #660099; font-weight: bold;}
+.cpp-qt.source-cpp-qt .es3 {color: #660099; font-weight: bold;}
+.cpp-qt.source-cpp-qt .es4 {color: #660099; font-weight: bold;}
+.cpp-qt.source-cpp-qt .es5 {color: #006699; font-weight: bold;}
+.cpp-qt.source-cpp-qt .br0 {color: #006E28;}
+.cpp-qt.source-cpp-qt .sy0 {color: #006E28;}
+.cpp-qt.source-cpp-qt .st0 {color: #BF0303;}
+.cpp-qt.source-cpp-qt .nu0 {color: #B08000;}
+.cpp-qt.source-cpp-qt .nu6 {color: #208080;}
+.cpp-qt.source-cpp-qt .nu8 {color: #208080;}
+.cpp-qt.source-cpp-qt .nu12 {color: #208080;}
+.cpp-qt.source-cpp-qt .nu16 {color:#800080;}
+.cpp-qt.source-cpp-qt .nu17 {color:#800080;}
+.cpp-qt.source-cpp-qt .nu18 {color:#800080;}
+.cpp-qt.source-cpp-qt .nu19 {color:#800080;}
+.cpp-qt.source-cpp-qt .me1 {color: #2B74C7;}
+.cpp-qt.source-cpp-qt .me2 {color: #2B74C7;}
+.cpp-qt.source-cpp-qt .me3 {color: #2B74C7;}
+.cpp-qt.source-cpp-qt .ln-xtra, .cpp-qt.source-cpp-qt li.ln-xtra, .cpp-qt.source-cpp-qt div.ln-xtra {background-color: #ffc;}
+.cpp-qt.source-cpp-qt span.xtra { display:block; }
+.mw-geshi ol {list-style-position: inside; margin-left: 0 !important; padding-left: 0 !important; }.mw-geshi pre {border: 0 !important; margin-bottom: 0; padding: 0 !important; background-color: inherit;}.mw-geshi ol li {border: 0; background-color: #fafafa;}.mw-geshi {-webkit-border-bottom-left-radius: 8px;
+            -khtml-border-radius-bottomleft: 8px;
+            -moz-border-radius-bottomleft: 8px;
+            border-bottom-left-radius: 8px;
+            background-color: #FAFAFA;
+            border: 1px solid #CAC9C9 !important;
+            padding: 10px 15px !important;
+            margin-bottom: 12px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            font-family: "Courier New", Courier, monospace;}
+/*]]>*/
+</style>
+<style type="text/css">/*<![CDATA[*/
+@import "/Community/Wiki/index.php?title=MediaWiki:Geshi.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=18000";
+/*]]>*/
+</style><link rel="stylesheet" type="text/css" href="./在C++程序中使用QML - Nokia Developer Wiki_files/communitystyles.css"><meta name="PATH.1.LABEL" content="Community">
+<meta name="PATH.1.URL" content="http://www.developer.nokia.com/Community/">
+<meta name="PATH.2.LABEL" content="Wiki">
+<meta name="PATH.2.URL" content="http://www.developer.nokia.com/Community/Wiki/">
+<meta name="PATH.3.LABEL" content="在C++程序中使用QML">
+<meta name="PATH.3.URL" content="http://www.developer.nokia.com/Community/Wiki/%E5%9C%A8C%2B%2B%E7%A8%8B%E5%BA%8F%E4%B8%AD%E4%BD%BF%E7%94%A8QML">
+<link type="text/css" rel="stylesheet" href="chrome-extension://cpngackimfmofbokmjmljamhdncknpmg/style.css"><script type="text/javascript" charset="utf-8" src="chrome-extension://cpngackimfmofbokmjmljamhdncknpmg/page_context.js"></script><style type="text/css">#yddContainer{display:block;font-family:Microsoft YaHei;position:relative;width:100%;height:100%;top:-4px;left:-4px;font-size:12px;border:1px solid}#yddTop{display:block;height:22px}#yddTopBorderlr{display:block;position:static;height:17px;padding:2px 28px;line-height:17px;font-size:12px;color:#5079bb;font-weight:bold;border-style:none solid;border-width:1px}#yddTopBorderlr .ydd-sp{position:absolute;top:2px;height:0;overflow:hidden}.ydd-icon{left:5px;width:17px;padding:0px 0px 0px 0px;padding-top:17px;background-position:-16px -44px}.ydd-close{right:5px;width:16px;padding-top:16px;background-position:left -44px}#yddKeyTitle{float:left;text-decoration:none}#yddMiddle{display:block;margin-bottom:10px}.ydd-tabs{display:block;margin:5px 0;padding:0 5px;height:18px;border-bottom:1px solid}.ydd-tab{display:block;float:left;height:18px;margin:0 5px -1px 0;padding:0 4px;line-height:18px;border:1px solid;border-bottom:none}.ydd-trans-container{display:block;line-height:160%}.ydd-trans-container a{text-decoration:none;}#yddBottom{position:absolute;bottom:0;left:0;width:100%;height:22px;line-height:22px;overflow:hidden;background-position:left -22px}.ydd-padding010{padding:0 10px}#yddWrapper{color:#252525;z-index:10001;background:url(chrome-extension://eopjamdnofihpioajgfdikhhbobonhbb/ab20.png);}#yddContainer{background:#fff;border-color:#4b7598}#yddTopBorderlr{border-color:#f0f8fc}#yddWrapper .ydd-sp{background-image:url(chrome-extension://eopjamdnofihpioajgfdikhhbobonhbb/ydd-sprite.png)}#yddWrapper a,#yddWrapper a:hover,#yddWrapper a:visited{color:#50799b}#yddWrapper .ydd-tabs{color:#959595}.ydd-tabs,.ydd-tab{background:#fff;border-color:#d5e7f3}#yddBottom{color:#363636}#yddWrapper{min-width:250px;max-width:400px;}</style></head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-在C_程序中使用QML action-view skin-nokiadev" screen_capture_injected="true">
+    <script type="text/javascript">
+    var talkHistory = false;
+</script>    <!-- -->
+    <div id="fncontainer">
+
+    <!--?NOINDEX-START?-->
+<div id="fnheaderContainer">
+
+  <div id="fnheaderComponent">
+
+
+    <div id="nDevHeaderLogo"><a href="http://www.developer.nokia.com/"><img src="./在C++程序中使用QML - Nokia Developer Wiki_files/logo.png" width="164" height="19" alt="Logo" title="Home"></a></div>
+
+    <div id="fnheader">
+
+	<div id="fnheadersearch">
+	  <form action="http://www.developer.nokia.com/search/simple/" method="get">
+	    <fieldset>
+                <div id="fnselectSearch" style="display:none">
+                <select name="s" class="searchMenu" id="fnHeaderSearchMenu">
+                  <option value="x">Search whole site</option>
+                  <!-- <option value="dp" id="searchscope.Resources.Library">Developer Library</option> -->
+                  <option value="dpport" id="searchscope.Resources.Library.Porting_to_Qt">Porting to Qt Library</option>
+                  <option value="dpdux" id="searchscope.Resources.Library.Design_and_UX">Design and UX Library</option>
+                  <option value="dpsdg" id="searchscope.Resources.Library.Symbian_Design_Guidelines">Symbian Design Guide</option>
+                  <option value="dpweb" id="searchscope.Resources.Library.Web">Web Developer's Library</option>
+                  <option value="dpqtmobi" id="searchscope.Resources.Library.Qt_for_Mobile">Qt Developer's Library</option>
+  		  <option value="dpflash" id="searchscope.Resources.Library.Flash_Lite">Flash Lite Developer's Library</option>
+                  <option value="d" id="searchscope.Devices">Devices</option>
+                  <option value="fw">Web Pages</option>
+                  <option value="ft" id="searchscope.Tools_Docs_and_Code">Tools &amp; SDKs</option>     
+                  <option value="fd" id="searchscope.Tools_Docs_and_Code.Documentation">Documents</option>
+                  <option value="fe" id="searchscope.Tools_Docs_and_Code.Code_Examples">Examples</option>
+                  <option value="fk" id="searchscope.wiki.forum.nokia.com.index.php.KnowledgeBase">Knowledge Base</option>
+                  <option value="cd" id="searchscope.discussion.forum.nokia.com.forum">Discussion Boards &nbsp;</option>
+                  <option value="cb" id="searchscope.blogs.forum.nokia.com.summary.php">Blogs</option>
+                  <option value="cw" id="searchscope.wiki.forum.nokia.com.index.php">Wiki</option>
+                  <option value="cp" id="searchscope.projects.forum.nokia.com">Projects</option>
+                  <!--option value="up" id="searchscope.General.User_Profile.xhtml">User Profiles</option-->
+                </select>
+                </div>
+
+		<input type="hidden" name="view" value="ebs">
+		<input type="hidden" name="box" value="1">
+		<div id="fnheadersearchArea"><input name="k" type="text" id="fnheadersearchInput" value="Search with Bing"><button type="submit" id="fnheadersubmitSearch" title="Search"></button></div>
+	    </fieldset>
+	  </form>
+	</div><!-- end of search -->
+
+	<div id="regional" class="">
+          <div id="fnselectLanguage" style="cursor: pointer; height:16px; position:relative; margin:1px; text-align:left; padding:0px; float:right; width:80px; top:18px; border-bottom: 1px solid #0aadfe;">
+		    <ul class="clearfix">
+		      <li id="fnLanguages"><span>English</span>
+				<ul id="fnLanguagesNav" class="subNav" style="display: none; ">
+				    <li><a href="http://www.developer.nokia.com/">English</a></li>
+				    <li><a href="http://www.developer.nokia.com.cn/">中文</a></li>
+				    <li><a href="http://www.developer.nokia.com/ru/">Русский</a></li>
+				    <li><a href="http://www.developer.nokia.com/fr/">Français</a></li>	
+				    <li><a href="http://www.developer.nokia.com/es/">Español</a></li>
+				    <li><a href="http://www.developer.nokia.com/pt/">Português</a></li>
+                                    <li><a href="http://www.developer.nokia.com/tr/">Türkiye</a></li>
+				    <li class="last"></li>			
+				</ul>
+		      </li>
+		      <li class="ui-selectmenu-icon"></li>
+		    </ul>
+          </div>
+	</div><!-- end of regional -->
+
+	<div id="nDevHeaderLoginLogout"><div id="fnlogin"><p id="piazzaLoginBox"><a href="http://www.developer.nokia.com/Community/Wiki/%E5%9C%A8C%2B%2B%E7%A8%8B%E5%BA%8F%E4%B8%AD%E4%BD%BF%E7%94%A8QML#" id="piazzaLogin">Log in</a><a id="piazzaJoin" href="http://www.developer.nokia.com/Profile/Join.xhtml" rel="nofollow">Join</a></p></div></div>
+
+    </div><!-- end of fnheader -->
+
+
+    <div id="fnmainNavigation">
+	<ul id="fnnav" class="clearfix">
+	  <li><a id="navFirst_link" href="http://www.developer.nokia.com/Design/">Design</a>
+	  	<div id="navFirst_underLine" class="underLine"></div>
+	    <ul class="subNav" style="display: none; ">
+		<li><a href="http://www.developer.nokia.com/Design/">Overview</a></li>
+		<li><a href="http://www.developer.nokia.com/Design/Design_process/">Design process</a></li>
+		<li><a href="http://www.developer.nokia.com/Design/Design_gallery/">Design gallery</a></li>
+		<li><a href="http://www.developer.nokia.com/Design/User_experience/">User experience</a></li>	
+		<li class="last"></li>	
+	    </ul>
+	  </li>
+
+	  <li><a id="navSecond_link" href="http://www.developer.nokia.com/Develop/">Develop</a>
+	  	<div id="navSecond_underLine" class="underLine"></div>
+	    <ul class="subNav" style="display: none; ">
+		<li><a href="http://www.developer.nokia.com/Develop/">Overview</a></li>
+		<li><a href="http://www.developer.nokia.com/Develop/Windows_Phone/">Windows Phone</a></li>
+		<li><a href="http://www.developer.nokia.com/Develop/Series_40/">Series 40</a></li>
+		<li><a href="http://www.developer.nokia.com/Develop/Web/">Web</a></li>
+		<li><a href="http://www.developer.nokia.com/Develop/Porting/">Porting</a></li>
+		<li><a href="http://www.developer.nokia.com/Develop/Featured_Technologies/">Featured Technologies</a></li>
+	     <li class="last"></li>	
+	    </ul>
+	  </li>
+
+	  <li class=""><a id="navThird_link" href="http://www.developer.nokia.com/Distribute/">Distribute</a>
+	  	<div id="navThird_underLine" class="underLine"></div>
+	    <ul class="subNav" style="display: none; ">
+		<li><a href="http://www.developer.nokia.com/Distribute/">Overview</a></li>
+		<li><a href="http://www.developer.nokia.com/Distribute/NAX/">Nokia Ad Exchange</a></li>
+        <li><a href="http://www.developer.nokia.com/Distribute/Statistics.xhtml">Nokia Store statistics</a></li>
+		<li><a href="http://www.developer.nokia.com/Distribute/Monetizing_your_app/">Monetizing your app</a></li>
+		<li><a href="http://www.developer.nokia.com/Distribute/Promoting_your_app/">Promoting your app</a></li>
+		<li><a href="http://www.developer.nokia.com/Distribute/Packaging_and_signing.xhtml">Packaging and signing</a></li>
+		<li><a href="http://www.developer.nokia.com/Distribute/Nokia_Store_guidelines.xhtml">Publishing your app</a></li>	
+	      <li class="last"></li>	
+	    </ul>
+	  </li>
+
+	  <li class=""><a id="navFourth_link" href="http://www.developer.nokia.com/Devices/">Devices</a>
+	  	<div id="navFourth_underLine" class="underLine"></div>
+	    <ul class="subNav" style="display: none; ">
+		<li><a href="http://www.developer.nokia.com/Devices/">Overview</a></li>
+		<li><a href="http://www.developer.nokia.com/Devices/Device_specifications/">Device specifications</a></li>
+		<li><a href="http://www.developer.nokia.com/Devices/Remote_device_access/">Remote device access</a></li>
+	     <li class="last"></li>	
+	    </ul>
+	  </li>
+
+	  <li class=""><a id="navFifth_link" href="http://www.developer.nokia.com/Resources/">Resources</a>
+	  	<div id="navFifth_underLine" class="underLine"></div>
+	    <ul class="subNav" style="display: none; ">
+		<li><a href="http://www.developer.nokia.com/Resources/">Overview</a></li>
+		<li><a href="http://www.developer.nokia.com/Resources/Library/">Documentation</a></li>
+		<li><a href="http://www.developer.nokia.com/Resources/Tools_and_downloads/">Tools and downloads</a></li>
+		<li><a href="http://www.developer.nokia.com/Resources/Code_examples/">Code examples</a></li>
+        <li><a href="http://www.developer.nokia.com/Developer_Programs/Premium_program.xhtml">Premium Developer Program</a></li>
+        <li><a href="http://www.developer.nokia.com/Developer_Programs/">Developer Programs</a></li>
+        <li><a href="http://www.developer.nokia.com/Resources/Learning/">Learning</a></li>
+		<li><a href="http://www.developer.nokia.com/gen/videos_all.xhtml">Videos</a></li>
+        <li><a href="http://www.developer.nokia.com/Resources/Multimedia/Webinars.xhtml">Webinars</a></li>
+		<li><a href="http://www.developer.nokia.com/Resources/Support/">Technical support</a></li>
+		<li><a href="http://www.developer.nokia.com/Resources/Support/Consultancy_and_training/">Consultancy Network</a></li>
+		
+	    <li class="last"></li>	
+	    </ul>
+	  </li>
+
+	  <li class=""><a id="navSixth_link" href="http://www.developer.nokia.com/Community/Discussion/content.php" style="color: white; ">Community</a>
+	  	<div id="navSixth_underLine" class="underLine" style="display: block; "></div>
+	    <ul class="subNav" style="display: none; ">
+		<li><a href="http://www.developer.nokia.com/Community/Discussion/content.php">Overview</a></li>
+		<li><a href="http://www.developer.nokia.com/Community/Discussion/">Discussion Boards</a></li>
+		<li><a href="http://www.developer.nokia.com/Community/Wiki/">Wiki</a></li>
+		<li><a href="http://www.developer.nokia.com/Blogs/News/aggregated/">Blogs</a></li>
+		<li><a href="https://projects.developer.nokia.com/">Projects</a></li>
+		<li><a href="http://www.developer.nokia.com/Community/Champions/">Champions</a></li>
+	    <li class="last"></li>	
+	    </ul>
+	  </li>
+
+	</ul>
+    </div><!-- end of navigation -->
+
+  </div><!-- end of fnheaderComponent -->
+</div><!-- end of fnheaderContainer -->
+<!--?NOINDEX-END?-->
+    <div id="fncontent">
+    <!--?NOINDEX-START?-->
+<div id="fnbreadCrumbs">
+  <div id="fntitleToggle">
+    <a href="http://www.developer.nokia.com/Community/Wiki/%E5%9C%A8C%2B%2B%E7%A8%8B%E5%BA%8F%E4%B8%AD%E4%BD%BF%E7%94%A8QML#">Share</a>
+    <div id="fnbookMarks" style="display: none; ">
+      <img id="fnbookmarkBrowser" src="./在C++程序中使用QML - Nokia Developer Wiki_files/footericon_bookmark.gif" title="Bookmark This Page" alt="Bookmark" width="16" height="16">
+      <img id="fnbookmarkDelicious" src="./在C++程序中使用QML - Nokia Developer Wiki_files/footericon_delicious.gif" title="Delicious" alt="Delicious" width="16" height="16">
+      <img id="fnbookmarkDigg" src="./在C++程序中使用QML - Nokia Developer Wiki_files/footericon_digg.gif" title="Digg" alt="Digg" width="16" height="16">
+      <img id="fnbookmarkFacebook" src="./在C++程序中使用QML - Nokia Developer Wiki_files/footericon_facebook.gif" title="Facebook" alt="Facebook" width="16" height="16">
+      <img id="fnbookmarkGoogle" src="./在C++程序中使用QML - Nokia Developer Wiki_files/footericon_google.gif" title="Google" alt="Google" width="16" height="16">
+      <img id="fnbookmarkYahoo" src="./在C++程序中使用QML - Nokia Developer Wiki_files/footericon_yahoo.gif" title="Yahoo" alt="Yahoo" width="16" height="16">
+      <img id="fnbookmarkStumble" src="./在C++程序中使用QML - Nokia Developer Wiki_files/footericon_temp1.gif" title="StumbleUpon" alt="StumbleUpon" width="16" height="16">
+      <img id="fnbookmarkReddit" src="./在C++程序中使用QML - Nokia Developer Wiki_files/footericon_reddit.gif" title="Reddit" alt="Reddit" width="16" height="16">
+      <img id="fnbookmarkDiigo" src="./在C++程序中使用QML - Nokia Developer Wiki_files/footericon_diigo.GIF" title="Diigo" alt="Diigo" width="16" height="16">
+      <img id="fnbookmarkTechnorati" src="./在C++程序中使用QML - Nokia Developer Wiki_files/footericon_technorati.gif" title="Technorati" alt="Technorati" width="16" height="16">
+      <img id="fnbookmarkTwitter" src="./在C++程序中使用QML - Nokia Developer Wiki_files/footericon_twitter.gif" title="Twitter" alt="Twitter" width="16" height="16">
+    </div> 
+  </div>
+</div>
+<!--?NOINDEX-END?-->
+
+    <!--?RDFA-START?-->
+<div about="http://www.developer.nokia.com/Community/Wiki/%E5%9C%A8C%2B%2B%E7%A8%8B%E5%BA%8F%E4%B8%AD%E4%BD%BF%E7%94%A8QML" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:fn="http://sw.nokia.com/FN-1/" xmlns:mars="http://sw.nokia.com/MARS-3/" xmlns:editor="http://sw.nokia.com/Editor-1/" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" class="fnRDFaContainer">
+<div rel="fn:type" resource="http://sw.nokia.com/FN-1/Type/WikiContent"></div>
+<div rel="fn:type" resource="http://sw.nokia.com/FN-1/Type/CommunityContent"></div>
+<div rel="fn:type" resource="http://sw.nokia.com/FN-1/Type/WikiArticle"></div>
+<div rel="fn:topic" resource="http://sw.nokia.com/FN-1/Topic/qt_quick"></div>
+<div rel="fn:topic" resource="http://sw.nokia.com/FN-1/Topic/qt"></div>
+<div rel="mars:language" resource="http://sw.nokia.com/language-1/zh-CH"></div>
+<div rel="fn:topic" resource="http://sw.nokia.com/FN-1/Topic/meego"></div>
+<div rel="fn:topic" resource="http://sw.nokia.com/FN-1/Topic/symbian_os"></div>
+<div property="editor:account_name" content="hamishwillee" datatype="xsd:string"></div>
+<div property="mars:title" content="在C++程序中使用QML" datatype="xsd:string"></div>
+<div property="fn:published" content="2012-10-11T01:19:17" datatype="xsd:dateTime"></div>
+</div>
+<!--?RDFA-END?-->
+
+<!--?NOINDEX-START?-->
+    	<!-- logo -->
+		<div id="piazzaServiceTitle" class="wikiContent">
+            <h1><a href="http://www.developer.nokia.com/Community/Wiki/Wiki_Home" title="Visit the main page">
+    		Wiki</a></h1>
+    	</div>
+    	<!-- /logo -->
+
+    <div id="piazzaContainer" class="wikiContent">
+        <div id="piazzaLeftColumn">
+		<!-- panel -->
+			<div id="mw-panel" class="noprint collapsible-nav">
+				
+<!-- new page -->
+<div id="createnewpage">
+	<a class="primaryButton" href="http://www.developer.nokia.com/Community/Wiki/FNWiki:New_Page">Create New Wiki Page</a>
+</div>
+
+<!-- /new page -->
+
+<!-- Wiki Resources -->
+<div class="portal community-box expanded" id="p-Wiki_Resources">
+	<h5 class="community-title" tabindex="2">Wiki Resources</h5>
+	<div class="body" style="display: block; ">
+				<ul>
+					<li id="n-Wiki-Home"><a href="http://www.developer.nokia.com/Community/Wiki/Wiki_Home">Wiki Home</a></li>
+					<li id="n-Help"><a href="http://www.developer.nokia.com/Community/Wiki/Help:Contents" title="The place to find out">Help</a></li>
+					<li id="n-Etiquette"><a href="http://www.developer.nokia.com/Community/Wiki/Community_Standards_and_Participation_Guidelines">Etiquette</a></li>
+					<li id="n-Featured-Articles"><a href="http://www.developer.nokia.com/Community/Wiki/Featured_Articles">Featured Articles</a></li>
+					<li id="n-Featured-Videos"><a href="http://www.developer.nokia.com/Community/Wiki/Featured_Videos">Featured Videos</a></li>
+					<li id="n-Templates"><a href="http://www.developer.nokia.com/Community/Wiki/Help:Templates">Templates</a></li>
+					<li id="n-Glossary"><a href="http://www.developer.nokia.com/Community/Wiki/Category:Glossary">Glossary</a></li>
+					<li id="n-Feedback"><a href="http://www.developer.nokia.com/Community/Wiki/Help:Providing_Feedback">Feedback</a></li>
+				</ul>
+			</div>
+</div>
+
+<!-- /Wiki Resources -->
+
+<!-- Development Frameworks -->
+<div class="portal community-box collapsed" id="p-Development_Frameworks">
+	<h5 class="community-title" tabindex="3">Development Frameworks</h5>
+	<div class="body">
+				<ul>
+					<li id="n-Windows-Phone"><a href="http://www.developer.nokia.com/Community/Wiki/Portal:Windows_Phone">Windows Phone</a></li>
+					<li id="n-Qt"><a href="http://www.developer.nokia.com/Community/Wiki/Category:Qt">Qt</a></li>
+					<li id="n-Java-ME"><a href="http://www.developer.nokia.com/Community/Wiki/Category:Java_ME">Java ME</a></li>
+					<li id="n-Web"><a href="http://www.developer.nokia.com/Community/Wiki/Category:Web">Web</a></li>
+					<li id="n-Symbian-C.2B.2B"><a href="http://www.developer.nokia.com/Community/Wiki/Category:Symbian_C%2B%2B">Symbian C++</a></li>
+				</ul>
+			</div>
+</div>
+
+<!-- /Development Frameworks -->
+
+<!-- Platforms -->
+<div class="portal community-box collapsed" id="p-Platforms">
+	<h5 class="community-title" tabindex="4">Platforms</h5>
+	<div class="body">
+				<ul>
+					<li id="n-Windows-Phone"><a href="http://www.developer.nokia.com/Community/Wiki/Category:Windows_Phone">Windows Phone</a></li>
+					<li id="n-Series-40"><a href="http://www.developer.nokia.com/Community/Wiki/Category:Series_40">Series 40</a></li>
+					<li id="n-Symbian.2FS60"><a href="http://www.developer.nokia.com/Community/Wiki/Category:Symbian">Symbian/S60</a></li>
+					<li id="n-MeeGo-Harmattan"><a href="http://www.developer.nokia.com/Community/Wiki/Category:MeeGo_Harmattan">MeeGo Harmattan</a></li>
+				</ul>
+			</div>
+</div>
+
+<!-- /Platforms -->
+
+<!-- Cross Platform -->
+<div class="portal community-box collapsed" id="p-Cross_Platform">
+	<h5 class="community-title" tabindex="5">Cross Platform</h5>
+	<div class="body">
+				<ul>
+					<li id="n-Porting"><a href="http://www.developer.nokia.com/Community/Wiki/Category:Porting">Porting</a></li>
+					<li id="n-NFC"><a href="http://www.developer.nokia.com/Community/Wiki/Category:Near_Field_Communication_(NFC)">NFC</a></li>
+					<li id="n-Location.2FMaps"><a href="http://www.developer.nokia.com/Community/Wiki/Category:Location">Location/Maps</a></li>
+					<li id="n-Games"><a href="http://www.developer.nokia.com/Community/Wiki/Category:Games">Games</a></li>
+					<li id="n-Web"><a href="http://www.developer.nokia.com/Community/Wiki/Category:Web">Web</a></li>
+					<li id="n-Design"><a href="http://www.developer.nokia.com/Community/Wiki/Category:Mobile_Design">Design</a></li>
+				</ul>
+			</div>
+</div>
+
+<!-- /Cross Platform -->
+
+<!-- Tools & Resources -->
+<div class="portal community-box collapsed" id="p-Tools_.26_Resources">
+	<h5 class="community-title" tabindex="6">Tools &amp; Resources</h5>
+	<div class="body">
+				<ul>
+					<li id="n-Tools-and-SDK"><a href="http://www.developer.nokia.com/Community/Wiki/Portal:Tools_and_SDK">Tools and SDK</a></li>
+					<li id="n-Code-Examples"><a href="http://www.developer.nokia.com/Community/Wiki/Category:Code_Examples">Code Examples</a></li>
+					<li id="n-Technology-Areas"><a href="http://www.developer.nokia.com/Community/Wiki/Portal:Technology_Areas">Technology Areas</a></li>
+					<li id="n-Development-Process"><a href="http://www.developer.nokia.com/Community/Wiki/Portal:Development_Process">Development Process</a></li>
+					<li id="n-Known-Issues"><a href="http://www.developer.nokia.com/Community/Wiki/Category:Known_Issue">Known Issues</a></li>
+				</ul>
+			</div>
+</div>
+
+<!-- /Tools & Resources -->
+
+<!-- Natural Languages -->
+<div class="portal community-box collapsed" id="p-Natural_Languages">
+	<h5 class="community-title" tabindex="7">Natural Languages</h5>
+	<div class="body">
+				<ul>
+					<li id="n-.E4.B8.AD.E6.96.87Wiki-Chinese"><a href="http://www.developer.nokia.com/Community/Wiki/Category:Lang-Chinese">中文Wiki Chinese</a></li>
+					<li id="n-.E6.97.A5.E6.9C.AC.E8.AA.9EWiki-Japanese"><a href="http://www.developer.nokia.com/Community/Wiki/Category:Lang-Japanese">日本語Wiki Japanese</a></li>
+					<li id="n-Portuguese.2FBrazilian"><a href="http://www.developer.nokia.com/Community/Wiki/Category:Lang-Portuguese">Portuguese/Brazilian</a></li>
+					<li id="n-Russian-.28.D0.A0.D1.83.D1.81.D1.81.D0.BA.D0.B8.D0.B9.29"><a href="http://www.developer.nokia.com/Community/Wiki/Category:Lang-Russian">Russian (Русский)</a></li>
+					<li id="n-Bahasa-Indonesia"><a href="http://www.developer.nokia.com/Community/Wiki/Category:Lang-Bahasa_Indonesia">Bahasa Indonesia</a></li>
+				</ul>
+			</div>
+</div>
+
+<!-- /Natural Languages -->
+
+<!-- SEARCH -->
+
+<!-- /SEARCH -->
+
+<!-- TOOLBOX -->
+<div class="portal community-box collapsed" id="p-tb">
+	<h5 class="community-title" tabindex="8">Toolbox</h5>
+	<div class="body">
+		<ul>
+					<li id="t-whatlinkshere"><a href="http://www.developer.nokia.com/Community/Wiki/Special:WhatLinksHere/%E5%9C%A8C%2B%2B%E7%A8%8B%E5%BA%8F%E4%B8%AD%E4%BD%BF%E7%94%A8QML" title="A list of all wiki pages that link here [alt-j]" accesskey="j">What links here</a></li>
+						<li id="t-recentchangeslinked"><a href="http://www.developer.nokia.com/Community/Wiki/Special:RecentChangesLinked/%E5%9C%A8C%2B%2B%E7%A8%8B%E5%BA%8F%E4%B8%AD%E4%BD%BF%E7%94%A8QML" title="Recent changes in pages linked from this page [alt-k]" accesskey="k">Related changes</a></li>
+																																										<li id="t-specialpages"><a href="http://www.developer.nokia.com/Community/Wiki/Special:SpecialPages" title="A list of all special pages [alt-q]" accesskey="q">Special pages</a></li>
+							        <li id="t-pdf"><a rel="nofollow" href="http://www.developer.nokia.com/Community/Wiki/index.php?title=Special:WebkitPdfPrint&page=%E5%9C%A8C%2B%2B%E7%A8%8B%E5%BA%8F%E4%B8%AD%E4%BD%BF%E7%94%A8QML">Download as PDF</a></li>		<li id="t-print"><a href="http://www.developer.nokia.com/Community/Wiki/index.php?title=%E5%9C%A8C%2B%2B%E7%A8%8B%E5%BA%8F%E4%B8%AD%E4%BD%BF%E7%94%A8QML&printable=yes" rel="alternate" title="Printable version of this page [alt-p]" accesskey="p">Printable version</a></li>
+						<li id="t-permalink"><a href="http://www.developer.nokia.com/Community/Wiki/index.php?title=%E5%9C%A8C%2B%2B%E7%A8%8B%E5%BA%8F%E4%B8%AD%E4%BD%BF%E7%94%A8QML&oldid=175285" title="Permanent link to this revision of the page">Permanent link</a></li>
+				
+						        <li id="pt-privatemessages"><a href="http://www.developer.nokia.com/Community/Discussion/private.php" target="_blank">Private Messages</a></li>
+
+		</ul>
+	</div>
+</div>
+
+<!-- /TOOLBOX -->
+
+<!-- LANGUAGES -->
+
+<!-- /LANGUAGES -->
+			</div>
+		<!-- /panel -->
+        </div>
+        <div id="piazzaContentWrapper">
+            <div id="piazzaContent">
+                <div id="piazzaTabs">
+            		<!-- header -->
+            		<div id="mw-head" class="noprint">
+            			<div id="left-navigation">
+            				
+<!-- 0 -->
+<div id="p-namespaces" class="vectorTabs">
+	<h5>Namespaces</h5>
+	<ul>
+					<li id="ca-nstab-main" class="selected"><a href="./在C++程序中使用QML - Nokia Developer Wiki_files/在C++程序中使用QML - Nokia Developer Wiki.html" title="View the content page [alt-c]" accesskey="c"><span>Article</span></a></li>
+					<li id="ca-talk" class="new"><a href="http://www.developer.nokia.com/Community/Wiki/%E5%9C%A8C%2B%2B%E7%A8%8B%E5%BA%8F%E4%B8%AD%E4%BD%BF%E7%94%A8QML#talkhere" title="Discussion about the content page [alt-t]" accesskey="t"><span>Comment</span></a></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-variants" class="vectorMenu emptyPortlet">
+	<h5><span>Variants</span><a href="http://www.developer.nokia.com/Community/Wiki/%E5%9C%A8C%2B%2B%E7%A8%8B%E5%BA%8F%E4%B8%AD%E4%BD%BF%E7%94%A8QML#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+            			</div>
+            			<div id="right-navigation">
+            				
+<!-- 0 -->
+<div id="p-views" class="vectorTabs">
+	<h5>Views</h5>
+	<ul>
+					<li id="ca-view" class="selected"><a href="./在C++程序中使用QML - Nokia Developer Wiki_files/在C++程序中使用QML - Nokia Developer Wiki.html"><span>Read</span></a></li>
+					<li id="ca-viewsource"><a href="http://www.developer.nokia.com/Community/Wiki/index.php?title=%E5%9C%A8C%2B%2B%E7%A8%8B%E5%BA%8F%E4%B8%AD%E4%BD%BF%E7%94%A8QML&action=edit" title="This page is protected.
+You can view its source [alt-e]" accesskey="e"><span>View source</span></a></li>
+					<li id="ca-history" class="collapsible "><a href="http://www.developer.nokia.com/Community/Wiki/index.php?title=%E5%9C%A8C%2B%2B%E7%A8%8B%E5%BA%8F%E4%B8%AD%E4%BD%BF%E7%94%A8QML&action=history" title="Past revisions of this page [alt-h]" accesskey="h"><span>History</span></a></li>
+			</ul>
+</div>
+
+<!-- /0 -->
+
+<!-- 1 -->
+<div id="p-cactions" class="vectorMenu emptyPortlet">
+	<h5><span>Actions</span><a href="http://www.developer.nokia.com/Community/Wiki/%E5%9C%A8C%2B%2B%E7%A8%8B%E5%BA%8F%E4%B8%AD%E4%BD%BF%E7%94%A8QML#"></a></h5>
+	<div class="menu">
+		<ul>
+					</ul>
+	</div>
+</div>
+
+<!-- /1 -->
+            			</div>
+            		</div>
+            		<!-- /header -->
+        		</div>
+                <div id="piazzaCenterRightWrapper">
+                    <div id="piazzaRightColumnWrapper">
+                        <div id="mw-panel2" class="noprint collapsible-nav" style="">
+                            <div id="mw-panel2-wrapper" class="portal community-box expanded">
+                                <h5 class="community-title">Contents</h5>
+                                <div id="mw-panel2-list" class="body" style="display=block">
+                                    <ul id="contents-list">
+<li class="toclevel-1 tocsection-1"><a href="http://www.developer.nokia.com/Community/Wiki/%E5%9C%A8C%2B%2B%E7%A8%8B%E5%BA%8F%E4%B8%AD%E4%BD%BF%E7%94%A8QML#.E5.9F.BA.E6.9C.AC.E7.94.A8.E6.B3.95"> <span class="toctext">基本用法</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="http://www.developer.nokia.com/Community/Wiki/%E5%9C%A8C%2B%2B%E7%A8%8B%E5%BA%8F%E4%B8%AD%E4%BD%BF%E7%94%A8QML#.E6.9A.B4.E9.9C.B2.E6.95.B0.E6.8D.AE.EF.BC.88Exposing_Data.EF.BC.89"> <span class="toctext">暴露数据（Exposing Data）</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="http://www.developer.nokia.com/Community/Wiki/%E5%9C%A8C%2B%2B%E7%A8%8B%E5%BA%8F%E4%B8%AD%E4%BD%BF%E7%94%A8QML#.E7.AE.80.E5.8D.95.E6.95.B0.E6.8D.AE.EF.BC.88Simple_Data.EF.BC.89"> <span class="toctext">简单数据（Simple Data）</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="http://www.developer.nokia.com/Community/Wiki/%E5%9C%A8C%2B%2B%E7%A8%8B%E5%BA%8F%E4%B8%AD%E4%BD%BF%E7%94%A8QML#.E7.BB.93.E6.9E.84.E5.8C.96.E6.95.B0.E6.8D.AE.EF.BC.88Structed_Data.EF.BC.89"> <span class="toctext">结构化数据（Structed Data）</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="http://www.developer.nokia.com/Community/Wiki/%E5%9C%A8C%2B%2B%E7%A8%8B%E5%BA%8F%E4%B8%AD%E4%BD%BF%E7%94%A8QML#.E5.8A.A8.E6.80.81.E7.BB.93.E6.9E.84.E6.95.B0.E6.8D.AE.EF.BC.88Dynamic_Structured_Data.EF.BC.89"> <span class="toctext">动态结构数据（Dynamic Structured Data）</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="http://www.developer.nokia.com/Community/Wiki/%E5%9C%A8C%2B%2B%E7%A8%8B%E5%BA%8F%E4%B8%AD%E4%BD%BF%E7%94%A8QML#.E5.9C.A8QML.E4.B8.AD.E8.B0.83.E7.94.A8C.2B.2B.E6.96.B9.E6.B3.95"> <span class="toctext">在QML中调用C++方法</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="http://www.developer.nokia.com/Community/Wiki/%E5%9C%A8C%2B%2B%E7%A8%8B%E5%BA%8F%E4%B8%AD%E4%BD%BF%E7%94%A8QML#.E7.BD.91.E7.BB.9C.E7.BB.84.E4.BB.B6.EF.BC.88Network_Components.EF.BC.89"> <span class="toctext">网络组件（Network Components）</span></a></li>
+<li class="toclevel-1 tocsection-8"><a href="http://www.developer.nokia.com/Community/Wiki/%E5%9C%A8C%2B%2B%E7%A8%8B%E5%BA%8F%E4%B8%AD%E4%BD%BF%E7%94%A8QML#Qt.E8.B5.84.E6.BA.90.EF.BC.88Qt_Resources.EF.BC.89"> <span class="toctext">Qt资源（Qt Resources）</span></a></li>
+<li class="toclevel-1 tocsection-9"><a href="http://www.developer.nokia.com/Community/Wiki/%E5%9C%A8C%2B%2B%E7%A8%8B%E5%BA%8F%E4%B8%AD%E4%BD%BF%E7%94%A8QML#.E7.9B.B8.E5.85.B3.E9.93.BE.E6.8E.A5"> <span class="toctext">相关链接</span></a></li>
+</ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="piazzaRightColumn">
+                        <div class="rightColumn" style="background-attachment: scroll;background-clip: border-box;background-color: white;background-image: none;background-origin: padding-box;border-bottom-width: 0px;border-left-width: 0px;border-right-width: 0px;border-top-width: 0px;color: #333;display: block;font-family: Tahoma, Geneva, sans-serif;font-size: 12px;font-style: normal;font-variant: normal;font-weight: normal;line-height: 10px;width: 220px;z-index: 1;">
+<div style="padding-top:2px; padding-bottom:2px;margin-bottom:5px border-top-color: #333;border-top-style: solid;border-top-width: 2px; position: static; background: #FFFFFF;z-index:1; width:215px">
+<div class="infoboxrhstext" align="left" style="border-color: #EDEDED; border-bottom-style:solid; border-bottom-width: 1px; padding-top:10px; padding-bottom:10px;">
+<h5 id="toggledisplay1l" class="toggleDisplay toggleDisplay-expanded community-title" onclick="javascript:togglePortalDisplay(&quot;toggledisplay1&quot;, &quot;文章信息&quot;, &quot;文章信息&quot;)" style="width:200px;">文章信息<i> </i></h5><div id="toggledisplay1" style="display:block;">
+<hr>文章<div style="font-size:11px; padding-left:10px; padding-top:10px; padding-right:10px;">由 <a id="fnuserlink_0" name="userLink" href="http://www.developer.nokia.com/Profile/?u=Cxt_programmer">Cxt_programmer</a>
+ 在 20 Dec 2010 创建</div> <div style="font-size:11px; padding:10px 10px 5px 10px;">最后由 <a id="fnuserlink_1" name="userLink" href="http://www.developer.nokia.com/Profile/?u=hamishwillee">hamishwillee</a>
+ 在 11 Oct 2012 编辑</div>
+</div></div></div></div></div>
+                    </div>                
+                    <div id="piazzaCenterContentWrapper">
+                        <div id="piazzaCenterContent">
+                                                				                        				<!-- catlinks -->
+                        				<div id="catlinks" class="catlinks"><div id="mw-normal-catlinks"><a href="http://www.developer.nokia.com/Community/Wiki/Special:Categories" title="Special:Categories">Categories</a>: <ul><li><a href="http://www.developer.nokia.com/Community/Wiki/Category:Qt_Quick" title="Category:Qt Quick">Qt Quick</a></li><li><a href="http://www.developer.nokia.com/Community/Wiki/Category:Qt" title="Category:Qt">Qt</a></li><li><a href="http://www.developer.nokia.com/Community/Wiki/Category:Lang-Chinese" title="Category:Lang-Chinese">Lang-Chinese</a></li><li><a href="http://www.developer.nokia.com/Community/Wiki/Category:MeeGo_Harmattan" title="Category:MeeGo Harmattan">MeeGo Harmattan</a></li><li><a href="http://www.developer.nokia.com/Community/Wiki/Category:Symbian" title="Category:Symbian">Symbian</a></li></ul></div></div>                        				<!-- /catlinks -->
+                    				                                                        <div id="contentSub"></div>
+                            <!-- Notification buttons-->
+                                            		    <!-- content -->
+                    		<div id="content">
+                    			<a id="top"></a>
+                    			<div id="mw-js-message" style="display:none;" class="js-messagebox"></div>
+                    			
+                    			<!-- firstHeading -->
+                                 
+                                                                                <h1 class="firstHeading"><span>在C++程序中使用QML</span></h1>
+                                                                                        			<!-- /firstHeading -->
+                    			<!-- bodyContent -->
+                    			<div id="bodyContent">
+                    				                    				                    				                        				<!-- jumpto -->
+                        				<div id="jump-to-nav">
+                        					Jump to: <a href="http://www.developer.nokia.com/Community/Wiki/%E5%9C%A8C%2B%2B%E7%A8%8B%E5%BA%8F%E4%B8%AD%E4%BD%BF%E7%94%A8QML#mw-head">navigation</a>,
+                        					<a href="http://www.developer.nokia.com/Community/Wiki/%E5%9C%A8C%2B%2B%E7%A8%8B%E5%BA%8F%E4%B8%AD%E4%BD%BF%E7%94%A8QML#p-search">search</a>
+                        				</div>
+                    				<!-- /jumpto -->
+                    				<!--?NOINDEX-END?-->
+                    				<!-- bodytext -->
+                    				<div lang="en" dir="ltr" class="mw-content-ltr">
+<p>本文翻译自<a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qtbinding.html">Using QML in C++ Applications</a>。欢迎大家编辑、修改此文章。
+</p><p>QML API有三个主要成员——<a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qdeclarativeengine.html">QDeclarativeEngine</a>，<a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qdeclarativecomponent.html">QDeclarativeComponent</a>和<a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qdeclarativecontext.html">QDeclarativeContext</a>。
+</p><p><a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qdeclarativeengine.html">QDeclarativeEngine</a>提供了QML的运行环境。
+<a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qdeclarativecomponent.html">QDeclarativeComponent</a>封装了<a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qdeclarativedocuments.html">QML Documents</a>。
+<a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qdeclarativecontext.html">QDeclarativeContext</a>允许程序使用QML组件显示数据。
+</p><p>QML包含一个非常好用的API——<a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qdeclarativeview.html">QDeclarativeView</a>。通过它，应用程序可以很方便的把QML组件嵌入到<a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qgraphicsview.html">QGraphicsView</a>中。<a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qdeclarativeview.html">QDeclarativeView</a>主要用于在应用程序开发过程中进行快速原型开发，它的主要特性将在下面讨论。
+</p><p>如果你正打算用QML改造现有的Qt应用程序，请参考<a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qml-integration.html">QML与Qt UI代码整合</a>。
+</p><p><!--?NOINDEX-START?-->
+</p>
+
+<p><!--?NOINDEX-END?-->
+</p>
+<h2> <span class="mw-headline" id=".E5.9F.BA.E6.9C.AC.E7.94.A8.E6.B3.95"><u><b>基本用法</b></u></span></h2>
+<p>若想将QML与C++程序结合，程序中至少需要一个<a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qdeclarativeengine.html">QDeclarativeEngine</a>。只有程序中需要使用多个不同的QML组件实例时，才需要多个<a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qdeclarativeengine.html">QDeclarativeEngine</a>。为了使所有QML组件实例可以工作，<a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qdeclarativeengine.html">QDeclarativeEngine</a>为他们提供全局配置，<a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qdeclarativeengine.html">QDeclarativeEngine</a>对于C++中使用QML的作用如同<a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qnetworkaccessmanager.html">QNetworkAccessManager</a>对于网络通信、路径对于持久化存储的作用。
+</p><p>可以使用<a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qdeclarativecomponent.html">QDeclarativeComponent</a>加载<a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qdeclarativedocuments.html">QML Documents</a>。每一个<a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qdeclarativecomponent.html">QDeclarativeComponent</a>实例对应一个QML document。
+</p><p>可以传递一个Document URL或者表示Document内容的原始文本给<a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qdeclarativecomponent.html">QDeclarativeComponent</a>。Document URL可以是本地文件系统URL，或者任何<a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qnetworkaccessmanager.html">QNetworkAccessManager</a>支持的网络URL。
+</p><p>可以通过<a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qdeclarativecomponent.html#create">QDeclarativeComponent::create()</a>方法创建QML组件实例。下面的代码演示了如何加载一个QML Document并创建一个实例：
+</p>
+<div dir="ltr" class="mw-geshi" style="text-align: left;"><div class="cpp-qt source-cpp-qt"><pre class="de1">QDeclarativeEngine <span class="sy0">*</span>engine <span class="sy0">=</span> <span class="kw1">new</span> QDeclarativeEngine<span class="br0">(</span>parent<span class="br0">)</span><span class="sy0">;</span><br>QDeclarativeComponent component<span class="br0">(</span>engine<span class="sy0">,</span> <a href="http://doc.trolltech.com/latest/qurl.html"><span class="kw5">QUrl</span></a><span class="sy0">::</span><span class="me2">fromLocalFile</span><span class="br0">(</span><span class="st0">"main.qml"</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span><br><a href="http://doc.trolltech.com/latest/qobject.html"><span class="kw5">QObject</span></a> <span class="sy0">*</span>myObject <span class="sy0">=</span> component.<span class="me1">create</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span></pre></div></div>
+<h2> <span class="mw-headline" id=".E6.9A.B4.E9.9C.B2.E6.95.B0.E6.8D.AE.EF.BC.88Exposing_Data.EF.BC.89"><u><b>暴露数据（Exposing Data）</b></u></span></h2>
+<p>QML组件在<a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qdeclarativecontext.html">QDeclarativeContext</a>中实例化。一个上下文（context）允许程序暴露数据给QML组件实例。一个<a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qdeclarativecontext.html">QDeclarativeContext</a>可用于创建应用程序中用到的所有对象实例，如果需要精确控制为每个实例暴露的数据，可以创建多个<a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qdeclarativecontext.html">QDeclarativeContex</a>。如果上下文（context）没有传递给<a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qdeclarativecomponent.html#create">QDeclarativeComponent::create()</a>方法，将默认使用<a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qdeclarativeengine.html">QDeclarativeEngine</a>的根上下文（<a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qdeclarativeengine.html#rootContext">root context</a>），这时数据通过跟上下文（root context）暴露给所有对象实例。
+</p>
+<h2> <span class="mw-headline" id=".E7.AE.80.E5.8D.95.E6.95.B0.E6.8D.AE.EF.BC.88Simple_Data.EF.BC.89"><u><b>简单数据（Simple Data）</b></u></span></h2>
+<p>向QML组件实例暴露数据，通过QML属性绑定（Property Bindings）和JavaScript对象访问应用程序设置上下文属性（context properties）。下面的例子展示了如何通过<a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qdeclarativeview.html">QDeclarativeView</a>暴露背景颜色给QML文件：
+</p>
+<div dir="ltr" class="mw-geshi" style="text-align: left;"><div class="cpp-qt source-cpp-qt"><pre class="de1"><span class="co1">// main.cpp</span><br> <span class="co2">#include &lt;QApplication&gt;</span><br> <span class="co2">#include &lt;QDeclarativeView&gt;</span><br> <span class="co2">#include &lt;QDeclarativeContext&gt;</span><br>&nbsp;<br> <span class="kw4">int</span> main<span class="br0">(</span><span class="kw4">int</span> argc<span class="sy0">,</span> <span class="kw4">char</span> <span class="sy0">*</span>argv<span class="br0">[</span><span class="br0">]</span><span class="br0">)</span><br> <span class="br0">{</span><br>     <a href="http://doc.trolltech.com/latest/qapplication.html"><span class="kw5">QApplication</span></a> app<span class="br0">(</span>argc<span class="sy0">,</span> argv<span class="br0">)</span><span class="sy0">;</span><br>&nbsp;<br>     QDeclarativeView view<span class="sy0">;</span><br>     QDeclarativeContext <span class="sy0">*</span>context <span class="sy0">=</span> view.<span class="me1">rootContext</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span><br>     context<span class="sy0">-&gt;</span><span class="me3">setContextProperty</span><span class="br0">(</span><span class="st0">"backgroundColor"</span><span class="sy0">,</span><br>                                 <a href="http://doc.trolltech.com/latest/qcolor.html"><span class="kw5">QColor</span></a><span class="br0">(</span><a href="http://doc.trolltech.com/latest/qt.html"><span class="kw5">Qt</span></a><span class="sy0">::</span><span class="me2">yellow</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span><br>&nbsp;<br>     view.<span class="me1">setSource</span><span class="br0">(</span><a href="http://doc.trolltech.com/latest/qurl.html"><span class="kw5">QUrl</span></a><span class="sy0">::</span><span class="me2">fromLocalFile</span><span class="br0">(</span><span class="st0">"main.qml"</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span><br>     view.<span class="me1">show</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span><br>&nbsp;<br>     <span class="kw1">return</span> app.<span class="me1">exec</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span><br> <span class="br0">}</span></pre></div></div>
+<div dir="ltr" class="mw-geshi" style="text-align: left;"><div class="cpp-qt source-cpp-qt"><pre class="de1"><span class="co1">// main.qml</span><br>&nbsp;<br> import QtQuick <span class="nu16">1.0</span><br>&nbsp;<br> Rectangle <span class="br0">{</span><br>     width<span class="sy0">:</span> <span class="nu0">300</span><br>     height<span class="sy0">:</span> <span class="nu0">300</span><br>&nbsp;<br>     color<span class="sy0">:</span> backgroundColor<br>&nbsp;<br>     Text <span class="br0">{</span><br>         anchors.<span class="me1">centerIn</span><span class="sy0">:</span> parent<br>         text<span class="sy0">:</span> <span class="st0">"Hello Yellow World!"</span><br>     <span class="br0">}</span><br> <span class="br0">}</span></pre></div></div>
+<p>如果你只希望在main.cpp里创建组件，不想显示在<a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qdeclarativeview.html">QDeclarativeView</a>中，需要使用<a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qdeclarativeengine.html#rootContext">QDeclarativeEngine::rootContext()</a>来创建<a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qdeclarativecontext.html">QDeclarativeContext</a>实例：
+</p>
+<div dir="ltr" class="mw-geshi" style="text-align: left;"><div class="cpp-qt source-cpp-qt"><pre class="de1">     QDeclarativeEngine engine<span class="sy0">;</span><br>     QDeclarativeContext <span class="sy0">*</span>windowContext <span class="sy0">=</span> <span class="kw1">new</span> QDeclarativeContext<span class="br0">(</span>engine.<span class="me1">rootContext</span><span class="br0">(</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span><br>     windowContext<span class="sy0">-&gt;</span><span class="me3">setContextProperty</span><span class="br0">(</span><span class="st0">"backgroundColor"</span><span class="sy0">,</span> <a href="http://doc.trolltech.com/latest/qcolor.html"><span class="kw5">QColor</span></a><span class="br0">(</span><a href="http://doc.trolltech.com/latest/qt.html"><span class="kw5">Qt</span></a><span class="sy0">::</span><span class="me2">yellow</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span><br>&nbsp;<br>     QDeclarativeComponent component<span class="br0">(</span><span class="sy0">&amp;</span>engine<span class="sy0">,</span> <span class="st0">"main.qml"</span><span class="br0">)</span><span class="sy0">;</span><br>     <a href="http://doc.trolltech.com/latest/qobject.html"><span class="kw5">QObject</span></a> <span class="sy0">*</span>window <span class="sy0">=</span> component.<span class="me1">create</span><span class="br0">(</span>windowContext<span class="br0">)</span><span class="sy0">;</span></pre></div></div>
+<p>上下文属性（Context Properties）的工作方式同QML绑定（QML bindings）中的普通属性（normal properties）一样，在上面的例子中，当上下文属性（context poperty）backgroundColor变为红色时，组件对象实例都会自动更新。请注意创建者有责任删除它创建的<a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qdeclarativecontext.html">QDeclarativeContext</a>。当销毁Window组件时，windowContext必须被显式的销毁（手动delete），或者用一种更简单的方法——设置windowContext的父类为window（父对象释放时，会自动释放所有子对象）。
+</p><p>QDeclarativeContexts以树状结构组织，除了根上下文（root context）外，每个<a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qdeclarativecontext.html">QDeclarativeContext</a>都有一个父对象。QDeclarativeContexts子对象有效的继承父对象的上下文属性（context properties），这使得应用程序更加灵活的在不同的QML对象实例间暴露（exposed）数据。如果<a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qdeclarativecontext.html">QDeclarativeContext</a>设置了一个与父对象相同的上下文属性（context property），父对象的这个属性将被“隐藏”。如下面的例子所示，Context1中的上下文属性（context property）background“隐藏”了根上下文（root context）中的background属性。
+</p><p><br>
+<a href="http://www.developer.nokia.com/Community/Wiki/File:Qml_context_tree.png" class="image"><img alt="Qml context tree.png" src="./在C++程序中使用QML - Nokia Developer Wiki_files/Qml_context_tree.png" width="341" height="280"></a>
+</p><p><br>
+</p>
+<h2> <span class="mw-headline" id=".E7.BB.93.E6.9E.84.E5.8C.96.E6.95.B0.E6.8D.AE.EF.BC.88Structed_Data.EF.BC.89"><u><b>结构化数据（Structed Data）</b></u></span></h2>
+<p>上下文属性（context property）还可用于向QML对象暴露结构化可写数据。除了<a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qvariant.html">QVariant</a>已经支持的所有类型外，派生自<a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qobject.html">QObject</a>的类型也可分配给上下文属性（context property）。<a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qobject.html">QObject</a>上下文属性（context property）允许暴露结构化的数据，并允许QML对这些数据设值。
+下面的例子创建了一个CustomPalette对象，并将它设为名为palette的上下文属性（context property）：
+</p>
+<div dir="ltr" class="mw-geshi" style="text-align: left;"><div class="cpp-qt source-cpp-qt"><pre class="de1"> <span class="kw2">class</span> CustomPalette <span class="sy0">:</span> <span class="kw2">public</span> <a href="http://doc.trolltech.com/latest/qobject.html"><span class="kw5">QObject</span></a><br> <span class="br0">{</span><br>     <span class="kw2">Q_OBJECT</span><br>     Q_PROPERTY<span class="br0">(</span><a href="http://doc.trolltech.com/latest/qcolor.html"><span class="kw5">QColor</span></a> background READ background WRITE setBackground NOTIFY backgroundChanged<span class="br0">)</span><br>     Q_PROPERTY<span class="br0">(</span><a href="http://doc.trolltech.com/latest/qcolor.html"><span class="kw5">QColor</span></a> text READ text WRITE setText NOTIFY textChanged<span class="br0">)</span><br>&nbsp;<br> <span class="kw2">public</span><span class="sy0">:</span><br>     CustomPalette<span class="br0">(</span><span class="br0">)</span> <span class="sy0">:</span> m_background<span class="br0">(</span><a href="http://doc.trolltech.com/latest/qt.html"><span class="kw5">Qt</span></a><span class="sy0">::</span><span class="me2">white</span><span class="br0">)</span><span class="sy0">,</span> m_text<span class="br0">(</span><a href="http://doc.trolltech.com/latest/qt.html"><span class="kw5">Qt</span></a><span class="sy0">::</span><span class="me2">black</span><span class="br0">)</span> <span class="br0">{</span><span class="br0">}</span><br>&nbsp;<br>     <a href="http://doc.trolltech.com/latest/qcolor.html"><span class="kw5">QColor</span></a> background<span class="br0">(</span><span class="br0">)</span> <span class="kw4">const</span> <span class="br0">{</span> <span class="kw1">return</span> m_background<span class="sy0">;</span> <span class="br0">}</span><br>     <span class="kw4">void</span> setBackground<span class="br0">(</span><span class="kw4">const</span> <a href="http://doc.trolltech.com/latest/qcolor.html"><span class="kw5">QColor</span></a> <span class="sy0">&amp;</span>c<span class="br0">)</span> <span class="br0">{</span><br>         <span class="kw1">if</span> <span class="br0">(</span>c <span class="sy0">!=</span> m_background<span class="br0">)</span> <span class="br0">{</span><br>             m_background <span class="sy0">=</span> c<span class="sy0">;</span><br>             emit backgroundChanged<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span><br>         <span class="br0">}</span><br>     <span class="br0">}</span><br>&nbsp;<br>     <a href="http://doc.trolltech.com/latest/qcolor.html"><span class="kw5">QColor</span></a> text<span class="br0">(</span><span class="br0">)</span> <span class="kw4">const</span> <span class="br0">{</span> <span class="kw1">return</span> m_text<span class="sy0">;</span> <span class="br0">}</span><br>     <span class="kw4">void</span> setText<span class="br0">(</span><span class="kw4">const</span> <a href="http://doc.trolltech.com/latest/qcolor.html"><span class="kw5">QColor</span></a> <span class="sy0">&amp;</span>c<span class="br0">)</span> <span class="br0">{</span><br>         <span class="kw1">if</span> <span class="br0">(</span>c <span class="sy0">!=</span> m_text<span class="br0">)</span> <span class="br0">{</span><br>             m_text <span class="sy0">=</span> c<span class="sy0">;</span><br>             emit textChanged<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span><br>         <span class="br0">}</span><br>     <span class="br0">}</span><br>&nbsp;<br> <span class="kw2">signals</span><span class="sy0">:</span><br>     <span class="kw4">void</span> textChanged<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span><br>     <span class="kw4">void</span> backgroundChanged<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span><br>&nbsp;<br> <span class="kw2">private</span><span class="sy0">:</span><br>     <a href="http://doc.trolltech.com/latest/qcolor.html"><span class="kw5">QColor</span></a> m_background<span class="sy0">;</span><br>     <a href="http://doc.trolltech.com/latest/qcolor.html"><span class="kw5">QColor</span></a> m_text<span class="sy0">;</span><br> <span class="br0">}</span><span class="sy0">;</span><br>&nbsp;<br> <span class="kw4">int</span> main<span class="br0">(</span><span class="kw4">int</span> argc<span class="sy0">,</span> <span class="kw4">char</span> <span class="sy0">*</span>argv<span class="br0">[</span><span class="br0">]</span><span class="br0">)</span><br> <span class="br0">{</span><br>     <a href="http://doc.trolltech.com/latest/qapplication.html"><span class="kw5">QApplication</span></a> app<span class="br0">(</span>argc<span class="sy0">,</span> argv<span class="br0">)</span><span class="sy0">;</span><br>&nbsp;<br>     QDeclarativeView view<span class="sy0">;</span><br>     view.<span class="me1">rootContext</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">-&gt;</span><span class="me3">setContextProperty</span><span class="br0">(</span><span class="st0">"palette"</span><span class="sy0">,</span> <span class="kw1">new</span> CustomPalette<span class="br0">)</span><span class="sy0">;</span><br>&nbsp;<br>     view.<span class="me1">setSource</span><span class="br0">(</span><a href="http://doc.trolltech.com/latest/qurl.html"><span class="kw5">QUrl</span></a><span class="sy0">::</span><span class="me2">fromLocalFile</span><span class="br0">(</span><span class="st0">"main.qml"</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span><br>     view.<span class="me1">show</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span><br>&nbsp;<br>     <span class="kw1">return</span> app.<span class="me1">exec</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span><br> <span class="br0">}</span></pre></div></div>
+<p>下面的QML文件使用了palette对象及它的属性来设置背景和文字颜色。当窗口被点击时，palette的颜色将被改变，窗口文本也会被相应的更新：
+</p>
+<div dir="ltr" class="mw-geshi" style="text-align: left;"><div class="cpp-qt source-cpp-qt"><pre class="de1"> import QtQuick <span class="nu16">1.0</span><br>&nbsp;<br> Rectangle <span class="br0">{</span><br>     width<span class="sy0">:</span> <span class="nu0">240</span><br>     height<span class="sy0">:</span> <span class="nu0">320</span><br>     color<span class="sy0">:</span> palette.<span class="me1">background</span><br>&nbsp;<br>     Text <span class="br0">{</span><br>         anchors.<span class="me1">centerIn</span><span class="sy0">:</span> parent<br>         color<span class="sy0">:</span> palette.<span class="me1">text</span><br>         text<span class="sy0">:</span> <span class="st0">"Click me to change color!"</span><br>     <span class="br0">}</span><br>&nbsp;<br>     MouseArea <span class="br0">{</span><br>         anchors.<span class="me1">fill</span><span class="sy0">:</span> parent<br>         onClicked<span class="sy0">:</span> <span class="br0">{</span><br>             palette.<span class="me1">text</span> <span class="sy0">=</span> <span class="st0">"blue"</span><span class="sy0">;</span><br>         <span class="br0">}</span><br>     <span class="br0">}</span><br> <span class="br0">}</span></pre></div></div>
+<p>在这个例子中，当检测到C++属性值（CustomPalette的文本）改变时，该属性必须有一个相应的NOTIFY信号，当属性值改变时发送NOTIFY信号。实现的时候需要注意，仅当属性值改变时才发送信号，从而避免发生死循环。访问一个绑定的属性时，如果没有NOTIFY信号将会导致QML产生一个运行时的警告。
+</p>
+<h2> <span class="mw-headline" id=".E5.8A.A8.E6.80.81.E7.BB.93.E6.9E.84.E6.95.B0.E6.8D.AE.EF.BC.88Dynamic_Structured_Data.EF.BC.89"><u><b>动态结构数据（Dynamic Structured Data）</b></u></span></h2>
+<p>如果一个应用程序在编译期具有很多QObject类型的动态结构化数据，可以使用<a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qdeclarativepropertymap.html">QDeclarativePropertyMap</a>在运行期动态的创建这些结构化数据。
+</p>
+<h2> <span class="mw-headline" id=".E5.9C.A8QML.E4.B8.AD.E8.B0.83.E7.94.A8C.2B.2B.E6.96.B9.E6.B3.95"><u><b>在QML中调用C++方法</b></u></span></h2>
+<p>QML中可以调用<a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qobject.html">QObject</a>及其派生类对象中的public slot的方法或标记为Q_INVOKABLE的方法。
+</p><p>上述的C++方法可以具有参数和返回值，QML支持下列数据类型：
+</p>
+<pre>   * bool
+   * unsigned int, int
+   * float, double, qreal
+   * <a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qstring.html">QString</a>
+   * <a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qurl.html">QUrl</a>
+   * <a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qcolor.html">QColor</a>
+   * <a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qdate.html">QDate</a>，<a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qtime.html">QTime</a>，<a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qdatetime.html">QDateTime</a>
+   * <a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qpoint.html">QPoint</a>，<a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qpointf.html">QPointF</a>
+   * <a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qsize.html">QSize</a>, <a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qsizef.html">QSizeF</a>
+   * <a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qrect.html">QRect</a>，<a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qrectf.html">QRectF</a>
+   * <a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qvariant.html">QVariant</a>
+</pre>
+<p>下面的例子演示了当MouseArea被点击时，触发“Stopwatch”对象的start()/stop()：
+</p>
+<div dir="ltr" class="mw-geshi" style="text-align: left;"><div class="cpp-qt source-cpp-qt"><pre class="de1"><span class="co1">// main.cpp</span><br>&nbsp;<br> <span class="kw2">class</span> Stopwatch <span class="sy0">:</span> <span class="kw2">public</span> <a href="http://doc.trolltech.com/latest/qobject.html"><span class="kw5">QObject</span></a><br> <span class="br0">{</span><br>     <span class="kw2">Q_OBJECT</span><br> <span class="kw2">public</span><span class="sy0">:</span><br>     Stopwatch<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span><br>&nbsp;<br>     Q_INVOKABLE <span class="kw4">bool</span> isRunning<span class="br0">(</span><span class="br0">)</span> const<span class="sy0">;</span><br>&nbsp;<br> <span class="kw2">public</span> <span class="kw2">slots</span><span class="sy0">:</span><br>     <span class="kw4">void</span> start<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span><br>     <span class="kw4">void</span> stop<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span><br>&nbsp;<br> <span class="kw2">private</span><span class="sy0">:</span><br>     <span class="kw4">bool</span> m_running<span class="sy0">;</span><br> <span class="br0">}</span><span class="sy0">;</span><br>&nbsp;<br> <span class="kw4">int</span> main<span class="br0">(</span><span class="kw4">int</span> argc<span class="sy0">,</span> <span class="kw4">char</span> <span class="sy0">*</span>argv<span class="br0">[</span><span class="br0">]</span><span class="br0">)</span><br> <span class="br0">{</span><br>     <a href="http://doc.trolltech.com/latest/qapplication.html"><span class="kw5">QApplication</span></a> app<span class="br0">(</span>argc<span class="sy0">,</span> argv<span class="br0">)</span><span class="sy0">;</span><br>&nbsp;<br>     QDeclarativeView view<span class="sy0">;</span><br>     view.<span class="me1">rootContext</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">-&gt;</span><span class="me3">setContextProperty</span><span class="br0">(</span><span class="st0">"stopwatch"</span><span class="sy0">,</span><br>                                            <span class="kw1">new</span> Stopwatch<span class="br0">)</span><span class="sy0">;</span><br>&nbsp;<br>     view.<span class="me1">setSource</span><span class="br0">(</span><a href="http://doc.trolltech.com/latest/qurl.html"><span class="kw5">QUrl</span></a><span class="sy0">::</span><span class="me2">fromLocalFile</span><span class="br0">(</span><span class="st0">"main.qml"</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span><br>     view.<span class="me1">show</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span><br>&nbsp;<br>     <span class="kw1">return</span> app.<span class="me1">exec</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span><br> <span class="br0">}</span></pre></div></div>
+<div dir="ltr" class="mw-geshi" style="text-align: left;"><div class="cpp-qt source-cpp-qt"><pre class="de1"><span class="co1">// main.qml</span><br>&nbsp;<br> import QtQuick <span class="nu16">1.0</span><br>&nbsp;<br> Rectangle <span class="br0">{</span><br>     width<span class="sy0">:</span> <span class="nu0">300</span><br>     height<span class="sy0">:</span> <span class="nu0">300</span><br>&nbsp;<br>     MouseArea <span class="br0">{</span><br>         anchors.<span class="me1">fill</span><span class="sy0">:</span> parent<br>         onClicked<span class="sy0">:</span> <span class="br0">{</span><br>             <span class="kw1">if</span> <span class="br0">(</span>stopwatch.<span class="me1">isRunning</span><span class="br0">(</span><span class="br0">)</span><span class="br0">)</span><br>                 stopwatch.<span class="me1">stop</span><span class="br0">(</span><span class="br0">)</span><br>             <span class="kw1">else</span><br>                 stopwatch.<span class="me1">start</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span><br>         <span class="br0">}</span><br>     <span class="br0">}</span><br> <span class="br0">}</span></pre></div></div>
+<p>请注意，在这个特殊的例子中，有一个更好的方法来达到同样的结果——main.qml中可以用一个“运行中“属性（property），更漂亮的QML代码如下：
+</p>
+<div dir="ltr" class="mw-geshi" style="text-align: left;"><div class="cpp-qt source-cpp-qt"><pre class="de1"> <span class="co1">// main.qml</span><br> import QtQuick <span class="nu16">1.0</span><br>&nbsp;<br> Rectangle <span class="br0">{</span><br>     MouseArea <span class="br0">{</span><br>         anchors.<span class="me1">fill</span><span class="sy0">:</span> parent<br>         onClicked<span class="sy0">:</span> stopwatch.<span class="me1">running</span> <span class="sy0">=</span> <span class="sy0">!</span>stopwatch.<span class="me1">running</span><br>     <span class="br0">}</span><br> <span class="br0">}</span></pre></div></div>
+<p>此外，还可以调用<a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qml-extending-types.html#adding-new-methods">functions declared in QML from C++</a>描述的方法。
+</p>
+<h2> <span class="mw-headline" id=".E7.BD.91.E7.BB.9C.E7.BB.84.E4.BB.B6.EF.BC.88Network_Components.EF.BC.89"><u><b>网络组件（Network Components）</b></u></span></h2>
+<p>如果传递给<a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qdeclarativecomponent.html">QDeclarativeComponent</a>一个网络资源，或者QML document中引用了网络资源，<a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qdeclarativecomponent.html">QDeclarativeComponent</a>会在创建对象之前先获取网络资源数据。在这种情况下<a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qdeclarativecomponent.html">QDeclarativeComponent</a>将有一个加载状态（<a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qdeclarativecomponent.html#Status-enum">Loading</a> <a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qdeclarativecomponent.html#status-prop">status</a>）。应用程序将一直等待（在调用<a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qdeclarativecomponent.html#create">QDeclarativeComponent::create()</a>之前），直到组件准备完毕。
+</p><p>下面的例子演示了如何加载一个网络QML文件资源。<a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qdeclarativecomponent.html">QDeclarativeComponent</a>创建后，先检查组件是否正在加载，如果正在加载则连接<a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/qdeclarativecomponent.html#statusChanged">QDeclarativeComponent::statusChanged()</a>信号，否则直接调用continueLoading()方法。虽然在这个例子里已经知道URL在远程，但这个检查还是必须的，这样可以在组件已经缓存了该URL的情况下，直接创建组该件。
+</p>
+<div dir="ltr" class="mw-geshi" style="text-align: left;"><div class="cpp-qt source-cpp-qt"><pre class="de1"> MyApplication<span class="sy0">::</span><span class="me2">MyApplication</span><span class="br0">(</span><span class="br0">)</span><br> <span class="br0">{</span><br>     <span class="co1">// ...</span><br>     component <span class="sy0">=</span> <span class="kw1">new</span> QDeclarativeComponent<span class="br0">(</span>engine<span class="sy0">,</span> <a href="http://doc.trolltech.com/latest/qurl.html"><span class="kw5">QUrl</span></a><span class="br0">(</span><span class="st0">"http://www.example.com/main.qml"</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span><br>     <span class="kw1">if</span> <span class="br0">(</span>component<span class="sy0">-&gt;</span><span class="me3">isLoading</span><span class="br0">(</span><span class="br0">)</span><span class="br0">)</span><br>         <a href="http://doc.trolltech.com/latest/qobject.html"><span class="kw5">QObject</span></a><span class="sy0">::</span><span class="kw2">connect</span><span class="br0">(</span>component<span class="sy0">,</span> SIGNAL<span class="br0">(</span>statusChanged<span class="br0">(</span>QDeclarativeComponent<span class="sy0">::</span><span class="me2">Status</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">,</span><br>                          <span class="kw1">this</span><span class="sy0">,</span> SLOT<span class="br0">(</span>continueLoading<span class="br0">(</span><span class="br0">)</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span><br>     <span class="kw1">else</span><br>         continueLoading<span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span><br> <span class="br0">}</span><br>&nbsp;<br> <span class="kw4">void</span> MyApplication<span class="sy0">::</span><span class="me2">continueLoading</span><span class="br0">(</span><span class="br0">)</span><br> <span class="br0">{</span><br>     <span class="kw1">if</span> <span class="br0">(</span>component<span class="sy0">-&gt;</span><span class="me3">isError</span><span class="br0">(</span><span class="br0">)</span><span class="br0">)</span> <span class="br0">{</span><br>         qWarning<span class="br0">(</span><span class="br0">)</span> <span class="sy0">&lt;&lt;</span> component<span class="sy0">-&gt;</span><span class="me3">errors</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span><br>     <span class="br0">}</span> <span class="kw1">else</span> <span class="br0">{</span><br>         <a href="http://doc.trolltech.com/latest/qobject.html"><span class="kw5">QObject</span></a> <span class="sy0">*</span>myObject <span class="sy0">=</span> component<span class="sy0">-&gt;</span><span class="me3">create</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span><br>     <span class="br0">}</span><br> <span class="br0">}</span></pre></div></div>
+<h2> <span class="mw-headline" id="Qt.E8.B5.84.E6.BA.90.EF.BC.88Qt_Resources.EF.BC.89"><u><b>Qt资源（Qt Resources）</b></u></span></h2>
+<p>QML可以通过qrc:URL从Qt资源系统（<a rel="nofollow" class="external text" href="http://doc.qt.nokia.com/4.7/resources.html">Qt Resource System</a>）中加载，例如：
+</p><p><b>[project/example.qrc]</b>
+</p>
+<div dir="ltr" class="mw-geshi" style="text-align: left;"><div class="cpp-qt source-cpp-qt"><pre class="de1"> <span class="sy0">&lt;!</span>DOCTYPE RCC<span class="sy0">&gt;</span><br> <span class="sy0">&lt;</span>RCC version<span class="sy0">=</span><span class="st0">"1.0"</span><span class="sy0">&gt;</span><br>&nbsp;<br> <span class="sy0">&lt;</span>qresource prefix<span class="sy0">=</span><span class="st0">"/"</span><span class="sy0">&gt;</span><br>     <span class="sy0">&lt;</span>file<span class="sy0">&gt;</span>main.<span class="me1">qml</span><span class="sy0">&lt;/</span>file<span class="sy0">&gt;</span><br>     <span class="sy0">&lt;</span>file<span class="sy0">&gt;</span>images<span class="sy0">/</span>background.<span class="me1">png</span><span class="sy0">&lt;/</span>file<span class="sy0">&gt;</span><br> <span class="sy0">&lt;/</span>qresource<span class="sy0">&gt;</span><br>&nbsp;<br> <span class="sy0">&lt;/</span>RCC<span class="sy0">&gt;</span></pre></div></div>
+<p><br>
+<b>[project/project.pro]</b>
+</p>
+<div dir="ltr" class="mw-geshi" style="text-align: left;"><div class="cpp-qt source-cpp-qt"><pre class="de1"> QT <span class="sy0">+=</span> declarative<br>&nbsp;<br> SOURCES <span class="sy0">+=</span> main.<span class="me1">cpp</span><br> RESOURCES <span class="sy0">+=</span> example.<span class="me1">qrc</span></pre></div></div>
+<p>[project/main.cpp]
+</p>
+<div dir="ltr" class="mw-geshi" style="text-align: left;"><div class="cpp-qt source-cpp-qt"><pre class="de1"> <span class="kw4">int</span> main<span class="br0">(</span><span class="kw4">int</span> argc<span class="sy0">,</span> <span class="kw4">char</span> <span class="sy0">*</span>argv<span class="br0">[</span><span class="br0">]</span><span class="br0">)</span><br> <span class="br0">{</span><br>     <a href="http://doc.trolltech.com/latest/qapplication.html"><span class="kw5">QApplication</span></a> app<span class="br0">(</span>argc<span class="sy0">,</span> argv<span class="br0">)</span><span class="sy0">;</span><br>&nbsp;<br>     QDeclarativeView view<span class="sy0">;</span><br>     view.<span class="me1">setSource</span><span class="br0">(</span><a href="http://doc.trolltech.com/latest/qurl.html"><span class="kw5">QUrl</span></a><span class="br0">(</span><span class="st0">"qrc:/main.qml"</span><span class="br0">)</span><span class="br0">)</span><span class="sy0">;</span><br>     view.<span class="me1">show</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span><br>&nbsp;<br>     <span class="kw1">return</span> app.<span class="me1">exec</span><span class="br0">(</span><span class="br0">)</span><span class="sy0">;</span><br> <span class="br0">}</span></pre></div></div>
+<p><b>[project/main.qml]</b>
+</p>
+<div dir="ltr" class="mw-geshi" style="text-align: left;"><div class="cpp-qt source-cpp-qt"><pre class="de1"> import QtQuick <span class="nu16">1.0</span><br>&nbsp;<br> Image <span class="br0">{</span><br>     source<span class="sy0">:</span> <span class="st0">"images/background.png"</span><br> <span class="br0">}</span></pre></div></div>
+<p><b>注意：</b>QML中无法直接访问资源系统。如果主QML文件作为资源加载，主QML文件中的所有指定相对路径的文件都将从资源系统中加载。如果主QML文件没有作为资源加载，那么资源系统中的文件无法在QML中访问。
+</p>
+<h2> <span class="mw-headline" id=".E7.9B.B8.E5.85.B3.E9.93.BE.E6.8E.A5"><u><b>相关链接</b></u></span></h2>
+<ul><li><a href="http://www.developer.nokia.com/Community/Wiki/Qt_%E5%BC%80%E5%8F%91" title="Qt 开发" class="mw-redirect">Qt 开发</a>
+</li><li><a href="http://www.developer.nokia.com/Community/Wiki/Qt_Quick_(Chinese)" title="Qt Quick (Chinese)">Qt Quick (Chinese)</a>
+</li></ul>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 373/1000000
+Post-expand include size: 3785/2097152 bytes
+Template argument size: 163/2097152 bytes
+Expensive parser function count: 0/100
+-->
+</div><div class="printfooter">
+Retrieved from "<a href="http://www.developer.nokia.com/Community/Wiki/index.php?title=%E5%9C%A8C%2B%2B%E7%A8%8B%E5%BA%8F%E4%B8%AD%E4%BD%BF%E7%94%A8QML&oldid=175285">http://www.developer.nokia.com/Community/Wiki/index.php?title=%E5%9C%A8C%2B%2B%E7%A8%8B%E5%BA%8F%E4%B8%AD%E4%BD%BF%E7%94%A8QML&amp;oldid=175285</a>"</div>
+                    				<!-- /bodytext -->
+<!--?NOINDEX-START?-->
+                    				                    				<div class="visualClear"></div>
+                    			</div>
+                    			<!-- /bodyContent -->
+                    			<div class="talkhere">
+                    			                    			</div>
+                    		<div class="talkhere-tomove nd-shadow-line" style=""><div class="talkhere" id="talkhere"><div class="talkhere-head"><h1>Comments</h1></div><div class="talkhere-comments talkhere-notalk"><p><i>(no comments yet)</i>
+</p></div><div class="talkhere-foot"><div class="talkhere-talklink"><a href="https://sso.developer.nokia.com/login?service=http://www.developer.nokia.com/Community/Wiki/%E5%9C%A8C%2B%2B%E7%A8%8B%E5%BA%8F%E4%B8%AD%E4%BD%BF%E7%94%A8QML">Log in</a> or <a href="https://sso.developer.nokia.com/login?service=http://www.developer.nokia.com/Community/Wiki/%E5%9C%A8C%2B%2B%E7%A8%8B%E5%BA%8F%E4%B8%AD%E4%BD%BF%E7%94%A8QML" rel="nofollow">Join</a> to leave comments.</div></div></div></div></div>    
+                		<!-- /content -->
+                        <div id="lastmod">
+                                                                 This page was last modified on 11 October 2012, at 03:19.
+                                    <div id="pageCounts">
+                                        290 page views in the last 30 days. 
+                                    </div>
+
+                                                    </div>
+<!--?NOINDEX-END?-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+<!--?NOINDEX-START?-->
+		<!-- footer -->
+		<div id="footer">
+			<div style="clear:both"></div>
+		</div>
+		<!-- /footer -->
+<!--?NOINDEX-END?-->
+
+    </div>
+    <!--?NOINDEX-START?-->
+<div id="fnfooter">
+  <div id="fnfooterComponent">
+
+    <div style="width:680px" class="left">
+
+      <div class="line">
+
+	<div class="row left">
+          <div class="item">
+  	    <img class="left" src="./在C++程序中使用QML - Nokia Developer Wiki_files/featuredLinks.png" alt="">
+	    <div class="title">Featured links</div>
+	    <div><a href="http://www.developer.nokia.com/News_and_events/">Event calendar</a></div>
+	    <div><a href="http://www.developer.nokia.com/Contact_and_feedback/">Contact and feedback</a></div>
+	    <div><a href="http://www.developer.nokia.com/Resources/Support/">Support</a></div>
+	  </div>
+
+          <div class="item">
+            <img class="left" src="./在C++程序中使用QML - Nokia Developer Wiki_files/developer.png" alt="">
+            <div class="title">Develop</div>
+            <div><a href="http://www.developer.nokia.com/Develop/Windows_Phone/">Windows Phone</a></div>
+           <!-- <div><a href="//www.developer.nokia.com/Develop/Qt/">Qt</a></div>-->
+            <div><a href="http://www.developer.nokia.com/Develop/Series_40/">Series 40</a></div>
+          </div>
+        </div>
+
+        <div class="row left">
+	  <div class="item">
+	    <img class="left" src="./在C++程序中使用QML - Nokia Developer Wiki_files/distribution.png" alt="">
+	    <div class="title">Distribution</div>
+	    <div><a href="http://www.developer.nokia.com/Distribute/Ovi_Store_statistics.xhtml">Store Statistics</a></div>
+	    <div><a href="http://www.developer.nokia.com/Distribute/Ovi_Store_guidelines.xhtml">Publisher Guide</a></div>
+	  </div>
+
+          <div class="item">
+            <img class="left" src="./在C++程序中使用QML - Nokia Developer Wiki_files/blogs.png" alt="">
+            <div class="title">Blogs</div>
+            <div><a href="http://www.developer.nokia.com/Blogs/News/">Nokia Developer Blog</a></div>
+            <div><a href="http://www.developer.nokia.com/Blogs/Publish/">Nokia Publisher Blog</a></div>
+            <!--<div><a href="//blog.qt.nokia.com/">Qt Blog</a></div>-->
+          </div>
+        </div>
+
+        <div class="row left">
+	  <div class="item">
+	    <img class="left" src="./在C++程序中使用QML - Nokia Developer Wiki_files/community.png" alt="">
+	    <div class="title">Community</div>
+	    <div><a href="http://www.developer.nokia.com/Community/Discussion/">Discussions</a></div>
+	    <div><a href="http://www.developer.nokia.com/Community/Wiki/">Wiki</a></div>
+	    <!-- <div><a href="//www.developer.nokia.com/Community/Discussion/group.php">Groups</a></div> -->
+	    <div><a href="http://projects.developer.nokia.com/">Projects</a></div>
+	    <div><a href="http://www.developer.nokia.com/Community/Champions/">Champions</a></div>
+        <div><a href="http://www.developer.nokia.com/Community/Wiki/KnowledgeBase">Knowledge base</a></div>
+	  </div>
+        </div>
+
+        <div class="row left">
+	  <div class="item left">
+	    <img class="left" src="./在C++程序中使用QML - Nokia Developer Wiki_files/resources.png" alt="">
+  	    <div class="title">Resources</div>
+	    <div><a href="http://www.developer.nokia.com/Resources/Library/">Documentation</a></div>
+	    <div><a href="http://www.developer.nokia.com/Resources/Tools_and_downloads/">Tools</a></div>
+	    <div><a href="http://www.developer.nokia.com/Resources/Code_examples/">Code examples</a></div>
+        <div><a href="http://www.developer.nokia.com/Developer_Programs/">Developer Programs</a></div>
+	  </div>
+        </div>
+
+      </div>
+
+      <div class="line">
+	<div class="siteMap left">
+	  <a href="http://www.developer.nokia.com/"><img class="left" src="./在C++程序中使用QML - Nokia Developer Wiki_files/featuredLinks.png" alt=""></a>
+	</div>
+	<div class="siteMap left">
+	  <a href="http://www.developer.nokia.com/Sitemap/" id="nDevFooterSiteMap">Site Map</a>
+	</div>
+	<div class="siteMap left">
+	  <a href="http://www.developer.nokia.com/Terms_and_conditions/" id="fn_i18n_terms">Terms &amp; Conditions</a>
+	</div>
+	<div class="end siteMap left">
+	  <a href="http://www.nokia.com/global/privacy/privacy/policy/privacy-policy" rel="external" id="fn_i18n_privacy" target="_blank">Privacy Policy</a>
+	</div>
+      </div>
+
+    </div>
+
+    <div id="mission" class="right">
+
+      <div class="item">
+	<!--<a class="right" href="#"><img alt="" title="LinkedIn" src="//www.developer.nokia.com/images/c/footer/linkedIn.png" /></a>-->
+	<a class="right" href="http://www.facebook.com/NokiaDevelopers"><img alt="" title="Facebook" src="./在C++程序中使用QML - Nokia Developer Wiki_files/facebook.png"></a>
+	<a class="right" href="http://twitter.com/#!/nokiadeveloper"><img alt="" title="Twitter" src="./在C++程序中使用QML - Nokia Developer Wiki_files/twitter.png"></a>
+      </div>
+      <div class="item">
+	Nokia Developer aims to help you create apps and publish them so you can connect with users around the world.<br><br>
+	<!--<a href="//www.developer.nokia.com/">Find more about what we can do together</a>-->
+      </div>
+      <div class="item">
+	<span id="nDevFooterCustomContent"></span>
+	<span id="china_icp"><a href="http://www.miibeian.gov.cn/" rel="external" target="_blank">京ICP备05048969号&nbsp;</a></span>
+	<span id="fn_i18n_copyright">© Copyright Nokia 2012 All rights reserved</span>
+      </div>
+      
+
+    </div>
+
+  </div>
+                <!-- Piwik -->
+              <script type="text/javascript">
+                                var pkBaseURL = (("https:" == document.location.protocol) ? "https://analytics.developer.nokia.com/"
+                                                                : "http://analytics.developer.nokia.com/");
+                                document.write(unescape("%3Cscript src='" + pkBaseURL
+                                                                + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+                </script><script src="./在C++程序中使用QML - Nokia Developer Wiki_files/piwik.js" type="text/javascript"></script>
+                <script type="text/javascript">
+                                try {
+                                                var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 2);
+                                                if (window.location.hostname != "sso.developer.nokia.com")
+                                                {
+                                                                piwikTracker.trackPageView();
+                                                                piwikTracker.enableLinkTracking();
+                                                }
+                                } catch (err) {
+                                }
+                </script>
+                <noscript>
+                                &lt;p&gt;
+                                                &lt;img src="http://analytics.developer.nokia.com/piwik.php?idsite=2"
+                                                                style="border: 0" alt="" /&gt;
+                                &lt;/p&gt;
+                </noscript>
+               
+              <!-- End Piwik Tracking Code -->
+
+  
+</div>
+<!--?NOINDEX-END?-->
+
+<!--?NOINDEX-START?-->
+        <script>if(window.mw){
+	mw.loader.load(["mediawiki.user", "mediawiki.util", "mediawiki.page.ready", "mediawiki.legacy.wikibits", "mediawiki.legacy.ajax", "ext.vector.collapsibleNav", "ext.vector.collapsibleTabs", "ext.vector.simpleSearch", "ext.jqueryqtip", "ext.nokiadev", "enhancedCategorySelector"]);
+}
+</script><script type="text/javascript" src="./在C++程序中使用QML - Nokia Developer Wiki_files/load(3).php"></script><script type="text/javascript" src="./在C++程序中使用QML - Nokia Developer Wiki_files/load(4).php"></script><script type="text/javascript" src="./在C++程序中使用QML - Nokia Developer Wiki_files/load(5).php"></script><script type="text/javascript" src="./在C++程序中使用QML - Nokia Developer Wiki_files/common.js"></script><script type="text/javascript" src="./在C++程序中使用QML - Nokia Developer Wiki_files/jquery.easing-1.3.pack.js"></script><script type="text/javascript" src="./在C++程序中使用QML - Nokia Developer Wiki_files/jquery.fancybox-1.3.0.pack.js"></script><script type="text/javascript" src="./在C++程序中使用QML - Nokia Developer Wiki_files/jquery-ui-1.8.9.min.js"></script><script type="text/javascript" src="./在C++程序中使用QML - Nokia Developer Wiki_files/ui.selectmenu.js"></script><script type="text/javascript" src="./在C++程序中使用QML - Nokia Developer Wiki_files/ui.radiobutton.js"></script><script type="text/javascript" src="./在C++程序中使用QML - Nokia Developer Wiki_files/swfobject-2.2.js"></script><script type="text/javascript" src="./在C++程序中使用QML - Nokia Developer Wiki_files/jquery.tooltip.min.js"></script><script type="text/javascript" src="./在C++程序中使用QML - Nokia Developer Wiki_files/jquery.roundabout.min.js"></script><script type="text/javascript" src="./在C++程序中使用QML - Nokia Developer Wiki_files/jquery.roundabout-shapes.min.js"></script><script type="text/javascript" src="./在C++程序中使用QML - Nokia Developer Wiki_files/nokiadev.js"></script><script type="text/javascript" src="./在C++程序中使用QML - Nokia Developer Wiki_files/autocolumn.js"></script><script type="text/javascript" src="./在C++程序中使用QML - Nokia Developer Wiki_files/SelectCategory.js"></script><script type="text/javascript" src="./在C++程序中使用QML - Nokia Developer Wiki_files/userlink.js"></script>
+<script type="text/javascript">
+function toggleDisplay( id, hidetext, showtext ) {
+    link = document.getElementById( id + "l" ).childNodes[0];
+    with( document.getElementById( id ).style ) {
+        if( display == "none" ) {
+                display = "inline";
+                link.nodeValue = hidetext;
+        } else {
+                display = "none";
+                link.nodeValue = showtext;
+        }
+    }
+}
+
+function togglePortalDisplay(id, hidetext, showtext) {
+    $('#'+id).slideToggle( 'fast' );
+    link = document.getElementById( id + "l" ).childNodes[0];
+    if ($('#'+id+"l").hasClass('toggleDisplay-expanded')) {
+        link.nodeValue = showtext;
+    } else {
+        link.nodeValue = hidetext;
+    }    
+    $('#'+id+"l").toggleClass('toggleDisplay-expanded');
+    $('#'+id+"l").toggleClass('toggleDisplay-collapsed');
+}
+</script>
+<script src="./在C++程序中使用QML - Nokia Developer Wiki_files/TalkHere.js"></script>
+              <!--[if lt IE 8]>
+                <link rel="stylesheet" type="text/css" href="http://www.developer.nokia.com/css/2011/ie6.css" />
+              <![endif]-->
+              
+      		
+<link rel="stylesheet" type="text/css" href="./在C++程序中使用QML - Nokia Developer Wiki_files/jquery-ui-1.8.14.custom.css">
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/Community/Wiki/skins/nokiadev/csshover.htc")}</style><![endif]-->
+<link rel="alternate" title="Forum Nokia Wiki Newest Articles RSS" href="http://www.developer.nokia.com/Community/Wiki/index.php/Special:Newestpages?feed=rss" type="application/rss+xml">
+<!--[if IE 7]><link rel="stylesheet" type="text/css" title="Style" href="http://www.developer.nokia.com/Community/Piazza/css/communitystyles-ie7.css?1851" /><![endif]-->
+<script>if(window.mw){
+	mw.user.options.set({"ccmeonemails":0,"cols":80,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":1,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":5,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"nokiadev","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":1,"watchdefault":1,"watchdeletion":1,"watchlistdays":3,"watchlisthideanons":0,
+	"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":1,"wllimit":250,"vector-simplesearch":1,"usebetatoolbar":1,"usebetatoolbar-cgd":1,"wikieditor-preview":1,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false,"searchNs100":false,"searchNs101":false,"searchNs104":false,"searchNs105":false,"searchNs112":false,"searchNs113":false,"searchNs114":false,"searchNs115":false});;mw.user.tokens.set({"editToken":"+\\","watchToken":false});;mw.loader.state({"user.options":"ready","user.tokens":"ready"});
+	
+	/* cache key: wiki:resourceloader:filter:minify-js:4:d2805bf36c15fa3c4ee86cd4a689f47a */
+}
+</script>
+        <!-- SiteCatalyst code version: H.20.3.
+Copyright 1997-2009 Omniture, Inc. More info available at
+http://www.omniture.com -->
+<script language="JavaScript" type="text/javascript" src="./在C++程序中使用QML - Nokia Developer Wiki_files/community_forum_s_code.js"></script>
+<script language="JavaScript" type="text/javascript"><!--
+/* You may give each page an identifying name, server, and channel on
+the next lines. */
+
+// s.pageName="nokia:nokia.com:fw:forums comm:home page"
+// s.pageName="nokia:nokia.com:fw:forums comm:i want to:develop applications"
+s.pageName="nokia:nokia.com:fw:forums comm:community:wiki:C++QML"
+
+// Domain of page 
+s.server=document.domain
+
+// Site Sections
+// s.channel="forums:fixed"
+s.channel="nokia.nokia.com:fw"
+
+// Pages Not Found
+// s.pageType="errorPage"
+s.pageType=""
+
+// Fully Qualified Taxonomy
+// All pages/requests where content levels exist
+// s.prop1="nokia:nokia.com:fw:forums comm:devices docs & tools:explore:development process and user experience:testing"			
+s.prop1="nokia:nokia.com:fw:forums comm:community:wiki:C++QML"
+
+// Three-Level Taxonomy	Fixed
+// All pages/requests where content levels exist
+// s.prop2="nokia:nokia.com:fw:forums comm:devices docs & tools:explore:development process and user experience"
+s.prop2="nokia:nokia.com:fw:forums comm:community:wiki"
+
+// Two-Level Taxonomy
+// All pages/requests where content levels exist
+// s.prop3="nokia:nokia.com:fw:forums comm:devices docs & tools:explore"
+s.prop3="nokia:nokia.com:fw:forums comm:community"
+
+// One-Level Taxonomy
+// All pages/requests where content levels exist
+// s.prop4="nokia:nokia.com:fw:forums comm:devices docs & tools"
+s.prop4=""
+
+/* Conversion Variables */
+s.campaign=""
+s.state=""
+s.zip=""
+s.events=""
+s.products=""
+s.purchaseID=""
+s.eVar1=s.prop1
+s.eVar2=s.prop2
+s.eVar3=s.prop3
+s.eVar4=s.prop4
+s.eVar5=s.prop5
+/************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/
+var s_code=s.t();if(s_code)document.write(s_code)//--></script>
+<script language="JavaScript" type="text/javascript"><!--
+if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+//--></script><!--/DO NOT REMOVE/-->
+<!-- End SiteCatalyst code version: H.20.3. -->		<!-- Served in 1.102 secs. -->				
+            <!-- ============= -->
+            <!-- = LOGIN BOX = -->
+            <!-- ============= -->
+            <script type="text/javascript">
+            <!--
+                mw.loader.using( ['mediawiki.util', 'jquery'], function () {
+            // jQuery( document ).ready(function() {
+            $('<div id="fnlogin"><p id="piazzaLoginBox"></p></div>').appendTo('#nDevHeaderLoginLogout');    
+                            $('<a href="#" id="piazzaLogin">Log in</a><a  id="piazzaJoin" href="http://www.developer.nokia.com/Profile/Join.xhtml" rel="nofollow">Join</a>').appendTo('#piazzaLoginBox');
+                
+                                
+            
+                    $('.rightColumnTop').prependTo('#piazzaRightColumnWrapper');
+                    $('.rightColumn').appendTo('#piazzaRightColumn');
+            
+                    $('#piazzaLogin').click( function() {
+                        window.location.href = "https://sso.developer.nokia.com/login?service=" + escape(window.location.href);
+                        return false;
+                    });
+                    $('.piazzaLogin').click( function() {
+                        window.location.href = "https://sso.developer.nokia.com/login?service=" + escape(window.location.href);
+                        return false;
+                    });
+                    $('#piazzaLogout').click( function() {
+                        logoutUrl = "https://sso.developer.nokia.com/logout?service=" + escape(window.location.href);
+                        window.location.href = logoutUrl;
+                        return false;
+                    });
+                // });
+            } );
+                // -->
+                </script>
+            <!-- =========================== -->
+            <!-- = END LOGIN BOX = -->
+            <!-- =========================== -->
+<!--?NOINDEX-END?-->
+        
+    </div>        
+	
+
+<div id="fancybox-tmp"></div><div id="fancybox-loading"><div></div></div><div id="fancybox-overlay"></div><div id="fancybox-wrap"><div id="fancybox-outer"><div class="fancy-bg" id="fancy-bg-n"></div><div class="fancy-bg" id="fancy-bg-ne"></div><div class="fancy-bg" id="fancy-bg-e"></div><div class="fancy-bg" id="fancy-bg-se"></div><div class="fancy-bg" id="fancy-bg-s"></div><div class="fancy-bg" id="fancy-bg-sw"></div><div class="fancy-bg" id="fancy-bg-w"></div><div class="fancy-bg" id="fancy-bg-nw"></div><div id="fancybox-inner"></div><a id="fancybox-close"></a><a href="javascript:;" id="fancybox-left"><span class="fancy-ico" id="fancybox-left-ico"></span></a><a href="javascript:;" id="fancybox-right"><span class="fancy-ico" id="fancybox-right-ico"></span></a></div></div></body></html>
