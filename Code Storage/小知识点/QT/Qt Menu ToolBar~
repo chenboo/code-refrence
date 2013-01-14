@@ -1,0 +1,22 @@
+在QT中为窗口添加工具条和菜单非常的方便和快捷。
+QT是通过QAction来为菜单和工具条添加相应的操作和项的，想来QT在这方面也是
+做得很不错，充分得为程序员着想，减轻编码负担，同一个Action可以添加到，菜单和工具条中，
+而不需要另起炉灶，添加多余的代码，因为所需的信息是一样的。
+下面来简单的介绍一下：
+《一》创建菜单和工具条共同的基础QActions
+
+C++
+
+//两个action的定义
+
+    m_pOpenAction = new QAction(tr("打开(&O)"), this);
+    m_pOpenAction->setIcon(QIcon(":/images/open.png"));
+    m_pOpenAction->setShortcut(QKeySequence::Open);
+    m_pOpenAction->setStatusTip(tr("打开一个已经存在的文件"));
+    connect(m_pOpenAction, SIGNAL(triggered()), this, SLOT(openFile()));
+
+    m_pNewFileAction = new QAction(tr("新建(&N)"), this);
+    m_pNewFileAction->setIcon(QIcon(":/images/new.png"));
+    m_pNewFileAction->setShortcut(QKeySequence::New);
+    m_pNewFileAction->setStatusTip(tr("创建一个新的文件"));
+    connect(m_pNewFileAction, SIGNAL(triggered()), this, SLOT(newFile()));
