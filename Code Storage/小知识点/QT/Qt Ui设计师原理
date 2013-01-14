@@ -1,0 +1,169 @@
+/*
+QT Ui设计师的出现是让程序员从代码的布局中分离出来，
+使得界面的布局更加地容易，但通过ui设计师的整个过程来看
+总的实现方法跟代码实现差不多，通过ui设计师，会生成一个.ui文件
+这是一个xml格式的文件，记录了里面各部件的布局情况，在进行编译的时候
+uic工具会将.ui文件转换成C++并且将结果存储在ui_xxx.h文件中，所生成的
+ui_xxx.h文件包含了Ui::xxxx的定义，现举一个uic生成的.h文件说明一下：
+*/
+
+
+//ui_form.h
+
+/********************************************************************************
+** Form generated from reading UI file 'form.ui'
+**
+** Created: Fri Jan 11 10:39:29 2013
+**      by: Qt User Interface Compiler version 4.8.3
+**
+** WARNING! All changes made in this file will be lost when recompiling UI file!
+********************************************************************************/
+
+#ifndef UI_FORM_H
+#define UI_FORM_H
+
+#include <QtCore/QVariant>
+#include <QtGui/QAction>
+#include <QtGui/QApplication>
+#include <QtGui/QButtonGroup>
+#include <QtGui/QHBoxLayout>
+#include <QtGui/QHeaderView>
+#include <QtGui/QPushButton>
+#include <QtGui/QSpacerItem>
+#include <QtGui/QSplitter>
+#include <QtGui/QTextEdit>
+#include <QtGui/QVBoxLayout>
+#include <QtGui/QWidget>
+
+QT_BEGIN_NAMESPACE
+
+class Ui_Form
+{
+public:
+    QHBoxLayout *horizontalLayout_2;
+    QVBoxLayout *verticalLayout;
+    QSplitter *splitter;
+    QTextEdit *textEdit;
+    QTextEdit *textEdit_2;
+    QHBoxLayout *horizontalLayout;
+    QPushButton *btnInsertPic;
+    QPushButton *btnInsertFace;
+    QSpacerItem *horizontalSpacer;
+    QPushButton *btnSend;
+
+    void setupUi(QWidget *Form)
+    {
+        if (Form->objectName().isEmpty())
+            Form->setObjectName(QString::fromUtf8("Form"));
+        Form->resize(374, 439);
+        horizontalLayout_2 = new QHBoxLayout(Form);
+        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
+        verticalLayout = new QVBoxLayout();
+        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
+        splitter = new QSplitter(Form);
+        splitter->setObjectName(QString::fromUtf8("splitter"));
+        splitter->setOrientation(Qt::Vertical);
+        textEdit = new QTextEdit(splitter);
+        textEdit->setObjectName(QString::fromUtf8("textEdit"));
+        splitter->addWidget(textEdit);
+        textEdit_2 = new QTextEdit(splitter);
+        textEdit_2->setObjectName(QString::fromUtf8("textEdit_2"));
+        splitter->addWidget(textEdit_2);
+
+        verticalLayout->addWidget(splitter);
+
+        horizontalLayout = new QHBoxLayout();
+        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
+        btnInsertPic = new QPushButton(Form);
+        btnInsertPic->setObjectName(QString::fromUtf8("btnInsertPic"));
+
+        horizontalLayout->addWidget(btnInsertPic);
+
+        btnInsertFace = new QPushButton(Form);
+        btnInsertFace->setObjectName(QString::fromUtf8("btnInsertFace"));
+
+        horizontalLayout->addWidget(btnInsertFace);
+
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout->addItem(horizontalSpacer);
+
+        btnSend = new QPushButton(Form);
+        btnSend->setObjectName(QString::fromUtf8("btnSend"));
+
+        horizontalLayout->addWidget(btnSend);
+
+
+        verticalLayout->addLayout(horizontalLayout);
+
+
+        horizontalLayout_2->addLayout(verticalLayout);
+
+
+        retranslateUi(Form);
+
+        QMetaObject::connectSlotsByName(Form);
+    } // setupUi
+
+    void retranslateUi(QWidget *Form)
+    {
+        Form->setWindowTitle(QApplication::translate("Form", "Form", 0, QApplication::UnicodeUTF8));
+        btnInsertPic->setText(QApplication::translate("Form", "PushButton", 0, QApplication::UnicodeUTF8));
+        btnInsertFace->setText(QApplication::translate("Form", "PushButton", 0, QApplication::UnicodeUTF8));
+        btnSend->setText(QApplication::translate("Form", "PushButton", 0, QApplication::UnicodeUTF8));
+    } // retranslateUi
+
+};
+
+namespace Ui {
+    class Form: public Ui_Form {};
+} // namespace Ui
+
+QT_END_NAMESPACE
+
+#endif // UI_FORM_H
+
+/*
+可以看到这个uic生成的文件中最重要的函数是setupUi，它相当于给
+程序的界面穿上一件外衣，调用它后程序的界面上就会出现相应布局好的控件，
+很方便吧，真的不得不佩服哪些编码人员的设计思路，这样就减轻了程序员的
+很多负担。
+*/
+
+//使用范例:(mainwindow.h)
+#ifndef MAINWINDOW_H
+#define MAINWINDOW_H
+
+#include <QWidget>
+#include "ui_form.h"
+
+class MainWindow : public QWidget
+{
+    Q_OBJECT
+    
+public:
+    MainWindow();
+    ~MainWindow();
+
+private slots:
+
+private:
+    Ui::Form            ui;
+};
+
+#endif // MAINWINDOW_H
+
+//mainwindow.cpp
+#include "mainwindow.h"
+
+MainWindow::MainWindow()
+{
+    ui.setupUi(this);//加上这一句就OK了
+    setWindowTitle(tr("Libgroupchat"));
+}
+
+MainWindow::~MainWindow()
+{
+}
+
+//完
